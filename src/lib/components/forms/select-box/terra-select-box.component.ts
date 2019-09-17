@@ -19,8 +19,6 @@ import {
 import { isNullOrUndefined } from 'util';
 import { StringHelper } from '../../../helpers/string.helper';
 import { noop } from 'rxjs';
-import { SelectBoxSortHelper } from '../../../helpers/select-box-sort.helper';
-import { SortDirectionEnum } from '../../../helpers/enums/sort-direction.enum';
 
 @Component({
     selector:  'terra-select-box',
@@ -65,12 +63,6 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
 
     @Input()
     public inputListBoxValues:Array<TerraSelectBoxValueInterface>;
-
-    @Input()
-    public disableSorting:boolean = false;
-
-    @Input()
-    public sortDirection:SortDirectionEnum = 'asc';
 
     /**
      * @deprecated use ngModelChange instead
@@ -143,11 +135,6 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
            && !this.inputListBoxValues.find((x:TerraSelectBoxValueInterface):boolean => this.selectedValue === x))
         {
             this.select(this.inputListBoxValues[0]);
-        }
-
-        if(changes['sortDirection'] || changes['inputListBoxValues'])
-        {
-            this.sortListBoxValues();
         }
     }
 
@@ -302,14 +289,6 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
     protected onBlur():void
     {
         this.toggleOpen = false;
-    }
-
-    private sortListBoxValues():void
-    {
-        if(!this.disableSorting)
-        {
-            this.inputListBoxValues = SelectBoxSortHelper.sortArray(this.inputListBoxValues, this.sortDirection, 'caption');
-        }
     }
 
     /**
