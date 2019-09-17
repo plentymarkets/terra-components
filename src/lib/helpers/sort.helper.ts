@@ -2,7 +2,7 @@ import { isNullOrUndefined } from 'util';
 import { SortDirectionEnum } from './enums/sort-direction.enum';
 
 /**
- * @description Class that provides functionality to sort lists of options for select boxes.
+ * @description Class that provides functionality to sort lists.
  */
 export class SortHelper
 {
