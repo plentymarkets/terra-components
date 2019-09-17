@@ -4,15 +4,15 @@ import { examples } from './components/example-collection';
 import { TerraComponentsModule } from './terra-components.module';
 import { FormsModule } from '@angular/forms';
 import { CKEditorModule } from 'ckeditor4-angular';
-import { MatSelectModule } from '@angular/material/select';
+import { MatExamplesModule } from './components/material/mat-examples.module';
 
 @NgModule({
     imports:         [
         CommonModule,
         FormsModule,
         CKEditorModule,
-        MatSelectModule,
-        TerraComponentsModule
+        TerraComponentsModule,
+        MatExamplesModule
     ],
     declarations:    [...examples],
     entryComponents: [...examples],
