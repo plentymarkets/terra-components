@@ -20,7 +20,7 @@ describe('SortHelper: ', () =>
         const array:Array<any> = [2, 5, 27, 1, 9];
         const sorted:Array<any> = SortHelper.sortArray(array);
         expect(sorted).toEqual([1, 2, 5, 9, 27]);
-        const sorted1:Array<any> = SortHelper.sortArray(array, 'desc', undefined);
+        const sorted1:Array<any> = SortHelper.sortArray(array, 'desc');
         expect(sorted1).toEqual([27, 9, 5, 2, 1]);
     });
 
@@ -29,7 +29,7 @@ describe('SortHelper: ', () =>
         const array:Array<any> = ['a', 'z', 'b', 'j', 'y'];
         const sorted:Array<any> = SortHelper.sortArray(array);
         expect(sorted).toEqual(['a', 'b', 'j', 'y', 'z']);
-        const sorted1:Array<any> = SortHelper.sortArray(array, 'desc', undefined);
+        const sorted1:Array<any> = SortHelper.sortArray(array, 'desc');
         expect(sorted1).toEqual(['z', 'y', 'j', 'b', 'a']);
     });
 
