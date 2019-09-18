@@ -50,8 +50,8 @@ describe('SortHelper: ', () =>
         const object1:{ property:string } = {property: 'Ciao'};
         const object2:{ property:string } = {property: 'Hallo'};
         const object3:{ property:string } = {property: 'Zone'};
-        const list:Array<any> = [object1, object2, object3];
+        const list:Array<any> = [object2, object1, object3];
         const sorted:Array<any> = SortHelper.sortArray(list);
-        expect(sorted).toEqual([object1, object2, object3]);
+        expect(sorted).toEqual([object2, object1, object3]);
     });
 });
