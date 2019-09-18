@@ -33,25 +33,26 @@ describe('SortHelper: ', () =>
         expect(sorted1).toEqual(['z', 'y', 'j', 'b', 'a']);
     });
 
-    it('returns sorted array when input list contains objects', () =>
+    describe('list of objects', () =>
     {
         const object1:{ property:string } = {property: 'Ciao'};
         const object2:{ property:string } = {property: 'Hallo'};
         const object3:{ property:string } = {property: 'Zone'};
-        const list:Array<any> = [object2, object1, object3];
-        const sorted:Array<any> = SortHelper.sortArray(list, 'asc', 'property');
-        expect(sorted).toEqual([object1, object2, object3]);
-        const sorted1:Array<any> = SortHelper.sortArray(list, 'desc', 'property');
-        expect(sorted1).toEqual([object3, object2, object1]);
-    });
 
-    it('does not return a sorted array when input list contains objects and no sortingKey is given', () =>
-    {
-        const object1:{ property:string } = {property: 'Ciao'};
-        const object2:{ property:string } = {property: 'Hallo'};
-        const object3:{ property:string } = {property: 'Zone'};
-        const list:Array<any> = [object2, object1, object3];
-        const sorted:Array<any> = SortHelper.sortArray(list);
-        expect(sorted).toEqual([object2, object1, object3]);
+        it('returns sorted array when input list contains objects', () =>
+        {
+            const list:Array<any> = [object2, object1, object3];
+            const sorted:Array<any> = SortHelper.sortArray(list, 'asc', 'property');
+            expect(sorted).toEqual([object1, object2, object3]);
+            const sorted1:Array<any> = SortHelper.sortArray(list, 'desc', 'property');
+            expect(sorted1).toEqual([object3, object2, object1]);
+        });
+
+        it('does not return a sorted array when input list contains objects and no sortingKey is given', () =>
+        {
+            const list:Array<any> = [object2, object1, object3];
+            const sorted:Array<any> = SortHelper.sortArray(list);
+            expect(sorted).toEqual([object2, object1, object3]);
+        });
     });
 });
