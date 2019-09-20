@@ -22,7 +22,6 @@
 		"@typescript-eslint"
 	],
 	"rules": {
-		"brace-style": ["error", "allman", { "allowSingleLine": true }],
 		"camelcase": "error",
 		"constructor-super": "error",
 		"curly": ["error", "all"],
@@ -55,6 +54,7 @@
 		"spaced-comment": ["error", "always"],
 		"semi": "error",
 		"@typescript-eslint/array-type": ["error", { "default": "generic" }],
+		"@typescript-eslint/brace-style": ["error", "allman", { "allowSingleLine": true }],
 		"@typescript-eslint/class-name-casing": "error",
 		"@typescript-eslint/explicit-member-accessibility": ["error", { "accessibility": "explicit", "overrides": { "constructors": "no-public"} }],
 		"@typescript-eslint/member-ordering": ["error", { "default":  ["public-field", "protected-field", "private-field", "constructor", "public-method", "protected-method", "private-method"] }],
