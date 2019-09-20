@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/member-ordering*/
+// Disabel beacuse of a 'bug' in the rule
+// https://github.com/typescript-eslint/typescript-eslint/issues/395
 import { TerraStorageObjectList } from './model/terra-storage-object-list';
 import { Observable } from 'rxjs';
 import { TerraUploadItem } from './model/terra-upload-item';
