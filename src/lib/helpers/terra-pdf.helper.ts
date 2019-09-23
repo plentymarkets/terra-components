@@ -4,7 +4,7 @@ export class TerraPdfHelper
     {
         let sliceSize:number = 512;
         let byteCharacters:string = atob(base64String);
-        let byteArrays:any = [];
+        let byteArrays:Array<Uint8Array> = [];
 
         for(let offset:number = 0; offset < byteCharacters.length; offset += sliceSize)
         {

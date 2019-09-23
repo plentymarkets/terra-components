@@ -1,6 +1,6 @@
 export class TerraDownloadHelper
 {
-    public static downloadFile(object:any, filename:string):void
+    public static downloadFile(object:unknown, filename:string):void
     {
         let fileURL:string = URL.createObjectURL(object);
         this.downloadFileFromUrl(fileURL, filename);

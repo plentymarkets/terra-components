@@ -18,7 +18,7 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor
 {
-    public intercept(req:HttpRequest<any>, next:HttpHandler):Observable<HttpEvent<any>>
+    public intercept(req:HttpRequest<unknown>, next:HttpHandler):Observable<HttpEvent<unknown>>
     {
         // Get the token from local storage.
         const accessToken:string = localStorage.getItem('accessToken');

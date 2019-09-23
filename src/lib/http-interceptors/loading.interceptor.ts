@@ -18,7 +18,7 @@ export class LoadingInterceptor implements HttpInterceptor
     constructor(private loadingSpinner:TerraLoadingSpinnerService)
     {}
 
-    public intercept(req:HttpRequest<any>, next:HttpHandler):Observable<HttpEvent<any>>
+    public intercept(req:HttpRequest<unknown>, next:HttpHandler):Observable<HttpEvent<unknown>>
     {
         this.loadingSpinner.start();
         return next.handle(req).pipe(finalize(() => this.loadingSpinner.stop()));

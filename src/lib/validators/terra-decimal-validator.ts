@@ -14,7 +14,7 @@ const afterSeparator:number = 1;
 
 export function terraDecimalValidator(maxLength:number, decimals:number):ValidatorFn
 {
-    return (control:AbstractControl):{ [key:string]:any } | null =>
+    return (control:AbstractControl):{ [key:string]:string } | null =>
     {
         const value:number = control.value as number;
         if(!isNullOrUndefined(value))

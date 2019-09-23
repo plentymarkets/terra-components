@@ -28,7 +28,7 @@ export class ErrorInterceptor implements HttpInterceptor
     constructor(private alertService:AlertService, private translation:TranslationService, private locale:LocaleService)
     {}
 
-    public intercept(req:HttpRequest<any>, next:HttpHandler):Observable<HttpEvent<any>>
+    public intercept(req:HttpRequest<unknown>, next:HttpHandler):Observable<HttpEvent<unknown>>
     {
         return next.handle(req).pipe(
             catchError((error:HttpErrorResponse) =>
