@@ -10,7 +10,7 @@ export class TerraPdfHelper
         {
             let slice:string = byteCharacters.slice(offset, offset + sliceSize);
 
-            let byteNumbers:Array<any> = new Array(slice.length);
+            let byteNumbers:Array<number> = new Array(slice.length);
             for(let i:number = 0; i < slice.length; i++)
             {
                 byteNumbers[i] = slice.charCodeAt(i);
