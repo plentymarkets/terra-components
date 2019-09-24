@@ -1,5 +1,5 @@
 import { TerraKeyValueInterface } from '../../../../models';
-import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
+import { TerraFormFieldInterface } from '../../../..';
 
 export const numberControl:TerraFormFieldInterface = {
     type:         'number',
@@ -26,6 +26,24 @@ export const select:TerraFormFieldInterface = {
                 value:    'option2',
                 caption:  'Option 2',
                 position: 1
+            }
+        ]
+    }
+};
+
+export const suggestion:TerraFormFieldInterface = {
+    type:         'suggestion',
+    options:      {
+        name:        'Suggestion',
+        required:     false,
+        listBoxValues: [
+            {
+                value:    'suggestion1',
+                caption:  'Suggestion 1'
+            },
+            {
+                value:    'suggestion2',
+                caption:  'Suggestion 2'
             }
         ]
     }
