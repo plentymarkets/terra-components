@@ -93,13 +93,7 @@ export class FormTypeMap
         component: TerraCodeEditorComponent
     };
 
-    public readonly suggestion:TerraFormTypeInterface = {
-        inputMap:  {
-            name: 'inputName',
-            required: 'inputIsRequired'
-        },
-        component: TerraSuggestionBoxComponent
-    };
+    public readonly suggestion:Type<TerraSuggestionBoxComponent> = TerraSuggestionBoxComponent;
 
     // CONTAINER TYPES
     public readonly portlet:TerraFormTypeInterface = {
