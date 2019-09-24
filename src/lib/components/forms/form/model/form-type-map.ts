@@ -15,6 +15,7 @@ import { TerraNoteEditorComponent } from '../../../editors/note-editor/terra-not
 import { TerraCodeEditorComponent } from '../../../editors/code-editor/terra-code-editor.component';
 import { TerraSliderComponent } from '../../slider/terra-slider.component';
 import { TerraPortletComponent } from '../../../layouts/portlet/terra-portlet.component';
+import { TerraSuggestionBoxComponent } from '../../../..';
 
 /**
  * @description A map of control types that may be passed to the <terra-form> in order to support those controls.
@@ -90,6 +91,14 @@ export class FormTypeMap
             name: 'inputHeaderLabel'
         },
         component: TerraCodeEditorComponent
+    };
+
+    public readonly suggestion:TerraFormTypeInterface = {
+        inputMap:  {
+            name: 'inputName',
+            required: 'inputIsRequired'
+        },
+        component: TerraSuggestionBoxComponent
     };
 
     // CONTAINER TYPES
