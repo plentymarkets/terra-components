@@ -1,5 +1,5 @@
 import { TerraKeyValueInterface } from '../../../../models';
-import { TerraFormFieldInterface } from '../../../..';
+import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
 
 export const numberControl:TerraFormFieldInterface = {
     type:         'number',
