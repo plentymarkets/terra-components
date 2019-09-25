@@ -19,6 +19,10 @@ import { ShowcaseComponent } from './showcase/showcase.component';
 import { TerraComponentsExamplesModule } from '../lib/terra-components-examples.module';
 import { TerraComponentsModule } from '../lib';
 import { RouterModule } from '@angular/router';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { ReactiveFormsModule } from '@angular/forms';
 
 function createCompiler(compilerFactory:CompilerFactory):Compiler
 {
@@ -36,13 +40,18 @@ function initL10n(l10nLoader:L10nLoader):Function
  * NOTE: It is not publicly accessible either.
  */
 @NgModule({
-    imports:   [
+    imports: [
         RouterModule.forRoot([]),
         BrowserModule,
         BrowserAnimationsModule,
         HttpClientModule,
         LocalizationModule.forRoot(l10nConfig),
-        TerraComponentsExamplesModule
+        TerraComponentsModule,
+        TerraComponentsExamplesModule,
+        MatInputModule,
+        MatSelectModule,
+        MatFormFieldModule,
+        ReactiveFormsModule
     ],
     declarations: [AppComponent, ShowcaseComponent],
     providers: [
