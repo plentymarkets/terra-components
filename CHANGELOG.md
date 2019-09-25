@@ -3,7 +3,7 @@
 * **mat-input** Added material input component
 
 <a name="4.4.0"></a>
-# 4.4.0 (XX.XX.2019)
+# 4.4.0 (25.09.2019)
 ### Feature
 * **terra-form** Added the possibility to include a suggestion box with the terra form
 
