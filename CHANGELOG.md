@@ -1,5 +1,10 @@
+<a name="4.4.0"></a>
+# 4.4.0 (25.09.2019)
+### Feature
+* **terra-form** Added the possibility to include a suggestion box with the terra form
+
 <a name="4.3.2"></a>
-# UNRELEASED
+# 4.3.2 (18.09.2019)
 
 ### Bug Fixes
 * **tcTooltip** hide tooltip when routing
