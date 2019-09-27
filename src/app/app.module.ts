@@ -46,12 +46,7 @@ function initL10n(l10nLoader:L10nLoader):Function
         BrowserAnimationsModule,
         HttpClientModule,
         LocalizationModule.forRoot(l10nConfig),
-        TerraComponentsModule,
-        TerraComponentsExamplesModule,
-        MatInputModule,
-        MatSelectModule,
-        MatFormFieldModule,
-        ReactiveFormsModule
+        TerraComponentsExamplesModule
     ],
     declarations: [AppComponent, ShowcaseComponent],
     providers: [
