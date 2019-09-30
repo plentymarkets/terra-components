@@ -1,5 +1,4 @@
 # 4.4.1 (XX.XX.2019)
-# Unreleased Changes
 ### Feature
 * **mat-input** Added material input component
 
