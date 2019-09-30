@@ -50,8 +50,11 @@
                             {
                                 .mat-select-value-text
                                 {
-                                    color: var(--color-structure-12);
-                                    font-weight: var(--font-weight-2);
+                                    span
+                                    {
+                                        color: var(--color-structure-12);
+                                        font-weight: var(--font-weight-2);
+                                    }
                                 }
                             }
                         }
