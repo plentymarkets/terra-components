@@ -5,7 +5,7 @@ import {
 } from '@angular/core/testing';
 import { CommonModule } from '@angular/common';
 
-fdescribe ('Component: TerraBaseToolbarComponent', () =>
+describe ('Component: TerraBaseToolbarComponent', () =>
 {
     let component:TerraBaseToolbarComponent;
     let fixture:ComponentFixture<TerraBaseToolbarComponent>;
