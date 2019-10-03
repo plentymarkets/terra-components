@@ -34,7 +34,7 @@ describe ('Component: TerraBaseToolbarComponent', () =>
         expect(component).toBeTruthy();
     });
 
-    it('should be sticky', () =>
+    it('should be sticky if `isSticky` is set to true', () =>
     {
         fixture.detectChanges();
         expect(fixture.nativeElement).not.toHaveClass('terra-sticky-toolbar');
