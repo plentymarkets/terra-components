@@ -20,11 +20,14 @@
 
 #Feature
 * **tcTooltip** Support templates as tooltip. Added examples.
+* **base-toolbar** added sticky behaviour
 
 ### Bug Fixes
 
 * **multi-split-view** using styles of terra-breadcrumbs now
 * **toggle-button** fix tooltip
+* **data-table** removed broken mobile breakpoints
+
 
 <a name="4.3.0"></a>
 # 4.3.0 (05.09.2019)
