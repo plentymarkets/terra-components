@@ -550,6 +550,7 @@ $icon-new_order: "\eb26";
 $icon-reply_all: "\eb27";
 $icon-reply: "\eb28";
 $icon-shaking_hands: "\eb29";
+$icon-content_category: "\eb2a";
 
 .icon-table_sort
 {
@@ -4976,5 +4977,12 @@ $icon-shaking_hands: "\eb29";
     &:before
     {
         content: $icon-shaking_hands;
+    }
+}
+
+.icon-content_category {
+    &:before
+    {
+        content: $icon-content_category; 
     }
 }

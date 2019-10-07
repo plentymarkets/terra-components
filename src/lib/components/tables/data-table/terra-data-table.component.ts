@@ -78,7 +78,7 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
     public inputContextMenu:Array<TerraDataTableContextMenuEntryInterface<T>> = [];
 
     /**
-     * @description Make table header stick to the top
+     * @description makes table header stick to the top while scrolling
      */
     @Input()
     public isSticky:boolean;
