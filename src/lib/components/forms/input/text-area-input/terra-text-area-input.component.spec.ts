@@ -11,7 +11,6 @@ import {
     flush,
     TestBed
 } from '@angular/core/testing';
-import { TooltipModule } from 'ngx-bootstrap';
 import { LocalizationModule } from 'angular-l10n';
 import { l10nConfig } from '../../../../../app/translation/l10n.config';
 import { TerraLabelTooltipDirective } from '../../../../helpers/terra-label-tooltip.directive';
@@ -20,6 +19,9 @@ import { By } from '@angular/platform-browser';
 import { MockElementRef } from '../../../../testing/mock-element-ref';
 import { TerraRegex } from '../../../../helpers/regex/terra-regex';
 import Spy = jasmine.Spy;
+import { TooltipDirective } from '../../../tooltip/tooltip.directive';
+import { Router } from '@angular/router';
+import { MockRouter } from '../../../../testing/mock-router';
 
 describe('TerraTextAreaInputComponent', () =>
 {
@@ -28,20 +30,25 @@ describe('TerraTextAreaInputComponent', () =>
     let debugElement:DebugElement;
     let inputElement:HTMLInputElement;
     const testString:string = 'test';
+    const router:MockRouter = new MockRouter();
 
     beforeEach(async(() =>
     {
         TestBed.configureTestingModule({
             declarations: [
+                TooltipDirective,
                 TerraTextAreaInputComponent,
                 TerraLabelTooltipDirective
             ],
             imports:      [
-                TooltipModule.forRoot(),
                 FormsModule,
                 LocalizationModule.forRoot(l10nConfig)
             ],
             providers:    [
+                {
+                    provide:  Router,
+                    useValue: router
+                },
                 {
                     provide:  ElementRef,
                     useClass: MockElementRef

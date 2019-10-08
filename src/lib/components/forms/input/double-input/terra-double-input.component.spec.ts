@@ -11,7 +11,6 @@ import {
     flush,
     TestBed
 } from '@angular/core/testing';
-import { TooltipModule } from 'ngx-bootstrap';
 import { LocalizationModule } from 'angular-l10n';
 import { l10nConfig } from '../../../../../app/translation/l10n.config';
 import { TerraLabelTooltipDirective } from '../../../../helpers/terra-label-tooltip.directive';
@@ -19,6 +18,9 @@ import { TerraDoubleInputComponent } from './terra-double-input.component';
 import { TerraButtonComponent } from '../../../buttons/button/terra-button.component';
 import { TerraRegex } from '../../../../helpers/regex/terra-regex';
 import { By } from '@angular/platform-browser';
+import { TooltipDirective } from '../../../tooltip/tooltip.directive';
+import { Router } from '@angular/router';
+import { MockRouter } from '../../../../testing/mock-router';
 
 describe('TerraDoubleInputComponent', () =>
 {
@@ -27,20 +29,25 @@ describe('TerraDoubleInputComponent', () =>
     let debugElement:DebugElement;
     let inputElement:HTMLInputElement;
     const testValue:number = 3.2;
+    const router:MockRouter = new MockRouter();
 
     beforeEach(async(() =>
     {
         TestBed.configureTestingModule({
-            declarations: [
-                TerraDoubleInputComponent,
-                TerraButtonComponent,
-                TerraLabelTooltipDirective
+            declarations: [TooltipDirective,
+                           TerraDoubleInputComponent,
+                           TerraButtonComponent,
+                           TerraLabelTooltipDirective
             ],
             imports:      [
-                TooltipModule.forRoot(),
                 FormsModule,
                 LocalizationModule.forRoot(l10nConfig)
-            ]
+            ],
+            providers:    [
+                {
+                    provide:  Router,
+                    useValue: router
+                }]
         }).compileComponents();
     }));
 

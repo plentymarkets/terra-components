@@ -31,6 +31,24 @@ export const select:TerraFormFieldInterface = {
     }
 };
 
+export const suggestion:TerraFormFieldInterface = {
+    type:         'suggestion',
+    options:      {
+        name:        'Suggestion',
+        required:     false,
+        listBoxValues: [
+            {
+                value:    'suggestion1',
+                caption:  'Suggestion 1'
+            },
+            {
+                value:    'suggestion2',
+                caption:  'Suggestion 2'
+            }
+        ]
+    }
+};
+
 export const listWithChildren:TerraFormFieldInterface = {
     type:         'horizontal',
     isList:       '[2,]',
@@ -58,7 +76,28 @@ export const listWithChildren:TerraFormFieldInterface = {
     }
 };
 
+export const containerCompontent:TerraFormFieldInterface = {
+    type: 'portlet',
+    options:      {
+        name: 'Portlet'
+    },
+    children:     {
+        childSelect: select,
+        childText:   {
+            type:         'text',
+            isVisible:    'wrappedContainer.childSelect === "option2"',
+            defaultValue: '',
+            options:      {
+                name:     'Text',
+                required: false
+            }
+        },
+        childNumber: numberControl,
+    }
+};
+
 export const formFields:TerraKeyValueInterface<TerraFormFieldInterface> = {
-    listWithChildren: listWithChildren
+    listWithChildren: listWithChildren,
+    wrappedContainer: containerCompontent
 };
 

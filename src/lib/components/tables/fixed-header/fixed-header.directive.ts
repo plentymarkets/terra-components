@@ -10,6 +10,9 @@ import { TerraSimpleTableComponent } from '../simple/terra-simple-table.componen
 
 const FIXED_CLASS:string = 'fixedHeader';
 
+/**
+ * @deprecated since v4. Please use {@link FloatTheadDirective} instead.
+ */
 @Directive({
     selector: 'terra-simple-table[fixedHeader]'
 })

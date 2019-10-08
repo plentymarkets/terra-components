@@ -5,6 +5,8 @@ import { FixedHeaderDirective } from './tables/fixed-header/fixed-header.directi
 import { TerraLabelTooltipDirective } from '../helpers/terra-label-tooltip.directive';
 import { FormEntryContainerDirective } from './forms/form/form-entry/form-entry-container.directive';
 import { CKEditorDirective } from './editors/ck-editor/ck-editor.directive';
+import { TooltipDirective } from './tooltip/tooltip.directive';
+import { FloatTheadDirective } from './tables/data-table/float-thead/float-thead.directive';
 
 export const directives:Array<Type<any>> = [
     TerraDataTableContextMenuDirective,
@@ -12,5 +14,7 @@ export const directives:Array<Type<any>> = [
     FixedHeaderDirective,
     TerraLabelTooltipDirective,
     FormEntryContainerDirective,
-    CKEditorDirective
+    CKEditorDirective,
+    TooltipDirective,
+    FloatTheadDirective
 ];

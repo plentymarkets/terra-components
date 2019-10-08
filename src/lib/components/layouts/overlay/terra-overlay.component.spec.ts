@@ -8,8 +8,7 @@ import { By } from '@angular/platform-browser';
 import { TerraOverlayComponent } from './terra-overlay.component';
 import {
     ModalDirective,
-    ModalModule,
-    TooltipModule
+    ModalModule
 } from 'ngx-bootstrap';
 import { TerraButtonComponent } from '../../buttons/button/terra-button.component';
 import {
@@ -17,6 +16,9 @@ import {
     mockButtonTwo
 } from '../../../testing/mock-buttons';
 import Spy = jasmine.Spy;
+import { TooltipDirective } from '../../tooltip/tooltip.directive';
+import { Router } from '@angular/router';
+import { MockRouter } from '../../../testing/mock-router';
 
 describe('TerraOverlayComponent', () =>
 {
@@ -25,18 +27,23 @@ describe('TerraOverlayComponent', () =>
     let divElement:DebugElement;
     let modalDialogElement:DebugElement;
     const overlayTitle:string = 'Test';
+    const router:MockRouter = new MockRouter();
 
     beforeEach(async(() =>
     {
         TestBed.configureTestingModule({
             imports:      [
-                TooltipModule.forRoot(),
                 ModalModule.forRoot()
             ],
-            declarations: [
-                TerraButtonComponent,
-                TerraOverlayComponent
-            ]
+            declarations: [TooltipDirective,
+                           TerraButtonComponent,
+                           TerraOverlayComponent
+            ],
+            providers:    [
+                {
+                    provide:  Router,
+                    useValue: router
+                }]
         }).compileComponents();
     }));
 

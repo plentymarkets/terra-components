@@ -10,6 +10,9 @@ export interface TerraButtonInterface
     caption?:string;
     tooltipText?:string;
     clickFunction:(event?:Event) => void;
+    /**
+     * @deprecated since v4. Is replaced by the TooltipDirective and will be removed with the next major version.
+     */
     tooltipPlacement?:string;
     isActive?:boolean;
     isDisabled?:boolean;

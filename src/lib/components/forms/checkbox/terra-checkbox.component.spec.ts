@@ -3,22 +3,31 @@ import {
     ComponentFixture,
     TestBed
 } from '@angular/core/testing';
-import { TooltipModule } from 'ngx-bootstrap';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { TooltipDirective } from '../../tooltip/tooltip.directive';
+import { Router } from '@angular/router';
+import { MockRouter } from '../../../testing/mock-router';
 import Spy = jasmine.Spy;
 
 describe('Component: TerraCheckboxComponent', () =>
 {
     let component:TerraCheckboxComponent;
     let fixture:ComponentFixture<TerraCheckboxComponent>;
+    const router:MockRouter = new MockRouter();
 
     beforeEach(() =>
     {
         TestBed.configureTestingModule({
-            declarations: [TerraCheckboxComponent],
-            imports: [TooltipModule.forRoot(), FormsModule]
+            declarations: [TooltipDirective,
+                           TerraCheckboxComponent],
+            imports: [FormsModule],
+            providers:    [
+                {
+                    provide:  Router,
+                    useValue: router
+                }]
         }).compileComponents();
     });
 

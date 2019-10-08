@@ -10,8 +10,10 @@ import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { TerraDataTableRowInterface } from '../interfaces/terra-data-table-row.interface';
 import { DebugElement } from '@angular/core';
-import { TooltipModule } from 'ngx-bootstrap';
 import Spy = jasmine.Spy;
+import { TooltipDirective } from '../../../tooltip/tooltip.directive';
+import { Router } from '@angular/router';
+import { MockRouter } from '../../../../testing/mock-router';
 
 export const dataTableStub:Partial<TerraDataTableComponent<any, any>> =
     {
@@ -31,19 +33,23 @@ describe('Component: TableRowComponent', () =>
     let component:TableRowComponent;
     let dataTable:TerraDataTableComponent<any, any>;
     let fixture:ComponentFixture<TableRowComponent>;
+    const router:MockRouter = new MockRouter();
 
     beforeEach(async(() =>
     {
         TestBed.configureTestingModule({
-            declarations: [
-                TableRowComponent,
-                TerraCheckboxComponent,
+            declarations: [TooltipDirective,
+                           TableRowComponent,
+                           TerraCheckboxComponent,
             ],
             imports:      [
-                FormsModule,
-                TooltipModule.forRoot()
+                FormsModule
             ],
             providers:    [
+                {
+                    provide:  Router,
+                    useValue: router
+                },
                 {
                     provide:  TerraDataTableComponent,
                     useValue: dataTableStub

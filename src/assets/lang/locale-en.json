@@ -9,6 +9,9 @@
 		"selectAll": "All"
 	},
 	"terraFileBrowser": {
+		"error": {
+			"tooLargePayload": "This file is too large to upload."
+		},
 		"cancel": "Cancel",
 		"create": "Create",
 		"delete": "Delete",

@@ -8,6 +8,7 @@ import { TerraNodeInterface } from '../data/terra-node.interface';
 import { TerraNodeTreeConfig } from '../data/terra-node-tree.config';
 import { isNullOrUndefined } from 'util';
 import { Language } from 'angular-l10n';
+import { TerraPlacementEnum } from '../../../../helpers/enums/terra-placement.enum';
 
 @Component({
     selector: 'terra-node',
@@ -32,11 +33,11 @@ export class TerraNodeComponent<D> implements OnInit, OnDestroy
     protected lang:string;
 
     protected tooltip:string;
-    protected tooltipPlacement:string = 'right';
+    protected tooltipPlacement:string = TerraPlacementEnum.RIGHT;
 
     public ngOnInit():void
     {
-        if(!this.inputNode.tooltip)
+        if(isNullOrUndefined(this.inputNode.tooltip))
         {
             this.tooltip = this.inputNode.name;
         }
@@ -44,7 +45,8 @@ export class TerraNodeComponent<D> implements OnInit, OnDestroy
         {
             this.tooltip = this.inputNode.tooltip;
         }
-        if(this.inputNode.tooltipPlacement)
+
+        if(!isNullOrUndefined(this.inputNode.tooltipPlacement))
         {
             this.tooltipPlacement = this.inputNode.tooltipPlacement;
         }

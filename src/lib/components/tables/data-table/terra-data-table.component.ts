@@ -33,7 +33,6 @@ import { TerraDataTableTextInterface } from './interfaces/terra-data-table-text.
 import { TerraTagInterface } from '../../layouts/tag/data/terra-tag.interface';
 import { TerraDataTableContextMenuEntryInterface } from './context-menu/data/terra-data-table-context-menu-entry.interface';
 
-
 @Component({
     selector:  'terra-data-table',
     template:  require('./terra-data-table.component.html'),
@@ -77,6 +76,12 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
      */
     @Input()
     public inputContextMenu:Array<TerraDataTableContextMenuEntryInterface<T>> = [];
+
+    /**
+     * @description makes table header stick to the top while scrolling
+     */
+    @Input()
+    public isSticky:boolean;
 
     protected columnHeaderClicked:EventEmitter<TerraDataTableHeaderCellInterface> = new EventEmitter<TerraDataTableHeaderCellInterface>();
 
@@ -130,16 +135,6 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
                 this.inputService.resetSortParams();
             }
         }
-    }
-
-    protected checkTooltipPlacement(placement:string):string // TODO: pipe?
-    {
-        if(!StringHelper.isNullUndefinedOrEmpty(placement))
-        {
-            return placement;
-        }
-
-        return TerraPlacementEnum.TOP;
     }
 
     protected get dataAvailableOrRequestPending():boolean

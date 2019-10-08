@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700');
 @import 'variables';
+@import 'material/select';
 @import '../components/alert/terra-alert-panel.component.glob';
 @import '../components/editors/base-editor/terra-base-editor.component.glob';
 @import '../components/split-view/multi/terra-multi-split-view.component.glob';
@@ -9,6 +10,7 @@
 @import '../components/file-browser/terra-file-browser.component.glob';
 @import '../components/forms/input/terra-input.component.glob';
 @import '../components/editors/note-editor/terra-note-editor.component.glob';
+@import '../components/tables/data-table/terra-data-table.component.glob';
 
 *
 {
@@ -37,29 +39,29 @@ body
     direction: ltr;
 }
 
-.tooltip
+.tippy-tooltip
 {
     font-size: var(--font-size-2);
     opacity: 1 !important;
     
-    &.top .tooltip-arrow
+    &.tippy-arrow
     {
         border-top-color: var(--tooltip-arrow-border-color, var(--color-structure-12));
     }
-    &.left .tooltip-arrow
+    &.tippy-arrow
     {
         border-left-color: var(--tooltip-arrow-border-color, var(--color-structure-12));
     }
-    &.bottom .tooltip-arrow
+    &.tippy-arrow
     {
         border-bottom-color: var(--tooltip-arrow-border-color, var(--color-structure-12));
     }
-    &.right .tooltip-arrow
+    &.tippy-arrow
     {
         border-right-color: var(--tooltip-arrow-border-color, var(--color-structure-12));
     }
     
-    .tooltip-inner
+    .tippy-inner
     {
         background-color: var(--tooltip-background-color, var(--color-structure-12));
         color: var(--tooltip-color, var(--color-structure-12));

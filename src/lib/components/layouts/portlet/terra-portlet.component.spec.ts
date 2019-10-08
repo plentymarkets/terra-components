@@ -3,7 +3,6 @@ import {
     ComponentFixture,
     TestBed
 } from '@angular/core/testing';
-import { TooltipModule } from 'ngx-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { LocalizationModule } from 'angular-l10n';
 import { l10nConfig } from '../../../../app/translation/l10n.config';
@@ -20,30 +19,38 @@ import { TerraButtonComponent } from '../../buttons/button/terra-button.componen
 import { TerraButtonInterface } from '../../buttons/button/data/terra-button.interface';
 import { TerraInfoComponent } from '../../info/terra-info.component';
 import Spy = jasmine.Spy;
+import { TooltipDirective } from '../../tooltip/tooltip.directive';
+import { Router } from '@angular/router';
+import { MockRouter } from '../../../testing/mock-router';
 
 describe('TerraPortletComponent', () =>
 {
     let component:TerraPortletComponent;
     let fixture:ComponentFixture<TerraPortletComponent>;
     let debugElement:DebugElement;
+    const router:MockRouter = new MockRouter();
 
     const portletHeader:string = 'What is my purpose?';
 
     beforeEach(async(() =>
     {
         TestBed.configureTestingModule({
-            declarations: [
-                TerraPortletComponent,
-                TerraButtonComponent,
-                TerraLabelTooltipDirective,
-                TerraInfoComponent
+            declarations: [TooltipDirective,
+                           TerraPortletComponent,
+                           TerraButtonComponent,
+                           TerraLabelTooltipDirective,
+                           TerraInfoComponent
             ],
             imports:      [
-                TooltipModule.forRoot(),
                 FormsModule,
                 BrowserAnimationsModule,
                 LocalizationModule.forRoot(l10nConfig)
-            ]
+            ],
+            providers:    [
+                {
+                    provide:  Router,
+                    useValue: router
+                }]
         }).compileComponents();
     }));
 

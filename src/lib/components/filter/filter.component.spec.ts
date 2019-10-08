@@ -5,8 +5,6 @@ import {
     ComponentFixture,
     TestBed
 } from '@angular/core/testing';
-
-import { TooltipModule } from 'ngx-bootstrap';
 import { LocalizationModule } from 'angular-l10n';
 
 import { By } from '@angular/platform-browser';
@@ -19,30 +17,38 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TerraLabelTooltipDirective } from '../../helpers/terra-label-tooltip.directive';
 import { TerraInfoComponent } from '../info/terra-info.component';
 import Spy = jasmine.Spy;
+import { TooltipDirective } from '../tooltip/tooltip.directive';
+import { Router } from '@angular/router';
+import { MockRouter } from '../../testing/mock-router';
 
 describe('FilterComponent:', () =>
 {
     let filterComponent:FilterComponent;
     let fixture:ComponentFixture<FilterComponent>;
     let buttons:Array<DebugElement>;
+    const router:MockRouter = new MockRouter();
 
     beforeEach(async(() =>
     {
         TestBed.configureTestingModule({
-            declarations: [
-                TerraLabelTooltipDirective,
-                TerraButtonComponent,
-                TerraBaseToolbarComponent,
-                TerraInfoComponent,
-                TerraPortletComponent,
-                FilterComponent
+            declarations: [TooltipDirective,
+                           TerraLabelTooltipDirective,
+                           TerraButtonComponent,
+                           TerraBaseToolbarComponent,
+                           TerraInfoComponent,
+                           TerraPortletComponent,
+                           FilterComponent
             ],
             imports:      [
                 BrowserAnimationsModule,
                 HttpClientModule,
-                LocalizationModule.forRoot(l10nConfig),
-                TooltipModule.forRoot()
-            ]
+                LocalizationModule.forRoot(l10nConfig)
+            ],
+            providers:    [
+                {
+                    provide:  Router,
+                    useValue: router
+                }]
         }).compileComponents();
     }));
 
