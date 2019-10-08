@@ -4,6 +4,9 @@
 ### Features
 * **icon** new icon 'content_category'
 
+### Bug Fixes
+* **terra-checkbox** fixed indeterminate style and hover style when disabled.
+
 <a name="4.4.0"></a>
 # 4.4.0 (25.09.2019)
 ### Feature
