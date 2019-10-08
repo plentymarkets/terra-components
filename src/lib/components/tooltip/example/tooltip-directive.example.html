@@ -1,0 +1,34 @@
+<ng-template #template1>
+    <div>First Line</div>
+    <div>Second Line</div>
+</ng-template>
+
+<span [tcTooltip]="template1">Template 1 is shown</span>
+<br>
+
+<ng-template #template2>
+    only text in template 2
+</ng-template>
+
+<span [tcTooltip]="template2">Template 2 is shown</span>
+<br>
+
+<span [tcTooltip]="'No template used <br> only HTML'">No template used</span>
+<br>
+
+<div style="width: 100px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap"
+      [tcTooltip]="'Tooltip shown only when ellipsis'"
+      [onlyEllipsisTooltip]="true">Ellipsis tooltip showing when text is too long</div>
+
+<br>
+
+<ng-template #template3>
+    {{tooltip}}
+</ng-template>
+
+<span [tcTooltip]="template3">Template 3 is shown</span>
+<br>
+
+<terra-toggle (activated)="tooltip = tooltipText1"
+              (deactivated)="tooltip = tooltipText2"
+              [inputTooltipText]="tooltip"></terra-toggle>

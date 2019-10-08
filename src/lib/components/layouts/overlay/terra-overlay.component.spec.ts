@@ -17,6 +17,8 @@ import {
 } from '../../../testing/mock-buttons';
 import Spy = jasmine.Spy;
 import { TooltipDirective } from '../../tooltip/tooltip.directive';
+import { Router } from '@angular/router';
+import { MockRouter } from '../../../testing/mock-router';
 
 describe('TerraOverlayComponent', () =>
 {
@@ -25,6 +27,7 @@ describe('TerraOverlayComponent', () =>
     let divElement:DebugElement;
     let modalDialogElement:DebugElement;
     const overlayTitle:string = 'Test';
+    const router:MockRouter = new MockRouter();
 
     beforeEach(async(() =>
     {
@@ -35,7 +38,12 @@ describe('TerraOverlayComponent', () =>
             declarations: [TooltipDirective,
                            TerraButtonComponent,
                            TerraOverlayComponent
-            ]
+            ],
+            providers:    [
+                {
+                    provide:  Router,
+                    useValue: router
+                }]
         }).compileComponents();
     }));
 

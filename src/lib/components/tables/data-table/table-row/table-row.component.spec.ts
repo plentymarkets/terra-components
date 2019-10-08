@@ -12,6 +12,8 @@ import { TerraDataTableRowInterface } from '../interfaces/terra-data-table-row.i
 import { DebugElement } from '@angular/core';
 import Spy = jasmine.Spy;
 import { TooltipDirective } from '../../../tooltip/tooltip.directive';
+import { Router } from '@angular/router';
+import { MockRouter } from '../../../../testing/mock-router';
 
 export const dataTableStub:Partial<TerraDataTableComponent<any, any>> =
     {
@@ -31,6 +33,7 @@ describe('Component: TableRowComponent', () =>
     let component:TableRowComponent;
     let dataTable:TerraDataTableComponent<any, any>;
     let fixture:ComponentFixture<TableRowComponent>;
+    const router:MockRouter = new MockRouter();
 
     beforeEach(async(() =>
     {
@@ -43,6 +46,10 @@ describe('Component: TableRowComponent', () =>
                 FormsModule
             ],
             providers:    [
+                {
+                    provide:  Router,
+                    useValue: router
+                },
                 {
                     provide:  TerraDataTableComponent,
                     useValue: dataTableStub

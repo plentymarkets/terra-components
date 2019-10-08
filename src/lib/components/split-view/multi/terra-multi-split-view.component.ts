@@ -24,6 +24,7 @@ import { UrlHelper } from '../../../helpers/url.helper';
 import { TerraMultiSplitViewRoutes } from './interfaces/terra-multi-split-view-routes';
 import { TerraMultiSplitViewBreadcrumbsService } from './injectables/terra-multi-split-view-breadcrumbs.service';
 import { filter } from 'rxjs/operators';
+import { TerraBreadcrumbContainer } from '../../breadcrumbs/terra-breadcrumb-container';
 
 let nextSplitViewId:number = 0;
 
@@ -56,6 +57,8 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
      * @description local copy of the isNullOrUndefined function from "util" to be used in the template only!
      */
     protected isNullOrUndefined:(object:any) => object is null | undefined;
+
+    protected mouseLeft:string = '0px';
 
     private breadCrumbsPath:string;
 
@@ -647,5 +650,26 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         {
             return route.path === routePath;
         });
+    }
+
+    protected calculatePosition(container:HTMLLIElement, contextMenu:HTMLUListElement):void
+    {
+        let containerClientRect:ClientRect = container.getBoundingClientRect();
+        let contextMenuClientRect:ClientRect = contextMenu.getBoundingClientRect();
+
+        let isOutsideRight:boolean = (contextMenuClientRect.width + containerClientRect.left) > window.innerWidth;
+
+        let left:number = 0;
+
+        if(isOutsideRight)
+        {
+            left = window.innerWidth - contextMenuClientRect.width;
+        }
+        else
+        {
+            left = containerClientRect.left;
+        }
+
+        this.mouseLeft = left + 'px';
     }
 }
