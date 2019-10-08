@@ -1,13 +1,34 @@
+<a name="4.4.1"></a>
+# 4.4.1 (DD.10.2019)
+
+### Features
+* **icon** new icon 'content_category'
+* **terra-text-input** set as deprecated. Can be replaced by using the [angular material input](https://material.angular.io/components/input/overview).
+
+<a name="4.4.0"></a>
+# 4.4.0 (25.09.2019)
+### Feature
+* **terra-form** Added the possibility to include a suggestion box with the terra form
+
+<a name="4.3.2"></a>
+# 4.3.2 (18.09.2019)
+
+### Bug Fixes
+* **tcTooltip** hide tooltip when routing
+
 <a name="4.3.1"></a>
 # 4.3.1 (09.09.2019)
 
 #Feature
 * **tcTooltip** Support templates as tooltip. Added examples.
+* **base-toolbar** added sticky behaviour
 
 ### Bug Fixes
 
 * **multi-split-view** using styles of terra-breadcrumbs now
 * **toggle-button** fix tooltip
+* **data-table** removed broken mobile breakpoints
+
 
 <a name="4.3.0"></a>
 # 4.3.0 (05.09.2019)

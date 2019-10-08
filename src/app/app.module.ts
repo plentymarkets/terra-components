@@ -16,7 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { l10nConfig } from './translation/l10n.config';
 import { AppComponent } from './app.component';
 import { ShowcaseComponent } from './showcase/showcase.component';
-import { TerraComponentsExamplesModule } from '../lib';
+import { TerraComponentsExamplesModule } from '../lib/terra-components-examples.module';
 import { RouterModule } from '@angular/router';
 
 function createCompiler(compilerFactory:CompilerFactory):Compiler
@@ -35,7 +35,8 @@ function initL10n(l10nLoader:L10nLoader):Function
  * NOTE: It is not publicly accessible either.
  */
 @NgModule({
-    imports:   [
+    imports:      [
+        RouterModule.forRoot([]),
         BrowserModule,
         BrowserAnimationsModule,
         RouterModule.forRoot([]),
@@ -43,8 +44,11 @@ function initL10n(l10nLoader:L10nLoader):Function
         LocalizationModule.forRoot(l10nConfig),
         TerraComponentsExamplesModule
     ],
-    declarations: [AppComponent, ShowcaseComponent],
-    providers: [
+    declarations: [
+        AppComponent,
+        ShowcaseComponent
+    ],
+    providers:    [
         {
             provide:  COMPILER_OPTIONS,
             useValue: {},
@@ -67,7 +71,7 @@ function initL10n(l10nLoader:L10nLoader):Function
             deps:       [CompilerFactory]
         }
     ],
-    bootstrap: [AppComponent]
+    bootstrap:    [AppComponent]
 })
 export class AppModule
 {}

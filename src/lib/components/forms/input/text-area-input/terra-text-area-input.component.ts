@@ -23,6 +23,9 @@ let nextId:number = 0;
         }
     ]
 })
+/**
+ * @deprecated since v4. Use '<mat-input>' instead. See {@link https://material.angular.io/components/input/overview}
+ */
 export class TerraTextAreaInputComponent extends TerraInputComponent implements OnChanges
 {
     /**

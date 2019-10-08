@@ -5,8 +5,8 @@
     &.mat-focused
     {
         color: var(--color-active);
-        .mat-form-field-label-wrapper .mat-form-field-label,
-        &.mat-primary .mat-select-arrow
+        
+        .mat-form-field-label-wrapper .mat-form-field-label, &.mat-primary .mat-select-arrow
         {
             color: var(--color-active);
         }
@@ -23,16 +23,13 @@
             color: var(--color-structure-7);
         }
         
-        &.mat-form-field-appearance-legacy
+        &.mat-form-field-can-float
         {
-            &.mat-form-field-can-float
+            &.mat-form-field-should-float
             {
-                &.mat-form-field-should-float
+                .mat-form-field-label
                 {
-                    .mat-form-field-label
-                    {
-                        text-transform: uppercase;
-                    }
+                    text-transform: uppercase;
                 }
             }
         }
@@ -53,11 +50,19 @@
                             {
                                 .mat-select-value-text
                                 {
-                                    color: var(--color-structure-12);
-                                    font-weight: var(--font-weight-2);
+                                    span
+                                    {
+                                        color: var(--color-structure-12);
+                                        font-weight: var(--font-weight-2);
+                                    }
                                 }
                             }
                         }
+                    }
+                    textarea, input
+                    {
+                        color: var(--color-structure-12);
+                        font-weight: var(--font-weight-2);
                     }
                 }
             }
@@ -71,6 +76,7 @@
         &.ng-invalid
         {
             color: var(--color-alert);
+            
             .mat-form-field-wrapper
             {
                 .mat-form-field-underline
@@ -86,6 +92,52 @@
         &.mat-form-field-disabled
         {
             color: var(--color-structure-6);
+    
+            .mat-form-field-wrapper
+            {
+                .mat-form-field-flex
+                {
+                    .mat-form-field-infix
+                    {
+                        mat-select
+                        {
+                            .mat-select-trigger
+                            {
+                                .mat-select-value
+                                {
+                                    .mat-select-value-text,
+                                    .mat-select-value-text::placeholder
+                                    {
+                                        color: var(--color-structure-6);
+                                    }
+                                }
+                            }
+                        }
+                        textarea, input
+                        {
+                            color: var(--color-structure-6);
+                        }
+    
+                        .mat-form-field-label-wrapper
+                        {
+                            .mat-form-field-label
+                            {
+                                color: var(--color-structure-6);
+                                
+                                mat-label
+                                {
+                                    color: inherit;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+    
+            .mat-form-field-underline
+            {
+                border-bottom-style: inherit;
+            }
         }
     }
 }
@@ -93,6 +145,7 @@
 .cdk-overlay-container
 {
     z-index: var(--zIndex-10);
+    
     .cdk-overlay-connected-position-bounding-box
     {
         .cdk-overlay-pane
