@@ -4,6 +4,7 @@
 ### Features
 * **icon** new icon 'content_category'
 * **terra-text-input** set as deprecated. Can be replaced by using the [angular material input](https://material.angular.io/components/input/overview).
+* **terra-info-box** has a new clearer design (e.g. in contact addresses)
 
 <a name="4.4.0"></a>
 # 4.4.0 (25.09.2019)
