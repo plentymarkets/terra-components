@@ -12,6 +12,7 @@ import { TerraBaseParameterInterface } from '../components/data/terra-base-param
  * @description This class provides basic functionality to cache data for a model accessible on a server
  */
 // TODO: use Generic <T> to be able to pass a type def for everything
+// IMPORTANT: Do not resolve 'any' eslint error or use eslint-disable! The errors should appear as an reminder :)
 export class ModelCache
 {
     protected dataModel:TerraKeyValueInterface<any> = {};
