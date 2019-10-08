@@ -1,7 +1,7 @@
 export class WindowHelper
 {
     /**
-     * checks whether this service is used in the root window, or in the test environment
+     * @description checks whether code is currently executed in the root window, or in the test environment
      */
     public static get isRootWindow():boolean
     {
