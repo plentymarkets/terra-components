@@ -18,7 +18,7 @@
         {
             .info-box-text
             {
-                color: var(--color-structure-0);
+                color: var(--color-structure-13);
             }
         }
 
@@ -47,6 +47,7 @@
         &.has-footer
         {
             height: calc(100% - 26px);
+            background-color: var(--color-structure-0);
         }
 
         .info-box-text
