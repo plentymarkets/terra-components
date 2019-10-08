@@ -2,7 +2,6 @@ import {
     Component,
     Input
 } from '@angular/core';
-import { HostBinding } from '@angular/compiler/src/core';
 
 @Component({
     selector: 'terra-base-toolbar',
