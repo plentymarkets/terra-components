@@ -18,13 +18,13 @@ import { TerraButtonInterface } from '../../../buttons/button/data/terra-button.
 export class TerraSimpleTableComponentExample implements OnInit
 {
     @ViewChild('table')
-    public table:TerraSimpleTableComponent<any>;
+    public table:TerraSimpleTableComponent<unknown>;
 
     protected selectedRows:Array<TerraSimpleTableHeaderCellInterface>;
 
     private viewContainerRef:ViewContainerRef;
     private _headerList:Array<TerraSimpleTableHeaderCellInterface> = [];
-    private _rowList:Array<TerraSimpleTableRowInterface<any>> = [];
+    private _rowList:Array<TerraSimpleTableRowInterface<unknown>> = [];
 
     constructor(viewContainerRef:ViewContainerRef)
     {
@@ -79,7 +79,7 @@ export class TerraSimpleTableComponentExample implements OnInit
 
             cellList.push(buttonCell);
 
-            let row:TerraSimpleTableRowInterface<any> = {
+            let row:TerraSimpleTableRowInterface<unknown> = {
                 cellList: cellList,
                 disabled: i % 3 === 0,
                 selected: i % 2 === 0
@@ -94,7 +94,7 @@ export class TerraSimpleTableComponentExample implements OnInit
         return this._headerList;
     }
 
-    public get rowList():Array<TerraSimpleTableRowInterface<any>>
+    public get rowList():Array<TerraSimpleTableRowInterface<unknown>>
     {
         return this._rowList;
     }
