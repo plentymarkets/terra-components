@@ -17,5 +17,5 @@ TestBed.initTestEnvironment(
 );
 
 // load all specs in ./src
-const context:any = (require as any).context('./', true, /\.spec\.ts$/);
+const context:any = (require as any).context('./lib/', true, /\.spec\.ts$/);
 context.keys().map(context);
