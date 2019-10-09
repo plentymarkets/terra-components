@@ -3,6 +3,9 @@
 ### Bug Fixes
 * **terra-breadcrumbs** extended caret hover to breadcrumbs-wrapper for easier navigation
 
+### Features
+* **terra-info-box** new design to stop overlapping between button-hover-color and card-selected-color (e.g. in contact addresses)
+
 <a name="4.4.1"></a>
 # 4.4.1 (DD.10.2019)
 
