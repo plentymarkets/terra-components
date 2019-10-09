@@ -1,3 +1,8 @@
+# Unreleased Changes
+
+### Bug Fixes
+* **terra-breadcrumbs** extended caret hover to breadcrumbs-wrapper for easier navigation
+
 <a name="4.4.1"></a>
 # 4.4.1 (DD.10.2019)
 
