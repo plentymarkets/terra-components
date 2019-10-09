@@ -44,9 +44,7 @@
         display: flex;
         justify-content: space-between;
         max-height: 100%;
-        padding-top: var(--space-md);
-        padding-left: var(--space-md);
-        padding-right: var(--space-md);
+        padding: var(--space-md);;
 
         &.has-footer
         {
