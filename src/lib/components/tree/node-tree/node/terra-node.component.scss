@@ -32,6 +32,11 @@ li
                     display: table-cell;
                     vertical-align: middle;
                     top: initial;
+                    
+                    &.icon-placeholder
+                    {
+                        padding: 0 18px;
+                    }
                 }
                 
                 &.icon-right
