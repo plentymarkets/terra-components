@@ -25,8 +25,8 @@ export class TerraValidators
         return ibanValidator(control);
     }
 
-    public static uniqueCombinationValidator(control:AbstractControl):ValidatorFn
+    public static uniqueCombinationValidator(uniqueKeys?:Array<string>):ValidatorFn
     {
-        return uniqueCombinationValidator(control);
+        return uniqueCombinationValidator(uniqueKeys);
     }
 }

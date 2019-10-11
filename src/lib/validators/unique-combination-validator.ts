@@ -2,15 +2,27 @@ import {
     AbstractControl,
     ValidatorFn
 } from '@angular/forms';
+import { isNullOrUndefined } from 'util';
 
-export function uniqueCombinationValidator(control:AbstractControl):ValidatorFn
+export function uniqueCombinationValidator(uniqueKeys?:Array<string>):ValidatorFn
 {
     return (control:AbstractControl):{ [key:string]:any } | null =>
     {
         let seen:Set<unknown> = new Set();
         const hasDuplicates:boolean = (control.value as Array<unknown>).some((currentObject:unknown) =>
         {
-            return seen.size === seen.add(currentObject).size;
+            if(!isNullOrUndefined(currentObject) && typeof currentObject ===  'object')
+            {
+                return seen.size === seen.add(
+                    Object.keys(currentObject)
+                          .filter((key:string) => uniqueKeys.includes(key))
+                          .map((key:string) => currentObject[key]).join(', ')
+                ).size;
+            }
+            else
+            {
+                return seen.size === seen.add(currentObject).size;
+            }
         });
 
         return hasDuplicates ? {'uniqueCombination': {value: control.value}} : null;
