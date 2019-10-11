@@ -1,6 +1,6 @@
 <div class="example-container mat-elevation-z8">
     <context-menu [links]="contextMenu"></context-menu>
-    <mat-table [dataSource]="dataSource" matSort>
+    <mat-table [dataSource]="dataSource" matSort cdkDropListGroup>
 
         <ng-container matColumnDef="select">
             <mat-header-cell *matHeaderCellDef>
@@ -20,17 +20,38 @@
 
 
         <ng-container matColumnDef="id">
-            <mat-header-cell *matHeaderCellDef mat-sort-header [tcTooltip]="'This is a fancy ID'"> ID </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef
+                             mat-sort-header
+                             [tcTooltip]="'This is a fancy ID'"
+                             cdkDropList
+                             cdkDropListLockAxis="x"
+                             cdkDropListOrientation="horizontal"
+                             (cdkDropListDropped)="dropListDropped('id')"
+                             cdkDrag
+                             (cdkDragStarted)="dragStarted('id')"> ID </mat-header-cell>
             <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="value">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Value </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef
+                             mat-sort-header
+                             cdkDropList
+                             cdkDropListLockAxis="x"
+                             cdkDropListOrientation="horizontal"
+                             (cdkDropListDropped)="dropListDropped('value')"
+                             cdkDrag
+                             (cdkDragStarted)="dragStarted('value')"> Value </mat-header-cell>
             <mat-cell *matCellDef="let element"> {{element.value}} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="email">
-            <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef
+                             cdkDropList
+                             cdkDropListLockAxis="x"
+                             cdkDropListOrientation="horizontal"
+                             (cdkDropListDropped)="dropListDropped('email')"
+                             cdkDrag
+                             (cdkDragStarted)="dragStarted('email')"> Email </mat-header-cell>
             <mat-cell *matCellDef="let element"> {{element.mail}} </mat-cell>
         </ng-container>
 

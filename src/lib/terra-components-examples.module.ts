@@ -8,6 +8,7 @@ import {
     MatSortModule,
     MatTableModule
 } from '@angular/material';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
     imports:         [
@@ -16,7 +17,8 @@ import {
         CKEditorModule,
         TerraComponentsModule,
         MatTableModule, // TODO remove before release
-        MatSortModule
+        MatSortModule,
+        DragDropModule
     ],
     declarations:    [...examples],
     entryComponents: [...examples],

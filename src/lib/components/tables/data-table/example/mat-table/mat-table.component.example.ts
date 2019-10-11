@@ -13,12 +13,17 @@ import {
 } from '@angular/material';
 import { TerraDataTableContextMenuService } from '../../context-menu/terra-data-table-context-menu.service';
 import { TerraDataTableContextMenuEntryInterface } from '../../context-menu/data/terra-data-table-context-menu-entry.interface';
+import {
+    CdkDropList,
+    moveItemInArray
+} from '@angular/cdk/drag-drop';
 
 @Component({
     selector:  'tc-mat-table-example',
     template:  require('./mat-table.component.example.html'),
     styles:    [require('./mat-table.component.example.scss')],
-    providers: [TerraDataTableServiceExample, TerraDataTableContextMenuService]
+    providers: [TerraDataTableServiceExample,
+                TerraDataTableContextMenuService]
 })
 // TODO remove every example before release
 export class MatTableComponentExample implements OnInit
@@ -32,6 +37,8 @@ export class MatTableComponentExample implements OnInit
 
     @ViewChild(MatSort)
     private sort:MatSort;
+
+    private previousIndex:number;
 
     constructor()
     {
@@ -71,6 +78,16 @@ export class MatTableComponentExample implements OnInit
     protected onDeleteClick(element:any):void
     {
         alert('ROW with ID `' + element.id + '` clicked. (DELETE)');
+    }
+
+    protected dragStarted(key:string):void
+    {
+        this.previousIndex = this.displayedColumns.indexOf(key);
+    }
+
+    protected dropListDropped(key:string):void
+    {
+        moveItemInArray(this.displayedColumns, this.previousIndex, this.displayedColumns.indexOf(key));
     }
 
     private createHeaderList():Array<string>
