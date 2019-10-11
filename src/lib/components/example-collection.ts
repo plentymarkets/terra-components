@@ -53,6 +53,7 @@ import { TerraFormComponentExample } from './forms/form/example/terra-form.compo
 import { CkEditorDirectiveExample } from './editors/ck-editor/example/ck-editor-directive-example.component';
 import { TerraLoadingSpinnerComponentExample } from './loading-spinner/example/terra-loading-spinner.component.example';
 import { TooltipDirectiveExample } from './tooltip/example/tooltip-directive.example';
+import { MatTableComponentExample } from './tables/data-table/example/mat-table/mat-table.component.example';
 
 export const examples:Array<Type<any>> = [
     TooltipDirectiveExample,
@@ -108,5 +109,6 @@ export const examples:Array<Type<any>> = [
     CheckboxGroupComponentExample,
     TerraFormComponentExample,
     CkEditorDirectiveExample,
-    TerraLoadingSpinnerComponentExample
+    TerraLoadingSpinnerComponentExample,
+    MatTableComponentExample // TODO remove before release
 ];

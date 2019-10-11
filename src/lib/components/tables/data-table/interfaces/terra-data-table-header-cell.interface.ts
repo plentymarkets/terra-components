@@ -6,7 +6,8 @@ import { TerraTextAlignEnum } from '../enums/terra-text-align.enum';
 export interface TerraDataTableHeaderCellInterface
 {
     caption:string;
-    width:number;
+    width?:number;
+    column?:string;
     /**
      * If given, the list can be sorted by the given identifier
      */

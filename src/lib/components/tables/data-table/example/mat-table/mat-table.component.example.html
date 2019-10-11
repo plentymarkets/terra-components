@@ -1,0 +1,49 @@
+<div class="example-container mat-elevation-z8">
+    <context-menu [links]="contextMenu"></context-menu>
+    <mat-table [dataSource]="dataSource" matSort>
+
+        <ng-container matColumnDef="select">
+            <mat-header-cell *matHeaderCellDef>
+                <terra-checkbox (change)="$event ? masterToggle() : null"
+                                (click)="$event.stopPropagation()"
+                                [value]="selection.hasValue() && isAllSelected()"
+                                [isIndeterminate]="selection.hasValue() && !isAllSelected()">
+                </terra-checkbox>
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <terra-checkbox (change)="$event ? selection.toggle(row) : null"
+                                (click)="$event.stopPropagation()"
+                                [value]="selection.isSelected(row)">
+                </terra-checkbox>
+            </mat-cell>
+        </ng-container>
+
+
+        <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef mat-sort-header [tcTooltip]="'This is a fancy ID'"> ID </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="value">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Value </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.value}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="email">
+            <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.mail}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+            <mat-header-cell *matHeaderCellDef></mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                <terra-button [inputIcon]="'icon-delete'" (outputClicked)="onDeleteClick(element)"></terra-button>
+            </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"
+                 hasContextMenu
+                 [ngClass]="{'isActive': selection.isSelected(row)}"></mat-row>
+    </mat-table>
+</div>
