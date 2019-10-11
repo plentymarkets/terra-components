@@ -16,6 +16,7 @@ import { StringHelper } from '../../../../helpers/string.helper';
 import { TerraValidators } from '../../../../validators/validators';
 import { TerraFormFieldHelper } from './terra-form-field.helper';
 import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
+import { uniqueCombinationValidator } from '../../../../validators/unique-combination-validator';
 
 /**
  * @description This class provides functionality which may be used in relation to the <terra-form> and reactive forms.
@@ -86,7 +87,7 @@ export class TerraFormHelper
 
         if(formField.options.singleSelect)
         {
-            validators.push(TerraValidators.uniqueCombinationValidator);
+            validators.push(uniqueCombinationValidator);
         }
 
         return validators;
@@ -124,7 +125,7 @@ export class TerraFormHelper
                 {
                     this.fitControlsToRange(formField, formControls);
                 }
-                controls[formFieldKey] = new FormArray(formControls);
+                controls[formFieldKey] = new FormArray(formControls, this.generateValidators(formField));
             }
             else if(!isNullOrUndefined(formField.children))
             {
