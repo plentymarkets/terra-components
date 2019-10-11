@@ -5,6 +5,7 @@ import {
 } from '@angular/forms';
 import { ibanValidator } from './iban-validator';
 import { terraDecimalValidator } from './terra-decimal-validator';
+import { uniqueCombinationValidator } from './unique-combination-validator';
 
 /**
  * Provides a set of additional validators used by form controls.
@@ -22,5 +23,10 @@ export class TerraValidators
     public static iban(control:AbstractControl):ValidationErrors | null
     {
         return ibanValidator(control);
+    }
+
+    public static uniqueCombinationValidator(control:AbstractControl):ValidatorFn
+    {
+        return uniqueCombinationValidator(control);
     }
 }
