@@ -1,0 +1,24 @@
+<div class="input-wrapper"
+     [placement]="inputTooltipPlacement"
+     [tcTooltip]="inputTooltipText"
+     [ngClass]="{'error': !isValid, 'disabled': inputIsDisabled, 'isSmall': inputIsSmall}">
+
+    <input id="{{id}}"
+           type="number"
+           [(ngModel)]="value"
+           name="{{inputName}}"
+           (blur)="onBlur()"
+           autocomplete="off"
+           [disabled]="inputIsDisabled"
+           pattern="{{regex}}"
+           step="1"
+           min="{{inputMinValue}}"
+           max="{{inputMaxValue}}"
+           placeholder="{{inputIsRequired ? inputName + '*' : inputName}}"
+           [ngClass]="{'isSmall' : inputIsSmall, 'isEmpty' : !innerValue && innerValue !== 0 }">
+    <label [tcTooltip]="inputName"
+           [onlyEllipsisTooltip]="true"
+           *ngIf="innerValue || innerValue === 0" htmlFor="{{id}}">{{inputName}}
+        <span *ngIf="inputIsRequired">*</span>
+    </label>
+</div>

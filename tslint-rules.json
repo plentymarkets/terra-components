@@ -152,7 +152,7 @@
 			"check-typecast"
 		],
 
-		"component-class-suffix": [true, "Component", "ComponentExample"],
+		"component-class-suffix": [true, "Component", "ComponentExample", "DirectiveExample"],
 		"component-max-inline-declarations": [
 			true,
 			{
@@ -167,7 +167,7 @@
 			["terra", "tc"],
 			"kebab-case"
 		],
-		"directive-class-suffix": [true, "Directive", "DirectiveExample"],
+		"directive-class-suffix": [true, "Directive"],
 		"directive-selector": [
 			true,
 			"attribute",

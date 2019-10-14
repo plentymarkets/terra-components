@@ -1,27 +1,34 @@
 module.exports = function () {
 
     var fileSelectors = {
-        allTs: './src/**/!(*.d).ts',
-        allCSS: './src/**/*.css',
-        allFonts: './src/app/assets/fonts/**/*',
-        allImages: './src/app/assets/images/**/*',
-        allSCSS: './src/**/*.scss',
-        allHTML: './src/**/*.html',
-        allLang: './src/app/assets/lang/**/*'
+        allTs: './src/lib/**/!(*.d).ts',
+        allCSS: './src/lib/**/*.css',
+        allSCSS: './src/lib/**/*.scss',
+        allHTML: './src/lib/**/*.html',
+        allFonts: './src/assets/fonts/**/*',
+        allLang: './src/assets/lang/**/*'
     };
+
+    var filesToCopy = [
+        'package.json',
+        'README.md',
+        './src/lib/**/floatThead.js',
+        fileSelectors.allCSS,
+        fileSelectors.allSCSS,
+        fileSelectors.allHTML
+    ];
 
     var sources = {
         tslintRules: './tslint-rules.json',
-        customLintRules : './lintRules/**/*Rule.ts',
+        customLintRules: './lintRules/**/*Rule.ts',
         dist: 'dist/**/*.*'
     };
 
     var terraComponentsDocPath = '../terra-components-doc/node_modules/@plentymarkets/terra-components/';
     var destinations = {
         tsOutputPath: './dist/',
-        fontsOutputPath: './dist/app/assets/fonts/',
-        imagesOutputPath: './dist/app/assets/images/',
-        langOutputPath: './dist/app/assets/lang/',
+        fontsOutputPath: './dist/assets/fonts/',
+        langOutputPath: './dist/assets/lang/',
 
         terra: '../terra/node_modules/@plentymarkets/terra-components/',
         terraComponentsDoc: terraComponentsDocPath,
@@ -31,6 +38,7 @@ module.exports = function () {
 
 
     var config = {
+        filesToCopy: filesToCopy,
         fileSelectors: fileSelectors,
         sources: sources,
         destinations: destinations,

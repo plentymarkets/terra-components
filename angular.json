@@ -17,7 +17,21 @@
 				"build": {
 					"builder": "@angular-devkit/build-ng-packagr:build",
 					"options": {
-						"project": "package.json"
+						"project": "package.json",
+						"outputPath": "dist",
+						"index": "src/index.html",
+						"main": "src/main.ts",
+						"polyfills": "src/polyfills.ts",
+						"tsConfig": "src/tsconfig.app.json",
+						"assets": [
+							"src/assets"
+						],
+						"styles": [
+							"node_modules/bootstrap/scss/bootstrap.scss",
+							"src/styles.scss"
+						],
+						"scripts": [],
+						"es5BrowserSupport": true
 					},
 					"configurations": {
 						"production": {
@@ -50,18 +64,13 @@
 				"serve": {
 					"builder": "@angular-devkit/build-angular:dev-server",
 					"options": {
-						"browserTarget": "terra-components:build"
+						"browserTarget": "terra-components:build",
+						"port": 3001
 					},
 					"configurations": {
 						"production": {
 							"browserTarget": "terra-components:build:production"
 						}
-					}
-				},
-				"extract-i18n": {
-					"builder": "@angular-devkit/build-angular:extract-i18n",
-					"options": {
-						"browserTarget": "terra-components:build"
 					}
 				},
 				"test": {
@@ -72,17 +81,11 @@
 						"tsConfig": "src/tsconfig.spec.json",
 						"karmaConfig": "karma.conf.js",
 						"styles": [
-							"src/styles.scss",
-							"node_modules/bootstrap/scss/bootstrap.scss"
+							"node_modules/bootstrap/scss/bootstrap.scss",
+							"src/styles.scss"
 						],
-						"stylePreprocessorOptions": {
-							"includePaths": [
-								"src/styles"
-							]
-						},
 						"scripts": [],
 						"assets": [
-							"src/favicon.ico",
 							"src/assets"
 						],
 						"fileReplacements": [

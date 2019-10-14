@@ -2,24 +2,33 @@
 @plentymarkets/team-terra
 
 ### Definition of Done
-Documentation
-- [ ] Changelog
-- [ ] Example (updated or created)
-- [ ] JSDoc
+
+#### Must be done by Terra
 
 Testing
-- [ ] Unit Test (updated or created)
-- [ ] Unit Test successful
-- [ ] Person 1
-- [ ] Person 2
+- [ ] Person 1 (mandatory)
+- [ ] Person 2 (mandatory)
 
 Information transfer
-- [ ] Inform Ceres about changes in `TerraFormComponent`
+- [ ] Inform Ceres about changes in `TerraFormComponent` (optional: relevant for changes in this component)
 
-Browser-Support
+Browser-Support (relevant for changes in scss / appearance of components and jQuery)
 - [ ] Chrome
 - [ ] Firefox
 - [ ] Safari
 
 Terra Basic Plugin
-- [ ] Adapt changes
+- [ ] Adapt changes (optional: relevant for version updates, global design changes, l10n)
+
+----
+
+#### Must be done by every developer
+Please inform a member of Terra (@plentymarkets/team-terra) to get the upper part of the checklist done (with urgency or deadline). 
+
+Documentation
+- [ ] Changelog (optional: relevant for every change which influences the API)
+- [ ] Example (updated or created)
+- [ ] JSDoc (optional: relevant for every change which influences the API)
+
+Testing
+- [ ] Unit Test (updated or created)
