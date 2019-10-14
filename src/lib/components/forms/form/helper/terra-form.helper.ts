@@ -16,7 +16,6 @@ import { StringHelper } from '../../../../helpers/string.helper';
 import { TerraValidators } from '../../../../validators/validators';
 import { TerraFormFieldHelper } from './terra-form-field.helper';
 import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
-import { uniqueCombinationValidator } from '../../../../validators/unique-combination-validator';
 
 /**
  * @description This class provides functionality which may be used in relation to the <terra-form> and reactive forms.
