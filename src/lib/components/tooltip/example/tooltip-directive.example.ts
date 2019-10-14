@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 
 @Component({
-    selector: 'tc-tooltip-directive-example',
-    template: require('./tooltip-directive.example.html')
+    selector:    'tc-tooltip-directive-example',
+    templateUrl: './tooltip-directive.example.html'
 })
 export class TooltipDirectiveExample
 {
