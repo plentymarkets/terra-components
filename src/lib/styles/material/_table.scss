@@ -2,35 +2,24 @@
 
 .table-container
 {
-    height: 400px; // TODO
+    height: 100%;
     overflow: auto;
 
     margin: var(--space-container);
     width: auto;
     --no-result-margin: 0; //in case of a no-result page placed in a table to avoid doubled margins
 
-    mat-table
+    .mat-table
     {
         margin: 0;
 
-        mat-row.disabled
-        {
-            opacity: 0.5;
-            cursor: not-allowed;
-
-            mat-cell
-            {
-                pointer-events: none;
-            }
-        }
-
-        mat-header-row
+        .mat-header-row
         {
             min-height: 0;
             background: var(--table-head-background-color, var(--color-structure-9));
             border-bottom-width: 0;
 
-            mat-header-cell
+            .mat-header-cell
             {
                 color: var(--table-head-color, var(--color-structure-0));
                 padding: var(--table-head-th-padding, var(--space-md));
@@ -76,18 +65,29 @@
             }
         }
 
-        mat-row
+        .mat-row
         {
             min-height: 0;
             color: var(--color-structure-11);
             border-bottom: 1px solid var(--border-color);
+
+            &.disabled
+            {
+                opacity: 0.5;
+                cursor: not-allowed;
+
+                .mat-cell
+                {
+                    pointer-events: none;
+                }
+            }
 
             &:nth-child(odd)
             {
                 background-color: var(--color-structure-1);
             }
 
-            mat-cell
+            .mat-cell
             {
                 padding: var(--table-body-td-padding, var(--space-md));
                 vertical-align: middle;
@@ -106,18 +106,18 @@
             {
                 background-color: var(--color-active);
 
-                mat-cell
-                {
-                    color: var(--color-structure-0);
-                }
-
-                mat-cell a[href]
+                .mat-cell
                 {
                     color: var(--color-structure-0);
 
-                    &:hover
+                    a[href]
                     {
-                        color: var(--color-structure-13);
+                        color: var(--color-structure-0);
+
+                        &:hover
+                        {
+                            color: var(--color-structure-13);
+                        }
                     }
                 }
             }

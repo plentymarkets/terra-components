@@ -104,7 +104,7 @@ export class MatTableComponentExample implements OnInit
 
     private addEntries():void
     {
-        for(let i:number = 0; i < 10; i++)
+        for(let i:number = 0; i < 50; i++)
         {
             this.data.push(
                 {
