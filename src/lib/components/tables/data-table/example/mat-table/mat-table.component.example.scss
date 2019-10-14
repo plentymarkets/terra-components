@@ -1,8 +1,43 @@
-.example-container {
-    height: 400px;
-    overflow: auto;
-}
-
-table {
-    width: 100%;
-}
+//.table-container
+//{
+//    height: 400px; // TODO
+//    overflow: auto;
+//
+//    mat-table
+//    {
+//        width: 100%;
+//
+//        mat-header-row
+//        {
+//            mat-header-cell
+//            {
+//                &.cdk-drop-list-receiving, //all elements what can receive a drag
+//                &.cdk-drop-list-dragging //element where you drag over
+//                {
+//                    border: 1px dashed;
+//                }
+//
+//                &.cdk-drag
+//                {
+//                    cursor: move;
+//                }
+//
+//                ::ng-deep.mat-sort-header-container
+//                {
+//                    button.mat-sort-header-button
+//                    {
+//                        &:focus
+//                        {
+//                            outline: none;
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//    }
+//}
+//
+//.cdk-drag-preview
+//{
+//    background-color: var(--color-structure-4);
+//}
