@@ -2,6 +2,9 @@
 
 .table-container
 {
+    --table-head-background-color: var(--color-structure-0);
+    --table-head-color: var(--color-structure-8);
+    
     height: 100%;
     overflow: auto;
 
@@ -16,12 +19,12 @@
         .mat-header-row
         {
             min-height: 0;
-            background: var(--table-head-background-color, var(--color-structure-9));
-            border-bottom-width: 0;
+            background: var(--table-head-background-color, var(--color-structure-0));
+            border-bottom: 1px solid var(--border-color);
 
             .mat-header-cell
             {
-                color: var(--table-head-color, var(--color-structure-0));
+                color: var(--table-head-color, var(--color-structure-8));
                 padding: var(--table-head-th-padding, var(--space-md));
                 border: none;
                 font-size: var(--font-size-3);
@@ -73,16 +76,15 @@
 
             &.disabled
             {
-                opacity: 0.5;
-                cursor: not-allowed;
-
                 .mat-cell
                 {
+                    opacity: 0.5;
                     pointer-events: none;
+                    cursor: not-allowed;
                 }
             }
 
-            &:nth-child(odd)
+            &:nth-child(even)
             {
                 background-color: var(--color-structure-1);
             }
