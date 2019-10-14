@@ -97,6 +97,7 @@ export class MatTableComponentExample implements OnInit
             'id',
             'value',
             'email',
+            'link',
             'actions'
         ];
     }
@@ -109,7 +110,9 @@ export class MatTableComponentExample implements OnInit
                 {
                     id:    i,
                     value: Math.random(),
-                    mail:  `email${i}@random.de`
+                    mail:  `email${i}@random.de`,
+                    link: 'https://www.google.de',
+                    disabled: i === 3
                 }
             );
         }

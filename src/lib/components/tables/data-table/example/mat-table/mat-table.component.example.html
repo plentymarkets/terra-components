@@ -18,7 +18,6 @@
             </mat-cell>
         </ng-container>
 
-
         <ng-container matColumnDef="id">
             <mat-header-cell *matHeaderCellDef
                              mat-sort-header
@@ -28,7 +27,8 @@
                              cdkDropListOrientation="horizontal"
                              (cdkDropListDropped)="dropListDropped('id')"
                              cdkDrag
-                             (cdkDragStarted)="dragStarted('id')"> ID </mat-header-cell>
+                             (cdkDragStarted)="dragStarted('id')"> ID
+            </mat-header-cell>
             <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
         </ng-container>
 
@@ -40,7 +40,8 @@
                              cdkDropListOrientation="horizontal"
                              (cdkDropListDropped)="dropListDropped('value')"
                              cdkDrag
-                             (cdkDragStarted)="dragStarted('value')"> Value </mat-header-cell>
+                             (cdkDragStarted)="dragStarted('value')"> Value
+            </mat-header-cell>
             <mat-cell *matCellDef="let element"> {{element.value}} </mat-cell>
         </ng-container>
 
@@ -51,20 +52,38 @@
                              cdkDropListOrientation="horizontal"
                              (cdkDropListDropped)="dropListDropped('email')"
                              cdkDrag
-                             (cdkDragStarted)="dragStarted('email')"> Email </mat-header-cell>
+                             (cdkDragStarted)="dragStarted('email')"> Email
+            </mat-header-cell>
             <mat-cell *matCellDef="let element"> {{element.mail}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="link">
+            <mat-header-cell *matHeaderCellDef
+                             cdkDropList
+                             cdkDropListLockAxis="x"
+                             cdkDropListOrientation="horizontal"
+                             (cdkDropListDropped)="dropListDropped('link')"
+                             cdkDrag
+                             (cdkDragStarted)="dragStarted('link')"> Link
+            </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                <a href="{{element.link}}" target="_blank">Das ist ein Link</a>
+            </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="actions">
             <mat-header-cell *matHeaderCellDef></mat-header-cell>
             <mat-cell *matCellDef="let element">
-                <terra-button [inputIcon]="'icon-delete'" (outputClicked)="onDeleteClick(element)"></terra-button>
+                <terra-button [inputIsSmall]="true"
+                              [inputIcon]="'icon-delete'"
+                              (outputClicked)="onDeleteClick(element)"></terra-button>
             </mat-cell>
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns;"
                  hasContextMenu
-                 [ngClass]="{'isActive': selection.isSelected(row)}"></mat-row>
+                 [rowData]="row"
+                 [ngClass]="{'isActive': selection.isSelected(row), 'disabled': row.disabled}"></mat-row>
     </mat-table>
 </div>

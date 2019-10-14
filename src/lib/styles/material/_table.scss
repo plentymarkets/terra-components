@@ -1,20 +1,56 @@
+@import '../../styles/variables';
+
 .table-container
 {
-    height: 400px;
+    height: 400px; // TODO
     overflow: auto;
+
+    margin: var(--space-container);
+    width: auto;
+    --no-result-margin: 0; //in case of a no-result page placed in a table to avoid doubled margins
 
     mat-table
     {
-        width: 100%;
+        margin: 0;
+
+        mat-row.disabled
+        {
+            opacity: 0.5;
+            cursor: not-allowed;
+
+            mat-cell
+            {
+                pointer-events: none;
+            }
+        }
 
         mat-header-row
         {
+            min-height: 0;
+            background: var(--table-head-background-color, var(--color-structure-9));
+            border-bottom-width: 0;
+
             mat-header-cell
             {
+                color: var(--table-head-color, var(--color-structure-0));
+                padding: var(--table-head-th-padding, var(--space-md));
+                border: none;
+                font-size: var(--font-size-3);
+                @include font-rendering;
+
                 &.cdk-drop-list-receiving, //all elements what can receive a drag
                 &.cdk-drop-list-dragging //element where you drag over
                 {
-                    border: 1px dashed;
+                    border-bottom: 1px dashed;
+
+                    &:not(:last-child)
+                    {
+                        border-right: 1px dashed;
+                    }
+                    &:not(:first-child)
+                    {
+                        border-left: 1px dashed;
+                    }
                 }
 
                 &.cdk-drag
@@ -30,6 +66,58 @@
                         {
                             outline: none;
                         }
+                    }
+
+                    .mat-sort-header-arrow
+                    {
+                        color: var(--table-head-color, var(--color-structure-0));
+                    }
+                }
+            }
+        }
+
+        mat-row
+        {
+            min-height: 0;
+            color: var(--color-structure-11);
+            border-bottom: 1px solid var(--border-color);
+
+            &:nth-child(odd)
+            {
+                background-color: var(--color-structure-1);
+            }
+
+            mat-cell
+            {
+                padding: var(--table-body-td-padding, var(--space-md));
+                vertical-align: middle;
+                white-space: nowrap;
+                font-size: var(--font-size-3);
+                @include font-rendering;
+            }
+
+            &:hover
+            {
+                background: var(--color-structure-2);
+                cursor: pointer;
+            }
+
+            &.selected, &.isActive
+            {
+                background-color: var(--color-active);
+
+                mat-cell
+                {
+                    color: var(--color-structure-0);
+                }
+
+                mat-cell a[href]
+                {
+                    color: var(--color-structure-0);
+
+                    &:hover
+                    {
+                        color: var(--color-structure-13);
                     }
                 }
             }
