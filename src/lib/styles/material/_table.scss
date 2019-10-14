@@ -76,11 +76,12 @@
 
             &.disabled
             {
+                cursor: not-allowed !important;
+                
                 .mat-cell
                 {
                     opacity: 0.5;
                     pointer-events: none;
-                    cursor: not-allowed;
                 }
             }
 
