@@ -6,8 +6,8 @@ import { Component } from '@angular/core';
 })
 export class TooltipDirectiveExample
 {
-    protected tooltip:string = 'Tooltip from variable';
+    public _tooltip:string = 'Tooltip from variable';
 
-    protected tooltipText1:string = 'Tooltip 1';
-    protected tooltipText2:string = 'Tooltip 2 changed on click';
+    public _tooltipText1:string = 'Tooltip 1';
+    public _tooltipText2:string = 'Tooltip 2 changed on click';
 }
