@@ -30,25 +30,25 @@ export class TerraNodeComponent<D> implements OnInit, OnDestroy
     public inputConfig:TerraNodeTreeConfig<D>;
 
     @Language()
-    protected lang:string;
+    public lang:string;
 
-    protected tooltip:string;
-    protected tooltipPlacement:string = TerraPlacementEnum.RIGHT;
+    public _tooltip:string;
+    public _tooltipPlacement:string = TerraPlacementEnum.RIGHT;
 
     public ngOnInit():void
     {
         if(isNullOrUndefined(this.inputNode.tooltip))
         {
-            this.tooltip = this.inputNode.name;
+            this._tooltip = this.inputNode.name;
         }
         else
         {
-            this.tooltip = this.inputNode.tooltip;
+            this._tooltip = this.inputNode.tooltip;
         }
 
         if(!isNullOrUndefined(this.inputNode.tooltipPlacement))
         {
-            this.tooltipPlacement = this.inputNode.tooltipPlacement;
+            this._tooltipPlacement = this.inputNode.tooltipPlacement;
         }
     }
 
@@ -58,7 +58,7 @@ export class TerraNodeComponent<D> implements OnInit, OnDestroy
     }
 
     // handle the node click
-    protected onNodeClick(event:Event):void
+    public _onNodeClick(event:Event):void
     {
         event.stopPropagation();
 
@@ -78,7 +78,7 @@ export class TerraNodeComponent<D> implements OnInit, OnDestroy
         }
     }
 
-    protected handleIconClick(event:Event):void
+    public _handleIconClick(event:Event):void
     {
         event.stopPropagation();
 
