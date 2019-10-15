@@ -15,11 +15,11 @@ export interface TerraPagerComponentExampleInterface
 })
 export class TerraPagerComponentExample implements OnInit
 {
-    public pagingData:TerraPagerInterface<TerraPagerComponentExampleInterface>;
+    public _pagingData:TerraPagerInterface<TerraPagerComponentExampleInterface>;
 
     public ngOnInit():void
     {
-        this.pagingData = {
+        this._pagingData = {
             pagingUnit:     'pagingEntries',
             totalsCount:    345,
             page:           1,
