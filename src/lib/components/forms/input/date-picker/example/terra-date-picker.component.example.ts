@@ -9,7 +9,7 @@ export class TerraDatePickerComponentExample
 {
     public _date:string = new Date().toDateString();
 
-    protected onChange(value:string):void
+    public _onChange(value:string):void
     {
         console.log(value);
     }
