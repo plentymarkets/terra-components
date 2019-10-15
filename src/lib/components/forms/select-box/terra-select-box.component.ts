@@ -329,7 +329,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
                     // check if element is really available
                     if(this.toggleOpen && this.inputListBoxValues.find((item:TerraSelectBoxValueInterface) => item === this._tmpSelectedValue))
                     {
-                        this.select(this._tmpSelectedValue); // select the chosen element
+                        this._select(this._tmpSelectedValue); // select the chosen element
                         this.toggleOpen = false; // close the dropdown
                     }
                     break;
