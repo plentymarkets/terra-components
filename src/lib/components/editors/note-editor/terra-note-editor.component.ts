@@ -21,9 +21,9 @@ export class TerraNoteEditorComponent extends TerraBaseEditorComponent
     {
         super(translation, myElement);
         // initialize placeholder
-        this.placeholder = this.translation.translate('terraNoteEditor.insertText');
+        this._placeholder = this.translation.translate('terraNoteEditor.insertText');
 
-        this.modules = {
+        this._modules = {
             toolbar: [
                 ['bold',
                  'italic',
