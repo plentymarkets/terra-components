@@ -21,7 +21,7 @@
 		"build-test": "rimraf dist && webpack --config config/webpack.prod.js  --progress --profile --bail",
 		"build:lint-rules": "tsc -p src/tsconfig.lint.json",
 		"release": "gulp npm-publish",
-		"start": "webpack-dev-server --progress --watch --profile --open --config config/webpack.dev.js",
+		"start": "ng serve",
 		"gulp": "gulp",
 		"test": "karma start",
 		"test-once": "karma start --single-run --browsers Chrome,Firefox,Safari",
