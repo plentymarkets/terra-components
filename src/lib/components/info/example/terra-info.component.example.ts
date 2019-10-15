@@ -8,5 +8,5 @@ import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum'
 })
 export class TerraInfoComponentExample
 {
-    protected tooltipPlacement:TerraPlacementEnum = TerraPlacementEnum.RIGHT;
+    public _tooltipPlacement:TerraPlacementEnum = TerraPlacementEnum.RIGHT;
 }
