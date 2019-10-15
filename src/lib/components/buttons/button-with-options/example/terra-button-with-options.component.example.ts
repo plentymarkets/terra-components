@@ -9,7 +9,7 @@ import { TerraButtonInterface } from '../../button/data/terra-button.interface';
 })
 export class TerraButtonWithOptionsComponentExample
 {
-    protected buttonOptionList:Array<TerraButtonInterface> = [
+    public _buttonOptionList:Array<TerraButtonInterface> = [
         {
             caption:       'Add new account',
             icon:          'icon-add',
