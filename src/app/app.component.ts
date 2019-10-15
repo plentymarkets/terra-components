@@ -1,19 +1,26 @@
 import {
+    AfterViewInit,
     Component,
+    ElementRef,
+    OnInit,
+    QueryList,
     ViewChild,
+    ViewChildren,
     ViewEncapsulation
 } from '@angular/core';
 import {
-    MatHeaderCell,
+    MatHeaderRow,
     MatTableDataSource
 } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import {
-    CdkDragDrop,
-    CdkDragStart,
-    CdkDropList,
+    CdkDrag,
+    DragDrop,
+    DropListRef,
     moveItemInArray
 } from '@angular/cdk/drag-drop';
+import { DragRefInternal as DragRef } from '@angular/cdk/drag-drop/typings/drag-ref';
+import { takeUntil } from 'rxjs/operators';
 
 export interface PeriodicElement {
     name: string;
@@ -47,7 +54,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
     styles:        [require('./app.component.scss')],
     encapsulation: ViewEncapsulation.None
 })
-export class AppComponent
+export class AppComponent implements OnInit, AfterViewInit
 {
     protected columns:Array<string> = [
         'position',
@@ -61,23 +68,42 @@ export class AppComponent
     @ViewChild(MatSort)
     protected sort:MatSort;
 
-    previousIndex:number;
+    @ViewChild(MatHeaderRow, {read: ElementRef})
+    private headerRow:MatHeaderRow;
+
+    @ViewChildren(CdkDrag)
+    private drags:QueryList<CdkDrag>;
+
+    constructor(private dndService:DragDrop) {}
 
     public ngOnInit():void
     {
         this.dataSource.sort = this.sort;
     }
 
-    protected dragStarted(event:CdkDragStart, index:number):void
+    protected drop(event:any):void
     {
-        this.previousIndex = index;
+        moveItemInArray(this.columns, event.previousIndex, event.currentIndex);
     }
 
-    protected dropListDropped(event:CdkDragDrop<MatHeaderCell, MatHeaderCell>, index:number):void
+    public ngAfterViewInit():void
     {
-        if(event)
-        {
-            moveItemInArray(this.columns, this.previousIndex, index);
-        }
+        this.createDropList();
+        this.drags.changes.subscribe(() => this.createDropList())
+    }
+
+    private createDropList():void
+    {
+        const dropListRef:DropListRef = this.dndService.createDropList(this.headerRow as ElementRef);
+        dropListRef.withItems(this.drags.toArray().map((drag:CdkDrag) => drag._dragRef));
+        dropListRef.withOrientation('horizontal');
+        dropListRef.dropped.pipe(takeUntil(this.drags.changes)).subscribe((event:{
+            item: DragRef;
+            currentIndex: number;
+            previousIndex: number;
+            container: DropListRef<any>;
+            previousContainer: DropListRef<any>;
+            isPointerOverContainer: boolean;
+        }) => this.drop(event) );
     }
 }
