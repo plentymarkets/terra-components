@@ -15,7 +15,7 @@ export class DataTableTemplateComponentExample extends TerraDataTableComponentEx
         super(service);
     }
 
-    protected saveData(value:any):void
+    public _saveData(value:any):void
     {
         alert('A saving event should be called now instead of an alert.');
     }
