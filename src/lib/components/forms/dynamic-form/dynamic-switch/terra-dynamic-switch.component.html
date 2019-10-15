@@ -15,7 +15,7 @@
                 <terra-text-input *ngSwitchCase="controlTypeEnum.INPUT_TEXT"
                                   [ngClass]="{'horizontalGroupEntry': inputSubSwitch}"
                                   [formControlName]="formField.key"
-                                  [inputName]="formField.label  | translate:lang"
+                                  [inputName]="formField.label  | translate:_lang"
                                   [inputIsRequired]="formField.required"
                                   [inputIsDisabled]="inputIsDisabled"
                                   [inputIsPassword]="formField.isPassword"
@@ -28,7 +28,7 @@
                 <terra-file-input *ngSwitchCase="controlTypeEnum.INPUT_FILE"
                                   [ngClass]="{'horizontalGroupEntry': inputSubSwitch}"
                                   [formControlName]="formField.key"
-                                  [inputName]="formField.label  | translate:lang"
+                                  [inputName]="formField.label  | translate:_lang"
                                   [inputIsRequired]="formField.required"
                                   [inputAllowedExtensions]="formField.inputAllowedExtensions"
                                   [inputIsDisabled]="inputIsDisabled"
@@ -39,7 +39,7 @@
                 <terra-text-area-input *ngSwitchCase="controlTypeEnum.INPUT_TEXT_AREA"
                                        [ngClass]="{'horizontalGroupEntry': inputSubSwitch}"
                                        [formControlName]="formField.key"
-                                       [inputName]="formField.label  | translate:lang"
+                                       [inputName]="formField.label  | translate:_lang"
                                        [inputIsRequired]="formField.required"
                                        [inputIsDisabled]="inputIsDisabled"
                                        [inputTooltipText]="formField.tooltip"
@@ -49,7 +49,7 @@
                 <terra-number-input *ngSwitchCase="controlTypeEnum.INPUT_NUMBER"
                                     [ngClass]="{horizontalGroupEntry: inputSubSwitch}"
                                     [formControlName]="formField.key"
-                                    [inputName]="formField.label  | translate:lang"
+                                    [inputName]="formField.label  | translate:_lang"
                                     [inputIsRequired]="formField.required"
                                     [inputIsDisabled]="inputIsDisabled"
                                     [inputTooltipText]="formField.tooltip"
@@ -59,14 +59,14 @@
                 <terra-checkbox *ngSwitchCase="controlTypeEnum.CHECK_BOX"
                                 [formControlName]="formField.key"
                                 [inputIsDisabled]="inputIsDisabled"
-                                [inputCaption]="formField.label | translate:lang"
+                                [inputCaption]="formField.label | translate:_lang"
                                 [(ngModel)]="formField.defaultValue">
                 </terra-checkbox>
                 
                 <terra-double-input *ngSwitchCase="controlTypeEnum.INPUT_DOUBLE"
                                     [ngClass]="{horizontalGroupEntry: inputSubSwitch}"
                                     [formControlName]="formField.key"
-                                    [inputName]="formField.label  | translate:lang"
+                                    [inputName]="formField.label  | translate:_lang"
                                     [inputIsRequired]="formField.required"
                                     [inputIsDisabled]="inputIsDisabled"
                                     [inputIsPriceInput]="formField.isPrice"
@@ -87,7 +87,7 @@
                 <terra-select-box *ngSwitchCase="controlTypeEnum.SELECT_BOX"
                                   [ngClass]="{horizontalGroupEntry: inputSubSwitch}"
                                   [formControlName]="formField.key"
-                                  [inputName]="formField.label | translate:lang"
+                                  [inputName]="formField.label | translate:_lang"
                                   [inputIsRequired]="formField.required"
                                   [inputIsDisabled]="inputIsDisabled"
                                   [inputListBoxValues]="formField.selectBoxValues"
@@ -98,14 +98,14 @@
                 <terra-multi-check-box *ngSwitchCase="controlTypeEnum.MULTI_CHECK_BOX"
                                        [ngClass]="{horizontalGroupEntry: inputSubSwitch}"
                                        [formControlName]="formField.key"
-                                       [inputName]="formField.label | translate:lang"
+                                       [inputName]="formField.label | translate:_lang"
                                        [inputIsDisabled]="inputIsDisabled">
                 </terra-multi-check-box>
                 
                 <terra-date-picker *ngSwitchCase="controlTypeEnum.DATE_PICKER"
                                    [ngClass]="{horizontalGroupEntry: inputSubSwitch}"
                                    [formControlName]="formField.key"
-                                   [inputName]="formField.label | translate:lang"
+                                   [inputName]="formField.label | translate:_lang"
                                    [inputIsRequired]="formField.required"
                                    [inputIsDisabled]="inputIsDisabled"
                                    [inputOpenCalendarTop]="formField.openCalenderTop">
@@ -114,7 +114,7 @@
                 <terra-color-picker *ngSwitchCase="controlTypeEnum.COLOR_PICKER"
                                     [ngClass]="{horizontalGroupEntry: inputSubSwitch}"
                                     [formControlName]="formField.key"
-                                    [inputName]="formField.label | translate:lang"
+                                    [inputName]="formField.label | translate:_lang"
                                     [inputIsRequired]="formField.required"
                                     [inputIsDisabled]="inputIsDisabled">
                 </terra-color-picker>
@@ -137,7 +137,7 @@
                                               [formGroupName]="formField.key"
                                               [inputFormGroup]="inputFormGroup.controls[formField.key]"
                                               [inputFormFields]="formField.containerEntries"
-                                              [inputPortletHeader]="formField.label | translate:lang"
+                                              [inputPortletHeader]="formField.label | translate:_lang"
                                               [inputSubSwitch]="true"
                                               [inputUsePortlet]="true">
                         </terra-dynamic-switch>
@@ -150,7 +150,7 @@
                                               [formGroupName]="formField.key"
                                               [inputFormGroup]="inputFormGroup.controls[formField.key]"
                                               [inputFormFields]="formField.containerEntries"
-                                              [inputPortletHeader]="formField.label | translate:lang"
+                                              [inputPortletHeader]="formField.label | translate:_lang"
                                               [inputSubSwitch]="true"
                                               [inputUsePortlet]="true">
                         </terra-dynamic-switch>

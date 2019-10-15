@@ -76,9 +76,9 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges, OnDestroy
     public inputShowDeprecatedEntriesChange:EventEmitter<boolean> = new EventEmitter();
 
     @Language()
-    protected lang:string;
+    public _lang:string;
 
-    constructor(protected formFieldControlService:TerraFormFieldControlService)
+    constructor(public _formFieldControlService:TerraFormFieldControlService)
     {
         this.inputPortletStyle = 'col-12 col-md-8 col-lg-5';
         this.inputRequestParams = {
@@ -101,8 +101,8 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges, OnDestroy
         }
         else
         {
-            this.formFieldControlService.createFormGroup(this.inputFormFields);
-            this.inputFormFunctions.formFieldControlService = this.formFieldControlService;
+            this._formFieldControlService.createFormGroup(this.inputFormFields);
+            this.inputFormFunctions.formFieldControlService = this._formFieldControlService;
 
             this.registerValueChange();
         }
@@ -116,7 +116,7 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges, OnDestroy
     {
         if(changes['inputFormFields'])
         {
-            this.formFieldControlService.createFormGroup(this.inputFormFields);
+            this._formFieldControlService.createFormGroup(this.inputFormFields);
             this.registerValueChange();
         }
     }
@@ -128,20 +128,20 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges, OnDestroy
 
     protected validate():void
     {
-        if(this.formFieldControlService.dynamicFormGroup.valid)
+        if(this._formFieldControlService.dynamicFormGroup.valid)
         {
-            this.inputFormFunctions.saveCallback(this.formFieldControlService.dynamicFormGroup.value);
+            this.inputFormFunctions.saveCallback(this._formFieldControlService.dynamicFormGroup.value);
         }
         else
         {
-            this.inputFormFunctions.errorCallback(this.formFieldControlService.dynamicFormGroup,
-                this.formFieldControlService.translationMapping);
+            this.inputFormFunctions.errorCallback(this._formFieldControlService.dynamicFormGroup,
+                this._formFieldControlService.translationMapping);
         }
     }
 
     protected onResetClick():void
     {
-        this.formFieldControlService.resetForm();
+        this._formFieldControlService.resetForm();
     }
 
     protected onToggleClick():void
@@ -154,7 +154,7 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges, OnDestroy
     {
         if(!isNullOrUndefined(this.inputFormFunctions.onValueChangedCallback))
         {
-            let stream$:Observable<any> = this.formFieldControlService
+            let stream$:Observable<any> = this._formFieldControlService
                 .dynamicFormGroup
                 .valueChanges;
 

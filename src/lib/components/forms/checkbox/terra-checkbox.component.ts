@@ -77,7 +77,7 @@ export class TerraCheckboxComponent implements ControlValueAccessor
      */
     public get value():boolean
     {
-        return this.innerValue;
+        return this._innerValue;
     }
 
     /**
@@ -89,7 +89,7 @@ export class TerraCheckboxComponent implements ControlValueAccessor
     {
         if(value)
         {
-            this.innerValue = null;
+            this._innerValue = null;
         }
         this._isIndeterminate = value;
     }
@@ -120,19 +120,19 @@ export class TerraCheckboxComponent implements ControlValueAccessor
     /**
      * @description a unique string identifier for the specific input instance.
      */
-    protected id:string;
+    public _id:string;
 
     // The internal data model
-    private innerValue:boolean = false;
+    private _innerValue:boolean = false;
     private _isIndeterminate:boolean = false;
 
-    private onTouchedCallback:() => void = noop;
-    private onChangeCallback:(value:any) => void = noop;
+    private _onTouchedCallback:() => void = noop;
+    private _onChangeCallback:(value:any) => void = noop;
 
     constructor()
     {
         // generate the id of the input instance
-        this.id = `checkbox_#${nextId++}`;
+        this._id = `checkbox_#${nextId++}`;
     }
 
     /**
@@ -142,7 +142,7 @@ export class TerraCheckboxComponent implements ControlValueAccessor
      */
     public onChange(value:boolean):void
     {
-        this.onChangeCallback(value);
+        this._onChangeCallback(value);
         this.updateIntermediateState(false);
         this.valueChange.emit(value);
     }
@@ -154,7 +154,7 @@ export class TerraCheckboxComponent implements ControlValueAccessor
      */
     public writeValue(value:boolean):void
     {
-        if(value !== this.innerValue)
+        if(value !== this._innerValue)
         {
             if(value === null || value === undefined)
             {
@@ -162,11 +162,11 @@ export class TerraCheckboxComponent implements ControlValueAccessor
             }
 
             this.updateIntermediateState(false);
-            this.innerValue = value;
+            this._innerValue = value;
 
             if(this.notifyOnChanges)
             {
-                this.onChangeCallback(value);
+                this._onChangeCallback(value);
             }
         }
     }
@@ -178,7 +178,7 @@ export class TerraCheckboxComponent implements ControlValueAccessor
      */
     public registerOnChange(fn:(value:any) => void):void
     {
-        this.onChangeCallback = fn;
+        this._onChangeCallback = fn;
     }
 
     /**
@@ -188,7 +188,7 @@ export class TerraCheckboxComponent implements ControlValueAccessor
      */
     public registerOnTouched(fn:() => void):void
     {
-        this.onTouchedCallback = fn;
+        this._onTouchedCallback = fn;
     }
 
     private updateIntermediateState(newState:boolean):void

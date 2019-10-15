@@ -25,14 +25,14 @@ export class TerraNumberInputComponent extends TerraInputComponent
     /**
      * @description a unique string identifier for the specific input instance.
      */
-    protected id:string;
+    public _id:string;
 
     constructor()
     {
         super(TerraRegex.NUMERIC);
 
         // generate the id of the input instance
-        this.id = `number-input_#${nextId++}`;
+        this._id = `number-input_#${nextId++}`;
     }
 
     /**
@@ -42,7 +42,7 @@ export class TerraNumberInputComponent extends TerraInputComponent
     {
         setTimeout(() =>
         {
-            let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this.id);
+            let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this._id);
             input.focus();
         });
     }
@@ -54,7 +54,7 @@ export class TerraNumberInputComponent extends TerraInputComponent
     {
         setTimeout(() =>
         {
-            let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this.id);
+            let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this._id);
             input.select();
         });
     }

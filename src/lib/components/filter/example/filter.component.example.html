@@ -2,12 +2,12 @@
            (reset)="onResetBtnClicked()">
     <terra-text-input
         [inputName]="'Name'"
-        [(ngModel)]="name">
+        [(ngModel)]="_name">
     </terra-text-input>
     <terra-select-box
         [inputName]="'Select'"
-        [inputListBoxValues]="listBoxValues"
-        [(ngModel)]="selectedListBoxValue">
+        [inputListBoxValues]="_listBoxValues"
+        [(ngModel)]="_selectedListBoxValue">
     </terra-select-box>
 </tc-filter>
 

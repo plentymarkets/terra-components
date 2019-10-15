@@ -3,10 +3,10 @@ import { TerraDataTableServiceExample } from './terra-data-table.service.example
 import { TerraDataTableComponentExample } from './terra-data-table.component.example';
 
 @Component({
-    selector:  'tc-data-table-template-example',
+    selector:    'tc-data-table-template-example',
     templateUrl: './data-table-template.component.example.html',
-    styleUrls: ['./data-table-template.component.example.scss'],
-    providers: [TerraDataTableServiceExample]
+    styleUrls:   ['./data-table-template.component.example.scss'],
+    providers:   [TerraDataTableServiceExample]
 })
 export class DataTableTemplateComponentExample extends TerraDataTableComponentExample
 {

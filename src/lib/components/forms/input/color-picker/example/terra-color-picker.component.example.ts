@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
 })
 export class TerraColorPickerComponentExample
 {
-    public color:string;
+    public _color:string;
 }

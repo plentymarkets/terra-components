@@ -2,17 +2,17 @@
      [ngClass]="{'error': !inputIsValid, 'disabled': inputIsDisabled}">
 
     <my-date-picker #viewChildMyDatePicker
-                    id="{{id}}"
+                    id="{{_id}}"
                     class="date-picker"
                     [(ngModel)]="value"
                     (ngModelChange)="onChange($event)"
-                    [locale]="currentLocale"
-                    [options]="datePickerOptions"
+                    [locale]="_currentLocale"
+                    [options]="_datePickerOptions"
                     (inputFocusBlur)="onFocusOrBlur($event)">
     </my-date-picker>
     <label [tcTooltip]="inputName"
            [onlyEllipsisTooltip]="true"
-           htmlFor="{{id}}">{{inputName}}
+           htmlFor="{{_id}}">{{inputName}}
         <span *ngIf="inputIsRequired">*</span>
     </label>
 </div>

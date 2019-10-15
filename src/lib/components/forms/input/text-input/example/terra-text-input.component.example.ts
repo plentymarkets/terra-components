@@ -10,16 +10,16 @@ import {
 })
 export class TerraTextInputComponentExample implements OnInit
 {
-    public readOnlyFieldText:string;
-    public username:string;
+    public _readOnlyFieldText:string;
+    public _username:string;
 
     public ngOnInit():void
     {
-        this.readOnlyFieldText = 'this text is not editable';
+        this._readOnlyFieldText = 'this text is not editable';
     }
 
     public showUsername():void
     {
-        alert('Username: ' + this.username);
+        alert('Username: ' + this._username);
     }
 }

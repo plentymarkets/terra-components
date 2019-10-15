@@ -41,11 +41,11 @@ export class RadioInputComponent
     /**
      * unique identifier of this input instance
      */
-    protected readonly id:string;
+    public readonly _id:string;
 
-    constructor(@Host() protected group:RadioGroupComponent)
+    constructor(@Host() public _group:RadioGroupComponent)
     {
         // generate the id of the input instance
-        this.id = `radio-input#${nextId++}`;
+        this._id = `radio-input#${nextId++}`;
     }
 }
