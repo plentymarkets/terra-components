@@ -3,12 +3,12 @@
         <div class="node btn"
              [ngClass]="{'activated' : inputNode.isActive, 'isLoading' : inputNode.isLoading && inputNode.onLazyLoad}"
              (click)="_onNodeClick($event)"
-             [tcTooltip]="_tooltip | translate:lang"
+             [tcTooltip]="_tooltip | translate:_lang"
              [onlyEllipsisTooltip]="true"
              [placement]="_tooltipPlacement">
             <span *ngIf="!inputNode.icon" class="icon_dist_top icon-placeholder"></span>
             <span *ngIf="inputNode.icon" class="icon_dist_top" [ngClass]="inputNode.icon"></span>
-            <div class="buttonText">{{inputNode.name | translate:lang }}</div>
+            <div class="buttonText">{{inputNode.name | translate:_lang }}</div>
             <span *ngIf="(inputNode.children && inputNode.children.length > 0) || inputNode.onLazyLoad"
                   class="icon-right icon-collapse_up"
                   [ngClass]="{'icon-collapse_up' : inputNode.isOpen, 'icon-collapse_down': !inputNode.isOpen}"

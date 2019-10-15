@@ -30,7 +30,7 @@ export class TerraNodeComponent<D> implements OnInit, OnDestroy
     public inputConfig:TerraNodeTreeConfig<D>;
 
     @Language()
-    public lang:string;
+    public _lang:string;
 
     public _tooltip:string;
     public _tooltipPlacement:string = TerraPlacementEnum.RIGHT;
@@ -62,7 +62,7 @@ export class TerraNodeComponent<D> implements OnInit, OnDestroy
     {
         event.stopPropagation();
 
-        this.handleOpenNode(false);
+        this._handleOpenNode(false);
 
         // check if click function is set
         if(!isNullOrUndefined(this.inputNode.onClick))
@@ -82,12 +82,12 @@ export class TerraNodeComponent<D> implements OnInit, OnDestroy
     {
         event.stopPropagation();
 
-        this.handleOpenNode(true);
+        this._handleOpenNode(true);
 
         this.inputConfig.handleLazyLoading(this.inputNode);
     }
 
-    private handleOpenNode(isIconClick:boolean):void
+    private _handleOpenNode(isIconClick:boolean):void
     {
         if(isIconClick || this.inputNode.closeOnClick)
         {
