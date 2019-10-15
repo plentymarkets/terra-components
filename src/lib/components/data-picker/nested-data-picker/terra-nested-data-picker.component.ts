@@ -25,10 +25,10 @@ import {
 } from 'rxjs';
 
 @Component({
-    selector:  'terra-nested-data-picker',
+    selector:    'terra-nested-data-picker',
     templateUrl: './terra-nested-data-picker.component.html',
-    styleUrls: ['./terra-nested-data-picker.component.scss'],
-    providers: [
+    styleUrls:   ['./terra-nested-data-picker.component.scss'],
+    providers:   [
         {
             provide:     NG_VALUE_ACCESSOR,
             useExisting: TerraNestedDataPickerComponent,
