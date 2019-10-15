@@ -12,8 +12,8 @@ import { TerraCheckboxLeafInterface } from '../leaf/terra-checkbox-leaf.interfac
 import { TerraCheckboxTreeLeafState } from './data/terra-checkbox-tree-leaf-state';
 
 @Component({
-    selector: 'terra-checkbox-tree',
-    styleUrls: [ './terra-checkbox-tree.component.scss'],
+    selector:    'terra-checkbox-tree',
+    styleUrls:   ['./terra-checkbox-tree.component.scss'],
     templateUrl: './terra-checkbox-tree.component.html'
 })
 export class TerraCheckboxTreeComponent extends TerraBaseTreeComponent implements OnInit, OnChanges
@@ -63,7 +63,7 @@ export class TerraCheckboxTreeComponent extends TerraBaseTreeComponent implement
      * @param event
      * @param leaf
      */
-    protected onCheckboxValueChange(event:boolean, leaf:TerraCheckboxLeafInterface):void
+    public _onCheckboxValueChange(event:boolean, leaf:TerraCheckboxLeafInterface):void
     {
         if(leaf.isIndeterminate)
         {
