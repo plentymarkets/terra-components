@@ -42,27 +42,27 @@ export class TerraDoubleInputComponent extends TerraInputComponent implements On
     public inputDecimalCount:number = 2;
 
     @DefaultLocale()
-    protected locale:string;
+    public _locale:string;
 
-    protected step:number;
+    public _step:number;
 
     /**
      * @description a unique string identifier for the specific input instance.
      */
-    protected id:string;
+    public _id:string;
 
     constructor()
     {
         super(TerraRegex.DOUBLE);
 
         // generate the id of the input instance
-        this.id = `double-input_#${nextId++}`;
+        this._id = `double-input_#${nextId++}`;
     }
 
     public ngOnInit():void
     {
         this.regex = TerraRegex.getDouble(this.inputDecimalCount);
-        this.step = 1 / (Math.pow(10, this.inputDecimalCount));
+        this._step = 1 / (Math.pow(10, this.inputDecimalCount));
     }
 
     public ngOnDestroy():void
@@ -77,7 +77,7 @@ export class TerraDoubleInputComponent extends TerraInputComponent implements On
     {
         setTimeout(() =>
         {
-            let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this.id);
+            let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this._id);
             input.focus();
         });
     }
@@ -89,7 +89,7 @@ export class TerraDoubleInputComponent extends TerraInputComponent implements On
     {
         setTimeout(() =>
         {
-            let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this.id);
+            let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this._id);
             input.select();
         });
     }

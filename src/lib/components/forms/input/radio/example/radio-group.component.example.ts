@@ -7,6 +7,6 @@ import { Component } from '@angular/core';
 
 export class RadioGroupComponentExample
 {
-    protected radioValue:number = 1;
-    protected radioValueWithElements:number = 2;
+    public _radioValue:number = 1;
+    public _radioValueWithElements:number = 2;
 }
