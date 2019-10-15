@@ -79,9 +79,9 @@ export class TerraPortletComponent implements OnChanges
     @Output()
     public inputCollapsedChange:EventEmitter<boolean> = new EventEmitter<boolean>();
 
-    protected readonly infoTextPlacement:TerraPlacementEnum = TerraPlacementEnum.RIGHT;
+    public readonly _infoTextPlacement:TerraPlacementEnum = TerraPlacementEnum.RIGHT;
 
-    private get collapsedState():string
+    public get _collapsedState():string
     {
         if(!this.inputIsCollapsable)
         {
