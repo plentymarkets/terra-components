@@ -35,11 +35,12 @@ export class TerraInfoBoxComponent
     @Input()
     public inputNoWordBreak:boolean;
 
-    @ViewChild('buttonRef') private buttonRef:any;
+    @ViewChild('buttonRef')
+    public _buttonRef:any;
 
     public get hasButtons():boolean
     {
-        return !isNullOrUndefined(this.buttonRef.nativeElement.childNodes) && this.buttonRef.nativeElement.childNodes > 0 ||
+        return !isNullOrUndefined(this._buttonRef.nativeElement.childNodes) && this._buttonRef.nativeElement.childNodes > 0 ||
                !isNullOrUndefined(this.inputButtonList) && this.inputButtonList.length > 0;
     }
 

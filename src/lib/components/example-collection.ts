@@ -4,7 +4,7 @@ import { TerraAlertComponentExample } from './alert/example/terra-alert.componen
 import { TerraCardComponentExample } from './layouts/card/example/terra-card.component.example';
 import { TerraBaseToolbarComponentExample } from './toolbar/base-toolbar/example/terra-base-toolbar.component.example';
 import { TerraOverlayComponentExample } from './layouts/overlay/example/terra-overlay.component.example';
-import { TerraInfoboxComponentExample } from './layouts/info-box/example/terra-info-box.component.example';
+import { TerraInfoBoxComponentExample } from './layouts/info-box/example/terra-info-box.component.example';
 import { TerraPortletComponentExample } from './layouts/portlet/example/terra-portlet.component.example';
 import { TerraColorPickerComponentExample } from './forms/input/color-picker/example/terra-color-picker.component.example';
 import { TerraDatePickerComponentExample } from './forms/input/date-picker/example/terra-date-picker.component.example';
@@ -62,7 +62,7 @@ export const examples:Array<Type<any>> = [
     TerraCardComponentExample,
     TerraBaseToolbarComponentExample,
     TerraOverlayComponentExample,
-    TerraInfoboxComponentExample,
+    TerraInfoBoxComponentExample,
     TerraPortletComponentExample,
     TerraColorPickerComponentExample,
     TerraDatePickerComponentExample,
