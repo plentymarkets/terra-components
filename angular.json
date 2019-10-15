@@ -29,7 +29,9 @@
 							"node_modules/bootstrap/scss/bootstrap.scss",
 							"src/styles.scss"
 						],
-						"scripts": [],
+						"scripts": [
+							"src/lib/components/tables/data-table/float-thead/floatThead.js"
+						],
 						"es5BrowserSupport": true
 					},
 					"configurations": {
