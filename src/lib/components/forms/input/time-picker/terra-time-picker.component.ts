@@ -17,10 +17,10 @@ import { noop } from 'rxjs';
 import { Language } from 'angular-l10n';
 
 @Component({
-    selector:  'terra-time-picker',
-    styleUrls:    ['./terra-time-picker.component.scss'],
+    selector:    'terra-time-picker',
+    styleUrls:   ['./terra-time-picker.component.scss'],
     templateUrl: './terra-time-picker.component.html',
-    providers: [
+    providers:   [
         {
             provide:     NG_VALUE_ACCESSOR,
             useExisting: TerraTimePickerComponent,
@@ -106,7 +106,7 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor, O
         this._value = value;
     }
 
-    protected get minutes():number
+    public get _minutes():number
     {
         if(!isNullOrUndefined(this._value))
         {
@@ -115,7 +115,7 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor, O
         return 0;
     }
 
-    protected set minutes(minutes:number)
+    public set _minutes(minutes:number)
     {
         if(!isNullOrUndefined(this._value))
         {
@@ -126,7 +126,7 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor, O
         this._onTouchedCallback();
     }
 
-    protected get hours():number
+    public get _hours():number
     {
         if(!isNullOrUndefined(this._value))
         {
@@ -135,7 +135,7 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor, O
         return 0;
     }
 
-    protected set hours(minutes:number)
+    public set _hours(minutes:number)
     {
         if(!isNullOrUndefined(this._value))
         {
