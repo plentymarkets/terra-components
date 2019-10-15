@@ -72,14 +72,14 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
     public _lang:string;
 
     public _nestedDataName:string;
+    public _isNotInitialCall:boolean;
+    public _value:number | string;
+
+    public _onTouchedCallback:() => void = noop;
+    public _onChangeCallback:(_:any) => void = noop;
+
     private _completeNestedData:NestedValueInterface;
     private _nestedList:Array<TerraNodeInterface<NestedDataInterface<{}>>>;
-
-    private _isNotInitialCall:boolean;
-    private _value:number | string;
-
-    private _onTouchedCallback:() => void = noop;
-    private _onChangeCallback:(_:any) => void = noop;
 
     constructor(private _translation:TranslationService,
                 public _nestedTreeConfig:TerraNodeTreeConfig<{}>)

@@ -65,7 +65,7 @@ export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent
                 public nestedTreeConfig:NestedDataTreeConfig<CategoryDataInterface>)
     {
         super(translation, nestedTreeConfig);
-        this.value = 0;
+        this._value = 0;
         this._completeCategory = {
             id:               null,
             isActive:         null,
@@ -78,7 +78,7 @@ export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent
         this._categoryName = '';
         this._list = [];
         this._isContainerCategorySelected = false;
-        this.isNotInitialCall = false;
+        this._isNotInitialCall = false;
     }
 
     public ngAfterContentChecked():void
@@ -129,13 +129,13 @@ export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent
                     this._categoryName = this.nestedTreeConfig.currentSelectedNode.name;
                 }
 
-                this.value = value;
+                this._value = value;
 
-                if(this.isNotInitialCall && nodeToSelect)
+                if(this._isNotInitialCall && nodeToSelect)
                 {
                     this.updateCompleteCategory(nodeToSelect);
                     this._onTouchedCallback();
-                    this._onChangeCallback(this.value);
+                    this._onChangeCallback(this._value);
                 }
             });
         }
@@ -143,14 +143,14 @@ export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent
         {
             this.nestedTreeConfig.currentSelectedNode = null;
             this._categoryName = '';
-            this.value = null;
+            this._value = null;
         }
 
     }
 
     public onSelectNode():void
     {
-        this.isNotInitialCall = true;
+        this._isNotInitialCall = true;
 
         if(!isNullOrUndefined(this.nestedTreeConfig.currentSelectedNode))
         {
@@ -164,10 +164,10 @@ export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent
     {
         this.nestedTreeConfig.currentSelectedNode = null;
         this._categoryName = '';
-        this.value = 0;
+        this._value = 0;
 
         this._onTouchedCallback();
-        this._onChangeCallback(this.value);
+        this._onChangeCallback(this._value);
     }
 
     public addNodes(data:any, parentNodeId:number | string):void
