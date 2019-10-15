@@ -75,7 +75,7 @@ export class TerraButtonWithOptionsComponent implements OnInit
     @ViewChild(TerraButtonComponent)
     private toggleButton:TerraButtonComponent;
 
-    private clickListener:(event:Event) => void;
+    private readonly clickListener:(event:Event) => void;
 
     constructor(private elementRef:ElementRef)
     {
