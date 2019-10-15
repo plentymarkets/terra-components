@@ -27,7 +27,7 @@ export class TerraDataTableComponentExample implements OnInit
 
     public showGroupFunction:boolean = false;
 
-    constructor(public service:TerraDataTableServiceExample)
+    constructor(public _service:TerraDataTableServiceExample)
     {
         this._headerList = this.createHeaderList();
         this._contextMenu = this.createContextMenu();
@@ -48,7 +48,7 @@ export class TerraDataTableComponentExample implements OnInit
 
     private onSearchBtnClicked():void
     {
-        this.service.getResults(true);
+        this._service.getResults(true);
 
         this._noResultButtons = [{
             caption:       'Add',
@@ -63,23 +63,23 @@ export class TerraDataTableComponentExample implements OnInit
 
     public _addEntry():void
     {
-        this.service.addEntry();
-        this.service.getResults();
+        this._service.addEntry();
+        this._service.getResults();
     }
 
     public _addEntries():void
     {
         for(let i:number = 0; i < 500; i++)
         {
-            this.service.addEntry();
+            this._service.addEntry();
         }
-        this.service.getResults();
+        this._service.getResults();
     }
 
     public _resetSorting():void
     {
-        this.service.resetSortParams();
-        this.service.getResults(true);
+        this._service.resetSortParams();
+        this._service.getResults(true);
     }
 
     public _executeGroupFunction(selectedRows:Array<TerraDataTableRowInterface<TerraDataTableExampleInterface>>):void

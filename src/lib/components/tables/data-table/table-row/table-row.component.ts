@@ -12,7 +12,7 @@ import { TerraDataTableComponent } from '../terra-data-table.component';
 @Component({
     selector:    'tr[tcTableRow]',
     templateUrl: './table-row.component.html',
-    styleUrls: [ './table-row.component.scss']
+    styleUrls:   ['./table-row.component.scss']
 })
 export class TableRowComponent
 {
@@ -25,25 +25,25 @@ export class TableRowComponent
     }
 
     @HostBinding('class.selected')
-    private get selected():boolean
+    public get selected():boolean
     {
         return this.row.selected;
     }
 
     @HostBinding('class.isActive')
-    private get isActive():boolean
+    public get isActive():boolean
     {
         return this.row.isActive;
     }
 
     @HostBinding('class.disabled')
-    private get disabled():boolean
+    public get disabled():boolean
     {
         return this.row.disabled;
     }
 
     @HostListener('click')
-    private onClick():void
+    public onClick():void
     {
         this.dataTable.rowClicked(this.row);
     }
