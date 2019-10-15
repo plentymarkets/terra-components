@@ -84,9 +84,9 @@ export class TerraFormHelper
             validators.push(TerraValidators.iban);
         }
 
-        if(formField.options.singleSelect && isList)
+        if(formField.options.uniqueValues && isList)
         {
-            validators.push(TerraValidators.uniqueCombinationValidator(formField.options.singleSelect));
+            validators.push(TerraValidators.uniqueValues(formField.options.uniqueValues));
         }
 
         return validators;

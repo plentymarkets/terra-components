@@ -3,9 +3,9 @@ import {
     FormControl,
     FormGroup
 } from '@angular/forms';
-import { uniqueCombinationValidator } from './unique-combination-validator';
+import { uniqueValuesValidator } from './unique-values-validator';
 
-fdescribe('uniqueCombinationValidator', () =>
+describe('uniqueCombinationValidator', () =>
 {
     let formArrayWithFormControls:FormArray;
 
@@ -32,28 +32,28 @@ fdescribe('uniqueCombinationValidator', () =>
 
     it(`should return #null if all entries are unique`, () =>
     {
-        expect(uniqueCombinationValidator()(formArrayWithFormControls)).toBeNull();
+        expect(uniqueValuesValidator()(formArrayWithFormControls)).toBeNull();
     });
 
     it(`should return #uniqueCombination error if two (or more) entries are not unique`, () =>
     {
         formArrayWithFormControls.setValue(['foo', 'foo']);
-        expect(uniqueCombinationValidator()(formArrayWithFormControls).hasOwnProperty('uniqueCombination')).toBe(true);
+        expect(uniqueValuesValidator()(formArrayWithFormControls).hasOwnProperty('uniqueCombination')).toBe(true);
     });
 
     it(`should return #null if the values of all given keys are unique`, () =>
     {
-        expect(uniqueCombinationValidator(['foo'])(formArrayWithFormGroups)).toBeNull();
-        expect(uniqueCombinationValidator(['bar'])(formArrayWithFormGroups)).toBeNull();
-        expect(uniqueCombinationValidator(['foo', 'bar'])(formArrayWithFormGroups)).toBeNull();
+        expect(uniqueValuesValidator(['foo'])(formArrayWithFormGroups)).toBeNull();
+        expect(uniqueValuesValidator(['bar'])(formArrayWithFormGroups)).toBeNull();
+        expect(uniqueValuesValidator(['foo', 'bar'])(formArrayWithFormGroups)).toBeNull();
     });
 
     it(`should return #uniqueCombination error if two (or more) of the values of all given keys are not unique`, () =>
     {
         formArrayWithFormGroups.setValue([{foo: 'foo', bar: 'bar'}, {foo: 'foo', bar: 'bar'}]);
 
-        expect(uniqueCombinationValidator(['foo'])(formArrayWithFormGroups).hasOwnProperty('uniqueCombination')).toBe(true);
-        expect(uniqueCombinationValidator(['bar'])(formArrayWithFormGroups).hasOwnProperty('uniqueCombination')).toBe(true);
-        expect(uniqueCombinationValidator(['foo', 'bar'])(formArrayWithFormGroups).hasOwnProperty('uniqueCombination')).toBe(true);
+        expect(uniqueValuesValidator(['foo'])(formArrayWithFormGroups).hasOwnProperty('uniqueCombination')).toBe(true);
+        expect(uniqueValuesValidator(['bar'])(formArrayWithFormGroups).hasOwnProperty('uniqueCombination')).toBe(true);
+        expect(uniqueValuesValidator(['foo', 'bar'])(formArrayWithFormGroups).hasOwnProperty('uniqueCombination')).toBe(true);
     });
 });

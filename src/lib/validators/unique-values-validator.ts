@@ -5,7 +5,7 @@ import {
 } from '@angular/forms';
 import { isNullOrUndefined } from 'util';
 
-export function uniqueCombinationValidator(uniqueKeys?:Array<string>):ValidatorFn
+export function uniqueValuesValidator(uniqueKeys?:Array<string>):ValidatorFn
 {
     return (control:AbstractControl):ValidationErrors | null =>
     {
