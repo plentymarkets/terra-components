@@ -15,25 +15,25 @@ export class TerraUploadQueue
     public inProgress:Promise<void>;
     public status:BehaviorSubject<TerraUploadProgress> = new BehaviorSubject<TerraUploadProgress>(null);
 
-    private items:Array<TerraUploadItem> = [];
-    private size:number = 0;
+    private _items:Array<TerraUploadItem> = [];
+    private _size:number = 0;
 
-    private progressListeners:Array<Observer<number>> = [];
-    private progressValue:number = -1;
+    private _progressListeners:Array<Observer<number>> = [];
+    private _progressValue:number = -1;
 
     constructor(private uploadUrl:string | UploadQueueUrlFactory, private uploadMethod:'GET' | 'POST' | 'DELETE' | 'PUT' = 'POST')
     {
         this.progress = new Observable((observer:Observer<number>):Function =>
         {
-            this.progressListeners.push(observer);
-            observer.next(this.progressValue);
+            this._progressListeners.push(observer);
+            observer.next(this._progressValue);
 
             return ():void =>
             {
-                let idx:number = this.progressListeners.indexOf(observer);
+                let idx:number = this._progressListeners.indexOf(observer);
                 if(idx >= 0)
                 {
-                    this.progressListeners.splice(idx, 1);
+                    this._progressListeners.splice(idx, 1);
                 }
             };
         });
@@ -41,8 +41,8 @@ export class TerraUploadQueue
 
     public add(item:TerraUploadItem):TerraUploadQueue
     {
-        this.items.push(item);
-        this.size += item.file.size;
+        this._items.push(item);
+        this._size += item.file.size;
         if(this.inProgress)
         {
             this.onProgress();
@@ -52,9 +52,9 @@ export class TerraUploadQueue
 
     public remove(item:TerraUploadItem):TerraUploadQueue
     {
-        let idx:number = this.items.indexOf(item);
-        this.items.splice(idx, 1);
-        this.size -= item.file.size;
+        let idx:number = this._items.indexOf(item);
+        this._items.splice(idx, 1);
+        this._size -= item.file.size;
         if(this.inProgress)
         {
             this.onProgress();
@@ -64,7 +64,7 @@ export class TerraUploadQueue
 
     public startUpload():Promise<void>
     {
-        if(this.items.length <= 0)
+        if(this._items.length <= 0)
         {
             return Promise.resolve();
         }
@@ -78,8 +78,8 @@ export class TerraUploadQueue
                               .then(() =>
                               {
                                   this.inProgress = null;
-                                  this.items = [];
-                                  this.size = 0;
+                                  this._items = [];
+                                  this._size = 0;
                               });
     }
 
@@ -87,12 +87,12 @@ export class TerraUploadQueue
     {
         return new Promise((resolve:(resp:void) => void, reject:(err:any) => void):void =>
         {
-            let nextItem:TerraUploadItem = this.items.find((item:TerraUploadItem) => !item.uploaded);
+            let nextItem:TerraUploadItem = this._items.find((item:TerraUploadItem) => !item.uploaded);
 
             if(isNullOrUndefined(nextItem))
             {
                 // all items are uploaded
-                this.items = [];
+                this._items = [];
                 this.status.next(null);
                 resolve(null);
             }
@@ -168,23 +168,23 @@ export class TerraUploadQueue
 
     private onProgress():void
     {
-        let filesUploaded:Array<TerraUploadItem> = this.items.filter((item:TerraUploadItem) => item.uploaded);
+        let filesUploaded:Array<TerraUploadItem> = this._items.filter((item:TerraUploadItem) => item.uploaded);
         let sizeUploaded:number = filesUploaded
             .map((item:TerraUploadItem) => item.file.size)
             .reduce((prev:number, current:number) => prev + current, 0);
 
-        let progress:number = 100 - Math.round(((this.size - sizeUploaded) / this.size) * 100);
+        let progress:number = 100 - Math.round(((this._size - sizeUploaded) / this._size) * 100);
 
-        this.progressListeners.forEach((listener:Observer<number>) =>
+        this._progressListeners.forEach((listener:Observer<number>) =>
         {
             listener.next(progress || 0);
         });
 
 
         this.status.next({
-            filesTotal:    this.items.length,
+            filesTotal:    this._items.length,
             filesUploaded: filesUploaded.length,
-            sizeTotal:     this.size,
+            sizeTotal:     this._size,
             sizeUploaded:  sizeUploaded,
             progress:      progress
         });

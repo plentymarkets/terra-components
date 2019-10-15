@@ -26,13 +26,13 @@ export class TerraImagePreviewComponent implements OnInit, OnDestroy
     public inputStorageService:TerraBaseStorageService;
 
     @Language()
-    protected lang:string;
+    public _lang:string;
 
-    protected translationPrefix:string = 'terraFileBrowser';
+    public _translationPrefix:string = 'terraFileBrowser';
 
-    protected metadata:TerraImageMetadata = {};
+    public _metadata:TerraImageMetadata = {};
 
-    protected isLoading:boolean = true;
+    public _isLoading:boolean = true;
 
     private _inputStorageObject:TerraStorageObject;
 
@@ -40,20 +40,20 @@ export class TerraImagePreviewComponent implements OnInit, OnDestroy
     public set inputStorageObject(object:TerraStorageObject)
     {
         this._inputStorageObject = object;
-        this.metadata = {};
-        this.isLoading = true;
+        this._metadata = {};
+        this._isLoading = true;
         if(!isNullOrUndefined(object) && this.inputStorageService && this.inputStorageService instanceof TerraBaseMetadataStorageService)
         {
             this.inputStorageService.getMetadata(object.key).subscribe((data:TerraImageMetadata) =>
             {
-                this.metadata = data;
-                this.isLoading = false;
+                this._metadata = data;
+                this._isLoading = false;
                 this.changeDetector.detectChanges();
             });
         }
         else
         {
-            this.isLoading = false;
+            this._isLoading = false;
         }
     }
 
@@ -87,10 +87,10 @@ export class TerraImagePreviewComponent implements OnInit, OnDestroy
         if(this.inputStorageService instanceof TerraBaseMetadataStorageService)
         {
             this.inputStorageService
-                .updateMetadata(this.inputStorageObject.key, this.metadata)
+                .updateMetadata(this.inputStorageObject.key, this._metadata)
                 .subscribe(() =>
                 {
-                    this.translation.translate(this.translationPrefix + '.metadataUpdated');
+                    this.translation.translate(this._translationPrefix + '.metadataUpdated');
                 });
         }
     }
