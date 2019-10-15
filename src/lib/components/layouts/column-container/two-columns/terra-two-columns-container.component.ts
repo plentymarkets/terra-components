@@ -18,29 +18,28 @@ import { ColumnContainerConfig } from '../column-container.config';
  */
 export class TerraTwoColumnsContainerComponent
 {
-    public leftColumn:string;
-    public rightColumn:string;
+    public _leftColumn:string;
+    public _rightColumn:string;
 
     private _leftColumnWidth:number = 2;
-
 
     @Input()
     public set leftColumnWidth(leftColumnWidth:number)
     {
         if(leftColumnWidth > 12 || leftColumnWidth < 1)
         {
-            console.error('Given value for Input leftColumnWidth is lower than 1 or greater than 12. ' +
+            console.error('Given value for Input _leftColumnWidth is lower than 1 or greater than 12. ' +
                           'It has been limited to this range to prevent invalid rendering. Please check your input value to avoid this error.');
         }
 
         this._leftColumnWidth = Math.min(ColumnContainerConfig.maxColumnWidth - 1, Math.max(1, leftColumnWidth));
 
-        this.leftColumn = TwoColumnHelper.leftRightColXS()
-                          + TwoColumnHelper.leftColMD(this._leftColumnWidth)
-                          + TwoColumnHelper.leftColLG(this._leftColumnWidth);
-        this.rightColumn = TwoColumnHelper.leftRightColXS()
-                           + TwoColumnHelper.rightColMD(this._leftColumnWidth)
-                           + TwoColumnHelper.rightColLG(this._leftColumnWidth);
+        this._leftColumn = TwoColumnHelper.leftRightColXS()
+                           + TwoColumnHelper.leftColMD(this._leftColumnWidth)
+                           + TwoColumnHelper.leftColLG(this._leftColumnWidth);
+        this._rightColumn = TwoColumnHelper.leftRightColXS()
+                            + TwoColumnHelper.rightColMD(this._leftColumnWidth)
+                            + TwoColumnHelper.rightColLG(this._leftColumnWidth);
     }
 
     public get leftColumnWidth():number

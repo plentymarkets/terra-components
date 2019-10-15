@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
 })
 export class TerraTwoColumnContainerComponentExample
 {
-    protected leftColumnWidth:number = 4;
+    public _leftColumnWidth:number = 4;
 }
