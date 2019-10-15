@@ -20,8 +20,6 @@ import {
     isNullOrUndefined
 } from 'util';
 import { TerraTextAlignEnum } from './enums/terra-text-align.enum';
-import { StringHelper } from '../../../helpers/string.helper';
-import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum';
 import { TerraHrefTypeEnum } from './enums/terra-href-type.enum';
 import {
     debounceTime,
@@ -83,17 +81,17 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
     @Input()
     public isSticky:boolean;
 
-    protected columnHeaderClicked:EventEmitter<TerraDataTableHeaderCellInterface> = new EventEmitter<TerraDataTableHeaderCellInterface>();
+    public _columnHeaderClicked:EventEmitter<TerraDataTableHeaderCellInterface> = new EventEmitter<TerraDataTableHeaderCellInterface>();
 
-    protected readonly refType:{} = TerraHrefTypeEnum;
-    protected readonly checkboxColumnWidth:number = 25;
+    public readonly _refType:any = TerraHrefTypeEnum;
+    public readonly _checkboxColumnWidth:number = 25;
 
     constructor(private cdr:ChangeDetectorRef)
     {
         super();
     }
 
-    protected get rowList():Array<TerraDataTableRowInterface<T>>
+    public get rowList():Array<TerraDataTableRowInterface<T>>
     {
         return !isNullOrUndefined(this.inputService) ? this.inputService.rowList : [];
     }
@@ -109,7 +107,7 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
             return;
         }
 
-        this.columnHeaderClicked.pipe(
+        this._columnHeaderClicked.pipe(
             filter((header:TerraDataTableHeaderCellInterface) =>
             {
                 // change sorting column and order only if no request is pending and sortBy attribute is given
@@ -137,7 +135,7 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
         }
     }
 
-    protected get dataAvailableOrRequestPending():boolean
+    public get _dataAvailableOrRequestPending():boolean
     {
         return this.isTableDataAvailable || (!isNullOrUndefined(this.inputService) && this.inputService.requestPending);
     }
@@ -147,7 +145,7 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
         return this.rowList && this.rowList.length > 0;
     }
 
-    protected doPaging():void
+    public _doPaging():void
     {
         // request data from server
         this.getResults();
@@ -156,7 +154,7 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
         this.resetSelectedRows();
     }
 
-    protected getCellDataType(data:any):string
+    public _getCellDataType(data:any):string
     {
         function isRefType(arg:any):arg is TerraHrefTypeInterface
         {
@@ -227,7 +225,7 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
         return typeof data;
     }
 
-    protected getTextAlign(item:TerraDataTableHeaderCellInterface):TerraTextAlignEnum // TODO: Pipe?
+    public getTextAlign(item:TerraDataTableHeaderCellInterface):TerraTextAlignEnum // TODO: Pipe?
     {
         if(!isNullOrUndefined(item) && !isNullOrUndefined(item.textAlign))
         {
@@ -239,7 +237,7 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
         }
     }
 
-    protected isSortable(header:TerraDataTableHeaderCellInterface):boolean
+    public _isSortable(header:TerraDataTableHeaderCellInterface):boolean
     {
         if(isNullOrUndefined(header))
         {
@@ -248,17 +246,17 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
         return !isNullOrUndefined(header.sortBy);
     }
 
-    protected isUnsorted(header:TerraDataTableHeaderCellInterface):boolean
+    public _isUnsorted(header:TerraDataTableHeaderCellInterface):boolean
     {
-        return this.isSortable(header) && header.sortBy !== this.inputService.sortBy;
+        return this._isSortable(header) && header.sortBy !== this.inputService.sortBy;
     }
 
-    protected isSortedAsc(header:TerraDataTableHeaderCellInterface):boolean
+    public _isSortedAsc(header:TerraDataTableHeaderCellInterface):boolean
     {
         return this.isSorted(header, TerraDataTableSortOrderEnum.ascending);
     }
 
-    protected isSortedDesc(header:TerraDataTableHeaderCellInterface):boolean
+    public _isSortedDesc(header:TerraDataTableHeaderCellInterface):boolean
     {
         return this.isSorted(header, TerraDataTableSortOrderEnum.descending);
     }
@@ -300,6 +298,6 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
 
     private isSorted(header:TerraDataTableHeaderCellInterface, sortOrder:TerraDataTableSortOrderEnum):boolean
     {
-        return this.isSortable(header) && header.sortBy === this.inputService.sortBy && this.inputService.sortOrder === sortOrder;
+        return this._isSortable(header) && header.sortBy === this.inputService.sortBy && this.inputService.sortOrder === sortOrder;
     }
 }
