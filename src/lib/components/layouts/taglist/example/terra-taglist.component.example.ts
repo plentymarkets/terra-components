@@ -8,11 +8,11 @@ import { TerraTagInterface } from '../../tag/data/terra-tag.interface';
 })
 export class TerraTaglistComponentExample
 {
-    public infoBoxTagList:Array<TerraTagInterface> = [];
+    public _infoBoxTagList:Array<TerraTagInterface> = [];
 
     constructor()
     {
-        this.infoBoxTagList.push(
+        this._infoBoxTagList.push(
             {
                 name: 'Terra'
             },
