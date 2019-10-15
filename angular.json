@@ -15,9 +15,8 @@
 			},
 			"architect": {
 				"build": {
-					"builder": "@angular-devkit/build-ng-packagr:build",
+					"builder": "@angular-devkit/build-angular:browser",
 					"options": {
-						"project": "package.json",
 						"outputPath": "dist",
 						"index": "src/index.html",
 						"main": "src/main.ts",
@@ -109,6 +108,41 @@
 							"**/*.spec.ts",
 							"src/environments/**",
 							"src/test.ts"
+						]
+					}
+				}
+			}
+		},
+		"lib": {
+			"root": "src/lib",
+			"sourceRoot": "src/lib",
+			"projectType": "library",
+			"prefix": "lib",
+			"architect": {
+				"build": {
+					"builder": "@angular-devkit/build-ng-packagr:build",
+					"options": {
+						"tsConfig": "src/lib/tsconfig.lib.json",
+						"project": "src/lib/ng-package.json"
+					}
+				},
+				"test": {
+					"builder": "@angular-devkit/build-angular:karma",
+					"options": {
+						"main": "src/lib/src/test.ts",
+						"tsConfig": "src/lib/tsconfig.spec.json",
+						"karmaConfig": "src/lib/karma.conf.js"
+					}
+				},
+				"lint": {
+					"builder": "@angular-devkit/build-angular:tslint",
+					"options": {
+						"tsConfig": [
+							"src/lib/tsconfig.lib.json",
+							"src/lib/tsconfig.spec.json"
+						],
+						"exclude": [
+							"**/node_modules/**"
 						]
 					}
 				}
