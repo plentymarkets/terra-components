@@ -41,7 +41,7 @@ export class TerraDynamicSwitchComponent implements OnInit, OnDestroy
     public inputUsePortlet:boolean;
 
     @Language()
-    protected lang:string;
+    public _lang:string;
 
     // Necessary for using enum in html
     protected controlTypeEnum:any = TerraControlTypeEnum;
