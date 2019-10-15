@@ -20,7 +20,7 @@ export class TableRowComponent
     @Input('tcTableRow')
     public row:TerraDataTableRowInterface<any>;
 
-    constructor(@Host() protected dataTable:TerraDataTableComponent<any, any>)
+    constructor(@Host() public _dataTable:TerraDataTableComponent<any, any>)
     {
     }
 
@@ -45,7 +45,7 @@ export class TableRowComponent
     @HostListener('click')
     public onClick():void
     {
-        this.dataTable.rowClicked(this.row);
+        this._dataTable.rowClicked(this.row);
     }
 }
 
