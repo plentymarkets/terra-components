@@ -21,10 +21,10 @@ import { tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 @Component({
-    selector:  'terra-category-picker',
+    selector:    'terra-category-picker',
     templateUrl: './terra-category-picker.component.html',
-    styleUrls: ['./terra-category-picker.component.scss'],
-    providers: [
+    styleUrls:   ['./terra-category-picker.component.scss'],
+    providers:   [
         {
             provide:     NG_VALUE_ACCESSOR,
             useExisting: TerraCategoryPickerComponent,
@@ -55,11 +55,11 @@ export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent
     @Input()
     public inputPlentyId:number;
 
-    private _completeCategory:CategoryValueInterface;
+    public _completeCategory:CategoryValueInterface;
 
-    private _categoryName:string;
-    private _list:Array<TerraNodeInterface<NestedDataInterface<CategoryDataInterface>>>;
-    private _isContainerCategorySelected:boolean;
+    public _categoryName:string;
+    public _list:Array<TerraNodeInterface<NestedDataInterface<CategoryDataInterface>>>;
+    public _isContainerCategorySelected:boolean;
 
     constructor(public translation:TranslationService,
                 public nestedTreeConfig:NestedDataTreeConfig<CategoryDataInterface>)

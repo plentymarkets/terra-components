@@ -121,10 +121,10 @@ export class TerraCheckboxComponent implements ControlValueAccessor
      * @description a unique string identifier for the specific input instance.
      */
     public _id:string;
+    public _isIndeterminate:boolean = false;
 
     // The internal data model
     private _innerValue:boolean = false;
-    private _isIndeterminate:boolean = false;
 
     private _onTouchedCallback:() => void = noop;
     private _onChangeCallback:(value:any) => void = noop;
