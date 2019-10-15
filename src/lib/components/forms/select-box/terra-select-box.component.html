@@ -6,12 +6,12 @@
                   'disabled': inputIsDisabled,
                   'open': _toggleOpen,
                   'isSmall': inputIsSmall,
-                  'isEmpty': emptyValueSelected
+                  'isEmpty': _emptyValueSelected
                 }"
-     (click)="onClick($event)"
+     (click)="_onClick($event)"
      tabindex="0"
-     (keydown)="onKeyDown($event)"
-     (blur)="onBlur()">
+     (keydown)="_onKeyDown($event)"
+     (blur)="_onBlur()">
 
     <label [tcTooltip]="inputName"
            [onlyEllipsisTooltip]="true"
@@ -38,7 +38,7 @@
 
         <ng-template #selectedValueActiveTemplate>
             <span *ngFor="let item of inputListBoxValues; let index=index;"
-                  (click)="select(item)"
+                  (click)="_select(item)"
                   [ngClass]="{active: item.value === _selectedValue?.value, selected: item.value === _tmpSelectedValue?.value}">
                 <span class="{{item.icon}}" *ngIf="item.icon"></span>
                 <span [ngStyle]="{'color': item?.color}" [innerHtml]="item.caption"></span>
@@ -48,7 +48,7 @@
         <ng-template #firstInListActiveTemplate>
             <span *ngFor="let item of inputListBoxValues; let index=index;"
                   #renderedListBoxValues
-                  (click)="select(item)"
+                  (click)="_select(item)"
                   [ngClass]="{active: item.value === inputListBoxValues[0]?.value, selected: item.value === _tmpSelectedValue?.value}">
                 <span class="{{item.icon}}" *ngIf="item.icon"></span>
                 <span [ngStyle]="{'color': item?.color}" [innerHtml]="item.caption"></span>

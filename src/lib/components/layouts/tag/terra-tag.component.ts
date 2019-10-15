@@ -123,10 +123,36 @@ export class TerraTagComponent implements OnInit, OnChanges, OnDestroy
         }
     }
 
-    protected close():void
+    public _close():void
     {
         this.onCloseTag.emit(this.tagId);
         this.closeTag.emit(this.tagId);
+    }
+
+    /**
+     * Get the background color.
+     * @returns {string}
+     * @see inputColor
+     */
+    public get _bgColor():string
+    {
+        if(!isNullOrUndefined(this.inputColor))
+        {
+            return this.inputColor;
+        }
+        return null;
+    }
+
+    /**
+     * Get the text color.
+     */
+    public get _color():string
+    {
+        if(!isNullOrUndefined(this.inputColor))
+        {
+            return (new Color(this.inputColor)).isDark() ? '#FFFFFF' : '#000000';
+        }
+        return null;
     }
 
     private getTagName():string
@@ -150,31 +176,5 @@ export class TerraTagComponent implements OnInit, OnChanges, OnDestroy
         {
             return tagName.name;
         }
-    }
-
-    /**
-     * Get the background color.
-     * @returns {string}
-     * @see inputColor
-     */
-    protected get bgColor():string
-    {
-        if(!isNullOrUndefined(this.inputColor))
-        {
-            return this.inputColor;
-        }
-        return null;
-    }
-
-    /**
-     * Get the text color.
-     */
-    protected get color():string
-    {
-        if(!isNullOrUndefined(this.inputColor))
-        {
-            return (new Color(this.inputColor)).isDark() ? '#FFFFFF' : '#000000';
-        }
-        return null;
     }
 }

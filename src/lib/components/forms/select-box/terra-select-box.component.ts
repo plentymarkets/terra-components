@@ -133,7 +133,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
            && changes['inputListBoxValues'].currentValue.length > 0
            && !this.inputListBoxValues.find((x:TerraSelectBoxValueInterface):boolean => this._selectedValue === x))
         {
-            this.select(this.inputListBoxValues[0]);
+            this._select(this.inputListBoxValues[0]);
         }
     }
 
@@ -152,7 +152,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
         this.value = value;
     }
 
-    public get emptyValueSelected():boolean
+    public get _emptyValueSelected():boolean
     {
         return isNullOrUndefined(this._selectedValue) ||
                (StringHelper.isNullUndefinedOrEmpty(this._selectedValue.caption.toString()) &&
@@ -252,7 +252,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
      *
      * @param value
      */
-    public select(value:TerraSelectBoxValueInterface):void
+    public _select(value:TerraSelectBoxValueInterface):void
     {
         if(isNullOrUndefined(this._selectedValue) || this._selectedValue.value !== value.value)
         {
@@ -263,13 +263,13 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
         this._onTouchedCallback();
     }
 
-    public onClick(evt:Event):void
+    public _onClick(evt:Event):void
     {
         evt.stopPropagation(); // prevents the click listener on the document to be fired right after
         this.toggleOpen = !this.toggleOpen;
     }
 
-    public onKeyDown(event:KeyboardEvent):void
+    public _onKeyDown(event:KeyboardEvent):void
     {
         // check if one of the dedicated keys has been pressed
         if(this.isIncorrectKeyEvent(event.code))
@@ -344,7 +344,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
         event.stopPropagation();
     }
 
-    protected onBlur():void
+    public _onBlur():void
     {
         this.toggleOpen = false;
     }
