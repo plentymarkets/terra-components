@@ -12,7 +12,7 @@ import { TerraMultiCheckBoxValueInterface } from '../data/terra-multi-check-box-
 export class TerraMultiCheckBoxComponentExample implements OnInit
 {
     public _values:Array<TerraMultiCheckBoxValueInterface>;
-    protected readonly _disabled:boolean = true;
+    public readonly _disabled:boolean = true;
     public _currentChangedCheckboxes:Array<TerraMultiCheckBoxValueInterface>;
     public _ngModelChangeCount:number = 0;
 
