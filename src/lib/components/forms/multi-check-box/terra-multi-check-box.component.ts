@@ -67,7 +67,7 @@ export class TerraMultiCheckBoxComponent implements OnInit, OnDestroy, ControlVa
     {
         this._valueList = valueList;
 
-        this.checkHeaderCheckboxState();
+        this._checkHeaderCheckboxState();
     }
 
     public registerOnChange(fn:any):void
@@ -102,13 +102,13 @@ export class TerraMultiCheckBoxComponent implements OnInit, OnDestroy, ControlVa
         this._changedCheckboxes$.complete();
     }
 
-    protected checkboxChanged(checkBox:TerraMultiCheckBoxValueInterface):void
+    public _checkboxChanged(checkBox:TerraMultiCheckBoxValueInterface):void
     {
-        this.checkHeaderCheckboxState();
+        this._checkHeaderCheckboxState();
         this._changedCheckboxes$.next([checkBox]);
     }
 
-    protected onHeaderCheckboxChange(isChecked:boolean):void
+    public _onHeaderCheckboxChange(isChecked:boolean):void
     {
         let changedCheckboxes:Array<TerraMultiCheckBoxValueInterface> = [];
 
@@ -124,7 +124,7 @@ export class TerraMultiCheckBoxComponent implements OnInit, OnDestroy, ControlVa
         this._changedCheckboxes$.next(changedCheckboxes);
     }
 
-    protected checkHeaderCheckboxState():void
+    public _checkHeaderCheckboxState():void
     {
         if(!isNullOrUndefined(this._valueList))
         {
@@ -137,7 +137,7 @@ export class TerraMultiCheckBoxComponent implements OnInit, OnDestroy, ControlVa
         }
     }
 
-    protected toggleCollapsed():void
+    public _toggleCollapsed():void
     {
         if(!this.inputIsDisabled)
         {
@@ -145,7 +145,7 @@ export class TerraMultiCheckBoxComponent implements OnInit, OnDestroy, ControlVa
         }
     }
 
-    protected trackByValue(index:number, entry:TerraMultiCheckBoxValueInterface):any
+    public _trackByValue(index:number, entry:TerraMultiCheckBoxValueInterface):any
     {
         return entry.value;
     }
