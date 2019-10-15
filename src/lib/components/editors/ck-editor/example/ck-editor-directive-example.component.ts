@@ -15,8 +15,8 @@ export class CkEditorDirectiveExample
     @ViewChild('ckFull')
     public ckFull:CKEditorComponent;
 
-    protected config:{} = ckEditorFullConfig;
-    protected tiny:{} = ckEditorMinimumConfig;
+    public _config:{} = ckEditorFullConfig;
+    public _tiny:{} = ckEditorMinimumConfig;
 
     public saveCkFull():void
     {
