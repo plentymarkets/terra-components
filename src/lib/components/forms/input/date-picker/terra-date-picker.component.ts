@@ -162,7 +162,7 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
      * Is triggered on `ngModelChange` and executes `onChangeCallBack`
      * @param value
      */
-    protected onChange(value:IMyDateModel):void
+    public _onChange(value:IMyDateModel):void
     {
         if(!isNullOrUndefined(value))
         {
@@ -178,7 +178,7 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
      * Is triggered on `inputFocusBlur` and executes `onTouchedCallback` if a blur event is emitted
      * @param event
      */
-    protected onFocusOrBlur(event:IMyInputFocusBlur):void
+    public _onFocusOrBlur(event:IMyInputFocusBlur):void
     {
         if(event.reason === 2) // blur
         {

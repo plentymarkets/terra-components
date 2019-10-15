@@ -5,10 +5,10 @@
                     id="{{_id}}"
                     class="date-picker"
                     [(ngModel)]="value"
-                    (ngModelChange)="onChange($event)"
+                    (ngModelChange)="_onChange($event)"
                     [locale]="_currentLocale"
                     [options]="_datePickerOptions"
-                    (inputFocusBlur)="onFocusOrBlur($event)">
+                    (inputFocusBlur)="_onFocusOrBlur($event)">
     </my-date-picker>
     <label [tcTooltip]="inputName"
            [onlyEllipsisTooltip]="true"
