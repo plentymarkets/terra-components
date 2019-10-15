@@ -70,7 +70,7 @@ export class TerraThreeColumnsContainerComponent implements OnChanges
         }
     }
 
-    protected getStylesForColumn(columnWidth:number):string
+    public _getStylesForColumn(columnWidth:number):string
     {
         if(columnWidth)
         {
