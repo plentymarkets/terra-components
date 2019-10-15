@@ -149,7 +149,7 @@ export class TerraCheckboxComponent implements ControlValueAccessor
 
     /**
      * Part of the implementation of the ControlValueAccessor interface
-     * @description Updates the innerValue of the checkbox based on the given value.
+     * @description Updates the _innerValue of the checkbox based on the given value.
      * @param value
      */
     public writeValue(value:boolean):void
