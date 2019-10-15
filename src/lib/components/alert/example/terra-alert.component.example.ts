@@ -2,7 +2,6 @@ import {
     Component,
     OnInit
 } from '@angular/core';
-
 import { TerraAlertComponent } from '../terra-alert.component';
 import { AlertService } from '../alert.service';
 
