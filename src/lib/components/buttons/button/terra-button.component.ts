@@ -108,7 +108,7 @@ export class TerraButtonComponent
         this.inputIsMajor = false;
     }
 
-    protected click(event:Event):void
+    public _click(event:Event):void
     {
         if(isNullOrUndefined(this.inputIsDisabled) || this.inputIsDisabled === false)
         {
