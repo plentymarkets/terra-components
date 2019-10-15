@@ -30,7 +30,6 @@ export class TerraBaseTable<T>
 
     /**
      * @description Getter for selectedRowList
-     * @returns {Array<TerraDataTableRowInterface<T>>}
      */
     public get selectedRowList():Array<TerraDataTableRowInterface<T>>
     {

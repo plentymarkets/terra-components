@@ -7,7 +7,6 @@ import * as IBAN from 'iban';
 
 /**
  * IBAN validation for reactive FormControls
- * @returns ValidatorFn
  */
 export function ibanValidator(control:AbstractControl):ValidationErrors
 {

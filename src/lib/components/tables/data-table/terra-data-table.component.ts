@@ -122,7 +122,7 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
 
     /**
      * @description Change detection routine. It resets the sorting configuration if the header list is updated.
-     * @param {SimpleChanges} changes
+     * @param changes
      */
     public ngOnChanges(changes:SimpleChanges):void
     {

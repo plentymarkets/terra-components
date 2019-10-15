@@ -131,7 +131,6 @@ export class TerraTagComponent implements OnInit, OnChanges, OnDestroy
 
     /**
      * Get the background color.
-     * @returns {string}
      * @see inputColor
      */
     public get _bgColor():string

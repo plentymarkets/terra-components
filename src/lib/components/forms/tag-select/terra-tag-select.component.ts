@@ -96,7 +96,7 @@ export class TerraTagSelectComponent implements ControlValueAccessor, OnInit, On
 
     /**
      * Writes the selected tag into the model of the component.
-     * @param {TerraTagInterface} selectedTag
+     * @param selectedTag
      */
     public _addSelectedTag(selectedTag:TerraTagInterface):void
     {
@@ -108,7 +108,7 @@ export class TerraTagSelectComponent implements ControlValueAccessor, OnInit, On
 
     /**
      * Remove the specific tag id and updates the model of the component.
-     * @param {number} tagId
+     * @param tagId
      */
     public _closeTag(tagId:number):void
     {
@@ -122,7 +122,7 @@ export class TerraTagSelectComponent implements ControlValueAccessor, OnInit, On
 
     /**
      * Generates the values for the TerraSuggestionsBox from a array of TerraTagInterface.
-     * @param {Array<TerraTagInterface>} tagList
+     * @param tagList
      */
     private generateSuggestionValues(tagList:Array<TerraTagInterface>):void
     {
@@ -141,8 +141,7 @@ export class TerraTagSelectComponent implements ControlValueAccessor, OnInit, On
 
     /**
      * Returns the name. If the names attribute of the tag is set it returns the name for the current language.
-     * @param {TerraTagInterface} tag
-     * @return {string}
+     * @param tag
      */
     private getTranslatedName(tag:TerraTagInterface):string
     {

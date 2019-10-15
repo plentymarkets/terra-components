@@ -105,7 +105,7 @@ export class TerraBreadcrumbsService
 
     /**
      * Close the breadcrumb by given url
-     * @param {string} url Url to close the breadcrumb.
+     * @param url Url to close the breadcrumb.
      */
     public closeBreadcrumbByUrl(url:string):void
     {
@@ -120,8 +120,8 @@ export class TerraBreadcrumbsService
 
     /**
      * Update the breadcrumb name by given url
-     * @param {string} url Url to update the breadcrumb.
-     * @param {string} name If not given, it will be automatically update the name by the label of the route data.
+     * @param url Url to update the breadcrumb.
+     * @param name If not given, it will be automatically update the name by the label of the route data.
      */
     public updateBreadcrumbNameByUrl(url:string, name?:string):void
     {

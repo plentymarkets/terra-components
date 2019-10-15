@@ -121,7 +121,6 @@ export class TerraSliderComponent implements OnInit, OnChanges, ControlValueAcce
 
     /**
      * get position of slider element in px to left bound
-     * @returns {number}
      */
     public get _handlePosition():number
     {
@@ -245,7 +244,6 @@ export class TerraSliderComponent implements OnInit, OnChanges, ControlValueAcce
 
     /**
      * get ticks
-     * @returns {Array<TerraSliderTick>}
      */
     public _getTicks():Array<TerraSliderTick>
     {
@@ -292,7 +290,7 @@ export class TerraSliderComponent implements OnInit, OnChanges, ControlValueAcce
 
     /**
      * updates the #value of the slider
-     * @param {number}value
+     * @param value
      */
     public writeValue(value:number):void
     {
