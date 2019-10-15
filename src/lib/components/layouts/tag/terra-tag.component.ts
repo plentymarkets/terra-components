@@ -94,9 +94,9 @@ export class TerraTagComponent implements OnInit, OnChanges, OnDestroy
     public closeTag:EventEmitter<number> = new EventEmitter<number>();
 
     @Language()
-    protected lang:string;
+    public _lang:string;
 
-    protected tagName:string;
+    public _tagName:string;
 
     public ngOnInit():void
     {
@@ -119,7 +119,7 @@ export class TerraTagComponent implements OnInit, OnChanges, OnDestroy
     {
         if(changes.hasOwnProperty('name') || changes.hasOwnProperty('names') || changes.hasOwnProperty('inputBadge'))
         {
-            this.tagName = this.getTagName();
+            this._tagName = this.getTagName();
         }
     }
 
@@ -141,7 +141,7 @@ export class TerraTagComponent implements OnInit, OnChanges, OnDestroy
             return this.name;
         }
 
-        const tagName:TerraTagNameInterface = this.names.find((name:TerraTagNameInterface) => name.language === this.lang);
+        const tagName:TerraTagNameInterface = this.names.find((name:TerraTagNameInterface) => name.language === this._lang);
         if(isNullOrUndefined(tagName))
         {
             return this.name;
