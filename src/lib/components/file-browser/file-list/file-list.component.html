@@ -50,7 +50,7 @@
                           [inputCaption]="_translationPrefix + '.create' | translate:_lang"
                           [inputIsSmall]="true"
                           [inputIsDisabled]="!newDirectoryName"
-                          (outputClicked)="createDirectory()"></terra-button>
+                          (outputClicked)="_createDirectory()"></terra-button>
         </div>
     </div>
     
@@ -71,7 +71,7 @@
             <terra-button [inputIcon]="'icon-delete'"
                           [inputCaption]="_translationPrefix + '.delete' | translate:_lang"
                           [inputIsSmall]="true"
-                          (outputClicked)="deleteObjects()">
+                          (outputClicked)="_deleteObjects()">
             </terra-button>
         </div>
     </div>
@@ -83,8 +83,8 @@
                         [inputUseHighlighting]="true"
                         [inputHasCheckboxes]="true"
                         [inputEnableHotkeys]="true"
-                        (outputRowClicked)="onRowClick($event)"
-                        (outputHighlightedRowChange)="onActiveRowChange($event)"
+                        (outputRowClicked)="_onRowClick($event)"
+                        (outputHighlightedRowChange)="_onActiveRowChange($event)"
                         (outputSelectedRowsChange)="onSelectionChange($event)">
     </terra-simple-table>
     

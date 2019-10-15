@@ -235,7 +235,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         this._newDirectoryName = this.activeStorageService.prepareKey(name, true, true);
     }
 
-    protected get _deleteCount():number
+    public get _deleteCount():number
     {
         if(isNullOrUndefined(this._objectsToDelete))
         {
@@ -361,7 +361,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         }
     }
 
-    protected createDirectory():void
+    public _createDirectory():void
     {
         let path:string = PathHelper.join(
             this.currentStorageRoot ? this.currentStorageRoot.key : '/',
@@ -375,7 +375,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         });
     }
 
-    protected deleteObjects():void
+    public _deleteObjects():void
     {
         let keyList:Array<string> = [];
         let extractKeys:Function = (objects:Array<TerraStorageObject>):void =>
@@ -403,7 +403,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         });
     }
 
-    protected onRowClick(row:TerraSimpleTableRowInterface<TerraStorageObject>):void
+    public _onRowClick(row:TerraSimpleTableRowInterface<TerraStorageObject>):void
     {
         let storageObject:TerraStorageObject = row.value;
         if(storageObject.isDirectory)
@@ -413,7 +413,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         }
     }
 
-    protected onActiveRowChange(row:TerraSimpleTableRowInterface<TerraStorageObject>):void
+    public _onActiveRowChange(row:TerraSimpleTableRowInterface<TerraStorageObject>):void
     {
         let storageObject:TerraStorageObject = row.value;
         this.showOrHideImagePreview(storageObject);
