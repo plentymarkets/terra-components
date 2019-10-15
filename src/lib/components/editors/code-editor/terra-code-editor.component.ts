@@ -145,7 +145,7 @@ export class TerraCodeEditorComponent extends TerraBaseEditorComponent implement
                     localStorage.getItem('lang')),
                 clickFunction: ():void =>
                                {
-                                   this.closeCodeView(true);
+                                   this._closeCodeView(true);
                                    this.overlay.hideOverlay();
                                }
             },
@@ -166,7 +166,7 @@ export class TerraCodeEditorComponent extends TerraBaseEditorComponent implement
         // implementation is required by angular-l10n. See https://robisim74.github.io/angular-l10n/spec/getting-the-translation/#messages
     }
 
-    protected emitChanges(isEditorContent:boolean = true):void
+    public _emitChanges(isEditorContent:boolean = true):void
     {
         if(!this._isInitialized)
         {
@@ -189,7 +189,7 @@ export class TerraCodeEditorComponent extends TerraBaseEditorComponent implement
 
     }
 
-    protected closeCodeView(forceClose:boolean = false):void
+    public _closeCodeView(forceClose:boolean = false):void
     {
         this.checkCodeFormat()
             .then((hasChanges:boolean) =>
@@ -210,7 +210,7 @@ export class TerraCodeEditorComponent extends TerraBaseEditorComponent implement
                     // force switching to editor even if this will lead to changes of the markup
                     if(forceClose)
                     {
-                        this.emitChanges(true);
+                        this._emitChanges(true);
                     }
                 }
             });

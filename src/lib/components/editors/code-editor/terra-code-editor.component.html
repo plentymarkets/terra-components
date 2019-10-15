@@ -2,7 +2,7 @@
 <div class="editor-container">
     <quill-editor [placeholder]="_placeholder"
                   [(ngModel)]="editorContent"
-                  (ngModelChange)="emitChanges(true)"
+                  (ngModelChange)="_emitChanges(true)"
                   [styles]="{minHeight:inputMinHeight, height:inputFixedHeight}"
                   [sanitize]="true"
                   [required]="required"
@@ -11,12 +11,12 @@
     <textarea class="raw-input"
               [class.visible]="showCodeView"
               [(ngModel)]="rawContent"
-              (ngModelChange)="emitChanges(false)">
+              (ngModelChange)="_emitChanges(false)">
     </textarea>
     <terra-button [class.visible]="showCodeView && _isValidMarkup"
                   class="close-button"
                   inputIcon="icon-close"
-                  (outputClicked)="closeCodeView()">
+                  (outputClicked)="_closeCodeView()">
     </terra-button>
     <terra-button [class.visible]="showCodeView && !_isValidMarkup"
                   class="error-button"
