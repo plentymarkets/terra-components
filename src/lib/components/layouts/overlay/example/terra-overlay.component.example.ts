@@ -14,18 +14,25 @@ import { TerraAlertComponent } from '../../../alert/terra-alert.component';
 })
 export class TerraOverlayComponentExample implements OnInit
 {
-    @ViewChild('viewChildOverlayWithoutButtons') public viewChildOverlayWithoutButtons:TerraOverlayComponent;
-    @ViewChild('viewChildOverlayWithPrimaryButton') public viewChildOverlayWithPrimaryButton:TerraOverlayComponent;
-    @ViewChild('viewChildOverlayWithSecondaryButton') public viewChildOverlayWithSecondaryButton:TerraOverlayComponent;
-    @ViewChild('viewChildOverlayStatic') public viewChildOverlayStatic:TerraOverlayComponent;
+    @ViewChild('viewChildOverlayWithoutButtons')
+    public _viewChildOverlayWithoutButtons:TerraOverlayComponent;
 
-    protected addButtonTooltip:string = 'Hinzufügen';
-    protected cancelButtonTooltip:string = 'Abbrechen';
-    protected primaryButtonInterface:TerraOverlayButtonInterface;
-    protected secondaryButtonInterface:TerraOverlayButtonInterface;
-    protected staticPrimaryButtonInterface:TerraOverlayButtonInterface;
-    protected staticSecondaryButtonInterface:TerraOverlayButtonInterface;
-    protected exampleText:string = 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.' +
+    @ViewChild('viewChildOverlayWithPrimaryButton')
+    public _viewChildOverlayWithPrimaryButton:TerraOverlayComponent;
+
+    @ViewChild('viewChildOverlayWithSecondaryButton')
+    public _viewChildOverlayWithSecondaryButton:TerraOverlayComponent;
+
+    @ViewChild('viewChildOverlayStatic')
+    public _viewChildOverlayStatic:TerraOverlayComponent;
+
+    public _addButtonTooltip:string = 'Hinzufügen';
+    public _cancelButtonTooltip:string = 'Abbrechen';
+    public _primaryButtonInterface:TerraOverlayButtonInterface;
+    public _secondaryButtonInterface:TerraOverlayButtonInterface;
+    public _staticPrimaryButtonInterface:TerraOverlayButtonInterface;
+    public _staticSecondaryButtonInterface:TerraOverlayButtonInterface;
+    public _exampleText:string = 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.' +
                                    'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ' +
                                    'ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, ' +
                                    'fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, ' +
@@ -43,57 +50,57 @@ export class TerraOverlayComponentExample implements OnInit
 
     public ngOnInit():void
     {
-        this.primaryButtonInterface = {
+        this._primaryButtonInterface = {
             icon:          'icon-confirm',
             caption:       'Test',
-            tooltipText:   this.addButtonTooltip,
+            tooltipText:   this._addButtonTooltip,
             isDisabled:    false,
-            clickFunction: ():void => this.primaryClicked(this.viewChildOverlayWithPrimaryButton)
+            clickFunction: ():void => this.primaryClicked(this._viewChildOverlayWithPrimaryButton)
         };
 
-        this.secondaryButtonInterface = {
+        this._secondaryButtonInterface = {
             icon:          'icon-cancel',
             caption:       'Cancel',
-            tooltipText:   this.cancelButtonTooltip,
+            tooltipText:   this._cancelButtonTooltip,
             isDisabled:    false,
-            clickFunction: ():void => this.secondaryClicked(this.viewChildOverlayWithSecondaryButton)
+            clickFunction: ():void => this.secondaryClicked(this._viewChildOverlayWithSecondaryButton)
         };
 
-        this.staticPrimaryButtonInterface = {
+        this._staticPrimaryButtonInterface = {
             icon:          'icon-add',
             caption:       'Test',
-            tooltipText:   this.addButtonTooltip,
+            tooltipText:   this._addButtonTooltip,
             isDisabled:    false,
-            clickFunction: ():boolean => this.staticSecondaryButtonInterface.isDisabled = false
+            clickFunction: ():boolean => this._staticSecondaryButtonInterface.isDisabled = false
         };
 
-        this.staticSecondaryButtonInterface = {
+        this._staticSecondaryButtonInterface = {
             icon:          'icon-cancel',
             caption:       'Cancel',
-            tooltipText:   this.cancelButtonTooltip,
+            tooltipText:   this._cancelButtonTooltip,
             isDisabled:    true,
-            clickFunction: ():void => this.secondaryClicked(this.viewChildOverlayStatic)
+            clickFunction: ():void => this.secondaryClicked(this._viewChildOverlayStatic)
         };
     }
 
-    protected openOverlayWithoutButtons():void
+    public _openOverlayWithoutButtons():void
     {
-        this.viewChildOverlayWithoutButtons.showOverlay();
+        this._viewChildOverlayWithoutButtons.showOverlay();
     }
 
-    protected openOverlayWithPrimaryButton():void
+    public _openOverlayWithPrimaryButton():void
     {
-        this.viewChildOverlayWithPrimaryButton.showOverlay();
+        this._viewChildOverlayWithPrimaryButton.showOverlay();
     }
 
-    protected openOverlayWithSecondaryButton():void
+    public _openOverlayWithSecondaryButton():void
     {
-        this.viewChildOverlayWithSecondaryButton.showOverlay();
+        this._viewChildOverlayWithSecondaryButton.showOverlay();
     }
 
-    protected openOverlayStatic():void
+    public _openOverlayStatic():void
     {
-        this.viewChildOverlayStatic.showOverlay();
+        this._viewChildOverlayStatic.showOverlay();
     }
 
     private primaryClicked(overlay:TerraOverlayComponent):void
