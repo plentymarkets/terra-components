@@ -123,7 +123,7 @@ export class TerraSliderComponent implements OnInit, OnChanges, ControlValueAcce
      * get position of slider element in px to left bound
      * @returns {number}
      */
-    public get handlePosition():number
+    public get _handlePosition():number
     {
         let sliderWidth:number = this._sliderBarElement.nativeElement.getBoundingClientRect().width;
         let percentage:number = Math.abs(this.inputMin - this._value) / this.calculateRangeOfSlider();
@@ -145,7 +145,7 @@ export class TerraSliderComponent implements OnInit, OnChanges, ControlValueAcce
      * set position of slider element in px to left bound
      * @param value
      */
-    public set handlePosition(value:number)
+    public set _handlePosition(value:number)
     {
         let sliderWidth:number = this._sliderBarElement.nativeElement.getBoundingClientRect().width;
         let percentage:number = (value / sliderWidth) * 100;
@@ -229,7 +229,7 @@ export class TerraSliderComponent implements OnInit, OnChanges, ControlValueAcce
      * handle drag event
      * @param event
      */
-    public onDrag(event:InteractEvent):void
+    public _onDrag(event:InteractEvent):void
     {
         this.moveToPosition(event.pageX);
     }
@@ -238,7 +238,7 @@ export class TerraSliderComponent implements OnInit, OnChanges, ControlValueAcce
      * handle click event on bar
      * @param event
      */
-    public onBarClicked(event:MouseEvent):void
+    public _onBarClicked(event:MouseEvent):void
     {
         this.moveToPosition(event.pageX);
     }
@@ -247,7 +247,7 @@ export class TerraSliderComponent implements OnInit, OnChanges, ControlValueAcce
      * get ticks
      * @returns {Array<TerraSliderTick>}
      */
-    public getTicks():Array<TerraSliderTick>
+    public _getTicks():Array<TerraSliderTick>
     {
         let ticks:Array<TerraSliderTick> = [];
         let numberOfTicks:number = 10;
@@ -299,7 +299,7 @@ export class TerraSliderComponent implements OnInit, OnChanges, ControlValueAcce
         this._value = value;
     }
 
-    protected get grid():GridOptions
+    public get _grid():GridOptions
     {
         if(this.inputInterval > 0)
         {
@@ -312,7 +312,7 @@ export class TerraSliderComponent implements OnInit, OnChanges, ControlValueAcce
         return null;
     }
 
-    protected onKeyDown(event:KeyboardEvent):void
+    public _onKeyDown(event:KeyboardEvent):void
     {
         // check if one of the dedicated keys has been pressed
         if(!(event.code === 'ArrowLeft' ||
@@ -325,7 +325,7 @@ export class TerraSliderComponent implements OnInit, OnChanges, ControlValueAcce
         let stepSize:number = 1; // default: 1px
         if(this.inputInterval > 0)
         {
-            stepSize = this.grid.x; // use grid if interval is given
+            stepSize = this._grid.x; // use grid if interval is given
         }
 
         // determine the key, that has been pressed
@@ -334,13 +334,13 @@ export class TerraSliderComponent implements OnInit, OnChanges, ControlValueAcce
             case 'ArrowLeft':
                 if(this._value > this.inputMin)
                 {
-                    this.handlePosition -= stepSize;
+                    this._handlePosition -= stepSize;
                 }
                 break;
             case 'ArrowRight':
                 if(this._value < this.inputMax)
                 {
-                    this.handlePosition += stepSize;
+                    this._handlePosition += stepSize;
                 }
                 break;
         }
@@ -354,7 +354,7 @@ export class TerraSliderComponent implements OnInit, OnChanges, ControlValueAcce
         if(!this.inputIsDisabled)
         {
             let sliderRect:any | ClientRect = this._sliderBarElement.nativeElement.getBoundingClientRect();
-            this.handlePosition = position - sliderRect.left;
+            this._handlePosition = position - sliderRect.left;
         }
     }
 
