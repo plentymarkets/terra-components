@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
 })
 export class TerraDoubleInputComponentExample
 {
-    protected doubleValue:number;
+    public _doubleValue:number;
 }

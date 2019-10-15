@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class TerraDatePickerComponentExample
 {
-    protected date:string = new Date().toDateString();
+    public _date:string = new Date().toDateString();
 
     protected onChange(value:string):void
     {
