@@ -1,8 +1,8 @@
 <terra-3-col [leftColumnWidth]="2" [rightColumnWidth]="_rightColumnWidth" [centerColumnWidth]="_centerColumnWidth">
-    <terra-node-tree left [inputConfig]="nodeTreeConfig"></terra-node-tree>
+    <terra-node-tree left [inputConfig]="_nodeTreeConfig"></terra-node-tree>
     <terra-file-list center [inputStorageServices]="inputStorageServices"
-                     (showImagePreview)="showImagePreview($event)"
-                     (hideImagePreview)="hideImagePreview()"
+                     (showImagePreview)="_showImagePreview($event)"
+                     (hideImagePreview)="_hideImagePreview()"
                      (selectNode)="selectNode($event)"></terra-file-list>
     <terra-image-preview right
                          [inputStorageService]="_fileListComponent.activeStorageService"
