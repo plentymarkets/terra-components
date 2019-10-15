@@ -134,8 +134,8 @@ export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent
                 if(this.isNotInitialCall && nodeToSelect)
                 {
                     this.updateCompleteCategory(nodeToSelect);
-                    this.onTouchedCallback();
-                    this.onChangeCallback(this.value);
+                    this._onTouchedCallback();
+                    this._onChangeCallback(this.value);
                 }
             });
         }
@@ -157,7 +157,7 @@ export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent
             this._categoryName = this.nestedTreeConfig.currentSelectedNode.name;
             this.writeValue(this.nestedTreeConfig.currentSelectedNode.id);
         }
-        this.toggleTree = !this.toggleTree;
+        this._toggleTree = !this._toggleTree;
     }
 
     public reset():void
@@ -166,8 +166,8 @@ export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent
         this._categoryName = '';
         this.value = 0;
 
-        this.onTouchedCallback();
-        this.onChangeCallback(this.value);
+        this._onTouchedCallback();
+        this._onChangeCallback(this.value);
     }
 
     public addNodes(data:any, parentNodeId:number | string):void

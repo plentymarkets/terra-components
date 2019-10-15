@@ -15,10 +15,10 @@
                       (outputClicked)="reset()">
         </terra-button>
     </div>
-    <div [hidden]="!toggleTree" class="tree-dropdown">
+    <div [hidden]="!_toggleTree" class="tree-dropdown">
         <div class="terra-node-tree-wrapper">
             <terra-node-tree [inputShowSearch]="displaySearch"
-                             [inputConfig]="nestedTreeConfig">
+                             [inputConfig]="_nestedTreeConfig">
             </terra-node-tree>
         </div>
         <terra-base-toolbar>
