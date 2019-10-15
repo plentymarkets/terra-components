@@ -92,7 +92,7 @@ export class TerraTextInputComponent extends TerraInputComponent
         });
     }
 
-    protected onCustomBlur(iban:string):void
+    public _onCustomBlur(iban:string):void
     {
         if(this.inputIsIban)
         {
