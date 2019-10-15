@@ -10,7 +10,7 @@ import { Component } from '@angular/core';
 })
 export class TerraTagSelectComponentExample
 {
-    protected selectedTags:Array<TerraTagInterface> = [{
+    public _selectedTags:Array<TerraTagInterface> = [{
         id:         3,
         name:       'Fast schwarz',
         color:      '#000350',
@@ -31,7 +31,7 @@ export class TerraTagSelectComponentExample
         ]
     }];
 
-    protected tags:Array<TerraTagInterface> = [
+    public _tags:Array<TerraTagInterface> = [
         {
             id:    4,
             name:  'Dunkel grau',
