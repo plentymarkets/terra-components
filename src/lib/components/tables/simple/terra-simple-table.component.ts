@@ -12,14 +12,11 @@ import { TerraSimpleTableHeaderCellInterface } from './cell/terra-simple-table-h
 import { TerraSimpleTableRowInterface } from './row/terra-simple-table-row.interface';
 import { TerraCheckboxComponent } from '../../forms/checkbox/terra-checkbox.component';
 import { Key } from 'ts-keycode-enum';
-import {
-    isNull,
-    isNullOrUndefined
-} from 'util';
+import { isNullOrUndefined } from 'util';
 
 @Component({
-    selector: 'terra-simple-table',
-    styleUrls: [ './terra-simple-table.component.scss'],
+    selector:    'terra-simple-table',
+    styleUrls:   ['./terra-simple-table.component.scss'],
     templateUrl: './terra-simple-table.component.html'
 })
 export class TerraSimpleTableComponent<D> implements OnChanges
@@ -73,11 +70,11 @@ export class TerraSimpleTableComponent<D> implements OnChanges
         return this.inputRowList.filter((row:TerraSimpleTableRowInterface<D>) => row.selected === true);
     }
 
-    protected headerCheckbox:{ checked:boolean, isIndeterminate:boolean };
+    public _headerCheckbox:{ checked:boolean, isIndeterminate:boolean };
 
     constructor(private elementRef:ElementRef)
     {
-        this.headerCheckbox = {
+        this._headerCheckbox = {
             checked:         false,
             isIndeterminate: false
         };
@@ -97,9 +94,9 @@ export class TerraSimpleTableComponent<D> implements OnChanges
 
     protected onHeaderCheckboxChange():void
     {
-        this.outputHeaderCheckBoxChanged.emit(!this.headerCheckbox.checked);
+        this.outputHeaderCheckBoxChanged.emit(!this._headerCheckbox.checked);
 
-        if(this.headerCheckbox.checked)
+        if(this._headerCheckbox.checked)
         {
             this.resetSelectedRows();
         }
@@ -153,7 +150,7 @@ export class TerraSimpleTableComponent<D> implements OnChanges
             {
                 if(event.ctrlKey || event.metaKey)
                 {
-                    this.headerCheckbox.checked = !this.headerCheckbox.checked;
+                    this._headerCheckbox.checked = !this._headerCheckbox.checked;
                 }
                 else
                 {
@@ -189,20 +186,20 @@ export class TerraSimpleTableComponent<D> implements OnChanges
 
     private checkHeaderCheckbox():void
     {
-        this.headerCheckbox.checked = true;
-        this.headerCheckbox.isIndeterminate = false;
+        this._headerCheckbox.checked = true;
+        this._headerCheckbox.isIndeterminate = false;
     }
 
     private uncheckHeaderCheckbox():void
     {
-        this.headerCheckbox.checked = false;
-        this.headerCheckbox.isIndeterminate = false;
+        this._headerCheckbox.checked = false;
+        this._headerCheckbox.isIndeterminate = false;
     }
 
     private setHeaderCheckboxIndeterminate():void
     {
-        this.headerCheckbox.checked = false;
-        this.headerCheckbox.isIndeterminate = true;
+        this._headerCheckbox.checked = false;
+        this._headerCheckbox.isIndeterminate = true;
     }
 
     private updateHeaderCheckboxState():void
