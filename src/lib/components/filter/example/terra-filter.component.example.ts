@@ -5,8 +5,8 @@ import {
 import { TerraSelectBoxValueInterface } from '../../forms/select-box/data/terra-select-box.interface';
 
 @Component({
-    selector: 'terra-filter-example',
-    styleUrls: [ './terra-filter.component.example.scss'],
+    selector:    'terra-filter-example',
+    styleUrls:   ['./terra-filter.component.example.scss'],
     templateUrl: './terra-filter.component.example.html',
 })
 export class TerraFilterComponentExample implements OnInit
@@ -29,17 +29,17 @@ export class TerraFilterComponentExample implements OnInit
         }
     }
 
-    protected onResetBtnClicked():void
+    public _onResetBtnClicked():void
     {
         return;
     }
 
-    protected onSubmit():void
+    public _onSubmit():void
     {
-        this.onSearchBtnClicked();
+        this._onSearchBtnClicked();
     }
 
-    private onSearchBtnClicked():void
+    public _onSearchBtnClicked():void
     {
         alert('filtered for ' + this._selectedListBoxValue);
     }
