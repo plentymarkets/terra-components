@@ -7,8 +7,8 @@ import { TerraAlertComponent } from '../terra-alert.component';
 import { AlertService } from '../alert.service';
 
 @Component({
-    selector: 'terra-alert-example',
-    styleUrls: [ './terra-alert.component.example.scss'],
+    selector:    'terra-alert-example',
+    styleUrls:   ['./terra-alert.component.example.scss'],
     templateUrl: './terra-alert.component.example.html'
 })
 export class TerraAlertComponentExample implements OnInit
@@ -24,7 +24,7 @@ export class TerraAlertComponentExample implements OnInit
         this._exampleAlert.closeAlertByIdentifier('info');
     }
 
-    protected showInformationAlert():void
+    public _showInformationAlert():void
     {
         this._exampleAlert.addAlert({
             msg:              'info-Alert',
@@ -34,7 +34,7 @@ export class TerraAlertComponentExample implements OnInit
         });
     }
 
-    protected showSuccessAlert():void
+    public _showSuccessAlert():void
     {
         this._exampleAlert.addAlert({
             msg:              'success-Alert',
@@ -44,7 +44,7 @@ export class TerraAlertComponentExample implements OnInit
         });
     }
 
-    protected showErrorAlert():void
+    public _showErrorAlert():void
     {
         this._exampleAlert.addAlert({
             msg:              'error-Alert',
@@ -54,7 +54,7 @@ export class TerraAlertComponentExample implements OnInit
         });
     }
 
-    protected showWarningAlert():void
+    public _showWarningAlert():void
     {
         this._exampleAlert.addAlert({
             msg:              'warning-Alert',
@@ -64,7 +64,7 @@ export class TerraAlertComponentExample implements OnInit
         });
     }
 
-    protected showAlertUsingService():void
+    public _showAlertUsingService():void
     {
         this._alertService.info('You have used the service');
     }
