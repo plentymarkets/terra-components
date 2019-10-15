@@ -45,27 +45,27 @@ export class TerraCodeEditorComponent extends TerraBaseEditorComponent implement
     public overlay:TerraOverlayComponent;
 
     @Language()
-    protected lang:string;
+    public _lang:string;
 
-    protected viewConfirmation:{ primaryButton:TerraButtonInterface, secondaryButton:TerraButtonInterface };
+    public _viewConfirmation:{ primaryButton:TerraButtonInterface, secondaryButton:TerraButtonInterface };
 
-    protected isValidMarkup:boolean = true;
+    public _isValidMarkup:boolean = true;
 
-    protected invalidMarkupHint:string = '';
+    public _invalidMarkupHint:string = '';
 
-    private isInitialized:boolean = false;
+    private _isInitialized:boolean = false;
 
-    private linter:HtmlLinter;
+    private _linter:HtmlLinter;
 
-    constructor(protected translation:TranslationService, protected myElement:ElementRef)
+    constructor(public _translation:TranslationService, public _myElement:ElementRef)
     {
-        super(translation, myElement);
+        super(_translation, _myElement);
         // initialize placeholder
-        this.placeholder = this.translation.translate('terraNoteEditor.insertText');
+        this._placeholder = this._translation.translate('terraNoteEditor.insertText');
 
         const self:TerraCodeEditorComponent = this;
 
-        this.modules = {
+        this._modules = {
             toolbar: {
                 container: [
                     ['bold',
@@ -91,7 +91,7 @@ export class TerraCodeEditorComponent extends TerraBaseEditorComponent implement
                                       // 'this' points to the toolbar instance of the quill editor.
                                       if(!self.showCodeView)
                                       {
-                                          self.rawContent = self.value;
+                                          self.rawContent = self._value;
                                           self.showCodeView = true;
                                       }
                                   }
@@ -99,7 +99,7 @@ export class TerraCodeEditorComponent extends TerraBaseEditorComponent implement
             }
         };
 
-        this.linter = new HtmlLinter([
+        this._linter = new HtmlLinter([
             HtmlLinterRule.attrUnsafeChars,
             HtmlLinterRule.doctypeHtml5,
             HtmlLinterRule.inlineScriptDisabled,
@@ -110,9 +110,9 @@ export class TerraCodeEditorComponent extends TerraBaseEditorComponent implement
 
     public writeValue(value:string):void
     {
-        this.value = value;
+        this._value = value;
         // check if value is assigned first (initially)
-        if(!this.isInitialized)
+        if(!this._isInitialized)
         {
             this.editorContent = value;
             this.rawContent = value;
@@ -128,7 +128,7 @@ export class TerraCodeEditorComponent extends TerraBaseEditorComponent implement
                         // wait until next tick to avoid emitting changes when initially assigning values
                         setTimeout(() =>
                         {
-                            this.isInitialized = true;
+                            this._isInitialized = true;
                         });
                     });
             });
@@ -138,10 +138,10 @@ export class TerraCodeEditorComponent extends TerraBaseEditorComponent implement
     public ngOnInit():void
     {
         super.ngOnInit();
-        this.viewConfirmation = {
+        this._viewConfirmation = {
             primaryButton:   {
                 icon:          'icon-check',
-                caption:       this.translation.translate('terraCodeEditor.changeViewOverlay.primaryButton',
+                caption:       this._translation.translate('terraCodeEditor.changeViewOverlay.primaryButton',
                     localStorage.getItem('lang')),
                 clickFunction: ():void =>
                                {
@@ -151,7 +151,7 @@ export class TerraCodeEditorComponent extends TerraBaseEditorComponent implement
             },
             secondaryButton: {
                 icon:          'icon-cancel',
-                caption:       this.translation.translate('terraCodeEditor.changeViewOverlay.secondaryButton',
+                caption:       this._translation.translate('terraCodeEditor.changeViewOverlay.secondaryButton',
                     localStorage.getItem('lang')),
                 clickFunction: ():void =>
                                {
@@ -168,22 +168,22 @@ export class TerraCodeEditorComponent extends TerraBaseEditorComponent implement
 
     protected emitChanges(isEditorContent:boolean = true):void
     {
-        if(!this.isInitialized)
+        if(!this._isInitialized)
         {
             return;
         }
 
         if(isEditorContent && !this.showCodeView)
         {
-            this.value = this.editorContent;
-            this.onChangeCallback(this.value);
+            this._value = this.editorContent;
+            this._onChangeCallback(this._value);
         }
         else if(!isEditorContent && this.showCodeView)
         {
             if(this.validateMarkup())
             {
-                this.value = this.safeHtml(this.rawContent);
-                this.onChangeCallback(this.value);
+                this._value = this.safeHtml(this.rawContent);
+                this._onChangeCallback(this._value);
             }
         }
 
@@ -255,26 +255,26 @@ export class TerraCodeEditorComponent extends TerraBaseEditorComponent implement
 
     private validateMarkup():boolean
     {
-        this.isValidMarkup = true;
+        this._isValidMarkup = true;
 
-        let errors:Array<HtmlLinterMessageInterface> = this.linter.verify(
+        let errors:Array<HtmlLinterMessageInterface> = this._linter.verify(
             '<div>' + this.rawContent + '</div>'
         );
 
         if(errors.length > 0)
         {
-            this.isValidMarkup = false;
-            this.invalidMarkupHint = this.translation.translate(
+            this._isValidMarkup = false;
+            this._invalidMarkupHint = this._translation.translate(
                 'terraCodeEditor.linterMessage',
                 {
                     line:    errors[0].line,
                     col:     errors[0].col,
-                    message: this.translation.translate('terraCodeEditor.linterRules.' + errors[0].rule)
+                    message: this._translation.translate('terraCodeEditor.linterRules.' + errors[0].rule)
                 }
             );
         }
 
-        return this.isValidMarkup;
+        return this._isValidMarkup;
     }
 
     private safeHtml(input:string):string
