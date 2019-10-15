@@ -92,7 +92,7 @@ export class TerraSimpleTableComponent<D> implements OnChanges
         }
     }
 
-    protected onHeaderCheckboxChange():void
+    public _onHeaderCheckboxChange():void
     {
         this.outputHeaderCheckBoxChanged.emit(!this._headerCheckbox.checked);
 
@@ -106,7 +106,7 @@ export class TerraSimpleTableComponent<D> implements OnChanges
         }
     }
 
-    protected onRowCheckboxChange(row:TerraSimpleTableRowInterface<D>):void
+    public _onRowCheckboxChange(row:TerraSimpleTableRowInterface<D>):void
     {
         // update row selection
         row.selected = !row.selected;
@@ -121,13 +121,13 @@ export class TerraSimpleTableComponent<D> implements OnChanges
         this.updateHeaderCheckboxState();
     }
 
-    protected onCheckboxClick(event:Event):void
+    public _onCheckboxClick(event:Event):void
     {
         // do not emit 'outputRowClicked' when toggling checkbox
         event.stopPropagation();
     }
 
-    protected onRowClick(row:TerraSimpleTableRowInterface<D>):void
+    public _onRowClick(row:TerraSimpleTableRowInterface<D>):void
     {
         if(this.inputUseHighlighting && !row.disabled)
         {
@@ -137,7 +137,7 @@ export class TerraSimpleTableComponent<D> implements OnChanges
         this.outputRowClicked.emit(row);
     }
 
-    protected onKeydown(event:KeyboardEvent):void
+    public _onKeydown(event:KeyboardEvent):void
     {
         if(this.inputEnableHotkeys && this.inputUseHighlighting && this.inputHighlightedRow)
         {
@@ -154,7 +154,7 @@ export class TerraSimpleTableComponent<D> implements OnChanges
                 }
                 else
                 {
-                    this.onRowCheckboxChange(this.inputHighlightedRow);
+                    this._onRowCheckboxChange(this.inputHighlightedRow);
                 }
             }
 
@@ -167,7 +167,7 @@ export class TerraSimpleTableComponent<D> implements OnChanges
         }
     }
 
-    protected getTextAlign(item:TerraSimpleTableHeaderCellInterface):string
+    public _getTextAlign(item:TerraSimpleTableHeaderCellInterface):string
     {
         if(!isNullOrUndefined(item.textAlign))
         {
