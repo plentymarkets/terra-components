@@ -98,7 +98,7 @@ export class TerraTagSelectComponent implements ControlValueAccessor, OnInit, On
      * Writes the selected tag into the model of the component.
      * @param {TerraTagInterface} selectedTag
      */
-    protected addSelectedTag(selectedTag:TerraTagInterface):void
+    public _addSelectedTag(selectedTag:TerraTagInterface):void
     {
         if(!this.isReadOnly && !isNullOrUndefined(selectedTag) && !this._selectedTags.find((tag:TerraTagInterface) => tag === selectedTag))
         {
@@ -110,7 +110,7 @@ export class TerraTagSelectComponent implements ControlValueAccessor, OnInit, On
      * Remove the specific tag id and updates the model of the component.
      * @param {number} tagId
      */
-    protected closeTag(tagId:number):void
+    public _closeTag(tagId:number):void
     {
         this._selectedTags.splice(
             this._selectedTags.findIndex((tag:TerraTagInterface) => tag.id === tagId),
