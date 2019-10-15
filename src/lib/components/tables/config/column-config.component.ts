@@ -1,11 +1,8 @@
 import {
-    AfterViewInit,
     ChangeDetectionStrategy,
     Component,
-    ElementRef,
     EventEmitter,
     Input,
-    OnInit,
     Output,
 } from '@angular/core';
 import {
@@ -20,38 +17,34 @@ import { ColumnConfigInterface } from './data/column-config.interface';
     styles:          [require('./column-config.component.scss')],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ColumnConfigComponent implements OnInit, AfterViewInit
+export class ColumnConfigComponent
 {
+    /**
+     * Emits whenever the visibility or index is changed.
+     */
     @Output()
     public displayedColumnsChange:EventEmitter<Array<string>> = new EventEmitter<Array<string>>();
 
+    /**
+     * Columns with all informations.
+     */
     @Input()
     public columns:Array<ColumnConfigInterface>;
 
+    /**
+     * Keys of displaying columns. Same as needed for mat-table
+     */
     @Input()
     public displayedColumns:Array<string>;
 
-    constructor(private elementRef:ElementRef)
-    {
-    }
-
-    public ngOnInit():void
-    {
-    }
-
-    public ngAfterViewInit():void
-    {
-        this.elementRef.nativeElement.classList += 'va-mat-button-no-input';
-    }
-
-    public columnMenuDropped(event:CdkDragDrop<any>):void
+    protected columnMenuDropped(event:CdkDragDrop<any>):void
     {
         moveItemInArray(this.columns, event.item.data.columnIndex, event.currentIndex);
 
         this.fireChangeEvent();
     }
 
-    public toggleSelectedColumn(columnId:string):void
+    protected toggleSelectedColumn(columnId:string):void
     {
         const colFound:ColumnConfigInterface = this.columns.find((col:ColumnConfigInterface) => col.key === columnId);
         colFound.hidden = !colFound.hidden;

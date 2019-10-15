@@ -1,4 +1,5 @@
 import {
+    ChangeDetectionStrategy,
     Component,
     OnInit,
     ViewChild
@@ -21,7 +22,8 @@ import { ColumnConfigInterface } from '../../../config/data/column-config.interf
     template:  require('./mat-table.component.example.html'),
     styles:    [require('./mat-table.component.example.scss')],
     providers: [TerraDataTableServiceExample,
-                TerraDataTableContextMenuService]
+                TerraDataTableContextMenuService],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 // TODO remove every example before release?
 export class MatTableComponentExample implements OnInit
