@@ -73,7 +73,7 @@ export class CheckboxGroupComponent implements ControlValueAccessor
         this.updateMultiCheckboxValues();
     }
 
-    protected onMultiCheckboxChanged(checkboxValues:Array<TerraMultiCheckBoxValueInterface>):void
+    public _onMultiCheckboxChanged(checkboxValues:Array<TerraMultiCheckBoxValueInterface>):void
     {
         // if the value is null or undefined, initialize the array to be able to add selected values
         if(isNullOrUndefined(this._values))
