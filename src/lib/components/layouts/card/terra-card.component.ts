@@ -42,9 +42,9 @@ export class TerraCardComponent implements AfterContentChecked
     @Input()
     public inputIsSelected:boolean = false;
 
-    private _showHeader:boolean = false;
-    private _showBody:boolean = false;
-    private _showFooter:boolean = false;
+    public _showHeader:boolean = false;
+    public _showBody:boolean = false;
+    public _showFooter:boolean = false;
 
     public ngAfterContentChecked():void
     {
