@@ -11,7 +11,7 @@ import { formFields } from './form-fields';
 })
 export class TerraFormComponentExample
 {
-    protected formFields:TerraKeyValueInterface<TerraFormFieldInterface> = formFields;
-    protected formTypeMap:FormTypeMap = new FormTypeMap();
-    protected formValue:any;
+    public _formFields:TerraKeyValueInterface<TerraFormFieldInterface> = formFields;
+    public _formTypeMap:FormTypeMap = new FormTypeMap();
+    public _formValue:any;
 }

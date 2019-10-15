@@ -84,7 +84,7 @@ export class TerraFormContainerWrapperComponent extends TerraFormEntryBase imple
     public ngOnDestroy():void
     {
         super.ngOnDestroy();
-        if(this.componentRef)
+        if(this._componentRef)
         {
             this.innerComponentRef.destroy();
         }

@@ -41,13 +41,13 @@ export class TerraFormEntryBase implements OnChanges, OnDestroy
     public inputIsDisabled:boolean = false;
 
     @ViewChild(FormEntryContainerDirective)
-    protected container:FormEntryContainerDirective;
+    protected _container:FormEntryContainerDirective;
 
-    protected componentFactory:ComponentFactory<any>;
-    protected componentRef:ComponentRef<any>;
+    protected _componentFactory:ComponentFactory<any>;
+    protected _componentRef:ComponentRef<any>;
     protected get componentInstance():any
     {
-        return (!this.componentRef) ? null : this.componentRef.instance;
+        return (!this._componentRef) ? null : this._componentRef.instance;
     }
 
     constructor(protected componentFactoryResolver:ComponentFactoryResolver)
@@ -69,9 +69,9 @@ export class TerraFormEntryBase implements OnChanges, OnDestroy
      */
     public ngOnDestroy():void
     {
-        if(!isNullOrUndefined(this.componentRef))
+        if(!isNullOrUndefined(this._componentRef))
         {
-            this.componentRef.destroy();
+            this._componentRef.destroy();
         }
     }
 
@@ -94,10 +94,10 @@ export class TerraFormEntryBase implements OnChanges, OnDestroy
 
     protected initComponent(defaultControlType:Type<any> = TerraTextInputComponent, projectableNodes?:Array<Array<any>>):void
     {
-        this.componentFactory = this.componentFactoryResolver.resolveComponentFactory(
+        this._componentFactory = this.componentFactoryResolver.resolveComponentFactory(
             this.getControlType(defaultControlType)
         );
-        this.componentRef = this.container.viewContainerRef.createComponent(this.componentFactory, undefined, undefined, projectableNodes);
+        this._componentRef = this._container.viewContainerRef.createComponent(this._componentFactory, undefined, undefined, projectableNodes);
         this.bindInputProperties();
     }
 
@@ -132,7 +132,7 @@ export class TerraFormEntryBase implements OnChanges, OnDestroy
 
     protected performInputBindings(inputMap:{ [key:string]:string }, optionKey:string):void
     {
-        let inputPropertyNames:Array<string> = this.componentFactory
+        let inputPropertyNames:Array<string> = this._componentFactory
                                                    .inputs
                                                    .map((input:{ propName:string; templateName:string; }) => input.propName);
         if(inputMap.hasOwnProperty(optionKey) && inputPropertyNames.indexOf(inputMap[optionKey]) >= 0)

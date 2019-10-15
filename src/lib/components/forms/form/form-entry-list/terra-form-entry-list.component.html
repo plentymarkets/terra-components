@@ -27,21 +27,21 @@
                 [formGroupName]="i"
                 [inputFormFields]="inputFormField.children"
                 [inputFormGroup]="control"
-                [inputScope]="childScopes[i]"
+                [inputScope]="_childScopes[i]"
                 [inputControlTypeMap]="inputControlTypeMap"
                 [inputIsDisabled]="inputIsDisabled"
             ></terra-form-container>
             
             <terra-button
                 [inputIcon]="'icon-delete'"
-                [inputTooltipText]="'terraDynamicForm.removeListEntry' | translate:lang"
+                [inputTooltipText]="'terraDynamicForm.removeListEntry' | translate:_lang"
                 [inputIsDisabled]="!canRemoveElement"
                 (outputClicked)="removeElement(i)">
             </terra-button>
         </div>
         <terra-button
             [inputIcon]="'icon-add'"
-            [inputTooltipText]="'terraDynamicForm.addListEntry' | translate:lang"
+            [inputTooltipText]="'terraDynamicForm.addListEntry' | translate:_lang"
             [inputIsDisabled]="!canAddElement"
             (outputClicked)="addElement()">
         </terra-button>
