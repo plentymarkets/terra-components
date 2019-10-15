@@ -58,7 +58,7 @@ export class TerraAlertPanelComponent implements OnInit, OnDestroy
         window.removeEventListener(this._service.closeEvent, this._closeAlertListener);
     }
 
-    protected closeAlertByIndex(index:number):void
+    public _closeAlertByIndex(index:number):void
     {
         this._alert.closeAlert(index);
     }
