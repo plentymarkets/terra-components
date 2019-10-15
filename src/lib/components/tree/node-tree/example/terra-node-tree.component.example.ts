@@ -11,10 +11,10 @@ export interface ExampleTreeData
 }
 
 @Component({
-    selector:  'terra-node-tree-example',
-    templateUrl:  './terra-node-tree.component.example.html',
-    styleUrls:    ['./terra-node-tree.component.example.scss'],
-    providers: [TerraNodeTreeConfig]
+    selector:    'terra-node-tree-example',
+    templateUrl: './terra-node-tree.component.example.html',
+    styleUrls:   ['./terra-node-tree.component.example.scss'],
+    providers:   [TerraNodeTreeConfig]
 })
 export class TerraNodeTreeComponentExample implements OnInit
 {
@@ -29,7 +29,7 @@ export class TerraNodeTreeComponentExample implements OnInit
         this.createCompleteTree();
     }
 
-    protected addNode():void
+    public _addNode():void
     {
         this._nodeTreeConfig.addNode({
             name:      'Test' + this._nodeCounter,
@@ -40,7 +40,7 @@ export class TerraNodeTreeComponentExample implements OnInit
         this._nodeCounter++;
     }
 
-    protected addExistingNode():void
+    public _addExistingNode():void
     {
         this._nodeTreeConfig.addNode({
             name: 'Test' + this._nodeCounter,
@@ -48,34 +48,34 @@ export class TerraNodeTreeComponentExample implements OnInit
         });
     }
 
-    protected findNodeById(id:string | number):void
+    public _findNodeById(id:string | number):void
     {
         let node:TerraNodeInterface<ExampleTreeData> = this._nodeTreeConfig.findNodeById(id);
         alert(node.name);
 
     }
 
-    protected deleteNodeById(id:string | number):void
+    public _deleteNodeById(id:string | number):void
     {
         this._nodeTreeConfig.removeNodeById(id);
     }
 
-    protected getSelectedNode():void
+    public _getSelectedNode():void
     {
         console.log(this._nodeTreeConfig.currentSelectedNode);
     }
 
-    protected deleteSelectedNode():void
+    public _deleteSelectedNode():void
     {
         this._nodeTreeConfig.removeNode(this._nodeTreeConfig.currentSelectedNode);
     }
 
-    protected updateSelectedNode():void
+    public _updateSelectedNode():void
     {
         this._nodeTreeConfig.currentSelectedNode.name = 'Terra';
     }
 
-    protected updateNodeById(id:string | number):void
+    public _updateNodeById(id:string | number):void
     {
         this._nodeTreeConfig.updateNodeById(id,
             {
@@ -84,7 +84,7 @@ export class TerraNodeTreeComponentExample implements OnInit
             });
     }
 
-    protected addChildToNodeById(id:string | number):void
+    public _addChildToNodeById(id:string | number):void
     {
         this._nodeTreeConfig.addChildToNodeById(id, {
             id:        133,
@@ -93,12 +93,12 @@ export class TerraNodeTreeComponentExample implements OnInit
         });
     }
 
-    protected setSelectedNode(id:string | number):void
+    public setSelectedNode(id:string | number):void
     {
         this._nodeTreeConfig.setCurrentSelectedNodeById(id);
     }
 
-    protected createCompleteTree():void
+    public createCompleteTree():void
     {
         this._nodeTreeConfig.list = [
             {
@@ -134,7 +134,7 @@ export class TerraNodeTreeComponentExample implements OnInit
             }];
     }
 
-    protected createTreeWithIcons():void
+    public _createTreeWithIcons():void
     {
         this._nodeTreeConfig.list = [
             {
