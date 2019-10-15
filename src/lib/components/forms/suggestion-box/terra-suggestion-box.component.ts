@@ -69,7 +69,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
     public isValid:boolean = true;
 
     @Language()
-    protected _lang:string;
+    public _lang:string;
 
     public _displayListBoxValues:Array<TerraSuggestionBoxValueInterface> = [];
     public _listBoxHeadingKey:string = '';
@@ -181,7 +181,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
         return this._toggleOpen;
     }
 
-    public onChange():void
+    public _onChange():void
     {
         let searchString:any = this.textInputValue;
         this.toggleOpen = true;
@@ -235,13 +235,13 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
         return this._selectedValue;
     }
 
-    protected onClick(evt:Event):void
+    public _onClick(evt:Event):void
     {
         evt.stopPropagation(); // prevents the click listener on the document to be fired right after
         this.toggleOpen = !this.toggleOpen;
     }
 
-    protected onKeyDown(event:KeyboardEvent):void
+    public _onKeyDown(event:KeyboardEvent):void
     {
         // check if one of the dedicated keys has been pressed
         if(!(event.key === 'ArrowDown' || event.key === 'ArrowUp' || event.key === 'Enter' || event.key === 'Escape'))
@@ -299,7 +299,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
                         // check if element is really available
                         if(this._displayListBoxValues.find((item:TerraSuggestionBoxValueInterface) => item === this._tmpSelectedValue))
                         {
-                            this.select(this._tmpSelectedValue); // select the chosen element
+                            this._select(this._tmpSelectedValue); // select the chosen element
                             this.toggleOpen = false; // close the dropdown
                         }
                         break;
@@ -320,7 +320,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
      * workaround to prevent calling the select() method on the label click
      * @param event
      */
-    protected onInputClick(event:any):void
+    public _onInputClick(event:any):void
     {
         this.outputClicked.emit(event);
 
@@ -332,29 +332,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
         }
     }
 
-    protected get textInputValue():string
-    {
-        return this._textInputValue;
-    }
-
-    protected set textInputValue(value:string)
-    {
-        if(this._textInputValue !== value)
-        {
-            this.textInputValueChange.emit(value);
-        }
-        this._textInputValue = value;
-    }
-
-    private clickedOutside(event:Event):void
-    {
-        if(!this._elementRef.nativeElement.contains(event.target))
-        {
-            this.toggleOpen = false;
-        }
-    }
-
-    private select(value:TerraSuggestionBoxValueInterface):void
+    public _select(value:TerraSuggestionBoxValueInterface):void
     {
         // check if value is available
         if(!this._displayListBoxValues.find((elem:TerraSuggestionBoxValueInterface):boolean => elem === value))
@@ -402,6 +380,30 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
             }
         }
     }
+
+    protected get textInputValue():string
+    {
+        return this._textInputValue;
+    }
+
+    protected set textInputValue(value:string)
+    {
+        if(this._textInputValue !== value)
+        {
+            this.textInputValueChange.emit(value);
+        }
+        this._textInputValue = value;
+    }
+
+    private clickedOutside(event:Event):void
+    {
+        if(!this._elementRef.nativeElement.contains(event.target))
+        {
+            this.toggleOpen = false;
+        }
+    }
+
+
 
     private focusSelectedElement():void
     {

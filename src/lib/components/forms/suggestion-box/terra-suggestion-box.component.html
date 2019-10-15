@@ -6,13 +6,13 @@
                   'disabled': inputIsDisabled,
                   'open': _toggleOpen
                 }"
-     (click)="onClick($event)"
-     (keydown)="onKeyDown($event)">
+     (click)="_onClick($event)"
+     (keydown)="_onKeyDown($event)">
 
     <terra-text-input [inputIsDisabled]="inputIsDisabled"
                       [inputName]="inputName"
-                      (outputOnInput)="onChange()"
-                      (click)="onInputClick($event)"
+                      (outputOnInput)="_onChange()"
+                      (click)="_onInputClick($event)"
                       [(ngModel)]="_textInputValue">
     </terra-text-input>
 
@@ -29,7 +29,7 @@
 
         <span #renderedListBoxValues
               *ngFor="let item of _displayListBoxValues"
-              (click)="select(item)"
+              (click)="_select(item)"
               [ngClass]="{active: item.value === _selectedValue?.value, selected: item.value === _tmpSelectedValue?.value}">
             <span class="{{item.icon}}" *ngIf="item.icon"></span>
             <img *ngIf="item.imgsrc" src="{{item.imgsrc}}"/>
