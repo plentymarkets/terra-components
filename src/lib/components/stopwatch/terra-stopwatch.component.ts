@@ -40,7 +40,7 @@ export class TerraStopwatchComponent implements OnInit, OnDestroy
     @Input()
     public set seconds(value:number)
     {
-        this.secondsValue = value;
+        this._secondsValue = value;
         this.secondsChange.emit(this.seconds);
     }
 
@@ -49,7 +49,7 @@ export class TerraStopwatchComponent implements OnInit, OnDestroy
      */
     public get seconds():number
     {
-        return this.secondsValue || 0;
+        return this._secondsValue || 0;
     }
 
     /**
@@ -60,12 +60,12 @@ export class TerraStopwatchComponent implements OnInit, OnDestroy
     public secondsChange:EventEmitter<number> = new EventEmitter<number>();
 
     @Language()
-    protected lang:string;
+    protected _lang:string;
 
-    protected readonly langPrefix:string = 'terraStopwatch.';
+    protected readonly _langPrefix:string = 'terraStopwatch.';
 
-    private timer:number = null;
-    private secondsValue:number = 0;
+    private _timer:number = null;
+    private _secondsValue:number = 0;
 
     /**
      * @description initialisation routine. Starts the stopwatch if autoPlay is set.
@@ -88,7 +88,7 @@ export class TerraStopwatchComponent implements OnInit, OnDestroy
      */
     public get isRunning():boolean
     {
-        return !isNullOrUndefined(this.timer);
+        return !isNullOrUndefined(this._timer);
     }
 
     /**
@@ -96,7 +96,7 @@ export class TerraStopwatchComponent implements OnInit, OnDestroy
      */
     public start():void
     {
-        this.timer = window.setInterval(() => this.incrementSeconds(), 1000);
+        this._timer = window.setInterval(() => this.incrementSeconds(), 1000);
     }
 
     /**
@@ -104,8 +104,8 @@ export class TerraStopwatchComponent implements OnInit, OnDestroy
      */
     public stop():void
     {
-        window.clearInterval(this.timer);
-        this.timer = null;
+        window.clearInterval(this._timer);
+        this._timer = null;
     }
 
     /**

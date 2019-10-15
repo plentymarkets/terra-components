@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
 })
 export class TerraStopwatchComponentExample
 {
-    protected currentValue:number = 0;
+    protected _currentValue:number = 0;
 }
