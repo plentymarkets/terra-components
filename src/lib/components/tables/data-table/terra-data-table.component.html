@@ -15,10 +15,10 @@
         <thead>
         <tr>
             <th *ngIf="inputHasCheckboxes" width="{{_checkboxColumnWidth}}px">
-                <terra-checkbox (change)="onHeaderCheckboxChange()"
+                <terra-checkbox (change)="_onHeaderCheckboxChange()"
                                 (click)="$event.stopPropagation()"
-                                [value]="headerCheckbox.checked"
-                                [isIndeterminate]="headerCheckbox.isIndeterminate">
+                                [value]="_headerCheckbox.checked"
+                                [isIndeterminate]="_headerCheckbox.isIndeterminate">
                 </terra-checkbox>
             </th>
             <ng-template ngFor let-header [ngForOf]="inputHeaderList">
