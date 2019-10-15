@@ -3,7 +3,7 @@
      [placement]="tooltipPlacement">
     <label class="input-control checkbox small-check" [ngClass]="{'disabled-chk': inputIsDisabled}">
         <input type="checkbox"
-               [(ngModel)]="_innerValue"
+               [(ngModel)]="value"
                (ngModelChange)="onChange($event)"
                [disabled]="inputIsDisabled"
                [indeterminate]="_isIndeterminate"
