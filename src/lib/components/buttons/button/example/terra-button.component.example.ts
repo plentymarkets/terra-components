@@ -9,7 +9,7 @@ import { TerraPlacementEnum } from '../../../../helpers/enums/terra-placement.en
 })
 export class TerraButtonComponentExample
 {
-    protected tooltipPlacement:TerraPlacementEnum = TerraPlacementEnum.TOP;
+    public _tooltipPlacement:TerraPlacementEnum = TerraPlacementEnum.TOP;
 
     private sendMailPopup():void
     {

@@ -10,14 +10,14 @@ import {
  */
 export class TerraAlertComponent
 {
-    private static instance:TerraAlertComponent = null;
-    private static isCreating:boolean = false;
+    private static _instance:TerraAlertComponent = null;
+    private static _isCreating:boolean = false;
 
     public alerts:Array<TerraAlertInterface> = [];
 
     constructor()
     {
-        if(!TerraAlertComponent.isCreating)
+        if(!TerraAlertComponent._isCreating)
         {
             throw new Error('You can\'t call new in Singleton instances! Call TerraAlertComponent.getInstance() instead.');
         }
@@ -25,14 +25,14 @@ export class TerraAlertComponent
 
     public static getInstance():TerraAlertComponent
     {
-        if(isNull(TerraAlertComponent.instance))
+        if(isNull(TerraAlertComponent._instance))
         {
-            TerraAlertComponent.isCreating = true;
-            TerraAlertComponent.instance = new TerraAlertComponent();
-            TerraAlertComponent.isCreating = false;
+            TerraAlertComponent._isCreating = true;
+            TerraAlertComponent._instance = new TerraAlertComponent();
+            TerraAlertComponent._isCreating = false;
         }
 
-        return TerraAlertComponent.instance;
+        return TerraAlertComponent._instance;
     }
 
     public closeAlert(i:number):void

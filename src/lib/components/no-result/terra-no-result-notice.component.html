@@ -9,15 +9,15 @@
         <terra-button *ngFor='let button of inputButtons;'
                       [inputIcon]="button.icon"
                       [inputCaption]="button.caption"
-                      [inputTooltipText]="button.tooltipText"
+                      [_inputTooltipText]="button.tooltipText"
                       (outputClicked)="button.clickFunction()"
-                      [inputTooltipPlacement]="button.tooltipPlacement"
+                      [_inputTooltipPlacement]="button.tooltipPlacement"
                       [inputIsActive]="button.isActive"
                       [inputIsDisabled]="button.isDisabled"
                       [inputIsHidden]="button.isHidden"
                       [inputIsDivider]="button.isDivider"
                       [inputIsSmall]="false"
-                      [inputIsHighlighted]="true">
+                      [_inputIsHighlighted]="true">
         </terra-button>
     </div>
 </div>

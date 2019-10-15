@@ -13,12 +13,12 @@ import { TerraBreadcrumbContainer } from './terra-breadcrumb-container';
 })
 export class TerraBreadcrumbsComponent
 {
-    protected mouseLeft:string = '0px';
+    public _mouseLeft:string = '0px';
 
     constructor(public readonly breadcrumbsService:TerraBreadcrumbsService,
-                private activatedRoute:ActivatedRoute)
+                private _activatedRoute:ActivatedRoute)
     {
-        this.breadcrumbsService.activatedRoute = this.activatedRoute.snapshot;
+        this.breadcrumbsService.activatedRoute = this._activatedRoute.snapshot;
     }
 
     protected get breadcrumbContainers():Array<TerraBreadcrumbContainer>
@@ -63,7 +63,7 @@ export class TerraBreadcrumbsComponent
             left = containerClientRect.left;
         }
 
-        this.mouseLeft = left + 'px';
+        this._mouseLeft = left + 'px';
     }
 
     protected checkLastBreadcrumbContainer(index:number):boolean

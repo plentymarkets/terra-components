@@ -14,7 +14,7 @@
                     <a *ngIf="container.visibleBreadcrumbsCount > 1"
                        class="icon-caret"
                        (mouseenter)="calculatePosition(breadcrumbContainer, contextMenu)">
-                        <ul class="context-menu" [ngStyle]="{'left': mouseLeft}" #contextMenu>
+                        <ul class="context-menu" [ngStyle]="{'left': _mouseLeft}" #contextMenu>
                             <ng-template ngFor let-breadcrumb [ngForOf]="container.breadcrumbList">
                                 <li *ngIf="!breadcrumb.isHidden">
                                     <a [routerLink]="breadcrumb.routerLink"

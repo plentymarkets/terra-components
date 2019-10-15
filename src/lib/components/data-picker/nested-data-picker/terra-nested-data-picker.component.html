@@ -9,7 +9,7 @@
                           (click)="showTree()">
         </terra-text-input>
         <terra-button *ngIf="displayResetButton" class="col-md-1"
-                      inputTooltipText="{{'cancel' | translate:lang}}"
+                      _inputTooltipText="{{'cancel' | translate:lang}}"
                       inputTooltipPlacement="top"
                       inputIcon="icon-cancel"
                       (outputClicked)="reset()">
@@ -22,20 +22,20 @@
             </terra-node-tree>
         </div>
         <terra-base-toolbar>
-            <terra-button inputTooltipText="{{'terraNestedDataPicker.select' | translate:lang}}"
+            <terra-button _inputTooltipText="{{'terraNestedDataPicker.select' | translate:lang}}"
                           inputTooltipPlacement="top"
                           inputIcon="icon-success"
                           [inputIsSmall]="true"
                           [inputIsDisabled]="isContainerDataSelected"
                           (outputClicked)="onSelectNode()">
             </terra-button>
-            <terra-button inputTooltipText="{{'cancel' | translate:lang}}"
+            <terra-button _inputTooltipText="{{'cancel' | translate:lang}}"
                           inputTooltipPlacement="top"
                           inputIcon="icon-cancel"
                           [inputIsSmall]="true"
                           (outputClicked)="showTree()">
             </terra-button>
-            <terra-button inputTooltipText="{{'terraNestedDataPicker.reset' | translate:lang}}"
+            <terra-button _inputTooltipText="{{'terraNestedDataPicker.reset' | translate:lang}}"
                           inputTooltipPlacement="top"
                           inputIcon="icon-reset"
                           [inputIsSmall]="true"

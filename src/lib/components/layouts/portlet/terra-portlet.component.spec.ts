@@ -298,13 +298,13 @@ describe('TerraPortletComponent', () =>
     {
         expect(button.inputCaption).toBe(buttonInterface.caption);
         expect(button.inputIcon).toBe(buttonInterface.icon);
-        expect(button.inputTooltipText).toBe(buttonInterface.tooltipText);
-        expect(button.inputTooltipPlacement).toBe(buttonInterface.tooltipPlacement);
+        expect(button._inputTooltipText).toBe(buttonInterface.tooltipText);
+        expect(button._inputTooltipPlacement).toBe(buttonInterface.tooltipPlacement);
         expect(button.inputIsActive).toBe(buttonInterface.isActive);
         expect(button.inputIsDisabled).toBe(buttonInterface.isDisabled);
         expect(button.inputIsHidden).toBe(buttonInterface.isHidden);
         expect(button.inputIsDivider).toBe(buttonInterface.isDivider);
-        expect(button.inputIsHighlighted).toBe(buttonInterface.isHighlighted);
+        expect(button._inputIsHighlighted).toBe(buttonInterface.isHighlighted);
         expect(button.inputIsSmall).toBe(true);
     }
 

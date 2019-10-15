@@ -4,12 +4,12 @@
     <terra-base-toolbar [ngClass]="{'toolbarHidden': inputHasNoSaveButton && inputHasNoResetButton && !inputHasToggleButton}">
         <div class="btn-group" role="group">
             <terra-button [inputIcon]="'icon-save'"
-                          [inputTooltipText]="'save' | translate:lang"
+                          [_inputTooltipText]="'save' | translate:lang"
                           [inputType]="'submit'"
                           [inputIsHidden]="inputHasNoSaveButton">
             </terra-button>
             <terra-button [inputIcon]="'icon-reset'"
-                          [inputTooltipText]="'reset' | translate:lang"
+                          [_inputTooltipText]="'reset' | translate:lang"
                           (outputClicked)="onResetClick()"
                           [inputIsHidden]="inputHasNoResetButton">
             </terra-button>
