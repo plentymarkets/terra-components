@@ -17,11 +17,11 @@ import {
 } from 'angular-l10n';
 import { Injectable } from '@angular/core';
 import { DispatchHelper } from '../helpers/dispatch.helper';
-import { environment } from '../../environments/environment';
+import { environment } from '../environments/environment';
 
 /**
- * @description HttpInterceptor that handles some specific errors that may occur when requesting data from a plentymarkets system. It also logs
- *     errors to the console when serving in development mode.
+ * @description HttpInterceptor that handles some specific errors that may occur when requesting data from a plentymarkets system. It also
+ *     logs errors to the console when serving in development mode.
  */
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor

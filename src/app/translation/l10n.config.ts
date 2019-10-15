@@ -5,7 +5,7 @@ import {
     StorageStrategy
 } from 'angular-l10n';
 import { DefaultLocale } from 'angular-l10n/src/models/types';
-import { environment } from '../../environments/environment';
+import { environment } from 'src/lib/environments/environment';
 
 export const l10nConfig:L10nConfig = getL10nConfig();
 

@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 import { TerraAlertInterface } from './data/terra-alert.interface';
 import { AlertType } from './alert-type.enum';
-import { environment } from 'src/environments/environment';
+import { environment } from 'src/lib/environments/environment';
 
 @Injectable({
     providedIn: 'root'
