@@ -1,0 +1,60 @@
+.va-mat-button-no-input {
+    border: none;
+    background: transparent;
+    outline: none;
+}
+
+.va-mat-table-dragable-container {
+    min-width: 200px;
+}
+.va-mat-table-dragable-container .dragable-row {
+    width: 100%;
+    line-height: 14px;
+    font-size: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: move;
+}
+.va-mat-table-dragable-container .dragable-row mat-icon,
+.va-mat-table-dragable-container .dragable-row terra-checkbox {
+    vertical-align: top;
+}
+.va-mat-table-dragable-container .dragable-row mat-icon {
+    opacity: 0.15;
+    transition: opacity 0.5s;
+    margin-right: 8px;
+    padding-left: 4px;
+    color: #616161;
+    cursor: grab;
+}
+.va-mat-table-dragable-container .dragable-row:hover mat-icon {
+    opacity: 1;
+}
+
+.va-mat-table-drag-preview {
+    padding: 4px 8px 4px 4px !important;
+    cursor: grabbing !important;
+    margin-top: -4px;
+    margin-left: -4px;
+    font-size: 14px;
+}
+.va-mat-table-drag-preview mat-icon,
+.va-mat-table-drag-preview terra-checkbox {
+    vertical-align: top;
+}
+.va-mat-table-drag-preview mat-icon {
+    margin-right: 8px;
+    padding-left: 4px;
+    color: #616161;
+}
+
+/* Animate items as they're being sorted. */
+.cdk-drop-list-dragging .cdk-drag {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+/* Animate an item that has been dropped. */
+.cdk-drag-animating {
+    transition: transform 300ms cubic-bezier(0, 0, 0.2, 1);
+}

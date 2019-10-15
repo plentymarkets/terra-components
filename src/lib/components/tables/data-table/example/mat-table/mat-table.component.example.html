@@ -1,3 +1,4 @@
+<tc-column-config [columns]="columns" [(displayedColumns)]="displayedColumns"></tc-column-config>
 <div class="table-container mat-elevation-z8">
     <context-menu [links]="contextMenu"></context-menu>
     <mat-table [dataSource]="dataSource" matSort cdkDropListGroup>
@@ -29,6 +30,8 @@
                              cdkDrag
                              (cdkDragStarted)="dragStarted('id')"> ID
             </mat-header-cell>
+
+            <div *cdkDragPreview cdkDragHandle>hallo</div>
             <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
         </ng-container>
 

@@ -1,0 +1,22 @@
+<terra-button [matMenuTriggerFor]="columnMenu" [inputCaption]="'Ansicht einrichten'">
+</terra-button>
+
+<mat-menu #columnMenu="matMenu">
+    <div class="va-mat-table-dragable-container" cdkDropList cdkDropListLockAxis="y" cdkDropListOrientation="vertical">
+        <ng-container *ngFor="let column of columns; let i = index">
+            <div [hidden]="column.hideInColumnConfig"
+                 class="dragable-row"
+                 cdkDrag
+                 [cdkDragData]="{columnIndex: i, columnTitle: column.key}"
+                 (cdkDragDropped)="columnMenuDropped($event)"
+                 cdkDragHandle>
+                <terra-checkbox
+                    [value]="!column.hidden"
+                    (click)="$event.stopPropagation();"
+                    (valueChange)="toggleSelectedColumn(column.key)"
+                    [inputCaption]="column.caption">
+                </terra-checkbox>
+            </div>
+        </ng-container>
+    </div>
+</mat-menu>

@@ -21,6 +21,12 @@ import { TerraInteractModule } from './components/interactables/interact.module'
 import { QuillModule } from 'ngx-quill';
 import { CKEditorModule } from 'ckeditor4-angular';
 import { HttpModule } from '@angular/http';
+import {
+    MatCardModule,
+    MatMenuModule,
+    MatSortModule
+} from '@angular/material';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
     imports: [
@@ -36,7 +42,10 @@ import { HttpModule } from '@angular/http';
         AceEditorModule,
         QuillModule,
         CKEditorModule,
-        TerraInteractModule
+        TerraInteractModule,
+        MatMenuModule,
+        MatSortModule,
+        DragDropModule
     ],
     declarations:    [
         ...components,

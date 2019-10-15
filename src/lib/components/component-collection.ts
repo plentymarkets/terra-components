@@ -67,6 +67,7 @@ import { TableRowComponent } from './tables/data-table/table-row/table-row.compo
 import { FilterComponent } from './filter/filter.component';
 import { CheckboxGroupComponent } from './forms/checkbox-group/checkbox-group.component';
 import { TerraFormContainerWrapperComponent } from './forms/form/form-container/container-wrapper/terra-form-container-wrapper.component';
+import { ColumnConfigComponent } from './tables/config/column-config.component';
 
 export const exportedComponents:Array<Type<any>> = [
     TerraAlertPanelComponent,
@@ -134,7 +135,8 @@ export const exportedComponents:Array<Type<any>> = [
     RadioGroupComponent,
     TableRowComponent,
     FilterComponent,
-    TerraInfoComponent
+    TerraInfoComponent,
+    ColumnConfigComponent
 ];
 
 export const components:Array<Type<any>> = [

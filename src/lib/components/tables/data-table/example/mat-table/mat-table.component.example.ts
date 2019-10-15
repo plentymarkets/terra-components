@@ -13,10 +13,8 @@ import {
 } from '@angular/material';
 import { TerraDataTableContextMenuService } from '../../context-menu/terra-data-table-context-menu.service';
 import { TerraDataTableContextMenuEntryInterface } from '../../context-menu/data/terra-data-table-context-menu-entry.interface';
-import {
-    CdkDropList,
-    moveItemInArray
-} from '@angular/cdk/drag-drop';
+import { moveItemInArray } from '@angular/cdk/drag-drop';
+import { ColumnConfigInterface } from '../../../config/data/column-config.interface';
 
 @Component({
     selector:  'tc-mat-table-example',
@@ -25,11 +23,12 @@ import {
     providers: [TerraDataTableServiceExample,
                 TerraDataTableContextMenuService]
 })
-// TODO remove every example before release
+// TODO remove every example before release?
 export class MatTableComponentExample implements OnInit
 {
     protected data:Array<TerraDataTableExampleInterface> = [];
     protected dataSource:MatTableDataSource<TerraDataTableExampleInterface>;
+    protected columns:Array<ColumnConfigInterface>;
     protected displayedColumns:Array<string>;
     protected selection:SelectionModel<TerraDataTableExampleInterface> =
         new SelectionModel<TerraDataTableExampleInterface>(true, []);
@@ -43,6 +42,7 @@ export class MatTableComponentExample implements OnInit
     constructor()
     {
         this.contextMenu = this.createContextMenu();
+        this.columns = this.createColumns();
         this.displayedColumns = this.createHeaderList();
         this.addEntries();
         this.dataSource = new MatTableDataSource<TerraDataTableExampleInterface>(this.data);
@@ -90,16 +90,43 @@ export class MatTableComponentExample implements OnInit
         moveItemInArray(this.displayedColumns, this.previousIndex, this.displayedColumns.indexOf(key));
     }
 
-    private createHeaderList():Array<string>
+    private createColumns():Array<ColumnConfigInterface>
     {
         return [
-            'select',
-            'id',
-            'value',
-            'email',
-            'link',
-            'actions'
+            {
+                key:                'select',
+                hideInColumnConfig: true
+            },
+            {
+                key:     'id',
+                caption: 'ID',
+                draggable: true
+            },
+            {
+                key:     'value',
+                caption: 'Value',
+                draggable: true
+            },
+            {
+                key:     'email',
+                caption: 'Email',
+                draggable: true
+            },
+            {
+                key:     'link',
+                caption: 'Link',
+                draggable: true
+            },
+            {
+                key:     'actions',
+                caption: 'Aktionen'
+            }
         ];
+    }
+
+    private createHeaderList():Array<string>
+    {
+        return this.columns.filter((column:ColumnConfigInterface) => !column.hidden).map((column:ColumnConfigInterface) => column.key);
     }
 
     private addEntries():void
@@ -108,10 +135,10 @@ export class MatTableComponentExample implements OnInit
         {
             this.data.push(
                 {
-                    id:    i,
-                    value: Math.random(),
-                    mail:  `email${i}@random.de`,
-                    link: 'https://www.google.de',
+                    id:       i,
+                    value:    Math.random(),
+                    mail:     `email${i}@random.de`,
+                    link:     'https://www.google.de',
                     disabled: i === 3
                 }
             );
