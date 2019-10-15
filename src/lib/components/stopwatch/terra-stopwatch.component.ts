@@ -60,9 +60,9 @@ export class TerraStopwatchComponent implements OnInit, OnDestroy
     public secondsChange:EventEmitter<number> = new EventEmitter<number>();
 
     @Language()
-    protected _lang:string;
+    public _lang:string;
 
-    protected readonly _langPrefix:string = 'terraStopwatch.';
+    public readonly _langPrefix:string = 'terraStopwatch.';
 
     private _timer:number = null;
     private _secondsValue:number = 0;
@@ -120,7 +120,7 @@ export class TerraStopwatchComponent implements OnInit, OnDestroy
     /**
      * @description returns the current stopwatch value in a time string format
      */
-    protected get timeString():string
+    public get _timeString():string
     {
         return this.format(this.seconds);
     }
