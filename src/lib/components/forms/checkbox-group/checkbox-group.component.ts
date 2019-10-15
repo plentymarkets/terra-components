@@ -49,36 +49,36 @@ export class CheckboxGroupComponent implements ControlValueAccessor
     @Input()
     public collapsed:boolean = false;
 
-    protected values:Array<any>;
+    public _values:Array<any>;
 
-    protected multiCheckboxValues:Array<TerraMultiCheckBoxValueInterface> = [];
+    public _multiCheckboxValues:Array<TerraMultiCheckBoxValueInterface> = [];
 
-    private onTouchedCallback:() => void = noop;
+    private _onTouchedCallback:() => void = noop;
 
-    private onChangeCallback:(_:Array<any>) => void = noop;
+    private _onChangeCallback:(_:Array<any>) => void = noop;
 
     public registerOnChange(fn:any):void
     {
-        this.onChangeCallback = fn;
+        this._onChangeCallback = fn;
     }
 
     public registerOnTouched(fn:any):void
     {
-        this.onTouchedCallback = fn;
+        this._onTouchedCallback = fn;
     }
 
     public writeValue(values:Array<any>):void
     {
-        this.values = values;
+        this._values = values;
         this.updateMultiCheckboxValues();
     }
 
     protected onMultiCheckboxChanged(checkboxValues:Array<TerraMultiCheckBoxValueInterface>):void
     {
         // if the value is null or undefined, initialize the array to be able to add selected values
-        if(isNullOrUndefined(this.values))
+        if(isNullOrUndefined(this._values))
         {
-            this.values = [];
+            this._values = [];
         }
 
         // go through the changed checkboxes
@@ -86,36 +86,36 @@ export class CheckboxGroupComponent implements ControlValueAccessor
         {
             if(changedValue.selected)
             {
-                this.values.push(changedValue.value);
+                this._values.push(changedValue.value);
             }
             else
             {
-                let idx:number = this.values.indexOf(changedValue.value);
+                let idx:number = this._values.indexOf(changedValue.value);
                 if(idx >= 0)
                 {
-                    this.values.splice(idx, 1);
+                    this._values.splice(idx, 1);
                 }
             }
         });
 
         // if nothing is selected, the value should be null
-        if(this.values.length === 0)
+        if(this._values.length === 0)
         {
-            this.values = null;
+            this._values = null;
         }
 
-        this.onChangeCallback(this.values);
+        this._onChangeCallback(this._values);
         this.updateMultiCheckboxValues();
     }
 
     private updateMultiCheckboxValues():void
     {
-        this.multiCheckboxValues = this.checkboxValues.map((checkbox:{ caption:string, value:any }) =>
+        this._multiCheckboxValues = this.checkboxValues.map((checkbox:{ caption:string, value:any }) =>
         {
             return {
                 caption:  checkbox.caption,
                 value:    checkbox.value,
-                selected: (this.values || []).indexOf(checkbox.value) >= 0
+                selected: (this._values || []).indexOf(checkbox.value) >= 0
             };
         });
     }
