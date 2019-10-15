@@ -10,7 +10,7 @@ export function uniqueValuesValidator(uniqueKeys?:Array<string>):ValidatorFn
     return (control:AbstractControl):ValidationErrors | null =>
     {
         let seen:Set<unknown> = new Set();
-        const hasDuplicates:boolean = (control.value as Array<unknown>).some((currentObject:unknown) =>
+        const hasDuplicates:boolean = (control.value as Array<unknown>).some((value:unknown) =>
         {
             if(!isNullOrUndefined(currentObject) && typeof currentObject ===  'object')
             {
