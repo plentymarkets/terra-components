@@ -68,8 +68,8 @@ export class TerraButtonWithOptionsComponent implements OnInit
     @Input()
     public inputOptionsAlignment:TerraTextAlignEnum;
 
-    protected optionsToggle:boolean;
-    protected alignRight:boolean;
+    public _optionsToggle:boolean;
+    public _alignRight:boolean;
 
     // view children
     @ViewChild(TerraButtonComponent)
@@ -85,12 +85,12 @@ export class TerraButtonWithOptionsComponent implements OnInit
             // check if it has been clicked elsewhere
             if(!this.elementRef.nativeElement.contains(event.target))
             {
-                this.optionsToggle = false;
+                this._optionsToggle = false;
             }
         };
 
         this.inputOptionsAlignment = TerraTextAlignEnum.RIGHT;
-        this.alignRight = true;
+        this._alignRight = true;
     }
 
     public ngOnInit():void
@@ -105,17 +105,17 @@ export class TerraButtonWithOptionsComponent implements OnInit
         {
             case TerraTextAlignEnum.LEFT:
             {
-                this.alignRight = false;
+                this._alignRight = false;
                 break;
             }
             case TerraTextAlignEnum.RIGHT:
             {
-                this.alignRight = true;
+                this._alignRight = true;
                 break;
             }
             case TerraTextAlignEnum.CENTER:
             {
-                this.alignRight = false;
+                this._alignRight = false;
                 break;
             }
         }
@@ -140,7 +140,7 @@ export class TerraButtonWithOptionsComponent implements OnInit
             event.stopPropagation();
         }
 
-        if(!this.optionsToggle)
+        if(!this._optionsToggle)
         {
             document.addEventListener('click', this.clickListener);
         }
@@ -149,6 +149,6 @@ export class TerraButtonWithOptionsComponent implements OnInit
             document.removeEventListener('click', this.clickListener);
         }
 
-        this.optionsToggle = !this.optionsToggle;
+        this._optionsToggle = !this._optionsToggle;
     }
 }

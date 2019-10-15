@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class TerraToggleComponentExample
 {
-    protected isToggled:boolean = false;
+    public _isToggled:boolean = false;
 
     protected showMessage(msg:string):void
     {

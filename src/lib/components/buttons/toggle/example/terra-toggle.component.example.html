@@ -59,8 +59,8 @@
     <p>Toggle ngModel</p>
     <terra-toggle [inputIcon]="'icon-confirm'"
                   [inputTooltipText]="'toggled with ngModel'"
-                  [(ngModel)]="isToggled"
+                  [(ngModel)]="_isToggled"
                   [inputTooltipPlacement]="'right'">
     </terra-toggle>
-    <span *ngIf="isToggled">Toggled!</span>
+    <span *ngIf="_isToggled">Toggled!</span>
 </div>
