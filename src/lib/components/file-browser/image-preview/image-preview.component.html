@@ -3,7 +3,7 @@
         <div class="btn-group" role="group">
             <terra-button inputIcon="icon-save"
                           [inputTooltipText]="_translationPrefix + '.saveMetadata' | translate:_lang"
-                          (outputClicked)="updateMetadata()">
+                          (outputClicked)="_updateMetadata()">
             </terra-button>
         </div>
     </terra-base-toolbar>

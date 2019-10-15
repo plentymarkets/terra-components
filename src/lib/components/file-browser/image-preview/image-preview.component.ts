@@ -16,9 +16,9 @@ import {
 } from 'angular-l10n';
 
 @Component({
-    selector: 'terra-image-preview',
+    selector:    'terra-image-preview',
     templateUrl: './image-preview.component.html',
-    styleUrls: [ './image-preview.component.scss']
+    styleUrls:   ['./image-preview.component.scss']
 })
 export class TerraImagePreviewComponent implements OnInit, OnDestroy
 {
@@ -29,11 +29,8 @@ export class TerraImagePreviewComponent implements OnInit, OnDestroy
     public _lang:string;
 
     public _translationPrefix:string = 'terraFileBrowser';
-
     public _metadata:TerraImageMetadata = {};
-
     public _isLoading:boolean = true;
-
     private _inputStorageObject:TerraStorageObject;
 
     @Input()
@@ -62,7 +59,7 @@ export class TerraImagePreviewComponent implements OnInit, OnDestroy
         return this._inputStorageObject;
     }
 
-    protected get _canHandleMetadata():boolean
+    public get _canHandleMetadata():boolean
     {
         return this.inputStorageService instanceof TerraBaseMetadataStorageService;
     }
@@ -82,7 +79,7 @@ export class TerraImagePreviewComponent implements OnInit, OnDestroy
         // implementation is required by angular-l10n. See https://robisim74.github.io/angular-l10n/spec/getting-the-translation/#messages
     }
 
-    protected updateMetadata():void
+    public _updateMetadata():void
     {
         if(this.inputStorageService instanceof TerraBaseMetadataStorageService)
         {
