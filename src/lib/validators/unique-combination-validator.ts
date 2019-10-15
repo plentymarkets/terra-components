@@ -1,12 +1,13 @@
 import {
     AbstractControl,
+    ValidationErrors,
     ValidatorFn
 } from '@angular/forms';
 import { isNullOrUndefined } from 'util';
 
 export function uniqueCombinationValidator(uniqueKeys?:Array<string>):ValidatorFn
 {
-    return (control:AbstractControl):{ [key:string]:any } | null =>
+    return (control:AbstractControl):ValidationErrors | null =>
     {
         let seen:Set<unknown> = new Set();
         const hasDuplicates:boolean = (control.value as Array<unknown>).some((currentObject:unknown) =>
