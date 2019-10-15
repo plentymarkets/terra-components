@@ -45,17 +45,17 @@ export class TerraFilterComponent
     @Output()
     public outputOnEnterSubmit:EventEmitter<any> = new EventEmitter<any>();
 
-    protected searchBtnClicked():void
+    public _searchBtnClicked():void
     {
         this.outputOnSearchBtnClicked.emit(null);
     }
 
-    protected resetBtnClicked():void
+    public _resetBtnClicked():void
     {
         this.outputOnResetBtnClicked.emit(null);
     }
 
-    protected onSubmit():void
+    public _onSubmit():void
     {
         this.outputOnEnterSubmit.emit(null);
     }

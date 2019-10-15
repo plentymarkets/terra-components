@@ -30,7 +30,7 @@ export class FilterComponent implements OnInit, OnDestroy
     public reset:EventEmitter<void> = new EventEmitter<void>();
 
     @Language()
-    protected lang:string;
+    public _lang:string;
 
     public ngOnInit():void
     {
