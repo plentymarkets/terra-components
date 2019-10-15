@@ -4,13 +4,12 @@
 {
     --table-head-background-color: var(--color-structure-0);
     --table-head-color: var(--color-structure-8);
+    --no-result-margin: 0; //in case of a no-result page placed in a table to avoid doubled margins
     
     height: 100%;
     overflow: auto;
-
     margin: var(--space-container);
     width: auto;
-    --no-result-margin: 0; //in case of a no-result page placed in a table to avoid doubled margins
 
     .mat-table
     {
@@ -30,18 +29,19 @@
                 font-size: var(--font-size-3);
                 @include font-rendering;
 
-                &.cdk-drop-list-receiving, //all elements what can receive a drag
+                &.cdk-drop-list-receiving, //all elements that can receive a drag
                 &.cdk-drop-list-dragging //element where you drag over
                 {
-                    border-bottom: 1px dashed;
+                    background-color: var(--color-structure-2);
+                    transition: transform 0.2s ease;
 
                     &:not(:last-child)
                     {
-                        border-right: 1px dashed;
+                    
                     }
-                    &:not(:first-child)
+                    &:first-child
                     {
-                        border-left: 1px dashed;
+
                     }
                 }
 
@@ -130,5 +130,7 @@
 
 .cdk-drag-preview
 {
-    background-color: var(--color-structure-4);
+    background-color: var(--color-structure-0);
+    padding: var(--table-head-th-padding, var(--space-md));
+    box-shadow: var(--box-shadow-2);
 }
