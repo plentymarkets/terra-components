@@ -126,7 +126,7 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges, OnDestroy
         // implementation is required by angular-l10n. See https://robisim74.github.io/angular-l10n/spec/getting-the-translation/#messages
     }
 
-    protected validate():void
+    public _validate():void
     {
         if(this._formFieldControlService.dynamicFormGroup.valid)
         {
@@ -139,12 +139,12 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges, OnDestroy
         }
     }
 
-    protected onResetClick():void
+    public _onResetClick():void
     {
         this._formFieldControlService.resetForm();
     }
 
-    protected onToggleClick():void
+    public _onToggleClick():void
     {
         this.inputShowDeprecatedEntries = !this.inputShowDeprecatedEntries;
         this.inputShowDeprecatedEntriesChange.emit(this.inputShowDeprecatedEntries);

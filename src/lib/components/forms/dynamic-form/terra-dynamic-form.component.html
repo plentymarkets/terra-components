@@ -1,5 +1,5 @@
 <form [formGroup]="_formFieldControlService.dynamicFormGroup"
-      (ngSubmit)="validate()"
+      (ngSubmit)="_validate()"
       role="form">
     <terra-base-toolbar [ngClass]="{'toolbarHidden': inputHasNoSaveButton && inputHasNoResetButton && !inputHasToggleButton}">
         <div class="btn-group" role="group">
@@ -10,12 +10,12 @@
             </terra-button>
             <terra-button [inputIcon]="'icon-reset'"
                           [inputTooltipText]="'reset' | translate:_lang"
-                          (outputClicked)="onResetClick()"
+                          (outputClicked)="_onResetClick()"
                           [inputIsHidden]="inputHasNoResetButton">
             </terra-button>
         </div>
         <terra-toggle [inputTooltipText]="'terraDynamicForm.deprecated' | translate:_lang"
-                      (toggled)="onToggleClick()"
+                      (toggled)="_onToggleClick()"
                       [(ngModel)]="inputShowDeprecatedEntries"
                       [ngModelOptions]="{standalone: true}"
                       [inputIsHidden]="!inputHasToggleButton">
