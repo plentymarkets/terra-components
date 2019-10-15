@@ -121,7 +121,7 @@ export class TerraButtonWithOptionsComponent implements OnInit
         }
     }
 
-    private optionsClick(option:TerraButtonInterface):void
+    public _optionsClick(option:TerraButtonInterface):void
     {
         if(!option.isDisabled)
         {
@@ -129,11 +129,11 @@ export class TerraButtonWithOptionsComponent implements OnInit
             option.clickFunction();
 
             // close dropdown
-            this.toggleOptions();
+            this._toggleOptions();
         }
     }
 
-    private toggleOptions(event?:Event):void
+    public _toggleOptions(event?:Event):void
     {
         if(!isNullOrUndefined(event))
         {
