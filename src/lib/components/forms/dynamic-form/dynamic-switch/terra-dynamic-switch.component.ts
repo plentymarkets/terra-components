@@ -13,9 +13,9 @@ import { Language } from 'angular-l10n';
  * @author mfrank
  */
 @Component({
-    selector: 'terra-dynamic-switch',
+    selector:    'terra-dynamic-switch',
     templateUrl: './terra-dynamic-switch.component.html',
-    styleUrls: [ './terra-dynamic-switch.component.scss']
+    styleUrls:   ['./terra-dynamic-switch.component.scss']
 })
 export class TerraDynamicSwitchComponent implements OnInit, OnDestroy
 {
@@ -44,10 +44,10 @@ export class TerraDynamicSwitchComponent implements OnInit, OnDestroy
     public _lang:string;
 
     // Necessary for using enum in html
-    protected controlTypeEnum:any = TerraControlTypeEnum;
+    public _controlTypeEnum:any = TerraControlTypeEnum;
 
     @Input()
-    private inputShowDeprecatedConfig:boolean;
+    public inputShowDeprecatedConfig:boolean;
 
     constructor()
     {
