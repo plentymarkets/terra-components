@@ -42,7 +42,7 @@ export class TerraCheckboxTreeComponent extends TerraBaseTreeComponent implement
     @Output()
     public valueChange:EventEmitter<TerraCheckboxLeafInterface> = new EventEmitter<TerraCheckboxLeafInterface>();
 
-    public selectedLeafList:Array<TerraCheckboxLeafInterface> = [];
+    public _selectedLeafList:Array<TerraCheckboxLeafInterface> = [];
 
     public ngOnInit():void
     {
@@ -93,13 +93,13 @@ export class TerraCheckboxTreeComponent extends TerraBaseTreeComponent implement
     {
         if(leaf.checkboxChecked)
         {
-            this.selectedLeafList.push(leaf);
+            this._selectedLeafList.push(leaf);
         }
         else
         {
-            let leafIndex:number = this.selectedLeafList.indexOf(leaf);
+            let leafIndex:number = this._selectedLeafList.indexOf(leaf);
 
-            this.selectedLeafList.splice(leafIndex, 1);
+            this._selectedLeafList.splice(leafIndex, 1);
         }
 
         if(leaf.subLeafList)
