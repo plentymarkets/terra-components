@@ -26,7 +26,7 @@ export class TerraFormHelper
      * @description Generates a list of validators based on the given formField's options that may be attached to a FormControl instance.
      * @param formField
      */
-    public static generateValidators(formField:TerraFormFieldInterface, isList:boolean = false):Array<ValidatorFn>
+    public static generateValidators(formField:TerraFormFieldInterface):Array<ValidatorFn>
     {
         let validators:Array<ValidatorFn> = [];
 
@@ -84,7 +84,18 @@ export class TerraFormHelper
             validators.push(TerraValidators.iban);
         }
 
-        if(formField.options.uniqueValues && isList)
+        return validators;
+    }
+
+    /**
+     * @description Generates a list of validators based on the given formField's options that may be attached to a FormArray instance.
+     * @param formField
+     */
+    public static generateFormArrayValidators(formField:TerraFormFieldInterface):Array<ValidatorFn>
+    {
+        let validators:Array<ValidatorFn> = [];
+
+        if(formField.options.uniqueValues)
         {
             validators.push(TerraValidators.uniqueValues(formField.options.uniqueValues));
         }
@@ -124,7 +135,7 @@ export class TerraFormHelper
                 {
                     this.fitControlsToRange(formField, formControls);
                 }
-                controls[formFieldKey] = new FormArray(formControls, this.generateValidators(formField, true));
+                controls[formFieldKey] = new FormArray(formControls, this.generateFormArrayValidators(formField));
             }
             else if(!isNullOrUndefined(formField.children))
             {
