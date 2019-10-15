@@ -2,7 +2,7 @@
 # 4.6.0 (unreleased)
 
 ### Features
-* **unique-combination-validator** New validator which can check if the values of a FormArray are unique 
+* **validators** New `uniqueValues` validator which checks if the values of a FormArray are unique 
 
 <a name="4.5.0"></a>
 # 4.5.0 (09.10.2019)
