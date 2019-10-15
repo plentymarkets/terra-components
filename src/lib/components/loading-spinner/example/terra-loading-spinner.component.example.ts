@@ -11,6 +11,6 @@ import { TerraLoadingSpinnerService } from '../service/terra-loading-spinner.ser
 })
 export class TerraLoadingSpinnerComponentExample
 {
-    constructor(protected service:TerraLoadingSpinnerService)
+    constructor(public _service:TerraLoadingSpinnerService)
     {}
 }
