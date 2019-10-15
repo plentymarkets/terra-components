@@ -44,18 +44,18 @@ export class TerraNodeTreeComponent<D> implements OnDestroy, OnInit
     public isTreeDisabled:boolean;
 
     @Language()
-    protected lang:string;
+    public _lang:string;
 
-    protected formControl:FormControl = new FormControl();
+    public _formControl:FormControl = new FormControl();
 
-    constructor(private translation:TranslationService)
+    constructor(private _translation:TranslationService)
     {
     }
 
     public ngOnInit():void
     {
         this.inputConfig.checkVisibilityAndAssignDefault(this.inputConfig.list);
-        this.formControl.valueChanges.pipe(
+        this._formControl.valueChanges.pipe(
             debounceTime(400),
             distinctUntilChanged()
         ).subscribe((searchValue:string) =>
@@ -153,7 +153,7 @@ export class TerraNodeTreeComponent<D> implements OnDestroy, OnInit
         // search node names if no tags found
         if(!hasValidCaptionOrTag)
         {
-            let name:string = this.translation.translate(node.name);
+            let name:string = this._translation.translate(node.name);
 
             let suggestion:string = name.toUpperCase();
 
