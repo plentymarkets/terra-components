@@ -1,13 +1,13 @@
 <terra-base-toolbar>
     <div class="btn-group" role="group">
         <terra-button inputIcon="icon-upload"
-                      [_inputTooltipText]="translationPrefix + '.uploadFile' | translate:lang"
+                      [inputTooltipText]="translationPrefix + '.uploadFile' | translate:lang"
                       inputTooltipPlacement="right"
                       (outputClicked)="fileChooser.click()">
         </terra-button>
         <terra-button inputIcon="icon-folder_add"
                       *ngIf="parentFileBrowser.inputAllowFolders"
-                      [_inputTooltipText]="translationPrefix + '.createFolder' | translate:lang"
+                      [inputTooltipText]="translationPrefix + '.createFolder' | translate:lang"
                       inputTooltipPlacement="right"
                       (outputClicked)="showNewDirectoryPrompt = true">
         </terra-button>
@@ -16,7 +16,7 @@
     <div class="btn-group" role="group">
         <terra-button inputIcon="icon-delete"
                       [inputIsDisabled]="selectedStorageObjects.length <= 0"
-                      [_inputTooltipText]="translationPrefix + '.deleteSelectedFiles' | translate:lang"
+                      [inputTooltipText]="translationPrefix + '.deleteSelectedFiles' | translate:lang"
                       inputTooltipPlacement="right"
                       (outputClicked)="objectsToDelete = selectedStorageObjects">
         </terra-button>

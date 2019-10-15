@@ -12,7 +12,7 @@
                 <h4 class="modal-title">{{inputOverlayTitle}}</h4>
                 
                 <terra-button *ngIf="inputIsCloseable"
-                              [_inputIsAlignRight]="true"
+                              [inputIsAlignRight]="true"
                               inputIcon="icon-close"
                               [inputIsLink]="true"
                               (outputClicked)="hideOverlay()">
@@ -24,20 +24,20 @@
             <div class="modal-footer" *ngIf="inputPrimaryButtonInterface || inputSecondaryButtonInterface">
                 
                 <terra-button *ngIf="inputSecondaryButtonInterface"
-                              [_inputIsAlignRight]="false"
+                              [inputIsAlignRight]="false"
                               [inputCaption]="inputSecondaryButtonInterface.caption"
-                              [_inputTooltipText]="inputSecondaryButtonInterface.tooltipText"
-                              [_inputTooltipPlacement]="tooltipPlacement"
+                              [inputTooltipText]="inputSecondaryButtonInterface.tooltipText"
+                              [inputTooltipPlacement]="tooltipPlacement"
                               [inputIsDisabled]="inputSecondaryButtonInterface.isDisabled"
                               [inputIsLink]="true"
                               (outputClicked)="inputSecondaryButtonInterface.clickFunction()">
                 </terra-button>
                 
                 <terra-button *ngIf="inputPrimaryButtonInterface"
-                              [_inputIsAlignRight]="false"
+                              [inputIsAlignRight]="false"
                               [inputCaption]="inputPrimaryButtonInterface.caption"
-                              [_inputTooltipText]="inputPrimaryButtonInterface.tooltipText"
-                              [_inputTooltipPlacement]="tooltipPlacement"
+                              [inputTooltipText]="inputPrimaryButtonInterface.tooltipText"
+                              [inputTooltipPlacement]="tooltipPlacement"
                               [inputIsDisabled]="inputPrimaryButtonInterface.isDisabled"
                               (outputClicked)="inputPrimaryButtonInterface.clickFunction()">
                 </terra-button>

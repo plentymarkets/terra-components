@@ -41,8 +41,8 @@
         </div>
         <terra-file-chooser class="input-group-btn"
                             [inputIcon]="'icon-more'"
-                            [_inputTooltipText]=" translationPrefix + '.chooseFile' | translate:lang"
-                            [_inputTooltipPlacement]="'left'"
+                            [inputTooltipText]=" translationPrefix + '.chooseFile' | translate:lang"
+                            [inputTooltipPlacement]="'left'"
                             [inputAllowedExtensions]="inputAllowedExtensions"
                             [inputAllowFolders]="inputAllowFolders"
                             [inputStorageServices]="inputStorageServices"
@@ -51,8 +51,8 @@
         </terra-file-chooser>
         <terra-button class="input-group-btn margin-left"
                       [inputIcon]="'icon-reset'"
-                      [_inputTooltipText]="translationPrefix + '.reset' | translate:lang"
-                      [_inputTooltipPlacement]="'left'"
+                      [inputTooltipText]="translationPrefix + '.reset' | translate:lang"
+                      [inputTooltipPlacement]="'left'"
                       (outputClicked)="resetValue()">
         </terra-button>
 

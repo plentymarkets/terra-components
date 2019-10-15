@@ -2,7 +2,7 @@
     <terra-base-toolbar *ngIf="_canHandleMetadata">
         <div class="btn-group" role="group">
             <terra-button inputIcon="icon-save"
-                          [_inputTooltipText]="translationPrefix + '.saveMetadata' | translate:lang"
+                          [inputTooltipText]="translationPrefix + '.saveMetadata' | translate:lang"
                           (outputClicked)="updateMetadata()">
             </terra-button>
         </div>

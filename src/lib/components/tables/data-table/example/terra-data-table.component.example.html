@@ -1,15 +1,15 @@
 <terra-base-toolbar>
     <div class="btn-group" role="group">
         <terra-button [inputIcon]="'icon-add'"
-                      [_inputTooltipText]="'New entry'"
+                      [inputTooltipText]="'New entry'"
                       (outputClicked)="addEntry()">
         </terra-button>
         <terra-button [inputIcon]="'icon-settings_transfer'"
-                      [_inputTooltipText]="'Group function'"
+                      [inputTooltipText]="'Group function'"
                       (outputClicked)="showGroupFunction = !showGroupFunction">
         </terra-button>
         <terra-button [inputIcon]="'icon-reset'"
-                      [_inputTooltipText]="'Reset sorting'"
+                      [inputTooltipText]="'Reset sorting'"
                       (outputClicked)="resetSorting()">
         </terra-button>
     </div>
