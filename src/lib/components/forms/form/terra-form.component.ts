@@ -98,9 +98,10 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges, OnIn
 
     public _controlTypeMap:FormTypeMapInterface | TerraFormTypeMap | FormTypeMap = {};
 
+    public _formFields:{ [key:string]:TerraFormFieldInterface };
+
     private _values:any = {};
 
-    private _formFields:{ [key:string]:TerraFormFieldInterface };
     private _formGroup:FormGroup = new FormGroup({});
     private _valueChangesSubscription:Subscription;
 

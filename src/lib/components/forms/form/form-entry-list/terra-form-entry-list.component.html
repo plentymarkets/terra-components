@@ -5,12 +5,12 @@
                 <terra-button
                     [inputIcon]="'icon-collapse_up'"
                     [inputIsDisabled]="first"
-                    (outputClicked)="moveElement(i, -1)">
+                    (outputClicked)="_moveElement(i, -1)">
                 </terra-button>
                 <terra-button
                     [inputIcon]="'icon-collapse_down'"
                     [inputIsDisabled]="last"
-                    (outputClicked)="moveElement(i, 1)">
+                    (outputClicked)="_moveElement(i, 1)">
                 </terra-button>
             </div>
             <terra-form-entry
@@ -35,15 +35,15 @@
             <terra-button
                 [inputIcon]="'icon-delete'"
                 [inputTooltipText]="'terraDynamicForm.removeListEntry' | translate:_lang"
-                [inputIsDisabled]="!canRemoveElement"
-                (outputClicked)="removeElement(i)">
+                [inputIsDisabled]="!_canRemoveElement"
+                (outputClicked)="_removeElement(i)">
             </terra-button>
         </div>
         <terra-button
             [inputIcon]="'icon-add'"
             [inputTooltipText]="'terraDynamicForm.addListEntry' | translate:_lang"
-            [inputIsDisabled]="!canAddElement"
-            (outputClicked)="addElement()">
+            [inputIsDisabled]="!_canAddElement"
+            (outputClicked)="_addElement()">
         </terra-button>
     </div>
 </div>

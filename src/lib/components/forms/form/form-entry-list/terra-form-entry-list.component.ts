@@ -88,14 +88,14 @@ export class TerraFormEntryListComponent implements OnInit, OnChanges, ControlVa
             this.formArray = this.inputFormGroup.get(this.inputFormFieldKey) as FormArray;
             this._childScopes = this.formArray.controls.map((control:AbstractControl) =>
             {
-                return this.inputScope.createChildScope(this.createChildScopeData(control.value));
+                return this.inputScope.createChildScope(this._createChildScopeData(control.value));
             });
 
             this.formArray.valueChanges.subscribe((values:Array<any>) =>
             {
                 values.forEach((value:any, index:number) =>
                 {
-                    this.onElementValueChanged(index, value);
+                    this._onElementValueChanged(index, value);
                 });
             });
         }
@@ -132,47 +132,47 @@ export class TerraFormEntryListComponent implements OnInit, OnChanges, ControlVa
 
             this._childScopes = this.formArray.controls.map((control:FormControl) =>
             {
-                return this.inputScope.createChildScope(this.createChildScopeData(control.value));
+                return this.inputScope.createChildScope(this._createChildScopeData(control.value));
             });
 
         }
     }
 
-    protected get canAddElement():boolean
+    public get _canAddElement():boolean
     {
         return isNaN(this._max) || this.formArray.length < this._max;
     }
 
-    protected addElement():void
+    public _addElement():void
     {
-        if(this.canAddElement)
+        if(this._canAddElement)
         {
             let defaultValue:any = isNullOrUndefined(this.inputFormField.defaultValue) ? null : this.inputFormField.defaultValue;
-            this._childScopes.push(this.inputScope.createChildScope(this.createChildScopeData(defaultValue)));
+            this._childScopes.push(this.inputScope.createChildScope(this._createChildScopeData(defaultValue)));
             this.formArray.push(TerraFormHelper.createNewControl(this.inputFormField.defaultValue, this.inputFormField));
         }
     }
 
-    protected get canRemoveElement():boolean
+    public get _canRemoveElement():boolean
     {
         return isNaN(this._min) || this.formArray.length > this._min;
     }
 
-    protected removeElement(index:number):void
+    public _removeElement(index:number):void
     {
         if(index < 0 || index > this.formArray.length)
         {
             return;
         }
 
-        if(this.canRemoveElement)
+        if(this._canRemoveElement)
         {
             this._childScopes.splice(index, 1);
             this.formArray.removeAt(index);
         }
     }
 
-    protected moveElement(index:number, movement:number = 1):void
+    public _moveElement(index:number, movement:number = 1):void
     {
         if(index >= 0 &&
            index < this.formArray.length &&
@@ -192,20 +192,20 @@ export class TerraFormEntryListComponent implements OnInit, OnChanges, ControlVa
         }
     }
 
-    protected onElementValueChanged(idx:number, value:any):void
+    private _onElementValueChanged(idx:number, value:any):void
     {
         // TODO: implement
         if(!isNullOrUndefined(this._childScopes[idx]))
         {
-            this._childScopes[idx].data = this.createChildScopeData(value);
+            this._childScopes[idx].data = this._createChildScopeData(value);
         }
         else
         {
-            this._childScopes[idx] = this.inputScope.createChildScope(this.createChildScopeData(value));
+            this._childScopes[idx] = this.inputScope.createChildScope(this._createChildScopeData(value));
         }
     }
 
-    private createChildScopeData(value:any):any
+    private _createChildScopeData(value:any):any
     {
         let loopKey:string = '$' + this.inputFormFieldKey;
         let childData:any = {};

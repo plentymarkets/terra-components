@@ -158,21 +158,21 @@ describe(`TerraFormHelper:`, () =>
 
     describe(`parseReactiveForm() `, () =>
     {
-        it('should return an empty FormGroup instance when formFields is undefined', () =>
+        it('should return an empty FormGroup instance when _formFields is undefined', () =>
         {
             let form:any = TerraFormHelper.parseReactiveForm(undefined);
 
             expect(form instanceof FormGroup).toBeTruthy();
         });
 
-        it('should return an empty FormGroup instance when formFields is an empty Object', () =>
+        it('should return an empty FormGroup instance when _formFields is an empty Object', () =>
         {
             let form:any = TerraFormHelper.parseReactiveForm({});
 
             expect(form instanceof FormGroup).toBeTruthy();
         });
 
-        it('should return a FormGroup instance with n FormControls when n primitive type formFields are given', () =>
+        it('should return a FormGroup instance with n FormControls when n primitive type _formFields are given', () =>
         {
             const formFields:{ [key:string]:TerraFormFieldInterface } = {
                 formField1: control1,

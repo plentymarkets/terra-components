@@ -88,7 +88,7 @@ export class TerraFormHelper
     }
 
     /**
-     * @description Parses a set of formFields (TerraFormFieldInterface) and creates a representative FormGroup instance.
+     * @description Parses a set of _formFields (TerraFormFieldInterface) and creates a representative FormGroup instance.
      * This FormGroup instance may be initialized by passing a set of values.
      * @param formFields
      * @param values
@@ -117,7 +117,7 @@ export class TerraFormHelper
                 }
                 if(isString(formField.isList))
                 {
-                    this.fitControlsToRange(formField, formControls);
+                    this._fitControlsToRange(formField, formControls);
                 }
                 controls[formFieldKey] = new FormArray(formControls);
             }
@@ -208,7 +208,7 @@ export class TerraFormHelper
      * @param formField
      * @param controls
      */
-    private static fitControlsToRange(formField:TerraFormFieldInterface, controls:Array<AbstractControl>):void
+    private static _fitControlsToRange(formField:TerraFormFieldInterface, controls:Array<AbstractControl>):void
     {
         if(isNullOrUndefined(controls) || isNullOrUndefined(formField))
         {
