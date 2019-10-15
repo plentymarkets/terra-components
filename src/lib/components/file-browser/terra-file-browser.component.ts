@@ -75,7 +75,7 @@ export class TerraFileBrowserComponent implements OnChanges, OnInit
     }
 
     constructor(frontendStorageService:TerraFrontendStorageService,
-                protected nodeTreeConfig:TerraNodeTreeConfig<{}>)
+                public _nodeTreeConfig:TerraNodeTreeConfig<{}>)
     {
         this._defaultStorageServices = [frontendStorageService];
     }
@@ -92,19 +92,19 @@ export class TerraFileBrowserComponent implements OnChanges, OnInit
     {
         if(changes.hasOwnProperty('inputStorageServices'))
         {
-            this.nodeTreeConfig.reset();
+            this._nodeTreeConfig.reset();
             this.renderTree(changes['inputStorageServices'].currentValue);
         }
     }
 
     public selectNode(storage:TerraStorageObject):void
     {
-        let foundNode:TerraNodeInterface<{}> = this.nodeTreeConfig.findNodeById(storage.key);
+        let foundNode:TerraNodeInterface<{}> = this._nodeTreeConfig.findNodeById(storage.key);
 
         if(!isNullOrUndefined(foundNode))
         {
             foundNode.isOpen = true;
-            this.nodeTreeConfig.currentSelectedNode = foundNode;
+            this._nodeTreeConfig.currentSelectedNode = foundNode;
         }
     }
 
@@ -113,7 +113,7 @@ export class TerraFileBrowserComponent implements OnChanges, OnInit
         this.onSelectedUrlChange.emit(publicUrl);
     }
 
-    protected showImagePreview(isPreviewEnabled:boolean):void
+    public _showImagePreview(isPreviewEnabled:boolean):void
     {
         if(isPreviewEnabled)
         {
@@ -122,11 +122,11 @@ export class TerraFileBrowserComponent implements OnChanges, OnInit
         }
         else
         {
-            this.hideImagePreview();
+            this._hideImagePreview();
         }
     }
 
-    protected hideImagePreview():void
+    public _hideImagePreview():void
     {
         this._centerColumnWidth = 10;
         this._rightColumnWidth = 0;
@@ -147,11 +147,11 @@ export class TerraFileBrowserComponent implements OnChanges, OnInit
                 isVisible: true
             };
 
-            this.nodeTreeConfig.addNode(node);
+            this._nodeTreeConfig.addNode(node);
 
-            if(isNullOrUndefined(this.nodeTreeConfig.currentSelectedNode))
+            if(isNullOrUndefined(this._nodeTreeConfig.currentSelectedNode))
             {
-                this.nodeTreeConfig.currentSelectedNode = node;
+                this._nodeTreeConfig.currentSelectedNode = node;
                 node.isOpen = true;
             }
 
@@ -220,7 +220,7 @@ export class TerraFileBrowserComponent implements OnChanges, OnInit
                 isVisible: true
             };
 
-            this.nodeTreeConfig.addNode(directory, parentNode);
+            this._nodeTreeConfig.addNode(directory, parentNode);
 
             this.getSortedList(storage.children).forEach((childStorage:TerraStorageObject) =>
             {
