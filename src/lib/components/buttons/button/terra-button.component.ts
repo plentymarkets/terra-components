@@ -28,7 +28,7 @@ export class TerraButtonComponent
 
     /** @description Set the caption.*/
     @Input()
-    public inputCaption:string;
+    public _inputCaption:string;
 
     /** @description Set an icon (e.g. icon-save).*/
     @Input()
@@ -36,7 +36,7 @@ export class TerraButtonComponent
 
     /** @description Set the html native 'type' attribute, e.g., 'submit or 'reset'. Default 'button'.*/
     @Input()
-    public inputType:string;
+    public _inputType:string;
 
     /** @description  If true, the button will be aligned to the right side of another element. Default false.*/
     @Input()
@@ -44,7 +44,7 @@ export class TerraButtonComponent
 
     /** @description If true, the button will be hidden. Default false.*/
     @Input()
-    public inputIsHidden:boolean;
+    public _inputIsHidden:boolean;
 
     /** @description Set the tooltip.*/
     @Input()
@@ -68,7 +68,7 @@ export class TerraButtonComponent
      * a state in which the button should be clicked by the user. Default false.
      */
     @Input()
-    public inputIsFlagged:boolean;
+    public _inputIsFlagged:boolean;
 
     /**
      * @description If true, a none-clickable element is set to optically divide a vertical button group. Default false.
@@ -90,22 +90,22 @@ export class TerraButtonComponent
      * Default false
      */
     @Input()
-    public inputIsMajor:boolean;
+    public _inputIsMajor:boolean;
 
     @Output()
     public outputClicked:EventEmitter<Event> = new EventEmitter<Event>();
 
     constructor()
     {
-        this.inputType = 'button';
+        this._inputType = 'button';
         this._inputIsActive = false;
-        this.inputIsFlagged = false;
+        this._inputIsFlagged = false;
         this._inputIsDivider = false;
-        this.inputIsHidden = false;
+        this._inputIsHidden = false;
         this._inputIsLink = false;
         this._inputIsDisabled = false;
         this._inputIsHighlighted = false;
-        this.inputIsMajor = false;
+        this._inputIsMajor = false;
     }
 
     protected click(event:Event):void

@@ -12,15 +12,15 @@
                         'highlighted' : _inputIsHighlighted,
                         'btn-divider' : _inputIsDivider,
                         'btn-link' : _inputIsLink ,
-                        'btn-major': inputIsMajor}"
-            [hidden]="inputIsHidden"
-            [type]="inputType">
+                        'btn-major': _inputIsMajor}"
+            [hidden]="_inputIsHidden"
+            [type]="_inputType">
         <span *ngIf="_inputIcon" class="icon_dist_top" [ngClass]="_inputIcon"></span>
-        {{inputCaption}}
+        {{_inputCaption}}
         <ng-content select="[btn-inner]"></ng-content>
     </button>
     <ng-content select="[btn-outer]"></ng-content>
-    <div *ngIf="inputIsFlagged && !inputIsHidden"
+    <div *ngIf="_inputIsFlagged && !_inputIsHidden"
          class="flag"
          [ngClass]="{'disabled': _inputIsDisabled}">
         <span [ngClass]="{'disabled': _inputIsDisabled}"></span>
