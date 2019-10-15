@@ -1,9 +1,9 @@
 <div *ngIf="inputShowBreadcrumbs" class="terra-breadcrumbs-wrapper main-breadcrumbs">
     <ul class="terra-breadcrumbs breadcrumbs-overflow-auto">
-        <ng-template ngFor let-module [ngForOf]="modules" let-index="index" let-last="last">
+        <ng-template ngFor let-module [ngForOf]="_modules" let-index="index" let-last="last">
             <li class="module{{index}} terra-breadcrumb-container"
                 #breadcrumbContainer
-                *ngIf="!isNullOrUndefined(module.currentSelectedView.url) && this.inputHasRouting; else falsyTemplate"
+                *ngIf="!_isNullOrUndefined(module.currentSelectedView.url) && this.inputHasRouting; else falsyTemplate"
                 [routerLink]="componentRoute + module.currentSelectedView.url">
                 <div class="{{ module.identifier }} terra-breadcrumb-wrapper">
                     <a class="terra-breadcrumb"
@@ -14,7 +14,7 @@
                     </a>
                     <a class="icon-caret" *ngIf="module.views.length > 1"
                        (mouseenter)="calculatePosition(breadcrumbContainer, contextMenu)">
-                        <ul class="context-menu" [ngStyle]="{'left': mouseLeft}" #contextMenu>
+                        <ul class="context-menu" [ngStyle]="{'left': _mouseLeft}" #contextMenu>
                             <ng-template ngFor let-view [ngForOf]="module.views" let-i="index">
                                 <li [routerLink]="componentRoute + view.url">
                                     <a class="{{ view.mainComponentName + '_' + i }} ">
@@ -38,7 +38,7 @@
                         </a>
                         <a class="icon-caret" *ngIf="module.views.length > 1"
                            (mouseenter)="calculatePosition(noRoutingBcContainer, noRoutingContextMenu)">
-                            <ul class="context-menu" [ngStyle]="{'left': mouseLeft}" #noRoutingContextMenu>
+                            <ul class="context-menu" [ngStyle]="{'left': _mouseLeft}" #noRoutingContextMenu>
                                 <ng-template ngFor let-view [ngForOf]="module.views" let-i="index">
                                     <li>
                                         <a class="{{ view.mainComponentName + '_' + i }} "
@@ -59,9 +59,9 @@
         </ng-template>
     </ul>
 </div>
-<div *ngIf="modules" class="side-scroller" [ngClass]="{'offset': inputShowBreadcrumbs}">
-    <ng-template ngFor let-module [ngForOf]="modules" let-last="last" let-first="first" let-index="index">
-        <div class="view {{ module.width }}" id="splitview{{splitViewId}}_module{{index}}"
+<div *ngIf="_modules" class="side-scroller" [ngClass]="{'offset': inputShowBreadcrumbs}">
+    <ng-template ngFor let-module [ngForOf]="_modules" let-last="last" let-first="first" let-index="index">
+        <div class="view {{ module.width }}" id="splitview{{_splitViewId}}_module{{index}}"
              [ngClass]="{'first': first, 'last': last}">
             <ng-template ngFor let-view [ngForOf]="module.views" let-i="index">
                 <div *ngIf="module.currentSelectedView === view" class="{{ view.mainComponentName + '_' + i}} fadeIn">

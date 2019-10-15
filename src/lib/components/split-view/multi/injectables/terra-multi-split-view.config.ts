@@ -36,9 +36,9 @@ export class TerraMultiSplitViewConfig
     public deleteViewEventEmitter:EventEmitter<TerraMultiSplitViewInterface> = new EventEmitter<TerraMultiSplitViewInterface>();
     public selectBreadcrumbEventEmitter:EventEmitter<TerraMultiSplitViewInterface> = new EventEmitter<TerraMultiSplitViewInterface>();
 
-    private views:Array<TerraMultiSplitViewInterface> = [];
-    private routerStateSnapshot:RouterStateSnapshot;
-    private activatedRouteSnapshot:ActivatedRouteSnapshot;
+    private _views:Array<TerraMultiSplitViewInterface> = [];
+    private _routerStateSnapshot:RouterStateSnapshot;
+    private _activatedRouteSnapshot:ActivatedRouteSnapshot;
 
     private _splitViewComponent:TerraMultiSplitViewComponent;
 
@@ -60,7 +60,7 @@ export class TerraMultiSplitViewConfig
                     if(isNullOrUndefined(this.currentSelectedView))
                     {
                         this.currentSelectedView = view;
-                        this.views.push(view);
+                        this._views.push(view);
                     }
                     else
                     {
@@ -162,7 +162,7 @@ export class TerraMultiSplitViewConfig
 
     public reset():void
     {
-        this.views = [];
+        this._views = [];
         this.currentSelectedView = null;
         this.selectBreadcrumbEventEmitter.unsubscribe();
         this.selectBreadcrumbEventEmitter = new EventEmitter<TerraMultiSplitViewInterface>();
@@ -196,8 +196,8 @@ export class TerraMultiSplitViewConfig
             return;
         }
 
-        this.routerStateSnapshot = this.router.routerState.snapshot;
-        this.activatedRouteSnapshot = this.activatedRoute.snapshot;
+        this._routerStateSnapshot = this.router.routerState.snapshot;
+        this._activatedRouteSnapshot = this.activatedRoute.snapshot;
         let remainingUrl:string = url.replace(this._splitViewComponent.componentRoute, '');
         let redirectUrl:string = this.urlIsRedirected(remainingUrl);
 
@@ -223,7 +223,7 @@ export class TerraMultiSplitViewConfig
 
     private addOrSelectViewsByUrl(url:string, resolveData:Array<ResolvedDataInterface>):void
     {
-        let views:Array<TerraMultiSplitViewInterface> = this.views;
+        let views:Array<TerraMultiSplitViewInterface> = this._views;
         let routeConfig:Routes = this.routingConfig;
 
         let urlParts:Array<string> = url.split('/');
@@ -337,7 +337,7 @@ export class TerraMultiSplitViewConfig
     private urlIsRedirected(url:string):string
     {
         let routeConfig:Routes = this.routingConfig;
-        let views:Array<TerraMultiSplitViewInterface> = this.views;
+        let views:Array<TerraMultiSplitViewInterface> = this._views;
         let urlParts:Array<string> = url.split('/');
         let route:Route;
         let isInvalidRoute:boolean = false;
@@ -400,7 +400,7 @@ export class TerraMultiSplitViewConfig
     {
         let resolverList:Array<ResolverListItemInterface> = this.getResolversForUrl(url, routeConfig);
         let data:Array<ResolvedDataInterface> = [];
-        this.activatedRouteSnapshot.params = {};
+        this._activatedRouteSnapshot.params = {};
         this.resolveInSequence(url, resolverList, data);
     }
 
@@ -468,7 +468,7 @@ export class TerraMultiSplitViewConfig
         let resolverListItem:ResolverListItemInterface = resolverList.shift();
         if(!isNullOrUndefined(resolverListItem.routePath) && resolverListItem.routePath.startsWith(':'))
         {
-            this.activatedRouteSnapshot.params[resolverListItem.routePath.substring(1)] = resolverListItem.urlPart; // pass route params
+            this._activatedRouteSnapshot.params[resolverListItem.routePath.substring(1)] = resolverListItem.urlPart; // pass route params
         }
 
         let resolvedResolver:ResolverListItemInterface = resolvedResolvers.find((res:ResolverListItemInterface) =>
@@ -485,7 +485,7 @@ export class TerraMultiSplitViewConfig
         }
         else
         {
-            resolverListItem.resolver.service.resolve(this.activatedRouteSnapshot, this.routerStateSnapshot).subscribe((res:any) =>
+            resolverListItem.resolver.service.resolve(this._activatedRouteSnapshot, this._routerStateSnapshot).subscribe((res:any) =>
             {
                 resolvedResolvers.push(resolverListItem);
 
