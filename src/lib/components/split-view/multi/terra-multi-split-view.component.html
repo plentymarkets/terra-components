@@ -13,13 +13,13 @@
                         {{module.currentSelectedView.name}}
                     </a>
                     <a class="icon-caret" *ngIf="module.views.length > 1"
-                       (mouseenter)="calculatePosition(breadcrumbContainer, contextMenu)">
+                       (mouseenter)="_calculatePosition(breadcrumbContainer, contextMenu)">
                         <ul class="context-menu" [ngStyle]="{'left': _mouseLeft}" #contextMenu>
                             <ng-template ngFor let-view [ngForOf]="module.views" let-i="index">
                                 <li [routerLink]="componentRoute + view.url">
                                     <a class="{{ view.mainComponentName + '_' + i }} ">
                                         {{ view.name }}
-                                        <span class="right-icon icon-cancel" (click)="removeView(view,$event)"></span>
+                                        <span class="right-icon icon-cancel" (click)="_removeView(view,$event)"></span>
                                     </a>
                                 </li>
                             </ng-template>
@@ -37,14 +37,14 @@
                             {{module.currentSelectedView.name}}
                         </a>
                         <a class="icon-caret" *ngIf="module.views.length > 1"
-                           (mouseenter)="calculatePosition(noRoutingBcContainer, noRoutingContextMenu)">
+                           (mouseenter)="_calculatePosition(noRoutingBcContainer, noRoutingContextMenu)">
                             <ul class="context-menu" [ngStyle]="{'left': _mouseLeft}" #noRoutingContextMenu>
                                 <ng-template ngFor let-view [ngForOf]="module.views" let-i="index">
                                     <li>
                                         <a class="{{ view.mainComponentName + '_' + i }} "
                                            (click)="handleBreadCrumbClick(view, $event)">
                                             {{ view.name }}
-                                            <span class="right-icon icon-cancel" (click)="removeView(view,$event)"></span>
+                                            <span class="right-icon icon-cancel" (click)="_removeView(view,$event)"></span>
                                         </a>
                                     </li>
                                 </ng-template>

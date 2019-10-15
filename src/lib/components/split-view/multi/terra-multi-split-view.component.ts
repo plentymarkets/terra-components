@@ -540,7 +540,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         module.width = view.defaultWidth;
     }
 
-    private removeView(view:TerraMultiSplitViewInterface, event:Event):void
+    public _removeView(view:TerraMultiSplitViewInterface, event:Event):void
     {
         // stop event bubbling
         event.stopPropagation();
@@ -651,7 +651,7 @@ export class TerraMultiSplitViewComponent implements OnDestroy, OnInit
         });
     }
 
-    protected calculatePosition(container:HTMLLIElement, contextMenu:HTMLUListElement):void
+    public _calculatePosition(container:HTMLLIElement, contextMenu:HTMLUListElement):void
     {
         let containerClientRect:ClientRect = container.getBoundingClientRect();
         let contextMenuClientRect:ClientRect = contextMenu.getBoundingClientRect();
