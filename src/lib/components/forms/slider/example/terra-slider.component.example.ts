@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
 })
 export class TerraSliderComponentExample
 {
-    protected sliderValue:number = 0.5;
+    public _sliderValue:number = 0.5;
 }

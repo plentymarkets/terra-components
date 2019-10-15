@@ -11,11 +11,15 @@ import { TerraSuggestionBoxValueInterface } from '../data/terra-suggestion-box.i
 })
 export class TerraSuggestionBoxComponentExample implements OnInit
 {
-    protected textInputValue:string;
-    protected iconList:Array<TerraSuggestionBoxValueInterface> = [];
-    protected iconClass:string;
+    public _textInputValue:string;
+    public _iconList:Array<TerraSuggestionBoxValueInterface> = [];
+    public _iconClass:string;
 
-    protected contacts:Array<any> = [
+    public _contactsSuggestions:Array<TerraSuggestionBoxValueInterface> = [];
+    public _selectedContact:any;
+    public _contactSelectionText:string;
+
+    private _contacts:Array<any> = [
         {
             name: 'Max',
             age:  26
@@ -33,14 +37,11 @@ export class TerraSuggestionBoxComponentExample implements OnInit
             age:  29
         }
     ];
-    protected contactsSuggestions:Array<TerraSuggestionBoxValueInterface> = [];
-    protected selectedContact:any;
-    protected contactSelectionText:string;
 
     public ngOnInit():void
     {
-        this.iconClass = 'icon-plugin';
-        this.iconList.push
+        this._iconClass = 'icon-plugin';
+        this._iconList.push
         (
             {
                 value:   'icon-plugin',
@@ -104,7 +105,7 @@ export class TerraSuggestionBoxComponentExample implements OnInit
             }
         );
 
-        this.contactsSuggestions = this.contacts.map((contact:any) =>
+        this._contactsSuggestions = this._contacts.map((contact:any) =>
         {
             return {
                 caption: contact.name,

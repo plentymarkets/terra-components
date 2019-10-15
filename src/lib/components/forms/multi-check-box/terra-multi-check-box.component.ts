@@ -52,20 +52,20 @@ export class TerraMultiCheckBoxComponent implements OnInit, OnDestroy, ControlVa
     @Output()
     public checkboxStateChanges:EventEmitter<Array<TerraMultiCheckBoxValueInterface>> = new EventEmitter<Array<TerraMultiCheckBoxValueInterface>>();
 
-    protected valueList:Array<TerraMultiCheckBoxValueInterface> = [];
+    public _valueList:Array<TerraMultiCheckBoxValueInterface> = [];
 
-    protected headerCheckboxValue:boolean = false;
-    protected headerCheckboxIndeterminate:boolean = false;
+    public _headerCheckboxValue:boolean = false;
+    public _headerCheckboxIndeterminate:boolean = false;
 
-    private changedCheckboxes$:Subject<Array<TerraMultiCheckBoxValueInterface>> = new Subject<Array<TerraMultiCheckBoxValueInterface>>();
-    private readonly langPrefix:string = 'terraMultiCheckBox';
+    private _changedCheckboxes$:Subject<Array<TerraMultiCheckBoxValueInterface>> = new Subject<Array<TerraMultiCheckBoxValueInterface>>();
+    private readonly _langPrefix:string = 'terraMultiCheckBox';
 
-    constructor(private translation:TranslationService)
+    constructor(private _translation:TranslationService)
     {}
 
     public writeValue(valueList:Array<TerraMultiCheckBoxValueInterface>):void
     {
-        this.valueList = valueList;
+        this._valueList = valueList;
 
         this.checkHeaderCheckboxState();
     }
@@ -85,34 +85,34 @@ export class TerraMultiCheckBoxComponent implements OnInit, OnDestroy, ControlVa
         if(!this.inputName)
         {
             // this is necessary for language switch
-            this.translation.translationChanged().subscribe(() =>
+            this._translation.translationChanged().subscribe(() =>
             {
-                this.inputName = this.translation.translate(this.langPrefix + '.selectAll');
+                this.inputName = this._translation.translate(this._langPrefix + '.selectAll');
             });
         }
 
-        this.changedCheckboxes$.pipe(throttleTime(100)).subscribe((checkboxes:Array<TerraMultiCheckBoxValueInterface>) =>
+        this._changedCheckboxes$.pipe(throttleTime(100)).subscribe((checkboxes:Array<TerraMultiCheckBoxValueInterface>) =>
         {
-            this.emitCallbacks(this.valueList, checkboxes);
+            this.emitCallbacks(this._valueList, checkboxes);
         });
     }
 
     public ngOnDestroy():void
     {
-        this.changedCheckboxes$.complete();
+        this._changedCheckboxes$.complete();
     }
 
     protected checkboxChanged(checkBox:TerraMultiCheckBoxValueInterface):void
     {
         this.checkHeaderCheckboxState();
-        this.changedCheckboxes$.next([checkBox]);
+        this._changedCheckboxes$.next([checkBox]);
     }
 
     protected onHeaderCheckboxChange(isChecked:boolean):void
     {
         let changedCheckboxes:Array<TerraMultiCheckBoxValueInterface> = [];
 
-        this.valueList.forEach((value:TerraMultiCheckBoxValueInterface) =>
+        this._valueList.forEach((value:TerraMultiCheckBoxValueInterface) =>
         {
             if(value.selected !== isChecked)
             {
@@ -121,14 +121,14 @@ export class TerraMultiCheckBoxComponent implements OnInit, OnDestroy, ControlVa
             }
         });
 
-        this.changedCheckboxes$.next(changedCheckboxes);
+        this._changedCheckboxes$.next(changedCheckboxes);
     }
 
     protected checkHeaderCheckboxState():void
     {
-        if(!isNullOrUndefined(this.valueList))
+        if(!isNullOrUndefined(this._valueList))
         {
-            let filteredValues:Array<TerraMultiCheckBoxValueInterface> = this.valueList.filter((entry:TerraMultiCheckBoxValueInterface) =>
+            let filteredValues:Array<TerraMultiCheckBoxValueInterface> = this._valueList.filter((entry:TerraMultiCheckBoxValueInterface) =>
             {
                 return entry.selected;
             });
@@ -161,15 +161,15 @@ export class TerraMultiCheckBoxComponent implements OnInit, OnDestroy, ControlVa
     {
         if(filteredLength === 0)
         {
-            this.headerCheckboxValue = false;
+            this._headerCheckboxValue = false;
         }
-        else if(filteredLength === this.valueList.length)
+        else if(filteredLength === this._valueList.length)
         {
-            this.headerCheckboxValue = true;
+            this._headerCheckboxValue = true;
         }
         else
         {
-            this.headerCheckboxIndeterminate = true;
+            this._headerCheckboxIndeterminate = true;
         }
     }
 

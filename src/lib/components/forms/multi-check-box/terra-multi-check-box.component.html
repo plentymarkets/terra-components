@@ -8,9 +8,9 @@
                     <terra-checkbox type="checkbox"
                                     (click)="$event.stopPropagation()"
                                     [inputIsDisabled]="inputIsDisabled"
-                                    [(isIndeterminate)]="headerCheckboxIndeterminate"
+                                    [(isIndeterminate)]="_headerCheckboxIndeterminate"
                                     [inputCaption]="inputName.toUpperCase()"
-                                    [(ngModel)]="headerCheckboxValue"
+                                    [(ngModel)]="_headerCheckboxValue"
                                     (ngModelChange)="onHeaderCheckboxChange($event)">
                     </terra-checkbox>
                 </div>
@@ -18,7 +18,7 @@
                 </span>
             </div>
             <div class="option-list" [hidden]="collapsed">
-                <div *ngFor="let listEntry of valueList; trackBy: trackByValue">
+                <div *ngFor="let listEntry of _valueList; trackBy: trackByValue">
                     <div class="input-group">
                         <div class="input-group-addon">
                             <terra-checkbox type="checkbox"

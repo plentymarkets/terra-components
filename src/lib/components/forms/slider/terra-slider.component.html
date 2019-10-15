@@ -19,7 +19,7 @@
                      [restrict]="'self'"
                      [grid]="grid"
                      (move)="onDrag( $event )">
-                    {{ value?.toFixed(inputPrecision) }}
+                    {{ _value?.toFixed(inputPrecision) }}
                 </div>
                 
                 <div *ngIf="inputShowTicks" class="slider-ticks">
