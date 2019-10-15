@@ -17,8 +17,6 @@ import { ActivatedRouteHelper } from '../../../../helpers/index';
 import { Subscription } from 'rxjs';
 import { isNullOrUndefined } from 'util';
 
-require('./floatThead.js');
-
 @Directive({
     selector: 'table[floatThead]'
 })
