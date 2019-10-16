@@ -65,6 +65,11 @@ export class TerraBaseTreeComponent implements OnInit
         }
     }
 
+    public _toggleOpen(clickedLeaf:TerraLeafInterface):void
+    {
+        clickedLeaf.isOpen = !clickedLeaf.isOpen;
+    }
+
     private iterateOverParents(parents:Array<TerraLeafInterface>):void
     {
         for(let parentLeaf of parents)
@@ -118,11 +123,6 @@ export class TerraBaseTreeComponent implements OnInit
         }
 
         return false;
-    }
-
-    public _toggleOpen(clickedLeaf:TerraLeafInterface):void
-    {
-        clickedLeaf.isOpen = !clickedLeaf.isOpen;
     }
 
     private recursiveSearchActiveLeaf(leafListToSearch:Array<TerraLeafInterface>):TerraLeafInterface

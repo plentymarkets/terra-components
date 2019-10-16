@@ -46,21 +46,6 @@ export class TerraDataTableComponentExample implements OnInit
         this._noResultTextSecondary = 'Search to refresh';
     }
 
-    private onSearchBtnClicked():void
-    {
-        this._service.getResults(true);
-
-        this._noResultButtons = [{
-            caption:       'Add',
-            isHighlighted: false,
-            icon:          'icon-add',
-            clickFunction: ():void => this._addEntries()
-        }];
-
-        this._noResultTextPrimary = 'No entries found';
-        this._noResultTextSecondary = 'Add a new entry';
-    }
-
     public _addEntry():void
     {
         this._service.addEntry();
@@ -85,6 +70,21 @@ export class TerraDataTableComponentExample implements OnInit
     public _executeGroupFunction(selectedRows:Array<TerraDataTableRowInterface<TerraDataTableExampleInterface>>):void
     {
         console.log(selectedRows);
+    }
+
+    private onSearchBtnClicked():void
+    {
+        this._service.getResults(true);
+
+        this._noResultButtons = [{
+            caption:       'Add',
+            isHighlighted: false,
+            icon:          'icon-add',
+            clickFunction: ():void => this._addEntries()
+        }];
+
+        this._noResultTextPrimary = 'No entries found';
+        this._noResultTextSecondary = 'Add a new entry';
     }
 
     private createHeaderList():Array<TerraDataTableHeaderCellInterface>

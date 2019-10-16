@@ -78,10 +78,10 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
     public _tmpSelectedValue:TerraSuggestionBoxValueInterface = null;
     public _textInputValue:string = '';
     public _toggleOpen:boolean = false;
+
     private _lastSelectedValues:Array<TerraSuggestionBoxValueInterface> = [];
     private _hasLabel:boolean;
     private _clickListener:(event:Event) => void;
-
     private onTouchedCallback:() => void = noop;
     private onChangeCallback:(_:any) => void = noop;
 
@@ -402,8 +402,6 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
             this.toggleOpen = false;
         }
     }
-
-
 
     private focusSelectedElement():void
     {
