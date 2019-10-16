@@ -9,17 +9,17 @@ import {
     SimpleChanges
 } from '@angular/core';
 import { DropEvent } from './dropEvent.interface';
-
+import * as Interact from '@interactjs/types/types';
 import * as interact_ from 'interactjs';
 const interact = interact_;
 
 export type AcceptFn = (args:{
-    interactEvent:interact.InteractEvent,
+    interactEvent:Interact.InteractEvent,
     event:MouseEvent,
     isDropable:boolean,
-    dropzone:interact.Interactable,
+    dropzone:Interact.Interactable,
     dropzoneElement:HTMLElement,
-    draggable:interact.Interactable,
+    draggable:Interact.Interactable,
     draggableElement:HTMLElement,
     dragData:any
 }) => boolean;
@@ -125,7 +125,7 @@ export class TerraDropzoneDirective implements OnInit, OnChanges
     public onDrop:EventEmitter<DropEvent> = new EventEmitter<DropEvent>();
     /* tslint:enable:no-output-on-prefix no-input-rename no-output-rename */
 
-    private _interactable:interact.Interactable = null;
+    private _interactable:any = null;
 
     constructor(private _el:ElementRef)
     {
@@ -197,12 +197,12 @@ export class TerraDropzoneDirective implements OnInit, OnChanges
         }
         else if(this.accept instanceof Function)
         {
-            config.checker = (interactEvent:interact.InteractEvent,
+            config.checker = (interactEvent:Interact.InteractEvent,
                               event:MouseEvent,
                               isDropable:boolean,
-                              dropzone:interact.Interactable,
+                              dropzone:Interact.Interactable,
                               dropElement:HTMLElement,
-                              draggable:interact.Interactable,
+                              draggable:Interact.Interactable,
                               dragElement:HTMLElement):boolean | AcceptFn =>
             {
                 if(isDropable)
@@ -215,7 +215,7 @@ export class TerraDropzoneDirective implements OnInit, OnChanges
                         dropzoneElement:  dropElement,
                         draggable:        draggable,
                         draggableElement: dragElement,
-                        dragData:         interactEvent.target.IA_DRAG_DATA
+                        dragData:         (<any>interactEvent.target).IA_DRAG_DATA
                     });
                 }
 

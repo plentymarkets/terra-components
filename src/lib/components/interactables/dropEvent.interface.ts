@@ -1,11 +1,10 @@
-import * as interact_ from 'interactjs';
-const interact = interact_;
+import * as Interact from '@interactjs/types/types';
 
 export interface DropEvent
 {
-    dragEvent:interact.InteractEvent;
-    draggable:interact.Interactable;
-    dropzone:interact.Interactable;
+    dragEvent:Interact.InteractEvent;
+    draggable:Interact.Interactable;
+    dropzone:Interact.Interactable;
     interaction:any;
     relatedTarget:HTMLElement;
     target:HTMLElement;
