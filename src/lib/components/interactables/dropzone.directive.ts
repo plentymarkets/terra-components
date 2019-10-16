@@ -8,16 +8,18 @@ import {
     Output,
     SimpleChanges
 } from '@angular/core';
-import * as Interact from 'interactjs';
 import { DropEvent } from './dropEvent.interface';
 
+import * as interact_ from 'interactjs';
+const interact = interact_;
+
 export type AcceptFn = (args:{
-    interactEvent:Interact.InteractEvent,
+    interactEvent:interact.InteractEvent,
     event:MouseEvent,
     isDropable:boolean,
-    dropzone:Interact.Interactable,
+    dropzone:interact.Interactable,
     dropzoneElement:HTMLElement,
-    draggable:Interact.Interactable,
+    draggable:interact.Interactable,
     draggableElement:HTMLElement,
     dragData:any
 }) => boolean;
@@ -123,7 +125,7 @@ export class TerraDropzoneDirective implements OnInit, OnChanges
     public onDrop:EventEmitter<DropEvent> = new EventEmitter<DropEvent>();
     /* tslint:enable:no-output-on-prefix no-input-rename no-output-rename */
 
-    private _interactable:Interact.Interactable = null;
+    private _interactable:interact.Interactable = null;
 
     constructor(private _el:ElementRef)
     {
@@ -195,12 +197,12 @@ export class TerraDropzoneDirective implements OnInit, OnChanges
         }
         else if(this.accept instanceof Function)
         {
-            config.checker = (interactEvent:Interact.InteractEvent,
+            config.checker = (interactEvent:interact.InteractEvent,
                               event:MouseEvent,
                               isDropable:boolean,
-                              dropzone:Interact.Interactable,
+                              dropzone:interact.Interactable,
                               dropElement:HTMLElement,
-                              draggable:Interact.Interactable,
+                              draggable:interact.Interactable,
                               dragElement:HTMLElement):boolean | AcceptFn =>
             {
                 if(isDropable)
@@ -223,7 +225,7 @@ export class TerraDropzoneDirective implements OnInit, OnChanges
 
         if(!this._interactable)
         {
-            this._interactable = Interact(this._el.nativeElement);
+            this._interactable = interact(this._el.nativeElement);
         }
         this._interactable.dropzone(config);
     }
