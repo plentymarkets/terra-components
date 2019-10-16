@@ -19,7 +19,7 @@
 		"build": "ng build lib",
 		"build-test": "rimraf dist && webpack --config config/webpack.prod.js  --progress --profile --bail",
 		"build:lint-rules": "tsc -p lintRules/tsconfig.lint.json",
-		"release": "gulp npm-publish",
+		"release": "ng build lib && gulp npm-publish",
 		"start": "ng serve",
 		"gulp": "gulp",
 		"test": "ng test",

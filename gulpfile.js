@@ -45,14 +45,10 @@ gulp.task('copy-to-terra', function () {
 });
 
 /**
- *
- * usage: 'npm run build' for local build
- *
+ * Copies all the files to the dedicated deploy folder
  **/
-gulp.task('build',
+gulp.task('copy',
     gulp.series(
-        'clean-dist',
-        'compile-ts',
         'copy-files',
         'copy-fonts',
         'copy-lang',
@@ -123,12 +119,7 @@ gulp.task('npm-publish', function () {
     {
         return gulp.series(
             changeVersion,
-            'clean-dist',
-            'compile-ts',
-            'copy-files',
-            'copy-fonts',
-            'copy-lang',
-            'copy-tslint-rules',
+            'copy',
             'publish'
         );
     }
