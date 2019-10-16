@@ -76,9 +76,11 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
     public _noEntriesTextKey:string;
     public _selectedValue:TerraSuggestionBoxValueInterface = null;
     public _tmpSelectedValue:TerraSuggestionBoxValueInterface = null;
-    public _textInputValue:string = '';
     public _toggleOpen:boolean = false;
 
+
+    // TODO This must be discussed :/
+    private _TextInputValue:string = '';
     private _lastSelectedValues:Array<TerraSuggestionBoxValueInterface> = [];
     private _hasLabel:boolean;
     private _clickListener:(event:Event) => void;
@@ -183,7 +185,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
 
     public _onChange():void
     {
-        let searchString:any = this.textInputValue;
+        let searchString:any = this.TextInputValue;
         this.toggleOpen = true;
 
         if(!isNullOrUndefined(searchString) && searchString.length >= 3)
@@ -381,18 +383,18 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
         }
     }
 
-    protected get textInputValue():string
+    public get TextInputValue():string
     {
-        return this._textInputValue;
+        return this._TextInputValue;
     }
 
-    protected set textInputValue(value:string)
+    public set TextInputValue(value:string)
     {
-        if(this._textInputValue !== value)
+        if(this._TextInputValue !== value)
         {
             this.textInputValueChange.emit(value);
         }
-        this._textInputValue = value;
+        this._TextInputValue = value;
     }
 
     private clickedOutside(event:Event):void
@@ -441,7 +443,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
             // finally update text input value
             if(!onChange)
             {
-                this.textInputValue = !isNullOrUndefined(this._selectedValue) ? this._selectedValue.caption : '';
+                this.TextInputValue = !isNullOrUndefined(this._selectedValue) ? this._selectedValue.caption : '';
             }
         }
     }
