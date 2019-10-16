@@ -13,7 +13,7 @@
                         'has-buttons':hasButtons}">
             <ng-content select="[body]"></ng-content>
         </div>
-        <div #_buttonRef class="btn-group-vertical" role="group">
+        <div #buttonRef class="btn-group-vertical" role="group">
             <ng-content select="[buttons]"></ng-content>
             <terra-button *ngFor="let button of inputButtonList"
                           [inputIcon]="button.icon"
