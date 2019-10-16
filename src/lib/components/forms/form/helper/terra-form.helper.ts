@@ -95,6 +95,11 @@ export class TerraFormHelper
     {
         let validators:Array<ValidatorFn> = [];
 
+        if(isNullOrUndefined(formField) || isNullOrUndefined(formField.options))
+        {
+            return validators;
+        }
+
         if(formField.options.uniqueValues)
         {
             validators.push(TerraValidators.uniqueValues(formField.options.uniqueValues));
