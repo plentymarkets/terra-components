@@ -9,9 +9,6 @@ var fs = require('fs');
 var semver = require('semver');
 var shell = require('gulp-shell');
 var argv = require('yargs').argv;
-var Dgeni = require('dgeni');
-var gulpTasks = require('./component-documentation/tasks/docuTasks.js');
-var paths = require('./component-documentation/tasks/paths');
 
 var version, increment, preid;
 
@@ -157,66 +154,3 @@ gulp.task('npm-publish', function () {
         );
     }
 }());
-
-/**
- * define tasks for 'build-doc'
- */
-gulp.task('copy-to-terra-doc', function () {
-    return gulp.src(config.sources.dist)
-        .pipe(gulp.dest(config.destinations.terraComponentsDoc));
-});
-gulp.task('copy-api-to-terra-doc', function () {
-    return gulp.src('component-documentation/build/**/*.*')
-        .pipe(gulp.dest(config.destinations.terraComponentsDocBuild));
-});
-
-//copy components from dist to terra-component-doc
-gulp.task('copy-components-to-doc', function () {
-    return gulp.src('src/lib/components/**/**/example/*.ts')
-        .pipe(gulp.dest(config.destinations.terraComponentsDocComponents));
-});
-
-gulp.task('copy-markdown-to-doc', function () {
-    return gulp.src('src/lib/components/**/example/*.md')
-        .pipe(gulp.dest(config.destinations.terraComponentsDocComponents));
-});
-
-gulp.task('copy-icon-description-json', function () {
-    return gulp.src('src/lib/styles/iconDescription.json')
-        .pipe(gulp.dest(config.destinations.terraComponentsDocBuild));
-});
-gulp.task('copy-documentation-changelog', function () {
-    return gulp.src('component-documentation/documentation-changelog.json')
-        .pipe(gulp.dest(config.destinations.terraComponentsDocBuild));
-});
-gulp.task('dgeni', function () {
-    try {
-        var dgeni = new Dgeni([require('./component-documentation/index')]);
-        return dgeni.generate();
-    } catch (x) {
-        console.log(x.stack);
-        throw x;
-    }
-});
-
-gulp.task('generateJson', function (done)
-{
-    gulpTasks.buildJsonFile(paths.dataJsonOutputPath);
-    done();
-});
-
-/**
- * run "gulp build-doc" to let Dgeni generate api files and to create json data.
- */
-gulp.task('build-doc',
-    gulp.series(
-        'build',
-        'dgeni',
-        'generateJson',
-        'copy-to-terra-doc',
-        'copy-components-to-doc',
-        'copy-api-to-terra-doc',
-        'copy-markdown-to-doc',
-        'copy-icon-description-json',
-        'copy-documentation-changelog'
-    ));
