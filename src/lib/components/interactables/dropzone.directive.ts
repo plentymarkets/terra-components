@@ -8,8 +8,10 @@ import {
     Output,
     SimpleChanges
 } from '@angular/core';
-import * as Interact from 'interactjs';
 import { DropEvent } from './dropEvent.interface';
+import * as Interact from '@interactjs/types/types';
+import * as interact_ from 'interactjs';
+const interact = interact_;
 
 export type AcceptFn = (args:{
     interactEvent:Interact.InteractEvent,
@@ -123,7 +125,7 @@ export class TerraDropzoneDirective implements OnInit, OnChanges
     public onDrop:EventEmitter<DropEvent> = new EventEmitter<DropEvent>();
     /* tslint:enable:no-output-on-prefix no-input-rename no-output-rename */
 
-    private _interactable:Interact.Interactable = null;
+    private _interactable:any = null;
 
     constructor(private _el:ElementRef)
     {
@@ -213,7 +215,7 @@ export class TerraDropzoneDirective implements OnInit, OnChanges
                         dropzoneElement:  dropElement,
                         draggable:        draggable,
                         draggableElement: dragElement,
-                        dragData:         interactEvent.target.IA_DRAG_DATA
+                        dragData:         (<any>interactEvent.target).IA_DRAG_DATA
                     });
                 }
 
@@ -223,7 +225,7 @@ export class TerraDropzoneDirective implements OnInit, OnChanges
 
         if(!this._interactable)
         {
-            this._interactable = Interact(this._el.nativeElement);
+            this._interactable = interact(this._el.nativeElement);
         }
         this._interactable.dropzone(config);
     }

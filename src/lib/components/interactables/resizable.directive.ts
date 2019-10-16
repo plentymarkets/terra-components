@@ -16,7 +16,8 @@ import {
     Interactable,
     InteractEvent
 } from 'interactjs';
-import * as interact from 'interactjs';
+import * as interact_ from 'interactjs';
+const interact = interact_;
 
 @Directive({
     selector: '[terraResizable]'

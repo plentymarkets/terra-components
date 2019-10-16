@@ -83,6 +83,7 @@
 		"@angular/platform-browser": "~7.2.15",
 		"@angular/platform-browser-dynamic": "~7.2.15",
 		"@angular/router": "~7.2.15",
+		"@interactjs/types": "^1.6.2",
 		"@types/htmlhint": "^0.9.1",
 		"@types/jasmine": "~2.8.8",
 		"@types/jasminewd2": "~2.0.3",
