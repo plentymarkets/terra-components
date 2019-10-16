@@ -27,7 +27,7 @@
 		"test": "ng test",
 		"test-once": "karma start --single-run --browsers Chrome,Firefox,Safari",
 		"test-headless": "karma start --single-run --browsers ChromeHeadless,FirefoxHeadless",
-		"lint": "tslint -p tsconfig.json -c tslint.json -e 'src/**/*.d.ts' -e 'src/**/*.spec.ts' -e 'src/environments/**' -e 'src/test.ts' 'src/**/*.ts'",
+		"lint": "tslint -p tsconfig.json -c tslint.json -e 'src/**/*.d.ts' -e 'src/**/*.spec.ts' -e 'src/lib/environments/**' -e 'src/test.ts' 'src/**/*.ts'",
 		"reinstall": "rm -rf node_modules/ && npm i"
 	},
 	"peerDependencies": {

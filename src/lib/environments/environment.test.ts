@@ -2,9 +2,7 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-import { EnvironmentInterface } from './environment.interface';
-
-export const environment:EnvironmentInterface = {
+export const environment = {
   production: false,
   test: true,
   l10nPrefix: 'assets/lang/locale-'
