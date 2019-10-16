@@ -30,6 +30,7 @@
 							"src/styles.scss"
 						],
 						"scripts": [
+							"node_modules/jquery/dist/jquery.min.js",
 							"src/lib/components/tables/data-table/float-thead/floatThead.js"
 						],
 						"es5BrowserSupport": true
