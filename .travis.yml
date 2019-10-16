@@ -16,4 +16,4 @@ install:
   - npm run reinstall
 
 script:
-  - npm run test-once
+  - npm run test-headless
