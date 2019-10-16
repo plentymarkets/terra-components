@@ -12,17 +12,17 @@ export function uniqueValuesValidator(uniqueKeys?:Array<string>):ValidatorFn
         let seen:Set<unknown> = new Set();
         const hasDuplicates:boolean = (control.value as Array<unknown>).some((value:unknown) =>
         {
-            if(!isNullOrUndefined(currentObject) && typeof currentObject ===  'object')
+            if(!isNullOrUndefined(value) && typeof value ===  'object')
             {
                 return seen.size === seen.add(
-                    Object.keys(currentObject)
+                    Object.keys(value)
                           .filter((key:string) => uniqueKeys.includes(key))
-                          .map((key:string) => currentObject[key]).join(', ')
+                          .map((key:string) => value[key]).join(', ')
                 ).size;
             }
             else
             {
-                return seen.size === seen.add(currentObject).size;
+                return seen.size === seen.add(value).size;
             }
         });
 
