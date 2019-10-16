@@ -16,8 +16,7 @@
 	],
 	"license": "MIT",
 	"scripts": {
-		"build": "rimraf dist && gulp build",
-		"build-lib": "ng-packagr -p src/lib/package.json",
+		"build": "ng build lib",
 		"build-test": "rimraf dist && webpack --config config/webpack.prod.js  --progress --profile --bail",
 		"build:lint-rules": "tsc -p lintRules/tsconfig.lint.json",
 		"release": "gulp npm-publish",
