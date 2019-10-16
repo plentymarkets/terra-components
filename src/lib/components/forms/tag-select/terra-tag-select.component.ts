@@ -69,7 +69,7 @@ export class TerraTagSelectComponent implements ControlValueAccessor, OnInit, On
     {
         if(changes.hasOwnProperty('tags'))
         {
-            let tags:Array<TerraTagInterface> = (changes['_tags'].currentValue as Array<TerraTagInterface>);
+            let tags:Array<TerraTagInterface> = (changes['tags'].currentValue as Array<TerraTagInterface>);
             tags.forEach((tag:TerraTagInterface) => tag.isClosable = true);
             this._tagList = tags;
             this.generateSuggestionValues(tags);
