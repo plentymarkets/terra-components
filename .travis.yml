@@ -3,7 +3,7 @@ sudo: false
 
 language: node_js
 node_js:
-  - '8'
+  - '12'
 
 addons:
   chrome: stable
@@ -16,4 +16,4 @@ install:
   - npm run reinstall
 
 script:
-  - karma start --single-run --browsers ChromeHeadless,FirefoxHeadless
+  - ng test
