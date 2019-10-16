@@ -16,4 +16,4 @@ install:
   - npm run reinstall
 
 script:
-  - ng test
+  - npm run test-once

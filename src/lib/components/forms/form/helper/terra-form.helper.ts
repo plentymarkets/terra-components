@@ -89,6 +89,27 @@ export class TerraFormHelper
 
     /**
      * @description Parses a set of _formFields (TerraFormFieldInterface) and creates a representative FormGroup instance.
+     * @description Generates a list of validators based on the given formField's options that may be attached to a FormArray instance.
+     * @param formField
+     */
+    public static generateFormArrayValidators(formField:TerraFormFieldInterface):Array<ValidatorFn>
+    {
+        let validators:Array<ValidatorFn> = [];
+
+        if(isNullOrUndefined(formField) || isNullOrUndefined(formField.options))
+        {
+            return validators;
+        }
+
+        if(formField.options.uniqueValues)
+        {
+            validators.push(TerraValidators.uniqueValues(formField.options.uniqueValues));
+        }
+
+        return validators;
+    }
+
+    /**
      * This FormGroup instance may be initialized by passing a set of values.
      * @param formFields
      * @param values
@@ -119,7 +140,7 @@ export class TerraFormHelper
                 {
                     this._fitControlsToRange(formField, formControls);
                 }
-                controls[formFieldKey] = new FormArray(formControls);
+                controls[formFieldKey] = new FormArray(formControls, this.generateFormArrayValidators(formField));
             }
             else if(!isNullOrUndefined(formField.children))
             {
