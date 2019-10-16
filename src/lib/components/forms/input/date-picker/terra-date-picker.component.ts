@@ -15,7 +15,8 @@ import {
     MyDatePicker
 } from 'mydatepicker';
 import { isNullOrUndefined } from 'util';
-import * as moment from 'moment';
+import * as moment_ from 'moment';
+const moment = moment_;
 
 let nextId:number = 0;
 

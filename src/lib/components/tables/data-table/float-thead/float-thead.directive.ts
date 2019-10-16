@@ -5,7 +5,6 @@ import {
     OnDestroy,
     OnInit
 } from '@angular/core';
-import * as jQuery from 'jquery';
 import {
     ActivatedRoute,
     NavigationEnd,
@@ -16,6 +15,9 @@ import { filter } from 'rxjs/internal/operators';
 import { ActivatedRouteHelper } from '../../../../helpers/index';
 import { Subscription } from 'rxjs';
 import { isNullOrUndefined } from 'util';
+
+import * as jQuery_ from 'jquery';
+const jQuery = jQuery_;
 
 @Directive({
     selector: 'table[floatThead]'
