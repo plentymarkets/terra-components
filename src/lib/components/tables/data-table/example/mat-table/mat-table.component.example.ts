@@ -18,11 +18,11 @@ import { moveItemInArray } from '@angular/cdk/drag-drop';
 import { ColumnConfigInterface } from '../../../config/data/column-config.interface';
 
 @Component({
-    selector:  'tc-mat-table-example',
-    template:  require('./mat-table.component.example.html'),
-    styles:    [require('./mat-table.component.example.scss')],
-    providers: [TerraDataTableServiceExample,
-                TerraDataTableContextMenuService],
+    selector:        'tc-mat-table-example',
+    template:        require('./mat-table.component.example.html'),
+    styles:          [require('./mat-table.component.example.scss')],
+    providers:       [TerraDataTableServiceExample,
+                      TerraDataTableContextMenuService],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 // TODO remove every example before release?
@@ -92,6 +92,11 @@ export class MatTableComponentExample implements OnInit
         moveItemInArray(this.displayedColumns, this.previousIndex, this.displayedColumns.indexOf(key));
     }
 
+    protected updateColumns(columns:Array<ColumnConfigInterface>):void
+    {
+        this.displayedColumns = columns.map((colInfo:ColumnConfigInterface) => colInfo.key);
+    }
+
     private createColumns():Array<ColumnConfigInterface>
     {
         return [
@@ -100,23 +105,23 @@ export class MatTableComponentExample implements OnInit
                 hideInColumnConfig: true
             },
             {
-                key:     'id',
-                caption: 'ID',
+                key:       'id',
+                caption:   'ID',
                 draggable: true
             },
             {
-                key:     'value',
-                caption: 'Value',
+                key:       'value',
+                caption:   'Value',
                 draggable: true
             },
             {
-                key:     'email',
-                caption: 'Email',
+                key:       'email',
+                caption:   'Email',
                 draggable: true
             },
             {
-                key:     'link',
-                caption: 'Link',
+                key:       'link',
+                caption:   'Link',
                 draggable: true
             },
             {

@@ -1,4 +1,3 @@
-<tc-column-config [columns]="columns" [(displayedColumns)]="displayedColumns"></tc-column-config>
 <div class="table-container mat-elevation-z8">
     <context-menu [links]="contextMenu"></context-menu>
     <mat-table [dataSource]="dataSource" matSort cdkDropListGroup>
@@ -83,7 +82,10 @@
             </mat-cell>
         </ng-container>
 
-        <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+        <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"
+                        hasColumnConfig
+                        [columns]="columns"
+                        (columnsChanged)="updateColumns($event)"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns;"
                  hasContextMenu
                  [rowData]="row"

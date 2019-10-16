@@ -20,22 +20,14 @@ import { ColumnConfigInterface } from './data/column-config.interface';
 export class ColumnConfigComponent
 {
     /**
-     * Emits whenever the visibility or index is changed.
+     * Emits whenever the visibility or sorting is changed.
      */
-    @Output()
-    public displayedColumnsChange:EventEmitter<Array<string>> = new EventEmitter<Array<string>>();
+    public columnsChanged:EventEmitter<Array<ColumnConfigInterface>> = new EventEmitter<Array<ColumnConfigInterface>>();
 
     /**
      * Columns with all informations.
      */
-    @Input()
     public columns:Array<ColumnConfigInterface>;
-
-    /**
-     * Keys of displaying columns. Same as needed for mat-table
-     */
-    @Input()
-    public displayedColumns:Array<string>;
 
     protected columnMenuDropped(event:CdkDragDrop<any>):void
     {
@@ -54,7 +46,6 @@ export class ColumnConfigComponent
 
     private fireChangeEvent():void
     {
-        this.displayedColumnsChange.emit(this.columns.filter((colInfo:ColumnConfigInterface) => !colInfo.hidden)
-                                             .map((colInfo:ColumnConfigInterface) => colInfo.key));
+        this.columnsChanged.emit(this.columns.filter((colInfo:ColumnConfigInterface) => !colInfo.hidden));
     }
 }
