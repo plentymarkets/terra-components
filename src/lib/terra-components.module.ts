@@ -22,7 +22,7 @@ import { QuillModule } from 'ngx-quill';
 import { CKEditorModule } from 'ckeditor4-angular';
 import { HttpModule } from '@angular/http';
 import {
-    MatCardModule,
+    MatButtonModule,
     MatMenuModule,
     MatSortModule
 } from '@angular/material';
@@ -45,7 +45,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
         TerraInteractModule,
         MatMenuModule,
         MatSortModule,
-        DragDropModule
+        DragDropModule,
+        MatButtonModule
     ],
     declarations:    [
         ...components,

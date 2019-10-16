@@ -1,5 +1,8 @@
-<span class="icon-settings" [matMenuTriggerFor]="columnMenu" [tcTooltip]="'Ansicht einrichten'">
-</span>
+<button mat-button
+        class="icon-edit"
+        [matMenuTriggerFor]="columnMenu"
+        [tcTooltip]="'Column config'">
+</button>
 
 <mat-menu #columnMenu="matMenu">
     <div class="va-mat-table-dragable-container" cdkDropList cdkDropListLockAxis="y" cdkDropListOrientation="vertical">

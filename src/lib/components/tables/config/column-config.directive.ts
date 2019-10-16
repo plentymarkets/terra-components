@@ -5,6 +5,7 @@ import {
     Directive,
     ElementRef,
     EventEmitter,
+    HostListener,
     Input,
     OnInit,
     Output,
@@ -44,15 +45,15 @@ export class ColumnConfigDirective implements OnInit
         let componentFactory:ComponentFactory<ColumnConfigComponent> =
             this.componentFactoryResolver.resolveComponentFactory(ColumnConfigComponent);
 
-        const componentRef:ComponentRef<ColumnConfigComponent> =
+        const columnConfigComponentRef:ComponentRef<ColumnConfigComponent> =
             componentFactory.create(this.viewContainerRef.injector);
 
-        const component:ColumnConfigComponent = <ColumnConfigComponent> componentRef.instance;
+        const columnConfigComponent:ColumnConfigComponent = <ColumnConfigComponent>columnConfigComponentRef.instance;
 
-        component.columns = this.columns;
-        component.columnsChanged = this.columnsChanged;
+        columnConfigComponent.columns = this.columns;
+        columnConfigComponent.columnsChanged = this.columnsChanged;
 
-        this.viewContainerRef.insert(componentRef.hostView);
+        this.viewContainerRef.insert(columnConfigComponentRef.hostView);
 
         const header:HTMLElement = this.elementRef.nativeElement as HTMLElement;
 
@@ -65,11 +66,23 @@ export class ColumnConfigDirective implements OnInit
             clientRect = tableContainer.getBoundingClientRect();
         }
 
-        let componentNative:HTMLElement = componentRef.location.nativeElement as HTMLElement;
+        let columnComponentElement:HTMLElement = columnConfigComponentRef.location.nativeElement as HTMLElement;
 
-        componentNative.style.top = (clientRect.top + 10) + 'px';
-        componentNative.style.position = 'absolute';
-        componentNative.style.zIndex = '100';
-        componentNative.style.right = (window.outerWidth - clientRect.right + 10) + 'px';
+        columnComponentElement.style.visibility = 'hidden';
+
+        header.onmouseover = ():void =>
+        {
+            columnComponentElement.style.visibility = 'visible';
+        };
+
+        header.onmouseout = ():void =>
+        {
+            columnComponentElement.style.visibility = 'hidden';
+        };
+
+        columnComponentElement.style.top = (clientRect.top - 37) + 'px';
+        columnComponentElement.style.position = 'absolute';
+        columnComponentElement.style.zIndex = '100';
+        columnComponentElement.style.left = clientRect.left + 'px';
     }
 }
