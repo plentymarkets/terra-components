@@ -1,6 +1,4 @@
 var gulp = require('gulp');
-var del = require('del');
-var tsc = require('gulp-typescript');
 var config = require('./gulp.config.js')();
 var fs = require('fs');
 var semver = require('semver');
@@ -8,10 +6,6 @@ var shell = require('gulp-shell');
 var argv = require('yargs').argv;
 
 var version, increment, preid;
-
-gulp.task('clean-dist', function () {
-    return del(config.destinations.tsOutputPath);
-});
 
 //copy files to dist
 gulp.task('copy-files', function () {
