@@ -37,7 +37,7 @@ describe(`TerraFormComponent:`, () =>
         spyOn(console, 'warn'); // disable console outputs to prevent deprecation warnings to be printed in the terminal
         component.ngOnChanges({});
         component.ngOnInit();
-        expect(component['controlTypeMap']).toEqual(new TerraFormTypeMap());
+        expect(component._controlTypeMap).toEqual(new TerraFormTypeMap());
         expect(console.warn).toHaveBeenCalledTimes(2);
     });
 
@@ -47,7 +47,7 @@ describe(`TerraFormComponent:`, () =>
         component.inputControlTypeMap = typeMap;
         component.ngOnChanges({inputControlTypeMap: new SimpleChange(null, typeMap, false)});
         component.ngOnInit();
-        expect(component['controlTypeMap']).toBe(typeMap);
+        expect(component._controlTypeMap).toBe(typeMap);
     });
 
     describe('with _formFields', () =>
