@@ -38,8 +38,8 @@
 						"production": {
 							"fileReplacements": [
 								{
-									"replace": "src/environments/environment.ts",
-									"with": "src/environments/environment.prod.ts"
+									"replace": "src/lib/environments/environment.ts",
+									"with": "src/lib/environments/environment.prod.ts"
 								}
 							],
 							"deleteOutputPath": true,
@@ -91,8 +91,8 @@
 						],
 						"fileReplacements": [
 							{
-								"replace": "src/environments/environment.ts",
-								"with": "src/environments/environment.test.ts"
+								"replace": "src/lib/environments/environment.ts",
+								"with": "src/lib/environments/environment.test.ts"
 							}
 						]
 					}
