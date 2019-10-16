@@ -81,7 +81,7 @@
 			"root": "src/lib",
 			"sourceRoot": "src/lib",
 			"projectType": "library",
-			"prefix": "lib",
+			"prefix": "tc",
 			"architect": {
 				"build": {
 					"builder": "@angular-devkit/build-ng-packagr:build",
