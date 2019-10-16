@@ -1,9 +1,6 @@
 var gulp = require('gulp');
 var del = require('del');
-var sourcemaps = require('gulp-sourcemaps');
-var merge = require('merge2');
 var tsc = require('gulp-typescript');
-var tsProject = tsc.createProject('./tsconfig.json', {typescript: require('typescript')});
 var config = require('./gulp.config.js')();
 var fs = require('fs');
 var semver = require('semver');
@@ -14,24 +11,6 @@ var version, increment, preid;
 
 gulp.task('clean-dist', function () {
     return del(config.destinations.tsOutputPath);
-});
-
-//compile typescript files
-gulp.task('compile-ts', function () {
-    var sourceTsFiles = [
-        config.excluded,
-        config.fileSelectors.allTs,
-        config.sources.customLintRules
-    ];
-
-    var tsResult = gulp.src(sourceTsFiles)
-        .pipe(sourcemaps.init())
-        .pipe(tsProject());
-
-    return merge([
-        tsResult.dts.pipe(gulp.dest(config.destinations.tsOutputPath)),
-        tsResult.js.pipe(sourcemaps.write('.')).pipe(gulp.dest(config.destinations.tsOutputPath))
-    ]);
 });
 
 //copy files to dist
