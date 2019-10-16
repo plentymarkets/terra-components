@@ -25,6 +25,7 @@ export class TerraBaseToolbarComponent
 
     constructor()
     {
+        this.isSticky = false;
         this.inputIsBreadcrumbs = false;
     }
 }
