@@ -10,6 +10,7 @@
     overflow: auto;
     margin: var(--space-container);
     width: auto;
+    box-shadow: var(--box-shadow) !important;
 
     .mat-table
     {
@@ -32,17 +33,12 @@
                 &.cdk-drop-list-receiving, //all elements that can receive a drag
                 &.cdk-drop-list-dragging //element where you drag over
                 {
-                    background-color: var(--color-structure-2);
                     transition: transform 0.2s ease;
-
-                    &:not(:last-child)
-                    {
-                    
-                    }
-                    &:first-child
-                    {
-
-                    }
+                }
+    
+                &.cdk-drag-placeholder
+                {
+                    background-color: var(--color-structure-2);
                 }
 
                 &.cdk-drag
@@ -85,7 +81,7 @@
                 }
             }
 
-            &:nth-child(even)
+            &:nth-child(odd)
             {
                 background-color: var(--color-structure-1);
             }
@@ -125,6 +121,23 @@
                 }
             }
         }
+    
+        tc-column-config
+        {
+            z-index: 99 !important;
+            
+            button
+            {
+                background: white;
+                border-radius: 0;
+                box-shadow: var(--box-shadow);
+                outline: none;
+                min-width: auto;
+                width: 35px;
+                line-height: 30px;
+                padding: 0;
+            }
+        }
     }
 }
 
@@ -133,4 +146,39 @@
     background-color: var(--color-structure-0);
     padding: var(--table-head-th-padding, var(--space-md));
     box-shadow: var(--box-shadow-2);
+}
+
+.cdk-overlay-pane
+{
+    .mat-menu-panel
+    {
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow-2);
+        
+        .mat-menu-content
+        {
+            padding: 0;
+    
+            .dragable-row
+            {
+                display: block;
+                padding: var(--space-lg);
+                
+                &:hover
+                {
+                    background-color: var(--color-active);
+                    
+                    label
+                    {
+                        color: var(--color-structure-0);
+                    }
+                }
+            }
+        }
+    }
+}
+
+.dragable-row
+{
+    display: none;
 }

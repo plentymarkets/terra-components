@@ -77,10 +77,10 @@ export class ColumnConfigDirective implements OnInit
 
         header.onmouseout = ():void =>
         {
-            columnComponentElement.style.visibility = 'hidden';
+            //columnComponentElement.style.visibility = 'hidden';
         };
 
-        columnComponentElement.style.top = (clientRect.top - 37) + 'px';
+        columnComponentElement.style.top = (clientRect.top - 31) + 'px';
         columnComponentElement.style.position = 'absolute';
         columnComponentElement.style.zIndex = '100';
         columnComponentElement.style.left = clientRect.left + 'px';
