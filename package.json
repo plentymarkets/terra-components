@@ -16,15 +16,15 @@
 	],
 	"license": "MIT",
 	"scripts": {
+		"start": "ng serve",
 		"build": "ng build lib && gulp copy",
 		"build-test": "ng build lib",
 		"build:lint-rules": "tsc -p lintRules/tsconfig.lint.json",
-		"release": "ng build lib && gulp npm-publish",
-		"start": "ng serve",
-		"test": "ng test",
-		"test-once": "ng test --watch=false --browsers=Chrome,Firefox,Safari",
-		"test-headless": "ng test --watch=false --browsers=ChromeHeadless,FirefoxHeadless",
+		"test": "ng test lib",
+		"test-once": "ng test lib --watch=false --browsers=Chrome,Firefox,Safari",
+		"test-headless": "ng test lib --watch=false --browsers=ChromeHeadless,FirefoxHeadless",
 		"lint": "ng lint lib",
+		"release": "ng build lib && gulp npm-publish",
 		"reinstall": "rm -rf node_modules/ && npm i"
 	},
 	"dependencies": {
