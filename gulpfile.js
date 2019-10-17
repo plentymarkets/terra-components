@@ -1,62 +1,46 @@
-var gulp = require('gulp');
+const { series, src, dest } = require('gulp');
 var config = require('./gulp.config.js')();
 var fs = require('fs');
 var semver = require('semver');
 var shell = require('gulp-shell');
 var argv = require('yargs').argv;
 
-var version, increment, preid;
-
-//copy files to dist
-gulp.task('copy-files', function () {
-    return gulp.src(config.filesToCopy)
-        .pipe(gulp.dest(config.destinations.tsOutputPath));
-});
-
 //copy fonts to dist
-gulp.task('copy-fonts', function () {
-    return gulp.src(config.fileSelectors.allFonts)
-        .pipe(gulp.dest(config.destinations.fontsOutputPath));
-});
+function copyFonts() {
+    return src(config.fileSelectors.allFonts)
+        .pipe(dest(config.destinations.fontsOutputPath));
+}
 
 //copy lang to dist
-gulp.task('copy-lang', function () {
-    return gulp.src(config.fileSelectors.allLang)
-        .pipe(gulp.dest(config.destinations.langOutputPath));
-});
+function copyLang() {
+    return src(config.fileSelectors.allLang)
+        .pipe(dest(config.destinations.langOutputPath));
+}
 
-//copy lang to dist
-gulp.task('copy-tslint-rules', function ()
-{
-    return gulp.src(config.sources.tslintRules)
-        .pipe(gulp.dest(config.destinations.tsOutputPath));
-});
+//copy TSLint rules to dist
+function copyTslintRules() {
+    return src(config.sources.tslintRules)
+        .pipe(dest(config.destinations.tsOutputPath));
+}
 
 //copy files from dist to terra
-gulp.task('copy-to-terra', function () {
-    return gulp.src(config.sources.dist)
-        .pipe(gulp.dest(config.destinations.terra));
-});
+function copyToTerra() {
+    return src(config.sources.dist)
+        .pipe(dest(config.destinations.terra));
+}
 
 /**
  * Copies all the files to the dedicated deploy folder
  **/
-gulp.task('copy',
-    gulp.series(
-        'copy-files',
-        'copy-fonts',
-        'copy-lang',
-        'copy-tslint-rules',
-        'copy-to-terra'
-    )
-);
+const copy = series(copyFonts, copyLang, copyTslintRules, copyToTerra);
+exports.copy = copy;
 
-/**
- * define gulp tasks for 'npm-publish'
- */
+
 //changing version of package.json for new publish
 function changeVersion(done) {
-    var json = JSON.parse(fs.readFileSync('./package.json'));
+    const increment = argv.increment ? argv.increment : 'patch';
+    const preid = argv.preid ? argv.preid : '';
+    const json = JSON.parse(fs.readFileSync('./package.json'));
 
     console.log('-------------------------------------------------');
     console.log('--- OLD PACKAGE VERSION: ' + json.version + ' ---');
@@ -70,13 +54,12 @@ function changeVersion(done) {
 
     fs.writeFileSync('./package.json', JSON.stringify(json, null, '\t'));
     done();
-};
+}
 
 //publish to npm
-gulp.task('publish', shell.task([
-        'npm publish dist'
-    ])
-);
+function publish() {
+    return shell.task(['npm publish dist'])
+}
 
 /**
  *
@@ -97,24 +80,5 @@ gulp.task('publish', shell.task([
  *     'node_modules/@plentymarkets/terra-components' in target directory
  *
  **/
-gulp.task('npm-publish', function () {
-    increment = argv.increment ? argv.increment : 'patch';
-    preid = argv.preid ? argv.preid : '';
-
-    if(argv.level || argv.subversion)
-    {
-        console.log('-------------------------------------------------------------------');
-        console.log('----  Build not started. See gulpfile for further information. ----');
-        console.log('-------------------------------------------------------------------');
-
-        return;
-    }
-    else
-    {
-        return gulp.series(
-            changeVersion,
-            'copy',
-            'publish'
-        );
-    }
-}());
+const release = series(changeVersion, copy, publish);
+exports.release = release;
