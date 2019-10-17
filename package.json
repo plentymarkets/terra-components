@@ -24,7 +24,7 @@
 		"test-once": "ng test lib --watch=false --browsers=Chrome,Firefox,Safari",
 		"test-headless": "ng test lib --watch=false --browsers=ChromeHeadless,FirefoxHeadless",
 		"lint": "ng lint lib",
-		"release": "ng build lib && gulp npm-publish",
+		"release": "ng build lib && gulp release",
 		"reinstall": "rm -rf node_modules/ && npm i"
 	},
 	"dependencies": {
