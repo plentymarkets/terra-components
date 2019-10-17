@@ -4,6 +4,8 @@ var fs = require('fs');
 var semver = require('semver');
 var shell = require('gulp-shell');
 var argv = require('yargs').argv;
+var sass = require('gulp-sass');
+var tildeImporter = require('node-sass-tilde-importer');
 
 //copy fonts to dist
 function copyFonts() {
@@ -29,10 +31,19 @@ function copyToTerra() {
         .pipe(dest(config.destinations.terra));
 }
 
+function compileCss() {
+    return src(config.scssSources)
+        .pipe(sass({
+        importer: tildeImporter,
+        outputStyle: 'compressed'
+    }).on('error', sass.logError))
+        .pipe(dest('dist/styles'))
+}
+
 /**
  * Copies all the files to the dedicated deploy folder
  **/
-const copy = series(copyFonts, copyLang, copyTslintRules, copyToTerra);
+const copy = series(compileCss, copyFonts, copyLang, copyTslintRules, copyToTerra);
 exports.copy = copy;
 
 

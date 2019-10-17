@@ -19,9 +19,16 @@ module.exports = function () {
         terra: '../terra/node_modules/@plentymarkets/terra-components/',
     };
 
+    var scssSources = [
+        'src/lib/styles/styles.scss',
+        'src/lib/styles/icons.scss',
+        'src/lib/styles/themes/theme-loader.scss'
+    ];
+
     return {
         fileSelectors: fileSelectors,
         sources: sources,
         destinations: destinations,
+        scssSources: scssSources
     };
 };
