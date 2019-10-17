@@ -78,7 +78,6 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
     public _tmpSelectedValue:TerraSuggestionBoxValueInterface = null;
     public _toggleOpen:boolean = false;
 
-
     // TODO This must be discussed :/
     private _TextInputValue:string = '';
     private _lastSelectedValues:Array<TerraSuggestionBoxValueInterface> = [];
