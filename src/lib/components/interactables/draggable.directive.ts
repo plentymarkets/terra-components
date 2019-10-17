@@ -14,11 +14,12 @@ import { RestrictOptions } from './restrictOptions.interface';
 import { InertiaOptions } from './inertiaOptions.interface';
 import {
     Interactable,
-    InteractEvent
+    InteractEvent,
+    InteractStatic
 } from 'interactjs';
 
 import * as interact_ from 'interactjs';
-const interact = interact_;
+const interact:InteractStatic = interact_;
 
 @Directive({
     selector: '[terraDraggable]'
