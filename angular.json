@@ -95,7 +95,13 @@
 					"options": {
 						"main": "src/test.ts",
 						"tsConfig": "src/lib/tsconfig.spec.json",
-						"karmaConfig": "./karma.conf.js"
+						"karmaConfig": "./karma.conf.js",
+						"fileReplacements": [
+							{
+								"replace": "src/lib/environments/environment.ts",
+								"with": "src/lib/environments/environment.test.ts"
+							}
+						]
 					}
 				},
 				"lint": {
