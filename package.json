@@ -24,7 +24,7 @@
 		"test": "ng test",
 		"test-once": "ng test --watch=false --browsers=Chrome,Firefox,Safari",
 		"test-headless": "ng test --watch=false --browsers=ChromeHeadless,FirefoxHeadless",
-		"lint": "tslint -p tsconfig.json -c tslint.json -e 'src/**/*.d.ts' -e 'src/**/*.spec.ts' -e 'src/lib/environments/**' -e 'src/test.ts' 'src/**/*.ts'",
+		"lint": "ng lint lib",
 		"reinstall": "rm -rf node_modules/ && npm i"
 	},
 	"dependencies": {

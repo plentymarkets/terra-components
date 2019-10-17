@@ -102,11 +102,11 @@
 					"builder": "@angular-devkit/build-angular:tslint",
 					"options": {
 						"tsConfig": [
-							"src/lib/tsconfig.lib.json",
-							"src/lib/tsconfig.spec.json"
+							"src/lib/tsconfig.lib.json"
 						],
 						"exclude": [
-							"**/node_modules/**"
+							"**/node_modules/**",
+							"src/lib/environments/**"
 						]
 					}
 				}
