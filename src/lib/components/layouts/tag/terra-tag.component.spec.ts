@@ -155,7 +155,7 @@ describe('TerraTagComponent', () =>
             fixture.detectChanges();
 
             // getting access to protected/private methods
-            expect(textElement.styles['color']).toEqual(component['color']); // style is present and equals #ffffff or #000000
+            expect(textElement.styles['color']).toEqual(component['_color']); // style is present and equals #ffffff or #000000
         });
     });
 
