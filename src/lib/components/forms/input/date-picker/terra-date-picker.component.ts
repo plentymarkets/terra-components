@@ -16,6 +16,7 @@ import {
 } from 'mydatepicker';
 import { isNullOrUndefined } from 'util';
 import * as moment_ from 'moment';
+// tslint:disable-next-line:typedef
 const moment = moment_;
 
 let nextId:number = 0;
