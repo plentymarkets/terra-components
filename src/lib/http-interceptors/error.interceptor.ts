@@ -34,7 +34,7 @@ export class ErrorInterceptor implements HttpInterceptor
         return next.handle(req).pipe(
             catchError((error:HttpErrorResponse) =>
             {
-                if(!environment.production)
+                if(!environment.production && !environment.test)
                 {
                     console.error(error);
                 }
