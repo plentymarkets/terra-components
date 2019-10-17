@@ -21,7 +21,6 @@
 		"build:lint-rules": "tsc -p lintRules/tsconfig.lint.json",
 		"release": "ng build lib && gulp npm-publish",
 		"start": "ng serve",
-		"gulp": "gulp",
 		"test": "ng test",
 		"test-once": "ng test --watch=false --browsers=Chrome,Firefox,Safari",
 		"test-headless": "ng test --watch=false --browsers=ChromeHeadless,FirefoxHeadless",
