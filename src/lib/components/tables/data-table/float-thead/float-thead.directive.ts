@@ -17,7 +17,7 @@ import { Subscription } from 'rxjs';
 import { isNullOrUndefined } from 'util';
 
 import * as jQuery_ from 'jquery';
-const jQuery = jQuery_;
+const jQuery:JQueryStatic = jQuery_;
 
 @Directive({
     selector: 'table[floatThead]'
