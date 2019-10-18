@@ -62,15 +62,18 @@ describe(`RadioGroupComponent:`, () =>
         it(`should display given #legend text in the <legend>-element`, () =>
         {
             let legendDebugElement:DebugElement = fixture.debugElement.query(By.css('legend'));
-            expect(legendDebugElement).toBeUndefined();
+            expect(legendDebugElement).toBeFalsy();
 
             const legend:string = 'Legend';
             radioGroupComponent.legend = legend;
             fixture.detectChanges();
 
+            legendDebugElement = fixture.debugElement.query(By.css('legend'));
+            expect(legendDebugElement).toBeTruthy();
+
             let legendElement:HTMLLegendElement = legendDebugElement.nativeElement;
 
-            expect(legendElement.innerText).toBe(legend); // this fails.. why??
+            expect(legendElement.innerText).toBe(legend);
         });
 
         it(`setting the #value should update the #value`, () =>
