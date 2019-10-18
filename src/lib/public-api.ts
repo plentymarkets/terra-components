@@ -92,13 +92,11 @@ export { TerraCheckboxTreeComponent } from './components/tree/checkbox-tree/terr
 export { TerraLeafInterface } from './components/tree/leaf/terra-leaf.interface';
 
 export { TerraCardComponent } from './components/layouts/card/terra-card.component';
-export * from './components/editors/syntax-editor/terra-syntax-editor.component';
-export * from './components/editors/syntax-editor/data/terra-syntax-editor.data';
-export * from './components/split-view/multi/terra-multi-split-view.component';
-export * from './components/split-view/multi/injectables/terra-multi-split-view.config';
-export * from './components/split-view/multi/interfaces/terra-multi-split-view.interface';
-export * from './components/dynamic-module-loader/data/terra-split-view-component.interface';
-export * from './components/dynamic-component-loader/terra-dynamic-component-loader.component';
+
+export { TerraSyntaxEditorComponent } from './components/editors/syntax-editor/terra-syntax-editor.component';
+export { TerraSyntaxEditorData } from './components/editors/syntax-editor/data/terra-syntax-editor.data';
+
+export { TerraDynamicComponentLoaderComponent } from './components/dynamic-component-loader/terra-dynamic-component-loader.component';
 
 // TODO file browser index
 export {
@@ -171,7 +169,11 @@ export { TerraNestedDataPickerBaseService } from './components/data-picker/neste
 export { NestedDataInterface } from './components/data-picker/nested-data-picker/data/nested-data.interface';
 export { NestedValueInterface } from './components/data-picker/nested-data-picker/data/nested-value.interface';
 
-
+// SPLIT VIEW
+export { TerraMultiSplitViewComponent } from './components/split-view/multi/terra-multi-split-view.component';
+export { TerraMultiSplitViewConfig } from './components/split-view/multi/injectables/terra-multi-split-view.config';
+export { TerraMultiSplitViewInterface } from './components/split-view/multi/interfaces/terra-multi-split-view.interface';
+export { TerraSplitViewComponentInterface } from './components/dynamic-module-loader/data/terra-split-view-component.interface';
 export { TerraMultiSplitViewBreadcrumbsService } from './components/split-view/multi/injectables/terra-multi-split-view-breadcrumbs.service';
 
 export { TerraValidators } from './validators/validators';
