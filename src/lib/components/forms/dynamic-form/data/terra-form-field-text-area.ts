@@ -5,13 +5,16 @@ import {
 import { TerraControlTypeEnum } from '../enum/terra-control-type.enum';
 
 /**
- * @author dtrauf
+ * @deprecated since v5.0.0. Use terra-form instead.
  */
 export interface TerraFormFieldTextAreaOptions extends TerraFormFieldBaseOptions<string>
 {
     type?:string;
 }
 
+/**
+ * @deprecated since v5.0.0. Use terra-form instead.
+ */
 export class TerraFormFieldTextArea extends TerraFormFieldBase<string>
 {
     public type:string;
