@@ -26,9 +26,10 @@ export { TerraMultiCheckBoxValueInterface } from './components/forms/multi-check
 export { TerraMultiCheckBoxComponent } from './components/forms/multi-check-box/terra-multi-check-box.component';
 
 export { TerraRadioButtonComponent } from './components/forms/radio-button/terra-radio-button.component';
+export { RadioGroupComponent } from './components/forms/input/radio/radio-group.component';
+export { RadioInputComponent } from './components/forms/input/radio/radio-input.component';
 
-// TODO: this has to be removed from the public api
-export { TerraInputComponent } from './components/forms/input/terra-input.component';
+export { TerraInputComponent } from './components/forms/input/terra-input.component'; // TODO: this has to be removed from the public api
 export { TerraDoubleInputComponent } from './components/forms/input/double-input/terra-double-input.component';
 export { TerraNumberInputComponent } from './components/forms/input/number-input/terra-number-input.component';
 export { TerraTextInputComponent } from './components/forms/input/text-input/terra-text-input.component';
@@ -44,18 +45,32 @@ export { TerraDatePickerComponent } from './components/forms/input/date-picker/t
 // Indicator
 export { TerraIndicatorComponent } from './components/indicator/terra-indicator.component';
 
-// Info box
-export { TerraInfoBoxComponent } from './components/layouts/info-box/terra-info-box.component';
-
 // Loading spinner
 export { TerraLoadingSpinnerService } from './components/loading-spinner/service/terra-loading-spinner.service';
 export { TerraLoadingSpinnerComponent } from './components/loading-spinner/terra-loading-spinner.component';
 
+// Info box
+export { TerraInfoBoxComponent } from './components/layouts/info-box/terra-info-box.component';
+
+// Overlay
 export { TerraOverlayComponent } from './components/layouts/overlay/terra-overlay.component';
 export { TerraOverlayButtonInterface } from './components/layouts/overlay/data/terra-overlay-button.interface';
 
-
+// Portlet
 export { TerraPortletComponent } from './components/layouts/portlet/terra-portlet.component';
+
+// Card
+export { TerraCardComponent } from './components/layouts/card/terra-card.component';
+
+// Tags
+export { TerraTagComponent } from './components/layouts/tag/terra-tag.component';
+export { TerraTagInterface } from './components/layouts/tag/data/terra-tag.interface';
+export { TerraTaglistComponent } from './components/layouts/taglist/terra-taglist.component';
+
+// Column containers
+export { TerraTwoColumnsContainerDirective } from './components/layouts/column-container/two-columns/terra-two-columns-container.directive';
+export { TerraTwoColumnsContainerComponent } from './components/layouts/column-container/two-columns/terra-two-columns-container.component';
+export { TerraThreeColumnsContainerComponent } from './components/layouts/column-container/three-columns/terra-three-columns-container.component';
 
 // PAGER
 export { TerraPagerInterface } from './components/pager/data/terra-pager.interface';
@@ -80,11 +95,6 @@ export { TerraSimpleTableHeaderCellInterface } from './components/tables/simple/
 export { TerraSimpleTableRowInterface } from './components/tables/simple/row/terra-simple-table-row.interface';
 export { TerraSimpleTableComponent } from './components/tables/simple/terra-simple-table.component';
 
-// TAGS
-export { TerraTagComponent } from './components/layouts/tag/terra-tag.component';
-export { TerraTagInterface } from './components/layouts/tag/data/terra-tag.interface';
-export { TerraTaglistComponent } from './components/layouts/taglist/terra-taglist.component';
-
 export { TerraBaseToolbarComponent } from './components/toolbar/base-toolbar/terra-base-toolbar.component';
 
 // TODO: Should be removed from the public API
@@ -93,8 +103,6 @@ export { TerraBaseTreeComponent } from './components/tree/base/terra-base-tree.c
 // TREES
 export { TerraCheckboxTreeComponent } from './components/tree/checkbox-tree/terra-checkbox-tree.component';
 export { TerraLeafInterface } from './components/tree/leaf/terra-leaf.interface';
-
-export { TerraCardComponent } from './components/layouts/card/terra-card.component';
 
 export { TerraSyntaxEditorComponent } from './components/editors/syntax-editor/terra-syntax-editor.component';
 export { TerraSyntaxEditorData } from './components/editors/syntax-editor/data/terra-syntax-editor.data';
@@ -192,16 +200,13 @@ export { TerraFormScope } from './components/forms/form/model/terra-form-scope.d
 export { TerraFormTypeMap } from './components/forms/form/model/terra-form-type-map.enum';
 export { FormTypeMap } from './components/forms/form/model/form-type-map';
 export {
-    TERRA_FORM_PROPERTY_METADATA_KEY,
+    TERRA_FORM_PROPERTY_METADATA_KEY, // TODO: may be removed from public api
     TerraFormProperty
 } from './components/forms/form/model/terra-form-property.decorator';
 export { TerraBreadcrumbsComponent } from './components/breadcrumbs/terra-breadcrumbs.component';
 export { TerraBreadcrumb } from './components/breadcrumbs/terra-breadcrumb';
 export { TerraBreadcrumbsService } from './components/breadcrumbs/service/terra-breadcrumbs.service';
 export { TerraTagSelectComponent } from './components/forms/tag-select/terra-tag-select.component';
-export { TerraTwoColumnsContainerDirective } from './components/layouts/column-container/two-columns/terra-two-columns-container.directive';
-export { TerraTwoColumnsContainerComponent } from './components/layouts/column-container/two-columns/terra-two-columns-container.component';
-export { TerraThreeColumnsContainerComponent } from './components/layouts/column-container/three-columns/terra-three-columns-container.component';
 export { TerraHrefTypeEnum } from './components/tables/data-table/enums/terra-href-type.enum';
 export { TerraGroupFunctionComponent } from './components/tables/group-function/terra-group-function.component';
 export { TerraDataTableBaseService } from './components/tables/data-table/terra-data-table-base.service';
@@ -210,7 +215,5 @@ export { AlertService } from './components/alert/alert.service';
 export { ckEditorMinimumConfig } from './components/editors/ck-editor/presets/ck-editor-minimum-preset';
 export { ckEditorFullConfig } from './components/editors/ck-editor/presets/ck-editor-full-preset';
 export { CKEditorDirective } from './components/editors/ck-editor/ck-editor.directive';
-export { RadioGroupComponent } from './components/forms/input/radio/radio-group.component';
-export { RadioInputComponent } from './components/forms/input/radio/radio-input.component';
 export { TooltipDirective } from './components/tooltip/tooltip.directive';
 export { AllowedColors } from './components/forms/select-box/data/allowed.colors.enum';
