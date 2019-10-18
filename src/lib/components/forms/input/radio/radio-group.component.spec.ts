@@ -61,7 +61,7 @@ describe(`RadioGroupComponent:`, () =>
         it(`should display given #legend text in the <legend>-element`, () =>
         {
             let legendElement:HTMLLegendElement = fixture.debugElement.query(By.css('legend')).nativeElement;
-            expect(legendElement.innerText).toBe('');
+            expect(legendElement).toBeUndefined();
 
             const legend:string = 'Legend';
             radioGroupComponent.legend = legend;
