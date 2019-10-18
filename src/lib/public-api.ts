@@ -1,3 +1,8 @@
+export * from './service';
+export * from './http-interceptors';
+export * from './helpers';
+export * from './models';
+
 export { TerraComponentsModule } from './terra-components.module';
 export { TerraComponentsExamplesModule } from './terra-components-examples.module';
 
@@ -51,8 +56,6 @@ export { TerraOverlayButtonInterface } from './components/layouts/overlay/data/t
 
 
 export { TerraPortletComponent } from './components/layouts/portlet/terra-portlet.component';
-
-export { TerraBaseService } from './service/terra-base.service';
 
 // PAGER
 export { TerraPagerInterface } from './components/pager/data/terra-pager.interface';
@@ -204,14 +207,10 @@ export { TerraGroupFunctionComponent } from './components/tables/group-function/
 export { TerraDataTableBaseService } from './components/tables/data-table/terra-data-table-base.service';
 export { TableRowComponent } from './components/tables/data-table/table-row/table-row.component';
 export { AlertService } from './components/alert/alert.service';
-export { ModelCache } from './service/model-cache';
-export * from './http-interceptors';
 export { ckEditorMinimumConfig } from './components/editors/ck-editor/presets/ck-editor-minimum-preset';
 export { ckEditorFullConfig } from './components/editors/ck-editor/presets/ck-editor-full-preset';
 export { CKEditorDirective } from './components/editors/ck-editor/ck-editor.directive';
-export * from './helpers';
 export { RadioGroupComponent } from './components/forms/input/radio/radio-group.component';
 export { RadioInputComponent } from './components/forms/input/radio/radio-input.component';
-export * from './models';
 export { TooltipDirective } from './components/tooltip/tooltip.directive';
 export { AllowedColors } from './components/forms/select-box/data/allowed.colors.enum';
