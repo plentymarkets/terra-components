@@ -1,64 +1,97 @@
 export { TerraComponentsModule } from './terra-components.module';
 export { TerraComponentsExamplesModule } from './terra-components-examples.module';
-export * from './components/alert/terra-alert-panel.component';
-export * from './components/alert/terra-alert.component';
-export * from './components/buttons/button/data/terra-button.interface';
-export * from './components/buttons/button/terra-button.component';
-export * from './components/buttons/button-with-options/terra-button-with-options.component';
-export * from './components/buttons/file-chooser/terra-file-chooser.component';
-export * from './components/data/terra-base.data';
-export * from './components/filter/terra-filter.component';
-export * from './components/forms/checkbox/terra-checkbox.component';
-export * from './components/forms/checkbox-group/checkbox-group.component';
-export * from './components/forms/radio-button/terra-radio-button.component';
-export * from './components/forms/input/terra-input.component';
-export * from './components/forms/input/double-input/terra-double-input.component';
-export * from './components/forms/input/number-input/terra-number-input.component';
-export * from './components/forms/input/text-input/terra-text-input.component';
-export * from './components/forms/input/color-picker/terra-color-picker.component';
-export * from './components/forms/select-box/data/terra-select-box.interface';
-export * from './components/forms/suggestion-box/data/terra-suggestion-box.interface';
-export * from './components/forms/select-box/terra-select-box.component';
-export * from './components/forms/suggestion-box/terra-suggestion-box.component';
-export * from './components/forms/multi-check-box/data/terra-multi-check-box-value.interface';
-export * from './components/forms/multi-check-box/terra-multi-check-box.component';
-export * from './components/forms/input/text-area-input/terra-text-area-input.component';
-export * from './components/forms/input/file-input/terra-file-input.component';
-export * from './components/indicator/terra-indicator.component';
-export * from './components/layouts/info-box/terra-info-box.component';
-export * from './components/loading-spinner/service/terra-loading-spinner.service';
-export * from './components/loading-spinner/terra-loading-spinner.component';
-export * from './components/layouts/overlay/terra-overlay.component';
-export * from './components/layouts/overlay/data/terra-overlay-button.interface';
-export * from './components/pager/data/terra-pager.interface';
-export * from './components/pager/terra-pager.component';
-export * from './components/layouts/portlet/terra-portlet.component';
-export * from './service/terra-base.service';
-export * from './components/tables/data-table/interfaces/terra-data-table-cell.interface';
-export * from './components/tables/data-table/interfaces/terra-href-type.interface';
-export * from './components/tables/data-table/interfaces/terra-data-table-text.interface';
-export * from './components/tables/data-table/interfaces/terra-data-table-header-cell.interface';
-export * from './components/tables/simple/cell/terra-simple-table-cell.interface';
-export * from './components/tables/simple/cell/terra-simple-table-header-cell.interface';
-export * from './components/tables/data-table/context-menu/terra-data-table-context-menu.directive';
-export * from './components/tables/data-table/context-menu/data/terra-data-table-context-menu-entry.interface';
-export * from './components/tables/data-table/context-menu/terra-data-table-context-menu.service';
-export * from './components/tables/data-table/context-menu/terra-data-table-context-menu.component';
-export * from './components/tables/data-table/terra-data-table.component';
-export * from './components/tables/data-table/interfaces/terra-data-table-row.interface';
-export * from './components/tables/simple/terra-simple-table.component';
-export * from './components/tables/simple/row/terra-simple-table-row.interface';
-export * from './components/layouts/tag/terra-tag.component';
-export * from './components/layouts/tag/data/terra-tag.interface';
-export * from './components/layouts/taglist/terra-taglist.component';
-export * from './components/toolbar/base-toolbar/terra-base-toolbar.component';
-export * from './components/tree/base/terra-base-tree.component';
-export * from './components/tree/checkbox-tree/terra-checkbox-tree.component';
-export * from './components/tree/leaf/terra-leaf.interface';
-export * from './components/forms/input/date-picker/terra-date-picker.component';
-export * from './components/pager/data/terra-pager.parameter.interface';
-export * from './components/layouts/card/terra-card.component';
-export * from './components/buttons/toggle/terra-toggle.component';
+
+export { TerraAlertPanelComponent } from './components/alert/terra-alert-panel.component';
+export { TerraAlertComponent } from './components/alert/terra-alert.component';
+
+export { TerraButtonInterface } from './components/buttons/button/data/terra-button.interface';
+export { TerraButtonComponent } from './components/buttons/button/terra-button.component';
+export { TerraButtonWithOptionsComponent } from './components/buttons/button-with-options/terra-button-with-options.component';
+export { TerraToggleComponent } from './components/buttons/toggle/terra-toggle.component';
+
+export { TerraFileChooserComponent } from './components/buttons/file-chooser/terra-file-chooser.component';
+
+export { TerraBaseData } from './components/data/terra-base.data';
+export { TerraFilterComponent } from './components/filter/terra-filter.component';
+
+// FORM ELEMENTS
+export { TerraCheckboxComponent } from './components/forms/checkbox/terra-checkbox.component';
+export { CheckboxGroupComponent } from './components/forms/checkbox-group/checkbox-group.component';
+export { TerraMultiCheckBoxValueInterface } from './components/forms/multi-check-box/data/terra-multi-check-box-value.interface';
+export { TerraMultiCheckBoxComponent } from './components/forms/multi-check-box/terra-multi-check-box.component';
+
+export { TerraRadioButtonComponent } from './components/forms/radio-button/terra-radio-button.component';
+
+// TODO: this has to be removed from the public api
+export { TerraInputComponent } from './components/forms/input/terra-input.component';
+export { TerraDoubleInputComponent } from './components/forms/input/double-input/terra-double-input.component';
+export { TerraNumberInputComponent } from './components/forms/input/number-input/terra-number-input.component';
+export { TerraTextInputComponent } from './components/forms/input/text-input/terra-text-input.component';
+export { TerraColorPickerComponent } from './components/forms/input/color-picker/terra-color-picker.component';
+export { TerraSelectBoxValueInterface } from './components/forms/select-box/data/terra-select-box.interface';
+export { TerraSuggestionBoxValueInterface } from './components/forms/suggestion-box/data/terra-suggestion-box.interface';
+export { TerraSelectBoxComponent } from './components/forms/select-box/terra-select-box.component';
+export { TerraSuggestionBoxComponent } from './components/forms/suggestion-box/terra-suggestion-box.component';
+export { TerraTextAreaInputComponent } from './components/forms/input/text-area-input/terra-text-area-input.component';
+export { TerraFileInputComponent } from './components/forms/input/file-input/terra-file-input.component';
+export { TerraDatePickerComponent } from './components/forms/input/date-picker/terra-date-picker.component';
+
+// Indicator
+export { TerraIndicatorComponent } from './components/indicator/terra-indicator.component';
+
+// Info box
+export { TerraInfoBoxComponent } from './components/layouts/info-box/terra-info-box.component';
+
+// Loading spinner
+export { TerraLoadingSpinnerService } from './components/loading-spinner/service/terra-loading-spinner.service';
+export { TerraLoadingSpinnerComponent } from './components/loading-spinner/terra-loading-spinner.component';
+
+export { TerraOverlayComponent } from './components/layouts/overlay/terra-overlay.component';
+export { TerraOverlayButtonInterface } from './components/layouts/overlay/data/terra-overlay-button.interface';
+
+
+export { TerraPortletComponent } from './components/layouts/portlet/terra-portlet.component';
+
+export { TerraBaseService } from './service/terra-base.service';
+
+// PAGER
+export { TerraPagerInterface } from './components/pager/data/terra-pager.interface';
+export { TerraPagerComponent } from './components/pager/terra-pager.component';
+export { TerraPagerParameterInterface } from './components/pager/data/terra-pager.parameter.interface';
+
+// DATA TABLE
+export { TerraDataTableCellInterface } from './components/tables/data-table/interfaces/terra-data-table-cell.interface';
+export { TerraHrefTypeInterface } from './components/tables/data-table/interfaces/terra-href-type.interface';
+export { TerraDataTableTextInterface } from './components/tables/data-table/interfaces/terra-data-table-text.interface';
+export { TerraDataTableHeaderCellInterface } from './components/tables/data-table/interfaces/terra-data-table-header-cell.interface';
+export { TerraDataTableRowInterface } from './components/tables/data-table/interfaces/terra-data-table-row.interface';
+export { TerraDataTableContextMenuDirective } from './components/tables/data-table/context-menu/terra-data-table-context-menu.directive';
+export { TerraDataTableContextMenuEntryInterface }from './components/tables/data-table/context-menu/data/terra-data-table-context-menu-entry.interface';
+export { TerraDataTableContextMenuService } from './components/tables/data-table/context-menu/terra-data-table-context-menu.service';
+export { TerraDataTableContextMenuComponent } from './components/tables/data-table/context-menu/terra-data-table-context-menu.component';
+export { TerraDataTableComponent } from './components/tables/data-table/terra-data-table.component';
+
+// SIMPLE TABLE
+export { TerraSimpleTableCellInterface } from './components/tables/simple/cell/terra-simple-table-cell.interface';
+export { TerraSimpleTableHeaderCellInterface } from './components/tables/simple/cell/terra-simple-table-header-cell.interface';
+export { TerraSimpleTableRowInterface } from './components/tables/simple/row/terra-simple-table-row.interface';
+export { TerraSimpleTableComponent } from './components/tables/simple/terra-simple-table.component';
+
+// TAGS
+export { TerraTagComponent } from './components/layouts/tag/terra-tag.component';
+export { TerraTagInterface } from './components/layouts/tag/data/terra-tag.interface';
+export { TerraTaglistComponent } from './components/layouts/taglist/terra-taglist.component';
+
+export { TerraBaseToolbarComponent } from './components/toolbar/base-toolbar/terra-base-toolbar.component';
+
+// TODO: Should be removed from the public API
+export { TerraBaseTreeComponent } from './components/tree/base/terra-base-tree.component';
+
+// TREES
+export { TerraCheckboxTreeComponent } from './components/tree/checkbox-tree/terra-checkbox-tree.component';
+export { TerraLeafInterface } from './components/tree/leaf/terra-leaf.interface';
+
+export { TerraCardComponent } from './components/layouts/card/terra-card.component';
 export * from './components/editors/syntax-editor/terra-syntax-editor.component';
 export * from './components/editors/syntax-editor/data/terra-syntax-editor.data';
 export * from './components/split-view/multi/terra-multi-split-view.component';

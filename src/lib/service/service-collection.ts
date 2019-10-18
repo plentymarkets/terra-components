@@ -1,5 +1,4 @@
 import { Provider } from '@angular/core';
-import { TerraBaseService } from './terra-base.service';
 import { TerraFrontendStorageService } from '../components/file-browser/terra-frontend-storage.service';
 import { TerraAlertComponent } from '../components/alert/terra-alert.component';
 import { TerraDynamicFormService } from '../components/forms/dynamic-form/service/terra-dynamic-form.service';
