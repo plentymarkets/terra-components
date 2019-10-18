@@ -2,6 +2,7 @@ export * from './service';
 export * from './http-interceptors';
 export * from './helpers';
 export * from './models';
+export * from './components/editors/ck-editor/presets';
 
 export { TerraComponentsModule } from './terra-components.module';
 export { TerraComponentsExamplesModule } from './terra-components-examples.module';
@@ -207,8 +208,6 @@ export { TerraGroupFunctionComponent } from './components/tables/group-function/
 export { TerraDataTableBaseService } from './components/tables/data-table/terra-data-table-base.service';
 export { TableRowComponent } from './components/tables/data-table/table-row/table-row.component';
 export { AlertService } from './components/alert/alert.service';
-export { ckEditorMinimumConfig } from './components/editors/ck-editor/presets/ck-editor-minimum-preset';
-export { ckEditorFullConfig } from './components/editors/ck-editor/presets/ck-editor-full-preset';
 export { CKEditorDirective } from './components/editors/ck-editor/ck-editor.directive';
 export { RadioGroupComponent } from './components/forms/input/radio/radio-group.component';
 export { RadioInputComponent } from './components/forms/input/radio/radio-input.component';
