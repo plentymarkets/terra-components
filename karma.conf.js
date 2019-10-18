@@ -28,12 +28,6 @@ module.exports = function (config) {
         flags: [
           '--headless'
         ]
-      },
-      ChromeHeadless: {
-        base: 'Chrome',
-        flags: [
-            '--headless'
-        ]
       }
     },
     reporters: ['progress', 'kjhtml'],
