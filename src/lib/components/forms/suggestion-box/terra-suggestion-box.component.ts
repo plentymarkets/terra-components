@@ -78,8 +78,8 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
     public _tmpSelectedValue:TerraSuggestionBoxValueInterface = null;
     public _toggleOpen:boolean = false;
 
-    // TODO This must be discussed :/
-    private _TextInputValue:string = '';
+    // tslint:disable-next-line:variable-name
+    private __textInputValue:string = '';
     private _lastSelectedValues:Array<TerraSuggestionBoxValueInterface> = [];
     private _hasLabel:boolean;
     private _clickListener:(event:Event) => void;
@@ -184,7 +184,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
 
     public _onChange():void
     {
-        let searchString:any = this.TextInputValue;
+        let searchString:any = this._textInputValue;
         this.toggleOpen = true;
 
         if(!isNullOrUndefined(searchString) && searchString.length >= 3)
@@ -382,18 +382,18 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
         }
     }
 
-    public get TextInputValue():string
+    public get _textInputValue():string
     {
-        return this._TextInputValue;
+        return this.__textInputValue;
     }
 
-    public set TextInputValue(value:string)
+    public set _textInputValue(value:string)
     {
-        if(this._TextInputValue !== value)
+        if(this.__textInputValue !== value)
         {
             this.textInputValueChange.emit(value);
         }
-        this._TextInputValue = value;
+        this.__textInputValue = value;
     }
 
     private clickedOutside(event:Event):void
@@ -442,7 +442,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
             // finally update text input value
             if(!onChange)
             {
-                this.TextInputValue = !isNullOrUndefined(this._selectedValue) ? this._selectedValue.caption : '';
+                this._textInputValue = !isNullOrUndefined(this._selectedValue) ? this._selectedValue.caption : '';
             }
         }
     }
