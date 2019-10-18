@@ -31,21 +31,27 @@ function copyToTerra() {
         .pipe(dest(config.destinations.terra));
 }
 
-function compileCss() {
-    return src(config.scssSources)
-        .pipe(sass({
-        importer: tildeImporter,
-        outputStyle: 'compressed'
-    }).on('error', sass.logError))
-        .pipe(dest('dist/styles'))
-}
-
 /**
  * Copies all the files to the dedicated deploy folder
  **/
-const copy = series(compileCss, copyFonts, copyLang, copyTslintRules, copyToTerra);
+const copy = series(copyFonts, copyLang, copyTslintRules, copyToTerra);
 exports.copy = copy;
 
+// convert global scss styles to css files
+function compileCss() {
+    return src(config.scssSources)
+    .pipe(sass({
+        importer: tildeImporter,
+        outputStyle: 'compressed'
+    }).on('error', sass.logError))
+    .pipe(dest('dist/styles'))
+}
+
+/**
+ * Compiles scss to css
+ **/
+const compileStyles = series(compileCss);
+exports.compileStyles = compileStyles;
 
 //changing version of package.json for new publish
 function changeVersion(done) {
