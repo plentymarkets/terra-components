@@ -57,9 +57,9 @@ export class TerraCodeEditorComponent extends TerraBaseEditorComponent implement
 
     private _linter:HtmlLinter;
 
-    constructor(public _translation:TranslationService, public _myElement:ElementRef)
+    constructor(translation:TranslationService, myElement:ElementRef)
     {
-        super(_translation, _myElement);
+        super(translation, myElement);
         // initialize placeholder
         this._placeholder = this._translation.translate('terraNoteEditor.insertText');
 
@@ -119,7 +119,7 @@ export class TerraCodeEditorComponent extends TerraBaseEditorComponent implement
             setTimeout(() =>
             {
                 // check if editor will change the markup
-                this.checkCodeFormat()
+                this._checkCodeFormat()
                     .then((hasChanges:boolean) =>
                     {
                         // show raw content if editor will change the markup
@@ -180,9 +180,9 @@ export class TerraCodeEditorComponent extends TerraBaseEditorComponent implement
         }
         else if(!isEditorContent && this.showCodeView)
         {
-            if(this.validateMarkup())
+            if(this._validateMarkup())
             {
-                this._value = this.safeHtml(this.rawContent);
+                this._value = this._safeHtml(this.rawContent);
                 this._onChangeCallback(this._value);
             }
         }
@@ -191,7 +191,7 @@ export class TerraCodeEditorComponent extends TerraBaseEditorComponent implement
 
     public _closeCodeView(forceClose:boolean = false):void
     {
-        this.checkCodeFormat()
+        this._checkCodeFormat()
             .then((hasChanges:boolean) =>
             {
                 if(hasChanges && !forceClose)
@@ -216,7 +216,7 @@ export class TerraCodeEditorComponent extends TerraBaseEditorComponent implement
             });
     }
 
-    private checkCodeFormat():Promise<boolean>
+    private _checkCodeFormat():Promise<boolean>
     {
         return new Promise((resolve:Function, reject:Function):void =>
         {
@@ -253,7 +253,7 @@ export class TerraCodeEditorComponent extends TerraBaseEditorComponent implement
         });
     }
 
-    private validateMarkup():boolean
+    private _validateMarkup():boolean
     {
         this._isValidMarkup = true;
 
@@ -277,7 +277,7 @@ export class TerraCodeEditorComponent extends TerraBaseEditorComponent implement
         return this._isValidMarkup;
     }
 
-    private safeHtml(input:string):string
+    private _safeHtml(input:string):string
     {
         let parser:DOMParser = new DOMParser();
         let doc:HTMLDocument = parser.parseFromString(input, 'text/html');

@@ -141,5 +141,6 @@ export const exportedComponents:Array<Type<any>> = [
 export const components:Array<Type<any>> = [
     ...exportedComponents,
     TerraFileListComponent,
-    TerraImagePreviewComponent
+    TerraImagePreviewComponent,
+    TerraBaseEditorComponent
 ];
