@@ -1,11 +1,11 @@
 module.exports = function () {
 
-    var fileSelectors = {
+    const fileSelectors = {
         allFonts: './src/assets/fonts/**/*',
         allLang: './src/assets/lang/**/*'
     };
 
-    var sources = {
+    const sources = {
         tslintRules: './tslint-rules.json',
         customLintRules: './lintRules/**/*Rule.ts',
         dist: 'dist/**/*.*',
@@ -16,7 +16,7 @@ module.exports = function () {
         ]
     };
 
-    var destinations = {
+    const destinations = {
         tsOutputPath: './dist/',
         fontsOutputPath: './dist/assets/fonts/',
         langOutputPath: './dist/assets/lang/',
@@ -27,7 +27,6 @@ module.exports = function () {
     return {
         fileSelectors: fileSelectors,
         sources: sources,
-        destinations: destinations,
-        scssSources: sources.scss
+        destinations: destinations
     };
 };
