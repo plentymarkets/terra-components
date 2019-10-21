@@ -66,14 +66,14 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
     @Input()
     public showFullSelectionPath:boolean = false;
 
-    public _toggleTree:boolean = false;
+    public toggleTree:boolean = false;
 
     @Language()
     public _lang:string;
 
     public _nestedDataName:string;
 
-    protected _value:number | string;
+    public value:number | string;
     protected _isNotInitialCall:boolean;
 
     protected _onTouchedCallback:() => void = noop;
@@ -85,7 +85,7 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
     constructor(protected translation:TranslationService,
                 public _nestedTreeConfig:TerraNodeTreeConfig<{}>)
     {
-        this._value = null;
+        this.value = null;
         this._completeNestedData = {
             id:               null,
             isActive:         null,
@@ -151,13 +151,13 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
                     }
                 }
 
-                this._value = value;
+                this.value = value;
 
                 if(this._isNotInitialCall)
                 {
                     this.updateCompleteNestedData(nodeToSelect);
                     this._onTouchedCallback();
-                    this._onChangeCallback(this._value);
+                    this._onChangeCallback(this.value);
                 }
             });
         }
@@ -179,17 +179,17 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
             }
             this.writeValue(this._nestedTreeConfig.currentSelectedNode.id);
         }
-        this._toggleTree = !this._toggleTree;
+        this.toggleTree = !this.toggleTree;
     }
 
     public reset():void
     {
         this._nestedTreeConfig.currentSelectedNode = null;
         this._nestedDataName = '';
-        this._value = 0;
+        this.value = 0;
 
         this._onTouchedCallback();
-        this._onChangeCallback(this._value);
+        this._onChangeCallback(this.value);
     }
 
     // Set touched on blur
@@ -212,7 +212,7 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
 
     public showTree():void
     {
-        this._toggleTree = !this._toggleTree;
+        this.toggleTree = !this.toggleTree;
     }
 
     public addNodes(nestedData:TerraPagerInterface<{}>, parentId:number | string):void

@@ -65,7 +65,7 @@ export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent
                 public _nestedTreeConfig:NestedDataTreeConfig<CategoryDataInterface>)
     {
         super(translation, _nestedTreeConfig);
-        this._value = 0;
+        this.value = 0;
         this._completeCategory = {
             id:               null,
             isActive:         null,
@@ -129,13 +129,13 @@ export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent
                     this._categoryName = this._nestedTreeConfig.currentSelectedNode.name;
                 }
 
-                this._value = value;
+                this.value = value;
 
                 if(this._isNotInitialCall && nodeToSelect)
                 {
                     this._updateCompleteCategory(nodeToSelect);
                     this._onTouchedCallback();
-                    this._onChangeCallback(this._value);
+                    this._onChangeCallback(this.value);
                 }
             });
         }
@@ -143,7 +143,7 @@ export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent
         {
             this._nestedTreeConfig.currentSelectedNode = null;
             this._categoryName = '';
-            this._value = null;
+            this.value = null;
         }
 
     }
@@ -157,17 +157,17 @@ export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent
             this._categoryName = this._nestedTreeConfig.currentSelectedNode.name;
             this.writeValue(this._nestedTreeConfig.currentSelectedNode.id);
         }
-        this._toggleTree = !this._toggleTree;
+        this.toggleTree = !this.toggleTree;
     }
 
     public reset():void
     {
         this._nestedTreeConfig.currentSelectedNode = null;
         this._categoryName = '';
-        this._value = 0;
+        this.value = 0;
 
         this._onTouchedCallback();
-        this._onChangeCallback(this._value);
+        this._onChangeCallback(this.value);
     }
 
     public addNodes(data:any, parentNodeId:number | string):void
