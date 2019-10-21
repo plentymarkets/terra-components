@@ -34,7 +34,7 @@ export class ErrorInterceptor implements HttpInterceptor
         return next.handle(req).pipe(
             catchError((error:HttpErrorResponse) =>
             {
-                if(!environment.production && !environment.test)
+                if(!environment.test) // TODO: this may be misinterpreted in Terra
                 {
                     console.error(error);
                 }
