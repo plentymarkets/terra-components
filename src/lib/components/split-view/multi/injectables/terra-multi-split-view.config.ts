@@ -192,7 +192,7 @@ export class TerraMultiSplitViewConfig
         if(isNullOrUndefined(this.translation))
         {
             console.error(
-                '_translation is not defined. Please inject the TranslationService in your config-instance to make routing functionality available');
+                'translation is not defined. Please inject the TranslationService in your config-instance to make routing functionality available');
             return;
         }
 
