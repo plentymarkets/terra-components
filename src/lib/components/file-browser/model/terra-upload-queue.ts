@@ -21,7 +21,8 @@ export class TerraUploadQueue
     private _progressListeners:Array<Observer<number>> = [];
     private _progressValue:number = -1;
 
-    constructor(private uploadUrl:string | UploadQueueUrlFactory, private uploadMethod:'GET' | 'POST' | 'DELETE' | 'PUT' = 'POST')
+    constructor(private _uploadUrl:string | UploadQueueUrlFactory,
+                private _uploadMethod:'GET' | 'POST' | 'DELETE' | 'PUT' = 'POST')
     {
         this.progress = new Observable((observer:Observer<number>):Function =>
         {
@@ -45,7 +46,7 @@ export class TerraUploadQueue
         this._size += item.file.size;
         if(this.inProgress)
         {
-            this.onProgress();
+            this._onProgress();
         }
         return this;
     }
@@ -57,7 +58,7 @@ export class TerraUploadQueue
         this._size -= item.file.size;
         if(this.inProgress)
         {
-            this.onProgress();
+            this._onProgress();
         }
         return this;
     }
@@ -74,7 +75,7 @@ export class TerraUploadQueue
             return this.inProgress;
         }
 
-        this.inProgress = this.uploadAllItems()
+        this.inProgress = this._uploadAllItems()
                               .then(() =>
                               {
                                   this.inProgress = null;
@@ -83,7 +84,7 @@ export class TerraUploadQueue
                               });
     }
 
-    private uploadAllItems():Promise<void>
+    private _uploadAllItems():Promise<void>
     {
         return new Promise((resolve:(resp:void) => void, reject:(err:any) => void):void =>
         {
@@ -98,15 +99,15 @@ export class TerraUploadQueue
             }
             else
             {
-                this.uploadItem(nextItem).then(() =>
+                this._uploadItem(nextItem).then(() =>
                 {
-                    this.uploadAllItems().then(resolve).catch(reject);
+                    this._uploadAllItems().then(resolve).catch(reject);
                 }).catch(reject);
             }
         });
     }
 
-    private uploadItem(item:TerraUploadItem):Promise<void>
+    private _uploadItem(item:TerraUploadItem):Promise<void>
     {
         return new Promise((resolve:(resp:void) => void, reject:(err:any) => void):void =>
         {
@@ -118,22 +119,22 @@ export class TerraUploadQueue
             {
                 let progress:number = Math.round(event.lengthComputable ? event.loaded * 100 / event.total : 0);
                 item.emit('onProgress', progress);
-                this.onProgress();
+                this._onProgress();
             };
 
             xhr.onload = ():void =>
             {
-                item.emit('onSuccess', xhr.response, xhr.status, this.parseHeaders(xhr.getAllResponseHeaders()));
+                item.emit('onSuccess', xhr.response, xhr.status, this._parseHeaders(xhr.getAllResponseHeaders()));
                 item.uploaded = true;
-                this.onProgress();
+                this._onProgress();
                 resolve(null);
             };
 
             xhr.onerror = ():void =>
             {
-                item.emit('onError', xhr.response, xhr.status, this.parseHeaders(xhr.getAllResponseHeaders()));
+                item.emit('onError', xhr.response, xhr.status, this._parseHeaders(xhr.getAllResponseHeaders()));
                 item.uploaded = true;
-                this.onProgress();
+                this._onProgress();
                 reject(xhr.response);
             };
 
@@ -143,16 +144,16 @@ export class TerraUploadQueue
                     'onCancel',
                     xhr.response,
                     xhr.status,
-                    this.parseHeaders(xhr.getAllResponseHeaders())
+                    this._parseHeaders(xhr.getAllResponseHeaders())
                 );
                 item.uploaded = true;
-                this.onProgress();
+                this._onProgress();
                 reject(xhr.response);
             };
 
             xhr.open(
-                this.uploadMethod,
-                this.getUploadUrl(item.pathname),
+                this._uploadMethod,
+                this._getUploadUrl(item.pathname),
                 true
             );
 
@@ -166,7 +167,7 @@ export class TerraUploadQueue
 
     }
 
-    private onProgress():void
+    private _onProgress():void
     {
         let filesUploaded:Array<TerraUploadItem> = this._items.filter((item:TerraUploadItem) => item.uploaded);
         let sizeUploaded:number = filesUploaded
@@ -190,7 +191,7 @@ export class TerraUploadQueue
         });
     }
 
-    private parseHeaders(headers:string):{ [key:string]:string }
+    private _parseHeaders(headers:string):{ [key:string]:string }
     {
         let parsed:{ [key:string]:string } = {};
         headers.split('\n').forEach((header:string) =>
@@ -206,15 +207,15 @@ export class TerraUploadQueue
         return parsed;
     }
 
-    private getUploadUrl(storageKey:string):string
+    private _getUploadUrl(storageKey:string):string
     {
-        if(typeof this.uploadUrl === 'function')
+        if(typeof this._uploadUrl === 'function')
         {
-            return this.uploadUrl(storageKey);
+            return this._uploadUrl(storageKey);
         }
         else
         {
-            return this.uploadUrl + '?key=' + storageKey;
+            return this._uploadUrl + '?key=' + storageKey;
         }
     }
 }
