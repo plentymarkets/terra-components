@@ -20,9 +20,6 @@ import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum'
 })
 export class TerraOverlayComponent implements AfterViewInit
 {
-    @ViewChild('viewChildOverlay')
-    public _viewChildOverlay:ModalDirective;
-
     @Input()
     public inputOverlayTitle:string;
 
@@ -54,6 +51,9 @@ export class TerraOverlayComponent implements AfterViewInit
     public outputOnShow:EventEmitter<ModalDirective> = new EventEmitter<ModalDirective>();
 
     public readonly _tooltipPlacement:TerraPlacementEnum.BOTTOM;
+
+    @ViewChild('viewChildOverlay')
+    private _viewChildOverlay:ModalDirective;
 
     public ngAfterViewInit():void
     {
