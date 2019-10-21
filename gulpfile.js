@@ -39,7 +39,7 @@ exports.copy = copy;
 
 // convert global scss styles to css files
 function compileCss() {
-    return src(config.scssSources)
+    return src(config.sources.scss)
     .pipe(sass({
         importer: tildeImporter,
         outputStyle: 'compressed'
