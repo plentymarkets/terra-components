@@ -3,7 +3,7 @@
 	"version": 1,
 	"newProjectRoot": "projects",
 	"projects": {
-		"terra-components": {
+		"dev-app": {
 			"root": "",
 			"sourceRoot": "src",
 			"projectType": "application",
@@ -66,12 +66,12 @@
 				"serve": {
 					"builder": "@angular-devkit/build-angular:dev-server",
 					"options": {
-						"browserTarget": "terra-components:build",
+						"browserTarget": "dev-app:build",
 						"port": 3001
 					},
 					"configurations": {
 						"production": {
-							"browserTarget": "terra-components:build:production"
+							"browserTarget": "dev-app:build:production"
 						}
 					}
 				}
