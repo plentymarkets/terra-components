@@ -55,11 +55,11 @@ export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent
     @Input()
     public inputPlentyId:number;
 
-    public _completeCategory:CategoryValueInterface;
-
     public _categoryName:string;
-    public _list:Array<TerraNodeInterface<NestedDataInterface<CategoryDataInterface>>>;
     public _isContainerCategorySelected:boolean;
+
+    private readonly _completeCategory:CategoryValueInterface;
+    private _list:Array<TerraNodeInterface<NestedDataInterface<CategoryDataInterface>>>;
 
     constructor(translation:TranslationService,
                 public _nestedTreeConfig:NestedDataTreeConfig<CategoryDataInterface>)
