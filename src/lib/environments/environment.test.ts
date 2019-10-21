@@ -3,8 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  test: true,
-  l10nPrefix: 'assets/lang/locale-'
+  test: true
 };
 
 /*
