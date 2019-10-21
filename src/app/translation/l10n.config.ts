@@ -37,7 +37,7 @@ function getL10nConfig():L10nConfig
     let currency:string = lang === 'de' ? 'EUR' : 'GBP';
 
     let prefix:string = 'assets/lang/locale-';
-    let logLevel:LogLevel = environment.production || environment.test ? LogLevel.Off : LogLevel.Warn;
+    let logLevel:LogLevel = environment.test ? LogLevel.Off : LogLevel.Warn;
 
     return {
         logger: {
