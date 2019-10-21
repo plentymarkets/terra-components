@@ -1,7 +1,6 @@
 {
 	"$schema": "../../node_modules/ng-packagr/package.schema.json",
 	"name": "@plentymarkets/terra-components",
-	"private": true,
 	"peerDependencies": {
 		"@angular/animations": "7.x",
 		"@angular/cdk": "7.x",
