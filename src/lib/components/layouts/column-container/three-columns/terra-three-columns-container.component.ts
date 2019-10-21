@@ -8,13 +8,6 @@ import { ColumnContainerConfig } from '../column-container.config';
 
 /**
  * @author mfrank
- */
-@Component({
-    selector: 'terra-3-col',
-    styles:   [require('./terra-three-columns-container.component.scss')],
-    template: require('./terra-three-columns-container.component.html')
-})
-/**
  * @experimental TerraThreeColumnsContainerComponent is experimental and might be subject to drastic changes in the near future.
  * It is also not compatible with the mobileRouting directive yet.
  *
@@ -23,6 +16,11 @@ import { ColumnContainerConfig } from '../column-container.config';
  * The sum of width of all given columns must amount to 12 at all times to ensure the deserved behaviour.
  * If not, the column widths are calculated automatically.
  */
+@Component({
+    selector:    'terra-3-col',
+    styleUrls:   ['./terra-three-columns-container.component.scss'],
+    templateUrl: './terra-three-columns-container.component.html'
+})
 export class TerraThreeColumnsContainerComponent implements OnChanges
 {
     /**
@@ -72,7 +70,7 @@ export class TerraThreeColumnsContainerComponent implements OnChanges
         }
     }
 
-    protected getStylesForColumn(columnWidth:number):string
+    public _getStylesForColumn(columnWidth:number):string
     {
         if(columnWidth)
         {

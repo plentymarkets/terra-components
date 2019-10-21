@@ -16,4 +16,4 @@ install:
   - npm run reinstall
 
 script:
-  - karma start --single-run --browsers ChromeHeadless,FirefoxHeadless
+  - npm run test-headless

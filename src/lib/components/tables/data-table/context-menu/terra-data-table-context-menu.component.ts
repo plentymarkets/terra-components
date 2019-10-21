@@ -16,9 +16,9 @@ import { isNullOrUndefined } from 'util';
  */
 @Component({
     // tslint:disable-next-line
-    selector: 'context-menu', // it still exists a terra-context-menu in terra, need to refactored first
-    styles:   [require('./terra-data-table-context-menu.component.scss')],
-    template: require('./terra-data-table-context-menu.component.html')
+    selector:    'context-menu', // it still exists a terra-context-menu in terra, need to refactored first
+    styleUrls:   ['./terra-data-table-context-menu.component.scss'],
+    templateUrl: './terra-data-table-context-menu.component.html'
 })
 export class TerraDataTableContextMenuComponent<D extends TerraBaseData> implements OnInit, OnDestroy
 {
@@ -27,6 +27,8 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData> impleme
      */
     @Input()
     public links:Array<TerraDataTableContextMenuEntryInterface<D>> = [];
+    public _isShown:boolean = false;
+    public _eventData:{ event:MouseEvent, data:D };
 
     protected top:number = 0;
     protected left:number = 0;
@@ -34,9 +36,7 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData> impleme
     @ViewChild('list')
     private list:ElementRef;
 
-    private _isShown:boolean = false;
     private readonly clickListener:(event:Event) => void;
-    private eventData:{ event:MouseEvent, data:D };
 
     /**
      * @description constructor
@@ -59,7 +59,7 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData> impleme
     {
         this.contextMenuService.show.subscribe((eventData:{ event:MouseEvent, data:D }):void =>
         {
-            this.eventData = eventData;
+            this._eventData = eventData;
             this.isShown = !this.isShown;
         });
     }
@@ -74,7 +74,7 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData> impleme
 
     private clickedOutside(event:Event):void
     {
-        if(this.eventData.event.target !== event.target)
+        if(this._eventData.event.target !== event.target)
         {
             this.isShown = false;
         }
@@ -95,8 +95,8 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData> impleme
         this._isShown = value;
         if(value)
         {
-            let mousePosX:number = this.eventData.event.clientX; // left
-            let mousePosY:number = this.eventData.event.clientY; // top
+            let mousePosX:number = this._eventData.event.clientX; // left
+            let mousePosY:number = this._eventData.event.clientY; // top
 
             let contextMenuHeight:number = this.list.nativeElement.offsetHeight;
             let contextMenuWidth:number = this.list.nativeElement.offsetWidth;
@@ -129,21 +129,21 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData> impleme
                 this.left = mousePosX;
             }
 
-            this.eventData.event.stopPropagation();
+            this._eventData.event.stopPropagation();
         }
     }
 
-    protected get topAsString():string
+    public get _topAsString():string
     {
         return this.top + 'px';
     }
 
-    protected get leftAsString():string
+    public get _leftAsString():string
     {
         return this.left + 'px';
     }
 
-    protected get linksAreSet():boolean
+    public get _linksAreSet():boolean
     {
         return !isNullOrUndefined(this.links) && this.links.length > 0;
     }

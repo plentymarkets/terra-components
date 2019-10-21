@@ -122,7 +122,7 @@ describe('Component: TableRowComponent', () =>
         expect(fixture.debugElement.query(By.css('terra-checkbox'))).toBeFalsy();
     });
 
-    it('should call #onRowCheckboxChange() when checkbox changes', () =>
+    it('should call #_onRowCheckboxChange() when checkbox changes', () =>
     {
         let rowData:TerraDataTableRowInterface<any> = {
             isActive: false,

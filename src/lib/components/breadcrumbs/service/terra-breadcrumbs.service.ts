@@ -23,7 +23,7 @@ export class TerraBreadcrumbsService
     private _containers:Array<TerraBreadcrumbContainer> = [];
 
     private _initialPath:string;
-    private initialRoute:Route;
+    private _initialRoute:Route;
 
     constructor(private router:Router,
                 private translation:TranslationService,
@@ -36,7 +36,7 @@ export class TerraBreadcrumbsService
                    && event.urlAfterRedirects.startsWith(this._initialPath); // url starts with the initial path
         })).subscribe((event:NavigationEnd) =>
         {
-            if(!isNullOrUndefined(this.initialRoute.children))
+            if(!isNullOrUndefined(this._initialRoute.children))
             {
                 let cleanEventUrl:string = '/' + UrlHelper.getCleanUrl(event.urlAfterRedirects);
                 let shortUrl:string = cleanEventUrl.replace(this._initialPath, '');
@@ -71,14 +71,14 @@ export class TerraBreadcrumbsService
     {
         this._containers = [];
         this._initialPath = value;
-        this.initialRoute = this.findRoute(value, this.router.config);
+        this._initialRoute = this.findRoute(value, this.router.config);
     }
 
     public set activatedRoute(activatedRoute:ActivatedRouteSnapshot)
     {
         this._containers = [];
         this._initialPath = ActivatedRouteHelper.getBasePathForActivatedRoute(activatedRoute);
-        this.initialRoute = activatedRoute.routeConfig;
+        this._initialRoute = activatedRoute.routeConfig;
     }
 
     public get containers():Array<TerraBreadcrumbContainer>
@@ -105,7 +105,7 @@ export class TerraBreadcrumbsService
 
     /**
      * Close the breadcrumb by given url
-     * @param {string} url Url to close the breadcrumb.
+     * @param url Url to close the breadcrumb.
      */
     public closeBreadcrumbByUrl(url:string):void
     {
@@ -120,15 +120,15 @@ export class TerraBreadcrumbsService
 
     /**
      * Update the breadcrumb name by given url
-     * @param {string} url Url to update the breadcrumb.
-     * @param {string} name If not given, it will be automatically update the name by the label of the route data.
+     * @param url Url to update the breadcrumb.
+     * @param name If not given, it will be automatically update the name by the label of the route data.
      */
     public updateBreadcrumbNameByUrl(url:string, name?:string):void
     {
         let breadcrumb:TerraBreadcrumb = this.findBreadcrumbByUrl(url);
 
         let shortUrlWithoutLeadingSlash:string = UrlHelper.removeLeadingSlash(url);
-        let route:Route = this.findRoute(shortUrlWithoutLeadingSlash, this.initialRoute.children);
+        let route:Route = this.findRoute(shortUrlWithoutLeadingSlash, this._initialRoute.children);
 
         if(!isNullOrUndefined(route) && !isNullOrUndefined(route.data) && !isNullOrUndefined(breadcrumb))
         {
@@ -191,7 +191,7 @@ export class TerraBreadcrumbsService
 
     private handleBreadcrumbForUrl(shortUrl:string, fullUrl:string, cleanEventUrl:string):void
     {
-        let route:Route = this.findRoute(shortUrl, this.initialRoute.children);
+        let route:Route = this.findRoute(shortUrl, this._initialRoute.children);
         this.handleBreadcrumb(route, fullUrl, cleanEventUrl, shortUrl.split('/').length - 1);
     }
 

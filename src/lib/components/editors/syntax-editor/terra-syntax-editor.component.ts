@@ -21,8 +21,8 @@ import 'brace/ext/error_marker';
 import { TerraSyntaxEditorData } from './data/terra-syntax-editor.data';
 
 @Component({
-    selector: 'terra-syntax-editor',
-    template: require('./terra-syntax-editor.component.html')
+    selector:    'terra-syntax-editor',
+    templateUrl: './terra-syntax-editor.component.html'
 })
 export class TerraSyntaxEditorComponent implements AfterViewInit
 {
@@ -34,8 +34,8 @@ export class TerraSyntaxEditorComponent implements AfterViewInit
 
     @Input()
     public inputOptions:Object;
-    private _inputEditorMode:string;
-    private _inputText:string;
+    public _inputEditorMode:string;
+    public _inputText:string;
 
     constructor()
     {

@@ -12,9 +12,9 @@ import { TerraCheckboxLeafInterface } from '../leaf/terra-checkbox-leaf.interfac
 import { TerraCheckboxTreeLeafState } from './data/terra-checkbox-tree-leaf-state';
 
 @Component({
-    selector: 'terra-checkbox-tree',
-    styles:   [require('./terra-checkbox-tree.component.scss')],
-    template: require('./terra-checkbox-tree.component.html')
+    selector:    'terra-checkbox-tree',
+    styleUrls:   ['./terra-checkbox-tree.component.scss'],
+    templateUrl: './terra-checkbox-tree.component.html'
 })
 export class TerraCheckboxTreeComponent extends TerraBaseTreeComponent implements OnInit, OnChanges
 {
@@ -42,7 +42,7 @@ export class TerraCheckboxTreeComponent extends TerraBaseTreeComponent implement
     @Output()
     public valueChange:EventEmitter<TerraCheckboxLeafInterface> = new EventEmitter<TerraCheckboxLeafInterface>();
 
-    public selectedLeafList:Array<TerraCheckboxLeafInterface> = [];
+    public _selectedLeafList:Array<TerraCheckboxLeafInterface> = [];
 
     public ngOnInit():void
     {
@@ -63,7 +63,7 @@ export class TerraCheckboxTreeComponent extends TerraBaseTreeComponent implement
      * @param event
      * @param leaf
      */
-    protected onCheckboxValueChange(event:boolean, leaf:TerraCheckboxLeafInterface):void
+    public _onCheckboxValueChange(event:boolean, leaf:TerraCheckboxLeafInterface):void
     {
         if(leaf.isIndeterminate)
         {
@@ -93,13 +93,13 @@ export class TerraCheckboxTreeComponent extends TerraBaseTreeComponent implement
     {
         if(leaf.checkboxChecked)
         {
-            this.selectedLeafList.push(leaf);
+            this._selectedLeafList.push(leaf);
         }
         else
         {
-            let leafIndex:number = this.selectedLeafList.indexOf(leaf);
+            let leafIndex:number = this._selectedLeafList.indexOf(leaf);
 
-            this.selectedLeafList.splice(leafIndex, 1);
+            this._selectedLeafList.splice(leafIndex, 1);
         }
 
         if(leaf.subLeafList)

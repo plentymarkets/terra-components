@@ -14,15 +14,15 @@ export class TerraBaseTable<T>
     @Output()
     public outputRowCheckBoxChanged:EventEmitter<TerraDataTableRowInterface<T>> = new EventEmitter();
 
+    public _headerCheckbox:{ checked:boolean, isIndeterminate:boolean };
     protected readonly rowList:Array<TerraDataTableRowInterface<T>>;
-    protected headerCheckbox:{ checked:boolean, isIndeterminate:boolean };
 
     /**
      * @description Constructor initializing the table component
      */
     constructor()
     {
-        this.headerCheckbox = {
+        this._headerCheckbox = {
             checked:         false,
             isIndeterminate: false
         };
@@ -30,7 +30,6 @@ export class TerraBaseTable<T>
 
     /**
      * @description Getter for selectedRowList
-     * @returns {Array<TerraDataTableRowInterface<T>>}
      */
     public get selectedRowList():Array<TerraDataTableRowInterface<T>>
     {
@@ -71,9 +70,9 @@ export class TerraBaseTable<T>
         this.updateHeaderCheckboxState();
     }
 
-    protected onHeaderCheckboxChange():void
+    public _onHeaderCheckboxChange():void
     {
-        if(this.headerCheckbox.checked)
+        if(this._headerCheckbox.checked)
         {
             this.resetSelectedRows();
         }
@@ -100,20 +99,20 @@ export class TerraBaseTable<T>
 
     private checkHeaderCheckbox():void
     {
-        this.headerCheckbox.checked = true;
-        this.headerCheckbox.isIndeterminate = false;
+        this._headerCheckbox.checked = true;
+        this._headerCheckbox.isIndeterminate = false;
     }
 
     private uncheckHeaderCheckbox():void
     {
-        this.headerCheckbox.checked = false;
-        this.headerCheckbox.isIndeterminate = false;
+        this._headerCheckbox.checked = false;
+        this._headerCheckbox.isIndeterminate = false;
     }
 
     private setHeaderCheckboxIndeterminate():void
     {
-        this.headerCheckbox.checked = false;
-        this.headerCheckbox.isIndeterminate = true;
+        this._headerCheckbox.checked = false;
+        this._headerCheckbox.isIndeterminate = true;
     }
 
     private updateHeaderCheckboxState():void

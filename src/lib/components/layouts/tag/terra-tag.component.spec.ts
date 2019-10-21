@@ -141,7 +141,7 @@ describe('TerraTagComponent', () =>
             iconElement = tagDiv.query(By.css('span.tag-icon'));
 
             // getting access to protected/private methods
-            expect(iconElement.styles['color']).toEqual(component['color']); // style is present and equals #ffffff or #000000
+            expect(iconElement.styles['color']).toEqual(component['_color']); // style is present and equals #ffffff or #000000
         });
 
         it('should set color style to tag text depending on #inputColor', () =>
@@ -155,7 +155,7 @@ describe('TerraTagComponent', () =>
             fixture.detectChanges();
 
             // getting access to protected/private methods
-            expect(textElement.styles['color']).toEqual(component['color']); // style is present and equals #ffffff or #000000
+            expect(textElement.styles['color']).toEqual(component['_color']); // style is present and equals #ffffff or #000000
         });
     });
 

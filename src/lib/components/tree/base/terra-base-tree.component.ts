@@ -46,11 +46,11 @@ export class TerraBaseTreeComponent implements OnInit
         return this.recursiveSearchActiveLeaf(this.inputLeafList);
     }
 
-    protected onLeafClick(clickedLeaf:TerraLeafInterface):void
+    public _onLeafClick(clickedLeaf:TerraLeafInterface):void
     {
         if(!isNullOrUndefined(clickedLeaf.subLeafList) && !clickedLeaf.avoidOpenOnClick)
         {
-            this.toggleOpen(clickedLeaf);
+            this._toggleOpen(clickedLeaf);
         }
 
         if(!isNullOrUndefined(clickedLeaf.clickFunction) && !clickedLeaf.isActive)
@@ -63,6 +63,11 @@ export class TerraBaseTreeComponent implements OnInit
             this.recursiveLeafListInactive(this.inputCompleteLeafList);
             clickedLeaf.isActive = true;
         }
+    }
+
+    public _toggleOpen(clickedLeaf:TerraLeafInterface):void
+    {
+        clickedLeaf.isOpen = !clickedLeaf.isOpen;
     }
 
     private iterateOverParents(parents:Array<TerraLeafInterface>):void
@@ -118,11 +123,6 @@ export class TerraBaseTreeComponent implements OnInit
         }
 
         return false;
-    }
-
-    private toggleOpen(clickedLeaf:TerraLeafInterface):void
-    {
-        clickedLeaf.isOpen = !clickedLeaf.isOpen;
     }
 
     private recursiveSearchActiveLeaf(leafListToSearch:Array<TerraLeafInterface>):TerraLeafInterface
