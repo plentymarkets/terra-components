@@ -124,7 +124,7 @@ export class TerraCheckboxComponent implements ControlValueAccessor
     public _isIndeterminate:boolean = false;
 
     // The internal data model
-    private _innerValue:boolean = false;
+    public _innerValue:boolean = false;
 
     private _onTouchedCallback:() => void = noop;
     private _onChangeCallback:(value:any) => void = noop;
