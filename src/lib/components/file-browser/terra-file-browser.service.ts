@@ -22,7 +22,7 @@ export class TerraFileBrowserService
     {
         if(!this._globalListenersDefined)
         {
-            this.setupGlobalListeners();
+            this._setupGlobalListeners();
         }
         this._dropzones.push(dropzone);
     }
@@ -36,7 +36,7 @@ export class TerraFileBrowserService
         }
     }
 
-    private isDropzone(element:HTMLElement):boolean
+    private _isDropzone(element:HTMLElement):boolean
     {
         return this._dropzones.some(
             (dropzone:HTMLElement) =>
@@ -46,13 +46,13 @@ export class TerraFileBrowserService
         );
     }
 
-    private setupGlobalListeners():void
+    private _setupGlobalListeners():void
     {
         this._zone.runOutsideAngular(() =>
         {
             let setEffect:(event:Event) => void = (event:DragEvent):void =>
             {
-                if(this.isDropzone(<HTMLElement> event.target))
+                if(this._isDropzone(<HTMLElement> event.target))
                 {
                     event.dataTransfer.effectAllowed = 'copy';
                     event.dataTransfer.dropEffect = 'copy';
