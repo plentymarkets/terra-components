@@ -12,7 +12,6 @@ import { isNullOrUndefined } from 'util';
 import { TerraFormFieldControlService } from './service/terra-form-field-control.service';
 import { TerraFormFieldBase } from './data/terra-form-field-base';
 import { TerraDynamicFormFunctionsHandler } from './handler/terra-dynamic-form-functions.handler';
-import { TerraDynamicFormService } from './service/terra-dynamic-form.service';
 import { Observable } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { Language } from 'angular-l10n';
@@ -42,10 +41,10 @@ export interface TerraDynamicFormRequestParams
  * @deprecated since v5.0.0. Use terra-form instead.
  */
 @Component({
-    selector:  'terra-dynamic-form',
-    template:  require('./terra-dynamic-form.component.html'),
-    styles:    [require('./terra-dynamic-form.component.scss')],
-    providers: [TerraFormFieldControlService]
+    selector:    'terra-dynamic-form',
+    templateUrl: './terra-dynamic-form.component.html',
+    styleUrls:   ['./terra-dynamic-form.component.scss'],
+    providers:   [TerraFormFieldControlService]
 })
 export class TerraDynamicFormComponent implements OnInit, OnChanges, OnDestroy
 {
@@ -83,9 +82,9 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges, OnDestroy
     public inputShowDeprecatedEntriesChange:EventEmitter<boolean> = new EventEmitter();
 
     @Language()
-    protected lang:string;
+    public _lang:string;
 
-    constructor(protected formFieldControlService:TerraFormFieldControlService)
+    constructor(public _formFieldControlService:TerraFormFieldControlService)
     {
         this.inputPortletStyle = 'col-12 col-md-8 col-lg-5';
         this.inputRequestParams = {
@@ -108,8 +107,8 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges, OnDestroy
         }
         else
         {
-            this.formFieldControlService.createFormGroup(this.inputFormFields);
-            this.inputFormFunctions.formFieldControlService = this.formFieldControlService;
+            this._formFieldControlService.createFormGroup(this.inputFormFields);
+            this.inputFormFunctions.formFieldControlService = this._formFieldControlService;
 
             this.registerValueChange();
         }
@@ -123,7 +122,7 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges, OnDestroy
     {
         if(changes['inputFormFields'])
         {
-            this.formFieldControlService.createFormGroup(this.inputFormFields);
+            this._formFieldControlService.createFormGroup(this.inputFormFields);
             this.registerValueChange();
         }
     }
@@ -133,25 +132,25 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges, OnDestroy
         // implementation is required by angular-l10n. See https://robisim74.github.io/angular-l10n/spec/getting-the-translation/#messages
     }
 
-    protected validate():void
+    public _validate():void
     {
-        if(this.formFieldControlService.dynamicFormGroup.valid)
+        if(this._formFieldControlService.dynamicFormGroup.valid)
         {
-            this.inputFormFunctions.saveCallback(this.formFieldControlService.dynamicFormGroup.value);
+            this.inputFormFunctions.saveCallback(this._formFieldControlService.dynamicFormGroup.value);
         }
         else
         {
-            this.inputFormFunctions.errorCallback(this.formFieldControlService.dynamicFormGroup,
-                this.formFieldControlService.translationMapping);
+            this.inputFormFunctions.errorCallback(this._formFieldControlService.dynamicFormGroup,
+                this._formFieldControlService.translationMapping);
         }
     }
 
-    protected onResetClick():void
+    public _onResetClick():void
     {
-        this.formFieldControlService.resetForm();
+        this._formFieldControlService.resetForm();
     }
 
-    protected onToggleClick():void
+    public _onToggleClick():void
     {
         this.inputShowDeprecatedEntries = !this.inputShowDeprecatedEntries;
         this.inputShowDeprecatedEntriesChange.emit(this.inputShowDeprecatedEntries);
@@ -161,7 +160,7 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges, OnDestroy
     {
         if(!isNullOrUndefined(this.inputFormFunctions.onValueChangedCallback))
         {
-            let stream$:Observable<any> = this.formFieldControlService
+            let stream$:Observable<any> = this._formFieldControlService
                 .dynamicFormGroup
                 .valueChanges;
 

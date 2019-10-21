@@ -8,8 +8,11 @@ import {
     Output,
     SimpleChanges
 } from '@angular/core';
-import * as Interact from 'interactjs';
 import { DropEvent } from './dropEvent.interface';
+import * as Interact from '@interactjs/types/types';
+import * as interact_ from 'interactjs';
+import { InteractStatic } from 'interactjs';
+const interact:InteractStatic = interact_;
 
 export type AcceptFn = (args:{
     interactEvent:Interact.InteractEvent,
@@ -123,11 +126,11 @@ export class TerraDropzoneDirective implements OnInit, OnChanges
     public onDrop:EventEmitter<DropEvent> = new EventEmitter<DropEvent>();
     /* tslint:enable:no-output-on-prefix no-input-rename no-output-rename */
 
-    private interactable:Interact.Interactable = null;
+    private _interactable:any = null;
 
-    constructor(private el:ElementRef)
+    constructor(private _el:ElementRef)
     {
-        this.init();
+        this._init();
     }
 
     public ngOnInit():void
@@ -165,10 +168,10 @@ export class TerraDropzoneDirective implements OnInit, OnChanges
 
     public ngOnChanges(changes:SimpleChanges):void
     {
-        this.init();
+        this._init();
     }
 
-    private init():void
+    private _init():void
     {
         let createDropEvent:(event:DropEvent) => DropEvent = (event:DropEvent):DropEvent =>
         {
@@ -176,7 +179,7 @@ export class TerraDropzoneDirective implements OnInit, OnChanges
             return event;
         };
 
-        let config:any = this.initConfigObject(createDropEvent);
+        let config:any = this._initConfigObject(createDropEvent);
 
         if(typeof this.overlap === 'string'
            && parseFloat(this.overlap) >= 0
@@ -213,7 +216,7 @@ export class TerraDropzoneDirective implements OnInit, OnChanges
                         dropzoneElement:  dropElement,
                         draggable:        draggable,
                         draggableElement: dragElement,
-                        dragData:         interactEvent.target.IA_DRAG_DATA
+                        dragData:         (<any> interactEvent.target).IA_DRAG_DATA
                     });
                 }
 
@@ -221,14 +224,14 @@ export class TerraDropzoneDirective implements OnInit, OnChanges
             };
         }
 
-        if(!this.interactable)
+        if(!this._interactable)
         {
-            this.interactable = Interact(this.el.nativeElement);
+            this._interactable = interact(this._el.nativeElement);
         }
-        this.interactable.dropzone(config);
+        this._interactable.dropzone(config);
     }
 
-    private initConfigObject(createDropEvent:(event:DropEvent) => DropEvent):any
+    private _initConfigObject(createDropEvent:(event:DropEvent) => DropEvent):any
     {
         return {
             enabled:          !this.disabled,

@@ -35,16 +35,19 @@ function initL10n(l10nLoader:L10nLoader):Function
  * NOTE: It is not publicly accessible either.
  */
 @NgModule({
-    imports: [
-        RouterModule.forRoot([]),
+    imports:      [
         BrowserModule,
         BrowserAnimationsModule,
+        RouterModule.forRoot([]),
         HttpClientModule,
         LocalizationModule.forRoot(l10nConfig),
         TerraComponentsExamplesModule
     ],
-    declarations: [AppComponent, ShowcaseComponent],
-    providers: [
+    declarations: [
+        AppComponent,
+        ShowcaseComponent
+    ],
+    providers:    [
         {
             provide:  COMPILER_OPTIONS,
             useValue: {},
@@ -67,7 +70,7 @@ function initL10n(l10nLoader:L10nLoader):Function
             deps:       [CompilerFactory]
         }
     ],
-    bootstrap: [AppComponent]
+    bootstrap:    [AppComponent]
 })
 export class AppModule
 {}

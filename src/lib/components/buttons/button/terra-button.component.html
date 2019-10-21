@@ -3,7 +3,7 @@
      [placement]="inputTooltipPlacement"
      [ngClass]="{'float-right': inputIsAlignRight,
                  'disabled': inputIsDisabled}"
-     (click)="click($event)">
+     (click)="_click($event)">
     <button class="btn"
             [attr.data-icon]="inputIcon"
             [ngClass]="{'btn-sm' : inputIsSmall,

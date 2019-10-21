@@ -1,0 +1,26 @@
+{
+	"$schema": "../../node_modules/ng-packagr/package.schema.json",
+	"name": "@plentymarkets/terra-components",
+	"peerDependencies": {
+		"@angular/animations": "7.x",
+		"@angular/cdk": "7.x",
+		"@angular/common": "7.x",
+		"@angular/compiler": "7.x",
+		"@angular/core": "7.x",
+		"@angular/forms": "7.x",
+		"@angular/http": "7.x",
+		"@angular/material": "7.x",
+		"@angular/platform-browser": "7.x",
+		"@angular/platform-browser-dynamic": "7.x",
+		"@angular/router": "7.x",
+		"angular-l10n": "7.x",
+		"rxjs": "6.x",
+		"ckeditor4-angular": "^1.0.0-beta"
+	},
+	"ngPackage": {
+		"lib": {
+			"entryFile": "public-api.ts"
+		},
+		"dest": "../../dist"
+	}
+}

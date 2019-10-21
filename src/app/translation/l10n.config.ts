@@ -5,6 +5,7 @@ import {
     StorageStrategy
 } from 'angular-l10n';
 import { DefaultLocale } from 'angular-l10n/src/models/types';
+import { environment } from 'src/lib/environments/environment';
 
 export const l10nConfig:L10nConfig = getL10nConfig();
 
@@ -36,7 +37,7 @@ function getL10nConfig():L10nConfig
     let currency:string = lang === 'de' ? 'EUR' : 'GBP';
 
     let prefix:string = 'assets/lang/locale-';
-    let logLevel:LogLevel = process.env.ENV === 'production' || process.env.ENV === 'test' ? LogLevel.Off : LogLevel.Warn;
+    let logLevel:LogLevel = environment.production || environment.test ? LogLevel.Off : LogLevel.Warn;
 
     return {
         logger: {

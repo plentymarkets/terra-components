@@ -20,22 +20,22 @@ import { TerraFileListComponent } from './file-list/file-list.component';
 import { StringHelper } from '../../helpers/string.helper';
 
 @Component({
-    selector:  'terra-file-browser',
-    template:  require('./terra-file-browser.component.html'),
-    styles:    [require('./terra-file-browser.component.scss')],
-    providers: [TerraNodeTreeConfig]
+    selector:    'terra-file-browser',
+    templateUrl: './terra-file-browser.component.html',
+    styleUrls:   ['./terra-file-browser.component.scss'],
+    providers:   [TerraNodeTreeConfig]
 })
 export class TerraFileBrowserComponent implements OnChanges, OnInit
 {
     @Input()
     public set inputAllowedExtensions(extensions:Array<string>)
     {
-        this.allowedExtensions = extensions.map((extension:string) => extension.toUpperCase());
+        this._allowedExtensions = extensions.map((extension:string) => extension.toUpperCase());
     }
 
     public get inputAllowedExtensions():Array<string>
     {
-        return this.allowedExtensions;
+        return this._allowedExtensions;
     }
 
     @Input()
@@ -47,42 +47,42 @@ export class TerraFileBrowserComponent implements OnChanges, OnInit
     public onSelectedUrlChange:EventEmitter<string> = new EventEmitter();
 
     @ViewChild(forwardRef(() => TerraFileListComponent))
-    protected fileListComponent:TerraFileListComponent;
+    public _fileListComponent:TerraFileListComponent;
 
-    protected rightColumnWidth:number = 0;
-    protected centerColumnWidth:number = 10;
+    public _rightColumnWidth:number = 0;
+    public _centerColumnWidth:number = 10;
 
-    private storageServices:Array<TerraBaseStorageService>;
+    private _storageServices:Array<TerraBaseStorageService>;
 
-    private allowedExtensions:Array<string> = [];
+    private _allowedExtensions:Array<string> = [];
 
-    private readonly defaultStorageServices:Array<TerraBaseStorageService>;
+    private readonly _defaultStorageServices:Array<TerraBaseStorageService>;
 
     @Input()
     public set inputStorageServices(services:Array<TerraBaseStorageService>)
     {
-        this.storageServices = services;
+        this._storageServices = services;
     }
 
     public get inputStorageServices():Array<TerraBaseStorageService>
     {
-        if(!isNullOrUndefined(this.storageServices) && this.storageServices.length > 0)
+        if(!isNullOrUndefined(this._storageServices) && this._storageServices.length > 0)
         {
-            return this.storageServices;
+            return this._storageServices;
         }
 
-        return this.defaultStorageServices;
+        return this._defaultStorageServices;
     }
 
     constructor(frontendStorageService:TerraFrontendStorageService,
-                protected nodeTreeConfig:TerraNodeTreeConfig<{}>)
+                public _nodeTreeConfig:TerraNodeTreeConfig<{}>)
     {
-        this.defaultStorageServices = [frontendStorageService];
+        this._defaultStorageServices = [frontendStorageService];
     }
 
     public ngOnInit():void
     {
-        if(isNullOrUndefined(this.storageServices))
+        if(isNullOrUndefined(this._storageServices))
         {
             this.renderTree(this.inputStorageServices);
         }
@@ -92,19 +92,19 @@ export class TerraFileBrowserComponent implements OnChanges, OnInit
     {
         if(changes.hasOwnProperty('inputStorageServices'))
         {
-            this.nodeTreeConfig.reset();
+            this._nodeTreeConfig.reset();
             this.renderTree(changes['inputStorageServices'].currentValue);
         }
     }
 
     public selectNode(storage:TerraStorageObject):void
     {
-        let foundNode:TerraNodeInterface<{}> = this.nodeTreeConfig.findNodeById(storage.key);
+        let foundNode:TerraNodeInterface<{}> = this._nodeTreeConfig.findNodeById(storage.key);
 
         if(!isNullOrUndefined(foundNode))
         {
             foundNode.isOpen = true;
-            this.nodeTreeConfig.currentSelectedNode = foundNode;
+            this._nodeTreeConfig.currentSelectedNode = foundNode;
         }
     }
 
@@ -113,23 +113,23 @@ export class TerraFileBrowserComponent implements OnChanges, OnInit
         this.onSelectedUrlChange.emit(publicUrl);
     }
 
-    protected showImagePreview(isPreviewEnabled:boolean):void
+    public _showImagePreview(isPreviewEnabled:boolean):void
     {
         if(isPreviewEnabled)
         {
-            this.centerColumnWidth = 8;
-            this.rightColumnWidth = 2;
+            this._centerColumnWidth = 8;
+            this._rightColumnWidth = 2;
         }
         else
         {
-            this.hideImagePreview();
+            this._hideImagePreview();
         }
     }
 
-    protected hideImagePreview():void
+    public _hideImagePreview():void
     {
-        this.centerColumnWidth = 10;
-        this.rightColumnWidth = 0;
+        this._centerColumnWidth = 10;
+        this._rightColumnWidth = 0;
     }
 
     private renderTree(services:Array<TerraBaseStorageService>):void
@@ -147,11 +147,11 @@ export class TerraFileBrowserComponent implements OnChanges, OnInit
                 isVisible: true
             };
 
-            this.nodeTreeConfig.addNode(node);
+            this._nodeTreeConfig.addNode(node);
 
-            if(isNullOrUndefined(this.nodeTreeConfig.currentSelectedNode))
+            if(isNullOrUndefined(this._nodeTreeConfig.currentSelectedNode))
             {
-                this.nodeTreeConfig.currentSelectedNode = node;
+                this._nodeTreeConfig.currentSelectedNode = node;
                 node.isOpen = true;
             }
 
@@ -185,8 +185,8 @@ export class TerraFileBrowserComponent implements OnChanges, OnInit
         node.onClick = ():void =>
         {
             // TODO maybe change to inputs
-            this.fileListComponent.activeStorageService = service;
-            this.fileListComponent.currentStorageRoot = root;
+            this._fileListComponent.activeStorageService = service;
+            this._fileListComponent.currentStorageRoot = root;
         };
     }
 
@@ -214,13 +214,13 @@ export class TerraFileBrowserComponent implements OnChanges, OnInit
                 onClick:   ():void =>
                            {
                                // TODO maybe change to inputs
-                               this.fileListComponent.activeStorageService = service;
-                               this.fileListComponent.currentStorageRoot = storage;
+                               this._fileListComponent.activeStorageService = service;
+                               this._fileListComponent.currentStorageRoot = storage;
                            },
                 isVisible: true
             };
 
-            this.nodeTreeConfig.addNode(directory, parentNode);
+            this._nodeTreeConfig.addNode(directory, parentNode);
 
             this.getSortedList(storage.children).forEach((childStorage:TerraStorageObject) =>
             {

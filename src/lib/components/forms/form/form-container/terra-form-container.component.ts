@@ -1,6 +1,5 @@
 import {
     Component,
-    forwardRef,
     Input,
     OnChanges,
     OnInit,
@@ -25,12 +24,12 @@ import { TerraFormTypeInterface } from '../model/terra-form-type.interface';
 
 @Component({
     selector:  'terra-form-container',
-    template:  require('./terra-form-container.component.html'),
-    styles:    [require('./terra-form-container.component.scss')],
+    templateUrl: './terra-form-container.component.html',
+    styleUrls: ['./terra-form-container.component.scss'],
     providers: [
         {
             provide:     NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => TerraFormContainerComponent),
+            useExisting: TerraFormContainerComponent,
             multi:       true
         }
     ]
@@ -46,7 +45,7 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
     @Input()
     public set inputFormFields(fields:{ [key:string]:TerraFormFieldInterface })
     {
-        this.formFields = Object.keys(fields).map((key:string) =>
+        this._formFields = Object.keys(fields).map((key:string) =>
         {
             return {
                 key:   key,
@@ -54,7 +53,7 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
             };
         });
 
-        this.updateFieldVisibility();
+        this._updateFieldVisibility();
     }
 
     /**
@@ -66,22 +65,22 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
     @Input()
     public set inputFormGroup(formGroup:FormGroup)
     {
-        this.formGroup = formGroup;
+        this._formGroup = formGroup;
     }
 
-    protected formGroup:FormGroup;
+    public _formGroup:FormGroup;
 
-    protected formFields:Array<TerraKeyValuePairInterface<TerraFormFieldInterface>> = [];
-    protected formFieldVisibility:{ [key:string]:boolean } = {};
+    public _formFields:Array<TerraKeyValuePairInterface<TerraFormFieldInterface>> = [];
+    public _formFieldVisibility:{ [key:string]:boolean } = {};
 
-    private onChangeCallback:(value:any) => void = noop;
-    private onTouchedCallback:() => void = noop;
+    private _onChangeCallback:(value:any) => void = noop;
+    private _onTouchedCallback:() => void = noop;
 
     public ngOnInit():void
     {
         this.inputScope.onDataChanged.subscribe(() =>
         {
-            this.updateFieldVisibility();
+            this._updateFieldVisibility();
         });
     }
 
@@ -89,58 +88,58 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
     {
         if(changes.hasOwnProperty('inputScope'))
         {
-            this.updateFieldVisibility();
+            this._updateFieldVisibility();
         }
     }
 
     public registerOnChange(fn:(value:any) => void):void
     {
-        this.onChangeCallback = fn;
+        this._onChangeCallback = fn;
     }
 
     public registerOnTouched(fn:() => void):void
     {
-        this.onTouchedCallback = fn;
+        this._onTouchedCallback = fn;
     }
 
     public writeValue(value:any):void
     {
         if(isNullOrUndefined(value))
         {
-            this.formGroup.setValue({});
+            this._formGroup.setValue({});
         }
         else
         {
-            this.formGroup.patchValue(value);
+            this._formGroup.patchValue(value);
         }
     }
 
-    private updateFieldVisibility():void
+    private _updateFieldVisibility():void
     {
-        this.formFields.forEach((field:TerraKeyValuePairInterface<TerraFormFieldInterface>) =>
+        this._formFields.forEach((field:TerraKeyValuePairInterface<TerraFormFieldInterface>) =>
         {
             if(isString(field.value.isVisible))
             {
-                this.formFieldVisibility[field.key] = this.inputScope.evaluate(field.value.isVisible);
+                this._formFieldVisibility[field.key] = this.inputScope.evaluate(field.value.isVisible as string);
             }
             else
             {
-                this.formFieldVisibility[field.key] = isNullOrUndefined(field.value.isVisible) || field.value.isVisible;
+                this._formFieldVisibility[field.key] = isNullOrUndefined(field.value.isVisible) || field.value.isVisible;
             }
 
-            if(!isNullOrUndefined(this.formGroup))
+            if(!isNullOrUndefined(this._formGroup))
             {
-                this.updateFormControlVisibility(field.key);
+                this._updateFormControlVisibility(field.key);
             }
         });
     }
 
-    private updateFormControlVisibility(fieldKey:string):void
+    private _updateFormControlVisibility(fieldKey:string):void
     {
-        let control:AbstractControl = this.formGroup.get(fieldKey);
+        let control:AbstractControl = this._formGroup.get(fieldKey);
         if(!isNullOrUndefined(control))
         {
-            if(this.formFieldVisibility[fieldKey])
+            if(this._formFieldVisibility[fieldKey])
             {
                 if(control.disabled)
                 {

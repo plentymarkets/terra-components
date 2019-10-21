@@ -115,7 +115,7 @@ export abstract class TerraDataTableBaseService<T, P>
 
     /**
      * @description Updates the stored paging data with the given data
-     * @param {TerraPagerInterface} pagerData
+     * @param pagerData
      */
     public updatePagingData(pagerData:TerraPagerInterface<T>):void
     {
@@ -190,16 +190,14 @@ export abstract class TerraDataTableBaseService<T, P>
 
     /**
      * @description Placeholder for the specific data-retrieval method. In General the specific rest call is given here.
-     * @param {TerraPagerParameterInterface} params
-     * @returns {Observable<TerraPagerInterface<T>>}
+     * @param params
      */
     public abstract requestTableData(params?:P):Observable<TerraPagerInterface<T>>;
 
     /**
      * @description Placeholder for the specific data mapping method.
      * The response data is mapped to the `TerraDataTableRowInterface` in order to be able to display the data in the table.
-     * @param {T} res
-     * @returns {TerraDataTableRowInterface<T>}
+     * @param res
      */
     public abstract dataToRowMapping(res:T):TerraDataTableRowInterface<T>;
 

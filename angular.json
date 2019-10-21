@@ -7,10 +7,114 @@
 			"root": "",
 			"sourceRoot": "src",
 			"projectType": "application",
-			"prefix": "terra",
+			"prefix": "tc",
 			"schematics": {
 				"@schematics/angular:component": {
-					"styleext": "scss"
+					"style": "scss"
+				}
+			},
+			"architect": {
+				"build": {
+					"builder": "@angular-devkit/build-angular:browser",
+					"options": {
+						"outputPath": "dist",
+						"index": "src/index.html",
+						"main": "src/main.ts",
+						"polyfills": "src/polyfills.ts",
+						"tsConfig": "src/tsconfig.app.json",
+						"assets": [
+							"src/assets"
+						],
+						"styles": [
+							"node_modules/bootstrap/scss/bootstrap.scss",
+							"src/styles.scss"
+						],
+						"scripts": [
+							"node_modules/jquery/dist/jquery.min.js",
+							"src/lib/components/tables/data-table/float-thead/floatThead.js"
+						],
+						"es5BrowserSupport": true
+					},
+					"configurations": {
+						"production": {
+							"fileReplacements": [
+								{
+									"replace": "src/lib/environments/environment.ts",
+									"with": "src/lib/environments/environment.prod.ts"
+								}
+							],
+							"deleteOutputPath": true,
+							"optimization": true,
+							"outputHashing": "all",
+							"sourceMap": false,
+							"extractCss": true,
+							"namedChunks": false,
+							"aot": false,
+							"extractLicenses": true,
+							"vendorChunk": true,
+							"buildOptimizer": false,
+							"budgets": [
+								{
+									"type": "initial",
+									"maximumWarning": "2mb",
+									"maximumError": "6mb"
+								}
+							]
+						}
+					}
+				},
+				"serve": {
+					"builder": "@angular-devkit/build-angular:dev-server",
+					"options": {
+						"browserTarget": "terra-components:build",
+						"port": 3001
+					},
+					"configurations": {
+						"production": {
+							"browserTarget": "terra-components:build:production"
+						}
+					}
+				}
+			}
+		},
+		"lib": {
+			"root": "src/lib",
+			"sourceRoot": "src/lib",
+			"projectType": "library",
+			"prefix": "tc",
+			"architect": {
+				"build": {
+					"builder": "@angular-devkit/build-ng-packagr:build",
+					"options": {
+						"tsConfig": "src/lib/tsconfig.lib.json",
+						"project": "src/lib/package.json"
+					}
+				},
+				"test": {
+					"builder": "@angular-devkit/build-angular:karma",
+					"options": {
+						"main": "src/test.ts",
+						"tsConfig": "src/lib/tsconfig.spec.json",
+						"karmaConfig": "./karma.conf.js",
+						"fileReplacements": [
+							{
+								"replace": "src/lib/environments/environment.ts",
+								"with": "src/lib/environments/environment.test.ts"
+							}
+						]
+					}
+				},
+				"lint": {
+					"builder": "@angular-devkit/build-angular:tslint",
+					"options": {
+						"tsConfig": [
+							"src/lib/tsconfig.lib.json"
+						],
+						"exclude": [
+							"**/node_modules/**",
+							"src/lib/environments/**"
+						]
+					}
 				}
 			}
 		}

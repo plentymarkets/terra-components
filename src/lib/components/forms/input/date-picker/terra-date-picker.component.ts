@@ -1,6 +1,5 @@
 import {
     Component,
-    forwardRef,
     Input,
     OnChanges,
     ViewChild
@@ -16,7 +15,9 @@ import {
     MyDatePicker
 } from 'mydatepicker';
 import { isNullOrUndefined } from 'util';
-import moment = require('moment');
+import * as moment_ from 'moment';
+// tslint:disable-next-line:typedef
+const moment = moment_;
 
 let nextId:number = 0;
 
@@ -24,13 +25,13 @@ let nextId:number = 0;
  * @author mfrank
  */
 @Component({
-    selector:  'terra-date-picker',
-    template:  require('./terra-date-picker.component.html'),
-    styles:    [require('./terra-date-picker.component.scss')],
-    providers: [
+    selector:    'terra-date-picker',
+    templateUrl: './terra-date-picker.component.html',
+    styleUrls:   ['./terra-date-picker.component.scss'],
+    providers:   [
         {
             provide:     NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => TerraDatePickerComponent),
+            useExisting: TerraDatePickerComponent,
             multi:       true
         }
     ]
@@ -79,11 +80,9 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
      * @description a unique string identifier for the specific input instance.
      */
 
-    protected currentLocale:string;
-    protected id:string;
-    protected datePickerOptions:IMyOptions;
-    protected helperTooltip:string;
-    protected isHelperTooltipDisabled:boolean;
+    public _currentLocale:string;
+    public _id:string;
+    public _datePickerOptions:IMyOptions;
 
     private _value:IMyDateModel;
 
@@ -95,10 +94,10 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
         this.inputOpenCalendarTop = false;
         this.inputDisplayDateFormat = 'dd.mm.yyyy';
 
-        this.currentLocale = localStorage.getItem('plentymarkets_lang_');
+        this._currentLocale = localStorage.getItem('plentymarkets_lang_');
 
         // generate the id of the input instance
-        this.id = `date-picker_#${nextId++}`;
+        this._id = `date-picker_#${nextId++}`;
     }
 
     public ngOnChanges():void
@@ -165,7 +164,7 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
      * Is triggered on `ngModelChange` and executes `onChangeCallBack`
      * @param value
      */
-    protected onChange(value:IMyDateModel):void
+    public _onChange(value:IMyDateModel):void
     {
         if(!isNullOrUndefined(value))
         {
@@ -181,7 +180,7 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
      * Is triggered on `inputFocusBlur` and executes `onTouchedCallback` if a blur event is emitted
      * @param event
      */
-    protected onFocusOrBlur(event:IMyInputFocusBlur):void
+    public _onFocusOrBlur(event:IMyInputFocusBlur):void
     {
         if(event.reason === 2) // blur
         {
@@ -191,7 +190,7 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
 
     private updateDatePickerOptions():void
     {
-        this.datePickerOptions = {
+        this._datePickerOptions = {
             height:                   'inherit',
             componentDisabled:        this.inputIsDisabled,
             openSelectorTopOfInput:   this.inputOpenCalendarTop,

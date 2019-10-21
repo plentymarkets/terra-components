@@ -1,7 +1,6 @@
 import {
     Component,
     ComponentFactoryResolver,
-    forwardRef,
     Input,
     OnChanges,
     OnDestroy,
@@ -21,12 +20,12 @@ import { TerraFormEntryBase } from './terra-form-entry.base';
 
 @Component({
     selector:  'terra-form-entry',
-    template:  require('./terra-form-entry.component.html'),
-    styles:    [require('./terra-form-entry.component.scss')],
+    templateUrl:  './terra-form-entry.component.html',
+    styleUrls:    ['./terra-form-entry.component.scss'],
     providers: [
         {
             provide:     NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => TerraFormEntryComponent),
+            useExisting: TerraFormEntryComponent,
             multi:       true
         }
     ]
@@ -39,8 +38,8 @@ export class TerraFormEntryComponent extends TerraFormEntryBase implements OnIni
     @Input()
     public inputFormControl:FormControl;
 
-    private onChangeCallback:(_:any) => void = noop;
-    private onTouchedCallback:() => void = noop;
+    private _onChangeCallback:(_:any) => void = noop;
+    private _onTouchedCallback:() => void = noop;
 
     constructor(componentFactoryResolver:ComponentFactoryResolver)
     {
@@ -62,8 +61,8 @@ export class TerraFormEntryComponent extends TerraFormEntryBase implements OnIni
             if(isFunction(this.componentInstance.registerOnChange) &&
                isFunction(this.componentInstance.registerOnTouched))
             {
-                this.componentInstance.registerOnChange((value:any):void => this.onChangeCallback(value));
-                this.componentInstance.registerOnTouched(():void => this.onTouchedCallback());
+                this.componentInstance.registerOnChange((value:any):void => this._onChangeCallback(value));
+                this.componentInstance.registerOnTouched(():void => this._onTouchedCallback());
             }
             else
             {
@@ -93,7 +92,7 @@ export class TerraFormEntryComponent extends TerraFormEntryBase implements OnIni
      */
     public registerOnChange(changeCallback:(value:any) => void):void
     {
-        this.onChangeCallback = changeCallback;
+        this._onChangeCallback = changeCallback;
     }
 
     /**
@@ -104,7 +103,7 @@ export class TerraFormEntryComponent extends TerraFormEntryBase implements OnIni
      */
     public registerOnTouched(touchedCallback:() => void):void
     {
-        this.onTouchedCallback = touchedCallback;
+        this._onTouchedCallback = touchedCallback;
     }
 
     /**

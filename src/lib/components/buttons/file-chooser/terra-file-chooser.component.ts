@@ -15,9 +15,9 @@ import { TerraOverlayComponent } from '../../layouts/overlay/terra-overlay.compo
 import { TerraOverlayButtonInterface } from '../../layouts/overlay/data/terra-overlay-button.interface';
 
 @Component({
-    selector: 'terra-file-chooser',
-    template: require('./terra-file-chooser.component.html'),
-    styles:   [require('./terra-file-chooser.component.scss')]
+    selector:    'terra-file-chooser',
+    templateUrl: './terra-file-chooser.component.html',
+    styleUrls:   ['./terra-file-chooser.component.scss']
 })
 export class TerraFileChooserComponent extends TerraButtonComponent
 {
