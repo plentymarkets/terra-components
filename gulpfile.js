@@ -38,7 +38,7 @@ const copy = series(copyFonts, copyLang, copyTslintRules, copyToTerra);
 exports.copy = copy;
 
 // convert global scss styles to css files
-function compileCss() {
+function compileStyles() {
     return src(config.scssSources)
     .pipe(sass({
         importer: tildeImporter,
@@ -50,7 +50,6 @@ function compileCss() {
 /**
  * Compiles scss to css
  **/
-const compileStyles = series(compileCss);
 exports.compileStyles = compileStyles;
 
 //changing version of package.json for new publish
