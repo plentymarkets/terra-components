@@ -1,3 +1,13 @@
+<a name="5.0.0"></a>
+# 5.0.0 (Unreleased)
+
+### Breaking Changes
+* **build** Changed compiling style to AOT (Ahead of time) compiling.
+
+### General
+* **styles** Styles are now in a .css-file rather than a .scss-file
+* **angular** Terra-Components is now a function angular-module and code autocompletion should work fine in your angular app
+
 <a name="4.6.0"></a>
 # 4.6.0 (unreleased)
 
