@@ -15,7 +15,7 @@ export class TerraBaseTable<T>
     public outputRowCheckBoxChanged:EventEmitter<TerraDataTableRowInterface<T>> = new EventEmitter();
 
     public _headerCheckbox:{ checked:boolean, isIndeterminate:boolean };
-    protected readonly rowList:Array<TerraDataTableRowInterface<T>>;
+    protected readonly _rowList:Array<TerraDataTableRowInterface<T>>;
 
     /**
      * @description Constructor initializing the table component
@@ -33,18 +33,18 @@ export class TerraBaseTable<T>
      */
     public get selectedRowList():Array<TerraDataTableRowInterface<T>>
     {
-        if(isNullOrUndefined(this.rowList))
+        if(isNullOrUndefined(this._rowList))
         {
             return [];
         }
-        return this.rowList.filter((row:TerraDataTableRowInterface<T>) => row.selected);
+        return this._rowList.filter((row:TerraDataTableRowInterface<T>) => row.selected);
     }
 
     public rowClicked(row:TerraDataTableRowInterface<T>):void
     {
         if(!row.disabled)
         {
-            this.rowList.forEach((r:TerraDataTableRowInterface<T>) =>
+            this._rowList.forEach((r:TerraDataTableRowInterface<T>) =>
             {
                 r.isActive = false;
             });
@@ -85,7 +85,7 @@ export class TerraBaseTable<T>
     protected resetSelectedRows():void
     {
         // reset selected rows which are not disabled
-        this.rowList.forEach((row:TerraDataTableRowInterface<T>) =>
+        this._rowList.forEach((row:TerraDataTableRowInterface<T>) =>
         {
             if(!row.disabled)
             {
@@ -122,7 +122,7 @@ export class TerraBaseTable<T>
         {
             this._uncheckHeaderCheckbox();
         }
-        else if(selectedRowsCount > 0 && this.rowList.length === selectedRowsCount) // all selected?
+        else if(selectedRowsCount > 0 && this._rowList.length === selectedRowsCount) // all selected?
         {
             this._checkHeaderCheckbox();
         }
@@ -135,7 +135,7 @@ export class TerraBaseTable<T>
     private _selectAllRows():void
     {
         // select all rows which are not disabled
-        this.rowList.forEach((row:TerraDataTableRowInterface<T>) =>
+        this._rowList.forEach((row:TerraDataTableRowInterface<T>) =>
         {
             if(!row.disabled)
             {

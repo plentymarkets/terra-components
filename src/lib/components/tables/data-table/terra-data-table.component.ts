@@ -91,7 +91,7 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
         super();
     }
 
-    public get rowList():Array<TerraDataTableRowInterface<T>>
+    public get _rowList():Array<TerraDataTableRowInterface<T>>
     {
         return !isNullOrUndefined(this.inputService) ? this.inputService.rowList : [];
     }
@@ -142,7 +142,7 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
 
     private get isTableDataAvailable():boolean
     {
-        return this.rowList && this.rowList.length > 0;
+        return this._rowList && this._rowList.length > 0;
     }
 
     public _doPaging():void
