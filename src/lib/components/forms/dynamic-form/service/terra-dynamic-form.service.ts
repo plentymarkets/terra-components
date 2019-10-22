@@ -8,7 +8,7 @@ import {
 } from 'rxjs';
 
 /**
- * @author mfrank
+ * @deprecated since v5.0.0. Use terra-form instead.
  */
 @Injectable({
     providedIn: 'root'

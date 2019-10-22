@@ -10,7 +10,7 @@ import { TerraControlTypeEnum } from '../enum/terra-control-type.enum';
 import { Language } from 'angular-l10n';
 
 /**
- * @author mfrank
+ * @deprecated since v5.0.0. Use terra-form instead.
  */
 @Component({
     selector:    'terra-dynamic-switch',
