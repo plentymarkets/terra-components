@@ -74,7 +74,7 @@ export class TerraBaseTable<T>
     {
         if(this._headerCheckbox.checked)
         {
-            this.resetSelectedRows();
+            this._resetSelectedRows();
         }
         else
         {
@@ -82,7 +82,7 @@ export class TerraBaseTable<T>
         }
     }
 
-    protected resetSelectedRows():void
+    protected _resetSelectedRows():void
     {
         // reset selected rows which are not disabled
         this._rowList.forEach((row:TerraDataTableRowInterface<T>) =>

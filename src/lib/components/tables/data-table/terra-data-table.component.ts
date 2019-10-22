@@ -151,7 +151,7 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
         this._getResults();
 
         // reset row selections
-        this.resetSelectedRows();
+        this._resetSelectedRows();
     }
 
     public _getCellDataType(data:any):string
