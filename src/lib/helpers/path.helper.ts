@@ -4,7 +4,7 @@ export class PathHelper
 {
     public static readonly DELIMITER:string = '/';
 
-    private static getPaths(path:string):Array<string>
+    private static _getPaths(path:string):Array<string>
     {
         let paths:Array<string> = path.split(this.DELIMITER);
         while(paths.length > 0 && paths[0].length <= 0)
@@ -55,7 +55,7 @@ export class PathHelper
      */
     public static basename(path:string):string
     {
-        let paths:Array<string> = this.getPaths(path);
+        let paths:Array<string> = this._getPaths(path);
         let i:number = paths.length - 1;
         return paths[i];
     }
@@ -67,7 +67,7 @@ export class PathHelper
     public static dirname(path:string):string
     {
         let prefix:string = this.isAbsolute(path) ? '/' : '';
-        let paths:Array<string> = this.getPaths(path);
+        let paths:Array<string> = this._getPaths(path);
         paths.pop();
 
         return prefix + paths.join(this.DELIMITER);

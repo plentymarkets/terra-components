@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
 })
 export class TerraCodeEditorComponentExample
 {
-    public changedText:string;
+    public _changedText:string;
 }

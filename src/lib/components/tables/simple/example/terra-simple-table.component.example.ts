@@ -27,7 +27,7 @@ export class TerraSimpleTableComponentExample implements OnInit
     private _headerList:Array<TerraSimpleTableHeaderCellInterface> = [];
     private _rowList:Array<TerraSimpleTableRowInterface<any>> = [];
 
-    public constructor(viewContainerRef:ViewContainerRef)
+    constructor(viewContainerRef:ViewContainerRef)
     {
         // You need this small hack in order to catch application root view container ref
         this._viewContainerRef = viewContainerRef;

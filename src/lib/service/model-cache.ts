@@ -23,7 +23,7 @@ export class ModelCache
      */
     protected handleLocalDataModelGetList(getRequest$:Observable<Array<any>>, params?:TerraBaseParameterInterface):Observable<Array<any>>
     {
-        if(Object.keys(this.dataModel).length > 0 && this.hasAllParamsLoaded(params))
+        if(Object.keys(this.dataModel).length > 0 && this._hasAllParamsLoaded(params))
         {
             return of(Object.values(this.dataModel));
         }
@@ -129,7 +129,7 @@ export class ModelCache
         );
     }
 
-    private hasAllParamsLoaded(params:TerraBaseParameterInterface):boolean
+    private _hasAllParamsLoaded(params:TerraBaseParameterInterface):boolean
     {
         if(!isNullOrUndefined(params) && !isNullOrUndefined(params['with']))
         {
