@@ -82,7 +82,7 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
     private _completeNestedData:NestedValueInterface;
     private _nestedList:Array<TerraNodeInterface<NestedDataInterface<{}>>>;
 
-    constructor(protected translation:TranslationService,
+    constructor(protected _translation:TranslationService,
                 public _nestedTreeConfig:TerraNodeTreeConfig<{}>)
     {
         this.value = null;
@@ -112,7 +112,7 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
     {
         if(isNullOrUndefined(this.inputName))
         {
-            this.inputName = this.translation.translate('terraNestedDataPicker.nested');
+            this.inputName = this._translation.translate('terraNestedDataPicker.nested');
         }
         this._nestedTreeConfig.list = this._nestedList;
         this.getNestedDataByParent(null);

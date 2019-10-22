@@ -98,7 +98,7 @@ export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent
     {
         if(isNullOrUndefined(this.inputName))
         {
-            this.inputName = this.translation.translate('terraCategoryPicker.category');
+            this.inputName = this._translation.translate('terraCategoryPicker.category');
         }
         this._nestedTreeConfig.list = this._list;
         this._getCategoriesByParent();
