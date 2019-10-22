@@ -37,13 +37,13 @@ export class TerraBaseTreeComponent implements OnInit
 
         if(this.inputParentLeafList)
         {
-            this.iterateOverParents(this.inputParentLeafList);
+            this._iterateOverParents(this.inputParentLeafList);
         }
     }
 
     public getSelectedLeaf():TerraLeafInterface
     {
-        return this.recursiveSearchActiveLeaf(this.inputLeafList);
+        return this._recursiveSearchActiveLeaf(this.inputLeafList);
     }
 
     public _onLeafClick(clickedLeaf:TerraLeafInterface):void
@@ -60,7 +60,7 @@ export class TerraBaseTreeComponent implements OnInit
 
         if(!clickedLeaf.isActive)
         {
-            this.recursiveLeafListInactive(this.inputCompleteLeafList);
+            this._recursiveLeafListInactive(this.inputCompleteLeafList);
             clickedLeaf.isActive = true;
         }
     }
@@ -70,26 +70,26 @@ export class TerraBaseTreeComponent implements OnInit
         clickedLeaf.isOpen = !clickedLeaf.isOpen;
     }
 
-    private iterateOverParents(parents:Array<TerraLeafInterface>):void
+    private _iterateOverParents(parents:Array<TerraLeafInterface>):void
     {
         for(let parentLeaf of parents)
         {
             if(parentLeaf.subLeafList)
             {
-                this.iterateOverSiblings(parentLeaf.subLeafList);
+                this._iterateOverSiblings(parentLeaf.subLeafList);
             }
         }
     }
 
-    private iterateOverSiblings(siblings:Array<TerraLeafInterface>):void
+    private _iterateOverSiblings(siblings:Array<TerraLeafInterface>):void
     {
         for(let subLeaf of siblings)
         {
-            this.iterateOverChildren(subLeaf);
+            this._iterateOverChildren(subLeaf);
         }
     }
 
-    private iterateOverChildren(parentOfChild:TerraLeafInterface):void
+    private _iterateOverChildren(parentOfChild:TerraLeafInterface):void
     {
         for(let leaf of this.inputLeafList)
         {
@@ -100,7 +100,7 @@ export class TerraBaseTreeComponent implements OnInit
         }
     }
 
-    private recursiveLeafListInactive(list:Array<TerraLeafInterface>):boolean
+    private _recursiveLeafListInactive(list:Array<TerraLeafInterface>):boolean
     {
         let foundActive:boolean = false;
 
@@ -113,7 +113,7 @@ export class TerraBaseTreeComponent implements OnInit
             }
             else if(leaf.subLeafList)
             {
-                foundActive = this.recursiveLeafListInactive(leaf.subLeafList);
+                foundActive = this._recursiveLeafListInactive(leaf.subLeafList);
             }
 
             if(foundActive)
@@ -125,7 +125,7 @@ export class TerraBaseTreeComponent implements OnInit
         return false;
     }
 
-    private recursiveSearchActiveLeaf(leafListToSearch:Array<TerraLeafInterface>):TerraLeafInterface
+    private _recursiveSearchActiveLeaf(leafListToSearch:Array<TerraLeafInterface>):TerraLeafInterface
     {
         let foundLeaf:TerraLeafInterface;
 
@@ -139,7 +139,7 @@ export class TerraBaseTreeComponent implements OnInit
             }
             else if(leaf.subLeafList)
             {
-                foundLeaf = this.recursiveSearchActiveLeaf(leaf.subLeafList);
+                foundLeaf = this._recursiveSearchActiveLeaf(leaf.subLeafList);
 
                 if(!isNullOrUndefined(foundLeaf))
                 {

@@ -40,11 +40,11 @@ export class FixedHeaderDirective implements AfterViewInit, AfterViewChecked
         // check if table has at least one row
         if(this._tableElement && this._tableBodyElement.querySelector('tr:first-child'))
         {
-            this.updateColumnWidths();
+            this._updateColumnWidths();
         }
     }
 
-    private updateColumnWidths():void
+    private _updateColumnWidths():void
     {
 
         let rows:NodeListOf<HTMLElement> = this._tableBodyElement.querySelectorAll('tr');
@@ -57,7 +57,7 @@ export class FixedHeaderDirective implements AfterViewInit, AfterViewChecked
         this._tableHeadElement.style.paddingRight = (headerWidth - bodyWidth) + 'px';
 
         // assign column widths
-        this.getColumnWidths()
+        this._getColumnWidths()
             .forEach((width:number, index:number) =>
             {
                 headerCol = <HTMLElement> this._tableHeadElement.querySelector('tr th:nth-child(' + (index + 1) + ')');
@@ -78,7 +78,7 @@ export class FixedHeaderDirective implements AfterViewInit, AfterViewChecked
             });
     }
 
-    private getColumnWidths():Array<number>
+    private _getColumnWidths():Array<number>
     {
         let firstRow:HTMLElement = <HTMLElement> this._tableBodyElement.querySelector('tr:first-child');
         if(firstRow)

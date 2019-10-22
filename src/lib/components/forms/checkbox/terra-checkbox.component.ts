@@ -124,7 +124,7 @@ export class TerraCheckboxComponent implements ControlValueAccessor
     public _isIndeterminate:boolean = false;
 
     // The internal data model
-    private _innerValue:boolean = false;
+    public _innerValue:boolean = false;
 
     private _onTouchedCallback:() => void = noop;
     private _onChangeCallback:(value:any) => void = noop;
@@ -143,7 +143,7 @@ export class TerraCheckboxComponent implements ControlValueAccessor
     public onChange(value:boolean):void
     {
         this._onChangeCallback(value);
-        this.updateIntermediateState(false);
+        this._updateIntermediateState(false);
         this.valueChange.emit(value);
     }
 
@@ -161,7 +161,7 @@ export class TerraCheckboxComponent implements ControlValueAccessor
                 value = false;
             }
 
-            this.updateIntermediateState(false);
+            this._updateIntermediateState(false);
             this._innerValue = value;
 
             if(this.notifyOnChanges)
@@ -191,7 +191,7 @@ export class TerraCheckboxComponent implements ControlValueAccessor
         this._onTouchedCallback = fn;
     }
 
-    private updateIntermediateState(newState:boolean):void
+    private _updateIntermediateState(newState:boolean):void
     {
         this._isIndeterminate = newState;
         this.isIndeterminateChange.emit(this.isIndeterminate);

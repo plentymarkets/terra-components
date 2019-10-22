@@ -10,12 +10,12 @@ import {
 })
 export class TerraSyntaxEditorComponentExample implements OnInit
 {
-    public inputText:string;
-    private inputOptions:object;
+    public _inputText:string;
+    private _inputOptions:object;
 
     public ngOnInit():void
     {
-        this.inputText = `<!DOCTYPE html>
+        this._inputText = `<!DOCTYPE html>
 <html>
 <head>
     <meta CHARSET="UTF-8">
@@ -25,9 +25,9 @@ export class TerraSyntaxEditorComponentExample implements OnInit
     <h1>Hello</h1>
 </body>
 </html>`;
-        this.inputOptions = {
+        this._inputOptions = {
             maxLines:  10,
-            inputText: this.inputText
+            inputText: this._inputText
         };
     }
 
