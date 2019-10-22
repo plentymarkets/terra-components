@@ -25,6 +25,11 @@ function copyTslintRules() {
         .pipe(dest(config.destinations.tsOutputPath));
 }
 
+function copyJsFiles() {
+    return src(config.sources.floatThead)
+        .pipe(dest(config.destinations.floatThead));
+}
+
 //copy files from dist to terra
 function copyToTerra() {
     return src(config.sources.dist)
@@ -34,7 +39,7 @@ function copyToTerra() {
 /**
  * Copies all the files to the dedicated deploy folder
  **/
-const copy = series(copyFonts, copyLang, copyTslintRules, copyToTerra);
+const copy = series(copyFonts, copyLang, copyTslintRules, copyJsFiles, copyToTerra);
 exports.copy = copy;
 
 // convert global scss styles to css files
