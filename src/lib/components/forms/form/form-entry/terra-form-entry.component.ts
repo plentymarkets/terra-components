@@ -54,7 +54,7 @@ export class TerraFormEntryComponent extends TerraFormEntryBase implements OnIni
      */
     public ngOnInit():void
     {
-        if(!this.hasChildren)
+        if(!this._hasChildren)
         {
             this.initComponent();
 
@@ -119,7 +119,7 @@ export class TerraFormEntryComponent extends TerraFormEntryBase implements OnIni
         }
     }
 
-    protected get hasChildren():boolean
+    protected get _hasChildren():boolean
     {
         return !isNullOrUndefined(this.inputFormField.children);
     }
