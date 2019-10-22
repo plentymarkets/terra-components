@@ -32,15 +32,15 @@ export class TerraAlertPanelComponent implements OnInit, OnDestroy
         this._alerts = this._alert.alerts;
 
         // init event listeners
-        this._addAlertListener = (event:CustomEvent<TerraAlertInterface>):void => this.addAlert(event.detail);
-        this._closeAlertListener = (event:CustomEvent<string>):void => this.closeAlert(event.detail);
+        this._addAlertListener = (event:CustomEvent<TerraAlertInterface>):void => this._addAlert(event.detail);
+        this._closeAlertListener = (event:CustomEvent<string>):void => this._closeAlert(event.detail);
     }
 
     public ngOnInit():void
     {
         // listen to the EventEmitters of the service
-        this._addAlertSub = this._service.addAlert.subscribe((alert:TerraAlertInterface) => this.addAlert(alert));
-        this._closeAlertSub = this._service.closeAlert.subscribe((identifier:string) => this.closeAlert(identifier));
+        this._addAlertSub = this._service.addAlert.subscribe((alert:TerraAlertInterface) => this._addAlert(alert));
+        this._closeAlertSub = this._service.closeAlert.subscribe((identifier:string) => this._closeAlert(identifier));
 
         // listen to events that concern _alerts and are dispatched to the hosting window
         window.addEventListener(this._service.addEvent, this._addAlertListener);
@@ -63,12 +63,12 @@ export class TerraAlertPanelComponent implements OnInit, OnDestroy
         this._alert.closeAlert(index);
     }
 
-    private addAlert(alert:TerraAlertInterface):void
+    private _addAlert(alert:TerraAlertInterface):void
     {
         this._alert.addAlert(alert);
     }
 
-    private closeAlert(identifier:string):void
+    private _closeAlert(identifier:string):void
     {
         this._alert.closeAlertByIdentifier(identifier);
     }

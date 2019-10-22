@@ -34,8 +34,9 @@ export class TerraSyntaxEditorComponent implements AfterViewInit
 
     @Input()
     public inputOptions:Object;
-    public _inputEditorMode:string;
-    public _inputText:string;
+
+    private _inputEditorMode:string;
+    private _inputText:string;
 
     constructor()
     {
@@ -61,6 +62,11 @@ export class TerraSyntaxEditorComponent implements AfterViewInit
     {
         this._inputEditorMode = value;
         this.editor.setMode(value);
+    }
+
+    public get inputEditorMode():string
+    {
+        return this._inputEditorMode;
     }
 
     @Input()

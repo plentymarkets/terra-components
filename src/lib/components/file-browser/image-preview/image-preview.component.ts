@@ -45,7 +45,7 @@ export class TerraImagePreviewComponent implements OnInit, OnDestroy
             {
                 this._metadata = data;
                 this._isLoading = false;
-                this.changeDetector.detectChanges();
+                this._changeDetector.detectChanges();
             });
         }
         else
@@ -64,8 +64,8 @@ export class TerraImagePreviewComponent implements OnInit, OnDestroy
         return this.inputStorageService instanceof TerraBaseMetadataStorageService;
     }
 
-    constructor(private changeDetector:ChangeDetectorRef,
-                private translation:TranslationService)
+    constructor(private _changeDetector:ChangeDetectorRef,
+                private _translation:TranslationService)
     {
     }
 
@@ -87,7 +87,7 @@ export class TerraImagePreviewComponent implements OnInit, OnDestroy
                 .updateMetadata(this.inputStorageObject.key, this._metadata)
                 .subscribe(() =>
                 {
-                    this.translation.translate(this._translationPrefix + '.metadataUpdated');
+                    this._translation.translate(this._translationPrefix + '.metadataUpdated');
                 });
         }
     }

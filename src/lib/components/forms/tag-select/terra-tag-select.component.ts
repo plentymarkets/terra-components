@@ -57,7 +57,7 @@ export class TerraTagSelectComponent implements ControlValueAccessor, OnInit, On
 
     public ngOnInit():void
     {
-        this.generateSuggestionValues(this._tagList);
+        this._generateSuggestionValues(this._tagList);
     }
 
     public ngOnDestroy():void
@@ -72,7 +72,7 @@ export class TerraTagSelectComponent implements ControlValueAccessor, OnInit, On
             let tags:Array<TerraTagInterface> = (changes['tags'].currentValue as Array<TerraTagInterface>);
             tags.forEach((tag:TerraTagInterface) => tag.isClosable = true);
             this._tagList = tags;
-            this.generateSuggestionValues(tags);
+            this._generateSuggestionValues(tags);
         }
     }
 
@@ -124,13 +124,13 @@ export class TerraTagSelectComponent implements ControlValueAccessor, OnInit, On
      * Generates the values for the TerraSuggestionsBox from a array of TerraTagInterface.
      * @param tagList
      */
-    private generateSuggestionValues(tagList:Array<TerraTagInterface>):void
+    private _generateSuggestionValues(tagList:Array<TerraTagInterface>):void
     {
         this._suggestionValues = tagList.map((tag:TerraTagInterface) =>
         {
             return {
                 value:   tag,
-                caption: this.getTranslatedName(tag),
+                caption: this._getTranslatedName(tag),
             };
         });
         this._suggestionValues.unshift({
@@ -143,7 +143,7 @@ export class TerraTagSelectComponent implements ControlValueAccessor, OnInit, On
      * Returns the name. If the names attribute of the tag is set it returns the name for the current language.
      * @param tag
      */
-    private getTranslatedName(tag:TerraTagInterface):string
+    private _getTranslatedName(tag:TerraTagInterface):string
     {
         // Fallback if names or this._lang is not set
         if(isNullOrUndefined(tag.names) || isNullOrUndefined(this._lang))
