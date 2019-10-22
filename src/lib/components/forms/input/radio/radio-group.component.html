@@ -1,4 +1,4 @@
 <fieldset [style.display]="inline ? 'inline-block': 'block'">
-    <legend>{{legend}}</legend>
+    <legend *ngIf="legend && legend.length > 0">{{legend}}</legend>
     <ng-content></ng-content>
 </fieldset>
