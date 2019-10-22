@@ -133,7 +133,7 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData> impleme
 
     public get _isShown():boolean
     {
-        return this.__isShown;:
+        return this.__isShown;
     }
 
     public get _topAsString():string
