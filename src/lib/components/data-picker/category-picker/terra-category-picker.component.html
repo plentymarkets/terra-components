@@ -6,9 +6,9 @@
                       [(ngModel)]="_categoryName"
                       (click)="showTree()">
     </terra-text-input>
-    <div *ngIf="_toggleTree">
+    <div *ngIf="toggleTree">
         <terra-node-tree [inputShowSearch]="false"
-                         [inputConfig]="nestedTreeConfig">
+                         [inputConfig]="_nestedTreeConfig">
         </terra-node-tree>
         <terra-base-toolbar>
             <terra-button inputTooltipText="{{'terraCategoryPicker.select' | translate:_lang}}"

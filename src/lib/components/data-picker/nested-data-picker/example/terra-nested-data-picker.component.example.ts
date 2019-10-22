@@ -9,7 +9,7 @@ import { NestedPickerExampleService } from './service/terra-nested-data-picker.s
 })
 export class TerraNestedDataPickerComponentExample
 {
-    constructor(public _terraService:NestedPickerExampleService)
+    constructor(public _nestedPickerExampleService:NestedPickerExampleService)
     {
     }
 }

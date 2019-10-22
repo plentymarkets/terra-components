@@ -29,8 +29,8 @@ export class TerraDataTableComponentExample implements OnInit
 
     constructor(public _service:TerraDataTableServiceExample)
     {
-        this._headerList = this.createHeaderList();
-        this._contextMenu = this.createContextMenu();
+        this._headerList = this._createHeaderList();
+        this._contextMenu = this._createContextMenu();
     }
 
     public ngOnInit():void
@@ -39,7 +39,7 @@ export class TerraDataTableComponentExample implements OnInit
             caption:       'Search',
             isHighlighted: true,
             icon:          'icon-search',
-            clickFunction: ():void => this.onSearchBtnClicked()
+            clickFunction: ():void => this._onSearchBtnClicked()
         }];
 
         this._noResultTextPrimary = 'No results available';
@@ -72,7 +72,7 @@ export class TerraDataTableComponentExample implements OnInit
         console.log(selectedRows);
     }
 
-    private onSearchBtnClicked():void
+    private _onSearchBtnClicked():void
     {
         this._service.getResults(true);
 
@@ -87,7 +87,7 @@ export class TerraDataTableComponentExample implements OnInit
         this._noResultTextSecondary = 'Add a new entry';
     }
 
-    private createHeaderList():Array<TerraDataTableHeaderCellInterface>
+    private _createHeaderList():Array<TerraDataTableHeaderCellInterface>
     {
         return [
             {
@@ -112,7 +112,7 @@ export class TerraDataTableComponentExample implements OnInit
         ];
     }
 
-    private createContextMenu():Array<TerraDataTableContextMenuEntryInterface<TerraDataTableExampleInterface>>
+    private _createContextMenu():Array<TerraDataTableContextMenuEntryInterface<TerraDataTableExampleInterface>>
     {
         return [{
             title:         'Show alert',

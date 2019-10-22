@@ -46,11 +46,11 @@ export class TerraFileBrowserComponent implements OnChanges, OnInit
 
     public onSelectedUrlChange:EventEmitter<string> = new EventEmitter();
 
-    @ViewChild(forwardRef(() => TerraFileListComponent))
-    public _fileListComponent:TerraFileListComponent;
-
     public _rightColumnWidth:number = 0;
     public _centerColumnWidth:number = 10;
+
+    @ViewChild(forwardRef(() => TerraFileListComponent))
+    public _fileListComponent:TerraFileListComponent;
 
     private _storageServices:Array<TerraBaseStorageService>;
 
@@ -84,7 +84,7 @@ export class TerraFileBrowserComponent implements OnChanges, OnInit
     {
         if(isNullOrUndefined(this._storageServices))
         {
-            this.renderTree(this.inputStorageServices);
+            this._renderTree(this.inputStorageServices);
         }
     }
 
@@ -93,7 +93,7 @@ export class TerraFileBrowserComponent implements OnChanges, OnInit
         if(changes.hasOwnProperty('inputStorageServices'))
         {
             this._nodeTreeConfig.reset();
-            this.renderTree(changes['inputStorageServices'].currentValue);
+            this._renderTree(changes['inputStorageServices'].currentValue);
         }
     }
 
@@ -132,7 +132,7 @@ export class TerraFileBrowserComponent implements OnChanges, OnInit
         this._rightColumnWidth = 0;
     }
 
-    private renderTree(services:Array<TerraBaseStorageService>):void
+    private _renderTree(services:Array<TerraBaseStorageService>):void
     {
         if(isNullOrUndefined(services))
         {
@@ -166,19 +166,19 @@ export class TerraFileBrowserComponent implements OnChanges, OnInit
                     if(isNullOrUndefined(node.onClick))
                     {
                         // only one root folder is existing
-                        this.addDefaultClickEventToNode(node, service, root);
+                        this._addDefaultClickEventToNode(node, service, root);
                     }
 
-                    this.getSortedList(root.children).forEach((child:TerraStorageObject) =>
+                    this._getSortedList(root.children).forEach((child:TerraStorageObject) =>
                     {
-                        this.recursiveCreateNode(child, node, service);
+                        this._recursiveCreateNode(child, node, service);
                     });
                 }
             });
         });
     }
 
-    private addDefaultClickEventToNode(node:TerraNodeInterface<{}>,
+    private _addDefaultClickEventToNode(node:TerraNodeInterface<{}>,
                                        service:TerraBaseStorageService,
                                        root:TerraStorageObject):void
     {
@@ -190,7 +190,7 @@ export class TerraFileBrowserComponent implements OnChanges, OnInit
         };
     }
 
-    private recursiveCreateNode(storage:TerraStorageObject,
+    private _recursiveCreateNode(storage:TerraStorageObject,
                                 parentNode:TerraNodeInterface<{}>,
                                 service:TerraBaseStorageService):void
     {
@@ -222,14 +222,14 @@ export class TerraFileBrowserComponent implements OnChanges, OnInit
 
             this._nodeTreeConfig.addNode(directory, parentNode);
 
-            this.getSortedList(storage.children).forEach((childStorage:TerraStorageObject) =>
+            this._getSortedList(storage.children).forEach((childStorage:TerraStorageObject) =>
             {
-                this.recursiveCreateNode(childStorage, directory, service);
+                this._recursiveCreateNode(childStorage, directory, service);
             });
         }
     }
 
-    private getSortedList(list:Array<TerraStorageObject>):Array<TerraStorageObject>
+    private _getSortedList(list:Array<TerraStorageObject>):Array<TerraStorageObject>
     {
         return list.sort((objectA:TerraStorageObject, objectB:TerraStorageObject) =>
             {

@@ -57,7 +57,7 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
     {
         if(!this._storageInitialized)
         {
-            this.initStorageList();
+            this._initStorageList();
         }
 
         return this._storageListSubject;
@@ -106,7 +106,7 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
         /* tslint:disable:prefer-for-of */
         for(let i:number = 0; i < files.length; i++)
         {
-            uploadItems.push(this.uploadFile(files[i], path));
+            uploadItems.push(this._uploadFile(files[i], path));
         }
         /* tslint:enable:prefer-for-of */
 
@@ -187,7 +187,7 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
         ));
     }
 
-    private uploadFile(file:File, path:string = '/'):TerraUploadItem
+    private _uploadFile(file:File, path:string = '/'):TerraUploadItem
     {
         if(isNullOrUndefined(file))
         {
@@ -206,7 +206,7 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
         {
             if(status === 413)
             {
-                this.cleanStorageList(item);
+                this._cleanStorageList(item);
                 this._alertService.error(this._translation.translate('terraFileBrowser.error.tooLargePayload'));
             }
             else
@@ -227,12 +227,12 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
 
         item.onError(() =>
         {
-            this.cleanStorageList(item);
+            this._cleanStorageList(item);
         });
 
         item.onCancel(() =>
         {
-            this.cleanStorageList(item);
+            this._cleanStorageList(item);
         });
 
         this.queue.add(item);
@@ -242,13 +242,13 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
         return item;
     }
 
-    private cleanStorageList(item:any):void
+    private _cleanStorageList(item:any):void
     {
         this._storageList.root.removeChild(item.pathname);
         this._storageListSubject.next(this._storageList);
     }
 
-    private initStorageList(continuationToken?:string):void
+    private _initStorageList(continuationToken?:string):void
     {
         this._storageInitialized = true;
 
@@ -267,7 +267,7 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
 
                 if(results.isTruncated && results.nextContinuationToken.length > 0)
                 {
-                    this.initStorageList(results.nextContinuationToken);
+                    this._initStorageList(results.nextContinuationToken);
                 }
             },
             (err:any):void =>

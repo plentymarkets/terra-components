@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="editor-output-container"
-                 [innerHTML]="changedText">
+                 [innerHTML]="_changedText">
             </div>
         </div>
     </div>
@@ -12,7 +12,7 @@
                                [inputHeaderLabel]="'Code Editor'"
                                [tooltipText]="'tooltip text'"
                                [tooltipPlacement]="'top'"
-                               [(ngModel)]="changedText">
+                               [(ngModel)]="_changedText">
             </terra-code-editor>
         </div>
     </div>

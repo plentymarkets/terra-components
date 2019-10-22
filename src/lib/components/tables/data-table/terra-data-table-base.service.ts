@@ -52,7 +52,7 @@ export abstract class TerraDataTableBaseService<T, P>
     public set defaultPagingSize(value:number)
     {
         this._defaultPagingSize = value;
-        this._pagingData.itemsPerPage = this.itemsPerPage;
+        this._pagingData.itemsPerPage = this._itemsPerPage;
     }
 
     public get pagingSizes():Array<TerraSelectBoxValueInterface>
@@ -63,7 +63,7 @@ export abstract class TerraDataTableBaseService<T, P>
     public set pagingSizes(value:Array<TerraSelectBoxValueInterface>)
     {
         this._pagingSizes = value;
-        this._pagingData.itemsPerPage = this.itemsPerPage;
+        this._pagingData.itemsPerPage = this._itemsPerPage;
     }
 
     /**
@@ -90,7 +90,7 @@ export abstract class TerraDataTableBaseService<T, P>
         return this._rowList;
     }
 
-    private get itemsPerPage():number
+    private get _itemsPerPage():number
     {
         let itemsPerPage:number = 25;
         if(this._defaultPagingSize && this.pagingSizes.some((size:TerraSelectBoxValueInterface) => +size.value === this._defaultPagingSize))
@@ -175,7 +175,7 @@ export abstract class TerraDataTableBaseService<T, P>
         // request table data from the server
         this._requestPending = true;
         this._rowList = [];
-        this.markForCheck();
+        this._markForCheck();
         this.requestTableData(params).pipe(
             tap((res:TerraPagerInterface<T>) => this.updatePagingData(res)),
             map((res:TerraPagerInterface<T>) => res.entries.map((entry:T) => this.dataToRowMapping(entry))),
@@ -183,7 +183,7 @@ export abstract class TerraDataTableBaseService<T, P>
             finalize(() =>
             {
                 this._requestPending = false;
-                this.markForCheck();
+                this._markForCheck();
             })
         ).subscribe();
     }
@@ -201,7 +201,7 @@ export abstract class TerraDataTableBaseService<T, P>
      */
     public abstract dataToRowMapping(res:T):TerraDataTableRowInterface<T>;
 
-    private markForCheck():void
+    private _markForCheck():void
     {
         if(!isNullOrUndefined(this.cdr))
         {
