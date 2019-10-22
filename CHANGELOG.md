@@ -2,7 +2,7 @@
 # 5.0.0 (Unreleased)
 
 ### Breaking Changes
-* **build** Changed compiling option to AOT (Ahead-of-time) compiling.
+* **build** Changed compiling option to AOT (Ahead-of-Time) compiling.
 
 ### General
 * **styles** Styles are now in a .css-file rather than a .scss-file
