@@ -16,6 +16,9 @@ import { Observable } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { Language } from 'angular-l10n';
 
+/**
+ * @deprecated since v5.0.0. Use terra-form instead.
+ */
 export enum TerraHtmlMethods
 {
     GET = 'get',
@@ -24,6 +27,9 @@ export enum TerraHtmlMethods
     DELETE = 'delete'
 }
 
+/**
+ * @deprecated since v5.0.0. Use terra-form instead.
+ */
 export interface TerraDynamicFormRequestParams
 {
     route:string;
@@ -32,7 +38,7 @@ export interface TerraDynamicFormRequestParams
 }
 
 /**
- * @author mfrank
+ * @deprecated since v5.0.0. Use terra-form instead.
  */
 @Component({
     selector:    'terra-dynamic-form',
