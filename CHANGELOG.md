@@ -2,11 +2,10 @@
 # 5.0.0 (Unreleased)
 
 ### Breaking Changes
-* **build** Changed compiling option to AOT (Ahead-of-Time) compiling.
-
-### General
+* **build** Changed compiling option to AOT (Ahead-of-Time) compiling. 
+Terra-Components now complies to the angular package format and code autocompletion should work fine in your angular app.
 * **styles** Styles are now in a .css-file rather than in an .scss-file.
-* **angular** Terra-Components is now a functioning angular module and code autocompletion should work fine in your angular app.
+* **dependencies** Every dependency of Terra-Components is a peer dependency now. You need to install these dependencies in your project.
 
 <a name="4.6.0"></a>
 # 4.6.0 (unreleased)
