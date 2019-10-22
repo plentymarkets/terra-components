@@ -5,7 +5,7 @@
 * **build** Changed compiling option to AOT (Ahead-of-Time) compiling.
 
 ### General
-* **styles** Styles are now in a .css-file rather than a .scss-file
+* **styles** Styles are now in a .css-file rather than in an .scss-file.
 * **angular** Terra-Components is now a functioning angular-module and code autocompletion should work fine in your angular app
 
 <a name="4.6.0"></a>
