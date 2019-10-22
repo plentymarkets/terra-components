@@ -2,7 +2,7 @@ import { isNull } from 'util';
 import { TerraControlTypeEnum } from '../enum/terra-control-type.enum';
 
 /**
- * @author mfrank
+ * @deprecated since v5.0.0. Use terra-form instead.
  */
 export interface TerraFormFieldBaseOptions<T>
 {
@@ -18,7 +18,7 @@ export interface TerraFormFieldBaseOptions<T>
 }
 
 /**
- *
+ * @deprecated since v5.0.0. Use terra-form instead.
  */
 export class TerraFormFieldBase<T>
 {
