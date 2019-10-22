@@ -40,7 +40,7 @@
         </tr>
         </thead>
         <tbody *ngIf="!useContentBody">
-        <tr *ngFor="let row of rowList" [tcTableRow]="row" hasContextMenu [rowData]="row.data">
+        <tr *ngFor="let row of _rowList" [tcTableRow]="row" hasContextMenu [rowData]="row.data">
             <ng-template ngFor let-cell [ngForOf]="row.cellList" let-i="index">
                 <td *ngIf="!cell.isHidden"
                     [ngSwitch]="_getCellDataType(cell.data)"

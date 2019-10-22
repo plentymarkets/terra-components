@@ -17,6 +17,7 @@ import { Subscription } from 'rxjs';
 import { isNullOrUndefined } from 'util';
 
 import * as jQuery_ from 'jquery';
+
 const jQuery:JQueryStatic = jQuery_;
 
 @Directive({
@@ -34,7 +35,9 @@ export class FloatTheadDirective implements OnInit, OnDestroy
     private navigationSubscription:Subscription;
     private tableElement:any;
 
-    constructor(private elementRef:ElementRef, private router:Router, private activatedRoute:ActivatedRoute)
+    constructor(private _elementRef:ElementRef,
+                private _router:Router,
+                private _activatedRoute:ActivatedRoute)
     {
     }
 
@@ -42,17 +45,17 @@ export class FloatTheadDirective implements OnInit, OnDestroy
     {
         if(this.floatThead)
         {
-            this.tableElement = jQuery(this.elementRef.nativeElement);
+            this.tableElement = jQuery(this._elementRef.nativeElement);
 
-            this.initStickyTableHeader(true);
+            this._initStickyTableHeader(true);
 
-            this.navigationSubscription = this.router.events.pipe(filter((event:RouterEvent) => event instanceof NavigationEnd))
+            this.navigationSubscription = this._router.events.pipe(filter((event:RouterEvent) => event instanceof NavigationEnd))
                                               .subscribe((event:NavigationEnd) =>
                                               {
                                                   // re-initialize floatThead on tab switch to check header position
-                                                  if(event.url === ActivatedRouteHelper.getBasePathForActivatedRoute(this.activatedRoute.snapshot))
+                                                  if(event.url === ActivatedRouteHelper.getBasePathForActivatedRoute(this._activatedRoute.snapshot))
                                                   {
-                                                      this.initStickyTableHeader();
+                                                      this._initStickyTableHeader();
                                                   }
                                               });
         }
@@ -66,7 +69,7 @@ export class FloatTheadDirective implements OnInit, OnDestroy
         }
     }
 
-    private initStickyTableHeader(addScrollEvent?:boolean):void
+    private _initStickyTableHeader(addScrollEvent?:boolean):void
     {
         const overflowContainer:JQuery<HTMLElement> = this.tableElement.closest('.overflow-auto');
 

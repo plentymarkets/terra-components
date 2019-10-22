@@ -73,17 +73,17 @@ export class TerraButtonWithOptionsComponent implements OnInit
 
     // view children
     @ViewChild(TerraButtonComponent)
-    private toggleButton:TerraButtonComponent;
+    private _toggleButton:TerraButtonComponent;
 
-    private readonly clickListener:(event:Event) => void;
+    private readonly _clickListener:(event:Event) => void;
 
-    constructor(private elementRef:ElementRef)
+    constructor(private _elementRef:ElementRef)
     {
         // define click listener
-        this.clickListener = (event:Event):void =>
+        this._clickListener = (event:Event):void =>
         {
             // check if it has been clicked elsewhere
-            if(!this.elementRef.nativeElement.contains(event.target))
+            if(!this._elementRef.nativeElement.contains(event.target))
             {
                 this._optionsToggle = false;
             }
@@ -142,11 +142,11 @@ export class TerraButtonWithOptionsComponent implements OnInit
 
         if(!this._optionsToggle)
         {
-            document.addEventListener('click', this.clickListener);
+            document.addEventListener('click', this._clickListener);
         }
         else
         {
-            document.removeEventListener('click', this.clickListener);
+            document.removeEventListener('click', this._clickListener);
         }
 
         this._optionsToggle = !this._optionsToggle;

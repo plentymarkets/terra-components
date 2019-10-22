@@ -1,7 +1,7 @@
 import { QueryEncoder } from '@angular/http';
 
 /**
- * @deprecated since v3.14.0. Use angular's [HttpClient](https://angular.io/guide/http) instead.
+ * @deprecated since v3.0.0. Use angular's [HttpClient](https://angular.io/guide/http) instead.
  *
  * @author pweyrich
  * @description Custom implementation of the native QueryEncoder.. It uses javascript's encodeURIComponent-Method to encode query params.

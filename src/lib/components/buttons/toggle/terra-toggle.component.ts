@@ -63,8 +63,8 @@ export class TerraToggleComponent implements ControlValueAccessor
 
     public _isActive:boolean = false;
 
-    private onTouchedCallback:() => void = noop;
-    private onChangeCallback:(_:any) => void = noop;
+    private _onTouchedCallback:() => void = noop;
+    private _onChangeCallback:(_:any) => void = noop;
 
     constructor()
     {
@@ -83,13 +83,13 @@ export class TerraToggleComponent implements ControlValueAccessor
     // From ControlValueAccessor interface
     public registerOnChange(fn:(_:any) => void):void
     {
-        this.onChangeCallback = fn;
+        this._onChangeCallback = fn;
     }
 
     // From ControlValueAccessor interface
     public registerOnTouched(fn:() => void):void
     {
-        this.onTouchedCallback = fn;
+        this._onTouchedCallback = fn;
     }
 
     public _toggle():void
@@ -98,7 +98,7 @@ export class TerraToggleComponent implements ControlValueAccessor
         {
             this._isActive = !this._isActive;
             this.toggled.emit(this._isActive);
-            this.onChangeCallback(this._isActive);
+            this._onChangeCallback(this._isActive);
             if(this._isActive)
             {
                 this.activated.emit();

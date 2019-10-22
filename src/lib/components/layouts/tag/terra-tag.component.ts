@@ -119,7 +119,7 @@ export class TerraTagComponent implements OnInit, OnChanges, OnDestroy
     {
         if(changes.hasOwnProperty('name') || changes.hasOwnProperty('names') || changes.hasOwnProperty('inputBadge'))
         {
-            this._tagName = this.getTagName();
+            this._tagName = this._getTagName();
         }
     }
 
@@ -154,7 +154,7 @@ export class TerraTagComponent implements OnInit, OnChanges, OnDestroy
         return null;
     }
 
-    private getTagName():string
+    private _getTagName():string
     {
         if(this.inputBadge)
         {

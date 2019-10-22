@@ -20,15 +20,15 @@ import { isNullOrUndefined } from 'util';
 })
 export class TerraDynamicComponentLoaderComponent implements AfterViewInit, OnDestroy, OnChanges
 {
-    @ViewChild('viewChildTarget', {read: ViewContainerRef})
-    public _viewChildTarget:ViewContainerRef;
-
     @Input()
     public inputComponent:Type<any>;
 
+    @ViewChild('viewChildTarget', {read: ViewContainerRef})
+    private _viewChildTarget:ViewContainerRef;
+
     private _cmpRef:ComponentRef<any>;
 
-    constructor(private componentFactoryResolver:ComponentFactoryResolver)
+    constructor(private _componentFactoryResolver:ComponentFactoryResolver)
     {
     }
 
@@ -37,13 +37,13 @@ export class TerraDynamicComponentLoaderComponent implements AfterViewInit, OnDe
         if(changes['inputComponent'])
         {
             this.ngOnDestroy();
-            this.updateComponent();
+            this._updateComponent();
         }
     }
 
     public ngAfterViewInit():void
     {
-        this.updateComponent();
+        this._updateComponent();
     }
 
     public ngOnDestroy():void
@@ -54,11 +54,11 @@ export class TerraDynamicComponentLoaderComponent implements AfterViewInit, OnDe
         }
     }
 
-    private updateComponent():void
+    private _updateComponent():void
     {
         if(!isNullOrUndefined(this.inputComponent))
         {
-            let componentFactory:ComponentFactory<any> = this.componentFactoryResolver.resolveComponentFactory(this.inputComponent);
+            let componentFactory:ComponentFactory<any> = this._componentFactoryResolver.resolveComponentFactory(this.inputComponent);
 
             let viewContainerRef:ViewContainerRef = this._viewChildTarget;
             viewContainerRef.clear();
