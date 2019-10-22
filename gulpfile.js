@@ -25,6 +25,12 @@ function copyTslintRules() {
         .pipe(dest(config.destinations.tsOutputPath));
 }
 
+//copy README to dist
+function copyReadme() {
+    return src(config.sources.readme)
+        .pipe(dest(config.destinations.tsOutputPath));
+}
+
 //copy files from dist to terra
 function copyToTerra() {
     return src(config.sources.dist)
@@ -34,7 +40,7 @@ function copyToTerra() {
 /**
  * Copies all the files to the dedicated deploy folder
  **/
-const copy = series(copyFonts, copyLang, copyTslintRules, copyToTerra);
+const copy = series(copyFonts, copyLang, copyReadme, copyTslintRules, copyToTerra);
 exports.copy = copy;
 
 // convert global scss styles to css files
