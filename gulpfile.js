@@ -39,7 +39,7 @@ exports.copy = copy;
 
 // convert global scss styles to css files
 function compileCss() {
-    return src(config.scssSources)
+    return src(config.sources.scss)
     .pipe(sass({
         importer: tildeImporter,
         outputStyle: 'compressed'
@@ -50,8 +50,7 @@ function compileCss() {
 /**
  * Compiles scss to css
  **/
-const compileStyles = series(compileCss);
-exports.compileStyles = compileStyles;
+exports.compileStyles = compileCss;
 
 //changing version of package.json for new publish
 function changeVersion(done) {
@@ -97,5 +96,5 @@ function publish() {
  *     'node_modules/@plentymarkets/terra-components' in target directory
  *
  **/
-const release = series(changeVersion, copy, publish);
+const release = series(changeVersion, compileCss, copy, publish);
 exports.release = release;

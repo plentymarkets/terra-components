@@ -36,7 +36,6 @@ function initL10n(l10nLoader:L10nLoader):Function
  */
 @NgModule({
     imports:      [
-        RouterModule.forRoot([]),
         BrowserModule,
         BrowserAnimationsModule,
         RouterModule.forRoot([]),
