@@ -9,18 +9,17 @@ import {
     SimpleChanges
 } from '@angular/core';
 import { DropEvent } from './dropEvent.interface';
-import * as Interact from '@interactjs/types/types';
+import { InteractStatic, Interactable, InteractEvent } from 'interactjs';
 import * as interact_ from 'interactjs';
-import { InteractStatic } from 'interactjs';
 const interact:InteractStatic = interact_;
 
 export type AcceptFn = (args:{
-    interactEvent:Interact.InteractEvent,
+    interactEvent:InteractEvent,
     event:MouseEvent,
     isDropable:boolean,
-    dropzone:Interact.Interactable,
+    dropzone:Interactable,
     dropzoneElement:HTMLElement,
-    draggable:Interact.Interactable,
+    draggable:Interactable,
     draggableElement:HTMLElement,
     dragData:any
 }) => boolean;
@@ -198,12 +197,12 @@ export class TerraDropzoneDirective implements OnInit, OnChanges
         }
         else if(this.accept instanceof Function)
         {
-            config.checker = (interactEvent:Interact.InteractEvent,
+            config.checker = (interactEvent:InteractEvent,
                               event:MouseEvent,
                               isDropable:boolean,
-                              dropzone:Interact.Interactable,
+                              dropzone:Interactable,
                               dropElement:HTMLElement,
-                              draggable:Interact.Interactable,
+                              draggable:Interactable,
                               dragElement:HTMLElement):boolean | AcceptFn =>
             {
                 if(isDropable)
