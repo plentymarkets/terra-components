@@ -56,7 +56,7 @@ exports.compileStyles = compileCss;
 function changeVersion(done) {
     const increment = argv.increment ? argv.increment : 'patch';
     const preid = argv.preid ? argv.preid : '';
-    const json = JSON.parse(fs.readFileSync('./package.json'));
+    const json = JSON.parse(fs.readFileSync(config.sources.packageJson));
 
     console.log('-------------------------------------------------');
     console.log('--- OLD PACKAGE VERSION: ' + json.version + ' ---');
@@ -68,7 +68,7 @@ function changeVersion(done) {
     console.log('--- NEW PACKAGE VERSION: ' + json.version + ' ---');
     console.log('-------------------------------------------------');
 
-    fs.writeFileSync('./package.json', JSON.stringify(json, null, '\t'));
+    fs.writeFileSync(config.sources.packageJson, JSON.stringify(json, null, '\t'));
     done();
 }
 
