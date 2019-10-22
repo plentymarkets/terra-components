@@ -8,6 +8,7 @@ import { RadioGroupComponent } from './radio-group.component';
 import { By } from '@angular/platform-browser';
 import {
     Component,
+    DebugElement,
     SimpleChange
 } from '@angular/core';
 import Spy = jasmine.Spy;
@@ -60,14 +61,19 @@ describe(`RadioGroupComponent:`, () =>
 
         it(`should display given #legend text in the <legend>-element`, () =>
         {
-            let legendElement:HTMLLegendElement = fixture.debugElement.query(By.css('legend')).nativeElement;
-            expect(legendElement.innerText).toBe('');
+            let legendDebugElement:DebugElement = fixture.debugElement.query(By.css('legend'));
+            expect(legendDebugElement).toBeFalsy();
 
             const legend:string = 'Legend';
             radioGroupComponent.legend = legend;
             fixture.detectChanges();
 
-            expect(legendElement.innerText).toBe(legend); // this fails.. why??
+            legendDebugElement = fixture.debugElement.query(By.css('legend'));
+            expect(legendDebugElement).toBeTruthy();
+
+            let legendElement:HTMLLegendElement = legendDebugElement.nativeElement;
+
+            expect(legendElement.innerText).toBe(legend);
         });
 
         it(`setting the #value should update the #value`, () =>
