@@ -30,8 +30,8 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData> impleme
 
     public _eventData:{ event:MouseEvent, data:D };
 
-    protected top:number = 0;
-    protected left:number = 0;
+    protected _top:number = 0;
+    protected _left:number = 0;
 
     // tslint:disable-next-line:variable-name
     private __isShown:boolean = false;
@@ -108,23 +108,23 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData> impleme
 
             if(isOutsideRightAndBottom)
             {
-                this.top = mousePosY - contextMenuHeight;
-                this.left = mousePosX - contextMenuWidth;
+                this._top = mousePosY - contextMenuHeight;
+                this._left = mousePosX - contextMenuWidth;
             }
             else if(isOutsideBottom)
             {
-                this.top = mousePosY - contextMenuHeight;
-                this.left = mousePosX;
+                this._top = mousePosY - contextMenuHeight;
+                this._left = mousePosX;
             }
             else if(isOutsideRight)
             {
-                this.top = mousePosY;
-                this.left = mousePosX - contextMenuWidth;
+                this._top = mousePosY;
+                this._left = mousePosX - contextMenuWidth;
             }
             else
             {
-                this.top = mousePosY;
-                this.left = mousePosX;
+                this._top = mousePosY;
+                this._left = mousePosX;
             }
 
             this._eventData.event.stopPropagation();
@@ -138,12 +138,12 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData> impleme
 
     public get _topAsString():string
     {
-        return this.top + 'px';
+        return this._top + 'px';
     }
 
     public get _leftAsString():string
     {
-        return this.left + 'px';
+        return this._left + 'px';
     }
 
     public get _linksAreSet():boolean
