@@ -19,7 +19,25 @@
 	},
 	"ngPackage": {
 		"lib": {
-			"entryFile": "public-api.ts"
+			"entryFile": "public-api.ts",
+			"umdModuleIds": {
+				"ts-keycode-enum": "Key",
+				"moment": "moment",
+				"htmlhint": "HTMLHint",
+				"lodash": "_",
+				"iban": "IBAN",
+				"tippy.js": "tippy",
+				"jquery": "$",
+				"ngx-bootstrap": "ngx-bootstrap",
+				"mydatepicker": "mydatepicker",
+				"ng2-ace-editor": "ng.ng2aceeditor",
+				"interactjs": "interact",
+				"ngx-quill": "ngx-quill",
+				"ckeditor4-angular": "ckeditor4-angular",
+				"angular-l10n": "ng.l10n",
+				"util": "util",
+				"flatted": "Flatted"
+			}
 		},
 		"dest": "../../dist"
 	}
