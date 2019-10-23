@@ -3,9 +3,12 @@
 
 ### Features
 * **tslint** add new linting rules
+* **terra-category-picker** allow to accept 'Null' values
+* **terra-cacheckbox** allow to accept 'Null' values
 
 ### Bug Fixes
 * **http-interceptors** fix logging errors to console. 
+* **draggable** allow `terraDraggable` input to be aliased.
 
 <a name="3.14.0"></a>
 # 3.14.0 (29.05.2019)
