@@ -4,7 +4,7 @@
 ### Breaking Changes
 * **build** Terra-Components is now fully AOT compatible. 
 Terra-Components now complies with the angular package format and code autocompletion should work fine in your angular app.
-* **styles** Style files styles/styles.scss & styles/icons.scss & styles/theme-loader.scss are now .css files rather than .scss files.
+* **styles** Style files such as styles/styles.scss, styles/icons.scss and styles/theme-loader.scss are now .css files rather than .scss files.
 * **dependencies** Every dependency of Terra-Components now is a peer dependency. You need to install these dependencies in your project.
 
 <a name="4.6.0"></a>
