@@ -10,7 +10,6 @@
     --input-wrapper-margin-bottom: 0;
     --input-width: 43px;
     --btn-sm-padding: 0 7px;
-    --pager-border-radius: var(--border-radius);
 
     .pager-inner-wrapper
     {
@@ -19,8 +18,8 @@
         justify-content: initial;
         background-color: var(--pager-background-color, var(--color-structure-0));
         padding: var(--pager-padding, var(--space-sm));
-        margin: var(--pager-margin, var(--space-container));
-        border-radius: var(--pager-border-radius, 0 0 var(--border-radius) var(--border-radius));
+        margin: var(--pager-margin, 0 var(--space-xs) var(--space-sm) var(--space-xs));
+        border-radius: var(--pager-border-radius, var(--border-radius));
         border-bottom: var(--pager-border-bottom, (none));
         box-shadow: var(--box-shadow);
         position: relative;
