@@ -10,7 +10,7 @@ import { TerraKeyValueInterface } from '../models';
 
 export function createHttpParams(params:TerraKeyValueInterface<any>, arrayAsArray:boolean = false):HttpParams
 {
-    let searchParams:HttpParams = new HttpParams({encoder: new HttpUrlEncodingCodec()});
+    let searchParams:HttpParams = new HttpParams();
 
     if(!isNullOrUndefined(params))
     {
@@ -20,9 +20,9 @@ export function createHttpParams(params:TerraKeyValueInterface<any>, arrayAsArra
             {
                 if(arrayAsArray && isArray(params[key]))
                 {
-                    (<[]> params[key]).forEach((arrayItem:string) =>
+                    (params[key] as Array<any>).forEach((arrayItem:any) =>
                     {
-                        searchParams = searchParams.append(key + '[]', arrayItem);
+                        searchParams = searchParams.append(key + '[]', arrayItem.toString());
                     });
                 }
                 else
