@@ -66,10 +66,16 @@ function compileTableStyles() {
         .pipe(dest('dist/components/tables/data-table'));
 }
 
+function compileNodeTreeStyles() {
+    return src('src/lib/components/tree/node-tree/terra-node-tree.component.scss')
+        .pipe(dest('dist/components/tree/node-tree'));
+}
+
 /**
  * Compiles scss to css
  **/
-exports.compileStyles = series(compileGlobalStyles, compileTableStyles);
+const compileStyles = series(compileGlobalStyles, compileTableStyles, compileNodeTreeStyles);
+exports.compileStyles = compileStyles;
 
 //changing version of package.json for new publish
 function changeVersion(done) {
