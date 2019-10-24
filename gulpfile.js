@@ -1,9 +1,8 @@
 const { series, parallel, src, dest } = require('gulp');
 var config = require('./gulp.config.js')();
+const prompt = require('gulp-prompt');
 var fs = require('fs');
 var semver = require('semver');
-var shell = require('gulp-shell');
-var argv = require('yargs').argv;
 var sass = require('gulp-sass');
 var tildeImporter = require('node-sass-tilde-importer');
 
@@ -118,15 +117,10 @@ exports.copy = copy;
  *                     If not set patch is default. See VERSIONING.md for further information.
  * @param preid      - Sets a subversion (appends '-param_value', e.g. x.x.x-newFeature, to version in package.json) for a premajor,
  *     preminor or prepatch release. Use only, if really necessary!!
- * @param target     - Actually not implemented!! Sets the target directory to copy build files to. Will copy files to
- *     'node_modules/@plentymarkets/terra-components' in target directory
- *
  **/
-function changeVersion(done) {
+function changeVersion(increment = 'patch', preid = '') {
     const libPath = 'src/lib/package.json';
     const distPath = 'dist/package.json';
-    const increment = argv.increment ? argv.increment : 'patch';
-    const preid = argv.preid ? argv.preid : '';
     const jsonLib = JSON.parse(fs.readFileSync(libPath));
     const jsonDist = JSON.parse(fs.readFileSync(distPath));
 
@@ -142,7 +136,24 @@ function changeVersion(done) {
     jsonLib.version = version;
     fs.writeFileSync(libPath, JSON.stringify(jsonLib, null, '\t'));
     fs.writeFileSync(distPath, JSON.stringify(jsonDist, null, '\t'));
-    done();
 }
-exports.changeVersion = changeVersion;
+
+function updateVersion() {
+    return src('package.json')
+        .pipe(prompt.prompt([
+            {
+                type: 'list',
+                name: 'increment',
+                message: 'What type of increment would you like to do?',
+                choices: ['patch', 'minor', 'major', 'prerelease', 'prepatch', 'preminor', 'premajor']
+            }
+        ], function (res) {
+            changeVersion(res.increment);
+        }))
+        .pipe(prompt.confirm({
+            message: 'Version correct?',
+            default: false
+        }))
+}
+exports.updateVersion = updateVersion;
 
