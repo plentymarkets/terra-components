@@ -7,6 +7,20 @@ var argv = require('yargs').argv;
 var sass = require('gulp-sass');
 var tildeImporter = require('node-sass-tilde-importer');
 
+
+// convert global scss styles to css files
+function compileGlobalStyles() {
+    return src(config.sources.scss)
+        .pipe(sass({
+            importer: tildeImporter,
+            outputStyle: 'compressed'
+        }).on('error', sass.logError))
+        .pipe(dest('dist/styles'))
+}
+const compileStyles = compileGlobalStyles;
+exports.compileStyles = compileStyles;
+
+
 //copy fonts to dist
 function copyFonts() {
     return src(config.fileSelectors.allFonts)
@@ -46,8 +60,33 @@ function copyPlentyIconsScss() {
         .pipe(dest(config.destinations.styles + 'fonts'));
 }
 
-const copyIconSassFiles = parallel(copyIconsScss, copyPlentyIconsScss);
-const copyFilesToDist = parallel(copyFonts, copyLang, copyReadme, copyIconSassFiles, copyTslintRules, copyJsFiles);
+function copyCustomDataTableScss() {
+    return src('src/lib/components/tables/data-table/custom-data-table.scss')
+        .pipe(dest('dist/components/tables/data-table'));
+}
+
+function copyNodeTreeScss() {
+    return src('src/lib/components/tree/node-tree/terra-node-tree.component.scss')
+        .pipe(dest('dist/components/tree/node-tree'));
+}
+
+function copyTagScss() {
+    return src('src/lib/components/layouts/tag/terra-tag.component.scss')
+        .pipe(dest('dist/components/layouts/tag'))
+}
+
+function copyTagListScss() {
+    return src('src/lib/components/layouts/taglist/terra-taglist.component.scss')
+        .pipe(dest('dist/components/layouts/taglist'))
+}
+
+function copyButtonScss() {
+    return src('src/lib/components/buttons/button/terra-button.component.scss')
+        .pipe(dest('dist/components/buttons/button'))
+}
+
+const copySassFiles = parallel(copyIconsScss, copyPlentyIconsScss, copyCustomDataTableScss, copyNodeTreeScss, copyTagScss, copyTagListScss, copyButtonScss);
+const copyFilesToDist = parallel(copyFonts, copyLang, copyReadme, copySassFiles, copyJsFiles, copyTslintRules);
 
 
 //copy files from dist to terra
@@ -57,55 +96,11 @@ function copyToTerra() {
 }
 
 /**
- * Copies all the files to the dedicated deploy folder
+ * Copies all the files to the dist folder and then to the terra workspace
  **/
 const copy = series(copyFilesToDist, copyToTerra);
 exports.copy = copy;
 
-// convert global scss styles to css files
-function compileGlobalStyles() {
-    return src(config.sources.scss)
-    .pipe(sass({
-        importer: tildeImporter,
-        outputStyle: 'compressed'
-    }).on('error', sass.logError))
-    .pipe(dest('dist/styles'))
-}
-
-function compileTableStyles() {
-    return src('src/lib/components/tables/data-table/custom-data-table.scss')
-        .pipe(sass({
-            outputStyle: 'compressed'
-        }).on('error', sass.logError))
-        .pipe(dest('dist/components/tables/data-table'));
-}
-
-function compileNodeTreeStyles() {
-    return src('src/lib/components/tree/node-tree/terra-node-tree.component.scss')
-        .pipe(dest('dist/components/tree/node-tree'));
-}
-
-function compileTagStyles() {
-    return src('src/lib/components/layouts/tag/terra-tag.component.scss')
-        .pipe(dest('dist/components/layouts/tag'))
-}
-
-function compileTagListStyles() {
-    return src('src/lib/components/layouts/taglist/terra-taglist.component.scss')
-        .pipe(dest('dist/components/layouts/taglist'))
-}
-
-function compileButtonStyles() {
-    return src('src/lib/components/buttons/button/terra-button.component.scss')
-        .pipe(dest('dist/components/buttons/button'))
-}
-
-
-/**
- * Compiles scss to css
- **/
-const compileStyles = parallel(compileGlobalStyles, compileTableStyles, compileNodeTreeStyles, compileTagStyles, compileTagListStyles, compileButtonStyles);
-exports.compileStyles = compileStyles;
 
 //changing version of package.json for new publish
 function changeVersion(done) {
