@@ -2,7 +2,7 @@
 # 5.0.0 (Unreleased)
 
 ## Features
-* **createHttpParams** new createHttpParams function is the new replacement for the deprecated createUrlSearchParams from TerraBaseService function.
+* **createHttpParams** new createHttpParams function is the replacement for the deprecated createUrlSearchParams from TerraBaseService.
 
 ### Breaking Changes
 * **build** Terra-Components is now fully AOT compatible. 
