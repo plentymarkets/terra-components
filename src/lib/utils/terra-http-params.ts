@@ -6,8 +6,9 @@ import {
     isArray,
     isNullOrUndefined
 } from "util";
+import { TerraKeyValueInterface } from '../models';
 
-export function createHttpParams(params:any, arrayAsArray:boolean = false):HttpParams
+export function createHttpParams(params:TerraKeyValueInterface<any>, arrayAsArray:boolean = false):HttpParams
 {
     let searchParams:HttpParams = new HttpParams({encoder: new HttpUrlEncodingCodec()});
 
@@ -34,16 +35,4 @@ export function createHttpParams(params:any, arrayAsArray:boolean = false):HttpP
     }
 
     return searchParams;
-}
-
-export function createArraySearchParamsXX(key:string, params:Array<string>):HttpParams
-{
-    let arraySearchParams:HttpParams = new HttpParams();
-
-    params.forEach((param:string) =>
-    {
-        arraySearchParams = arraySearchParams.append(key + '[]', param);
-    });
-
-    return arraySearchParams;
 }

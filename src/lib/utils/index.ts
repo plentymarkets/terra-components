@@ -1,1 +1,1 @@
-export { createHttpParams, createArraySearchParamsXX } from './terra-http-params';
+export { createHttpParams } from './terra-http-params';
