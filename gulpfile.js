@@ -71,10 +71,25 @@ function compileNodeTreeStyles() {
         .pipe(dest('dist/components/tree/node-tree'));
 }
 
+function compileTagStyles() {
+    return src('src/lib/components/layouts/tag/terra-tag.component.scss')
+        .pipe(dest('dist/components/layouts/tag'))
+}
+
+function compileTagListStyles() {
+    return src('src/lib/components/layouts/taglist/terra-taglist.component.scss')
+        .pipe(dest('dist/components/layouts/taglist'))
+}
+
+function compileButtonStyles() {
+    return src('src/lib/components/buttons/button/terra-button.component.scss')
+        .pipe(dest('dist/components/buttons/button'))
+}
+
 /**
  * Compiles scss to css
  **/
-const compileStyles = series(compileGlobalStyles, compileTableStyles, compileNodeTreeStyles);
+const compileStyles = series(compileGlobalStyles, compileTableStyles, compileNodeTreeStyles, compileTagStyles, compileTagListStyles, compileButtonStyles);
 exports.compileStyles = compileStyles;
 
 //changing version of package.json for new publish
