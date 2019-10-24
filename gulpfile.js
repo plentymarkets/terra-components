@@ -102,34 +102,10 @@ const copy = series(copyFilesToDist, copyToTerra);
 exports.copy = copy;
 
 
-//changing version of package.json for new publish
-function changeVersion(done) {
-    const increment = argv.increment ? argv.increment : 'patch';
-    const preid = argv.preid ? argv.preid : '';
-    const json = JSON.parse(fs.readFileSync(config.sources.packageJson));
-
-    console.log('-------------------------------------------------');
-    console.log('--- OLD PACKAGE VERSION: ' + json.version + ' ---');
-
-    json.version = semver.inc(json.version, increment, preid);
-
-    version = json.version;
-
-    console.log('--- NEW PACKAGE VERSION: ' + json.version + ' ---');
-    console.log('-------------------------------------------------');
-
-    fs.writeFileSync(config.sources.packageJson, JSON.stringify(json, null, '\t'));
-    done();
-}
-
-//publish to npm
-function publish() {
-    return shell.task(['npm publish dist'])
-}
 
 /**
  *
- * usage: 'npm run publish -- --param1 --param2 param2_value' for publishing
+ * usage: 'gulp changeVersion --param1 --param2 param2_value'
  *
  * @param increment  - Possible values are
  *                      major           (1.x.x to 2.x.x),
@@ -146,5 +122,27 @@ function publish() {
  *     'node_modules/@plentymarkets/terra-components' in target directory
  *
  **/
-const release = series(changeVersion, compileStyles, copy, publish);
-exports.release = release;
+function changeVersion(done) {
+    const libPath = 'src/lib/package.json';
+    const distPath = 'dist/package.json';
+    const increment = argv.increment ? argv.increment : 'patch';
+    const preid = argv.preid ? argv.preid : '';
+    const jsonLib = JSON.parse(fs.readFileSync(libPath));
+    const jsonDist = JSON.parse(fs.readFileSync(distPath));
+
+    console.log('-------------------------------------------------');
+    console.log('--- OLD PACKAGE VERSION: ' + jsonDist.version + ' ---');
+
+    const version = semver.inc(jsonDist.version, increment, preid);
+
+    console.log('--- NEW PACKAGE VERSION: ' + version + ' ---');
+    console.log('-------------------------------------------------');
+
+    jsonDist.version = version;
+    jsonLib.version = version;
+    fs.writeFileSync(libPath, JSON.stringify(jsonLib, null, '\t'));
+    fs.writeFileSync(distPath, JSON.stringify(jsonDist, null, '\t'));
+    done();
+}
+exports.changeVersion = changeVersion;
+
