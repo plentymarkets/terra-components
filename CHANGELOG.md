@@ -1,6 +1,9 @@
 <a name="5.0.0"></a>
 # 5.0.0 (Unreleased)
 
+## Features
+* **createHttpParams** new createHttpParams function is the new replacement for the deprecated createUrlSearchParams from TerraBaseService function.
+
 ### Breaking Changes
 * **build** Terra-Components is now fully AOT compatible. 
 Terra-Components now complies with the angular package format and code autocompletion should work fine in your angular app.
