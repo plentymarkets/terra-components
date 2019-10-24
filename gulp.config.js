@@ -23,6 +23,7 @@ module.exports = function () {
         tsOutputPath: './dist/',
         fontsOutputPath: './dist/assets/fonts/',
         langOutputPath: './dist/assets/lang/',
+        styles: './dist/styles/',
         floatThead: './dist/components/tables/data-table/float-thead/',
 
         terra: '../terra/node_modules/@plentymarkets/terra-components/',

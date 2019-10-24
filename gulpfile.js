@@ -1,4 +1,4 @@
-const { series, src, dest } = require('gulp');
+const { series, parallel, src, dest } = require('gulp');
 var config = require('./gulp.config.js')();
 var fs = require('fs');
 var semver = require('semver');
@@ -36,6 +36,20 @@ function copyJsFiles() {
         .pipe(dest(config.destinations.floatThead));
 }
 
+function copyIconsScss() {
+    return src('src/lib/styles/icons.scss')
+        .pipe(dest(config.destinations.styles));
+}
+
+function copyPlentyIconsScss() {
+    return src('src/lib/styles/fonts/plentyicons.scss')
+        .pipe(dest(config.destinations.styles + 'fonts'));
+}
+
+const copyIconSassFiles = parallel(copyIconsScss, copyPlentyIconsScss);
+const copyFilesToDist = parallel(copyFonts, copyLang, copyReadme, copyIconSassFiles, copyTslintRules, copyJsFiles);
+
+
 //copy files from dist to terra
 function copyToTerra() {
     return src(config.sources.dist)
@@ -45,7 +59,7 @@ function copyToTerra() {
 /**
  * Copies all the files to the dedicated deploy folder
  **/
-const copy = series(copyFonts, copyLang, copyReadme, copyTslintRules, copyJsFiles, copyToTerra);
+const copy = series(copyFilesToDist, copyToTerra);
 exports.copy = copy;
 
 // convert global scss styles to css files
@@ -86,10 +100,11 @@ function compileButtonStyles() {
         .pipe(dest('dist/components/buttons/button'))
 }
 
+
 /**
  * Compiles scss to css
  **/
-const compileStyles = series(compileGlobalStyles, compileTableStyles, compileNodeTreeStyles, compileTagStyles, compileTagListStyles, compileButtonStyles);
+const compileStyles = parallel(compileGlobalStyles, compileTableStyles, compileNodeTreeStyles, compileTagStyles, compileTagListStyles, compileButtonStyles);
 exports.compileStyles = compileStyles;
 
 //changing version of package.json for new publish
