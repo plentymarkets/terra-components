@@ -155,7 +155,10 @@ export { TerraDynamicFormComponent } from './components/forms/dynamic-form/terra
 export { TerraDynamicSwitchComponent } from './components/forms/dynamic-form/dynamic-switch/terra-dynamic-switch.component';
 export { TerraFormFieldBase } from './components/forms/dynamic-form/data/terra-form-field-base';
 export { TerraFormFieldInputText } from './components/forms/dynamic-form/data/terra-form-field-input-text';
+export { TerraFormFieldTextArea } from './components/forms/dynamic-form/data/terra-form-field-text-area';
+export { TerraFormFieldInputDouble } from './components/forms/dynamic-form/data/terra-form-field-input-double';
 export { TerraFormFieldInputNumber } from './components/forms/dynamic-form/data/terra-form-field-input-number';
+export { TerraFormFieldInputFile } from './components/forms/dynamic-form/data/terra-form-field-input-file';
 export { TerraFormFieldSelectBox } from './components/forms/dynamic-form/data/terra-form-field-select-box';
 export { TerraFormFieldHorizontalContainer } from './components/forms/dynamic-form/data/terra-form-field-horizontal-container';
 export { TerraFormFieldVerticalContainer } from './components/forms/dynamic-form/data/terra-form-field-vertical-container';
