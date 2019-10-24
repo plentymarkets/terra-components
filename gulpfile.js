@@ -49,7 +49,7 @@ const copy = series(copyFonts, copyLang, copyReadme, copyTslintRules, copyJsFile
 exports.copy = copy;
 
 // convert global scss styles to css files
-function compileCss() {
+function compileGlobalStyles() {
     return src(config.sources.scss)
     .pipe(sass({
         importer: tildeImporter,
@@ -58,10 +58,18 @@ function compileCss() {
     .pipe(dest('dist/styles'))
 }
 
+function compileTableStyles() {
+    return src('src/lib/components/tables/data-table/custom-data-table.scss')
+        .pipe(sass({
+            outputStyle: 'compressed'
+        }).on('error', sass.logError))
+        .pipe(dest('dist/components/tables/data-table'));
+}
+
 /**
  * Compiles scss to css
  **/
-exports.compileStyles = compileCss;
+exports.compileStyles = series(compileGlobalStyles, compileTableStyles);
 
 //changing version of package.json for new publish
 function changeVersion(done) {
@@ -107,5 +115,5 @@ function publish() {
  *     'node_modules/@plentymarkets/terra-components' in target directory
  *
  **/
-const release = series(changeVersion, compileCss, copy, publish);
+const release = series(changeVersion, compileStyles, copy, publish);
 exports.release = release;
