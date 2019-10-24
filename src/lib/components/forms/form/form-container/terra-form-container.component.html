@@ -1,13 +1,13 @@
 <div class="form">
-    <ng-template ngFor let-field [ngForOf]="formFields">
-        <div *ngIf="formFieldVisibility[field.key]"
+    <ng-template ngFor let-field [ngForOf]="_formFields">
+        <div *ngIf="_formFieldVisibility[field.key]"
              [ngClass]="['form-entry', 'form-entry-' + field.value.type]"
-             [formGroup]="formGroup">
+             [formGroup]="_formGroup">
             
             <terra-form-entry
                 *ngIf="!field.value.isList && !field.value.children"
                 [formControlName]="field.key"
-                [inputFormControl]="formGroup.get(field.key)"
+                [inputFormControl]="_formGroup.get(field.key)"
                 [inputFormField]="field.value"
                 [inputIsDisabled]="inputIsDisabled"
                 [inputControlTypeMap]="inputControlTypeMap">
@@ -20,7 +20,7 @@
                     <terra-form-container
                         [formGroupName]="field.key"
                         [inputFormFields]="field.value.children"
-                        [inputFormGroup]="formGroup.get(field.key)"
+                        [inputFormGroup]="_formGroup.get(field.key)"
                         [inputScope]="inputScope"
                         [inputControlTypeMap]="inputControlTypeMap"
                         [inputIsDisabled]="inputIsDisabled">
@@ -34,7 +34,7 @@
                 <terra-form-container-wrapper
                     [formGroupName]="field.key"
                     [inputFormField]="field.value"
-                    [inputFormGroup]="formGroup.get(field.key)"
+                    [inputFormGroup]="_formGroup.get(field.key)"
                     [inputScope]="inputScope"
                     [inputControlTypeMap]="inputControlTypeMap"
                     [inputIsDisabled]="inputIsDisabled">
@@ -44,7 +44,7 @@
             <terra-form-entry-list
                 *ngIf="field.value.isList"
                 [formArrayName]="field.key"
-                [inputFormGroup]="formGroup"
+                [inputFormGroup]="_formGroup"
                 [inputFormFieldKey]="field.key"
                 [inputFormField]="field.value"
                 [inputIsDisabled]="inputIsDisabled"

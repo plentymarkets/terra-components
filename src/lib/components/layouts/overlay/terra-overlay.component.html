@@ -27,7 +27,7 @@
                               [inputIsAlignRight]="false"
                               [inputCaption]="inputSecondaryButtonInterface.caption"
                               [inputTooltipText]="inputSecondaryButtonInterface.tooltipText"
-                              [inputTooltipPlacement]="tooltipPlacement"
+                              [inputTooltipPlacement]="_tooltipPlacement"
                               [inputIsDisabled]="inputSecondaryButtonInterface.isDisabled"
                               [inputIsLink]="true"
                               (outputClicked)="inputSecondaryButtonInterface.clickFunction()">
@@ -37,7 +37,7 @@
                               [inputIsAlignRight]="false"
                               [inputCaption]="inputPrimaryButtonInterface.caption"
                               [inputTooltipText]="inputPrimaryButtonInterface.tooltipText"
-                              [inputTooltipPlacement]="tooltipPlacement"
+                              [inputTooltipPlacement]="_tooltipPlacement"
                               [inputIsDisabled]="inputPrimaryButtonInterface.isDisabled"
                               (outputClicked)="inputPrimaryButtonInterface.clickFunction()">
                 </terra-button>

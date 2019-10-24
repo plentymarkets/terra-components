@@ -20,7 +20,7 @@ export class TerraDataTableContextMenuDirective<D extends TerraBaseData>
     @Input()
     public rowData:D;
 
-    constructor(private service:TerraDataTableContextMenuService<D>)
+    constructor(private _service:TerraDataTableContextMenuService<D>)
     {
     }
 
@@ -29,7 +29,7 @@ export class TerraDataTableContextMenuDirective<D extends TerraBaseData>
     {
         event.preventDefault();
         event.stopPropagation();
-        this.service.show.next({
+        this._service.show.next({
             event: event,
             data:  this.rowData
         });

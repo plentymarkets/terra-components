@@ -4,6 +4,7 @@ import {
 } from '@angular/core';
 import { TerraAlertInterface } from './data/terra-alert.interface';
 import { AlertType } from './alert-type.enum';
+import { environment } from '../../environments/environment';
 
 @Injectable({
     providedIn: 'root'
@@ -36,7 +37,7 @@ export class AlertService
      */
     public success(message:string, identifier?:string):void
     {
-        this.add(message, AlertType.success, this.defaultTimeout, identifier);
+        this._add(message, AlertType.success, this.defaultTimeout, identifier);
     }
 
     /**
@@ -46,7 +47,7 @@ export class AlertService
      */
     public error(message:string, identifier?:string):void
     {
-        this.add(message, AlertType.error, 0, identifier);
+        this._add(message, AlertType.error, 0, identifier);
     }
 
     /**
@@ -56,7 +57,7 @@ export class AlertService
      */
     public info(message:string, identifier?:string):void
     {
-        this.add(message, AlertType.info, this.defaultTimeout, identifier);
+        this._add(message, AlertType.info, this.defaultTimeout, identifier);
     }
 
     /**
@@ -66,7 +67,7 @@ export class AlertService
      */
     public warning(message:string, identifier?:string):void
     {
-        this.add(message, AlertType.warning, this.defaultTimeout, identifier);
+        this._add(message, AlertType.warning, this.defaultTimeout, identifier);
     }
 
     /**
@@ -88,7 +89,7 @@ export class AlertService
         }
     }
 
-    private add(msg:string, type:AlertType, timeout:number, identifier?:string):void
+    private _add(msg:string, type:AlertType, timeout:number, identifier?:string):void
     {
         let alert:TerraAlertInterface = {
             msg:              msg,
@@ -134,6 +135,6 @@ export class AlertService
     private get isRootWindow():boolean
     {
         // since tests are run in an iframe, we need to check for test environment here to make them work
-        return window === window.parent || process.env.ENV === 'test';
+        return window === window.parent || environment.test;
     }
 }

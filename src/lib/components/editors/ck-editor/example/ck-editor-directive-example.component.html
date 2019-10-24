@@ -6,6 +6,6 @@
         [inputTooltipText]="'Save full CKEditor'">
     </terra-button>
 </terra-base-toolbar>
-<ckeditor #ckFull tcCkEditor [config]="config"></ckeditor>
+<ckeditor #ckFull tcCkEditor [config]="_config"></ckeditor>
 
-<ckeditor tcCkEditor [config]="tiny"></ckeditor>
+<ckeditor tcCkEditor [config]="_tiny"></ckeditor>

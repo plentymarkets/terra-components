@@ -4,7 +4,6 @@
 			true,
 			75
 		],
-		"restrict-leading-underscore": true,
 		"get-set": true,
 		"max-depth": [
 			true,

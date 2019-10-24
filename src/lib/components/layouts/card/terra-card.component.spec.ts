@@ -83,8 +83,8 @@ describe(`TerraCardComponent:`, () =>
             let ngContentElement:DebugElement = footerElement.query(By.css('p'));
             let footerContentElement:HTMLElement = ngContentElement.nativeElement;
             expect(footerElement).toBeTruthy();
-            expect(cardComponent.viewChildFooter).toBeTruthy();
-            expect(cardComponent.viewChildFooter.nativeElement.children.length).toBeGreaterThan(0);
+            expect(cardComponent._viewChildFooter).toBeTruthy();
+            expect(cardComponent._viewChildFooter.nativeElement.children.length).toBeGreaterThan(0);
             expect(footerContentElement.innerHTML).toEqual('card footer');
             expect(footerElement.nativeElement.hidden).toBe(false);
         });
@@ -110,8 +110,8 @@ describe(`TerraCardComponent:`, () =>
             let ngContentElement:DebugElement = headerElement.query(By.css('p'));
             let headerContentElement:HTMLElement = ngContentElement.nativeElement;
             expect(headerElement).toBeTruthy();
-            expect(cardComponent.viewChildHeader).toBeTruthy();
-            expect(cardComponent.viewChildHeader.nativeElement.children.length).toBeGreaterThan(0);
+            expect(cardComponent._viewChildHeader).toBeTruthy();
+            expect(cardComponent._viewChildHeader.nativeElement.children.length).toBeGreaterThan(0);
             expect(headerContentElement.innerHTML).toEqual('card header');
             expect(headerElement.nativeElement.hidden).toBe(false);
         });
@@ -125,8 +125,8 @@ describe(`TerraCardComponent:`, () =>
             let ngContentElement:DebugElement = bodyElement.query(By.css('p'));
             let bodyContentElement:HTMLElement = ngContentElement.nativeElement;
             expect(bodyElement).toBeTruthy();
-            expect(cardComponent.viewChildHeader).toBeTruthy();
-            expect(cardComponent.viewChildHeader.nativeElement.children.length).toBeGreaterThan(0);
+            expect(cardComponent._viewChildHeader).toBeTruthy();
+            expect(cardComponent._viewChildHeader.nativeElement.children.length).toBeGreaterThan(0);
             expect(bodyContentElement.innerHTML).toEqual('card content');
             expect(bodyElement.nativeElement.hidden).toBe(false);
         });

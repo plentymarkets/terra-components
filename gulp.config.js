@@ -1,49 +1,36 @@
 module.exports = function () {
 
-    var fileSelectors = {
-        allTs: './src/lib/**/!(*.d).ts',
-        allCSS: './src/lib/**/*.css',
-        allSCSS: './src/lib/**/*.scss',
-        allHTML: './src/lib/**/*.html',
+    const fileSelectors = {
         allFonts: './src/assets/fonts/**/*',
         allLang: './src/assets/lang/**/*'
     };
 
-    var filesToCopy = [
-        'package.json',
-        'README.md',
-        './src/lib/**/floatThead.js',
-        fileSelectors.allCSS,
-        fileSelectors.allSCSS,
-        fileSelectors.allHTML
-    ];
-
-    var sources = {
+    const sources = {
         tslintRules: './tslint-rules.json',
         customLintRules: './lintRules/**/*Rule.ts',
-        dist: 'dist/**/*.*'
+        floatThead: './src/lib/components/tables/data-table/float-thead/floatThead.js',
+        dist: 'dist/**/*.*',
+        scss: [
+            'src/lib/styles/styles.scss',
+            'src/lib/styles/icons.scss',
+            'src/lib/styles/themes/theme-loader.scss'
+        ],
+        packageJson: 'src/lib/package.json',
+        readme: 'README.md'
     };
 
-    var terraComponentsDocPath = '../terra-components-doc/node_modules/@plentymarkets/terra-components/';
-    var destinations = {
+    const destinations = {
         tsOutputPath: './dist/',
         fontsOutputPath: './dist/assets/fonts/',
         langOutputPath: './dist/assets/lang/',
+        floatThead: './dist/components/tables/data-table/float-thead/',
 
         terra: '../terra/node_modules/@plentymarkets/terra-components/',
-        terraComponentsDoc: terraComponentsDocPath,
-        terraComponentsDocComponents: terraComponentsDocPath + 'app/components',
-        terraComponentsDocBuild: terraComponentsDocPath + 'component-documentation/build'
     };
 
-
-    var config = {
-        filesToCopy: filesToCopy,
+    return {
         fileSelectors: fileSelectors,
         sources: sources,
-        destinations: destinations,
-        excluded: '!./src/system-config.ts'
+        destinations: destinations
     };
-
-    return config;
 };
