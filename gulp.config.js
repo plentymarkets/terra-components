@@ -14,7 +14,9 @@ module.exports = function () {
             'src/lib/styles/styles.scss',
             'src/lib/styles/icons.scss',
             'src/lib/styles/themes/theme-loader.scss'
-        ]
+        ],
+        packageJson: 'src/lib/package.json',
+        readme: 'README.md'
     };
 
     const destinations = {
