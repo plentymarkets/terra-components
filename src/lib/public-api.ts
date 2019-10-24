@@ -81,6 +81,8 @@ export { TerraPagerParameterInterface } from './components/pager/data/terra-page
 // DATA TABLE
 export { TerraDataTableCellInterface } from './components/tables/data-table/interfaces/terra-data-table-cell.interface';
 export { TerraHrefTypeInterface } from './components/tables/data-table/interfaces/terra-href-type.interface';
+export { TerraDataTableSortOrderEnum } from './components/tables/data-table/enums/terra-data-table-sort-order.enum';
+export { TerraHrefTypeEnum } from './components/tables/data-table/enums/terra-href-type.enum';
 export { TerraDataTableTextInterface } from './components/tables/data-table/interfaces/terra-data-table-text.interface';
 export { TerraDataTableHeaderCellInterface } from './components/tables/data-table/interfaces/terra-data-table-header-cell.interface';
 export { TerraDataTableRowInterface } from './components/tables/data-table/interfaces/terra-data-table-row.interface';
@@ -208,7 +210,6 @@ export { TerraBreadcrumbsComponent } from './components/breadcrumbs/terra-breadc
 export { TerraBreadcrumb } from './components/breadcrumbs/terra-breadcrumb';
 export { TerraBreadcrumbsService } from './components/breadcrumbs/service/terra-breadcrumbs.service';
 export { TerraTagSelectComponent } from './components/forms/tag-select/terra-tag-select.component';
-export { TerraHrefTypeEnum } from './components/tables/data-table/enums/terra-href-type.enum';
 export { TerraGroupFunctionComponent } from './components/tables/group-function/terra-group-function.component';
 export { TerraDataTableBaseService } from './components/tables/data-table/terra-data-table-base.service';
 export { TableRowComponent } from './components/tables/data-table/table-row/table-row.component';
