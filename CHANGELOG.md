@@ -3,6 +3,7 @@
 
 ### Features
 * **validators** New `uniqueValues` validator which checks if the values of a FormArray are unique.
+* **createHttpParams** new createHttpParams function is the replacement for the deprecated createUrlSearchParams from TerraBaseService.
 
 ### Bug Fixes
 * **radio-group** Adjusted height of `<legend>` and only is rendered when content is available.
