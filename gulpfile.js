@@ -1,11 +1,10 @@
 const { series, parallel, src, dest } = require('gulp');
-var config = require('./gulp.config.js')();
-var fs = require('fs');
-var semver = require('semver');
-var shell = require('gulp-shell');
-var argv = require('yargs').argv;
-var sass = require('gulp-sass');
-var tildeImporter = require('node-sass-tilde-importer');
+const config = require('./gulp.config.js')();
+const fs = require('fs');
+const semver = require('semver');
+const argv = require('yargs').argv;
+const sass = require('gulp-sass');
+const tildeImporter = require('node-sass-tilde-importer');
 
 
 // convert global scss styles to css files
