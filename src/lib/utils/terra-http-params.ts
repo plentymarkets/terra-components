@@ -1,11 +1,11 @@
 import { HttpParams } from '@angular/common/http';
+import { Params } from '@angular/router';
 import {
     isArray,
     isNullOrUndefined
 } from 'util';
-import { TerraKeyValueInterface } from '../models';
 
-export function createHttpParams(params:TerraKeyValueInterface<any>, arrayAsArray:boolean = false):HttpParams
+export function createHttpParams(params:Params, arrayAsArray:boolean = false):HttpParams
 {
     let searchParams:HttpParams = new HttpParams();
 
