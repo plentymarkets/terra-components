@@ -1,11 +1,8 @@
-import {
-    HttpParams,
-    HttpUrlEncodingCodec
-} from '@angular/common/http';
+import { HttpParams } from '@angular/common/http';
 import {
     isArray,
     isNullOrUndefined
-} from "util";
+} from 'util';
 import { TerraKeyValueInterface } from '../models';
 
 export function createHttpParams(params:TerraKeyValueInterface<any>, arrayAsArray:boolean = false):HttpParams
