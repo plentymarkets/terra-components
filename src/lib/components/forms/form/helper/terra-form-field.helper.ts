@@ -18,7 +18,7 @@ import { TerraJsonToFormFieldService } from '../../dynamic-form/service/terra-js
 import { TerraControlTypeEnum } from '../../dynamic-form/enum/terra-control-type.enum';
 import { TerraFormFieldInputText } from '../../dynamic-form/data/terra-form-field-input-text';
 import { TerraFormFieldSelectBox } from '../../dynamic-form/data/terra-form-field-select-box';
-import * as _ from 'lodash';
+import * as cloneDeep from 'lodash.clonedeep';
 import { TerraKeyValueInterface } from '../../../../models';
 
 export class TerraFormFieldHelper
@@ -328,7 +328,7 @@ export class TerraFormFieldHelper
     {
         if(isObject(value) || Array.isArray(value))
         {
-            return _.cloneDeep((value));
+            return cloneDeep((value));
         }
         return value;
     }
