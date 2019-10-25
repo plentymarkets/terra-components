@@ -1,1 +1,1 @@
-export { createHttpParams } from './terra-http-params';
+export { createHttpParams } from './http-params';
