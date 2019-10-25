@@ -7,29 +7,28 @@ import {
 
 export function createHttpParams(params:Params, arrayAsArray:boolean = false):HttpParams
 {
-    let searchParams:HttpParams = new HttpParams();
-
-    if(!isNullOrUndefined(params))
+    if(isNullOrUndefined(params))
     {
-        Object.keys(params).forEach((key:string) =>
-        {
-            if(!isNullOrUndefined(params[key]) && params[key] !== '')
-            {
-                if(arrayAsArray && isArray(params[key]))
-                {
-                    (params[key] as Array<any>).forEach((arrayItem:any) =>
-                    {
-                        searchParams = searchParams.append(key + '[]', arrayItem.toString());
-                    });
-                }
-                else
-                {
-                    searchParams = searchParams.set(key, params[key]);
-                }
-            }
-
-        });
+        return new HttpParams(); // return empty HttpParams
     }
 
+    let searchParams:HttpParams = new HttpParams();
+    Object.keys(params).forEach((key:string) =>
+    {
+        if(!isNullOrUndefined(params[key]) && params[key] !== '')
+        {
+            if(arrayAsArray && isArray(params[key]))
+            {
+                (params[key] as Array<any>).forEach((arrayItem:any) =>
+                {
+                    searchParams = searchParams.append(key + '[]', arrayItem.toString());
+                });
+            }
+            else
+            {
+                searchParams = searchParams.set(key, params[key]);
+            }
+        }
+    });
     return searchParams;
 }
