@@ -25,6 +25,17 @@ function copyTslintRules() {
         .pipe(dest(config.destinations.tsOutputPath));
 }
 
+//copy README to dist
+function copyReadme() {
+    return src(config.sources.readme)
+        .pipe(dest(config.destinations.tsOutputPath));
+}
+
+function copyJsFiles() {
+    return src(config.sources.floatThead)
+        .pipe(dest(config.destinations.floatThead));
+}
+
 //copy files from dist to terra
 function copyToTerra() {
     return src(config.sources.dist)
@@ -34,7 +45,7 @@ function copyToTerra() {
 /**
  * Copies all the files to the dedicated deploy folder
  **/
-const copy = series(copyFonts, copyLang, copyTslintRules, copyToTerra);
+const copy = series(copyFonts, copyLang, copyReadme, copyTslintRules, copyJsFiles, copyToTerra);
 exports.copy = copy;
 
 // convert global scss styles to css files
@@ -56,7 +67,7 @@ exports.compileStyles = compileCss;
 function changeVersion(done) {
     const increment = argv.increment ? argv.increment : 'patch';
     const preid = argv.preid ? argv.preid : '';
-    const json = JSON.parse(fs.readFileSync('./package.json'));
+    const json = JSON.parse(fs.readFileSync(config.sources.packageJson));
 
     console.log('-------------------------------------------------');
     console.log('--- OLD PACKAGE VERSION: ' + json.version + ' ---');
@@ -68,7 +79,7 @@ function changeVersion(done) {
     console.log('--- NEW PACKAGE VERSION: ' + json.version + ' ---');
     console.log('-------------------------------------------------');
 
-    fs.writeFileSync('./package.json', JSON.stringify(json, null, '\t'));
+    fs.writeFileSync(config.sources.packageJson, JSON.stringify(json, null, '\t'));
     done();
 }
 

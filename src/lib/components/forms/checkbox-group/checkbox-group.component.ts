@@ -49,12 +49,11 @@ export class CheckboxGroupComponent implements ControlValueAccessor
     @Input()
     public collapsed:boolean = false;
 
-    public _values:Array<any>;
 
     public _multiCheckboxValues:Array<TerraMultiCheckBoxValueInterface> = [];
 
+    private _values:Array<any>;
     private _onTouchedCallback:() => void = noop;
-
     private _onChangeCallback:(_:Array<any>) => void = noop;
 
     public registerOnChange(fn:any):void
@@ -70,7 +69,7 @@ export class CheckboxGroupComponent implements ControlValueAccessor
     public writeValue(values:Array<any>):void
     {
         this._values = values;
-        this.updateMultiCheckboxValues();
+        this._updateMultiCheckboxValues();
     }
 
     public _onMultiCheckboxChanged(checkboxValues:Array<TerraMultiCheckBoxValueInterface>):void
@@ -105,10 +104,10 @@ export class CheckboxGroupComponent implements ControlValueAccessor
         }
 
         this._onChangeCallback(this._values);
-        this.updateMultiCheckboxValues();
+        this._updateMultiCheckboxValues();
     }
 
-    private updateMultiCheckboxValues():void
+    private _updateMultiCheckboxValues():void
     {
         this._multiCheckboxValues = this.checkboxValues.map((checkbox:{ caption:string, value:any }) =>
         {

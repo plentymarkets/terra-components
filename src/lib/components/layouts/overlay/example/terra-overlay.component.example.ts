@@ -14,18 +14,6 @@ import { TerraAlertComponent } from '../../../alert/terra-alert.component';
 })
 export class TerraOverlayComponentExample implements OnInit
 {
-    @ViewChild('viewChildOverlayWithoutButtons')
-    public _viewChildOverlayWithoutButtons:TerraOverlayComponent;
-
-    @ViewChild('viewChildOverlayWithPrimaryButton')
-    public _viewChildOverlayWithPrimaryButton:TerraOverlayComponent;
-
-    @ViewChild('viewChildOverlayWithSecondaryButton')
-    public _viewChildOverlayWithSecondaryButton:TerraOverlayComponent;
-
-    @ViewChild('viewChildOverlayStatic')
-    public _viewChildOverlayStatic:TerraOverlayComponent;
-
     public _addButtonTooltip:string = 'Hinzufügen';
     public _cancelButtonTooltip:string = 'Abbrechen';
     public _primaryButtonInterface:TerraOverlayButtonInterface;
@@ -46,6 +34,18 @@ export class TerraOverlayComponentExample implements OnInit
                                    'ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. ' +
                                    'Donec sodales sagittis magna.';
 
+    @ViewChild('viewChildOverlayWithoutButtons')
+    private _viewChildOverlayWithoutButtons:TerraOverlayComponent;
+
+    @ViewChild('viewChildOverlayWithPrimaryButton')
+    private _viewChildOverlayWithPrimaryButton:TerraOverlayComponent;
+
+    @ViewChild('viewChildOverlayWithSecondaryButton')
+    private _viewChildOverlayWithSecondaryButton:TerraOverlayComponent;
+
+    @ViewChild('viewChildOverlayStatic')
+    private _viewChildOverlayStatic:TerraOverlayComponent;
+
     private alert:TerraAlertComponent = TerraAlertComponent.getInstance();
 
     public ngOnInit():void
@@ -55,7 +55,7 @@ export class TerraOverlayComponentExample implements OnInit
             caption:       'Test',
             tooltipText:   this._addButtonTooltip,
             isDisabled:    false,
-            clickFunction: ():void => this.primaryClicked(this._viewChildOverlayWithPrimaryButton)
+            clickFunction: ():void => this._primaryClicked(this._viewChildOverlayWithPrimaryButton)
         };
 
         this._secondaryButtonInterface = {
@@ -63,7 +63,7 @@ export class TerraOverlayComponentExample implements OnInit
             caption:       'Cancel',
             tooltipText:   this._cancelButtonTooltip,
             isDisabled:    false,
-            clickFunction: ():void => this.secondaryClicked(this._viewChildOverlayWithSecondaryButton)
+            clickFunction: ():void => this._secondaryClicked(this._viewChildOverlayWithSecondaryButton)
         };
 
         this._staticPrimaryButtonInterface = {
@@ -79,7 +79,7 @@ export class TerraOverlayComponentExample implements OnInit
             caption:       'Cancel',
             tooltipText:   this._cancelButtonTooltip,
             isDisabled:    true,
-            clickFunction: ():void => this.secondaryClicked(this._viewChildOverlayStatic)
+            clickFunction: ():void => this._secondaryClicked(this._viewChildOverlayStatic)
         };
     }
 
@@ -103,7 +103,7 @@ export class TerraOverlayComponentExample implements OnInit
         this._viewChildOverlayStatic.showOverlay();
     }
 
-    private primaryClicked(overlay:TerraOverlayComponent):void
+    private _primaryClicked(overlay:TerraOverlayComponent):void
     {
         this.alert.addAlert({
             msg:              overlay.inputOverlayTitle + ' clicked',
@@ -112,7 +112,7 @@ export class TerraOverlayComponentExample implements OnInit
         });
     }
 
-    private secondaryClicked(overlay:TerraOverlayComponent):void
+    private _secondaryClicked(overlay:TerraOverlayComponent):void
     {
         overlay.hideOverlay();
     }

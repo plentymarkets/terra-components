@@ -49,11 +49,11 @@ export class TerraTwoColumnsContainerDirective implements OnInit, OnDestroy
         {
             if(event.url !== event.urlAfterRedirects)
             {
-                this.setColumnHidden('right');
+                this._setColumnHidden('right');
             }
             else
             {
-                this.setColumnHidden('left');
+                this._setColumnHidden('left');
             }
         });
 
@@ -62,7 +62,7 @@ export class TerraTwoColumnsContainerDirective implements OnInit, OnDestroy
             this._basePath = this._router.url;
         });
 
-        this.setColumnHidden('left');
+        this._setColumnHidden('left');
     }
 
     public ngOnDestroy():void
@@ -71,7 +71,7 @@ export class TerraTwoColumnsContainerDirective implements OnInit, OnDestroy
         this._dataSub.unsubscribe();
     }
 
-    private setColumnHidden(column:string):void
+    private _setColumnHidden(column:string):void
     {
         if(!isNullOrUndefined(this._twoColComponent))
         {

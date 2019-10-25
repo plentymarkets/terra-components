@@ -86,7 +86,7 @@ export class TerraSimpleTableComponent<D> implements OnChanges
     {
         if(changes.hasOwnProperty('inputRowList'))
         {
-            this.updateHeaderCheckboxState();
+            this._updateHeaderCheckboxState();
 
             this.onRowListChange.emit();
         }
@@ -98,11 +98,11 @@ export class TerraSimpleTableComponent<D> implements OnChanges
 
         if(this._headerCheckbox.checked)
         {
-            this.resetSelectedRows();
+            this._resetSelectedRows();
         }
         else
         {
-            this.selectAllRows();
+            this._selectAllRows();
         }
     }
 
@@ -115,10 +115,10 @@ export class TerraSimpleTableComponent<D> implements OnChanges
         this.outputRowCheckBoxChanged.emit(row);
 
         // notify user that selection has changed
-        this.triggerOutputSelectedRowsChange();
+        this._triggerOutputSelectedRowsChange();
 
         // update header checkbox state
-        this.updateHeaderCheckboxState();
+        this._updateHeaderCheckboxState();
     }
 
     public _onCheckboxClick(event:Event):void
@@ -143,7 +143,7 @@ export class TerraSimpleTableComponent<D> implements OnChanges
         {
             if(event.which === Key.DownArrow || event.which === Key.UpArrow)
             {
-                this.highlightSiblingRow(event.which === Key.DownArrow);
+                this._highlightSiblingRow(event.which === Key.DownArrow);
             }
 
             if(event.which === Key.Space && this.inputHasCheckboxes)
@@ -179,50 +179,50 @@ export class TerraSimpleTableComponent<D> implements OnChanges
         }
     }
 
-    private triggerOutputSelectedRowsChange():void
+    private _triggerOutputSelectedRowsChange():void
     {
         this.outputSelectedRowsChange.emit(this.selectedRowList);
     }
 
-    private checkHeaderCheckbox():void
+    private _checkHeaderCheckbox():void
     {
         this._headerCheckbox.checked = true;
         this._headerCheckbox.isIndeterminate = false;
     }
 
-    private uncheckHeaderCheckbox():void
+    private _uncheckHeaderCheckbox():void
     {
         this._headerCheckbox.checked = false;
         this._headerCheckbox.isIndeterminate = false;
     }
 
-    private setHeaderCheckboxIndeterminate():void
+    private _setHeaderCheckboxIndeterminate():void
     {
         this._headerCheckbox.checked = false;
         this._headerCheckbox.isIndeterminate = true;
     }
 
-    private updateHeaderCheckboxState():void
+    private _updateHeaderCheckboxState():void
     {
         let selectedRowsCount:number = this.selectedRowList.length;
 
         if(selectedRowsCount === 0) // anything selected?
         {
-            this.uncheckHeaderCheckbox();
+            this._uncheckHeaderCheckbox();
         }
         else if(selectedRowsCount > 0 && this.inputRowList.length === selectedRowsCount) // all selected?
         {
-            this.checkHeaderCheckbox();
+            this._checkHeaderCheckbox();
         }
         else // some rows selected -> indeterminate
         {
-            this.setHeaderCheckboxIndeterminate();
+            this._setHeaderCheckboxIndeterminate();
         }
     }
 
-    private selectAllRows():void
+    private _selectAllRows():void
     {
-        this.checkHeaderCheckbox();
+        this._checkHeaderCheckbox();
 
         this.inputRowList.forEach((row:TerraSimpleTableRowInterface<D>) =>
         {
@@ -233,12 +233,12 @@ export class TerraSimpleTableComponent<D> implements OnChanges
         });
 
         // notify user that selection has changed
-        this.triggerOutputSelectedRowsChange();
+        this._triggerOutputSelectedRowsChange();
     }
 
-    private resetSelectedRows():void
+    private _resetSelectedRows():void
     {
-        this.uncheckHeaderCheckbox();
+        this._uncheckHeaderCheckbox();
 
         this.inputRowList.forEach((row:TerraSimpleTableRowInterface<D>) =>
         {
@@ -246,10 +246,10 @@ export class TerraSimpleTableComponent<D> implements OnChanges
         });
 
         // notify user that selection has been reset
-        this.triggerOutputSelectedRowsChange();
+        this._triggerOutputSelectedRowsChange();
     }
 
-    private highlightSiblingRow(nextSibling:boolean):void
+    private _highlightSiblingRow(nextSibling:boolean):void
     {
         if(this.inputHighlightedRow)
         {

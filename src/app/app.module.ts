@@ -1,11 +1,7 @@
 import {
     APP_INITIALIZER,
-    Compiler,
-    COMPILER_OPTIONS,
-    CompilerFactory,
     NgModule
 } from '@angular/core';
-import { JitCompilerFactory } from '@angular/platform-browser-dynamic';
 import {
     L10nLoader,
     LocalizationModule
@@ -18,11 +14,6 @@ import { AppComponent } from './app.component';
 import { ShowcaseComponent } from './showcase/showcase.component';
 import { TerraComponentsExamplesModule } from '../lib/terra-components-examples.module';
 import { RouterModule } from '@angular/router';
-
-function createCompiler(compilerFactory:CompilerFactory):Compiler
-{
-    return compilerFactory.createCompiler();
-}
 
 function initL10n(l10nLoader:L10nLoader):Function
 {
@@ -49,25 +40,10 @@ function initL10n(l10nLoader:L10nLoader):Function
     ],
     providers:    [
         {
-            provide:  COMPILER_OPTIONS,
-            useValue: {},
-            multi:    true
-        },
-        {
-            provide:  CompilerFactory,
-            useClass: JitCompilerFactory,
-            deps:     [COMPILER_OPTIONS]
-        },
-        {
             provide:    APP_INITIALIZER,
             useFactory: initL10n,
             deps:       [L10nLoader],
             multi:      true
-        },
-        {
-            provide:    Compiler,
-            useFactory: createCompiler,
-            deps:       [CompilerFactory]
         }
     ],
     bootstrap:    [AppComponent]

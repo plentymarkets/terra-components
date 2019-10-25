@@ -17,11 +17,12 @@ import { TerraBaseEditorComponent } from '../base-editor/terra-base-editor.compo
 })
 export class TerraNoteEditorComponent extends TerraBaseEditorComponent
 {
-    constructor(protected translation:TranslationService, protected myElement:ElementRef)
+    constructor(translation:TranslationService,
+                myElement:ElementRef)
     {
         super(translation, myElement);
         // initialize placeholder
-        this._placeholder = this.translation.translate('terraNoteEditor.insertText');
+        this._placeholder = this._translation.translate('terraNoteEditor.insertText');
 
         this._modules = {
             toolbar: [

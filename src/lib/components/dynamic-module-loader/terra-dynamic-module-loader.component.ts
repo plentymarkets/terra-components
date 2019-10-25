@@ -24,9 +24,6 @@ import { TerraDynamicLoadedComponentInputInterface } from './data/terra-dynamic-
 })
 export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnChanges, OnDestroy
 {
-    @ViewChild('viewChildTarget', {read: ViewContainerRef})
-    public _viewChildTarget:ViewContainerRef;
-
     @Input()
     public inputModule:any;
 
@@ -38,8 +35,11 @@ export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnChang
 
     @Input()
     public inputView:TerraMultiSplitViewInterface;
-    private _resolvedData:ModuleWithProviders<any>;
 
+    @ViewChild('viewChildTarget', {read: ViewContainerRef})
+    private _viewChildTarget:ViewContainerRef;
+
+    private _resolvedData:ModuleWithProviders<any>;
     private _cmpRef:ComponentRef<any>;
 
     constructor(private _jitCompiler:Compiler)
@@ -49,14 +49,14 @@ export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnChang
     public ngAfterViewInit():void
     {
         this._resolvedData = this.inputModule as ModuleWithProviders;
-        this.updateComponent();
+        this._updateComponent();
     }
 
     public ngOnChanges(changes:SimpleChanges):void
     {
         if(changes.hasOwnProperty('inputInputs'))
         {
-            this.assignInputProperties();
+            this._assignInputProperties();
         }
     }
 
@@ -68,7 +68,7 @@ export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnChang
         }
     }
 
-    private updateComponent():void
+    private _updateComponent():void
     {
         this._jitCompiler.compileModuleAndAllComponentsAsync(this._resolvedData.ngModule)
             .then((moduleWithFactories:ModuleWithComponentFactories<any>) =>
@@ -84,7 +84,7 @@ export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnChang
                             this._cmpRef.instance.splitViewInstance = this.inputView;
 
                             // add inputs to component for data binding purposes
-                            this.assignInputProperties();
+                            this._assignInputProperties();
                         }
                     }
                 );
@@ -92,7 +92,7 @@ export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnChang
             });
     }
 
-    private assignInputProperties():void
+    private _assignInputProperties():void
     {
         if(!isNullOrUndefined(this.inputInputs) && this._cmpRef)
         {

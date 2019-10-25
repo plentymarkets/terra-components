@@ -145,7 +145,7 @@ describe('TerraSuggestionBoxComponent', () =>
         // expect(inputElement.value).toEqual(suggestion.caption); // TODO: The value is not updated..
     });
 
-    it('#_onChange() should open the dropdown (set #toggleOpen to "true")', () =>
+    it('#_onChange() should open the dropdown (set #_toggleOpen to "true")', () =>
     {
         component.toggleOpen = true;
         component._onChange();

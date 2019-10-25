@@ -17,7 +17,7 @@ export class ClipboardHelper
 
     public static copyText(text:string):boolean
     {
-        let container:HTMLElement = ClipboardHelper.createElement('div', {
+        let container:HTMLElement = ClipboardHelper._createElement('div', {
             position: 'fixed',
             left:     '0px',
             top:      '0px',
@@ -28,7 +28,7 @@ export class ClipboardHelper
             zIndex:   '10000'
         });
 
-        let textarea:HTMLTextAreaElement = ClipboardHelper.createElement<HTMLTextAreaElement>('textarea', {
+        let textarea:HTMLTextAreaElement = ClipboardHelper._createElement<HTMLTextAreaElement>('textarea', {
             width:   '1px',
             height:  '1px',
             padding: '0px'
@@ -47,7 +47,7 @@ export class ClipboardHelper
         return success;
     }
 
-    private static createElement<T extends HTMLElement>(tagName:string, styles:{ [key:string]:string } = {}):T
+    private static _createElement<T extends HTMLElement>(tagName:string, styles:{ [key:string]:string } = {}):T
     {
         let element:T = <T> document.createElement(tagName);
         Object.keys(styles).forEach((style:string):void =>

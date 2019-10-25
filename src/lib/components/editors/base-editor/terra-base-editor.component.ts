@@ -58,8 +58,8 @@ export class TerraBaseEditorComponent implements OnInit, ControlValueAccessor
     public _onChangeCallback:(_:any) => void = noop;
     public _onTouchedCallback:(_:any) => void = noop;
 
-    constructor(public _translation:TranslationService,
-                public _myElement:ElementRef)
+    constructor(protected _translation:TranslationService,
+                protected _myElement:ElementRef)
     {
         // initialize placeholder
         this._placeholder = this._translation.translate('terraNoteEditor.insertText');
