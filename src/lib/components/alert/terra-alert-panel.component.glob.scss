@@ -3,7 +3,7 @@ terra-alert-panel
 {
     position: fixed;
     right: 14px;
-    top: var(--terra-alert-panel-top, (calc(var(--navbar-height) + var(--space-lg))));
+    top: var(--terra-alert-panel-top, (calc(var(--navbar-height) + var(--tabbar-height))));
     transition: top var(--transition-lg);
     max-height: 500px;
     max-width: 350px;
