@@ -6,8 +6,6 @@ module.exports = function () {
     };
 
     const sources = {
-        tslintRules: './tslint-rules.json',
-        customLintRules: './lintRules/**/*Rule.ts',
         floatThead: './src/lib/components/tables/data-table/float-thead/floatThead.js',
         dist: 'dist/**/*.*',
         scss: [

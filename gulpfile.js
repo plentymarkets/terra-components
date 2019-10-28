@@ -32,12 +32,6 @@ function copyLang() {
         .pipe(dest(config.destinations.langOutputPath));
 }
 
-//copy TSLint rules to dist
-function copyTslintRules() {
-    return src(config.sources.tslintRules)
-        .pipe(dest(config.destinations.tsOutputPath));
-}
-
 //copy README to dist
 function copyReadme() {
     return src(config.sources.readme)
@@ -85,7 +79,7 @@ function copyButtonScss() {
 }
 
 const copySassFiles = parallel(copyIconsScss, copyPlentyIconsScss, copyCustomDataTableScss, copyNodeTreeScss, copyTagScss, copyTagListScss, copyButtonScss);
-const copyFilesToDist = parallel(copyFonts, copyLang, copyReadme, copySassFiles, copyJsFiles, copyTslintRules);
+const copyFilesToDist = parallel(copyFonts, copyLang, copyReadme, copySassFiles, copyJsFiles);
 
 
 //copy files from dist to terra
