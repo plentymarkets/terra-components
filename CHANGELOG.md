@@ -7,6 +7,7 @@
 
 ### Bug Fixes
 * **radio-group** Adjusted height of `<legend>` and only is rendered when content is available.
+* **terra-date-picker** Fixed style of placeholder.
 
 <a name="4.5.0"></a>
 # 4.5.0 (09.10.2019)

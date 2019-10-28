@@ -3,9 +3,15 @@
 .input-wrapper
 {
     overflow: inherit;
-    
+
     label &.disabled
     {
         cursor: not-allowed;
     }
+}
+
+:host::ng-deep input::-webkit-input-placeholder
+{
+    font-size: var(--font-size-3);
+    color: var(--color-structure-7);
 }

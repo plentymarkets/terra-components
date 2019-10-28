@@ -1,6 +1,6 @@
 <div class="input-wrapper"
      [ngClass]="{'error': !inputIsValid, 'disabled': inputIsDisabled}">
-
+    
     <my-date-picker #viewChildMyDatePicker
                     id="{{id}}"
                     class="date-picker"
@@ -8,10 +8,12 @@
                     (ngModelChange)="onChange($event)"
                     [locale]="currentLocale"
                     [options]="datePickerOptions"
-                    (inputFocusBlur)="onFocusOrBlur($event)">
+                    (inputFocusBlur)="onFocusOrBlur($event)"
+                    placeholder="{{inputIsRequired ? inputName + '*' : inputName}}">
     </my-date-picker>
     <label [tcTooltip]="inputName"
            [onlyEllipsisTooltip]="true"
+           *ngIf="(value || _innerValue) && inputName"
            htmlFor="{{id}}">{{inputName}}
         <span *ngIf="inputIsRequired">*</span>
     </label>

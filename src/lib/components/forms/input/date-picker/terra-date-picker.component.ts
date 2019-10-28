@@ -83,6 +83,8 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
     protected id:string;
     protected datePickerOptions:IMyOptions;
     protected helperTooltip:string;
+    protected _innerValue:string;
+
     protected isHelperTooltipDisabled:boolean;
 
     private _value:IMyDateModel;
@@ -154,6 +156,11 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
         {
             this._value = null;
         }
+
+        if(this.viewChildMyDatePicker && this.viewChildMyDatePicker.inputBoxEl)
+        {
+            this._innerValue = this.viewChildMyDatePicker.inputBoxEl.nativeElement.value;
+        }
     }
 
     public clearDate():void
@@ -199,7 +206,7 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
             inline:                   false,
             editableDateField:        true,
             openSelectorOnInputClick: false,
-            dateFormat:               this.inputDisplayDateFormat,
+            dateFormat:               this.inputDisplayDateFormat
         };
     }
 
