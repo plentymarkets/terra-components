@@ -2,7 +2,7 @@
 	"scripts": {
 		"start": "ng serve",
 		"build": "ng build lib && gulp compileStyles && gulp copy",
-		"build-test": "ng build lib",
+		"build-test": "ng build lib && ng build dev-app --aot",
 		"test": "ng test lib",
 		"test-once": "ng test lib --watch=false --browsers=Chrome,Firefox,Safari",
 		"test-headless": "ng test lib --watch=false --browsers=ChromeHeadless,FirefoxHeadless",
