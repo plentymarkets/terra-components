@@ -1,6 +1,5 @@
 import {
     Component,
-    forwardRef,
     Input,
     OnChanges,
     OnInit,
@@ -19,13 +18,13 @@ let nextId:number = 0;
  * @author pweyrich
  */
 @Component({
-    selector:  'tc-radio-group',
-    template:  require('./radio-group.component.html'),
-    styles:    [require('./radio-group.component.scss')],
-    providers: [
+    selector:    'tc-radio-group',
+    templateUrl: './radio-group.component.html',
+    styleUrls:   ['./radio-group.component.scss'],
+    providers:   [
         {
             provide:     NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => RadioGroupComponent),
+            useExisting: RadioGroupComponent,
             multi:       true
         }
     ]
@@ -48,14 +47,14 @@ export class RadioGroupComponent implements ControlValueAccessor, OnInit, OnChan
     public inline:boolean = false;
 
     private _value:any;
-    private readonly id:string;
+    private readonly _id:string;
 
     private touchedCallback:() => void = noop;
     private changeCallback:(_:any) => void = noop;
 
     constructor()
     {
-        this.id = `radio-group#${nextId++}`;
+        this._id = `radio-group#${nextId++}`;
     }
 
     /**
@@ -66,7 +65,7 @@ export class RadioGroupComponent implements ControlValueAccessor, OnInit, OnChan
     {
         if(StringHelper.isNullUndefinedOrEmpty(this.name))
         {
-            this.name = this.id;
+            this.name = this._id;
         }
     }
 
@@ -79,7 +78,7 @@ export class RadioGroupComponent implements ControlValueAccessor, OnInit, OnChan
     {
         if(changes.hasOwnProperty('name') && StringHelper.isNullUndefinedOrEmpty(changes['name'].currentValue))
         {
-            this.name = this.id;
+            this.name = this._id;
         }
     }
 

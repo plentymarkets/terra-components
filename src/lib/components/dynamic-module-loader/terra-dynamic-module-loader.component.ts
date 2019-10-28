@@ -19,14 +19,11 @@ import { TerraDynamicLoadedComponentInputInterface } from './data/terra-dynamic-
 
 @Component({
     selector: 'terra-dynamic-module-loader',
-    template: require('./terra-dynamic-module-loader.component.html'),
-    styles:   [require('./terra-dynamic-module-loader.component.scss')]
+    templateUrl: './terra-dynamic-module-loader.component.html',
+    styleUrls: [ './terra-dynamic-module-loader.component.scss']
 })
 export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnChanges, OnDestroy
 {
-    @ViewChild('viewChildTarget', {read: ViewContainerRef})
-    public viewChildTarget:ViewContainerRef;
-
     @Input()
     public inputModule:any;
 
@@ -38,39 +35,42 @@ export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnChang
 
     @Input()
     public inputView:TerraMultiSplitViewInterface;
-    private resolvedData:ModuleWithProviders<any>;
 
-    private cmpRef:ComponentRef<any>;
+    @ViewChild('viewChildTarget', {read: ViewContainerRef})
+    private _viewChildTarget:ViewContainerRef;
 
-    constructor(private jitCompiler:Compiler)
+    private _resolvedData:ModuleWithProviders<any>;
+    private _cmpRef:ComponentRef<any>;
+
+    constructor(private _jitCompiler:Compiler)
     {
     }
 
     public ngAfterViewInit():void
     {
-        this.resolvedData = this.inputModule as ModuleWithProviders;
-        this.updateComponent();
+        this._resolvedData = this.inputModule as ModuleWithProviders;
+        this._updateComponent();
     }
 
     public ngOnChanges(changes:SimpleChanges):void
     {
         if(changes.hasOwnProperty('inputInputs'))
         {
-            this.assignInputProperties();
+            this._assignInputProperties();
         }
     }
 
     public ngOnDestroy():void
     {
-        if(this.cmpRef)
+        if(this._cmpRef)
         {
-            this.cmpRef.destroy();
+            this._cmpRef.destroy();
         }
     }
 
-    private updateComponent():void
+    private _updateComponent():void
     {
-        this.jitCompiler.compileModuleAndAllComponentsAsync(this.resolvedData.ngModule)
+        this._jitCompiler.compileModuleAndAllComponentsAsync(this._resolvedData.ngModule)
             .then((moduleWithFactories:ModuleWithComponentFactories<any>) =>
             {
                 moduleWithFactories.componentFactories.forEach((factory:ComponentFactory<any>):void =>
@@ -78,13 +78,13 @@ export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnChang
                         if(this.inputMainComponentName === factory.componentType.name)
                         {
                             // create the component
-                            this.cmpRef = this.viewChildTarget.createComponent(factory);
+                            this._cmpRef = this._viewChildTarget.createComponent(factory);
 
                             // pass the instance of the loaded view back to the component
-                            this.cmpRef.instance.splitViewInstance = this.inputView;
+                            this._cmpRef.instance.splitViewInstance = this.inputView;
 
                             // add inputs to component for data binding purposes
-                            this.assignInputProperties();
+                            this._assignInputProperties();
                         }
                     }
                 );
@@ -92,19 +92,19 @@ export class TerraDynamicModuleLoaderComponent implements AfterViewInit, OnChang
             });
     }
 
-    private assignInputProperties():void
+    private _assignInputProperties():void
     {
-        if(!isNullOrUndefined(this.inputInputs) && this.cmpRef)
+        if(!isNullOrUndefined(this.inputInputs) && this._cmpRef)
         {
             this.inputInputs.forEach((input:TerraDynamicLoadedComponentInputInterface) =>
                 {
                     if(!isNullOrUndefined(input) && !isNullOrUndefined(input.name))
                     {
-                        this.cmpRef.instance[input.name] = input.value;
+                        this._cmpRef.instance[input.name] = input.value;
                     }
                 }
             );
-            this.cmpRef.changeDetectorRef.detectChanges();
+            this._cmpRef.changeDetectorRef.detectChanges();
         }
     }
 }

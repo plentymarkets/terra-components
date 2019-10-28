@@ -10,8 +10,7 @@ import {
 } from 'rxjs';
 
 /**
- * @author mfrank
- * @experimental Do not use!
+ * @deprecated since v5.0.0. Use terra-form instead.
  */
 @Injectable({
     providedIn: 'root'
@@ -27,7 +26,7 @@ export class TerraDynamicFormService extends TerraBaseService
     /**
      * @param data
      * @param url
-     * @return {any}
+     * @param params
      */
     public create(data:any, url:string, params:any):Observable<any>
     {
@@ -37,7 +36,7 @@ export class TerraDynamicFormService extends TerraBaseService
     /**
      * @param data
      * @param url
-     * @return {any}
+     * @param params
      */
     public update(data:any, url:string, params:any):Observable<any>
     {
@@ -47,7 +46,6 @@ export class TerraDynamicFormService extends TerraBaseService
     /**
      * @param data
      * @param url
-     * @return {any}
      */
     public delete(data:any, url:string):Observable<any>
     {

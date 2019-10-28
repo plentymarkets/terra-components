@@ -6,7 +6,7 @@ import {
 } from './terra-form-field-base-container';
 
 /**
- * @author mfrank
+ * @deprecated since v5.0.0. Use terra-form instead.
  */
 export class TerraFormFieldVerticalContainer extends TerraFormFieldBaseContainer
 {

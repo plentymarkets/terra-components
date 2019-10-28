@@ -2,31 +2,30 @@ import {
     Component,
     OnInit
 } from '@angular/core';
-
 import { TerraAlertComponent } from '../terra-alert.component';
 import { AlertService } from '../alert.service';
 
 @Component({
-    selector: 'terra-alert-example',
-    styles:   [require('./terra-alert.component.example.scss')],
-    template: require('./terra-alert.component.example.html')
+    selector:    'terra-alert-example',
+    styleUrls:   ['./terra-alert.component.example.scss'],
+    templateUrl: './terra-alert.component.example.html'
 })
 export class TerraAlertComponentExample implements OnInit
 {
-    private exampleAlert:TerraAlertComponent = TerraAlertComponent.getInstance();
+    private _exampleAlert:TerraAlertComponent = TerraAlertComponent.getInstance();
 
-    constructor(private alertService:AlertService)
+    constructor(private _alertService:AlertService)
     {
     }
 
     public ngOnInit():void
     {
-        this.exampleAlert.closeAlertByIdentifier('info');
+        this._exampleAlert.closeAlertByIdentifier('info');
     }
 
-    protected showInformationAlert():void
+    public _showInformationAlert():void
     {
-        this.exampleAlert.addAlert({
+        this._exampleAlert.addAlert({
             msg:              'info-Alert',
             type:             'info',
             dismissOnTimeout: 5000,
@@ -34,9 +33,9 @@ export class TerraAlertComponentExample implements OnInit
         });
     }
 
-    protected showSuccessAlert():void
+    public _showSuccessAlert():void
     {
-        this.exampleAlert.addAlert({
+        this._exampleAlert.addAlert({
             msg:              'success-Alert',
             type:             'success',
             dismissOnTimeout: 5000,
@@ -44,9 +43,9 @@ export class TerraAlertComponentExample implements OnInit
         });
     }
 
-    protected showErrorAlert():void
+    public _showErrorAlert():void
     {
-        this.exampleAlert.addAlert({
+        this._exampleAlert.addAlert({
             msg:              'error-Alert',
             type:             'danger',
             dismissOnTimeout: 0,
@@ -54,9 +53,9 @@ export class TerraAlertComponentExample implements OnInit
         });
     }
 
-    protected showWarningAlert():void
+    public _showWarningAlert():void
     {
-        this.exampleAlert.addAlert({
+        this._exampleAlert.addAlert({
             msg:              'warning-Alert',
             type:             'warning',
             dismissOnTimeout: 5000,
@@ -64,8 +63,8 @@ export class TerraAlertComponentExample implements OnInit
         });
     }
 
-    protected showAlertUsingService():void
+    public _showAlertUsingService():void
     {
-        this.alertService.info('You have used the service');
+        this._alertService.info('You have used the service');
     }
 }

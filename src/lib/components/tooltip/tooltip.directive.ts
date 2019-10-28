@@ -66,12 +66,12 @@ export class TooltipDirective implements OnDestroy, OnChanges
     {
         this._isDisabled = disabled;
 
-        this.handleTooltipState();
+        this._handleTooltipState();
     }
 
-    constructor(private elementRef:ElementRef,
-                private containerRef:ViewContainerRef,
-                private router:Router)
+    constructor(private _elementRef:ElementRef,
+                private _containerRef:ViewContainerRef,
+                private _router:Router)
     {
     }
 
@@ -79,7 +79,7 @@ export class TooltipDirective implements OnDestroy, OnChanges
     {
         if(changes.hasOwnProperty('isDisabled'))
         {
-            this.handleTooltipState();
+            this._handleTooltipState();
         }
 
         if(changes.hasOwnProperty('tcTooltip'))
@@ -92,7 +92,7 @@ export class TooltipDirective implements OnDestroy, OnChanges
                 // example found here: https://netbasal.com/create-advanced-components-in-angular-e0655df5dde6
                 if(this.tcTooltip instanceof TemplateRef)
                 {
-                    const viewRef:EmbeddedViewRef<unknown> = this.containerRef.createEmbeddedView(this.tcTooltip, {});
+                    const viewRef:EmbeddedViewRef<any> = this._containerRef.createEmbeddedView(this.tcTooltip, {});
 
                     let div:HTMLElement = document.createElement('div');
 
@@ -112,9 +112,9 @@ export class TooltipDirective implements OnDestroy, OnChanges
                     tooltipIsEmpty = tooltip.length === 0;
                 }
 
-                this.initTooltip(tooltip);
+                this._initTooltip(tooltip);
 
-                this.navigationSubscription = this.router.events.subscribe(() =>
+                this.navigationSubscription = this._router.events.subscribe(() =>
                 {
                     this.tooltipEl.hide(0);
                 });
@@ -159,7 +159,7 @@ export class TooltipDirective implements OnDestroy, OnChanges
         {
             if(this.onlyEllipsisTooltip)
             {
-                this.checkIfEllipsis();
+                this._checkIfEllipsis();
             }
 
             this.tooltipEl.show(0);
@@ -179,7 +179,7 @@ export class TooltipDirective implements OnDestroy, OnChanges
         }
     }
 
-    private handleTooltipState():void
+    private _handleTooltipState():void
     {
         if(this.tooltipEl)
         {
@@ -194,21 +194,21 @@ export class TooltipDirective implements OnDestroy, OnChanges
         }
     }
 
-    private checkIfEllipsis():void
+    private _checkIfEllipsis():void
     {
-        let curOverflow:string = this.elementRef.nativeElement.style.overflow;
+        let curOverflow:string = this._elementRef.nativeElement.style.overflow;
 
         // 'hide' overflow to get correct scrollWidth
         if(!curOverflow || curOverflow === 'visible')
         {
-            this.elementRef.nativeElement.style.overflow = 'hidden';
+            this._elementRef.nativeElement.style.overflow = 'hidden';
         }
 
         // check if is overflowing
-        let isOverflowing:boolean = this.elementRef.nativeElement.clientWidth < this.elementRef.nativeElement.scrollWidth;
+        let isOverflowing:boolean = this._elementRef.nativeElement.clientWidth < this._elementRef.nativeElement.scrollWidth;
 
         // 'reset' overflow to initial state
-        this.elementRef.nativeElement.style.overflow = curOverflow;
+        this._elementRef.nativeElement.style.overflow = curOverflow;
 
         this.isDisabled = !isOverflowing;
     }
@@ -217,11 +217,11 @@ export class TooltipDirective implements OnDestroy, OnChanges
      * initialize the tippy element
      * @param tooltip
      */
-    private initTooltip(tooltip:string | Element):void
+    private _initTooltip(tooltip:string | Element):void
     {
         if(!this.tooltipEl)
         {
-            this.tooltipEl = tippy(this.elementRef.nativeElement, {
+            this.tooltipEl = tippy(this._elementRef.nativeElement, {
                 content:     tooltip,
                 trigger:     'manual',
                 arrow:       true,

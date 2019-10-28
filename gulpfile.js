@@ -1,96 +1,73 @@
-var gulp = require('gulp');
-var del = require('del');
-var sourcemaps = require('gulp-sourcemaps');
-var merge = require('merge2');
-var tsc = require('gulp-typescript');
-var tsProject = tsc.createProject('./tsconfig.json', {typescript: require('typescript')});
+const { series, src, dest } = require('gulp');
 var config = require('./gulp.config.js')();
 var fs = require('fs');
 var semver = require('semver');
 var shell = require('gulp-shell');
 var argv = require('yargs').argv;
-var Dgeni = require('dgeni');
-var gulpTasks = require('./component-documentation/tasks/docuTasks.js');
-var paths = require('./component-documentation/tasks/paths');
-
-var version, increment, preid;
-
-gulp.task('clean-dist', function () {
-    return del(config.destinations.tsOutputPath);
-});
-
-//compile typescript files
-gulp.task('compile-ts', function () {
-    var sourceTsFiles = [
-        config.excluded,
-        config.fileSelectors.allTs,
-        config.sources.customLintRules
-    ];
-
-    var tsResult = gulp.src(sourceTsFiles)
-        .pipe(sourcemaps.init())
-        .pipe(tsProject());
-
-    return merge([
-        tsResult.dts.pipe(gulp.dest(config.destinations.tsOutputPath)),
-        tsResult.js.pipe(sourcemaps.write('.')).pipe(gulp.dest(config.destinations.tsOutputPath))
-    ]);
-});
-
-//copy files to dist
-gulp.task('copy-files', function () {
-    return gulp.src(config.filesToCopy)
-        .pipe(gulp.dest(config.destinations.tsOutputPath));
-});
+var sass = require('gulp-sass');
+var tildeImporter = require('node-sass-tilde-importer');
 
 //copy fonts to dist
-gulp.task('copy-fonts', function () {
-    return gulp.src(config.fileSelectors.allFonts)
-        .pipe(gulp.dest(config.destinations.fontsOutputPath));
-});
+function copyFonts() {
+    return src(config.fileSelectors.allFonts)
+        .pipe(dest(config.destinations.fontsOutputPath));
+}
 
 //copy lang to dist
-gulp.task('copy-lang', function () {
-    return gulp.src(config.fileSelectors.allLang)
-        .pipe(gulp.dest(config.destinations.langOutputPath));
-});
+function copyLang() {
+    return src(config.fileSelectors.allLang)
+        .pipe(dest(config.destinations.langOutputPath));
+}
 
-//copy lang to dist
-gulp.task('copy-tslint-rules', function ()
-{
-    return gulp.src(config.sources.tslintRules)
-        .pipe(gulp.dest(config.destinations.tsOutputPath));
-});
+//copy TSLint rules to dist
+function copyTslintRules() {
+    return src(config.sources.tslintRules)
+        .pipe(dest(config.destinations.tsOutputPath));
+}
+
+//copy README to dist
+function copyReadme() {
+    return src(config.sources.readme)
+        .pipe(dest(config.destinations.tsOutputPath));
+}
+
+function copyJsFiles() {
+    return src(config.sources.floatThead)
+        .pipe(dest(config.destinations.floatThead));
+}
 
 //copy files from dist to terra
-gulp.task('copy-to-terra', function () {
-    return gulp.src(config.sources.dist)
-        .pipe(gulp.dest(config.destinations.terra));
-});
+function copyToTerra() {
+    return src(config.sources.dist)
+        .pipe(dest(config.destinations.terra));
+}
 
 /**
- *
- * usage: 'npm run build' for local build
- *
+ * Copies all the files to the dedicated deploy folder
  **/
-gulp.task('build',
-    gulp.series(
-        'clean-dist',
-        'compile-ts',
-        'copy-files',
-        'copy-fonts',
-        'copy-lang',
-        'copy-tslint-rules',
-        'copy-to-terra'
-    )
-);
+const copy = series(copyFonts, copyLang, copyReadme, copyTslintRules, copyJsFiles, copyToTerra);
+exports.copy = copy;
+
+// convert global scss styles to css files
+function compileCss() {
+    return src(config.sources.scss)
+    .pipe(sass({
+        importer: tildeImporter,
+        outputStyle: 'compressed'
+    }).on('error', sass.logError))
+    .pipe(dest('dist/styles'))
+}
 
 /**
- * define gulp tasks for 'npm-publish'
- */
+ * Compiles scss to css
+ **/
+exports.compileStyles = compileCss;
+
 //changing version of package.json for new publish
 function changeVersion(done) {
-    var json = JSON.parse(fs.readFileSync('./package.json'));
+    const increment = argv.increment ? argv.increment : 'patch';
+    const preid = argv.preid ? argv.preid : '';
+    const json = JSON.parse(fs.readFileSync(config.sources.packageJson));
 
     console.log('-------------------------------------------------');
     console.log('--- OLD PACKAGE VERSION: ' + json.version + ' ---');
@@ -102,15 +79,14 @@ function changeVersion(done) {
     console.log('--- NEW PACKAGE VERSION: ' + json.version + ' ---');
     console.log('-------------------------------------------------');
 
-    fs.writeFileSync('./package.json', JSON.stringify(json, null, '\t'));
+    fs.writeFileSync(config.sources.packageJson, JSON.stringify(json, null, '\t'));
     done();
-};
+}
 
 //publish to npm
-gulp.task('publish', shell.task([
-        'npm publish dist'
-    ])
-);
+function publish() {
+    return shell.task(['npm publish dist'])
+}
 
 /**
  *
@@ -131,92 +107,5 @@ gulp.task('publish', shell.task([
  *     'node_modules/@plentymarkets/terra-components' in target directory
  *
  **/
-gulp.task('npm-publish', function () {
-    increment = argv.increment ? argv.increment : 'patch';
-    preid = argv.preid ? argv.preid : '';
-
-    if(argv.level || argv.subversion)
-    {
-        console.log('-------------------------------------------------------------------');
-        console.log('----  Build not started. See gulpfile for further information. ----');
-        console.log('-------------------------------------------------------------------');
-
-        return;
-    }
-    else
-    {
-        return gulp.series(
-            changeVersion,
-            'clean-dist',
-            'compile-ts',
-            'copy-files',
-            'copy-fonts',
-            'copy-lang',
-            'copy-tslint-rules',
-            'publish'
-        );
-    }
-}());
-
-/**
- * define tasks for 'build-doc'
- */
-gulp.task('copy-to-terra-doc', function () {
-    return gulp.src(config.sources.dist)
-        .pipe(gulp.dest(config.destinations.terraComponentsDoc));
-});
-gulp.task('copy-api-to-terra-doc', function () {
-    return gulp.src('component-documentation/build/**/*.*')
-        .pipe(gulp.dest(config.destinations.terraComponentsDocBuild));
-});
-
-//copy components from dist to terra-component-doc
-gulp.task('copy-components-to-doc', function () {
-    return gulp.src('src/lib/components/**/**/example/*.ts')
-        .pipe(gulp.dest(config.destinations.terraComponentsDocComponents));
-});
-
-gulp.task('copy-markdown-to-doc', function () {
-    return gulp.src('src/lib/components/**/example/*.md')
-        .pipe(gulp.dest(config.destinations.terraComponentsDocComponents));
-});
-
-gulp.task('copy-icon-description-json', function () {
-    return gulp.src('src/lib/styles/iconDescription.json')
-        .pipe(gulp.dest(config.destinations.terraComponentsDocBuild));
-});
-gulp.task('copy-documentation-changelog', function () {
-    return gulp.src('component-documentation/documentation-changelog.json')
-        .pipe(gulp.dest(config.destinations.terraComponentsDocBuild));
-});
-gulp.task('dgeni', function () {
-    try {
-        var dgeni = new Dgeni([require('./component-documentation/index')]);
-        return dgeni.generate();
-    } catch (x) {
-        console.log(x.stack);
-        throw x;
-    }
-});
-
-gulp.task('generateJson', function (done)
-{
-    gulpTasks.buildJsonFile(paths.dataJsonOutputPath);
-    done();
-});
-
-/**
- * run "gulp build-doc" to let Dgeni generate api files and to create json data.
- */
-gulp.task('build-doc',
-    gulp.series(
-        'build',
-        'dgeni',
-        'generateJson',
-        'copy-to-terra-doc',
-        'copy-components-to-doc',
-        'copy-api-to-terra-doc',
-        'copy-markdown-to-doc',
-        'copy-icon-description-json',
-        'copy-documentation-changelog'
-    ));
+const release = series(changeVersion, compileCss, copy, publish);
+exports.release = release;

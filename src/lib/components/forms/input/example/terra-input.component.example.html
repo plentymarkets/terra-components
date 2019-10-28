@@ -2,55 +2,55 @@
     inputPortletHeader="create your account">
     <terra-text-input
         inputName="name"
-        [(ngModel)]="name">
+        [(ngModel)]="_name">
     </terra-text-input>
     <terra-text-input
         inputName="lastname"
-        [(ngModel)]="lastName">
+        [(ngModel)]="_lastName">
     </terra-text-input>
     <terra-text-input
         inputName="e-mail"
-        [(ngModel)]="email">
+        [(ngModel)]="_email">
     </terra-text-input>
     <terra-text-input
         inputName="password"
-        [(ngModel)]="password"
+        [(ngModel)]="_password"
         [inputIsPassword]="true">
     </terra-text-input>
     <terra-text-input
         inputName="repeat password"
-        [(ngModel)]="passwordRepeat"
+        [(ngModel)]="_passwordRepeat"
         [inputIsPassword]="true">
     </terra-text-input>
     <terra-date-picker
         inputName="birthday"
-        [(ngModel)]="birthday">
+        [(ngModel)]="_birthday">
     </terra-date-picker>
     <terra-select-box
         inputName="state"
         [inputListBoxValues]="stateSelection"
-        [(ngModel)]="state">
+        [(ngModel)]="_state">
     </terra-select-box>
     <terra-text-input
         inputName="address"
-        [(ngModel)]="address">
+        [(ngModel)]="_address">
     </terra-text-input>
     <terra-text-input
         inputName="zip"
-        [(ngModel)]="zip">
+        [(ngModel)]="_zip">
     </terra-text-input>
     <terra-text-input
         inputName="city"
-        [(ngModel)]="city">
+        [(ngModel)]="_city">
     </terra-text-input>
     <terra-checkbox inputCaption="Newsletter?"
-                    [(ngModel)]="newsletter">
+                    [(ngModel)]="_newsletter">
     </terra-checkbox>
     <terra-checkbox inputCaption="AGBs"
-                    [(ngModel)]="agbs">
+                    [(ngModel)]="_agbs">
     </terra-checkbox>
     <terra-button
         inputCaption="Submit"
-        (outputClicked)="showValues()">
+        (outputClicked)="_showValues()">
     </terra-button>
 </terra-portlet>

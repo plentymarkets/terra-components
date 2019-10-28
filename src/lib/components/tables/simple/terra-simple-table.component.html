@@ -1,20 +1,20 @@
 <div class="table-responsive" #scrollContainer>
-    <table class="table simple-table" tabindex="0" (keydown)="onKeydown($event)">
+    <table class="table simple-table" tabindex="0" (keydown)="_onKeydown($event)">
         <thead>
         <tr *ngIf="inputHeaderList">
             <th *ngIf="inputHasCheckboxes"
                 width="40px">
                 <terra-checkbox #viewChildHeaderCheckbox
-                                (change)="onHeaderCheckboxChange()"
-                                [value]="headerCheckbox.checked"
-                                [isIndeterminate]="headerCheckbox.isIndeterminate">
+                                (change)="_onHeaderCheckboxChange()"
+                                [value]="_headerCheckbox.checked"
+                                [isIndeterminate]="_headerCheckbox.isIndeterminate">
                 </terra-checkbox>
             </th>
             <th *ngFor="let header of inputHeaderList"
                 width="{{header.width}}"
                 [tcTooltip]="header.tooltipText"
                 [placement]="header.tooltipPlacement"
-                [ngStyle]="{ 'text-align': getTextAlign(header) }">
+                [ngStyle]="{ 'text-align': _getTextAlign(header) }">
                 <span>{{header.caption}}</span>
             </th>
         </tr>
@@ -25,18 +25,18 @@
             [ngStyle]="{'background-color': row.backgroundColor}"
             [class.isActive]="row === inputHighlightedRow"
             [class.disabled]="row.disabled"
-            (click)="onRowClick(row)">
-            <td *ngIf="inputHasCheckboxes" width="40px" (click)="onCheckboxClick($event)">
+            (click)="_onRowClick(row)">
+            <td *ngIf="inputHasCheckboxes" width="40px" (click)="_onCheckboxClick($event)">
                 <terra-checkbox [value]="row.selected"
                                 [inputIsDisabled]="row.disabled"
-                                (change)="onRowCheckboxChange(row)">
+                                (change)="_onRowCheckboxChange(row)">
                 </terra-checkbox>
             </td>
             <ng-container *ngFor="let cell of row.cellList; let i = index">
                 <td width="{{ inputHeaderList[i].width }}"
                     [tcTooltip]="cell.tooltipText"
                     [placement]="cell.tooltipPlacement"
-                    [ngStyle]="{ 'text-align': getTextAlign(inputHeaderList[i]) }">
+                    [ngStyle]="{ 'text-align': _getTextAlign(inputHeaderList[i]) }">
                     <span [ngClass]="cell.icon"></span>
                     <span [innerHTML]="cell.caption"></span>
                     <div class="btn-group" *ngIf="cell.buttonList" [ngClass]="{'float-right': cell.buttonListAlignRight}">

@@ -4,10 +4,10 @@ import {
 } from '@angular/core';
 
 @Component({
-    selector: 'terra-base-toolbar',
-    template: require('./terra-base-toolbar.component.html'),
-    styles:   [require('./terra-base-toolbar.component.scss')],
-    host:     {'[class.terra-sticky-toolbar]':'isSticky'}
+    selector:    'terra-base-toolbar',
+    styleUrls:   ['./terra-base-toolbar.component.scss'],
+    templateUrl: './terra-base-toolbar.component.html',
+    host:        {'[class.terra-sticky-toolbar]': 'isSticky'}
 })
 export class TerraBaseToolbarComponent
 {
@@ -25,6 +25,7 @@ export class TerraBaseToolbarComponent
 
     constructor()
     {
+        this.isSticky = false;
         this.inputIsBreadcrumbs = false;
     }
 }

@@ -1,8 +1,8 @@
 <terra-portlet>
     <terra-form
-        [inputControlTypeMap]="formTypeMap"
-        [inputFormFields]="formFields"
-        [(ngModel)]="formValue">
+        [inputControlTypeMap]="_formTypeMap"
+        [inputFormFields]="_formFields"
+        [(ngModel)]="_formValue">
     </terra-form>
 </terra-portlet>
-{{ formValue | json }}
+{{ _formValue | json }}

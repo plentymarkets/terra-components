@@ -5,8 +5,8 @@ import {
 import { TerraButtonInterface } from '../../../buttons/button/data/terra-button.interface';
 
 @Component({
-    selector: 'terra-portlet-example',
-    template: require('./terra-portlet.component.example.html')
+    selector:    'terra-portlet-example',
+    templateUrl: './terra-portlet.component.example.html'
 })
 export class TerraPortletComponentExample implements OnInit
 {
@@ -22,7 +22,8 @@ export class TerraPortletComponentExample implements OnInit
             {
                 icon:          'icon-edit',
                 clickFunction: ():void => TerraPortletComponentExample.buttonClickFunction()
-            });
+            }
+        );
     }
 
     private static buttonClickFunction():void
