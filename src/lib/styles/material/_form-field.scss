@@ -5,7 +5,7 @@
     &.mat-focused
     {
         color: var(--color-active);
-        
+
         .mat-form-field-label-wrapper .mat-form-field-label, &.mat-primary .mat-select-arrow
         {
             color: var(--color-active);
@@ -15,14 +15,14 @@
             background-color: var(--color-active);
         }
     }
-    
+
     &.mat-form-field-appearance-legacy
     {
         &.ng-valid
         {
             color: var(--color-structure-7);
         }
-        
+
         &.mat-form-field-can-float
         {
             &.mat-form-field-should-float
@@ -33,7 +33,7 @@
                 }
             }
         }
-        
+
         .mat-form-field-wrapper
         {
             .mat-form-field-flex
@@ -41,7 +41,7 @@
                 .mat-form-field-infix
                 {
                     padding: calc(var(--space-sm) * 1.7) 0;
-                    
+
                     mat-select
                     {
                         .mat-select-trigger
@@ -65,18 +65,29 @@
                         font-weight: var(--font-weight-2);
                     }
                 }
+
+                .mat-form-field-suffix
+                {
+                    button
+                    {
+                        &:focus
+                        {
+                            outline: none;
+                        }
+                    }
+                }
             }
-            
+
             .mat-form-field-underline
             {
                 border-bottom: var(--input-wrapper-border, 1px solid var(--border-color));
             }
         }
-    
+
         &.ng-invalid
         {
             color: var(--color-alert);
-            
+
             .mat-form-field-wrapper
             {
                 .mat-form-field-underline
@@ -88,11 +99,11 @@
                 }
             }
         }
-    
+
         &.mat-form-field-disabled
         {
             color: var(--color-structure-6);
-    
+
             .mat-form-field-wrapper
             {
                 .mat-form-field-flex
@@ -117,13 +128,13 @@
                         {
                             color: var(--color-structure-6);
                         }
-    
+
                         .mat-form-field-label-wrapper
                         {
                             .mat-form-field-label
                             {
                                 color: var(--color-structure-6);
-                                
+
                                 mat-label
                                 {
                                     color: inherit;
@@ -133,7 +144,7 @@
                     }
                 }
             }
-    
+
             .mat-form-field-underline
             {
                 border-bottom-style: inherit;
@@ -145,7 +156,7 @@
 .cdk-overlay-container
 {
     z-index: var(--zIndex-10);
-    
+
     .cdk-overlay-connected-position-bounding-box
     {
         .cdk-overlay-pane
@@ -156,7 +167,7 @@
                 {
                     border-radius: var(--border-radius);
                     box-shadow: var(--box-shadow-2);
-                    
+
                     &.mat-primary
                     {
                         mat-option
@@ -167,6 +178,29 @@
                                 {
                                     color: var(--color-structure-0);
                                     background-color: var(--color-active);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .mat-datepicker-content
+            {
+                .mat-calendar
+                {
+                    mat-calendar-header
+                    {
+                        .mat-calendar-header
+                        {
+                            .mat-calendar-controls
+                            {
+                                button
+                                {
+                                    &:focus
+                                    {
+                                        outline: none;
+                                    }
                                 }
                             }
                         }
