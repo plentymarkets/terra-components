@@ -10,8 +10,29 @@
     }
 }
 
-:host::ng-deep input::-webkit-input-placeholder
+:host::ng-deep
 {
-    font-size: var(--font-size-3);
-    color: var(--color-structure-7);
+    input::-webkit-input-placeholder
+    {
+        font-size: var(--font-size-3);
+        color: var(--color-structure-7);
+    }
+
+    input:-moz-placeholder
+    { /* Firefox 18- */
+        font-size: var(--font-size-3);
+        color: var(--color-structure-7);
+    }
+
+    input::-moz-placeholder
+    { /* Firefox 19+ */
+        font-size: var(--font-size-3);
+        color: var(--color-structure-7);
+    }
+
+    input:-ms-input-placeholder
+    {
+        font-size: var(--font-size-3);
+        color: var(--color-structure-7);
+    }
 }
