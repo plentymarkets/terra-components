@@ -1,8 +1,24 @@
-<a name="4.X.X"></a>
-# 4.X.X (DD.10.2019)
+<a name="4.6.0"></a>
+# 4.6.0 (unreleased)
+
+### Features
+* **validators** New `uniqueValues` validator which checks if the values of a FormArray are unique.
+* **utils** provide new `createHttpParams()` method which replaces the deprecated `createUrlSearchParams()` of the `TerraBaseService`
+
+### Bug Fixes
+* **radio-group** Adjusted height of `<legend>` and only is rendered when content is available.
+
+<a name="4.5.0"></a>
+# 4.5.0 (09.10.2019)
 
 ### Features
 * **icon** new icon 'content_category'
+* **terra-text-input** set as deprecated. Can be replaced by using the [angular material input](https://material.angular.io/components/input/overview).
+* **terra-info-box** new design to stop overlapping between button-hover-color and card-selected-color
+
+### Bug Fixes
+* **terra-checkbox** fixed indeterminate style and hover style when disabled.
+* **terra-breadcrumbs** extended caret hover to breadcrumbs-wrapper for easier navigation
 
 <a name="4.4.0"></a>
 # 4.4.0 (25.09.2019)
