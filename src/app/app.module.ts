@@ -18,6 +18,13 @@ import { AppComponent } from './app.component';
 import { ShowcaseComponent } from './showcase/showcase.component';
 import { TerraComponentsExamplesModule } from '../lib/terra-components-examples.module';
 import { RouterModule } from '@angular/router';
+import {
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatNativeDateModule
+} from '@angular/material';
+import { ReactiveFormsModule } from '@angular/forms';
 
 function createCompiler(compilerFactory:CompilerFactory):Compiler
 {
@@ -41,7 +48,12 @@ function initL10n(l10nLoader:L10nLoader):Function
         BrowserAnimationsModule,
         HttpClientModule,
         LocalizationModule.forRoot(l10nConfig),
-        TerraComponentsExamplesModule
+        TerraComponentsExamplesModule,
+        MatFormFieldModule,
+        MatDatepickerModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        MatNativeDateModule
     ],
     declarations: [AppComponent, ShowcaseComponent],
     providers: [
