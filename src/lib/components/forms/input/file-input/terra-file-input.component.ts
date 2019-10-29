@@ -66,7 +66,6 @@ export class TerraFileInputComponent extends TerraInputComponent implements OnIn
     public primaryOverlayButton:TerraOverlayButtonInterface;
     public secondaryOverlayButton:TerraOverlayButtonInterface;
 
-
     @Language()
     public _lang:string;
 
