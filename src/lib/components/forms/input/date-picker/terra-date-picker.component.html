@@ -1,6 +1,6 @@
 <div class="input-wrapper"
      [ngClass]="{'error': !inputIsValid, 'disabled': inputIsDisabled}">
-    
+
     <my-date-picker #viewChildMyDatePicker
                     id="{{id}}"
                     class="date-picker"
@@ -13,7 +13,7 @@
     </my-date-picker>
     <label [tcTooltip]="inputName"
            [onlyEllipsisTooltip]="true"
-           *ngIf="(value || _innerValue) && inputName"
+           *ngIf="(value || valueAsString) && inputName"
            htmlFor="{{id}}">{{inputName}}
         <span *ngIf="inputIsRequired">*</span>
     </label>

@@ -82,10 +82,7 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
     protected currentLocale:string;
     protected id:string;
     protected datePickerOptions:IMyOptions;
-    protected helperTooltip:string;
-    protected _innerValue:string;
-
-    protected isHelperTooltipDisabled:boolean;
+    protected valueAsString:string;
 
     private _value:IMyDateModel;
 
@@ -159,7 +156,7 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
 
         if(this.viewChildMyDatePicker && this.viewChildMyDatePicker.inputBoxEl)
         {
-            this._innerValue = this.viewChildMyDatePicker.inputBoxEl.nativeElement.value;
+            this.valueAsString = this.viewChildMyDatePicker.inputBoxEl.nativeElement.value;
         }
     }
 
