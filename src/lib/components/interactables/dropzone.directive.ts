@@ -8,8 +8,13 @@ import {
     Output
 } from '@angular/core';
 import { DropEvent } from './dropEvent.interface';
-import { InteractStatic, Interactable, InteractEvent } from 'interactjs';
 import * as interact_ from 'interactjs';
+import {
+    Interactable,
+    InteractEvent,
+    InteractStatic
+} from 'interactjs';
+
 const interact:InteractStatic = interact_;
 
 export type AcceptFn = (args:{
