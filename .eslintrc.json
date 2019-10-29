@@ -58,11 +58,11 @@
 		"@typescript-eslint/class-name-casing": "error",
 		"@typescript-eslint/explicit-member-accessibility": ["error", { "accessibility": "explicit", "overrides": { "constructors": "no-public"} }],
 		"@typescript-eslint/member-ordering": ["error", { "default":  ["public-field", "protected-field", "private-field", "constructor", "public-method", "protected-method", "private-method"] }],
-		"@typescript-eslint/no-explicit-any": "warn",
+		"@typescript-eslint/no-explicit-any": "error",
 		"@typescript-eslint/no-unused-vars": "error",
 		"@typescript-eslint/no-use-before-define": ["error", { "classes": false }],
 		"@typescript-eslint/type-annotation-spacing": ["error", { "before": false, "after": false, "overrides": { "arrow": { "before": true, "after": true }} }],
-		"@typescript-eslint/typedef": ["warn", { "arrayDestructuring": true, "arrowParameter": true, "memberVariableDeclaration": true, "objectDestructuring": true, "parameter": true, "propertyDeclaration": true, "variableDeclaration": true }]
+		"@typescript-eslint/typedef": ["error", { "arrayDestructuring": true, "arrowParameter": true, "memberVariableDeclaration": true, "objectDestructuring": true, "parameter": true, "propertyDeclaration": true, "variableDeclaration": true }]
 	},
 	"overrides": [
 		{
