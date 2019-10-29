@@ -17,7 +17,7 @@ import {
 import { isNullOrUndefined } from 'util';
 import { noop } from 'rxjs';
 import * as moment_ from 'moment';
-// tslint:disable-next-line:typedef
+/* eslint-disable @typescript-eslint/typedef */
 const moment = moment_;
 
 let nextId:number = 0;
