@@ -4,24 +4,6 @@ export class PathHelper
 {
     public static readonly DELIMITER:string = '/';
 
-    private static _getPaths(path:string):Array<string>
-    {
-        let paths:Array<string> = path.split(this.DELIMITER);
-        while(paths.length > 0 && paths[0].length <= 0)
-        {
-            paths.shift();
-        }
-
-        let lastIdx:number = paths.length - 1;
-        while(lastIdx > 0 && paths[lastIdx].length <= 0)
-        {
-            paths.pop();
-            lastIdx--;
-        }
-
-        return paths;
-    }
-
     /**
      * Check if a path is absolute.
      * @param path
@@ -141,6 +123,24 @@ export class PathHelper
         }
 
         return size.toFixed(2) + units[unitIdx];
+    }
+
+    private static _getPaths(path:string):Array<string>
+    {
+        let paths:Array<string> = path.split(this.DELIMITER);
+        while(paths.length > 0 && paths[0].length <= 0)
+        {
+            paths.shift();
+        }
+
+        let lastIdx:number = paths.length - 1;
+        while(lastIdx > 0 && paths[lastIdx].length <= 0)
+        {
+            paths.pop();
+            lastIdx--;
+        }
+
+        return paths;
     }
 
     private static getPaths(path:string):Array<string>
