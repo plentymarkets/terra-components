@@ -45,6 +45,30 @@
                 position: inherit;
                 display: inline-block;
 
+                &::-webkit-input-placeholder
+                {
+                    font-size: var(--font-size-3);
+                    color: var(--color-structure-7);
+                }
+
+                &:-moz-placeholder
+                { /* Firefox 18- */
+                    font-size: var(--font-size-3);
+                    color: var(--color-structure-7);
+                }
+
+                &::-moz-placeholder
+                { /* Firefox 19+ */
+                    font-size: var(--font-size-3);
+                    color: var(--color-structure-7);
+                }
+
+                &:-ms-input-placeholder
+                {
+                    font-size: var(--font-size-3);
+                    color: var(--color-structure-7);
+                }
+
                 &:active,
                 &:focus
                 {
