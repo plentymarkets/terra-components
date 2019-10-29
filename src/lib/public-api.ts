@@ -85,7 +85,7 @@ export { TerraDataTableTextInterface } from './components/tables/data-table/inte
 export { TerraDataTableHeaderCellInterface } from './components/tables/data-table/interfaces/terra-data-table-header-cell.interface';
 export { TerraDataTableRowInterface } from './components/tables/data-table/interfaces/terra-data-table-row.interface';
 export { TerraDataTableContextMenuDirective } from './components/tables/data-table/context-menu/terra-data-table-context-menu.directive';
-export { TerraDataTableContextMenuEntryInterface }from './components/tables/data-table/context-menu/data/terra-data-table-context-menu-entry.interface';
+export { TerraDataTableContextMenuEntryInterface } from './components/tables/data-table/context-menu/data/terra-data-table-context-menu-entry.interface';
 export { TerraDataTableContextMenuService } from './components/tables/data-table/context-menu/terra-data-table-context-menu.service';
 export { TerraDataTableContextMenuComponent } from './components/tables/data-table/context-menu/terra-data-table-context-menu.component';
 export { TerraDataTableComponent } from './components/tables/data-table/terra-data-table.component';
@@ -132,7 +132,6 @@ export { TerraFileBrowserService } from './components/file-browser/terra-file-br
 export { TerraFileBrowserComponent } from './components/file-browser/terra-file-browser.component';
 export { TerraBasePrivateStorageService } from './components/file-browser/terra-base-private-storage.interface';
 
-
 export { TerraNoResultNoticeComponent } from './components/no-result/terra-no-result-notice.component';
 export { TerraNoteEditorComponent } from './components/editors/note-editor/terra-note-editor.component';
 export { TerraCodeEditorComponent } from './components/editors/code-editor/terra-code-editor.component';
@@ -166,7 +165,6 @@ export { TerraJsonToFormFieldService } from './components/forms/dynamic-form/ser
 export { TerraDynamicFormService } from './components/forms/dynamic-form/service/terra-dynamic-form.service';
 export { TerraFormFieldControlService } from './components/forms/dynamic-form/service/terra-form-field-control.service';
 
-
 export { TerraKeyValueInterface } from './models/terra-key-value.interface';
 
 // TODO Picker index?
@@ -189,7 +187,6 @@ export { TerraSplitViewComponentInterface } from './components/dynamic-module-lo
 export { TerraMultiSplitViewBreadcrumbsService } from './components/split-view/multi/injectables/terra-multi-split-view-breadcrumbs.service';
 
 export { TerraValidators } from './validators/validators';
-
 
 export { TerraFormComponent } from './components/forms/form/terra-form.component';
 export { TerraFormContainerComponent } from './components/forms/form/form-container/terra-form-container.component';
