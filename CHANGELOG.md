@@ -12,6 +12,8 @@ Terra-Components now complies with the angular package format and code autocompl
 
 ### Features
 * **validators** New `uniqueValues` validator which checks if the values of a FormArray are unique.
+* **terra-pager** Using its own SCSS variables now.
+* **utils** provide new `createHttpParams()` method which replaces the deprecated `createUrlSearchParams()` of the `TerraBaseService`
 
 ### Bug Fixes
 * **radio-group** Adjusted height of `<legend>` and only is rendered when content is available.
