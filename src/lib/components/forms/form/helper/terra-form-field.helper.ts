@@ -115,113 +115,6 @@ export class TerraFormFieldHelper
         return <{ [key:string]:TerraFormFieldInterface }> formFields;
     }
 
-    private static _transformLegacyFormField(field:TerraFormFieldBase<any>):{ key:string, field:TerraFormFieldInterface }
-    {
-        let result:{ key:string, field:TerraFormFieldInterface } = {
-            key:   field.key,
-            field: null
-        };
-        let type:string = this._legacyControlTypeMap[field.controlType];
-
-        result.field = {
-            type:    type,
-            options: {
-                name:             field.label,
-                tooltip:          field.tooltip,
-                tooltipPlacement: field.tooltipPlacement,
-                required:         field.required
-            }
-        };
-
-        let transformFn:string = 'transform' + type.charAt(0).toUpperCase() + type.substr(1) + 'Field';
-        if(isFunction(this[transformFn]))
-        {
-            result.field = this[transformFn](result.field, field);
-        }
-
-        if(!!field.pattern)
-        {
-            result.field.isValid = field.pattern.toString();
-        }
-        else
-        {
-            let validators:Array<string> = [];
-            if(field.minLength >= 0)
-            {
-                validators.push('this.length >= ' + field.minLength);
-            }
-            if(field.maxLength >= 0)
-            {
-                validators.push('this.length <= ' + field.maxLength);
-            }
-            if(!isNullOrUndefined(field.minValue))
-            {
-                validators.push('this >= ' + field.minValue);
-            }
-            if(!isNullOrUndefined(field.maxValue))
-            {
-                validators.push('this <= ' + field.maxValue);
-            }
-            result.field.isValid = validators.join(' && ');
-        }
-
-        if(field.controlType === TerraControlTypeEnum.CONDITIONAL_CONTAINER
-           || field.controlType === TerraControlTypeEnum.HORIZONTAL_CONTAINER
-           || field.controlType === TerraControlTypeEnum.VERTICAL_CONTAINER)
-        {
-            result.field.children = this.detectLegacyFormFields(
-                (<TerraFormFieldBaseContainer> field).containerEntries
-            );
-        }
-
-        return result;
-    }
-
-    private static _transformCodeEditorField(result:TerraFormFieldInterface,
-                                            field:TerraFormFieldCodeEditorOptions):TerraFormFieldInterface
-    {
-        result.options.fixedHeight = field.fixedHeight;
-        return result;
-    }
-
-    private static _transformDoubleField(result:TerraFormFieldInterface,
-                                        field:TerraFormFieldInputDouble):TerraFormFieldInterface
-    {
-        result.options.isPrice = field.isPrice;
-        result.options.decimalCount = field.decimalCount;
-        return result;
-    }
-
-    private static _transformFileField(result:TerraFormFieldInterface,
-                                      field:TerraFormFieldInputFile):TerraFormFieldInterface
-    {
-        result.options.allowedExtensions = field.inputAllowedExtensions;
-        return result;
-    }
-
-    private static _transformCheckboxGroupField(result:TerraFormFieldInterface,
-                                               field:TerraFormFieldMultiCheckBox):TerraFormFieldInterface
-    {
-        result.options.checkBoxValues = field.checkBoxValues;
-        return result;
-    }
-
-    private static _transformTextField(result:TerraFormFieldInterface,
-                                      field:TerraFormFieldInputText):TerraFormFieldInterface
-    {
-        result.options.isPassword = field.isPassword;
-        result.options.isIBAN = field.isIBAN;
-        result.options.isReadOnly = field.isReadOnly;
-        return result;
-    }
-
-    private static _transformSelectField(result:TerraFormFieldInterface,
-                                        field:TerraFormFieldSelectBox):TerraFormFieldInterface
-    {
-        result.options.listBoxValues = field.selectBoxValues;
-        return result;
-    }
-
     /**
      * @description Parses the upper and lower limit of form fields for a FormArray/FormEntryList based on a given string.
      * If no lower limit is given, 0 is returned. If no upper limit is given, Infinity is returned.
@@ -318,6 +211,113 @@ export class TerraFormFieldHelper
             values[formFieldKey] = this.parseDefaultValue(formField);
         });
         return values;
+    }
+
+    private static _transformLegacyFormField(field:TerraFormFieldBase<any>):{ key:string, field:TerraFormFieldInterface }
+    {
+        let result:{ key:string, field:TerraFormFieldInterface } = {
+            key:   field.key,
+            field: null
+        };
+        let type:string = this._legacyControlTypeMap[field.controlType];
+
+        result.field = {
+            type:    type,
+            options: {
+                name:             field.label,
+                tooltip:          field.tooltip,
+                tooltipPlacement: field.tooltipPlacement,
+                required:         field.required
+            }
+        };
+
+        let transformFn:string = 'transform' + type.charAt(0).toUpperCase() + type.substr(1) + 'Field';
+        if(isFunction(this[transformFn]))
+        {
+            result.field = this[transformFn](result.field, field);
+        }
+
+        if(!!field.pattern)
+        {
+            result.field.isValid = field.pattern.toString();
+        }
+        else
+        {
+            let validators:Array<string> = [];
+            if(field.minLength >= 0)
+            {
+                validators.push('this.length >= ' + field.minLength);
+            }
+            if(field.maxLength >= 0)
+            {
+                validators.push('this.length <= ' + field.maxLength);
+            }
+            if(!isNullOrUndefined(field.minValue))
+            {
+                validators.push('this >= ' + field.minValue);
+            }
+            if(!isNullOrUndefined(field.maxValue))
+            {
+                validators.push('this <= ' + field.maxValue);
+            }
+            result.field.isValid = validators.join(' && ');
+        }
+
+        if(field.controlType === TerraControlTypeEnum.CONDITIONAL_CONTAINER
+           || field.controlType === TerraControlTypeEnum.HORIZONTAL_CONTAINER
+           || field.controlType === TerraControlTypeEnum.VERTICAL_CONTAINER)
+        {
+            result.field.children = this.detectLegacyFormFields(
+                (<TerraFormFieldBaseContainer> field).containerEntries
+            );
+        }
+
+        return result;
+    }
+
+    private static _transformCodeEditorField(result:TerraFormFieldInterface,
+                                             field:TerraFormFieldCodeEditorOptions):TerraFormFieldInterface
+    {
+        result.options.fixedHeight = field.fixedHeight;
+        return result;
+    }
+
+    private static _transformDoubleField(result:TerraFormFieldInterface,
+                                         field:TerraFormFieldInputDouble):TerraFormFieldInterface
+    {
+        result.options.isPrice = field.isPrice;
+        result.options.decimalCount = field.decimalCount;
+        return result;
+    }
+
+    private static _transformFileField(result:TerraFormFieldInterface,
+                                       field:TerraFormFieldInputFile):TerraFormFieldInterface
+    {
+        result.options.allowedExtensions = field.inputAllowedExtensions;
+        return result;
+    }
+
+    private static _transformCheckboxGroupField(result:TerraFormFieldInterface,
+                                                field:TerraFormFieldMultiCheckBox):TerraFormFieldInterface
+    {
+        result.options.checkBoxValues = field.checkBoxValues;
+        return result;
+    }
+
+    private static _transformTextField(result:TerraFormFieldInterface,
+                                       field:TerraFormFieldInputText):TerraFormFieldInterface
+    {
+        result.options.isPassword = field.isPassword;
+        result.options.isIBAN = field.isIBAN;
+        result.options.isReadOnly = field.isReadOnly;
+        return result;
+    }
+
+    private static _transformSelectField(result:TerraFormFieldInterface,
+                                         field:TerraFormFieldSelectBox):TerraFormFieldInterface
+    {
+        result.options.listBoxValues = field.selectBoxValues;
+        return result;
     }
 
     /**
