@@ -49,7 +49,6 @@ export class CheckboxGroupComponent implements ControlValueAccessor
     @Input()
     public collapsed:boolean = false;
 
-
     public _multiCheckboxValues:Array<TerraMultiCheckBoxValueInterface> = [];
 
     private _values:Array<any>;
