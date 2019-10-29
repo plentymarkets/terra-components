@@ -1,11 +1,24 @@
-const { series, src, dest } = require('gulp');
-var config = require('./gulp.config.js')();
-var fs = require('fs');
-var semver = require('semver');
-var shell = require('gulp-shell');
-var argv = require('yargs').argv;
-var sass = require('gulp-sass');
-var tildeImporter = require('node-sass-tilde-importer');
+const { series, parallel, src, dest } = require('gulp');
+const config = require('./gulp.config.js')();
+const fs = require('fs');
+const semver = require('semver');
+const argv = require('yargs').argv;
+const sass = require('gulp-sass');
+const tildeImporter = require('node-sass-tilde-importer');
+
+
+// convert global scss styles to css files
+function compileGlobalStyles() {
+    return src(config.sources.scss)
+        .pipe(sass({
+            importer: tildeImporter,
+            outputStyle: 'compressed'
+        }).on('error', sass.logError))
+        .pipe(dest('dist/styles'))
+}
+const compileStyles = compileGlobalStyles;
+exports.compileStyles = compileStyles;
+
 
 //copy fonts to dist
 function copyFonts() {
@@ -30,6 +43,50 @@ function copyJsFiles() {
         .pipe(dest(config.destinations.floatThead));
 }
 
+function copyIconsScss() {
+    return src('src/lib/styles/icons.scss')
+        .pipe(dest(config.destinations.styles));
+}
+
+function copyVariablesScss() {
+    return src('src/lib/styles/_variables.scss')
+        .pipe(dest(config.destinations.styles))
+}
+
+function copyPlentyIconsScss() {
+    return src('src/lib/styles/fonts/plentyicons.scss')
+        .pipe(dest(config.destinations.styles + 'fonts'));
+}
+
+function copyCustomDataTableScss() {
+    return src('src/lib/components/tables/data-table/custom-data-table.scss')
+        .pipe(dest('dist/components/tables/data-table'));
+}
+
+function copyNodeTreeScss() {
+    return src('src/lib/components/tree/node-tree/terra-node-tree.component.scss')
+        .pipe(dest('dist/components/tree/node-tree'));
+}
+
+function copyTagScss() {
+    return src('src/lib/components/layouts/tag/terra-tag.component.scss')
+        .pipe(dest('dist/components/layouts/tag'))
+}
+
+function copyTagListScss() {
+    return src('src/lib/components/layouts/taglist/terra-taglist.component.scss')
+        .pipe(dest('dist/components/layouts/taglist'))
+}
+
+function copyButtonScss() {
+    return src('src/lib/components/buttons/button/terra-button.component.scss')
+        .pipe(dest('dist/components/buttons/button'))
+}
+
+const copySassFiles = parallel(copyIconsScss, copyVariablesScss, copyPlentyIconsScss, copyCustomDataTableScss, copyNodeTreeScss, copyTagScss, copyTagListScss, copyButtonScss);
+const copyFilesToDist = parallel(copyFonts, copyLang, copyReadme, copySassFiles, copyJsFiles);
+
+
 //copy files from dist to terra
 function copyToTerra() {
     return src(config.sources.dist)
@@ -37,54 +94,16 @@ function copyToTerra() {
 }
 
 /**
- * Copies all the files to the dedicated deploy folder
+ * Copies all the files to the dist folder and then to the terra workspace
  **/
-const copy = series(copyFonts, copyLang, copyReadme, copyJsFiles, copyToTerra);
+const copy = series(copyFilesToDist, copyToTerra);
 exports.copy = copy;
 
-// convert global scss styles to css files
-function compileCss() {
-    return src(config.sources.scss)
-    .pipe(sass({
-        importer: tildeImporter,
-        outputStyle: 'compressed'
-    }).on('error', sass.logError))
-    .pipe(dest('dist/styles'))
-}
 
-/**
- * Compiles scss to css
- **/
-exports.compileStyles = compileCss;
-
-//changing version of package.json for new publish
-function changeVersion(done) {
-    const increment = argv.increment ? argv.increment : 'patch';
-    const preid = argv.preid ? argv.preid : '';
-    const json = JSON.parse(fs.readFileSync(config.sources.packageJson));
-
-    console.log('-------------------------------------------------');
-    console.log('--- OLD PACKAGE VERSION: ' + json.version + ' ---');
-
-    json.version = semver.inc(json.version, increment, preid);
-
-    version = json.version;
-
-    console.log('--- NEW PACKAGE VERSION: ' + json.version + ' ---');
-    console.log('-------------------------------------------------');
-
-    fs.writeFileSync(config.sources.packageJson, JSON.stringify(json, null, '\t'));
-    done();
-}
-
-//publish to npm
-function publish() {
-    return shell.task(['npm publish dist'])
-}
 
 /**
  *
- * usage: 'npm run publish -- --param1 --param2 param2_value' for publishing
+ * usage: 'gulp changeVersion --param1 --param2 param2_value'
  *
  * @param increment  - Possible values are
  *                      major           (1.x.x to 2.x.x),
@@ -101,5 +120,27 @@ function publish() {
  *     'node_modules/@plentymarkets/terra-components' in target directory
  *
  **/
-const release = series(changeVersion, compileCss, copy, publish);
-exports.release = release;
+function changeVersion(done) {
+    const libPath = 'src/lib/package.json';
+    const distPath = 'dist/package.json';
+    const increment = argv.increment ? argv.increment : 'patch';
+    const preid = argv.preid ? argv.preid : '';
+    const jsonLib = JSON.parse(fs.readFileSync(libPath));
+    const jsonDist = JSON.parse(fs.readFileSync(distPath));
+
+    console.log('-------------------------------------------------');
+    console.log('--- OLD PACKAGE VERSION: ' + jsonDist.version + ' ---');
+
+    const version = semver.inc(jsonDist.version, increment, preid);
+
+    console.log('--- NEW PACKAGE VERSION: ' + version + ' ---');
+    console.log('-------------------------------------------------');
+
+    jsonDist.version = version;
+    jsonLib.version = version;
+    fs.writeFileSync(libPath, JSON.stringify(jsonLib, null, '\t'));
+    fs.writeFileSync(distPath, JSON.stringify(jsonDist, null, '\t'));
+    done();
+}
+exports.changeVersion = changeVersion;
+

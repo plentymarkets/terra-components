@@ -13,7 +13,6 @@ module.exports = function () {
             'src/lib/styles/icons.scss',
             'src/lib/styles/themes/theme-loader.scss'
         ],
-        packageJson: 'src/lib/package.json',
         readme: 'README.md'
     };
 
@@ -21,6 +20,7 @@ module.exports = function () {
         tsOutputPath: './dist/',
         fontsOutputPath: './dist/assets/fonts/',
         langOutputPath: './dist/assets/lang/',
+        styles: './dist/styles/',
         floatThead: './dist/components/tables/data-table/float-thead/',
 
         terra: '../terra/node_modules/@plentymarkets/terra-components/',

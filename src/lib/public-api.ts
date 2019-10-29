@@ -82,6 +82,8 @@ export { TerraPagerParameterInterface } from './components/pager/data/terra-page
 // DATA TABLE
 export { TerraDataTableCellInterface } from './components/tables/data-table/interfaces/terra-data-table-cell.interface';
 export { TerraHrefTypeInterface } from './components/tables/data-table/interfaces/terra-href-type.interface';
+export { TerraDataTableSortOrderEnum } from './components/tables/data-table/enums/terra-data-table-sort-order.enum';
+export { TerraHrefTypeEnum } from './components/tables/data-table/enums/terra-href-type.enum';
 export { TerraDataTableTextInterface } from './components/tables/data-table/interfaces/terra-data-table-text.interface';
 export { TerraDataTableHeaderCellInterface } from './components/tables/data-table/interfaces/terra-data-table-header-cell.interface';
 export { TerraDataTableRowInterface } from './components/tables/data-table/interfaces/terra-data-table-row.interface';
@@ -152,21 +154,12 @@ export { TerraInfoComponent } from './components/info/terra-info.component';
 // TODO dynamic form deprecated? eigene index?
 export { TerraDynamicFormComponent } from './components/forms/dynamic-form/terra-dynamic-form.component';
 export { TerraDynamicSwitchComponent } from './components/forms/dynamic-form/dynamic-switch/terra-dynamic-switch.component';
-export { TerraFormFieldBase } from './components/forms/dynamic-form/data/terra-form-field-base';
-export { TerraFormFieldInputText } from './components/forms/dynamic-form/data/terra-form-field-input-text';
-export { TerraFormFieldInputNumber } from './components/forms/dynamic-form/data/terra-form-field-input-number';
-export { TerraFormFieldSelectBox } from './components/forms/dynamic-form/data/terra-form-field-select-box';
-export { TerraFormFieldHorizontalContainer } from './components/forms/dynamic-form/data/terra-form-field-horizontal-container';
-export { TerraFormFieldVerticalContainer } from './components/forms/dynamic-form/data/terra-form-field-vertical-container';
-export { TerraFormFieldCheckBox } from './components/forms/dynamic-form/data/terra-form-field-check-box';
-export { TerraFormFieldDatePicker } from './components/forms/dynamic-form/data/terra-form-field-date-picker';
-export { TerraFormFieldCategoryPicker } from './components/forms/dynamic-form/data/terra-form-field-category-picker';
 export { TerraDynamicFormFunctionsHandler } from './components/forms/dynamic-form/handler/terra-dynamic-form-functions.handler';
 export { TerraControlTypeEnum } from './components/forms/dynamic-form/enum/terra-control-type.enum';
 export { TerraJsonToFormFieldService } from './components/forms/dynamic-form/service/terra-json-to-form-field.service';
 export { TerraDynamicFormService } from './components/forms/dynamic-form/service/terra-dynamic-form.service';
 export { TerraFormFieldControlService } from './components/forms/dynamic-form/service/terra-form-field-control.service';
-
+export * from './components/forms/dynamic-form/data/form-fields';
 
 export { TerraKeyValueInterface } from './models/terra-key-value.interface';
 
@@ -209,7 +202,6 @@ export { TerraBreadcrumbsComponent } from './components/breadcrumbs/terra-breadc
 export { TerraBreadcrumb } from './components/breadcrumbs/terra-breadcrumb';
 export { TerraBreadcrumbsService } from './components/breadcrumbs/service/terra-breadcrumbs.service';
 export { TerraTagSelectComponent } from './components/forms/tag-select/terra-tag-select.component';
-export { TerraHrefTypeEnum } from './components/tables/data-table/enums/terra-href-type.enum';
 export { TerraGroupFunctionComponent } from './components/tables/group-function/terra-group-function.component';
 export { TerraDataTableBaseService } from './components/tables/data-table/terra-data-table-base.service';
 export { TableRowComponent } from './components/tables/data-table/table-row/table-row.component';
