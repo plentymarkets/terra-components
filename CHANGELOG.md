@@ -8,6 +8,7 @@
 
 ### Bug Fixes
 * **radio-group** Adjusted height of `<legend>` and only is rendered when content is available.
+* **file-browser** Restrict number of parallel uploads 
 
 <a name="4.5.0"></a>
 # 4.5.0 (09.10.2019)
