@@ -48,6 +48,11 @@ function copyIconsScss() {
         .pipe(dest(config.destinations.styles));
 }
 
+function copyVariablesScss() {
+    return src('src/lib/styles/_variables.scss')
+        .pipe(dest(config.destinations.styles))
+}
+
 function copyPlentyIconsScss() {
     return src('src/lib/styles/fonts/plentyicons.scss')
         .pipe(dest(config.destinations.styles + 'fonts'));
@@ -78,7 +83,7 @@ function copyButtonScss() {
         .pipe(dest('dist/components/buttons/button'))
 }
 
-const copySassFiles = parallel(copyIconsScss, copyPlentyIconsScss, copyCustomDataTableScss, copyNodeTreeScss, copyTagScss, copyTagListScss, copyButtonScss);
+const copySassFiles = parallel(copyIconsScss, copyVariablesScss, copyPlentyIconsScss, copyCustomDataTableScss, copyNodeTreeScss, copyTagScss, copyTagListScss, copyButtonScss);
 const copyFilesToDist = parallel(copyFonts, copyLang, copyReadme, copySassFiles, copyJsFiles);
 
 
