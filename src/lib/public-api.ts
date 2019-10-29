@@ -3,6 +3,7 @@ export * from './http-interceptors';
 export * from './helpers';
 export * from './models';
 export * from './components/editors/ck-editor/presets';
+export * from './utils';
 
 export { TerraComponentsModule } from './terra-components.module';
 export { TerraComponentsExamplesModule } from './terra-components-examples.module';
