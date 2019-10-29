@@ -7,7 +7,7 @@
 		"test-once": "ng test lib --watch=false --browsers=Chrome,Firefox,Safari",
 		"test-headless": "ng test lib --watch=false --browsers=ChromeHeadless,FirefoxHeadless",
 		"lint": "ng lint lib",
-		"eslint": "eslint 'src/**/*.ts' --quiet=true",
+		"eslint": "eslint 'src/app/**/*.ts' 'src/lib/**/*.ts' --quiet=true",
 		"release": "ng build lib && gulp release",
 		"reinstall": "rm -rf node_modules/ && npm i"
 	},
