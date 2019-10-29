@@ -6,7 +6,6 @@ import {
 } from 'angular-l10n';
 import { environment } from 'src/lib/environments/environment';
 
-
 const logLevel:LogLevel = environment.test ? LogLevel.Off : LogLevel.Warn;
 export const l10nConfig:L10nConfig = {
     logger:      {
