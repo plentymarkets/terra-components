@@ -9,8 +9,7 @@ import {
     ActivatedRoute,
     NavigationEnd,
     Router,
-    RouterEvent,
-    Data
+    RouterEvent
 } from '@angular/router';
 import { Event } from '@angular/router/src/events';
 import { TwoColumnHelper } from '../../../../helpers/two-column.helper';
@@ -57,7 +56,7 @@ export class TerraTwoColumnsContainerDirective implements OnInit, OnDestroy
             }
         });
 
-        this._dataSub = this._route.data.subscribe((data:Data) =>
+        this._dataSub = this._route.data.subscribe(() =>
         {
             this._basePath = this._router.url;
         });
