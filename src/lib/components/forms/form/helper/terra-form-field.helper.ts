@@ -328,7 +328,7 @@ export class TerraFormFieldHelper
     {
         if(isObject(value) || Array.isArray(value))
         {
-            return cloneDeep((value));
+            return cloneDeep(value);
         }
         return value;
     }
