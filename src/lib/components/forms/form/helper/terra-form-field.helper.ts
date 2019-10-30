@@ -18,8 +18,8 @@ import { TerraJsonToFormFieldService } from '../../dynamic-form/service/terra-js
 import { TerraControlTypeEnum } from '../../dynamic-form/enum/terra-control-type.enum';
 import { TerraFormFieldInputText } from '../../dynamic-form/data/terra-form-field-input-text';
 import { TerraFormFieldSelectBox } from '../../dynamic-form/data/terra-form-field-select-box';
-import * as cloneDeep from 'lodash.clonedeep';
 import { TerraKeyValueInterface } from '../../../../models';
+import { cloneDeep } from 'lodash.clonedeep';
 
 export class TerraFormFieldHelper
 {
