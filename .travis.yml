@@ -15,5 +15,12 @@ cache:
 install:
   - npm run reinstall
 
-script:
-  - npm run test-headless
+jobs:
+  include:
+    - stage: "Unit Tests"
+      name: "Unit Tests"
+      script: npm run test-headless
+    - stage: "Lint"
+      name: "Lint"
+      script: npm run lint
+      
