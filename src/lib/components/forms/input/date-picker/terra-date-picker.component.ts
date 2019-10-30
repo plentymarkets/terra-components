@@ -82,7 +82,7 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
     protected currentLocale:string;
     protected id:string;
     protected datePickerOptions:IMyOptions;
-    protected valueAsString:string;
+    protected dateAsString:string;
 
     private _value:IMyDateModel;
 
@@ -156,7 +156,7 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
 
         if(this.viewChildMyDatePicker && this.viewChildMyDatePicker.inputBoxEl)
         {
-            this.valueAsString = this.viewChildMyDatePicker.inputBoxEl.nativeElement.value;
+            this.dateAsString = this.viewChildMyDatePicker.inputBoxEl.nativeElement.value;
         }
     }
 

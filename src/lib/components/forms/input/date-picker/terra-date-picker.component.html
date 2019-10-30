@@ -13,7 +13,7 @@
     </my-date-picker>
     <label [tcTooltip]="inputName"
            [onlyEllipsisTooltip]="true"
-           *ngIf="(value || valueAsString) && inputName"
+           *ngIf="(value || dateAsString) && inputName"
            htmlFor="{{id}}">{{inputName}}
         <span *ngIf="inputIsRequired">*</span>
     </label>
