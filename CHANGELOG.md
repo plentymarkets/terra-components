@@ -8,7 +8,7 @@ Terra-Components now complies with the angular package format and code autocompl
 * **dependencies** Every dependency of Terra-Components now is a peer dependency. You need to install these dependencies in your project.
 
 <a name="4.6.0"></a>
-# 4.6.0 (unreleased)
+# 4.6.0 (30.10.2019)
 
 ### Features
 * **validators** New `uniqueValues` validator which checks if the values of a FormArray are unique.
