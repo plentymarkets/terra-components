@@ -1,0 +1,17 @@
+<h1>Tabs used for routing (in tabbar)</h1>
+
+<nav mat-tab-nav-bar>
+    <a mat-tab-link *ngFor="let link of links"
+       (click)="activeLink = link"
+       [active]="activeLink == link"> {{link}} </a>
+    <a mat-tab-link disabled>Disabled Link</a>
+</nav>
+
+
+<h1>Tabs used for displaying other content (maybe custom UI)</h1>
+
+<mat-tab-group>
+    <mat-tab label="First"> Content 1 </mat-tab>
+    <mat-tab label="Second"> Content 2 </mat-tab>
+    <mat-tab label="Third"> Content 3 </mat-tab>
+</mat-tab-group>
