@@ -1,5 +1,5 @@
 <a name="4.6.0"></a>
-# 4.6.0 (unreleased)
+# 4.6.0 (30.10.2019)
 
 ### Features
 * **validators** New `uniqueValues` validator which checks if the values of a FormArray are unique.
