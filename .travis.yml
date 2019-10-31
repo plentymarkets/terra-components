@@ -17,9 +17,9 @@ install:
 
 jobs:
   include:
-    - stage: "Unit Tests"
-      name: "Unit Tests"
+    - stage: "Check unit tests"
+      name: "Unit tests"
       script: npm run test-headless
-    - stage: "Lint"
-      name: "Check Lint rules"
+    - stage: "Check TSLint rules"
+      name: "Lint"
       script: npm run lint
