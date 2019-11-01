@@ -1,7 +1,9 @@
-# Unreleased
+<a name="4.7.0"></a>
+# 4.7.0 (unreleased)
 
 ### Bug Fixes
-* **file-browser** Restrict number of parallel uploads 
+* **terra-button-with-options** `isHidden` option is now interpreted correctly.
+* **file-browser** Restrict number of parallel uploads
 
 <a name="4.6.0"></a>
 # 4.6.0 (30.10.2019)
