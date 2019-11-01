@@ -2,7 +2,7 @@
 # 4.7.0 (unreleased)
 
 ### Bug Fixes
-* **terra-button-with-options** `isHidden` option is now interpreted correcty.
+* **terra-button-with-options** `isHidden` option is now interpreted correctly.
 
 <a name="4.6.0"></a>
 # 4.6.0 (30.10.2019)
