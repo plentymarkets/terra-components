@@ -7,6 +7,44 @@
            [active]="activeLink == link">
             {{link}}
         </a>
+        <a class="caret">
+            <ul class="context-menu">
+                <li id="reload" >
+                    <a>
+                        <span class="left-icon icon-reload"></span>
+                        {{'reload'}}
+                    </a>
+                </li>
+                <li id="duplicate">
+                    <a>
+                        <span class="left-icon icon-copy"></span>
+                        {{'duplicate'}}
+                    </a>
+                </li>
+                <li id="openManual">
+                    <a>
+                        <span class="left-icon icon-manual_search"></span>
+                        {{'searchInManual'}}
+                    </a>
+                </li>
+                <li id="closeOther">
+                    <a>
+                        <span class="left-icon icon-design_copy"></span>
+                        {{'closeOtherTabs'}}
+                    </a>
+                </li>
+                <li id="favorite">
+                    <a >
+                        <span class="left-icon icon-favourite_active"></span>
+                        {{'addToFavourites'}}
+                    </a>
+                    <a>
+                        <span class="left-icon icon-favourite_inactive"></span>
+                        {{'removeFromFavourites'}}
+                    </a>
+                </li>
+            </ul>
+        </a>
         <button type="button"
                 class="close"
                 aria-label="Close">

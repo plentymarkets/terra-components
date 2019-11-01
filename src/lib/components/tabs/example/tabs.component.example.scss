@@ -1,0 +1,42 @@
+.caret
+{
+    padding: 6px 0 6px 0;
+    overflow: hidden;
+    
+    .context-menu
+    {
+        top: calc(var(--tabbar-height) - var(--space-lg));
+        position: absolute;
+        left: auto;
+        right: auto;
+        bottom: auto;
+    }
+    
+    &::before
+    {
+        display: inline-block;
+        width: 0;
+        height: 0;
+        margin-left: 3px;
+        margin-right: 9px;
+        vertical-align: middle;
+        content: "";
+        border-top: 0.3em solid;
+        border-right: 0.3em solid transparent;
+        border-left: 0.3em solid transparent;
+        overflow: hidden;
+    }
+    
+    &:hover
+    {
+        color: var(--color-structure-0);
+        .context-menu
+        {
+            display: block;
+            visibility: visible;
+            opacity: 1;
+            transition: all var(--transition-sm);
+            transition-delay: var(--transition-delay-sm);
+        }
+    }
+}
