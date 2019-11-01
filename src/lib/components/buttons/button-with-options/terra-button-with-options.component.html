@@ -10,7 +10,7 @@
     <!-- options dropdown -->
     <ul btn-outer *ngIf="optionsToggle" class="context-menu" [ngClass]="{'alignRight': alignRight, 'small': inputIsSmall}">
         <li *ngFor="let option of inputOptions">
-            <a *ngIf="!option.isDivider"
+            <a [hidden]="option.isHidden" *ngIf="!option.isDivider"
                (click)="optionsClick(option)"
                [ngClass]="{'disabled': option.isDisabled, 'alignRight': alignRight}">
                 <span *ngIf="option.icon" class="left-icon" [ngClass]="option.icon" [ngStyle]="{color: option.iconColor}"></span>
