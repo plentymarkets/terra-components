@@ -14,7 +14,9 @@
               placeholder="{{inputName}}"
               [class.resizable]="!inputHasFixedHeight">
     </textarea>
-    <label class="textarea-label" htmlFor="{{_id}}">{{inputName}}
+    <label tabindex="-1"
+           class="textarea-label"
+           htmlFor="{{_id}}">{{inputName}}
         <span *ngIf="inputIsRequired">*</span>
     </label>
 </div>
