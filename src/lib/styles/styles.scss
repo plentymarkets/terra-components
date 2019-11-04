@@ -81,7 +81,7 @@ body
         {
             div
             {
-                button
+                button, a
                 {
                     display: block;
                     font-family: var(--font-family);
@@ -96,6 +96,7 @@ body
                     background-color: var(--context-menu-background-color, var(--color-structure-11));
                     color: var(--context-menu-color, var(--color-structure-0)) !important;
                     border: none;
+                    cursor: pointer;
 
                     &:hover
                     {
@@ -105,6 +106,11 @@ body
                     &:focus
                     {
                         outline: none;
+                    }
+
+                    &.danger
+                    {
+                        background-color: var(--color-alert);
                     }
                 }
             }
