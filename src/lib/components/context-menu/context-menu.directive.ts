@@ -6,6 +6,7 @@ import {
     Input,
     OnChanges,
     OnDestroy,
+    OnInit,
     SimpleChanges,
     TemplateRef,
     ViewContainerRef
@@ -16,11 +17,12 @@ import { TerraPlacementEnum } from '../../helpers/enums/terra-placement.enum';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ContextMenuTrigger } from './context-menu-trigger';
+import { ContextMenuService } from './context-menu.service';
 
 @Directive({
     selector: '[tcContextMenu]'
 })
-export class ContextMenuDirective implements OnDestroy, OnChanges
+export class ContextMenuDirective<D> implements OnDestroy, OnChanges, OnInit
 {
     /**
      * @description The context-menu content.
@@ -34,13 +36,38 @@ export class ContextMenuDirective implements OnDestroy, OnChanges
     @Input()
     public trigger:ContextMenuTrigger = ContextMenuTrigger.hover;
 
+    @Input()
+    public data:D;
+
     private contextMenuEl:any;
     private navigationSubscription:Subscription;
+    private eventData:{ event:MouseEvent, data:D };
 
     constructor(private elementRef:ElementRef,
                 private containerRef:ViewContainerRef,
-                private router:Router)
+                private router:Router,
+                private contextMenuService:ContextMenuService<D>)
     {
+    }
+
+    public ngOnInit():void
+    {
+        this.contextMenuService.show.subscribe((eventData:{ event:MouseEvent, data:D }):void =>
+        {
+            this.eventData = eventData;
+
+            if(eventData.event.target !== this.elementRef.nativeElement)
+            {
+                this.contextMenuEl.hide();
+            }
+            else
+            {
+                if(this.contextMenuEl && this.trigger === ContextMenuTrigger.rightClick)
+                {
+                    this.contextMenuEl.show();
+                }
+            }
+        });
     }
 
     public ngOnChanges(changes:SimpleChanges):void
@@ -78,12 +105,13 @@ export class ContextMenuDirective implements OnDestroy, OnChanges
     @HostListener('contextmenu', ['$event'])
     public onMouseOver(event:MouseEvent):void
     {
-        if(this.contextMenuEl && this.trigger === ContextMenuTrigger.rightClick)
-        {
-            event.stopPropagation();
-            event.preventDefault();
-            this.contextMenuEl.show();
-        }
+        event.stopPropagation();
+        event.preventDefault();
+
+        this.contextMenuService.show.next({
+            event: event,
+            data:  this.data
+        });
     }
 
     public ngOnDestroy():void
