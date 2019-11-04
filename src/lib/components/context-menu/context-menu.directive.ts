@@ -128,6 +128,7 @@ export class ContextMenuDirective implements OnDestroy, OnChanges
                 content:     contextMenu,
                 trigger:     trigger,
                 interactive: true,
+                hideOnClick: false,
                 arrow:       false,
                 boundary:    'window',
                 placement:   TerraPlacementEnum.BOTTOM,
