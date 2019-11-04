@@ -15,6 +15,7 @@ import tippy from 'tippy.js';
 import { TerraPlacementEnum } from '../../helpers/enums/terra-placement.enum';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { ContextMenuTrigger } from './context-menu-trigger';
 
 @Directive({
     selector: '[tcContextMenu]'
@@ -22,12 +23,18 @@ import { Subscription } from 'rxjs';
 export class ContextMenuDirective implements OnDestroy, OnChanges
 {
     /**
-     * @description The tooltip text.
+     * @description The context-menu content.
      */
     @Input()
     public tcContextMenu:TemplateRef<any>;
 
-    private tooltipEl:any;
+    /**
+     * @description The method how to trigger the context-menu.
+     */
+    @Input()
+    public trigger:ContextMenuTrigger = ContextMenuTrigger.hover;
+
+    private contextMenuEl:any;
     private navigationSubscription:Subscription;
 
     constructor(private elementRef:ElementRef,
@@ -49,40 +56,41 @@ export class ContextMenuDirective implements OnDestroy, OnChanges
                 div.append(node);
             });
 
-            this.initTooltip(div);
+            this.initContextMenu(div);
 
             this.navigationSubscription = this.router.events.subscribe(() =>
             {
-                this.tooltipEl.hide(0);
+                this.contextMenuEl.hide(0);
             });
         }
     }
 
-    // @HostListener('mouseout', ['$event'])
-    // public onMouseOut(event:MouseEvent):void
-    // {
-    //     event.stopPropagation();
-    //     // if(this.tooltipEl)
-    //     // {
-    //     //     this.tooltipEl.hide(0);
-    //     // }
-    // }
+    @HostListener('window:click', ['$event'])
+    public onMouseOut(event:MouseEvent):void
+    {
+        if(this.contextMenuEl && this.trigger === ContextMenuTrigger.rightClick)
+        {
+            event.stopPropagation();
+            this.contextMenuEl.hide();
+        }
+    }
 
-    // @HostListener('mouseover', ['$event'])
-    // public onMouseOver(event:MouseEvent):void
-    // {
-    //     event.stopPropagation();
-    //     if(this.tooltipEl)
-    //     {
-    //         this.tooltipEl.show(0);
-    //     }
-    // }
+    @HostListener('contextmenu', ['$event'])
+    public onMouseOver(event:MouseEvent):void
+    {
+        if(this.contextMenuEl && this.trigger === ContextMenuTrigger.rightClick)
+        {
+            event.stopPropagation();
+            event.preventDefault();
+            this.contextMenuEl.show();
+        }
+    }
 
     public ngOnDestroy():void
     {
-        if(this.tooltipEl)
+        if(this.contextMenuEl)
         {
-            this.tooltipEl.destroy();
+            this.contextMenuEl.destroy();
         }
 
         if(this.navigationSubscription)
@@ -93,14 +101,32 @@ export class ContextMenuDirective implements OnDestroy, OnChanges
 
     /**
      * initialize the tippy element
-     * @param tooltip
+     * @param contextMenu
      */
-    private initTooltip(tooltip:string | Element):void
+    private initContextMenu(contextMenu:Element):void
     {
-        if(!this.tooltipEl)
+        if(!this.contextMenuEl)
         {
-            this.tooltipEl = tippy(this.elementRef.nativeElement, {
-                content:     tooltip,
+            let trigger:string;
+
+            switch(this.trigger)
+            {
+                case ContextMenuTrigger.leftClick:
+                    trigger = 'click';
+                    break;
+
+                case ContextMenuTrigger.rightClick:
+                    trigger = 'manual';
+                    break;
+
+                case ContextMenuTrigger.hover:
+                default:
+                    trigger = 'mouseenter focus';
+            }
+
+            this.contextMenuEl = tippy(this.elementRef.nativeElement, {
+                content:     contextMenu,
+                trigger:     trigger,
                 interactive: true,
                 arrow:       false,
                 boundary:    'window',
@@ -111,7 +137,7 @@ export class ContextMenuDirective implements OnDestroy, OnChanges
         }
         else
         {
-            this.tooltipEl.setContent(tooltip);
+            this.contextMenuEl.setContent(contextMenu);
         }
     }
 }
