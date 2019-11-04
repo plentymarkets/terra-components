@@ -3,15 +3,6 @@
     padding: 6px 0 6px 0;
     overflow: hidden;
 
-    .context-menu
-    {
-        top: calc(var(--tabbar-height) - var(--space-lg));
-        position: absolute;
-        left: auto;
-        right: auto;
-        bottom: auto;
-    }
-
     &::before
     {
         display: inline-block;
@@ -29,15 +20,6 @@
 
     &:hover
     {
-        color: var(--color-structure-0);
-
-        .context-menu
-        {
-            display: block;
-            visibility: visible;
-            opacity: 1;
-            transition: all var(--transition-sm);
-            transition-delay: var(--transition-delay-sm);
-        }
+        color: var(--color-active);
     }
 }
