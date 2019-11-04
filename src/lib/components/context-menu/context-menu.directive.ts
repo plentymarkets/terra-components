@@ -68,15 +68,15 @@ export class ContextMenuDirective implements OnDestroy, OnChanges
     //     // }
     // }
 
-    @HostListener('mouseover', ['$event'])
-    public onMouseOver(event:MouseEvent):void
-    {
-        event.stopPropagation();
-        if(this.tooltipEl)
-        {
-            this.tooltipEl.show(0);
-        }
-    }
+    // @HostListener('mouseover', ['$event'])
+    // public onMouseOver(event:MouseEvent):void
+    // {
+    //     event.stopPropagation();
+    //     if(this.tooltipEl)
+    //     {
+    //         this.tooltipEl.show(0);
+    //     }
+    // }
 
     public ngOnDestroy():void
     {
