@@ -18,6 +18,7 @@
            [ngClass]="{'isSmall' : inputIsSmall, 'isEmpty' : !innerValue && innerValue !== 0 }">
     <label [tcTooltip]="inputName"
            [onlyEllipsisTooltip]="true"
+           tabindex="-1"
            *ngIf="innerValue || innerValue === 0" htmlFor="{{id}}">{{inputName}}
         <span *ngIf="inputIsRequired">*</span>
     </label>

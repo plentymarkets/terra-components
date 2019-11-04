@@ -1,12 +1,20 @@
+<a name="4.7.0"></a>
+# 4.7.0 (unreleased)
+
+### Bug Fixes
+* **terra-button-with-options** `isHidden` option is now interpreted correctly.
+
 <a name="4.6.0"></a>
-# 4.6.0 (unreleased)
+# 4.6.0 (30.10.2019)
 
 ### Features
 * **validators** New `uniqueValues` validator which checks if the values of a FormArray are unique.
+* **terra-pager** Using its own SCSS variables now.
 * **utils** provide new `createHttpParams()` method which replaces the deprecated `createUrlSearchParams()` of the `TerraBaseService`
 
 ### Bug Fixes
 * **radio-group** Adjusted height of `<legend>` and only is rendered when content is available.
+* **inputs** Tabindex of labels set to -1 to avoid tab focus in a form.
 
 <a name="4.5.0"></a>
 # 4.5.0 (09.10.2019)

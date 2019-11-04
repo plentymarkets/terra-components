@@ -10,7 +10,8 @@
                     [options]="datePickerOptions"
                     (inputFocusBlur)="onFocusOrBlur($event)">
     </my-date-picker>
-    <label [tcTooltip]="inputName"
+    <label tabindex="-1"
+           [tcTooltip]="inputName"
            [onlyEllipsisTooltip]="true"
            htmlFor="{{id}}">{{inputName}}
         <span *ngIf="inputIsRequired">*</span>
