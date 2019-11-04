@@ -7,6 +7,7 @@ import { FormEntryContainerDirective } from './forms/form/form-entry/form-entry-
 import { CKEditorDirective } from './editors/ck-editor/ck-editor.directive';
 import { TooltipDirective } from './tooltip/tooltip.directive';
 import { FloatTheadDirective } from './tables/data-table/float-thead/float-thead.directive';
+import { ContextMenuDirective } from './context-menu/context-menu.directive';
 
 export const directives:Array<Type<any>> = [
     TerraDataTableContextMenuDirective,
@@ -16,5 +17,6 @@ export const directives:Array<Type<any>> = [
     FormEntryContainerDirective,
     CKEditorDirective,
     TooltipDirective,
-    FloatTheadDirective
+    FloatTheadDirective,
+    ContextMenuDirective
 ];
