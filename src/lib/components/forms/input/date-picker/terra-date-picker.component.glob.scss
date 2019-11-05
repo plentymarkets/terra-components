@@ -27,7 +27,7 @@
 
             input
             {
-                color: var(--color-structure-10);
+                color: var(--input-color, var(--color-structure-13));
                 border-bottom: var(--input-wrapper-border, (1px solid var(--border-color)));
                 border-radius: var(--border-radius) var(--border-radius) 0 0;
                 background-color: var(--input-background-color, var(--color-structure-0));
@@ -36,6 +36,7 @@
                 width: 100%;
                 font-family: var(--font-family);
                 font-size: var(--font-size-3) !important;
+                font-weight: var(--font-weight-2);
                 text-align: var(--input-text-align, left);
                 outline: none !important;
                 transition: all var(--transition-sm);
@@ -48,24 +49,28 @@
                 &::-webkit-input-placeholder
                 {
                     font-size: var(--font-size-3);
+                    font-weight: var(--font-weight-1);
                     color: var(--color-structure-7);
                 }
 
                 &:-moz-placeholder
                 { /* Firefox 18- */
                     font-size: var(--font-size-3);
+                    font-weight: var(--font-weight-1);
                     color: var(--color-structure-7);
                 }
 
                 &::-moz-placeholder
                 { /* Firefox 19+ */
                     font-size: var(--font-size-3);
+                    font-weight: var(--font-weight-1);
                     color: var(--color-structure-7);
                 }
 
                 &:-ms-input-placeholder
                 {
                     font-size: var(--font-size-3);
+                    font-weight: var(--font-weight-1);
                     color: var(--color-structure-7);
                 }
 
