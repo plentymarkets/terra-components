@@ -114,9 +114,18 @@ export class TerraDataTableComponentExample implements OnInit
 
     private createContextMenu():Array<TerraDataTableContextMenuEntryInterface<TerraDataTableExampleInterface>>
     {
-        return [{
-            title:         'Show alert',
-            clickFunction: (data:TerraDataTableExampleInterface):void => alert(`The rows value is ${data.value}`)
-        }];
+        return [
+            {
+                title:         'Show alert',
+                clickFunction: (data:TerraDataTableExampleInterface):void => alert(`The rows value is ${data.value}`)
+            },
+            {
+                isDivider: true
+            },
+            {
+                title:         'Show alert 2',
+                clickFunction: (data:TerraDataTableExampleInterface):void => alert(`The rows mail is ${data.mail}`)
+            }
+        ];
     }
 }

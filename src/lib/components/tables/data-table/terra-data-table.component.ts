@@ -8,7 +8,6 @@ import {
     OnInit,
     SimpleChanges
 } from '@angular/core';
-import { TerraDataTableContextMenuService } from './context-menu/terra-data-table-context-menu.service';
 import { TerraDataTableBaseService } from './terra-data-table-base.service';
 import { TerraDataTableHeaderCellInterface } from './interfaces/terra-data-table-header-cell.interface';
 import { TerraDataTableRowInterface } from './interfaces/terra-data-table-row.interface';
@@ -20,8 +19,6 @@ import {
     isNullOrUndefined
 } from 'util';
 import { TerraTextAlignEnum } from './enums/terra-text-align.enum';
-import { StringHelper } from '../../../helpers/string.helper';
-import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum';
 import { TerraHrefTypeEnum } from './enums/terra-href-type.enum';
 import {
     debounceTime,
@@ -32,12 +29,14 @@ import { TerraBaseTable } from '../terra-base-table';
 import { TerraDataTableTextInterface } from './interfaces/terra-data-table-text.interface';
 import { TerraTagInterface } from '../../layouts/tag/data/terra-tag.interface';
 import { TerraDataTableContextMenuEntryInterface } from './context-menu/data/terra-data-table-context-menu-entry.interface';
+import { ContextMenuService } from '../../context-menu/context-menu.service';
+import { ContextMenuTrigger } from '../../context-menu/context-menu-trigger';
 
 @Component({
     selector:  'terra-data-table',
     template:  require('./terra-data-table.component.html'),
     styles:    [require('./terra-data-table.component.scss')],
-    providers: [TerraDataTableContextMenuService],
+    providers: [ContextMenuService],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements OnInit, OnChanges
@@ -86,6 +85,7 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
     protected columnHeaderClicked:EventEmitter<TerraDataTableHeaderCellInterface> = new EventEmitter<TerraDataTableHeaderCellInterface>();
 
     protected readonly refType:{} = TerraHrefTypeEnum;
+    protected readonly trigger:ContextMenuTrigger = ContextMenuTrigger.rightClick;
     protected readonly checkboxColumnWidth:number = 25;
 
     constructor(private cdr:ChangeDetectorRef)
@@ -261,6 +261,11 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
     protected isSortedDesc(header:TerraDataTableHeaderCellInterface):boolean
     {
         return this.isSorted(header, TerraDataTableSortOrderEnum.descending);
+    }
+
+    protected test(row:TerraDataTableRowInterface<T>):void
+    {
+        alert(row.data['value']);
     }
 
     private changeSortingColumn(header:TerraDataTableHeaderCellInterface):void

@@ -81,6 +81,8 @@ body
         {
             div
             {
+                background-color: var(--context-menu-background-color, var(--color-structure-11));
+
                 button, a
                 {
                     display: block;
@@ -93,7 +95,6 @@ body
                     text-overflow: ellipsis;
                     overflow: hidden;
                     padding: 4px 18px 4px 10px;
-                    background-color: var(--context-menu-background-color, var(--color-structure-11));
                     color: var(--context-menu-color, var(--color-structure-0)) !important;
                     border: none;
                     cursor: pointer;
@@ -112,6 +113,15 @@ body
                     {
                         background-color: var(--color-alert);
                     }
+                }
+
+                .context-menu-divider
+                {
+                    background: var(--color-structure-3);
+                    cursor: default;
+                    height: 1px;
+                    overflow: hidden;
+                    margin: 0.5rem 0;
                 }
             }
         }
