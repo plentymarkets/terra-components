@@ -36,12 +36,8 @@ export class ContextMenuDirective<D> implements OnDestroy, OnChanges, OnInit
     @Input()
     public trigger:ContextMenuTrigger = ContextMenuTrigger.hover;
 
-    @Input()
-    public data:D;
-
     private contextMenuEl:any;
     private navigationSubscription:Subscription;
-    private eventData:{ event:MouseEvent, data:D };
 
     constructor(private elementRef:ElementRef,
                 private containerRef:ViewContainerRef,
@@ -52,11 +48,9 @@ export class ContextMenuDirective<D> implements OnDestroy, OnChanges, OnInit
 
     public ngOnInit():void
     {
-        this.contextMenuService.show.subscribe((eventData:{ event:MouseEvent, data:D }):void =>
+        this.contextMenuService.show.subscribe((event:MouseEvent):void =>
         {
-            this.eventData = eventData;
-
-            if(eventData.event.target !== this.elementRef.nativeElement)
+            if(event.currentTarget !== this.elementRef.nativeElement)
             {
                 this.contextMenuEl.hide();
             }
@@ -93,7 +87,7 @@ export class ContextMenuDirective<D> implements OnDestroy, OnChanges, OnInit
     }
 
     @HostListener('window:click', ['$event'])
-    public onMouseOut(event:MouseEvent):void
+    public onClick(event:MouseEvent):void
     {
         if(this.contextMenuEl && this.trigger === ContextMenuTrigger.rightClick)
         {
@@ -103,15 +97,12 @@ export class ContextMenuDirective<D> implements OnDestroy, OnChanges, OnInit
     }
 
     @HostListener('contextmenu', ['$event'])
-    public onMouseOver(event:MouseEvent):void
+    public onContextMenu(event:MouseEvent):void
     {
         event.stopPropagation();
         event.preventDefault();
 
-        this.contextMenuService.show.next({
-            event: event,
-            data:  this.data
-        });
+        this.contextMenuService.show.next(event);
     }
 
     public ngOnDestroy():void
@@ -159,6 +150,7 @@ export class ContextMenuDirective<D> implements OnDestroy, OnChanges, OnInit
                 hideOnClick: false,
                 arrow:       false,
                 boundary:    'window',
+                appendTo:    document.body,
                 placement:   TerraPlacementEnum.BOTTOM,
                 distance:    0,
                 theme:       'context-menu'
