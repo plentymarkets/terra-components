@@ -1,0 +1,83 @@
+nav.mat-tab-nav-bar
+{
+    .mat-tab-links
+    {
+        background-color: var(--tabs-background-color);
+        border-bottom: 2px solid var(--color-active);
+        padding: 0 2px;
+        
+        a.mat-tab-link
+        {
+            background-color: var(--tabs-nav-item);
+            box-shadow: var(--tabs-nav-item-box-shadow);
+            color: var(--tabs-nav-item-color);
+            font-size: var(--font-size-2);
+            font-weight: var(--font-weight-2);
+            height: var(--tabs-nav-item-height, (calc(var(--tabbar-height) - var(--space-sm) - var(--tabs-border-bottom-width))));
+            line-height: var(--tabs-nav-item-height, (calc(var(--tabbar-height) - var(--space-sm) - var(--tabs-border-bottom-width))));
+            margin: var(--tabs-nav-item-margin, var(--space-sm) var(--space-xs) 0 var(--space-xs));
+            opacity: 1;
+            min-width: initial;
+            padding: 0 8px 0 8px;
+            user-select: none;
+            @include font-rendering();
+            
+            span.caret
+            {
+                &:hover
+                {
+                    color: var(--color-structure-0);
+                }
+                
+                &::before
+                {
+                    margin-left: 6px;
+                }
+            }
+            
+            button.close
+            {
+                text-shadow: none;
+                padding: var(--space-md) 0 var(--space-md) var(--space-md);
+                opacity: 1;
+                
+                span.icon-cancel
+                {
+                    font-size: var(--font-size-5);
+                    color: var(--color-structure-5);
+                    user-select: none;
+                }
+            }
+            
+            &.mat-tab-label-active,
+            &:hover
+            {
+                text-decoration: none;
+                background-color: var(--color-active);
+                color: var(--color-structure-0);
+                
+                button.close
+                {
+                    span.icon-cancel
+                    {
+                        color: var(--color-structure-0);
+                    }
+                }
+            }
+            
+            &.mat-tab-disabled
+            {
+                background-color: var(--tab-disabled-background-color);
+                color: var(--tab-disabled-color);
+                cursor: not-allowed;
+                pointer-events: initial;
+    
+            }
+        }
+    
+        mat-ink-bar.mat-ink-bar
+        {
+            height: 0;
+        }
+    }
+}

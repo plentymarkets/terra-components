@@ -6,13 +6,13 @@
            (click)="activeLink = link"
            [active]="activeLink == link">
             {{link}}
+            <span class="caret" [tcContextMenu]="contextMenu" [trigger]="trigger"></span>
+            <button type="button"
+                    class="close"
+                    aria-label="Close">
+                <span aria-hidden="true" class="icon icon-cancel"></span>
+            </button>
         </a>
-        <span class="caret" [tcContextMenu]="contextMenu" [trigger]="trigger"></span>
-        <button type="button"
-                class="close"
-                aria-label="Close">
-            <span aria-hidden="true" class="icon icon-cancel"></span>
-        </button>
     </ng-container>
 
     <a mat-tab-link disabled>Disabled Link</a>
