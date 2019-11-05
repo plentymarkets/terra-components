@@ -15,7 +15,6 @@
 
 ### Bug Fixes
 * **radio-group** Adjusted height of `<legend>` and only is rendered when content is available.
-* **file-browser** Restrict number of parallel uploads 
 * **inputs** Tabindex of labels set to -1 to avoid tab focus in a form.
 
 <a name="4.5.0"></a>
