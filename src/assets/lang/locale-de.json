@@ -10,7 +10,8 @@
 	},
 	"terraFileBrowser": {
 		"error": {
-			"tooLargePayload": "Diese Datei ist zu groß."
+			"tooLargePayload": "Diese Datei ist zu groß.",
+			"tooManyFiles": "Es können max. {{ max }} Dateien zeitgleich hochgeladen werden."
 		},
 		"cancel": "Abbrechen",
 		"create": "Erstellen",
