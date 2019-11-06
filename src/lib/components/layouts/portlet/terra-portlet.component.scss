@@ -5,8 +5,9 @@
 
     .portlet-head
     {
-        padding: var(--space-sm) 0;
-        background: transparent;
+        padding: var(--space-lg);
+        background: var(--color-structure-0);
+        border-bottom: 1px solid var(--color-structure-2);
 
         display: -webkit-flex; /* Safari */
         -webkit-justify-content: flex-start; /* Safari 6.1+ */
