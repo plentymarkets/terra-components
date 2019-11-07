@@ -42,6 +42,11 @@ nav.mat-tab-nav-bar
                 padding: var(--space-md) 0 var(--space-md) var(--space-md);
                 opacity: 1;
                 
+                &:focus
+                {
+                    outline: none;
+                }
+                
                 span.icon-cancel
                 {
                     font-size: var(--font-size-5);
