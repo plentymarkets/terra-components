@@ -7,6 +7,9 @@ Terra-Components now complies with the angular package format and code autocompl
 * **styles** Style files such as styles/styles.scss, styles/icons.scss and styles/theme-loader.scss are now .css files rather than .scss files.
 * **dependencies** Every dependency of Terra-Components now is a peer dependency. You need to install these dependencies in your project.
 
+### Fix
+* **terra-base-editor** removed unnecessary quill style import
+
 <a name="4.7.0"></a>
 # 4.7.0 (unreleased)
 
