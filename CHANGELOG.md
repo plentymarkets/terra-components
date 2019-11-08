@@ -2,6 +2,7 @@
 # 4.7.0 (unreleased)
 
 ### Features
+* **terra-portlet** updated header style
 * **terra-data-table** input `isSticky` is now deprecated.
 * **float-thead** the directive is now deprecated.
 
