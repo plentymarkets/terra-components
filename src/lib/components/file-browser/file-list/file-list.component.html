@@ -117,10 +117,11 @@
     
     </div>
     
-    <div class="upload-progress-container" *ngIf="progress">
-        <div class="upload-progress">
-            <div [style.width.%]="progress.progress"></div>
-        </div>
-        <span>{{ translationPrefix + '.uploadProgress' | translate:lang:progress }}</span>
+</div>
+
+<div class="upload-progress-container" *ngIf="progress">
+    <div class="upload-progress">
+        <div [style.width.%]="progress.progress"></div>
     </div>
+    <span>{{ translationPrefix + '.uploadProgress' | translate:lang:progress }}</span>
 </div>

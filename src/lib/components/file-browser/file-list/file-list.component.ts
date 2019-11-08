@@ -41,7 +41,9 @@ import { ClipboardHelper } from '../../../helpers/clipboard.helper';
 import { TerraSimpleTableCellInterface } from '../../tables/simple/cell/terra-simple-table-cell.interface';
 import { TerraButtonInterface } from '../../buttons/button/data/terra-button.interface';
 import { TerraSimpleTableHeaderCellInterface } from '../../tables/simple/cell/terra-simple-table-header-cell.interface';
+import { AlertService } from '../../alert/alert.service';
 
+const MAX_UPLOAD_COUNT:number = 10;
 
 @Component({
     selector:  'terra-file-list',
@@ -260,6 +262,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
                 private fileBrowserService:TerraFileBrowserService,
                 private translationService:TranslationService,
                 private localeService:LocaleService,
+                private alertService:AlertService,
                 @Inject(forwardRef(() => TerraFileBrowserComponent)) protected parentFileBrowser:TerraFileBrowserComponent)
     {
     }
@@ -667,6 +670,15 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
 
     private uploadFiles(fileList:FileList | Array<File>):void
     {
+        const queueLength:number = !this.progress ? 0 : (this.progress.filesTotal - this.progress.filesUploaded);
+        if(fileList.length + queueLength > MAX_UPLOAD_COUNT)
+        {
+            this.alertService.error(
+                this.translationService.translate('terraFileBrowser.error.tooManyFiles', {max: MAX_UPLOAD_COUNT})
+            );
+            return;
+        }
+
         let uploadPrefix:string = this.currentStorageRoot ? this.currentStorageRoot.key : '/';
         this.activeStorageService
             .uploadFiles(
