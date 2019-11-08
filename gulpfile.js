@@ -38,11 +38,6 @@ function copyReadme() {
         .pipe(dest(config.destinations.tsOutputPath));
 }
 
-function copyJsFiles() {
-    return src(config.sources.floatThead)
-        .pipe(dest(config.destinations.floatThead));
-}
-
 function copyIconsScss() {
     return src('src/lib/styles/icons.scss')
         .pipe(dest(config.destinations.styles));
@@ -84,7 +79,7 @@ function copyButtonScss() {
 }
 
 const copySassFiles = parallel(copyIconsScss, copyVariablesScss, copyPlentyIconsScss, copyCustomDataTableScss, copyNodeTreeScss, copyTagScss, copyTagListScss, copyButtonScss);
-const copyFilesToDist = parallel(copyFonts, copyLang, copyReadme, copySassFiles, copyJsFiles);
+const copyFilesToDist = parallel(copyFonts, copyLang, copyReadme, copySassFiles);
 
 
 //copy files from dist to terra
