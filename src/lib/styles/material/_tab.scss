@@ -21,10 +21,11 @@ nav.mat-tab-nav-bar
             padding: 0 8px 0 8px;
             user-select: none;
             @include font-rendering();
-            
             span.caret
             {
                 padding: 2px 0 2px 0;
+                overflow: hidden;
+    
                 &:hover
                 {
                     color: var(--color-structure-0);
@@ -32,6 +33,16 @@ nav.mat-tab-nav-bar
                 
                 &::before
                 {
+                    display: inline-block;
+                    width: 0;
+                    height: 0;
+                    margin-right: 9px;
+                    vertical-align: middle;
+                    content: "";
+                    border-top: 0.3em solid;
+                    border-right: 0.3em solid transparent;
+                    border-left: 0.3em solid transparent;
+                    overflow: hidden;
                     margin-left: 6px;
                 }
             }
