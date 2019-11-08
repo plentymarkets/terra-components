@@ -19,8 +19,10 @@
            placeholder="{{inputIsRequired ? inputName + '*' : inputName}}"
            required>
     <label [tcTooltip]="inputName"
+           tabindex="-1"
            [onlyEllipsisTooltip]="true"
-           *ngIf="(_innerValue || _innerValue === 0) && inputName" htmlFor="{{_id}}">{{inputName}}
+           *ngIf="(_innerValue || _innerValue === 0) && inputName"
+           htmlFor="{{_id}}">{{inputName}}
         <span *ngIf="inputIsRequired">*</span>
     </label>
 </div>
