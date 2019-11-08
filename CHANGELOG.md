@@ -1,3 +1,10 @@
+<a name="4.7.0"></a>
+# 4.7.0 (unreleased)
+
+### Bug Fixes
+* **terra-button-with-options** `isHidden` option is now interpreted correctly.
+* **file-browser** Restrict number of parallel uploads
+
 <a name="4.6.0"></a>
 # 4.6.0 (30.10.2019)
 
@@ -8,6 +15,7 @@
 
 ### Bug Fixes
 * **radio-group** Adjusted height of `<legend>` and only is rendered when content is available.
+* **inputs** Tabindex of labels set to -1 to avoid tab focus in a form.
 
 <a name="4.5.0"></a>
 # 4.5.0 (09.10.2019)

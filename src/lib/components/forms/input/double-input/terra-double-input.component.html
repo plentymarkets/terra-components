@@ -16,6 +16,7 @@
            placeholder="{{inputIsRequired ? inputName + '*' : inputName}}"
            [ngClass]="{'isSmall' : inputIsSmall, 'isEmpty' : !innerValue && innerValue !== 0, 'price-input': inputIsPriceInput}">
     <label [tcTooltip]="inputName"
+           tabindex="-1"
            [onlyEllipsisTooltip]="true"
            *ngIf="innerValue || innerValue === 0" htmlFor="{{id}}">{{inputName}}
         <span *ngIf="inputIsRequired">*</span>
