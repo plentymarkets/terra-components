@@ -1,6 +1,9 @@
 <a name="4.7.0"></a>
 # 4.7.0 (unreleased)
 
+### Features
+* **terra-portlet** updated header style
+
 ### Bug Fixes
 * **terra-button-with-options** `isHidden` option is now interpreted correctly.
 * **file-browser** Restrict number of parallel uploads
