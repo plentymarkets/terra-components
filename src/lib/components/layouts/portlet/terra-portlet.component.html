@@ -6,7 +6,7 @@
         <span class="header-caption">{{inputPortletHeader}}
             <terra-info *ngIf="infoText" [text]="infoText" [textPlacement]="_infoTextPlacement"></terra-info>
         </span>
-        <div>
+        <div class="header-button-container">
             <div class="header-buttons btn-group" (click)="$event.stopPropagation()">
                 <terra-button *ngFor="let button of inputButtonList"
                               [inputIcon]="button.icon"
