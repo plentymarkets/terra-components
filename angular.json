@@ -30,8 +30,7 @@
 							"src/styles.scss"
 						],
 						"scripts": [
-							"node_modules/jquery/dist/jquery.min.js",
-							"src/lib/components/tables/data-table/float-thead/floatThead.js"
+							"node_modules/jquery/dist/jquery.min.js"
 						],
 						"es5BrowserSupport": true,
 						"vendorChunk": true
