@@ -19,6 +19,9 @@ import { isNullOrUndefined } from 'util';
 
 require('./floatThead.js');
 
+/**
+ * @deprecated since v4.7. It will be removed in the next major release.
+ */
 @Directive({
     selector: 'table[floatThead]'
 })

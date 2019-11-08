@@ -79,6 +79,7 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
 
     /**
      * @description makes table header stick to the top while scrolling
+     * @deprecated since v4.7
      */
     @Input()
     public isSticky:boolean;
