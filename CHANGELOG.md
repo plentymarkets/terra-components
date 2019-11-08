@@ -1,6 +1,9 @@
 <a name="4.7.0"></a>
 # 4.7.0 (unreleased)
 
+### Features
+* **file-browser** Allow alternative text for files with .webp extension
+
 ### Bug Fixes
 * **terra-button-with-options** `isHidden` option is now interpreted correctly.
 * **file-browser** Restrict number of parallel uploads
