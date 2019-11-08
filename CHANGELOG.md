@@ -15,6 +15,9 @@ Terra-Components now complies with the angular package format and code autocompl
 <a name="4.7.0"></a>
 # 4.7.0 (unreleased)
 
+### Features
+* **terra-portlet** updated header style
+
 ### Bug Fixes
 * **terra-button-with-options** `isHidden` option is now interpreted correctly.
 * **inputs** Tabindex of labels set to -1 to avoid tab focus in a form.
