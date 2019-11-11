@@ -25,6 +25,7 @@ Terra-Components now complies with the angular package format and code autocompl
 * **terra-button-with-options** `isHidden` option is now interpreted correctly.
 * **inputs** Tabindex of labels set to -1 to avoid tab focus in a form.
 * **file-browser** Restrict number of parallel uploads
+* **terra-date-picker** Fixed style of placeholder.
 
 <a name="4.6.0"></a>
 # 4.6.0 (30.10.2019)
