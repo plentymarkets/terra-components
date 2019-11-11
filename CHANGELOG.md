@@ -6,6 +6,7 @@
 * **terra-portlet** updated header style
 * **terra-data-table** input `isSticky` is now deprecated.
 * **float-thead** the directive is now deprecated.
+* **terra-date-picker** Fixed style of placeholder.
 
 ### Bug Fixes
 * **terra-button-with-options** `isHidden` option is now interpreted correctly.
@@ -21,7 +22,6 @@
 
 ### Bug Fixes
 * **radio-group** Adjusted height of `<legend>` and only is rendered when content is available.
-* **terra-date-picker** Fixed style of placeholder.
 * **inputs** Tabindex of labels set to -1 to avoid tab focus in a form.
 
 <a name="4.5.0"></a>
