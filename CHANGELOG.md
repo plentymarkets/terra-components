@@ -6,11 +6,11 @@
 * **terra-portlet** updated header style
 * **terra-data-table** input `isSticky` is now deprecated.
 * **float-thead** the directive is now deprecated.
-* **terra-date-picker** Fixed style of placeholder.
 
 ### Bug Fixes
 * **terra-button-with-options** `isHidden` option is now interpreted correctly.
 * **file-browser** Restrict number of parallel uploads
+* **terra-date-picker** Fixed style of placeholder.
 
 <a name="4.6.0"></a>
 # 4.6.0 (30.10.2019)
