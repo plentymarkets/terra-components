@@ -10,6 +10,7 @@
 ### Bug Fixes
 * **terra-button-with-options** `isHidden` option is now interpreted correctly.
 * **file-browser** Restrict number of parallel uploads
+* **terra-date-picker** Fixed style of placeholder.
 
 <a name="4.6.0"></a>
 # 4.6.0 (30.10.2019)
@@ -21,7 +22,6 @@
 
 ### Bug Fixes
 * **radio-group** Adjusted height of `<legend>` and only is rendered when content is available.
-* **terra-date-picker** Fixed style of placeholder.
 * **inputs** Tabindex of labels set to -1 to avoid tab focus in a form.
 
 <a name="4.5.0"></a>
