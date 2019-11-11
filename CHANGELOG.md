@@ -3,6 +3,8 @@
 
 ### Features
 * **terra-portlet** updated header style
+* **terra-data-table** input `isSticky` is now deprecated.
+* **float-thead** the directive is now deprecated.
 
 ### Bug Fixes
 * **terra-button-with-options** `isHidden` option is now interpreted correctly.
