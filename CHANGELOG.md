@@ -6,13 +6,26 @@
 Terra-Components now complies with the angular package format and code autocompletion should work fine in your angular app.
 * **styles** Style files such as styles/styles.scss, styles/icons.scss and styles/theme-loader.scss are now .css files rather than .scss files.
 * **dependencies** Every dependency of Terra-Components now is a peer dependency. You need to install these dependencies in your project.
+* **terra-data-table** removed deprecated input `isSticky` sticky. No replacement will be provided for now. 
+* **float-thead** removed the directive. No replacement will be provided for now.
+
+### Fix
+* **terra-base-editor** removed unnecessary quill style import
 
 <a name="4.7.0"></a>
 # 4.7.0 (unreleased)
 
+### Features
+* **file-browser** Allow alternative text for files with .webp extension
+* **terra-portlet** updated header style
+* **terra-data-table** input `isSticky` is now deprecated.
+* **float-thead** the directive is now deprecated.
+
 ### Bug Fixes
 * **terra-button-with-options** `isHidden` option is now interpreted correctly.
 * **inputs** Tabindex of labels set to -1 to avoid tab focus in a form.
+* **file-browser** Restrict number of parallel uploads
+* **terra-date-picker** Fixed style of placeholder.
 
 <a name="4.6.0"></a>
 # 4.6.0 (30.10.2019)
