@@ -6,6 +6,11 @@ nav.mat-tab-nav-bar
         border-bottom: 2px solid var(--color-active);
         padding: 0 2px;
 
+        div.align-right
+        {
+            margin-left: auto;
+        }
+
         a.mat-tab-link
         {
             background-color: var(--tabs-nav-item);
