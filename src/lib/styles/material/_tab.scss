@@ -5,7 +5,7 @@ nav.mat-tab-nav-bar
         background-color: var(--tabs-background-color);
         border-bottom: 2px solid var(--color-active);
         padding: 0 2px;
-        
+
         a.mat-tab-link
         {
             background-color: var(--tabs-nav-item);
@@ -21,43 +21,52 @@ nav.mat-tab-nav-bar
             padding: 0 8px 0 8px;
             user-select: none;
             @include font-rendering();
-            span.caret
+
+            span
             {
-                padding: 2px 0 2px 0;
-                overflow: hidden;
-    
-                &:hover
+                .caret
                 {
-                    color: var(--color-structure-0);
-                }
-                
-                &::before
-                {
-                    display: inline-block;
-                    width: 0;
-                    height: 0;
-                    margin-right: 9px;
-                    vertical-align: middle;
-                    content: "";
-                    border-top: 0.3em solid;
-                    border-right: 0.3em solid transparent;
-                    border-left: 0.3em solid transparent;
+                    padding: 2px 0 2px 0;
                     overflow: hidden;
-                    margin-left: 6px;
+
+                    &:hover
+                    {
+                        color: var(--color-structure-0);
+                    }
+
+                    &::before
+                    {
+                        display: inline-block;
+                        width: 0;
+                        height: 0;
+                        margin-right: 9px;
+                        vertical-align: middle;
+                        content: "";
+                        border-top: 0.3em solid;
+                        border-right: 0.3em solid transparent;
+                        border-left: 0.3em solid transparent;
+                        overflow: hidden;
+                        margin-left: 6px;
+                    }
+                }
+
+                &[class^="icon-"], &[class*=" icon-"]
+                {
+                    font-size: var(--font-size-5);
                 }
             }
-            
+
             button.close
             {
                 text-shadow: none;
                 padding: var(--space-md) 0 var(--space-md) var(--space-md);
                 opacity: 1;
-                
+
                 &:focus
                 {
                     outline: none;
                 }
-                
+
                 span.icon-cancel
                 {
                     font-size: var(--font-size-5);
@@ -65,14 +74,14 @@ nav.mat-tab-nav-bar
                     user-select: none;
                 }
             }
-            
+
             &.mat-tab-label-active,
             &:hover
             {
                 text-decoration: none;
                 background-color: var(--color-active);
                 color: var(--color-structure-0);
-                
+
                 button.close
                 {
                     span.icon-cancel
@@ -81,17 +90,17 @@ nav.mat-tab-nav-bar
                     }
                 }
             }
-            
+
             &.mat-tab-disabled
             {
                 background-color: var(--tab-disabled-background-color);
                 color: var(--tab-disabled-color);
                 cursor: not-allowed;
                 pointer-events: initial;
-    
+
             }
         }
-    
+
         mat-ink-bar.mat-ink-bar
         {
             height: 0;
@@ -104,7 +113,7 @@ mat-tab-group
     mat-tab-header
     {
         border-bottom: 1px solid var(--color-structure-2);
-        
+
         .mat-tab-label-container
         {
             .mat-tab-list
@@ -117,19 +126,19 @@ mat-tab-group
                         color: var(--color-structure-8);
                         flex-grow: 1;
                         height: calc(var(--height-md) + var(--space-md));
-                        
+
                         &:not(:last-child)
                         {
                             border-right: 1px solid var(--color-structure-2);
                         }
-                        
+
                         &.mat-tab-label-active
                         {
                             color: var(--color-active);
                         }
                     }
                 }
-                
+
                 mat-ink-bar
                 {
                     display: none;
@@ -137,7 +146,7 @@ mat-tab-group
             }
         }
     }
-    
+
     .mat-tab-body-wrapper
     {
         mat-tab-body
