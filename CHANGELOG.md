@@ -1,9 +1,16 @@
 <a name="4.7.0"></a>
 # 4.7.0 (unreleased)
 
+### Features
+* **file-browser** Allow alternative text for files with .webp extension
+* **terra-portlet** updated header style
+* **terra-data-table** input `isSticky` is now deprecated.
+* **float-thead** the directive is now deprecated.
+
 ### Bug Fixes
 * **terra-button-with-options** `isHidden` option is now interpreted correctly.
 * **file-browser** Restrict number of parallel uploads
+* **terra-date-picker** Fixed style of placeholder.
 
 <a name="4.6.0"></a>
 # 4.6.0 (30.10.2019)
