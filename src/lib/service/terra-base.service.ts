@@ -155,7 +155,6 @@ export class TerraBaseService
 
     /**
      * Workaround to prevent the injection of the TranslationService in every Service, that extends TerraBaseService
-     * @returns {string}
      */
     protected getErrorString():string
     {
@@ -175,9 +174,8 @@ export class TerraBaseService
     }
 
     /**
-     * @param {TerraBaseParameterInterface} params
-     * @param {boolean} arrayAsArray - Defines if an array search param should interpret and parsed as an array or not. Default is false.
-     * @returns {URLSearchParams}
+     * @param params
+     * @param arrayAsArray - Defines if an array search param should interpret and parsed as an array or not. Default is false.
      */
     protected createUrlSearchParams(params:TerraBaseParameterInterface, arrayAsArray:boolean = false):URLSearchParams
     {

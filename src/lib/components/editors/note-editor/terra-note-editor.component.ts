@@ -7,9 +7,9 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TerraBaseEditorComponent } from '../base-editor/terra-base-editor.component';
 
 @Component({
-    selector:  'terra-note-editor',
-    template:  require('./terra-note-editor.component.html'),
-    providers: [{
+    selector:    'terra-note-editor',
+    templateUrl: './terra-note-editor.component.html',
+    providers:   [{
         provide:     NG_VALUE_ACCESSOR,
         useExisting: TerraNoteEditorComponent,
         multi:       true
@@ -17,13 +17,14 @@ import { TerraBaseEditorComponent } from '../base-editor/terra-base-editor.compo
 })
 export class TerraNoteEditorComponent extends TerraBaseEditorComponent
 {
-    constructor(protected translation:TranslationService, protected myElement:ElementRef)
+    constructor(translation:TranslationService,
+                myElement:ElementRef)
     {
         super(translation, myElement);
         // initialize placeholder
-        this.placeholder = this.translation.translate('terraNoteEditor.insertText');
+        this._placeholder = this._translation.translate('terraNoteEditor.insertText');
 
-        this.modules = {
+        this._modules = {
             toolbar: [
                 ['bold',
                  'italic',

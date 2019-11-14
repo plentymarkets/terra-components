@@ -1,7 +1,6 @@
 import {
     Component,
     EventEmitter,
-    forwardRef,
     Input,
     Output
 } from '@angular/core';
@@ -14,13 +13,13 @@ import { TerraRegex } from '../../../../helpers/regex/terra-regex';
 let nextId:number = 0;
 
 @Component({
-    selector:  'terra-text-input',
-    template:  require('./terra-text-input.component.html'),
-    styles:    [require('./terra-text-input.component.scss')],
-    providers: [
+    selector:    'terra-text-input',
+    styleUrls:   ['./terra-text-input.component.scss'],
+    templateUrl: './terra-text-input.component.html',
+    providers:   [
         {
             provide:     NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => TerraTextInputComponent),
+            useExisting: TerraTextInputComponent,
             multi:       true
         }
     ]
@@ -60,14 +59,14 @@ export class TerraTextInputComponent extends TerraInputComponent
     /**
      * @description a unique string identifier for the specific input instance.
      */
-    protected id:string;
+    public _id:string;
 
-    constructor(private translation:TranslationService)
+    constructor(private _translation:TranslationService)
     {
         super(TerraRegex.MIXED);
 
         // generate the id of the input instance
-        this.id = `text-input_#${nextId++}`;
+        this._id = `text-input_#${nextId++}`;
     }
 
     public onInput():void
@@ -79,7 +78,7 @@ export class TerraTextInputComponent extends TerraInputComponent
     {
         setTimeout(() =>
         {
-            let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this.id);
+            let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this._id);
             input.focus();
         });
     }
@@ -88,17 +87,17 @@ export class TerraTextInputComponent extends TerraInputComponent
     {
         setTimeout(() =>
         {
-            let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this.id);
+            let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this._id);
             input.select();
         });
     }
 
-    protected onCustomBlur(iban:string):void
+    public _onCustomBlur(iban:string):void
     {
         if(this.inputIsIban)
         {
             this.isValid = IBAN.isValid(iban);
-            this.inputTooltipText = this.isValid ? null : this.translation.translate('terraTextInput.invalidIban');
+            this.inputTooltipText = this.isValid ? null : this._translation.translate('terraTextInput.invalidIban');
         }
 
         this.onBlur();
