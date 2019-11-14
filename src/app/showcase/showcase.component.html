@@ -1,16 +1,4 @@
-<!--<div class="example-container" *ngFor="let example of examples">-->
-<!--  <h1>{{example.name}}</h1>-->
-<!--  <ng-container *ngComponentOutlet="example"></ng-container>-->
-<!--</div>-->
-
-<mat-form-field>
-  <input matInput [matDatepicker]="picker1" placeholder="Angular forms" [formControl]="date">
-  <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-  <mat-datepicker #picker1></mat-datepicker>
-</mat-form-field>
-
-<mat-form-field class="example-full-width">
-  <input matInput placeholder="Favorite food" value="Sushi">
-</mat-form-field>
-
-<terra-input-example></terra-input-example>
+<div class="example-container" *ngFor="let example of examples">
+  <h1>{{example.name}}</h1>
+  <ng-container *ngComponentOutlet="example"></ng-container>
+</div>

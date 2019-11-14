@@ -15,8 +15,5 @@ import { FormControl } from '@angular/forms';
 })
 export class ShowcaseComponent
 {
-    date = new FormControl(new Date());
-    serializedDate = new FormControl((new Date()).toISOString());
-
     protected readonly examples:Array<Type<any>> = examples;
 }

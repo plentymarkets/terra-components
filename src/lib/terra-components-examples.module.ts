@@ -2,15 +2,31 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { examples } from './components/example-collection';
 import { TerraComponentsModule } from './terra-components.module';
-import { FormsModule } from '@angular/forms';
+import {
+    FormsModule,
+    ReactiveFormsModule
+} from '@angular/forms';
 import { CKEditorModule } from 'ckeditor4-angular';
+import {
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatNativeDateModule
+} from '@angular/material';
 
 @NgModule({
-    imports:         [
+    imports: [
         CommonModule,
         FormsModule,
         CKEditorModule,
-        TerraComponentsModule
+        TerraComponentsModule,
+        MatFormFieldModule,
+        MatDatepickerModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        MatNativeDateModule,
+        MatIconModule
     ],
     declarations:    [...examples],
     entryComponents: [...examples],

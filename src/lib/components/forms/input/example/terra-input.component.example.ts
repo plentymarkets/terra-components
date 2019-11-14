@@ -3,6 +3,7 @@ import {
     OnInit
 } from '@angular/core';
 import { TerraSelectBoxValueInterface } from '../../select-box/data/terra-select-box.interface';
+import { FormControl } from '@angular/forms';
 
 @Component({
     selector: 'terra-input-example',
@@ -24,6 +25,8 @@ export class TerraInputComponentExample implements OnInit
     protected city:string;
     protected newsletter:boolean;
     protected agbs:boolean;
+    protected date:FormControl = new FormControl(new Date());
+    protected serializedDate:FormControl = new FormControl((new Date()).toISOString());
 
     protected stateSelection:Array<TerraSelectBoxValueInterface>;
 
