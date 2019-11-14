@@ -13,7 +13,7 @@ Terra-Components now complies with the angular package format and code autocompl
 * **terra-base-editor** removed unnecessary quill style import
 
 <a name="4.7.0"></a>
-# 4.7.0 (unreleased)
+# 4.7.0 (14.11.2019)
 
 ### Features
 * **file-browser** Allow alternative text for files with .webp extension
