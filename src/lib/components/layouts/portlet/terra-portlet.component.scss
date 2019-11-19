@@ -42,6 +42,11 @@
         padding: var(--portlet-body-padding, var(--space-lg));
         transition: padding var(--transition-lg);
         border-radius: var(--border-radius);
+    
+        --info-box-box-shadow: none;
+        --info-box-padding: 0 var(--space-lg) calc(var(--space-lg) + var(--space-md)) var(--space-lg);
+        --info-box-margin: 0px calc((var(--space-lg) + var(--space-xs))*(-1)) var(--space-lg) calc((var(--space-lg) + var(--space-xs))*(-1));
+        --info-box-border-bottom: 1px solid var(--color-structure-2);
     }
 
     &.collapsable
@@ -80,7 +85,7 @@
     {
         &:hover
         {
-            border: 1px solid var(--color-active-dark);
+            outline: 2px solid var(--color-active);
         }
     }
 }
