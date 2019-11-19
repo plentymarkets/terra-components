@@ -15,23 +15,25 @@
     </div>
 </terra-base-toolbar>
 
-<terra-data-table
-    [isSticky]="true"
-    #table
-    [inputService]="service"
-    [inputHasCheckboxes]="true"
-    [inputHeaderList]="headerList"
-    [inputContextMenu]="contextMenu">
-    
-    <terra-group-function [show]="showGroupFunction"
-                          [disableExecution]="false"
-                          (executeGroupFunction)="executeGroupFunction(table.selectedRowList)">
-        <terra-text-input [inputName]="'Text'"></terra-text-input>
-    </terra-group-function>
-    
-    <terra-no-result-notice
-        [inputButtons]="noResultButtons"
-        [inputTextPrimary]="noResultTextPrimary"
-        [inputTextSecondary]="noResultTextSecondary">
-    </terra-no-result-notice>
-</terra-data-table>
+<terra-portlet [inputPortletHeader]="'Tabelle'" [inputIsCollapsable]="true">
+    <terra-data-table
+        [isSticky]="true"
+        #table
+        [inputService]="service"
+        [inputHasCheckboxes]="true"
+        [inputHeaderList]="headerList"
+        [inputContextMenu]="contextMenu">
+        
+        <terra-group-function [show]="showGroupFunction"
+                              [disableExecution]="false"
+                              (executeGroupFunction)="executeGroupFunction(table.selectedRowList)">
+            <terra-text-input [inputName]="'Text'"></terra-text-input>
+        </terra-group-function>
+        
+        <terra-no-result-notice
+            [inputButtons]="noResultButtons"
+            [inputTextPrimary]="noResultTextPrimary"
+            [inputTextSecondary]="noResultTextSecondary">
+        </terra-no-result-notice>
+    </terra-data-table>
+</terra-portlet>
