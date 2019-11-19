@@ -3,12 +3,13 @@
 :host
 {
     display: block;
+    margin: var(--terra-data-table-margin);
 }
 
 .table-responsive
 {
-    margin: var(--space-container);
-    box-shadow: var(--box-shadow);
+    margin: var(--table-responsive-margin, var(--space-container));
+    box-shadow: var(--table-responsive-box-shadow, var(--box-shadow));
     border-radius: var(--border-radius);
     width: auto;
     --no-result-margin: 0; //in case of a no-result page placed in a table to avoid doubled margins
