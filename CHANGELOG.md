@@ -6,6 +6,7 @@
 * **terra-portlet** updated header style
 * **terra-data-table** input `isSticky` is now deprecated.
 * **float-thead** the directive is now deprecated.
+* **tabs** new styling of angular material tabs. [See the oficial documentation.](https://v7.material.angular.io/components/tabs/overview)
 
 ### Bug Fixes
 * **terra-button-with-options** `isHidden` option is now interpreted correctly.
