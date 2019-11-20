@@ -1,5 +1,6 @@
-<a name="Unreleased Changes"></a>
-# Unreleased Changes
+<a name="4.8.0"></a>
+# 4.8.0 (XX.XX.XXXX)
+
 ### Features
 * **terra-portlet** Now supports styling of info-boxes and tables inside it.
 
