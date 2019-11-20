@@ -12,6 +12,15 @@ Terra-Components now complies with the angular package format and code autocompl
 ### Fix
 * **terra-base-editor** removed unnecessary quill style import
 
+<a name="4.8.0"></a>
+# 4.8.0 (XX.XX.XXXX)
+
+### Features
+* **terra-portlet** Now supports styling of info-boxes and tables inside it.
+
+### Bug Fixes
+* **terra-portlet** styling of hover-state and info-handler in portlet header
+
 <a name="4.7.0"></a>
 # 4.7.0 (14.11.2019)
 
