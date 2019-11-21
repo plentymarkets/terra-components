@@ -16,6 +16,7 @@ Terra-Components now complies with the angular package format and code autocompl
 # 4.8.0 (XX.XX.XXXX)
 
 ### Features
+* **terra-toggle** Added active/inactive color to disabled state.
 * **terra-portlet** Now supports styling of info-boxes and tables inside it.
 
 ### Bug Fixes
