@@ -128,6 +128,19 @@ body
         --header-height: calc(var(--navbar-height) + var(--tabbar-height));
         --breadcrumbs-height: 36px;
         --tab-content-fullscreen-top: 5px; //space between tab-content and fullscreen-top
+    
+        //////////// Fixed Spaces (don't scale in compact mode) //////////
+    
+        --height-sm-fix: 24px;
+        --height-md-fix: 36px;
+        --height-lg-fix: 48px;
+    
+        --space-xs-fix: 2px;
+        --space-sm-fix: 4px;
+        --space-md-fix: 8px;
+        --space-lg-fix: 12px;
+        --space-xl-fix: 24px;
+        --space-container-fix: 0 var(--space-xs-fix) var(--space-md-fix) var(--space-xs-fix); //for margins of container-elements like portlets or infoboxes
         
         //////////// Others //////////
         
