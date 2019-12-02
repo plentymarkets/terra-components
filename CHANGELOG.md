@@ -1,3 +1,8 @@
+# Unreleased changes
+
+### Bug Fixes
+* **terra-portlet** styling of tables, toolbars and info-boxes inside portlets
+
 <a name="4.8.0"></a>
 # 4.8.0 (XX.XX.XXXX)
 
