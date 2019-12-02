@@ -5,7 +5,7 @@ import {
 import { TerraControlTypeEnum } from '../enum/terra-control-type.enum';
 
 /**
- *@author Tim Wieder & Maxi Roell
+ * @deprecated since v5.0.0. Use terra-form instead.
  */
 export interface TerraFormFieldCodeEditorOptions extends TerraFormFieldBaseOptions<number>
 {
@@ -13,6 +13,9 @@ export interface TerraFormFieldCodeEditorOptions extends TerraFormFieldBaseOptio
     fixedHeight?:string;
 }
 
+/**
+ * @deprecated since v5.0.0. Use terra-form instead.
+ */
 export class TerraFormFieldCodeEditor extends TerraFormFieldBase<number>
 {
     public type:string;

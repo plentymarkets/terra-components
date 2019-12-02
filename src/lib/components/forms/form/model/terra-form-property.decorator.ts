@@ -7,7 +7,6 @@ export const TERRA_FORM_PROPERTY_METADATA_KEY:string = 'TERRA_FORM_PROPERTY_META
 /**
  * Make the annotated property editable in editor's sidebar.
  * @param propertyDescription   EditorPropertyInterface
- * @returns PropertyDecorator
  */
 export function TerraFormProperty(propertyDescription?:TerraFormFieldInterface):PropertyDecorator
 {

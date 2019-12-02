@@ -76,33 +76,33 @@ describe('TerraTwoColumnsContainerDirective', () =>
 
     it(`should hide left but show right column on small devices by default`, () =>
     {
-        expect(twoColComponent.leftColumn).toContain('hidden-xs');
-        expect(twoColComponent.rightColumn).not.toContain('hidden-xs');
+        expect(twoColComponent._leftColumn).toContain('hidden-xs');
+        expect(twoColComponent._rightColumn).not.toContain('hidden-xs');
     });
 
     it(`should hide left but show right column on small devices if routed to a route that is not redirected`, () =>
     {
         router.sendEvent(new NavigationEnd(1, 'start/dashboard', 'start/dashboard'));
-        expect(twoColComponent.leftColumn).toContain('hidden-xs');
-        expect(twoColComponent.rightColumn).not.toContain('hidden-xs');
+        expect(twoColComponent._leftColumn).toContain('hidden-xs');
+        expect(twoColComponent._rightColumn).not.toContain('hidden-xs');
     });
 
     it(`should hide right but show left column on small devices if routed to a redirected route`, () =>
     {
         router.sendEvent(new NavigationEnd(1, 'start', 'start/dashboard'));
-        expect(twoColComponent.leftColumn).not.toContain('hidden-xs');
-        expect(twoColComponent.rightColumn).toContain('hidden-xs');
+        expect(twoColComponent._leftColumn).not.toContain('hidden-xs');
+        expect(twoColComponent._rightColumn).toContain('hidden-xs');
     });
 
     it(`should not do anything if routed to a route that does not equal the basePath`, () =>
     {
-        const leftColumn:string = twoColComponent.leftColumn;
-        const rightColumn:string = twoColComponent.rightColumn;
+        const leftColumn:string = twoColComponent._leftColumn;
+        const rightColumn:string = twoColComponent._rightColumn;
 
         router.sendEvent(new NavigationEnd(1, 'dummy', 'dummy'));
 
         // nothing has changed
-        expect(twoColComponent.leftColumn).toEqual(leftColumn);
-        expect(twoColComponent.rightColumn).toEqual(rightColumn);
+        expect(twoColComponent._leftColumn).toEqual(leftColumn);
+        expect(twoColComponent._rightColumn).toEqual(rightColumn);
     });
 });
