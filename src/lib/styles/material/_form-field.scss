@@ -33,7 +33,7 @@
                 }
             }
         }
-
+    
         .mat-form-field-wrapper
         {
             .mat-form-field-flex
@@ -61,18 +61,35 @@
                     }
                     textarea, input
                     {
-                        color: var(--color-structure-12);
+                        color: var(--input-color, var(--color-structure-13));
                         font-weight: var(--font-weight-2);
+                        font-size: var(--font-size-3);
+                        font-family: var(--font-family);
                     }
                 }
 
                 .mat-form-field-suffix
                 {
-                    button
+                    mat-datepicker-toggle
                     {
-                        &:focus
+                        color: var(--color-structure-11);
+                        
+                        &.mat-datepicker-toggle-active
                         {
-                            outline: none;
+                            color: var(--color-active);
+                        }
+                        
+                        button
+                        {
+                            &:focus
+                            {
+                                outline: none;
+                            }
+    
+                            .mat-datepicker-toggle-default-icon
+                            {
+                                font-size: 16px;
+                            }
                         }
                     }
                 }
@@ -81,6 +98,11 @@
             .mat-form-field-underline
             {
                 border-bottom: var(--input-wrapper-border, 1px solid var(--border-color));
+    
+                .mat-form-field-ripple
+                {
+                    background-color: var(--color-active);
+                }
             }
         }
 
@@ -200,6 +222,27 @@
                                     &:focus
                                     {
                                         outline: none;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    
+                    .mat-calendar-content
+                    {
+                        table.mat-calendar-table
+                        {
+                            tbody.mat-calendar-body
+                            {
+                                tr
+                                {
+                                    td.mat-calendar-body-cell.mat-calendar-body-active
+                                    {
+                                        .mat-calendar-body-selected
+                                        {
+                                            background-color: var(--color-active);
+                                        }
+                                        
                                     }
                                 }
                             }
