@@ -34,7 +34,7 @@ export class TerraInputComponentExample implements OnInit
 
     public stateSelection:Array<TerraSelectBoxValueInterface>;
 
-    foods: Food[] = [
+    public _foods:Array<Food> = [
         {value: 'none', viewValue: ''},
         {value: 'steak-0', viewValue: 'Steak'},
         {value: 'pizza-1', viewValue: 'Pizza'},
