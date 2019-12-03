@@ -46,12 +46,14 @@ mat-form-field.mat-form-field
             {
                 .mat-form-field-infix
                 {
-                    padding: 0 0 var(--space-sm) 0;
+                    padding: 0 0 calc(var(--space-sm) * 1.5) 0;
                     
                     mat-select
                     {
                         .mat-select-trigger
                         {
+                            height: 0;
+                            
                             .mat-select-value
                             {
                                 .mat-select-value-text
@@ -62,6 +64,11 @@ mat-form-field.mat-form-field
                                         font-weight: var(--font-weight-2);
                                     }
                                 }
+                            }
+                            
+                            .mat-select-arrow-wrapper
+                            {
+                                padding-top: var(--space-sm);
                             }
                         }
                     }

@@ -9,6 +9,20 @@
     <mat-form-field class="full-width">
         <input matInput placeholder="Company">
     </mat-form-field>
+    <mat-form-field>
+        <mat-label>Favorite food</mat-label>
+        <mat-select>
+            <mat-option *ngFor="let food of foods" [value]="food.value">
+                {{food.viewValue}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput [matDatepicker]="picker2" placeholder="Angular forms" [formControl]="_date">
+        <mat-datepicker-toggle matSuffix [for]="picker2">
+        </mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+    </mat-form-field>
     <terra-text-input
         inputName="Company"
         [(ngModel)]="_name">

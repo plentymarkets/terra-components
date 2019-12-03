@@ -5,6 +5,11 @@ import {
 import { TerraSelectBoxValueInterface } from '../../select-box/data/terra-select-box.interface';
 import { FormControl } from '@angular/forms';
 
+export interface Food {
+    value: string;
+    viewValue: string;
+}
+
 @Component({
     selector:    'terra-input-example',
     styleUrls:   ['./terra-input.component.example.scss'],
@@ -28,6 +33,13 @@ export class TerraInputComponentExample implements OnInit
     public _serializedDate:FormControl = new FormControl((new Date()).toISOString());
 
     public stateSelection:Array<TerraSelectBoxValueInterface>;
+
+    foods: Food[] = [
+        {value: 'none', viewValue: ''},
+        {value: 'steak-0', viewValue: 'Steak'},
+        {value: 'pizza-1', viewValue: 'Pizza'},
+        {value: 'tacos-2', viewValue: 'Tacos'}
+    ];
 
     public ngOnInit():void
     {

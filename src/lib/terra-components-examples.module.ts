@@ -12,7 +12,8 @@ import {
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatSelectModule
 } from '@angular/material';
 
 @NgModule({
@@ -26,7 +27,8 @@ import {
         MatInputModule,
         ReactiveFormsModule,
         MatNativeDateModule,
-        MatIconModule
+        MatIconModule,
+        MatSelectModule
     ],
     declarations:    [...examples],
     entryComponents: [...examples],
