@@ -11,6 +11,8 @@ Terra-Components now complies with the angular package format and code autocompl
 * **dependencies** Every dependency of Terra-Components now is a peer dependency. You need to install these dependencies in your project.
 * **terra-data-table** removed deprecated input `isSticky` sticky. No replacement will be provided for now. 
 * **float-thead** removed the directive. No replacement will be provided for now.
+* **mat-date-picker** styles for the [angular material datepicker](https://material.angular.io/components/datepicker/overview).
+* **matInput** updated styles to match `mat-date-picker`, `mat-select` and `matInput` appearance.
 
 ### Fix
 * **terra-base-editor** removed unnecessary quill style import
@@ -35,7 +37,6 @@ Terra-Components now complies with the angular package format and code autocompl
 * **terra-portlet** updated header style
 * **terra-data-table** input `isSticky` is now deprecated.
 * **float-thead** the directive is now deprecated.
-* **mat-date-picker** styles for the [angular material datepicker](https://material.angular.io/components/datepicker/overview).
 * **tabs** new styling of angular material tabs. [See the oficial documentation.](https://v7.material.angular.io/components/tabs/overview)
 
 ### Bug Fixes
