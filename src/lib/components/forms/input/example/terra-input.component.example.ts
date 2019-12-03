@@ -6,8 +6,8 @@ import { TerraSelectBoxValueInterface } from '../../select-box/data/terra-select
 import { FormControl } from '@angular/forms';
 
 export interface Food {
-    value: string;
-    viewValue: string;
+    value:string;
+    viewValue:string;
 }
 
 @Component({
