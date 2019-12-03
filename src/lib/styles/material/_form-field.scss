@@ -1,3 +1,5 @@
+@import "../../../lib/styles/variables";
+
 // material select
 
 mat-form-field.mat-form-field
@@ -35,6 +37,7 @@ mat-form-field.mat-form-field
                     font-variant: all-small-caps;
                     font-size: 18px;
                     text-transform: uppercase;
+                    @include font-rendering;
                 }
             }
         }
