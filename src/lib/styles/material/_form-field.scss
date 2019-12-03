@@ -50,6 +50,8 @@ mat-form-field.mat-form-field
                     
                     mat-select
                     {
+                        height: 0;
+                        
                         .mat-select-trigger
                         {
                             height: 0;
@@ -106,6 +108,8 @@ mat-form-field.mat-form-field
                         
                         button
                         {
+                            vertical-align: middle;
+                            
                             &:focus
                             {
                                 outline: none;
