@@ -48,7 +48,7 @@ mat-form-field.mat-form-field
             {
                 .mat-form-field-infix
                 {
-                    padding: 0 0 calc(var(--space-sm) * 1.5) 0;
+                    padding: calc(var(--space-sm) * 1.7) 0;
                     
                     mat-select
                     {
@@ -82,8 +82,7 @@ mat-form-field.mat-form-field
                         color: var(--input-color, var(--color-structure-13));
                         font-weight: var(--font-weight-2);
                         font-size: var(--font-size-3);
-                        height: 100%;
-                        line-height: 100%;
+                        caret-color: inherit;
                     }
                     
                     .mat-form-field-label-wrapper
