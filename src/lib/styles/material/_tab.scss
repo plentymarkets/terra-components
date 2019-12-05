@@ -1,5 +1,7 @@
 nav.mat-tab-nav-bar
 {
+    border-bottom: none;
+    
     .mat-tab-links
     {
         background-color: var(--tabs-background-color);
