@@ -35,13 +35,13 @@ export class TerraButtonWithOptionsComponent implements OnInit
      * @description If true, the button will be small. Default false.
      */
     @Input()
-    public inputIsSmall:boolean;
+    public inputIsSmall:boolean = false;
 
     /**
      * @description If true, the button will be disabled. Default false.
      */
     @Input()
-    public inputIsDisabled:boolean;
+    public inputIsDisabled:boolean = false;
 
     /**
      * @description Set the tooltip.
