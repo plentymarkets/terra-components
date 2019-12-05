@@ -4,10 +4,10 @@ import {
     async,
     TestBed
 } from '@angular/core/testing';
-import { TerraButtonComponent } from '../../../..';
-import { TooltipModule } from 'ngx-bootstrap';
+import { TerraButtonComponent } from '../button/terra-button.component';
 import { LocalizationModule } from 'angular-l10n';
 import { l10nConfig } from '../../../../app/translation/l10n.config';
+import { TooltipDirective } from '../../tooltip/tooltip.directive';
 
 describe('TerraButtonWithOptionsComponent:', () =>
 {
@@ -17,11 +17,11 @@ describe('TerraButtonWithOptionsComponent:', () =>
     beforeEach(async(() =>
     {
         TestBed.configureTestingModule({
-            declarations: [TerraButtonComponent,
+            declarations: [TooltipDirective,
+                           TerraButtonComponent,
                            TerraButtonWithOptionsComponent
             ],
-            imports:      [TooltipModule.forRoot(),
-                           LocalizationModule.forRoot(l10nConfig)
+            imports:      [LocalizationModule.forRoot(l10nConfig)
             ]
         }).compileComponents();
     }));
