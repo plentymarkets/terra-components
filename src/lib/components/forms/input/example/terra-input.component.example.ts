@@ -23,7 +23,6 @@ export class TerraInputComponentExample implements OnInit
     public _city:string;
     public _newsletter:boolean;
     public _agbs:boolean;
-
     public stateSelection:Array<TerraSelectBoxValueInterface>;
 
     public ngOnInit():void
