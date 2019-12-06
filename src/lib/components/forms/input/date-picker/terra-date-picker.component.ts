@@ -23,6 +23,7 @@ let nextId:number = 0;
 
 /**
  * @author mfrank
+ * @deprecated since v5. Use {@link https://material.angular.io/components/datepicker/overview} instead.
  */
 @Component({
     selector:    'terra-date-picker',
