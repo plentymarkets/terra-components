@@ -42,6 +42,9 @@ import { TerraFormFieldWidthEnum } from '../dynamic-form/enum/terra-form-field-w
 })
 export class TerraFormComponent implements ControlValueAccessor, OnChanges, OnInit
 {
+    /**
+     * @description Set width of terra-form-container. Limits max width of all form elements. Default 100.
+     */
     @Input()
     public width:TerraFormFieldWidthEnum = TerraFormFieldWidthEnum.WIDTH_100;
 
