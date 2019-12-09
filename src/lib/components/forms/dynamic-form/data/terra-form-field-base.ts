@@ -1,5 +1,6 @@
 import { isNull } from 'util';
 import { TerraControlTypeEnum } from '../enum/terra-control-type.enum';
+import { TerraFormFieldWidthEnum } from '../enum/terra-form-field-width.enum';
 
 /**
  * @deprecated since v5.0.0. Use terra-form instead.
@@ -15,6 +16,7 @@ export interface TerraFormFieldBaseOptions<T>
     maxValue?:number;
     pattern?:string | RegExp;
     isHidden?:boolean;
+    width?:TerraFormFieldWidthEnum;
 }
 
 /**

@@ -159,6 +159,7 @@ export { TerraControlTypeEnum } from './components/forms/dynamic-form/enum/terra
 export { TerraJsonToFormFieldService } from './components/forms/dynamic-form/service/terra-json-to-form-field.service';
 export { TerraDynamicFormService } from './components/forms/dynamic-form/service/terra-dynamic-form.service';
 export { TerraFormFieldControlService } from './components/forms/dynamic-form/service/terra-form-field-control.service';
+export { TerraFormFieldWidthEnum } from './components/forms/dynamic-form/enum/terra-form-field-width.enum';
 export * from './components/forms/dynamic-form/data/form-fields';
 
 export { TerraKeyValueInterface } from './models/terra-key-value.interface';

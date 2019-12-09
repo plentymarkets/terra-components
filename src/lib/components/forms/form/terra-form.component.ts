@@ -24,6 +24,7 @@ import {
     noop,
     Subscription
 } from 'rxjs';
+import { TerraFormFieldWidthEnum } from '../dynamic-form/enum/terra-form-field-width.enum';
 
 
 @Component({
@@ -40,6 +41,9 @@ import {
 })
 export class TerraFormComponent implements ControlValueAccessor, OnChanges, OnInit
 {
+    @Input()
+    public width:TerraFormFieldWidthEnum = TerraFormFieldWidthEnum.WIDTH_25;
+
     /**
      * @description Set accessor for the form fields. Creates a representative reactive FormGroup instance by parsing the given form fields.
      * @param fields
