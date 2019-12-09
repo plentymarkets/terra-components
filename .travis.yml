@@ -18,6 +18,8 @@ install:
 jobs:
   include:
     - node_js: '12'
+      name: 'Headless Unit Tests'
       script: npm run test-headless
     - node_js: '12'
+      name: 'TSlint'
       script: npm run lint
