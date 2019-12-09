@@ -16,7 +16,6 @@ export interface TerraFormFieldBaseOptions<T>
     maxValue?:number;
     pattern?:string | RegExp;
     isHidden?:boolean;
-    width?:TerraFormFieldWidthEnum;
 }
 
 /**
