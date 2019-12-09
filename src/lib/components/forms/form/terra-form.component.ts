@@ -42,7 +42,7 @@ import { TerraFormFieldWidthEnum } from '../dynamic-form/enum/terra-form-field-w
 export class TerraFormComponent implements ControlValueAccessor, OnChanges, OnInit
 {
     @Input()
-    public width:TerraFormFieldWidthEnum = TerraFormFieldWidthEnum.WIDTH_25;
+    public width:TerraFormFieldWidthEnum = TerraFormFieldWidthEnum.WIDTH_100;
 
     /**
      * @description Set accessor for the form fields. Creates a representative reactive FormGroup instance by parsing the given form fields.
