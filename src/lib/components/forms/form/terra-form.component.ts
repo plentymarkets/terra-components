@@ -37,7 +37,8 @@ import { TerraFormFieldWidthEnum } from '../dynamic-form/enum/terra-form-field-w
             useExisting: TerraFormComponent,
             multi:       true
         }
-    ]
+    ],
+    host: {'class':'w-100'}
 })
 export class TerraFormComponent implements ControlValueAccessor, OnChanges, OnInit
 {
