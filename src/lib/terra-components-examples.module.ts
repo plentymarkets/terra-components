@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { CKEditorModule } from 'ckeditor4-angular';
 
 @NgModule({
-    imports:         [
+    imports: [
         CommonModule,
         FormsModule,
         CKEditorModule,
