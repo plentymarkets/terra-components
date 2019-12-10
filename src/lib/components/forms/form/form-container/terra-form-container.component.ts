@@ -21,7 +21,6 @@ import {
 } from '@angular/forms';
 import { noop } from 'rxjs';
 import { TerraFormTypeInterface } from '../model/terra-form-type.interface';
-import { TerraFormFieldWidthEnum } from '../../dynamic-form/enum/terra-form-field-width.enum';
 
 @Component({
     selector:  'terra-form-container',

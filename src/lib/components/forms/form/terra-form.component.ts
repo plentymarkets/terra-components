@@ -24,7 +24,6 @@ import {
     noop,
     Subscription
 } from 'rxjs';
-import { TerraFormFieldWidthEnum } from '../dynamic-form/enum/terra-form-field-width.enum';
 
 
 @Component({

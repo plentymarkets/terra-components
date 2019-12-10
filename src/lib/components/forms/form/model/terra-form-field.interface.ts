@@ -1,4 +1,3 @@
-import { TerraFormFieldWidthEnum } from '../../../..';
 
 export interface TerraFormFieldInterface
 {
@@ -9,5 +8,5 @@ export interface TerraFormFieldInterface
     defaultValue?:any;
     options?:{ [key:string]:any };
     children?:{ [key:string]:TerraFormFieldInterface };
-    width?:TerraFormFieldWidthEnum;
+    width?:25|50|75|100;
 }
