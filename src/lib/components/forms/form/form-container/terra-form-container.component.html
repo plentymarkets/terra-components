@@ -1,7 +1,7 @@
 <div class="form">
-    <ng-template ngFor let-field [ngForOf]="_formFields">
+    <ng-container *ngFor="let field of _formFields">
         <div *ngIf="_formFieldVisibility[field.key]"
-             [ngClass]="['form-entry', 'form-entry-' + field.value.type, field.type === 'horizontal' ? 'w-100' : field.width? 'w-'+field.width : width? 'w-'+width : 'w-100']"
+             [ngClass]="['form-entry', 'form-entry-' + field.value.type, field.value.type === 'horizontal' ? 'w-100' : 'w-' + (field.value.width || width || 100)]"
              [formGroup]="_formGroup">
             
             <terra-form-entry
@@ -53,5 +53,5 @@
                 [inputControlTypeMap]="inputControlTypeMap">
             </terra-form-entry-list>
         </div>
-    </ng-template>
+    </ng-container>
 </div>
