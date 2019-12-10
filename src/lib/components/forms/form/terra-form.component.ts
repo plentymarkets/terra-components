@@ -46,7 +46,7 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges, OnIn
      * @description Set width of terra-form-container. Limits max width of all form elements. Default 100.
      */
     @Input()
-    public width:TerraFormFieldWidthEnum = TerraFormFieldWidthEnum.WIDTH_100;
+    public width:25|50|75|100;
 
     /**
      * @description Set accessor for the form fields. Creates a representative reactive FormGroup instance by parsing the given form fields.

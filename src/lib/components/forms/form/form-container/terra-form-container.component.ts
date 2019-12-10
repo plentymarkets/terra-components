@@ -57,6 +57,9 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
         this._updateFieldVisibility();
     }
 
+    @Input()
+    public width:25|50|75|100;
+
     /**
      * @description If true, the button will be disabled. Default false.
      */
