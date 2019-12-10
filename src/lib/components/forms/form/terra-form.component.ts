@@ -36,13 +36,12 @@ import {
             useExisting: TerraFormComponent,
             multi:       true
         }
-    ],
-    host: {'class':'w-100'}
+    ]
 })
 export class TerraFormComponent implements ControlValueAccessor, OnChanges, OnInit
 {
     /**
-     * @description Set width of terra-form-container. Limits max width of all form elements. Default 100.
+     * @description Set width of terra-form-container. Sets width of all form elements that don't overwrite it. Default 100.
      */
     @Input()
     public width:25|50|75|100;

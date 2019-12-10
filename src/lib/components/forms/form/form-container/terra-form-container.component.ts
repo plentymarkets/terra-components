@@ -56,6 +56,9 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
         this._updateFieldVisibility();
     }
 
+    /**
+     * Set width of terra-form-container. Sets width of all form elements that don't overwrite it. Default 100.
+     */
     @Input()
     public width:25|50|75|100;
 
