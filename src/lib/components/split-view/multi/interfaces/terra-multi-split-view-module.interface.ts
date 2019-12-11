@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { TerraMultiSplitViewInterface } from './terra-multi-split-view.interface';
 
 /**
