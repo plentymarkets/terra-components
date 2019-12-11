@@ -6,16 +6,12 @@ module.exports = function () {
     };
 
     const sources = {
-        tslintRules: './tslint-rules.json',
-        customLintRules: './lintRules/**/*Rule.ts',
-        floatThead: './src/lib/components/tables/data-table/float-thead/floatThead.js',
         dist: 'dist/**/*.*',
         scss: [
             'src/lib/styles/styles.scss',
             'src/lib/styles/icons.scss',
             'src/lib/styles/themes/theme-loader.scss'
         ],
-        packageJson: 'src/lib/package.json',
         readme: 'README.md'
     };
 
@@ -23,7 +19,7 @@ module.exports = function () {
         tsOutputPath: './dist/',
         fontsOutputPath: './dist/assets/fonts/',
         langOutputPath: './dist/assets/lang/',
-        floatThead: './dist/components/tables/data-table/float-thead/',
+        styles: './dist/styles/',
 
         terra: '../terra/node_modules/@plentymarkets/terra-components/',
     };

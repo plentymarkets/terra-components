@@ -551,6 +551,7 @@ $icon-reply_all: "\eb27";
 $icon-reply: "\eb28";
 $icon-shaking_hands: "\eb29";
 $icon-content_category: "\eb2a";
+$icon-content_search: "\eb2b";
 
 .icon-table_sort
 {
@@ -4984,5 +4985,11 @@ $icon-content_category: "\eb2a";
     &:before
     {
         content: $icon-content_category; 
+    }
+}
+
+.icon-content_search {
+    &:before {
+        content: $icon-content_search; 
     }
 }

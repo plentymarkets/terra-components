@@ -16,19 +16,18 @@
 </terra-base-toolbar>
 
 <terra-data-table
-    [isSticky]="true"
     #table
     [inputService]="_service"
     [inputHasCheckboxes]="true"
     [inputHeaderList]="_headerList"
     [inputContextMenu]="_contextMenu">
-    
+
     <terra-group-function [show]="showGroupFunction"
                           [disableExecution]="false"
                           (executeGroupFunction)="_executeGroupFunction(table.selectedRowList)">
         <terra-text-input [inputName]="'Text'"></terra-text-input>
     </terra-group-function>
-    
+
     <terra-no-result-notice
         [inputButtons]="_noResultButtons"
         [inputTextPrimary]="_noResultTextPrimary"

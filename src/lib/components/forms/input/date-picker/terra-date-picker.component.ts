@@ -24,6 +24,7 @@ let nextId:number = 0;
 
 /**
  * @author mfrank
+ * @deprecated since v5. Use {@link https://material.angular.io/components/datepicker/overview} instead.
  */
 @Component({
     selector:    'terra-date-picker',
@@ -81,6 +82,7 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
     public _currentLocale:string;
     public _id:string;
     public _datePickerOptions:IMyOptions;
+    public _dateAsString:string;
 
     /**
      * @description a unique string identifier for the specific input instance.
@@ -159,6 +161,11 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
         {
             this._value = null;
         }
+
+        if(this.viewChildMyDatePicker && this.viewChildMyDatePicker.inputBoxEl)
+        {
+            this._dateAsString = this.viewChildMyDatePicker.inputBoxEl.nativeElement.value;
+        }
     }
 
     public clearDate():void
@@ -204,7 +211,7 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
             inline:                   false,
             editableDateField:        true,
             openSelectorOnInputClick: false,
-            dateFormat:               this.inputDisplayDateFormat,
+            dateFormat:               this.inputDisplayDateFormat
         };
     }
 }

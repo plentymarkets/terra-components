@@ -41,6 +41,9 @@ import { ClipboardHelper } from '../../../helpers/clipboard.helper';
 import { TerraSimpleTableCellInterface } from '../../tables/simple/cell/terra-simple-table-cell.interface';
 import { TerraButtonInterface } from '../../buttons/button/data/terra-button.interface';
 import { TerraSimpleTableHeaderCellInterface } from '../../tables/simple/cell/terra-simple-table-header-cell.interface';
+import { AlertService } from '../../alert/alert.service';
+
+const MAX_UPLOAD_COUNT:number = 10;
 
 @Component({
     selector:    'terra-file-list',
@@ -259,6 +262,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
                 private _fileBrowserService:TerraFileBrowserService,
                 private _translationService:TranslationService,
                 private _localeService:LocaleService,
+                private _alertService:AlertService,
                 @Inject(forwardRef(() => TerraFileBrowserComponent)) public _parentFileBrowser:TerraFileBrowserComponent)
     {
     }
@@ -469,10 +473,10 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
                 return objectA.name.localeCompare(objectB.name);
             }
         ).filter((storageObject:TerraStorageObject) => this._isAllowed(storageObject.key))
-                                    .map((storageObject:TerraStorageObject) =>
-                                    {
-                                        return this._createTableRow(storageObject);
-                                    });
+                                     .map((storageObject:TerraStorageObject) =>
+                                     {
+                                         return this._createTableRow(storageObject);
+                                     });
     }
 
     private _createTableRow(storageObject:TerraStorageObject):TerraSimpleTableRowInterface<TerraStorageObject>
@@ -500,7 +504,9 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
                 caption: storageObject.isFile ? storageObject.sizeString : ''
             },
             {
-                caption: storageObject.isFile ? this._localeService.formatDate(storageObject.lastModified, 'medium', this._defaultLocale) : ''
+                caption: storageObject.isFile ? this._localeService.formatDate(storageObject.lastModified,
+                    'medium',
+                    this._defaultLocale) : ''
             }
         );
 
@@ -666,6 +672,15 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
 
     private _uploadFiles(fileList:FileList | Array<File>):void
     {
+        const queueLength:number = !this._progress ? 0 : (this._progress.filesTotal - this._progress.filesUploaded);
+        if(fileList.length + queueLength > MAX_UPLOAD_COUNT)
+        {
+            this._alertService.error(
+                this._translationService.translate('terraFileBrowser.error.tooManyFiles', {max: MAX_UPLOAD_COUNT})
+            );
+            return;
+        }
+
         let uploadPrefix:string = this.currentStorageRoot ? this.currentStorageRoot.key : '/';
         this.activeStorageService
             .uploadFiles(

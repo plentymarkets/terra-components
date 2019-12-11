@@ -92,7 +92,8 @@ export class TerraUploadItem
             'onCancel',
             'onProgress'].indexOf(event) >= 0)
         {
-            this[event + 'List'].forEach((callback:(...args:Array<any>) => void) =>
+            // TODO: this access is insecure since it breaks when the variables are renamed
+            this['_' + event + 'List'].forEach((callback:(...args:Array<any>) => void) =>
             {
                 callback(...args);
             });

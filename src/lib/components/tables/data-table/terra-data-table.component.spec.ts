@@ -32,15 +32,14 @@ import {
 import { TerraLabelTooltipDirective } from '../../../helpers/terra-label-tooltip.directive';
 import { By } from '@angular/platform-browser';
 import { TableRowComponent } from './table-row/table-row.component';
-import { FloatTheadDirective } from './float-thead/float-thead.directive';
 import { MockRouter } from '../../../testing/mock-router';
-import Spy = jasmine.Spy;
 import { TooltipDirective } from '../../tooltip/tooltip.directive';
 import {
     ActivatedRoute,
     Router
 } from '@angular/router';
 import { MockActivatedRoute } from '../../../testing/mock-activated-route';
+import Spy = jasmine.Spy;
 
 describe('TerraDataTableComponent', () =>
 {
@@ -53,7 +52,6 @@ describe('TerraDataTableComponent', () =>
         TestBed.configureTestingModule({
             declarations: [
                 TooltipDirective,
-                FloatTheadDirective,
                 TerraDataTableComponent,
                 TerraButtonComponent,
                 TerraPagerComponent,
