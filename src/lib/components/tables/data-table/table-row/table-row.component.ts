@@ -18,9 +18,9 @@ export class TableRowComponent
 {
     /* tslint:disable-next-line:no-input-rename */
     @Input('tcTableRow')
-    public row:TerraDataTableRowInterface<any>;
+    public row:TerraDataTableRowInterface<unknown>;
 
-    constructor(@Host() public _dataTable:TerraDataTableComponent<any, any>)
+    constructor(@Host() public _dataTable:TerraDataTableComponent<unknown, unknown>)
     {
     }
 
