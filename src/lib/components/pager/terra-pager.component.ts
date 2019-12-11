@@ -21,7 +21,7 @@ import { debounceTime } from 'rxjs/operators';
 export class TerraPagerComponent implements OnInit, OnDestroy
 {
     @Input()
-    public inputPagingData:TerraPagerInterface<any>;
+    public inputPagingData:TerraPagerInterface<unknown>;
 
     @Input()
     public inputDefaultPagingSize:number;
@@ -33,16 +33,16 @@ export class TerraPagerComponent implements OnInit, OnDestroy
     public inputRequestPending:boolean;
 
     @Output()
-    public outputDoPaging:EventEmitter<TerraPagerInterface<any>> = new EventEmitter<TerraPagerInterface<any>>();
+    public outputDoPaging:EventEmitter<TerraPagerInterface<unknown>> = new EventEmitter<TerraPagerInterface<unknown>>();
 
     @Language()
     public _lang:string;
 
-    private _pagingClicks:Subject<TerraPagerInterface<any>> = new Subject<TerraPagerInterface<any>>();
+    private _pagingClicks:Subject<TerraPagerInterface<unknown>> = new Subject<TerraPagerInterface<unknown>>();
 
     public ngOnInit():void
     {
-        this._pagingClicks.pipe(debounceTime(400)).subscribe((e:TerraPagerInterface<any>) => this.outputDoPaging.emit(e));
+        this._pagingClicks.pipe(debounceTime(400)).subscribe((e:TerraPagerInterface<unknown>) => this.outputDoPaging.emit(e));
 
         if(!this.inputDefaultPagingSize)
         {
@@ -115,7 +115,7 @@ export class TerraPagerComponent implements OnInit, OnDestroy
         this.notify();
     }
 
-    public onToPage(event:any, pageNumber:number):void
+    public onToPage(event:Event, pageNumber:number):void
     {
         event.preventDefault();
 
