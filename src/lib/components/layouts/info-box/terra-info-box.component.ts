@@ -1,5 +1,6 @@
 import {
     Component,
+    ElementRef,
     Input,
     ViewChild
 } from '@angular/core';
@@ -36,7 +37,7 @@ export class TerraInfoBoxComponent
     public inputNoWordBreak:boolean;
 
     @ViewChild('buttonRef')
-    public _buttonRef:any;
+    public _buttonRef:ElementRef;
 
     public get hasButtons():boolean
     {
