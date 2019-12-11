@@ -6,10 +6,10 @@
     [inputIcon]="inputIcon"
     [inputIsSmall]="inputIsSmall"
     [inputIsLarge]="inputIsLarge"
-    (click)="toggle()">
+    (click)="_toggle()">
 
     <div btn-inner class="toggle-wrapper"
-         [ngClass]="{'active':isActive,
+         [ngClass]="{'active':_isActive,
                 'sm': inputIsSmall,
                 'lg': inputIsLarge,
                 'float-right': inputIsAlignRight,

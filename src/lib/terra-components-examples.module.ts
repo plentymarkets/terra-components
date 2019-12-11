@@ -7,7 +7,7 @@ import { CKEditorModule } from 'ckeditor4-angular';
 import { MatTabsModule } from '@angular/material';
 
 @NgModule({
-    imports:         [
+    imports: [
         CommonModule,
         FormsModule,
         CKEditorModule,

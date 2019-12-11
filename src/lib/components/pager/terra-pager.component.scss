@@ -21,7 +21,8 @@
         margin: var(--pager-margin, 0 var(--space-xs) var(--space-sm) var(--space-xs));
         border-radius: var(--pager-border-radius, var(--border-radius));
         border-bottom: var(--pager-border-bottom, (none));
-        box-shadow: var(--box-shadow);
+        border-top: var(--pager-border-top, (none));
+        box-shadow: var(--pager-box-shadow, var(--box-shadow));
         position: relative;
         z-index: var(--pager-z-index);
         --select-box-wrapper-margin-bottom: 0;

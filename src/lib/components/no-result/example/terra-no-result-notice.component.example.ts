@@ -6,27 +6,27 @@ import { TerraButtonInterface } from '../../buttons/button/data/terra-button.int
 
 @Component({
     selector: 'terra-no-result-notice-example',
-    styles:   [require('./terra-no-result-notice.component.example.scss')],
-    template: require('./terra-no-result-notice.component.example.html'),
+    styleUrls: [ './terra-no-result-notice.component.example.scss'],
+    templateUrl: './terra-no-result-notice.component.example.html'
 })
 export class TerraNoResultNoticeComponentExample implements OnInit
 {
-    protected buttons:Array<TerraButtonInterface> = [];
-    private result:boolean;
+    public _buttons:Array<TerraButtonInterface> = [];
+    public _result:boolean;
 
     public checkResult(value:boolean):void
     {
-        this.result = value;
+        this._result = value;
     }
 
     public ngOnInit():void
     {
-        this.buttons.push({
+        this._buttons.push({
             caption:       'Search',
             icon:          'icon-add',
             clickFunction: ():void =>
                            {
-                               this.result = true;
+                               this._result = true;
                            }
         });
     }

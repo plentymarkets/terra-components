@@ -1,120 +1,104 @@
-var gulp = require('gulp');
-var del = require('del');
-var sourcemaps = require('gulp-sourcemaps');
-var merge = require('merge2');
-var tsc = require('gulp-typescript');
-var tsProject = tsc.createProject('./tsconfig.json', {typescript: require('typescript')});
-var config = require('./gulp.config.js')();
-var fs = require('fs');
-var semver = require('semver');
-var shell = require('gulp-shell');
-var argv = require('yargs').argv;
-var Dgeni = require('dgeni');
-var gulpTasks = require('./component-documentation/tasks/docuTasks.js');
-var paths = require('./component-documentation/tasks/paths');
+const { series, parallel, src, dest } = require('gulp');
+const config = require('./gulp.config.js')();
+const fs = require('fs');
+const semver = require('semver');
+const argv = require('yargs').argv;
+const sass = require('gulp-sass');
+const tildeImporter = require('node-sass-tilde-importer');
 
-var version, increment, preid;
 
-gulp.task('clean-dist', function () {
-    return del(config.destinations.tsOutputPath);
-});
+// convert global scss styles to css files
+function compileGlobalStyles() {
+    return src(config.sources.scss)
+        .pipe(sass({
+            importer: tildeImporter,
+            outputStyle: 'compressed'
+        }).on('error', sass.logError))
+        .pipe(dest('dist/styles'))
+}
+const compileStyles = compileGlobalStyles;
+exports.compileStyles = compileStyles;
 
-//compile typescript files
-gulp.task('compile-ts', function () {
-    var sourceTsFiles = [
-        config.excluded,
-        config.fileSelectors.allTs,
-        config.sources.customLintRules
-    ];
-
-    var tsResult = gulp.src(sourceTsFiles)
-        .pipe(sourcemaps.init())
-        .pipe(tsProject());
-
-    return merge([
-        tsResult.dts.pipe(gulp.dest(config.destinations.tsOutputPath)),
-        tsResult.js.pipe(sourcemaps.write('.')).pipe(gulp.dest(config.destinations.tsOutputPath))
-    ]);
-});
-
-//copy files to dist
-gulp.task('copy-files', function () {
-    return gulp.src(config.filesToCopy)
-        .pipe(gulp.dest(config.destinations.tsOutputPath));
-});
 
 //copy fonts to dist
-gulp.task('copy-fonts', function () {
-    return gulp.src(config.fileSelectors.allFonts)
-        .pipe(gulp.dest(config.destinations.fontsOutputPath));
-});
+function copyFonts() {
+    return src(config.fileSelectors.allFonts)
+        .pipe(dest(config.destinations.fontsOutputPath));
+}
 
 //copy lang to dist
-gulp.task('copy-lang', function () {
-    return gulp.src(config.fileSelectors.allLang)
-        .pipe(gulp.dest(config.destinations.langOutputPath));
-});
+function copyLang() {
+    return src(config.fileSelectors.allLang)
+        .pipe(dest(config.destinations.langOutputPath));
+}
 
-//copy lang to dist
-gulp.task('copy-tslint-rules', function ()
-{
-    return gulp.src(config.sources.tslintRules)
-        .pipe(gulp.dest(config.destinations.tsOutputPath));
-});
+//copy README to dist
+function copyReadme() {
+    return src(config.sources.readme)
+        .pipe(dest(config.destinations.tsOutputPath));
+}
+
+function copyIconsScss() {
+    return src('src/lib/styles/icons.scss')
+        .pipe(dest(config.destinations.styles));
+}
+
+function copyVariablesScss() {
+    return src('src/lib/styles/_variables.scss')
+        .pipe(dest(config.destinations.styles))
+}
+
+function copyPlentyIconsScss() {
+    return src('src/lib/styles/fonts/plentyicons.scss')
+        .pipe(dest(config.destinations.styles + 'fonts'));
+}
+
+function copyCustomDataTableScss() {
+    return src('src/lib/components/tables/data-table/custom-data-table.scss')
+        .pipe(dest('dist/components/tables/data-table'));
+}
+
+function copyNodeTreeScss() {
+    return src('src/lib/components/tree/node-tree/terra-node-tree.component.scss')
+        .pipe(dest('dist/components/tree/node-tree'));
+}
+
+function copyTagScss() {
+    return src('src/lib/components/layouts/tag/terra-tag.component.scss')
+        .pipe(dest('dist/components/layouts/tag'))
+}
+
+function copyTagListScss() {
+    return src('src/lib/components/layouts/taglist/terra-taglist.component.scss')
+        .pipe(dest('dist/components/layouts/taglist'))
+}
+
+function copyButtonScss() {
+    return src('src/lib/components/buttons/button/terra-button.component.scss')
+        .pipe(dest('dist/components/buttons/button'))
+}
+
+const copySassFiles = parallel(copyIconsScss, copyVariablesScss, copyPlentyIconsScss, copyCustomDataTableScss, copyNodeTreeScss, copyTagScss, copyTagListScss, copyButtonScss);
+const copyFilesToDist = parallel(copyFonts, copyLang, copyReadme, copySassFiles);
+
 
 //copy files from dist to terra
-gulp.task('copy-to-terra', function () {
-    return gulp.src(config.sources.dist)
-        .pipe(gulp.dest(config.destinations.terra));
-});
+function copyToTerra() {
+    return src(config.sources.dist)
+        .pipe(dest(config.destinations.terra));
+}
 
 /**
- *
- * usage: 'npm run build' for local build
- *
+ * Copies all the files to the dist folder and then to the terra workspace
  **/
-gulp.task('build',
-    gulp.series(
-        'clean-dist',
-        'compile-ts',
-        'copy-files',
-        'copy-fonts',
-        'copy-lang',
-        'copy-tslint-rules',
-        'copy-to-terra'
-    )
-);
+const copy = series(copyFilesToDist, copyToTerra);
+exports.copy = copy;
 
-/**
- * define gulp tasks for 'npm-publish'
- */
-//changing version of package.json for new publish
-function changeVersion(done) {
-    var json = JSON.parse(fs.readFileSync('./package.json'));
 
-    console.log('-------------------------------------------------');
-    console.log('--- OLD PACKAGE VERSION: ' + json.version + ' ---');
-
-    json.version = semver.inc(json.version, increment, preid);
-
-    version = json.version;
-
-    console.log('--- NEW PACKAGE VERSION: ' + json.version + ' ---');
-    console.log('-------------------------------------------------');
-
-    fs.writeFileSync('./package.json', JSON.stringify(json, null, '\t'));
-    done();
-};
-
-//publish to npm
-gulp.task('publish', shell.task([
-        'npm publish dist'
-    ])
-);
 
 /**
  *
- * usage: 'npm run publish -- --param1 --param2 param2_value' for publishing
+ * usage: 'gulp changeVersion --param1 --param2 param2_value'
  *
  * @param increment  - Possible values are
  *                      major           (1.x.x to 2.x.x),
@@ -131,92 +115,27 @@ gulp.task('publish', shell.task([
  *     'node_modules/@plentymarkets/terra-components' in target directory
  *
  **/
-gulp.task('npm-publish', function () {
-    increment = argv.increment ? argv.increment : 'patch';
-    preid = argv.preid ? argv.preid : '';
+function changeVersion(done) {
+    const libPath = 'src/lib/package.json';
+    const distPath = 'dist/package.json';
+    const increment = argv.increment ? argv.increment : 'patch';
+    const preid = argv.preid ? argv.preid : '';
+    const jsonLib = JSON.parse(fs.readFileSync(libPath));
+    const jsonDist = JSON.parse(fs.readFileSync(distPath));
 
-    if(argv.level || argv.subversion)
-    {
-        console.log('-------------------------------------------------------------------');
-        console.log('----  Build not started. See gulpfile for further information. ----');
-        console.log('-------------------------------------------------------------------');
+    console.log('-------------------------------------------------');
+    console.log('--- OLD PACKAGE VERSION: ' + jsonDist.version + ' ---');
 
-        return;
-    }
-    else
-    {
-        return gulp.series(
-            changeVersion,
-            'clean-dist',
-            'compile-ts',
-            'copy-files',
-            'copy-fonts',
-            'copy-lang',
-            'copy-tslint-rules',
-            'publish'
-        );
-    }
-}());
+    const version = semver.inc(jsonDist.version, increment, preid);
 
-/**
- * define tasks for 'build-doc'
- */
-gulp.task('copy-to-terra-doc', function () {
-    return gulp.src(config.sources.dist)
-        .pipe(gulp.dest(config.destinations.terraComponentsDoc));
-});
-gulp.task('copy-api-to-terra-doc', function () {
-    return gulp.src('component-documentation/build/**/*.*')
-        .pipe(gulp.dest(config.destinations.terraComponentsDocBuild));
-});
+    console.log('--- NEW PACKAGE VERSION: ' + version + ' ---');
+    console.log('-------------------------------------------------');
 
-//copy components from dist to terra-component-doc
-gulp.task('copy-components-to-doc', function () {
-    return gulp.src('src/lib/components/**/**/example/*.ts')
-        .pipe(gulp.dest(config.destinations.terraComponentsDocComponents));
-});
-
-gulp.task('copy-markdown-to-doc', function () {
-    return gulp.src('src/lib/components/**/example/*.md')
-        .pipe(gulp.dest(config.destinations.terraComponentsDocComponents));
-});
-
-gulp.task('copy-icon-description-json', function () {
-    return gulp.src('src/lib/styles/iconDescription.json')
-        .pipe(gulp.dest(config.destinations.terraComponentsDocBuild));
-});
-gulp.task('copy-documentation-changelog', function () {
-    return gulp.src('component-documentation/documentation-changelog.json')
-        .pipe(gulp.dest(config.destinations.terraComponentsDocBuild));
-});
-gulp.task('dgeni', function () {
-    try {
-        var dgeni = new Dgeni([require('./component-documentation/index')]);
-        return dgeni.generate();
-    } catch (x) {
-        console.log(x.stack);
-        throw x;
-    }
-});
-
-gulp.task('generateJson', function (done)
-{
-    gulpTasks.buildJsonFile(paths.dataJsonOutputPath);
+    jsonDist.version = version;
+    jsonLib.version = version;
+    fs.writeFileSync(libPath, JSON.stringify(jsonLib, null, '\t'));
+    fs.writeFileSync(distPath, JSON.stringify(jsonDist, null, '\t'));
     done();
-});
+}
+exports.changeVersion = changeVersion;
 
-/**
- * run "gulp build-doc" to let Dgeni generate api files and to create json data.
- */
-gulp.task('build-doc',
-    gulp.series(
-        'build',
-        'dgeni',
-        'generateJson',
-        'copy-to-terra-doc',
-        'copy-components-to-doc',
-        'copy-api-to-terra-doc',
-        'copy-markdown-to-doc',
-        'copy-icon-description-json',
-        'copy-documentation-changelog'
-    ));

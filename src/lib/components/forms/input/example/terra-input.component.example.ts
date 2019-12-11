@@ -5,27 +5,25 @@ import {
 import { TerraSelectBoxValueInterface } from '../../select-box/data/terra-select-box.interface';
 
 @Component({
-    selector: 'terra-input-example',
-    styles:   [require('./terra-input.component.example.scss')],
-    template: require('./terra-input.component.example.html'),
+    selector:    'terra-input-example',
+    styleUrls:   ['./terra-input.component.example.scss'],
+    templateUrl: './terra-input.component.example.html',
 })
 export class TerraInputComponentExample implements OnInit
 {
-
-    protected name:string;
-    protected lastName:string;
-    protected email:string;
-    protected password:string;
-    protected passwordRepeat:string;
-    protected birthday:any;
-    protected state:Array<TerraSelectBoxValueInterface>;
-    protected address:string;
-    protected zip:number;
-    protected city:string;
-    protected newsletter:boolean;
-    protected agbs:boolean;
-
-    protected stateSelection:Array<TerraSelectBoxValueInterface>;
+    public _name:string;
+    public _lastName:string;
+    public _email:string;
+    public _password:string;
+    public _passwordRepeat:string;
+    public _birthday:any;
+    public _state:Array<TerraSelectBoxValueInterface>;
+    public _address:string;
+    public _zip:number;
+    public _city:string;
+    public _newsletter:boolean;
+    public _agbs:boolean;
+    public stateSelection:Array<TerraSelectBoxValueInterface>;
 
     public ngOnInit():void
     {
@@ -102,13 +100,13 @@ export class TerraInputComponentExample implements OnInit
         );
     }
 
-    public showValues():void
+    public _showValues():void
     {
-        alert(this.name + ' ' + this.lastName + ' ' +
-              this.email + ' ' + this.password + ' ' +
-              this.passwordRepeat + ' ' + this.birthday + ' ' +
-              this.state + ' ' + this.address + ' ' +
-              this.zip + ' ' + this.city + ' ' +
-              this.newsletter + ' ' + this.agbs);
+        alert(this._name + ' ' + this._lastName + ' ' +
+              this._email + ' ' + this._password + ' ' +
+              this._passwordRepeat + ' ' + this._birthday + ' ' +
+              this._state + ' ' + this._address + ' ' +
+              this._zip + ' ' + this._city + ' ' +
+              this._newsletter + ' ' + this._agbs);
     }
 }

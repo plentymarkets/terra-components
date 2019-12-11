@@ -2,14 +2,14 @@ import { Component } from '@angular/core';
 
 @Component({
     selector: 'terra-date-picker-example',
-    styles:   [require('./terra-date-picker.component.example.scss')],
-    template: require('./terra-date-picker.component.example.html'),
+    styleUrls: [ './terra-date-picker.component.example.scss'],
+    templateUrl: './terra-date-picker.component.example.html',
 })
 export class TerraDatePickerComponentExample
 {
-    protected date:string = new Date().toDateString();
+    public _date:string = new Date().toDateString();
 
-    protected onChange(value:string):void
+    public _onChange(value:string):void
     {
         console.log(value);
     }

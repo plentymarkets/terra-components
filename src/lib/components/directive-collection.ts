@@ -6,7 +6,6 @@ import { TerraLabelTooltipDirective } from '../helpers/terra-label-tooltip.direc
 import { FormEntryContainerDirective } from './forms/form/form-entry/form-entry-container.directive';
 import { CKEditorDirective } from './editors/ck-editor/ck-editor.directive';
 import { TooltipDirective } from './tooltip/tooltip.directive';
-import { FloatTheadDirective } from './tables/data-table/float-thead/float-thead.directive';
 import { ContextMenuDirective } from './context-menu/context-menu.directive';
 
 export const directives:Array<Type<any>> = [
@@ -16,7 +15,6 @@ export const directives:Array<Type<any>> = [
     TerraLabelTooltipDirective,
     FormEntryContainerDirective,
     CKEditorDirective,
-    TooltipDirective,
-    FloatTheadDirective,
-    ContextMenuDirective
+    ContextMenuDirective,
+    TooltipDirective
 ];

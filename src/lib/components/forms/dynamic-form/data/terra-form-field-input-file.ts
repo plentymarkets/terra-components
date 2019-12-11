@@ -5,7 +5,7 @@ import {
 import { TerraControlTypeEnum } from '../enum/terra-control-type.enum';
 
 /**
- * @author z.hajjhassan
+ * @deprecated since v5.0.0. Use terra-form instead.
  */
 export interface TerraFormFieldInputFileOptions extends TerraFormFieldBaseOptions<number>
 {
@@ -14,6 +14,9 @@ export interface TerraFormFieldInputFileOptions extends TerraFormFieldBaseOption
     inputAllowFolders?:boolean;
 }
 
+/**
+ * @deprecated since v5.0.0. Use terra-form instead.
+ */
 export class TerraFormFieldInputFile extends TerraFormFieldBase<number>
 {
     public type:string;

@@ -16,7 +16,8 @@ export class FileTypeHelper
                    'jpeg',
                    'png',
                    'gif',
-                   'svg'
+                   'svg',
+                   'webp'
                ].indexOf(extension) >= 0;
     }
 
