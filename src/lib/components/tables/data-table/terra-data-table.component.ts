@@ -175,7 +175,7 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
             }
 
             // check if every element of the array implements the tag interface
-            let implementsInterface:boolean = typeCheck.every((elem:any) =>
+            let implementsInterface:boolean = typeCheck.every((elem:TerraTagInterface) =>
             {
                 return !isNullOrUndefined(elem.name) && typeof elem.name === 'string';
             });
@@ -193,7 +193,7 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
             }
 
             // check if every element of the array implements the button interface
-            let implementsInterface:boolean = typeCheck.every((elem:any) =>
+            let implementsInterface:boolean = typeCheck.every((elem:TerraButtonInterface) =>
             {
                 return !isNullOrUndefined(elem.clickFunction) && typeof elem.clickFunction === 'function';
             });
