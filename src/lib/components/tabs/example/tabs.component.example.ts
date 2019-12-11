@@ -10,9 +10,9 @@ import { ContextMenuService } from '../../context-menu/context-menu.service';
 })
 export class TabsComponentExample
 {
-    protected links:Array<string> = ['First',
-                                     'Second',
-                                     'Third'];
-    protected activeLink:string = this.links[0];
-    protected trigger:ContextMenuTrigger = ContextMenuTrigger.hover;
+    public _links:Array<string> = ['First',
+                                   'Second',
+                                   'Third'];
+    public _activeLink:string = this._links[0];
+    public _trigger:ContextMenuTrigger = ContextMenuTrigger.hover;
 }

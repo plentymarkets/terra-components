@@ -1,12 +1,12 @@
 <h1>Tabs used for routing (in tabbar)</h1>
 
 <nav mat-tab-nav-bar>
-    <ng-container *ngFor="let link of links">
+    <ng-container *ngFor="let link of _links">
         <a mat-tab-link
-           (click)="activeLink = link"
-           [active]="activeLink == link">
+           (click)="_activeLink = link"
+           [active]="_activeLink == link">
             {{link}}
-            <span class="caret" [tcContextMenu]="contextMenu" [trigger]="trigger"></span>
+            <span class="caret" [tcContextMenu]="contextMenu" [trigger]="_trigger"></span>
             <button type="button"
                     class="close"
                     aria-label="Close">
