@@ -77,7 +77,7 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
 
     public _columnHeaderClicked:EventEmitter<TerraDataTableHeaderCellInterface> = new EventEmitter<TerraDataTableHeaderCellInterface>();
 
-    public readonly _refType:any = TerraHrefTypeEnum;
+    public readonly _refType:(typeof TerraHrefTypeEnum) = TerraHrefTypeEnum;
     public readonly _checkboxColumnWidth:number = 25;
 
     constructor(private _cdr:ChangeDetectorRef)
@@ -148,31 +148,34 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
         this._resetSelectedRows();
     }
 
-    public _getCellDataType(data:any):string
+    public _getCellDataType(data:unknown):string
     {
-        function isRefType(arg:any):arg is TerraHrefTypeInterface
+        function isRefType(arg:unknown):arg is TerraHrefTypeInterface
         {
-            return !isNullOrUndefined(arg)
-                   && !isNullOrUndefined(arg.type) && typeof arg.type === 'string'
-                   && !isNullOrUndefined(arg.value)
-                   && (typeof arg.value === 'string' || typeof arg.value === 'number' || typeof arg.value === 'function');
+            const typeCheck:TerraHrefTypeInterface = arg as TerraHrefTypeInterface;
+            return !isNullOrUndefined(typeCheck)
+                   && !isNullOrUndefined(typeCheck.type) && typeof typeCheck.type === 'string'
+                   && !isNullOrUndefined(typeCheck.value)
+                   && (typeof typeCheck.value === 'string' || typeof typeCheck.value === 'number' || typeof typeCheck.value === 'function');
         }
 
-        function isTextType(arg:any):arg is TerraDataTableTextInterface
+        function isTextType(arg:unknown):arg is TerraDataTableTextInterface
         {
-            return !isNullOrUndefined(arg) && !isNullOrUndefined(arg.caption) && typeof arg.caption === 'string';
+            const typeCheck:TerraDataTableTextInterface = arg as TerraDataTableTextInterface;
+            return !isNullOrUndefined(arg) && !isNullOrUndefined(typeCheck.caption) && typeof typeCheck.caption === 'string';
         }
 
-        function isTagArray(arg:any):arg is Array<TerraTagInterface>
+        function isTagArray(arg:unknown):arg is Array<TerraTagInterface>
         {
+            const typeCheck:Array<TerraTagInterface> = arg as Array<TerraTagInterface>;
             // check if it is an array
-            if(!isArray(arg))
+            if(!isArray(typeCheck))
             {
                 return false;
             }
 
             // check if every element of the array implements the tag interface
-            let implementsInterface:boolean = arg.every((elem:any) =>
+            let implementsInterface:boolean = typeCheck.every((elem:any) =>
             {
                 return !isNullOrUndefined(elem.name) && typeof elem.name === 'string';
             });
@@ -180,16 +183,17 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
             return !isNullOrUndefined(arg) && implementsInterface;
         }
 
-        function isButtonArray(arg:any):arg is Array<TerraButtonInterface>
+        function isButtonArray(arg:unknown):arg is Array<TerraButtonInterface>
         {
+            const typeCheck:Array<TerraButtonInterface> = arg as Array<TerraButtonInterface>;
             // check if it is an array
-            if(!isArray(arg))
+            if(!isArray(typeCheck))
             {
                 return false;
             }
 
             // check if every element of the array implements the button interface
-            let implementsInterface:boolean = arg.every((elem:any) =>
+            let implementsInterface:boolean = typeCheck.every((elem:any) =>
             {
                 return !isNullOrUndefined(elem.clickFunction) && typeof elem.clickFunction === 'function';
             });
