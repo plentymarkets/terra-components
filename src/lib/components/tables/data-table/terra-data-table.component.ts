@@ -29,7 +29,6 @@ import { TerraBaseTable } from '../terra-base-table';
 import { TerraDataTableTextInterface } from './interfaces/terra-data-table-text.interface';
 import { TerraTagInterface } from '../../layouts/tag/data/terra-tag.interface';
 import { TerraDataTableContextMenuEntryInterface } from './context-menu/data/terra-data-table-context-menu-entry.interface';
-import { ContextMenuTrigger } from '../../context-menu/context-menu-trigger';
 import { TerraDataTableContextMenuService } from './context-menu/terra-data-table-context-menu.service';
 
 @Component({
