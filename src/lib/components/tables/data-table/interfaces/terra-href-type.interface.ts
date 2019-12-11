@@ -4,6 +4,6 @@ export interface TerraHrefTypeInterface
 {
     type:TerraHrefTypeEnum;
     value:string | number | Function;
-    caption?:any;
+    caption?:unknown;
     target?:string;
 }
