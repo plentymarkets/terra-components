@@ -53,10 +53,7 @@ export class TerraTagSelectComponent implements ControlValueAccessor, OnInit, On
     private _tagList:Array<TerraTagInterface>;
 
     private _onTouchedCallback:() => void = noop;
-    private _onChangeCallback:(_:any) => void = noop;
-
-    private onTouchedCallback:() => void = noop;
-    private onChangeCallback:(_:any) => void = noop;
+    private _onChangeCallback:(_:Array<TerraTagInterface>) => void = noop;
 
     public ngOnInit():void
     {
@@ -79,7 +76,7 @@ export class TerraTagSelectComponent implements ControlValueAccessor, OnInit, On
         }
     }
 
-    public writeValue(selectedTags:any):void
+    public writeValue(selectedTags:Array<TerraTagInterface>):void
     {
         this._selectedTags = selectedTags;
 
@@ -87,12 +84,12 @@ export class TerraTagSelectComponent implements ControlValueAccessor, OnInit, On
         this._onChangeCallback(selectedTags);
     }
 
-    public registerOnChange(fn:any):void
+    public registerOnChange(fn:() => void):void
     {
         this._onChangeCallback = fn;
     }
 
-    public registerOnTouched(fn:any):void
+    public registerOnTouched(fn:() => void):void
     {
         this._onTouchedCallback = fn;
     }
