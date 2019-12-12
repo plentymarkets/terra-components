@@ -126,7 +126,6 @@ export class TerraSliderComponent implements OnInit, OnChanges, ControlValueAcce
      */
     public get handlePosition():number
     {
-        let sliderWidth:number = this.sliderBarElement.nativeElement.getBoundingClientRect().width;
         let percentage:number = Math.abs(this.inputMin - this.value) / this.calculateRangeOfSlider();
 
         if(percentage < 0)
@@ -136,10 +135,10 @@ export class TerraSliderComponent implements OnInit, OnChanges, ControlValueAcce
 
         if(percentage > 1)
         {
-            return sliderWidth;
+            return 100;
         }
 
-        return sliderWidth * percentage;
+        return percentage * 100;
     }
 
     /**
