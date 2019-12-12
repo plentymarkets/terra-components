@@ -84,7 +84,7 @@ export class TerraTagSelectComponent implements ControlValueAccessor, OnInit, On
         this._onChangeCallback(selectedTags);
     }
 
-    public registerOnChange(fn:() => void):void
+    public registerOnChange(fn:(_:Array<TerraTagInterface>) => void):void
     {
         this._onChangeCallback = fn;
     }
