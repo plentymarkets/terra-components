@@ -12,12 +12,13 @@ import { ResizeOptions } from './resizeOptions.interface';
 import { InertiaOptions } from './inertiaOptions.interface';
 import { RestrictOptions } from './restrictOptions.interface';
 import { GridOptions } from './gridOptions.interface';
+import * as interact_ from 'interactjs';
 import {
     Interactable,
     InteractEvent,
     InteractStatic
 } from 'interactjs';
-import * as interact_ from 'interactjs';
+
 const interact:InteractStatic = interact_;
 
 @Directive({
@@ -186,11 +187,11 @@ export class TerraResizableDirective implements OnInit, OnChanges
                           {
                               configurable: true,
                               enumerable:   true,
-                              get:          ():any =>
+                              get:          ():unknown =>
                                             {
                                                 return this[input]['_' + property];
                                             },
-                              set:          (value:any):void =>
+                              set:          (value:unknown):void =>
                                             {
                                                 this[input]['_' + property] = value;
                                                 this._init();
