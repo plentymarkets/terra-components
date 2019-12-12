@@ -351,7 +351,7 @@ export class TerraSliderComponent implements OnInit, OnChanges, ControlValueAcce
     {
         if(!this.inputIsDisabled)
         {
-            let sliderRect:any | ClientRect = this._sliderBarElement.nativeElement.getBoundingClientRect();
+            let sliderRect:ClientRect = this._sliderBarElement.nativeElement.getBoundingClientRect();
             this._handlePosition = position - sliderRect.left;
         }
     }
