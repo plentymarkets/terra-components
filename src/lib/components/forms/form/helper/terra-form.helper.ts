@@ -224,6 +224,10 @@ export class TerraFormHelper
         }
     }
 
+    /**
+     * @description sanitise the width parameter if it is a valid css bootstrap grid class
+     * @param width
+     */
     public static sanitiseWidth(width:string):string
     {
         let widths:Array<string> = width.split(' ');
