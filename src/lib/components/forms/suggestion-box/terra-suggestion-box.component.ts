@@ -84,7 +84,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
     private _hasLabel:boolean;
     private _clickListener:(event:Event) => void;
     private onTouchedCallback:() => void = noop;
-    private onChangeCallback:(_:any) => void = noop;
+    private onChangeCallback:(_:number | string | TerraBaseData) => void = noop;
 
     @ViewChildren('renderedListBoxValues')
     private _renderedListBoxValues:QueryList<ElementRef>;
@@ -129,7 +129,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
         // implementation is required by angular-l10n. See https://robisim74.github.io/angular-l10n/spec/getting-the-translation/#messages
     }
 
-    public registerOnChange(fn:(_:any) => void):void
+    public registerOnChange(fn:(_:number | string | TerraBaseData) => void):void
     {
         this.onChangeCallback = fn;
     }
@@ -139,7 +139,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
         this.onTouchedCallback = fn;
     }
 
-    public writeValue(value:any):void
+    public writeValue(value:number | string | TerraBaseData):void
     {
         this.value = value;
     }
@@ -184,7 +184,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
 
     public _onChange():void
     {
-        let searchString:any = this._textInputValue;
+        let searchString:string = this._textInputValue;
         this.toggleOpen = true;
 
         if(!isNullOrUndefined(searchString) && searchString.length >= 3)
