@@ -238,9 +238,19 @@ export class TerraFormHelper
 
             let widthClassSplitted:Array<string> = widthClass.split('-');
 
-            let endsWithNumber:boolean = !isNaN(+widthClassSplitted[widthClassSplitted.length - 1]);
+            let lastSplittedPart:string = widthClassSplitted[widthClassSplitted.length - 1];
 
-            return startsWithCol && endsWithNumber;
+            let endsWithNumber:boolean = false;
+
+            if(!isNaN(+lastSplittedPart))
+            {
+                if(+lastSplittedPart >= 0 && +lastSplittedPart < 13)
+                {
+                    endsWithNumber = true;
+                }
+            }
+
+            return startsWithCol && endsWithNumber && endsWithNumber;
         }).join(' ');
     }
 
