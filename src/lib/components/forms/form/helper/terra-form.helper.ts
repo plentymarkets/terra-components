@@ -238,7 +238,7 @@ export class TerraFormHelper
 
             let widthClassSplitted:Array<string> = widthClass.split('-');
 
-            let endsWithNumber:boolean = isNaN(+widthClassSplitted[widthClassSplitted.length]);
+            let endsWithNumber:boolean = !isNaN(+widthClassSplitted[widthClassSplitted.length - 1]);
 
             return startsWithCol && endsWithNumber;
         }).join(' ');
