@@ -44,7 +44,7 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges, OnIn
      * @description Set width of terra-form-container. Sets width of all form elements that don't overwrite it. Default 100.
      */
     @Input()
-    public width:25|50|75|100;
+    public width:string = 'col-12';
 
     /**
      * @description Set accessor for the form fields. Creates a representative reactive FormGroup instance by parsing the given form fields.
