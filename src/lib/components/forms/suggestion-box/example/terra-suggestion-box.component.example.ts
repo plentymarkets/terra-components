@@ -19,7 +19,7 @@ export class TerraSuggestionBoxComponentExample implements OnInit
     public _selectedContact:any;
     public _contactSelectionText:string;
 
-    private _contacts:Array<any> = [
+    private _contacts:Array<{name:string, age:number}> = [
         {
             name: 'Max',
             age:  26
@@ -105,7 +105,7 @@ export class TerraSuggestionBoxComponentExample implements OnInit
             }
         );
 
-        this._contactsSuggestions = this._contacts.map((contact:any) =>
+        this._contactsSuggestions = this._contacts.map((contact:{name:string, age:number}) =>
         {
             return {
                 caption: contact.name,
