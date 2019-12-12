@@ -224,6 +224,22 @@ export class TerraFormHelper
         }
     }
 
+    public static sanitiseWidth(width:string):string
+    {
+        let widths:Array<string> = width.split(' ');
+
+        return widths.filter((widthClass:string) =>
+        {
+            let startsWithCol:boolean = widthClass.startsWith('col-');
+
+            let widthClassSplitted:Array<string> = widthClass.split('-');
+
+            let endsWithNumber:boolean = isNaN(+widthClassSplitted[widthClassSplitted.length]);
+
+            return startsWithCol && endsWithNumber;
+        }).join(' ');
+    }
+
     /**
      * @description Fits the given list of controls into the range of the given formField by adding/removing controls.
      * @param formField
