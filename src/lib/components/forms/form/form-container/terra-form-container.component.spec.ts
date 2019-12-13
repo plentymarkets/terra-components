@@ -79,9 +79,4 @@ fdescribe('TerraFormContainerComponent: ', () =>
             expect(rowDebugElement).toBeTruthy();
         });
     });
-
-    it('all wrapped form entries should have a div element with class row', () =>
-    {
-        // TODO extract from above
-    });
 });
