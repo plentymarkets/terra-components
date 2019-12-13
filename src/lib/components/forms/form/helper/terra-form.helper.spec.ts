@@ -301,6 +301,8 @@ describe(`TerraFormHelper:`, () =>
                 expect(TerraFormHelper.sanitiseWidth('col-lg-13')).toBe('');
 
                 expect(TerraFormHelper.sanitiseWidth('col-lg-2 col-xs-12')).toBe('col-lg-2 col-xs-12');
+
+                expect(TerraFormHelper.sanitiseWidth('col-lg-2 col-xs-1300')).toBe('col-lg-2');
             });
         });
 
