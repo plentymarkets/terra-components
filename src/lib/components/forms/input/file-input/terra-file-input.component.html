@@ -34,6 +34,7 @@
                        (click)="valueInput.select()">
             </div>
             <label [tcTooltip]="inputName"
+                   tabindex="-1"
                    [onlyEllipsisTooltip]="true"
                    htmlFor="{{id}}">{{inputName}}
                 <span *ngIf="inputIsRequired">*</span>

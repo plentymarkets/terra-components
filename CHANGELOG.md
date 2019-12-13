@@ -1,8 +1,54 @@
-<a name="4.X.X"></a>
-# 4.X.X (DD.10.2019)
+<a name="4.8.0"></a>
+# 4.8.0 (Unreleased)
+
+### Features
+* **terra-toggle** Added active/inactive color to disabled state.
+* **terra-portlet** Now supports styling of info-boxes and tables inside it.
+* **icon** new icon 'content_search'.
+
+### Bug Fixes
+* **terra-portlet**
+    - styling of hover-state and info-handler in portlet header
+    - styling of tables, toolbars and info-boxes inside portlets
+
+<a name="4.7.0"></a>
+# 4.7.0 (14.11.2019)
+
+### Features
+* **file-browser** Allow alternative text for files with .webp extension
+* **terra-portlet** updated header style
+* **terra-data-table** input `isSticky` is now deprecated.
+* **float-thead** the directive is now deprecated.
+* **tabs** new styling of angular material tabs. [See the oficial documentation.](https://v7.material.angular.io/components/tabs/overview)
+
+### Bug Fixes
+* **terra-button-with-options** `isHidden` option is now interpreted correctly.
+* **file-browser** Restrict number of parallel uploads
+* **terra-date-picker** Fixed style of placeholder.
+
+<a name="4.6.0"></a>
+# 4.6.0 (30.10.2019)
+
+### Features
+* **validators** New `uniqueValues` validator which checks if the values of a FormArray are unique.
+* **terra-pager** Using its own SCSS variables now.
+* **utils** provide new `createHttpParams()` method which replaces the deprecated `createUrlSearchParams()` of the `TerraBaseService`
+
+### Bug Fixes
+* **radio-group** Adjusted height of `<legend>` and only is rendered when content is available.
+* **inputs** Tabindex of labels set to -1 to avoid tab focus in a form.
+
+<a name="4.5.0"></a>
+# 4.5.0 (09.10.2019)
 
 ### Features
 * **icon** new icon 'content_category'
+* **terra-text-input** set as deprecated. Can be replaced by using the [angular material input](https://material.angular.io/components/input/overview).
+* **terra-info-box** new design to stop overlapping between button-hover-color and card-selected-color
+
+### Bug Fixes
+* **terra-checkbox** fixed indeterminate style and hover style when disabled.
+* **terra-breadcrumbs** extended caret hover to breadcrumbs-wrapper for easier navigation
 
 <a name="4.4.0"></a>
 # 4.4.0 (25.09.2019)
