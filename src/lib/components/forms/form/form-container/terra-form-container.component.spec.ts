@@ -25,7 +25,7 @@ fdescribe('TerraFormContainerComponent: ', () =>
 
     beforeEach(() =>
     {
-        // initialisation of the component's inputs
+        // initialisation of the component's mandatory inputs
         component.inputScope = new TerraFormScope();
 
         fixture.detectChanges();
