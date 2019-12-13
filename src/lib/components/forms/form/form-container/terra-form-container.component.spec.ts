@@ -23,7 +23,7 @@ fdescribe('TerraFormContainerComponent: ', () =>
     beforeEach(() =>
     {
         fixture = TestBed.configureTestingModule({
-            schemas: [NO_ERRORS_SCHEMA],
+            schemas:      [NO_ERRORS_SCHEMA],
             declarations: [TerraFormContainerComponent]
         }).createComponent(TerraFormContainerComponent);
 
@@ -53,7 +53,7 @@ fdescribe('TerraFormContainerComponent: ', () =>
 
         let formEntries:Array<DebugElement> = fixture.debugElement.queryAll(By.css('.form-entry'));
 
-        const hasDefaultWidth:boolean = formEntries.every((formEntry:DebugElement)    =>
+        const hasDefaultWidth:boolean = formEntries.every((formEntry:DebugElement) =>
         {
             const divElement:HTMLDivElement = formEntry.nativeElement;
             return divElement.classList.contains(component.width);
