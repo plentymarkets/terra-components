@@ -1,7 +1,7 @@
 <div class="form">
     <ng-container *ngFor="let field of _formFields">
         <div *ngIf="_formFieldVisibility[field.key]"
-             [ngClass]="['form-entry', 'form-entry-' + field.value.type, field.value.type === 'horizontal' ? 'w-100' : 'w-' + (field.value.width || width || 100)]"
+             [ngClass]="['form-entry', 'form-entry-' + field.value.type, horizontal ? field.value.width || _defaultEntryWidth : field.value.width || width ]"
              [formGroup]="_formGroup">
             
             <terra-form-entry
@@ -24,7 +24,8 @@
                         [inputScope]="inputScope"
                         [inputControlTypeMap]="inputControlTypeMap"
                         [inputIsDisabled]="inputIsDisabled"
-                        [width]="width">
+                        [width]="width"
+                        [horizontal]="field.value.type === 'horizontal'">
                     </terra-form-container>
                 
                 </div>
