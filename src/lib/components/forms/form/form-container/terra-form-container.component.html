@@ -1,11 +1,11 @@
 <div class="form">
-    <ng-container *ngFor="let field of _formFields">
-        <div class="container-fluid">
+    <div class="container-fluid">
+        <ng-container *ngFor="let field of _formFields">
             <div class="row">
                 <div *ngIf="_formFieldVisibility[field.key]"
                      [ngClass]="['form-entry', 'form-entry-' + field.value.type, field.value.width || width]"
                      [formGroup]="_formGroup">
-        
+                    
                     <terra-form-entry
                         *ngIf="!field.value.isList && !field.value.children"
                         [formControlName]="field.key"
@@ -14,8 +14,9 @@
                         [inputIsDisabled]="inputIsDisabled"
                         [inputControlTypeMap]="inputControlTypeMap">
                     </terra-form-entry>
-        
-                    <div *ngIf="!field.value.isList && field.value.children && (field.value.type === 'vertical' || field.value.type === 'horizontal')">
+                    
+                    <div
+                        *ngIf="!field.value.isList && field.value.children && (field.value.type === 'vertical' || field.value.type === 'horizontal')">
                         <span class="form-entry-label" *ngIf="field.value.options?.name">{{ field.value.options?.name }}</span>
                         <div class="form-entry-container">
                             <terra-form-container
@@ -30,7 +31,8 @@
                         </div>
                     </div>
                     
-                    <div *ngIf="!field.value.isList && field.value.children && field.value.type !== 'vertical' && field.value.type !== 'horizontal'">
+                    <div
+                        *ngIf="!field.value.isList && field.value.children && field.value.type !== 'vertical' && field.value.type !== 'horizontal'">
                         <terra-form-container-wrapper
                             [formGroupName]="field.key"
                             [inputFormField]="field.value"
@@ -53,6 +55,6 @@
                     </terra-form-entry-list>
                 </div>
             </div>
-        </div>
-    </ng-container>
+        </ng-container>
+    </div>
 </div>

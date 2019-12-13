@@ -11,8 +11,9 @@ import { By } from '@angular/platform-browser';
 import { FormGroup } from '@angular/forms';
 import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
 import { TerraFormScope } from '../model/terra-form-scope.data';
+import { element } from '@angular/core/src/render3';
 
-describe('TerraFormContainerComponent: ', () =>
+fdescribe('TerraFormContainerComponent: ', () =>
 {
     let fixture:ComponentFixture<TerraFormContainerComponent>;
     let component:TerraFormContainerComponent;
@@ -58,13 +59,29 @@ describe('TerraFormContainerComponent: ', () =>
     it('form entries should be wrapped by div with classes `container-fluid` and `row`', () =>
     {
         let debugElement:DebugElement = fixture.debugElement;
-        let formDebugElement:DebugElement = debugElement.query(By.css('div'));
-        let containerFluidDebugElement:DebugElement = formDebugElement.query(By.css('div.container-fluid'));
+        const formDebugElement:DebugElement = debugElement.query(By.css('div'));
+        const containerFluidDebugElements:Array<DebugElement> = formDebugElement.queryAll(By.css('div.container-fluid'));
+        let rowDebugElement:DebugElement;
 
-        expect(containerFluidDebugElement).toBeTruthy();
+        expect(containerFluidDebugElements.length).toBe(1);
 
-        let rowDebugElement:DebugElement = containerFluidDebugElement.query(By.css('div.row'));
+        const formEntries:Array<DebugElement> = fixture.debugElement.queryAll(By.css('.form-entry'));
+        expect(formEntries.length).toBe(component._formFields.length);
 
-        expect(rowDebugElement).toBeTruthy();
+        const rowDebugElements:Array<DebugElement> = containerFluidDebugElements[0].queryAll(By.css('div.row'));
+        expect(rowDebugElements.length).toBe(formEntries.length);
+        console.log('Rows: ' + rowDebugElements.length);
+
+        containerFluidDebugElements.forEach((element:DebugElement) =>
+        {
+            expect(element).toBeTruthy();
+            rowDebugElement = element.query(By.css('div.row'));
+            expect(rowDebugElement).toBeTruthy();
+        });
+    });
+
+    it('all wrapped form entries should have a div element with class row', () =>
+    {
+        // TODO extract from above
     });
 });
