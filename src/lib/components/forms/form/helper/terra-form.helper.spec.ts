@@ -286,5 +286,23 @@ describe(`TerraFormHelper:`, () =>
             });
         });
 
+        fdescribe('sanitiseWidth()', () =>
+        {
+            it(`should remove illegal classes from width parameter`, () =>
+            {
+                expect(TerraFormHelper.sanitiseWidth('col-lg-12')).toBe('col-lg-12');
+
+                expect(TerraFormHelper.sanitiseWidth('coeeeel-lg-12')).toBe('');
+
+                expect(TerraFormHelper.sanitiseWidth('col-lg-H')).toBe('');
+
+                expect(TerraFormHelper.sanitiseWidth('col-lg')).toBe('');
+
+                expect(TerraFormHelper.sanitiseWidth('col-lg-13')).toBe('');
+
+                expect(TerraFormHelper.sanitiseWidth('col-lg-2 col-xs-12')).toBe('col-lg-2 col-xs-12');
+            });
+        });
+
     });
 });
