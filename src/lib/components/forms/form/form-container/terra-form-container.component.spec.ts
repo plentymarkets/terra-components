@@ -8,6 +8,7 @@ import {
     NO_ERRORS_SCHEMA
 } from '@angular/core';
 import { By } from '@angular/platform-browser';
+import { TerraFormScope } from '../../../..';
 
 fdescribe('TerraFormContainerComponent: ', () =>
 {
@@ -21,6 +22,14 @@ fdescribe('TerraFormContainerComponent: ', () =>
         }).createComponent(TerraFormContainerComponent);
 
         component = fixture.componentInstance;
+    });
+
+    beforeEach(() =>
+    {
+        // initialisation of the component's mandatory inputs
+        component.inputScope = new TerraFormScope();
+
+        fixture.detectChanges();
     });
 
     it('should create', () =>
