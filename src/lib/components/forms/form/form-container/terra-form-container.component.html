@@ -3,7 +3,7 @@
         <ng-container *ngFor="let field of _formFields">
             <div class="row">
                 <div *ngIf="_formFieldVisibility[field.key]"
-                     [ngClass]="['form-entry', 'form-entry-' + field.value.type, field.value.width || width]"
+                     [ngClass]="['form-entry', 'form-entry-' + field.value.type, horizontal ? field.value.width || _defaultEntryWidth : field.value.width || width ]"
                      [formGroup]="_formGroup">
                     
                     <terra-form-entry
@@ -25,7 +25,8 @@
                                 [inputFormGroup]="_formGroup.get(field.key)"
                                 [inputScope]="inputScope"
                                 [inputControlTypeMap]="inputControlTypeMap"
-                                [width]="width">
+                                [width]="width"
+                                [horizontal]="field.value.type === 'horizontal'">
                             </terra-form-container>
                         
                         </div>
