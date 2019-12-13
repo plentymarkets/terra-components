@@ -6,12 +6,10 @@ import { TerraFormContainerComponent } from './terra-form-container.component';
 import { NO_ERRORS_SCHEMA,
         DebugElement
 } from '@angular/core';
-import {
-    TerraFormFieldInterface,
-    TerraFormScope,
-    TerraKeyValueInterface,
-    TerraTextInputComponent
-} from '../../../..';
+import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
+import { TerraFormScope } from '../model/terra-form-scope.data';
+import { TerraKeyValueInterface } from '../../../../models/terra-key-value.interface';
+import { TerraTextInputComponent } from '../../input/text-input/terra-text-input.component';
 import { By } from '@angular/platform-browser';
 import { FormGroup } from '@angular/forms';
 
