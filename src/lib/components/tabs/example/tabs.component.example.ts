@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
 import { ContextMenuTrigger } from '../../context-menu/context-menu-trigger';
-import { ContextMenuService } from '../../context-menu/context-menu.service';
 
 @Component({
     selector:    'tc-tabs-component-example',
     templateUrl: './tabs.component.example.html',
-    styleUrls:   ['./tabs.component.example.scss'],
-    providers:   [ContextMenuService]
+    styleUrls:   ['./tabs.component.example.scss']
 })
 export class TabsComponentExample
 {

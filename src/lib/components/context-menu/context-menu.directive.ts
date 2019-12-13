@@ -6,23 +6,21 @@ import {
     Input,
     OnChanges,
     OnDestroy,
-    OnInit,
     SimpleChanges,
     TemplateRef,
     ViewContainerRef
 } from '@angular/core';
 
-import tippy from 'tippy.js';
+import tippy, { Placement } from 'tippy.js';
 import { TerraPlacementEnum } from '../../helpers/enums/terra-placement.enum';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ContextMenuTrigger } from './context-menu-trigger';
-import { ContextMenuService } from './context-menu.service';
 
 @Directive({
     selector: '[tcContextMenu]'
 })
-export class ContextMenuDirective<D> implements OnDestroy, OnChanges, OnInit
+export class ContextMenuDirective<D> implements OnDestroy, OnChanges
 {
     /**
      * @description The context-menu content.
@@ -31,37 +29,30 @@ export class ContextMenuDirective<D> implements OnDestroy, OnChanges, OnInit
     public tcContextMenu:TemplateRef<any>;
 
     /**
-     * @description The method how to trigger the context-menu.
+     * @description The method how to trigger the context-menu. Default `hover`.
      */
     @Input()
     public trigger:ContextMenuTrigger = ContextMenuTrigger.hover;
+
+    @Input()
+
+    /**
+     * @description The placement. Default `bottom`.
+     */
+    @Input()
+    public placement:string = TerraPlacementEnum.BOTTOM;
+
+    /** @description The theme selector for css. */
+    @Input()
+    public theme:string;
 
     private contextMenuEl:any;
     private navigationSubscription:Subscription;
 
     constructor(private elementRef:ElementRef,
                 private containerRef:ViewContainerRef,
-                private router:Router,
-                private contextMenuService:ContextMenuService<D>)
+                private router:Router)
     {
-    }
-
-    public ngOnInit():void
-    {
-        this.contextMenuService.show.subscribe((event:MouseEvent):void =>
-        {
-            if(event.currentTarget !== this.elementRef.nativeElement)
-            {
-                this.contextMenuEl.hide();
-            }
-            else
-            {
-                if(this.contextMenuEl && this.trigger === ContextMenuTrigger.rightClick)
-                {
-                    this.contextMenuEl.show();
-                }
-            }
-        });
     }
 
     public ngOnChanges(changes:SimpleChanges):void
@@ -84,6 +75,16 @@ export class ContextMenuDirective<D> implements OnDestroy, OnChanges, OnInit
                 this.contextMenuEl.hide(0);
             });
         }
+
+        if(changes.hasOwnProperty('placement') && changes['placement'].currentValue)
+        {
+            if(this.contextMenuEl)
+            {
+                this.contextMenuEl.set({
+                    placement: this.placement as Placement
+                });
+            }
+        }
     }
 
     @HostListener('window:click', ['$event'])
@@ -102,7 +103,17 @@ export class ContextMenuDirective<D> implements OnDestroy, OnChanges, OnInit
         event.stopPropagation();
         event.preventDefault();
 
-        this.contextMenuService.show.next(event);
+        if(event.currentTarget !== this.elementRef.nativeElement)
+        {
+            this.contextMenuEl.hide();
+        }
+        else
+        {
+            if(this.contextMenuEl && this.trigger === ContextMenuTrigger.rightClick)
+            {
+                this.contextMenuEl.show();
+            }
+        }
     }
 
     public ngOnDestroy():void
@@ -130,10 +141,6 @@ export class ContextMenuDirective<D> implements OnDestroy, OnChanges, OnInit
 
             switch(this.trigger)
             {
-                case ContextMenuTrigger.leftClick:
-                    trigger = 'click';
-                    break;
-
                 case ContextMenuTrigger.rightClick:
                     trigger = 'manual';
                     break;
@@ -149,11 +156,13 @@ export class ContextMenuDirective<D> implements OnDestroy, OnChanges, OnInit
                 interactive: true,
                 hideOnClick: false,
                 arrow:       false,
-                boundary:    'window',
                 appendTo:    document.body,
-                placement:   TerraPlacementEnum.BOTTOM,
+                placement:   this.placement as Placement,
                 distance:    0,
-                theme:       'context-menu'
+                theme:       this.theme,
+                animateFill: false,
+                duration:    [0,
+                              0]
             });
         }
         else
