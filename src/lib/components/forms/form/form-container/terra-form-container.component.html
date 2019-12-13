@@ -1,7 +1,7 @@
 <div class="form">
     <ng-container *ngFor="let field of _formFields">
         <div *ngIf="_formFieldVisibility[field.key]"
-             [ngClass]="['form-entry', 'form-entry-' + field.value.type, width]"
+             [ngClass]="['form-entry', 'form-entry-' + field.value.type, field.value.width || width]"
              [formGroup]="_formGroup">
             
             <terra-form-entry
