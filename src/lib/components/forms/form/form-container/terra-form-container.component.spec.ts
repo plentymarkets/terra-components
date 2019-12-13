@@ -5,8 +5,7 @@ import {
 import { By } from '@angular/platform-browser';
 import {
     DebugElement,
-    NO_ERRORS_SCHEMA,
-    Type
+    NO_ERRORS_SCHEMA
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import {
