@@ -17,7 +17,7 @@ import { TerraFormScope } from '../model/terra-form-scope.data';
 import { TerraTextInputComponent } from '../../input/text-input/terra-text-input.component';
 import { TerraKeyValueInterface } from '../../../../models';
 
-fdescribe('TerraFormContainerComponent: ', () =>
+describe('TerraFormContainerComponent: ', () =>
 {
     let fixture:ComponentFixture<TerraFormContainerComponent>;
     let component:TerraFormContainerComponent;
@@ -36,7 +36,7 @@ fdescribe('TerraFormContainerComponent: ', () =>
     {
         // initialisation of the component's mandatory inputs
         component.inputScope = new TerraFormScope();
-        component.inputControlTypeMap = { text: TerraTextInputComponent };
+        component.inputControlTypeMap = {text: TerraTextInputComponent};
         component.width = 'col-12';
         component.inputFormGroup = new FormGroup({});
 
@@ -96,7 +96,7 @@ fdescribe('TerraFormContainerComponent: ', () =>
             expect(equallyDistributed).toBe(true);
         });
 
-        xit('should distribute its contained elements equally by default', () =>
+        it('should distribute its contained elements equally by default', () =>
         {
             component.inputFormFields = createFormFields(2);
             fixture.detectChanges();
