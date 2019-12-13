@@ -6,7 +6,6 @@ import { TerraFormContainerComponent } from './terra-form-container.component';
 import { NO_ERRORS_SCHEMA,
         DebugElement
 } from '@angular/core';
-import { TerraFormScope } from '../model/terra-form-scope.data';
 import {
     TerraFormFieldInterface,
     TerraFormScope,
