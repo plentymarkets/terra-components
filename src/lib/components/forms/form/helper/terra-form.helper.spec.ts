@@ -286,7 +286,7 @@ describe(`TerraFormHelper:`, () =>
             });
         });
 
-        fdescribe('sanitiseWidth()', () =>
+        describe('sanitiseWidth()', () =>
         {
             it(`should remove illegal classes from width parameter`, () =>
             {

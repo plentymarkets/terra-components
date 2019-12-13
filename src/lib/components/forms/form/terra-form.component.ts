@@ -41,7 +41,7 @@ import {
 export class TerraFormComponent implements ControlValueAccessor, OnChanges, OnInit
 {
     /**
-     * @description Set width of terra-form-container. Sets width of all form elements that don't overwrite it. Default 100.
+     * @description Set width of terra-form-container. Sets width of all form elements that don't overwrite it. Default col-12.
      */
     @Input()
     public width:string = 'col-12';
