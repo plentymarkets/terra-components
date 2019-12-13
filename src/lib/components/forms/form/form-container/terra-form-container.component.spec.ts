@@ -4,6 +4,10 @@ import {
 } from '@angular/core/testing';
 import { TerraFormContainerComponent } from './terra-form-container.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import {
+    TerraFormScope,
+    TerraTextInputComponent
+} from '../../../..';
 
 fdescribe('TerraFormContainerComponent: ', () =>
 {
@@ -17,6 +21,14 @@ fdescribe('TerraFormContainerComponent: ', () =>
         }).createComponent(TerraFormContainerComponent);
 
         component = fixture.componentInstance;
+    });
+
+    beforeEach(() =>
+    {
+        // initialisation of the component's mandatory inputs
+        component.inputScope = new TerraFormScope();
+
+        fixture.detectChanges();
     });
 
     it('should create', () =>
