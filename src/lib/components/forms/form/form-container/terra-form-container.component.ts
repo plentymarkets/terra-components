@@ -12,7 +12,10 @@ import {
     isString
 } from 'util';
 import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
-import { TerraKeyValuePairInterface } from '../../../../models';
+import {
+    TerraKeyValueInterface,
+    TerraKeyValuePairInterface
+} from '../../../../models';
 import {
     AbstractControl,
     ControlValueAccessor,
@@ -21,6 +24,9 @@ import {
 } from '@angular/forms';
 import { noop } from 'rxjs';
 import { TerraFormTypeInterface } from '../model/terra-form-type.interface';
+
+/** @description Maximum amount of columns in a bootstrap grid */
+export const maxBootstrapCols:number = 12;
 
 @Component({
     selector:  'terra-form-container',
@@ -43,7 +49,7 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
     public inputControlTypeMap:{ [key:string]:Type<any> | TerraFormTypeInterface } = {};
 
     @Input()
-    public set inputFormFields(fields:{ [key:string]:TerraFormFieldInterface })
+    public set inputFormFields(fields:TerraKeyValueInterface<TerraFormFieldInterface>)
     {
         this._formFields = Object.keys(fields).map((key:string) =>
         {
@@ -54,11 +60,10 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
         });
 
         this._updateFieldVisibility();
+        this._defaultEntryWidth = 'col-' + this._calcDefaultWidth(this._formFields.length);
     }
 
-    /**
-     * Set width of terra-form-container. Sets width of all form elements that don't overwrite it. Default col-12.
-     */
+    /** @description Set width of terra-form-container. Sets width of all form elements that don't overwrite it. Default col-12. */
     @Input()
     public width:string;
 
@@ -74,10 +79,16 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
         this._formGroup = formGroup;
     }
 
+    /** @description Indicate whether this container should be displayed horizontally. */
+    @Input()
+    public horizontal:boolean = false;
+
     public _formGroup:FormGroup;
 
     public _formFields:Array<TerraKeyValuePairInterface<TerraFormFieldInterface>> = [];
-    public _formFieldVisibility:{ [key:string]:boolean } = {};
+    public _formFieldVisibility:TerraKeyValueInterface<boolean> = {};
+
+    public _defaultEntryWidth:string;
 
     private _onChangeCallback:(value:any) => void = noop;
     private _onTouchedCallback:() => void = noop;
@@ -160,5 +171,12 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
                 }
             }
         }
+    }
+
+    /** @description Calculates a width that equally distributes all elements in the given space. */
+    private _calcDefaultWidth(formFieldCount:number):number
+    {
+        // floor the value to make sure the sum of all columns do not exceed the maximum amount of columns
+        return Math.min(maxBootstrapCols, Math.max(1, Math.floor(maxBootstrapCols / formFieldCount)));
     }
 }
