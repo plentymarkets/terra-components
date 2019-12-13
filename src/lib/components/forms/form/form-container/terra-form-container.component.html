@@ -3,9 +3,9 @@
         <div class="container-fluid">
             <div class="row">
                 <div *ngIf="_formFieldVisibility[field.key]"
-                     [ngClass]="['form-entry', 'form-entry-' + field.value.type, field.value.type === 'horizontal' ? 'w-100' : 'w-' + (field.value.width || width || 100)]"
+                     [ngClass]="['form-entry', 'form-entry-' + field.value.type, field.value.width || width]"
                      [formGroup]="_formGroup">
-                    
+        
                     <terra-form-entry
                         *ngIf="!field.value.isList && !field.value.children"
                         [formControlName]="field.key"
@@ -14,7 +14,7 @@
                         [inputIsDisabled]="inputIsDisabled"
                         [inputControlTypeMap]="inputControlTypeMap">
                     </terra-form-entry>
-                    
+        
                     <div class="form-entry-inner"
                          *ngIf="!field.value.isList && field.value.children && (field.value.type === 'vertical' || field.value.type === 'horizontal')">
                         <span class="form-entry-label" *ngIf="field.value.options?.name">{{ field.value.options?.name }}</span>
@@ -25,7 +25,6 @@
                                 [inputFormGroup]="_formGroup.get(field.key)"
                                 [inputScope]="inputScope"
                                 [inputControlTypeMap]="inputControlTypeMap"
-                                [inputIsDisabled]="inputIsDisabled"
                                 [width]="width">
                             </terra-form-container>
                         
