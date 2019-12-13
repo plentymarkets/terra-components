@@ -4,10 +4,7 @@ import {
 } from '@angular/core/testing';
 import { TerraFormContainerComponent } from './terra-form-container.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import {
-    TerraFormScope,
-    TerraTextInputComponent
-} from '../../../..';
+import { TerraFormScope } from '../model/terra-form-scope.data';
 
 fdescribe('TerraFormContainerComponent: ', () =>
 {
