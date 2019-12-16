@@ -36,8 +36,7 @@ describe(`TerraFormComponent:`, () =>
     {
         fixture = TestBed.configureTestingModule({
             schemas:      [NO_ERRORS_SCHEMA],
-            declarations: [TerraFormComponent,
-                           TerraFormContainerComponent]
+            declarations: [TerraFormComponent, TerraFormContainerComponent]
         }).createComponent(TerraFormComponent);
 
         component = fixture.componentInstance;
@@ -73,10 +72,12 @@ describe(`TerraFormComponent:`, () =>
         expect(component._controlTypeMap).toBe(typeMap);
     });
 
-    it('should be `container-fluid` class on `terra-form-container', () =>
+    it('should wrap the #TerraFormContainerComponent in a div-element with a `container-fluid`-class', () =>
     {
-        const formContainerClass:DebugElement = fixture.debugElement.query(By.css('terra-form-container.container-fluid'));
-        expect(formContainerClass).toBeTruthy();
+        const containerFluid:DebugElement = fixture.debugElement.query(By.css('.container-fluid'));
+        expect(containerFluid).toBeTruthy();
+        const formContainer:TerraFormContainerComponent = containerFluid.query(By.directive(TerraFormContainerComponent)).componentInstance;
+        expect(formContainer).toBeTruthy();
     });
 
     describe('with _formFields', () =>
