@@ -112,12 +112,30 @@ describe('TerraFormContainerComponent: ', () =>
 
             const formEntries:Array<DebugElement> = fixture.debugElement.queryAll(By.css('.form-entry'));
             expect(formEntries.length).toBe(component._formFields.length);
+
             const equallyDistributed:boolean = formEntries.every((formEntry:DebugElement) =>
             {
                 const divElement:HTMLDivElement = formEntry.nativeElement;
                 return divElement.classList.contains('col');
             });
             expect(equallyDistributed).toBe(true);
+        });
+
+        it('should create a single row element wrapping all the form entries', () =>
+        {
+            const formFieldCount:number = 5;
+            component.inputFormFields = createFormFields(formFieldCount);
+            fixture.detectChanges();
+
+            const rows:Array<DebugElement> = fixture.debugElement.queryAll(By.css('.row'));
+            expect(rows.length).toBe(1);
+
+            const row:DebugElement = rows[0];
+            const formFields:Array<DebugElement> = row.queryAll(By.css('.form-entry'));
+            expect(formFields.length).toBe(formFieldCount);
+
+            const isEveryFieldsParent:boolean = formFields.every((formField:DebugElement) => formField.parent === row);
+            expect(isEveryFieldsParent).toBe(true);
         });
     });
 });
