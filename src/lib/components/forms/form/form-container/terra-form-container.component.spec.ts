@@ -88,6 +88,14 @@ describe('TerraFormContainerComponent: ', () =>
 
         const rowDebugElements:Array<DebugElement> = fixture.debugElement.queryAll(By.css('div.row'));
         expect(rowDebugElements.length).toBe(formEntries.length);
+
+        // make sure that the element with the row class is a direct parent of the form entry
+        const wrappedByRow:boolean = formEntries.every((formEntry:DebugElement) =>
+        {
+            const parent:HTMLElement = formEntry.parent.nativeElement;
+            return parent.classList.contains('row');
+        });
+        expect(wrappedByRow).toBe(true);
     });
 
     describe('as a horizontal container', () =>
