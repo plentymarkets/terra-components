@@ -2,19 +2,18 @@ import {
     ComponentFixture,
     TestBed
 } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
 import {
     DebugElement,
     NO_ERRORS_SCHEMA
 } from '@angular/core';
+import { By } from '@angular/platform-browser';
 import { FormGroup } from '@angular/forms';
 import {
     maxBootstrapCols,
     TerraFormContainerComponent
 } from './terra-form-container.component';
-import { TerraTextInputComponent } from '../../input/text-input/terra-text-input.component';
-import { TerraFormScope } from '../model/terra-form-scope.data';
 import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
+import { TerraFormScope } from '../model/terra-form-scope.data';
 import { TerraKeyValueInterface } from '../../../../models';
 
 fdescribe('TerraFormContainerComponent: ', () =>
@@ -24,7 +23,7 @@ fdescribe('TerraFormContainerComponent: ', () =>
     beforeEach(() =>
     {
         fixture = TestBed.configureTestingModule({
-            schemas: [NO_ERRORS_SCHEMA],
+            schemas:      [NO_ERRORS_SCHEMA],
             declarations: [TerraFormContainerComponent]
         }).createComponent(TerraFormContainerComponent);
 
@@ -35,7 +34,8 @@ fdescribe('TerraFormContainerComponent: ', () =>
     {
         // initialisation of the component's mandatory inputs
         component.inputScope = new TerraFormScope();
-        component.inputControlTypeMap = { text: TerraTextInputComponent };
+        component.inputControlTypeMap = {};
+        component.inputFormGroup = new FormGroup({});
 
         fixture.detectChanges();
     });
@@ -43,6 +43,23 @@ fdescribe('TerraFormContainerComponent: ', () =>
     it('should create', () =>
     {
         expect(component).toBeTruthy();
+    });
+
+    it('should set default width', () =>
+    {
+        component.width = 'col-12';
+        component.inputFormFields = createFormFields(1);
+        fixture.detectChanges();
+
+        let formEntries:Array<DebugElement> = fixture.debugElement.queryAll(By.css('.form-entry'));
+
+        const hasDefaultWidth:boolean = formEntries.every((formEntry:DebugElement) =>
+        {
+            const divElement:HTMLDivElement = formEntry.nativeElement;
+            return divElement.classList.contains(component.width);
+        });
+
+        expect(hasDefaultWidth).toBe(true);
     });
 
     describe('as a horizontal container', () =>
