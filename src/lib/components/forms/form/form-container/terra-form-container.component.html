@@ -13,8 +13,7 @@
                 [inputControlTypeMap]="inputControlTypeMap">
             </terra-form-entry>
             
-            <div
-                *ngIf="!field.value.isList && field.value.children && (field.value.type === 'vertical' || field.value.type === 'horizontal')">
+            <div *ngIf="!field.value.isList && field.value.children && (field.value.type === 'vertical' || field.value.type === 'horizontal')">
                 <span class="form-entry-label" *ngIf="field.value.options?.name">{{ field.value.options?.name }}</span>
                 <div class="form-entry-container">
                     <terra-form-container
@@ -30,8 +29,7 @@
                 </div>
             </div>
             
-            <div
-                *ngIf="!field.value.isList && field.value.children && field.value.type !== 'vertical' && field.value.type !== 'horizontal'">
+            <div *ngIf="!field.value.isList && field.value.children && field.value.type !== 'vertical' && field.value.type !== 'horizontal'">
                 <terra-form-container-wrapper
                     [formGroupName]="field.key"
                     [inputFormField]="field.value"
