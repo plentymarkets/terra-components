@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { noop } from 'rxjs';
 
 @Component({
     selector:    'tc-tabs-component-example',
