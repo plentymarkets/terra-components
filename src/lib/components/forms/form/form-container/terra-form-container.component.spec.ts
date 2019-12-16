@@ -67,7 +67,6 @@ fdescribe('TerraFormContainerComponent: ', () =>
         beforeEach(() =>
         {
             component.horizontal = true;
-            component.inputFormGroup = new FormGroup({});
         });
 
         it('should not fall below a column size of 1', () =>
