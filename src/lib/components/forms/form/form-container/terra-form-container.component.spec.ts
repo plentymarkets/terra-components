@@ -63,6 +63,23 @@ describe('TerraFormContainerComponent: ', () =>
 
         expect(hasDefaultWidth).toBe(true);
     });
+  
+    it('should apply a specific width instead of the default width to a form-element when given', () =>
+    {
+        const defaultWidth:string = 'col-12';
+        component.width = defaultWidth;
+        const formFields:TerraKeyValueInterface<TerraFormFieldInterface> = createFormFields(1);
+        const width:string = 'col-6';
+        formFields['field1'].width = width;
+        component.inputFormFields = formFields;
+        fixture.detectChanges();
+
+        const formEntries:Array<DebugElement> = fixture.debugElement.queryAll(By.css('.form-entry'));
+        expect(formEntries.length).toBe(1);
+        const formEntry:HTMLDivElement = formEntries[0].nativeElement;
+        expect(formEntry.classList).toContain(width);
+        expect(formEntry.classList).not.toContain(defaultWidth);
+    });
 
     it('form entries should be wrapped by div with class `row`', () =>
     {
