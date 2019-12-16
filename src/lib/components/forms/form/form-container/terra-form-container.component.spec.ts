@@ -13,7 +13,7 @@ import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
 import { TerraFormScope } from '../model/terra-form-scope.data';
 import { TerraKeyValueInterface } from '../../../../models';
 
-fdescribe('TerraFormContainerComponent: ', () =>
+describe('TerraFormContainerComponent: ', () =>
 {
     let fixture:ComponentFixture<TerraFormContainerComponent>;
     let component:TerraFormContainerComponent;
