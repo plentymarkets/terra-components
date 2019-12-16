@@ -6,7 +6,7 @@
            (click)="_activeLink = link"
            [active]="_activeLink == link">
             {{link}}
-            <span class="caret" [tcContextMenu]="contextMenu" [trigger]="_trigger" [theme]="'context-menu'"></span>
+            <span class="caret" [tcContextMenu]="contextMenu" [onShown]="_show()" [onHidden]="_onHidden()"></span>
             <button type="button"
                     class="close"
                     aria-label="Close">

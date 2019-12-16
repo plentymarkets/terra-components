@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ContextMenuTrigger } from '../../context-menu/context-menu-trigger';
+import { noop } from 'rxjs';
 
 @Component({
     selector:    'tc-tabs-component-example',
@@ -12,5 +12,14 @@ export class TabsComponentExample
                                    'Second',
                                    'Third'];
     public _activeLink:string = this._links[0];
-    public _trigger:ContextMenuTrigger = ContextMenuTrigger.hover;
+
+    public _show():() => void
+    {
+        return ():void => alert('Context-menu show');
+    }
+
+    public _onHidden():() => void
+    {
+        return noop;
+    }
 }

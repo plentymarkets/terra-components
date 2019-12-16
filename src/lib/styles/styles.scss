@@ -77,6 +77,8 @@ body
 
         .tippy-content
         {
+            padding: 0;
+            
             div
             {
                 background-color: var(--context-menu-background-color, var(--color-structure-11));

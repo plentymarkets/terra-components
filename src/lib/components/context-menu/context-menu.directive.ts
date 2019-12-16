@@ -14,7 +14,10 @@ import {
 import tippy, { Placement } from 'tippy.js';
 import { TerraPlacementEnum } from '../../helpers/enums/terra-placement.enum';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import {
+    noop,
+    Subscription
+} from 'rxjs';
 import { ContextMenuTrigger } from './context-menu-trigger';
 
 @Directive({
@@ -42,9 +45,17 @@ export class ContextMenuDirective<D> implements OnDestroy, OnChanges
     @Input()
     public placement:string = TerraPlacementEnum.BOTTOM;
 
-    /** @description The theme selector for css. */
+    /** @description The theme selector for css. Default `context-menu`*/
     @Input()
-    public theme:string;
+    public theme:string = 'context-menu';
+
+    /** @description Function to be called when tooltip is shown. */
+    @Input()
+    public onShown:() => void = noop;
+
+    /** @description Function to be called when tooltip is hidden. */
+    @Input()
+    public onHidden:() => void = noop;
 
     private contextMenuEl:any;
     private navigationSubscription:Subscription;
@@ -80,7 +91,7 @@ export class ContextMenuDirective<D> implements OnDestroy, OnChanges
         {
             if(this.contextMenuEl)
             {
-                this.contextMenuEl.set({
+                this.contextMenuEl.setProps({
                     placement: this.placement as Placement
                 });
             }
@@ -151,18 +162,20 @@ export class ContextMenuDirective<D> implements OnDestroy, OnChanges
             }
 
             this.contextMenuEl = tippy(this.elementRef.nativeElement, {
-                content:     contextMenu,
-                trigger:     trigger,
-                interactive: true,
-                hideOnClick: false,
-                arrow:       false,
-                appendTo:    document.body,
-                placement:   this.placement as Placement,
-                distance:    0,
-                theme:       this.theme,
-                animateFill: false,
-                duration:    [0,
-                              0]
+                content:      contextMenu,
+                trigger:      trigger,
+                interactive:  true,
+                hideOnClick:  false,
+                arrow:        false,
+                appendTo:     document.body,
+                placement:    this.placement as Placement,
+                distance:     0,
+                theme:        this.theme,
+                duration:     [0,
+                               0],
+                flipOnUpdate: true,
+                onShown:      this.onShown,
+                onHidden:     this.onHidden
             });
         }
         else
