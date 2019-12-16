@@ -63,7 +63,7 @@ describe('TerraFormContainerComponent: ', () =>
 
         expect(hasDefaultWidth).toBe(true);
     });
-  
+
     it('should apply a specific width instead of the default width to a form-element when given', () =>
     {
         const defaultWidth:string = 'col-12';
