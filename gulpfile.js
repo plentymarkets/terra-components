@@ -32,26 +32,20 @@ function copyLang() {
         .pipe(dest(config.destinations.langOutputPath));
 }
 
-//copy TSLint rules to dist
-function copyTslintRules() {
-    return src(config.sources.tslintRules)
-        .pipe(dest(config.destinations.tsOutputPath));
-}
-
 //copy README to dist
 function copyReadme() {
     return src(config.sources.readme)
         .pipe(dest(config.destinations.tsOutputPath));
 }
 
-function copyJsFiles() {
-    return src(config.sources.floatThead)
-        .pipe(dest(config.destinations.floatThead));
-}
-
 function copyIconsScss() {
     return src('src/lib/styles/icons.scss')
         .pipe(dest(config.destinations.styles));
+}
+
+function copyVariablesScss() {
+    return src('src/lib/styles/_variables.scss')
+        .pipe(dest(config.destinations.styles))
 }
 
 function copyPlentyIconsScss() {
@@ -84,8 +78,8 @@ function copyButtonScss() {
         .pipe(dest('dist/components/buttons/button'))
 }
 
-const copySassFiles = parallel(copyIconsScss, copyPlentyIconsScss, copyCustomDataTableScss, copyNodeTreeScss, copyTagScss, copyTagListScss, copyButtonScss);
-const copyFilesToDist = parallel(copyFonts, copyLang, copyReadme, copySassFiles, copyJsFiles, copyTslintRules);
+const copySassFiles = parallel(copyIconsScss, copyVariablesScss, copyPlentyIconsScss, copyCustomDataTableScss, copyNodeTreeScss, copyTagScss, copyTagListScss, copyButtonScss);
+const copyFilesToDist = parallel(copyFonts, copyLang, copyReadme, copySassFiles);
 
 
 //copy files from dist to terra

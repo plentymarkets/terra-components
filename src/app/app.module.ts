@@ -15,7 +15,7 @@ import { ShowcaseComponent } from './showcase/showcase.component';
 import { TerraComponentsExamplesModule } from '../lib/terra-components-examples.module';
 import { RouterModule } from '@angular/router';
 
-function initL10n(l10nLoader:L10nLoader):Function
+export function initL10n(l10nLoader:L10nLoader):Function
 {
     return ():Promise<void> => l10nLoader.load();
 }
