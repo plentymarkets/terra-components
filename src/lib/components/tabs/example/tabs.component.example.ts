@@ -15,11 +15,11 @@ export class TabsComponentExample
 
     public _show():() => void
     {
-        return ():void => alert('Context-menu show');
+        return ():void => console.log('Context-menu shown');
     }
 
     public _onHidden():() => void
     {
-        return noop;
+        return ():void => console.log('Context-menu hidden');
     }
 }
