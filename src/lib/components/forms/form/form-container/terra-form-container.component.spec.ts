@@ -14,7 +14,6 @@ import {
 } from './terra-form-container.component';
 import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
 import { TerraFormScope } from '../model/terra-form-scope.data';
-import { TerraTextInputComponent } from '../../input/text-input/terra-text-input.component';
 import { TerraKeyValueInterface } from '../../../../models';
 
 describe('TerraFormContainerComponent: ', () =>
@@ -36,7 +35,7 @@ describe('TerraFormContainerComponent: ', () =>
     {
         // initialisation of the component's mandatory inputs
         component.inputScope = new TerraFormScope();
-        component.inputControlTypeMap = {text: TerraTextInputComponent};
+        component.inputControlTypeMap = {};
         component.width = 'col-12';
         component.inputFormGroup = new FormGroup({});
 
@@ -46,6 +45,23 @@ describe('TerraFormContainerComponent: ', () =>
     it('should create', () =>
     {
         expect(component).toBeTruthy();
+    });
+
+    it('should set default width', () =>
+    {
+        component.width = 'col-12';
+        component.inputFormFields = createFormFields(1);
+        fixture.detectChanges();
+
+        let formEntries:Array<DebugElement> = fixture.debugElement.queryAll(By.css('.form-entry'));
+
+        const hasDefaultWidth:boolean = formEntries.every((formEntry:DebugElement) =>
+        {
+            const divElement:HTMLDivElement = formEntry.nativeElement;
+            return divElement.classList.contains(component.width);
+        });
+
+        expect(hasDefaultWidth).toBe(true);
     });
 
     it('form entries should be wrapped by div with classes `container-fluid` and `row`', () =>
