@@ -8,10 +8,7 @@ import {
 } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { FormGroup } from '@angular/forms';
-import {
-    maxBootstrapCols,
-    TerraFormContainerComponent
-} from './terra-form-container.component';
+import { TerraFormContainerComponent } from './terra-form-container.component';
 import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
 import { TerraFormScope } from '../model/terra-form-scope.data';
 import { TerraKeyValueInterface } from '../../../../models';
@@ -69,50 +66,19 @@ fdescribe('TerraFormContainerComponent: ', () =>
             component.horizontal = true;
         });
 
-        it('should not fall below a column size of 1', () =>
-        {
-            component.inputFormFields = createFormFields(maxBootstrapCols + 1);
-            fixture.detectChanges();
-
-            const formEntries:Array<DebugElement> = fixture.debugElement.queryAll(By.css('.form-entry'));
-            expect(formEntries.length).toBe(component._formFields.length);
-            const equallyDistributed:boolean = formEntries.every((formEntry:DebugElement) =>
-            {
-                const divElement:HTMLDivElement = formEntry.nativeElement;
-                return divElement.classList.contains('col-' + 1);
-            });
-            expect(equallyDistributed).toBe(true);
-        });
-
-        it('should distribute its contained elements equally by default', () =>
+       it('should distribute its contained elements equally by default', () =>
         {
             component.inputFormFields = createFormFields(2);
             fixture.detectChanges();
 
             const formEntries:Array<DebugElement> = fixture.debugElement.queryAll(By.css('.form-entry'));
             expect(formEntries.length).toBe(component._formFields.length);
-            const colWidth:number = Math.floor(maxBootstrapCols / formEntries.length);
             const equallyDistributed:boolean = formEntries.every((formEntry:DebugElement) =>
             {
                 const divElement:HTMLDivElement = formEntry.nativeElement;
-                return divElement.classList.contains('col-' + colWidth);
+                return divElement.classList.contains('col');
             });
             expect(equallyDistributed).toBe(true);
-        });
-
-        it(`should not exceed the maximum count of columns in bootstrap's grid system`, () =>
-        {
-            component.inputFormFields = {};
-            fixture.detectChanges();
-            let formEntries:Array<DebugElement> = fixture.debugElement.queryAll(By.css('.form-entry'));
-            expect(formEntries.length).toBe(0);
-
-            component.inputFormFields = createFormFields(1);
-            fixture.detectChanges();
-            formEntries = fixture.debugElement.queryAll(By.css('.form-entry'));
-            expect(formEntries.length).toBe(1);
-            const divElement:HTMLDivElement = formEntries[0].nativeElement;
-            expect(divElement.classList.contains('col-12'));
         });
     });
 });
