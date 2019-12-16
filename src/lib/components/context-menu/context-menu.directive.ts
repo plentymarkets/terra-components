@@ -174,6 +174,7 @@ export class ContextMenuDirective<D> implements OnDestroy, OnChanges
                 duration:     [0,
                                0],
                 flipOnUpdate: true,
+                flipBehavior: ['top', 'bottom-end', 'right-start', 'left-start'],
                 onShown:      this.onShown,
                 onHidden:     this.onHidden
             });
