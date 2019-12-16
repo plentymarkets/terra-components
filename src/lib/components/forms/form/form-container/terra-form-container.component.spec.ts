@@ -64,30 +64,16 @@ describe('TerraFormContainerComponent: ', () =>
         expect(hasDefaultWidth).toBe(true);
     });
 
-    it('form entries should be wrapped by div with classes `container-fluid` and `row`', () =>
+    it('form entries should be wrapped by div with class `row`', () =>
     {
         component.inputFormFields = createFormFields(2);
         fixture.detectChanges();
 
-        let debugElement:DebugElement = fixture.debugElement;
-        const formDebugElement:DebugElement = debugElement.query(By.css('div'));
-        const containerFluidDebugElements:Array<DebugElement> = formDebugElement.queryAll(By.css('div.container-fluid'));
-        let rowDebugElement:DebugElement;
-
-        expect(containerFluidDebugElements.length).toBe(1);
-
         const formEntries:Array<DebugElement> = fixture.debugElement.queryAll(By.css('.form-entry'));
         expect(formEntries.length).toBe(component._formFields.length);
 
-        const rowDebugElements:Array<DebugElement> = containerFluidDebugElements[0].queryAll(By.css('div.row'));
+        const rowDebugElements:Array<DebugElement> = fixture.debugElement.queryAll(By.css('div.row'));
         expect(rowDebugElements.length).toBe(formEntries.length);
-
-        containerFluidDebugElements.forEach((element:DebugElement) =>
-        {
-            expect(element).toBeTruthy();
-            rowDebugElement = element.query(By.css('div.row'));
-            expect(rowDebugElement).toBeTruthy();
-        });
     });
 
     describe('as a horizontal container', () =>
