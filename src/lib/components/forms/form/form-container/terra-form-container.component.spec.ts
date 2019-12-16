@@ -17,6 +17,7 @@ describe('TerraFormContainerComponent: ', () =>
 {
     let fixture:ComponentFixture<TerraFormContainerComponent>;
     let component:TerraFormContainerComponent;
+
     beforeEach(() =>
     {
         fixture = TestBed.configureTestingModule({
@@ -32,6 +33,7 @@ describe('TerraFormContainerComponent: ', () =>
         // initialisation of the component's mandatory inputs
         component.inputScope = new TerraFormScope();
         component.inputControlTypeMap = {};
+        component.width = 'col-12';
         component.inputFormGroup = new FormGroup({});
 
         fixture.detectChanges();
@@ -76,6 +78,26 @@ describe('TerraFormContainerComponent: ', () =>
         expect(formEntry.classList).not.toContain(defaultWidth);
     });
 
+    it('form entries should be wrapped by div with class `row`', () =>
+    {
+        component.inputFormFields = createFormFields(2);
+        fixture.detectChanges();
+
+        const formEntries:Array<DebugElement> = fixture.debugElement.queryAll(By.css('.form-entry'));
+        expect(formEntries.length).toBe(component._formFields.length);
+
+        const rowDebugElements:Array<DebugElement> = fixture.debugElement.queryAll(By.css('div.row'));
+        expect(rowDebugElements.length).toBe(formEntries.length);
+
+        // make sure that the element with the row class is a direct parent of the form entry
+        const wrappedByRow:boolean = formEntries.every((formEntry:DebugElement) =>
+        {
+            const parent:HTMLElement = formEntry.parent.nativeElement;
+            return parent.classList.contains('row');
+        });
+        expect(wrappedByRow).toBe(true);
+    });
+
     describe('as a horizontal container', () =>
     {
         beforeEach(() =>
@@ -90,12 +112,30 @@ describe('TerraFormContainerComponent: ', () =>
 
             const formEntries:Array<DebugElement> = fixture.debugElement.queryAll(By.css('.form-entry'));
             expect(formEntries.length).toBe(component._formFields.length);
+
             const equallyDistributed:boolean = formEntries.every((formEntry:DebugElement) =>
             {
                 const divElement:HTMLDivElement = formEntry.nativeElement;
                 return divElement.classList.contains('col');
             });
             expect(equallyDistributed).toBe(true);
+        });
+
+        it('should create a single row element wrapping all the form entries', () =>
+        {
+            const formFieldCount:number = 5;
+            component.inputFormFields = createFormFields(formFieldCount);
+            fixture.detectChanges();
+
+            const rows:Array<DebugElement> = fixture.debugElement.queryAll(By.css('.row'));
+            expect(rows.length).toBe(1);
+
+            const row:DebugElement = rows[0];
+            const formFields:Array<DebugElement> = row.queryAll(By.css('.form-entry'));
+            expect(formFields.length).toBe(formFieldCount);
+
+            const isEveryFieldsParent:boolean = formFields.every((formField:DebugElement) => formField.parent === row);
+            expect(isEveryFieldsParent).toBe(true);
         });
     });
 });
