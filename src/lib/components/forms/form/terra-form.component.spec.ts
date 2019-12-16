@@ -22,14 +22,8 @@ describe(`TerraFormComponent:`, () =>
     let component:TerraFormComponent;
     let fixture:ComponentFixture<TerraFormComponent>;
     const formFields:{ [key:string]:TerraFormFieldInterface } = {
-        control1: {
-            type:         'text',
-            defaultValue: 'one'
-        },
-        control2: {
-            type:         'text',
-            defaultValue: 'two'
-        }
+        control1: {type: 'text', defaultValue: 'one'},
+        control2: {type: 'text', defaultValue: 'two'}
     };
 
     beforeEach(() =>
