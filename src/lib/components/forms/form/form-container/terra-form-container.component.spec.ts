@@ -66,7 +66,7 @@ describe('TerraFormContainerComponent: ', () =>
             component.horizontal = true;
         });
 
-       it('should distribute its contained elements equally by default', () =>
+        it('should distribute its contained elements equally by default', () =>
         {
             component.inputFormFields = createFormFields(2);
             fixture.detectChanges();
