@@ -225,7 +225,7 @@ export class TerraFormHelper
     }
 
     /**
-     * @description sanitise the width parameter if it is a valid css bootstrap grid class
+     * @description sanitise a string containing css-classes. Check whether it contains only valid bootstrap grid classes.
      * @param width
      */
     public static sanitiseWidth(width:string):string
