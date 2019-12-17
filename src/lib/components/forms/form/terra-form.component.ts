@@ -138,6 +138,11 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges, OnIn
         {
             this._controlTypeMap = this.inputControlTypeMap;
         }
+
+        if(changes.hasOwnProperty('width'))
+        {
+            this.width = TerraFormHelper.sanitiseWidth(changes['width'].currentValue);
+        }
     }
 
     /**
