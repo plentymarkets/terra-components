@@ -230,6 +230,11 @@ export class TerraFormHelper
      */
     public static sanitiseWidth(width:string):string
     {
+        if(isNullOrUndefined(width))
+        {
+            return width;
+        }
+
         let widths:Array<string> = width.split(' ');
 
         return widths.filter((widthClass:string) =>

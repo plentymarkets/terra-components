@@ -41,11 +41,14 @@ import {
 export class TerraFormComponent implements ControlValueAccessor, OnChanges, OnInit
 {
     /**
-     * @description Set width of any form element that don't overwrite it.
+     * @description Set width of any form element that doesn't overwrite it.
      * @default col-12
      */
     @Input()
-    public width:string = 'col-12';
+    public set width(width:string)
+    {
+        this._width = TerraFormHelper.sanitiseWidth(width) || 'col-12';
+    }
 
     /**
      * @description Set accessor for the form fields. Creates a representative reactive FormGroup instance by parsing the given form fields.
@@ -107,6 +110,12 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges, OnIn
 
     public _formFields:{ [key:string]:TerraFormFieldInterface };
 
+    /**
+     * @description the default width applied to any form element
+     * @internal
+     */
+    public _width:string = 'col-12';
+
     private _values:any = {};
 
     private _formGroup:FormGroup = new FormGroup({});
@@ -137,11 +146,6 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges, OnIn
         if(changes.hasOwnProperty('inputControlTypeMap') && !isNullOrUndefined(this.inputControlTypeMap))
         {
             this._controlTypeMap = this.inputControlTypeMap;
-        }
-
-        if(changes.hasOwnProperty('width'))
-        {
-            this.width = TerraFormHelper.sanitiseWidth(changes['width'].currentValue);
         }
     }
 
