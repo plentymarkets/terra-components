@@ -7,7 +7,28 @@
 
 Testing
 - [ ] Person 1 (mandatory)
+
+    Browser-Support (relevant for changes in scss / appearance of components and jQuery)
+    - [ ] Chrome
+    - [ ] Firefox
+    - [ ] Safari
+    
+    Responsiveness
+    - [ ] Desktop
+    - [ ] Tablet
+    - [ ] Mobile
+    
 - [ ] Person 2 (mandatory)
+
+    Browser-Support
+    - [ ] Chrome
+    - [ ] Firefox
+    - [ ] Safari
+    
+    Responsiveness
+    - [ ] Desktop
+    - [ ] Tablet
+    - [ ] Mobile
 
 Information transfer
 - [ ] Inform Ceres about changes in `TerraFormComponent` (optional: relevant for changes in this component)
