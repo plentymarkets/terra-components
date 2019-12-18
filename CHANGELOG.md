@@ -5,9 +5,7 @@
 * **terra-toggle** Added active/inactive color to disabled state.
 * **terra-portlet** Now supports styling of info-boxes and tables inside it.
 * **icon** new icon 'content_search'.
-* **bootstrap**
-    - adjusted margins for nested rows in the grid
-    - adjusted padding for class 'col'.
+* **bootstrap** adjusted spacing for the grid classes
 
 ### Bug Fixes
 * **terra-portlet**
