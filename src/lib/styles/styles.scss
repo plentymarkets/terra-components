@@ -76,13 +76,11 @@ body
     height: 100%;
 }
 
-///////////////// COLUMNS /////////////////
-
-div[class^="col-"], div[class*=" col-"], .col
+///////////////// BOOTSTRAP GRID /////////////////
+.container-fluid
 {
     padding-right: var(--space-xs);
     padding-left: var(--space-xs);
-    transition: all var(--transition-md);
 }
 
 .row
@@ -91,12 +89,14 @@ div[class^="col-"], div[class*=" col-"], .col
     margin-right: calc(-1 * var(--space-xs));
 }
 
-.container-fluid
+div[class^="col-"], div[class*=" col-"], .col
 {
     padding-right: var(--space-xs);
     padding-left: var(--space-xs);
+    transition: all var(--transition-md);
 }
 
+/////////////////// HEADINGS ///////////////////
 h1
 {
     font-size: var(--font-size-7);
