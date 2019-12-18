@@ -89,7 +89,7 @@ body
     margin-right: calc(-1 * var(--space-xs));
 }
 
-div[class^="col-"], div[class*=" col-"], .col
+[class^="col-"], [class*=" col-"], .col
 {
     padding-right: var(--space-xs);
     padding-left: var(--space-xs);
