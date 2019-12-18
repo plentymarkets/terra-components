@@ -10,6 +10,7 @@
 * **terra-portlet**
     - styling of hover-state and info-handler in portlet header
     - styling of tables, toolbars and info-boxes inside portlets
+* **http-interceptors** added missing dependencies to their providers. You can now actually use the `httpInterceptorProviders` constant to make use of the `Auth`-, `Error`- and `LoadingInterceptor` in your app.
 
 <a name="4.7.0"></a>
 # 4.7.0 (14.11.2019)
