@@ -88,11 +88,19 @@ body
     padding-left: var(--space-xs);
     transition: all var(--transition-md);
     
-    .row
-    {
-        margin-left: calc(-1 * var(--space-xs));
-        margin-right: calc(-1 * var(--space-xs));
-    }
+    
+    
+    
+}
+.row
+{
+    margin-left: calc(-1 * var(--space-xs));
+    margin-right: calc(-1 * var(--space-xs));
+}
+.container-fluid
+{
+    padding-right: var(--space-xs);
+    padding-left: var(--space-xs);
 }
 
 h1
