@@ -68,6 +68,13 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
         this._formGroup = formGroup;
     }
 
+    /**
+     * @experimental
+     * @description If true, the visibility updates are not bubbled to the ancestor in the reactive form element. Default true.
+     */
+    @Input()
+    public inputUpdateOnlySelf:boolean = true;
+
     public _formGroup:FormGroup;
 
     public _formFields:Array<TerraKeyValuePairInterface<TerraFormFieldInterface>> = [];
@@ -143,14 +150,14 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
             {
                 if(control.disabled)
                 {
-                    control.enable({onlySelf:true});
+                    control.enable({onlySelf: this.inputUpdateOnlySelf});
                 }
             }
             else
             {
                 if(control.enabled)
                 {
-                    control.disable({onlySelf:true});
+                    control.disable({onlySelf: this.inputUpdateOnlySelf});
                 }
             }
         }

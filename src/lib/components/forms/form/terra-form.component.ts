@@ -91,6 +91,13 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges, OnIn
     public inputIsDisabled:boolean = false;
 
     /**
+     * @experimental
+     * @description If true, the visibility updates are not bubbled to the ancestor in the reactive form element. Default true.
+     */
+    @Input()
+    public inputUpdateOnlySelf:boolean = true;
+
+    /**
      * @description Scope of the form. It is used to evaluate the visibility of the form fields.
      * @readonly
      */
