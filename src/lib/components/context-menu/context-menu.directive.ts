@@ -23,7 +23,7 @@ import { ContextMenuTrigger } from './context-menu-trigger';
 @Directive({
     selector: '[tcContextMenu]'
 })
-export class ContextMenuDirective<D> implements OnDestroy, OnChanges
+export class ContextMenuDirective implements OnDestroy, OnChanges
 {
     /**
      * @description The context-menu content.
@@ -43,9 +43,9 @@ export class ContextMenuDirective<D> implements OnDestroy, OnChanges
     @Input()
     public placement:string = TerraPlacementEnum.BOTTOM;
 
-    /** @description The theme selector for css. Default `context-menu`*/
+    /** @description The theme selector for css. Default `terra-context-menu`*/
     @Input()
-    public theme:string = 'context-menu';
+    public theme:string = 'terra-context-menu';
 
     /** @description Function to be called when tooltip is shown. */
     @Input()
@@ -55,20 +55,27 @@ export class ContextMenuDirective<D> implements OnDestroy, OnChanges
     @Input()
     public onHidden:() => void = noop;
 
-    private contextMenuEl:any;
-    private navigationSubscription:Subscription;
+    private _contextMenuEl:any;
+    private _navigationSubscription:Subscription;
 
-    constructor(private elementRef:ElementRef,
-                private containerRef:ViewContainerRef,
-                private router:Router)
+    constructor(private _elementRef:ElementRef,
+                private _containerRef:ViewContainerRef,
+                private _router:Router)
     {
+        this._navigationSubscription = this._router.events.subscribe(() =>
+        {
+            if(this._contextMenuEl)
+            {
+                this._contextMenuEl.hide(0);
+            }
+        });
     }
 
     public ngOnChanges(changes:SimpleChanges):void
     {
         if(changes.hasOwnProperty('tcContextMenu') && changes['tcContextMenu'].currentValue)
         {
-            const viewRef:EmbeddedViewRef<any> = this.containerRef.createEmbeddedView(this.tcContextMenu, {});
+            const viewRef:EmbeddedViewRef<any> = this._containerRef.createEmbeddedView(this.tcContextMenu, {});
 
             let div:HTMLElement = document.createElement('div');
 
@@ -77,19 +84,14 @@ export class ContextMenuDirective<D> implements OnDestroy, OnChanges
                 div.append(node);
             });
 
-            this.initContextMenu(div);
-
-            this.navigationSubscription = this.router.events.subscribe(() =>
-            {
-                this.contextMenuEl.hide(0);
-            });
+            this._initContextMenu(div);
         }
 
         if(changes.hasOwnProperty('placement') && changes['placement'].currentValue)
         {
-            if(this.contextMenuEl)
+            if(this._contextMenuEl)
             {
-                this.contextMenuEl.setProps({
+                this._contextMenuEl.setProps({
                     placement: this.placement as Placement
                 });
             }
@@ -97,44 +99,44 @@ export class ContextMenuDirective<D> implements OnDestroy, OnChanges
     }
 
     @HostListener('window:click', ['$event'])
-    public onClick(event:MouseEvent):void
+    public _onClick(event:MouseEvent):void
     {
-        if(this.contextMenuEl && this.trigger === ContextMenuTrigger.rightClick)
+        if(this._contextMenuEl && this.trigger === ContextMenuTrigger.rightClick)
         {
             event.stopPropagation();
-            this.contextMenuEl.hide();
+            this._contextMenuEl.hide();
         }
     }
 
     @HostListener('contextmenu', ['$event'])
-    public onContextMenu(event:MouseEvent):void
+    public _onContextMenu(event:MouseEvent):void
     {
         event.stopPropagation();
         event.preventDefault();
 
-        if(event.currentTarget !== this.elementRef.nativeElement)
+        if(event.currentTarget !== this._elementRef.nativeElement)
         {
-            this.contextMenuEl.hide();
+            this._contextMenuEl.hide();
         }
         else
         {
-            if(this.contextMenuEl && this.trigger === ContextMenuTrigger.rightClick)
+            if(this._contextMenuEl && this.trigger === ContextMenuTrigger.rightClick)
             {
-                this.contextMenuEl.show();
+                this._contextMenuEl.show();
             }
         }
     }
 
     public ngOnDestroy():void
     {
-        if(this.contextMenuEl)
+        if(this._contextMenuEl)
         {
-            this.contextMenuEl.destroy();
+            this._contextMenuEl.destroy();
         }
 
-        if(this.navigationSubscription)
+        if(this._navigationSubscription)
         {
-            this.navigationSubscription.unsubscribe();
+            this._navigationSubscription.unsubscribe();
         }
     }
 
@@ -142,9 +144,9 @@ export class ContextMenuDirective<D> implements OnDestroy, OnChanges
      * initialize the tippy element
      * @param contextMenu
      */
-    private initContextMenu(contextMenu:Element):void
+    private _initContextMenu(contextMenu:Element):void
     {
-        if(!this.contextMenuEl)
+        if(!this._contextMenuEl)
         {
             let trigger:string;
 
@@ -159,7 +161,7 @@ export class ContextMenuDirective<D> implements OnDestroy, OnChanges
                     trigger = 'mouseenter focus';
             }
 
-            this.contextMenuEl = tippy(this.elementRef.nativeElement, {
+            this._contextMenuEl = tippy(this._elementRef.nativeElement, {
                 content:       contextMenu,
                 trigger:       trigger,
                 interactive:   true,
@@ -184,7 +186,7 @@ export class ContextMenuDirective<D> implements OnDestroy, OnChanges
         }
         else
         {
-            this.contextMenuEl.setContent(contextMenu);
+            this._contextMenuEl.setContent(contextMenu);
         }
     }
 }
