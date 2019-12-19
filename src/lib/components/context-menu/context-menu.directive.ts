@@ -160,20 +160,27 @@ export class ContextMenuDirective<D> implements OnDestroy, OnChanges
             }
 
             this.contextMenuEl = tippy(this.elementRef.nativeElement, {
-                content:     contextMenu,
-                trigger:     trigger,
-                interactive: true,
-                hideOnClick: false,
-                arrow:       false,
-                appendTo:    document.body,
-                placement:   this.placement as Placement,
-                distance:    0,
-                theme:       this.theme,
-                duration:    [0,
-                              0],
-                flip:        false,
-                onShown:     this.onShown,
-                onHidden:    this.onHidden
+                content:       contextMenu,
+                trigger:       trigger,
+                interactive:   true,
+                hideOnClick:   false,
+                arrow:         false,
+                appendTo:      document.body,
+                placement:     this.placement as Placement,
+                distance:      0,
+                theme:         this.theme,
+                duration:      [0,
+                                0],
+                flip:          false,
+                onShown:       this.onShown,
+                onHidden:      this.onHidden,
+                popperOptions: {
+                    modifiers: {
+                        preventOverflow: {
+                            padding: 0
+                        }
+                    }
+                }
             });
         }
         else
