@@ -163,7 +163,6 @@ export class ContextMenuDirective<D> implements OnDestroy, OnChanges
                 content:       contextMenu,
                 trigger:       trigger,
                 interactive:   true,
-                hideOnClick:   false,
                 arrow:         false,
                 appendTo:      document.body,
                 placement:     this.placement as Placement,
