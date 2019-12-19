@@ -21,4 +21,9 @@ export class TabsComponentExample
     {
         return ():void => console.log('Context-menu hidden');
     }
+
+    public _clicked(link:string):void
+    {
+        alert(link);
+    }
 }

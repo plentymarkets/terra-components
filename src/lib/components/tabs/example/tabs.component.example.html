@@ -12,39 +12,38 @@
                     aria-label="Close">
                 <span aria-hidden="true" class="icon icon-cancel"></span>
             </button>
+    
+            <ng-template #contextMenu>
+                <a (click)="_clicked(link)">
+                    <span class="left-icon icon-reload"></span>
+                    reload
+                </a>
+                <a>
+                    <span class="left-icon icon-copy"></span>
+                    duplicate
+                </a>
+                <a>
+                    <span class="left-icon icon-manual_search"></span>
+                    searchInManual
+                </a>
+                <a>
+                    <span class="left-icon icon-design_copy"></span>
+                    closeOtherTabs
+                </a>
+                <a>
+                    <span class="left-icon icon-favourite_active"></span>
+                    addToFavourites
+                </a>
+                <a class="danger">
+                    <span class="left-icon icon-favourite_inactive"></span>
+                    removeFromFavourites
+                </a>
+            </ng-template>
         </a>
     </ng-container>
 
     <a mat-tab-link disabled>Disabled Link</a>
 </nav>
-
-<ng-template #contextMenu>
-    <a>
-        <span class="left-icon icon-reload"></span>
-        reload
-    </a>
-    <a>
-        <span class="left-icon icon-copy"></span>
-        duplicate
-    </a>
-    <a>
-        <span class="left-icon icon-manual_search"></span>
-        searchInManual
-    </a>
-    <a>
-        <span class="left-icon icon-design_copy"></span>
-        closeOtherTabs
-    </a>
-    <a>
-        <span class="left-icon icon-favourite_active"></span>
-        addToFavourites
-    </a>
-    <a class="danger">
-        <span class="left-icon icon-favourite_inactive"></span>
-        removeFromFavourites
-    </a>
-</ng-template>
-
 
 <h1>Tabs used for displaying other content (maybe custom UI)</h1>
 
@@ -52,12 +51,6 @@
     <mat-tab>
         <ng-template mat-tab-label>
             First
-            <span class="caret" [tcContextMenu]="contextMenu"></span>
-            <button type="button"
-                    class="close"
-                    aria-label="Close">
-                <span aria-hidden="true" class="icon icon-cancel"></span>
-            </button>
         </ng-template>
         Content 1
     </mat-tab>
