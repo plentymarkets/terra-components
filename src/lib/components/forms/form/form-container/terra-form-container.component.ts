@@ -61,7 +61,7 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
 
     /** @description Set width of terra-form-container. Sets width of all form elements that don't overwrite it. Default col-12. */
     @Input()
-    public width:string;
+    public width:string = 'col-12';
 
     /**
      * @description If true, the button will be disabled. Default false.
