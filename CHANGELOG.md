@@ -5,6 +5,7 @@
 * **space-variables** Added new space variables that are not affected by compact-mode, like var(--space-md-fix)
 * **mat-date-picker** styles for the [angular material datepicker](https://material.angular.io/components/datepicker/overview).
 * **matInput** updated styles to match `mat-date-picker`, `mat-select` and `matInput` appearance.
+* **terra-form** Added input `width` that sets the default width of any form element inside the form.
 
 ### Breaking Changes
 * **build** Terra-Components is now fully AOT compatible. 
