@@ -12,7 +12,10 @@ import {
     isString
 } from 'util';
 import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
-import { TerraKeyValuePairInterface } from '../../../../models';
+import {
+    TerraKeyValueInterface,
+    TerraKeyValuePairInterface
+} from '../../../../models';
 import {
     AbstractControl,
     ControlValueAccessor,
@@ -43,7 +46,7 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
     public inputControlTypeMap:{ [key:string]:Type<any> | TerraFormTypeInterface } = {};
 
     @Input()
-    public set inputFormFields(fields:{ [key:string]:TerraFormFieldInterface })
+    public set inputFormFields(fields:TerraKeyValueInterface<TerraFormFieldInterface>)
     {
         this._formFields = Object.keys(fields).map((key:string) =>
         {
@@ -55,6 +58,10 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
 
         this._updateFieldVisibility();
     }
+
+    /** @description Set width of terra-form-container. Sets width of all form elements that don't overwrite it. Default col-12. */
+    @Input()
+    public width:string = 'col-12';
 
     /**
      * @description If true, the button will be disabled. Default false.
@@ -68,10 +75,14 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
         this._formGroup = formGroup;
     }
 
+    /** @description Indicate whether this container should be displayed horizontally. */
+    @Input()
+    public horizontal:boolean = false;
+
     public _formGroup:FormGroup;
 
     public _formFields:Array<TerraKeyValuePairInterface<TerraFormFieldInterface>> = [];
-    public _formFieldVisibility:{ [key:string]:boolean } = {};
+    public _formFieldVisibility:TerraKeyValueInterface<boolean> = {};
 
     private _onChangeCallback:(value:any) => void = noop;
     private _onTouchedCallback:() => void = noop;

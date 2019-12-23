@@ -4,12 +4,23 @@ import { TerraFormFieldInterface } from './model/terra-form-field.interface';
 import { TerraFormFieldBase } from '../dynamic-form/data/terra-form-field-base';
 import { TerraFormTypeMap } from './model/terra-form-type-map.enum';
 import { FormTypeMap } from './model/form-type-map';
-import { SimpleChange } from '@angular/core';
+import {
+    DebugElement,
+    NO_ERRORS_SCHEMA,
+    SimpleChange
+} from '@angular/core';
+import {
+    ComponentFixture,
+    TestBed
+} from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import { TerraFormContainerComponent } from './form-container/terra-form-container.component';
 import Spy = jasmine.Spy;
 
 describe(`TerraFormComponent:`, () =>
 {
     let component:TerraFormComponent;
+    let fixture:ComponentFixture<TerraFormComponent>;
     const formFields:{ [key:string]:TerraFormFieldInterface } = {
         control1: {type: 'text', defaultValue: 'one'},
         control2: {type: 'text', defaultValue: 'two'}
@@ -17,7 +28,12 @@ describe(`TerraFormComponent:`, () =>
 
     beforeEach(() =>
     {
-        component = new TerraFormComponent();
+        fixture = TestBed.configureTestingModule({
+            schemas:      [NO_ERRORS_SCHEMA],
+            declarations: [TerraFormComponent, TerraFormContainerComponent]
+        }).createComponent(TerraFormComponent);
+
+        component = fixture.componentInstance;
     });
 
     it('should create', () =>
@@ -48,6 +64,14 @@ describe(`TerraFormComponent:`, () =>
         component.ngOnChanges({inputControlTypeMap: new SimpleChange(null, typeMap, false)});
         component.ngOnInit();
         expect(component._controlTypeMap).toBe(typeMap);
+    });
+
+    it('should wrap the #TerraFormContainerComponent in a div-element with a `container-fluid`-class', () =>
+    {
+        const containerFluid:DebugElement = fixture.debugElement.query(By.css('.container-fluid'));
+        expect(containerFluid).toBeTruthy();
+        const formContainer:TerraFormContainerComponent = containerFluid.query(By.directive(TerraFormContainerComponent)).componentInstance;
+        expect(formContainer).toBeTruthy();
     });
 
     describe('with _formFields', () =>
