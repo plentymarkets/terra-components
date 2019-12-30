@@ -58,6 +58,9 @@ export class TerraFormEntryListComponent implements OnInit, OnChanges, ControlVa
     @Input()
     public inputIsDisabled:boolean = false;
 
+    @Input()
+    public width:string;
+
     public formArray:FormArray;
 
     @Language()

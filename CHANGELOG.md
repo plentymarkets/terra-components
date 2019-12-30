@@ -6,6 +6,7 @@
 * **mat-date-picker** styles for the [angular material datepicker](https://material.angular.io/components/datepicker/overview).
 * **matInput** updated styles to match `mat-date-picker`, `mat-select` and `matInput` appearance.
 * **tcContextMenu** New directive for context menu using tippy.js.
+* **terra-form** Added input `width` that sets the default width of any form element inside the form.
 
 ### Breaking Changes
 * **build** Terra-Components is now fully AOT compatible. 
@@ -20,7 +21,7 @@ Terra-Components now complies with the angular package format and code autocompl
 * **terra-base-editor** removed unnecessary quill style import
 
 <a name="4.8.0"></a>
-# 4.8.0 (Unreleased)
+# 4.8.0 (20.12.2019)
 
 ### Features
 * **terra-toggle** Added active/inactive color to disabled state.
