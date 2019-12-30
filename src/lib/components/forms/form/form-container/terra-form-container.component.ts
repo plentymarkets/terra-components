@@ -81,7 +81,7 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
      */
     @Input()
     public inputUpdateOnlySelf:boolean = true;
-    
+
     /** @description Indicate whether this container should be displayed horizontally. */
     @Input()
     public horizontal:boolean = false;
