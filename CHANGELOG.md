@@ -1,3 +1,8 @@
+# Unreleased
+
+### Bug Fixes
+* **terra-file-browser** Fixed deleting directories.
+
 <a name="4.8.0"></a>
 # 4.8.0 (20.12.2019)
 
