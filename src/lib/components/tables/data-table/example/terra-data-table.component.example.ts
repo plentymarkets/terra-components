@@ -118,13 +118,6 @@ export class TerraDataTableComponentExample implements OnInit
             {
                 title:         'Show alert',
                 clickFunction: (data:TerraDataTableExampleInterface):void => alert(`The rows value is ${data.value}`)
-            },
-            {
-                isDivider: true
-            },
-            {
-                title:         'Show alert 2',
-                clickFunction: (data:TerraDataTableExampleInterface):void => alert(`The rows mail is ${data.mail}`)
             }
         ];
     }

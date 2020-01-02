@@ -8,6 +8,7 @@ import {
     OnInit,
     SimpleChanges
 } from '@angular/core';
+import { TerraDataTableContextMenuService } from './context-menu/terra-data-table-context-menu.service';
 import { TerraDataTableBaseService } from './terra-data-table-base.service';
 import { TerraDataTableHeaderCellInterface } from './interfaces/terra-data-table-header-cell.interface';
 import { TerraDataTableRowInterface } from './interfaces/terra-data-table-row.interface';
@@ -29,7 +30,6 @@ import { TerraBaseTable } from '../terra-base-table';
 import { TerraDataTableTextInterface } from './interfaces/terra-data-table-text.interface';
 import { TerraTagInterface } from '../../layouts/tag/data/terra-tag.interface';
 import { TerraDataTableContextMenuEntryInterface } from './context-menu/data/terra-data-table-context-menu-entry.interface';
-import { TerraDataTableContextMenuService } from './context-menu/terra-data-table-context-menu.service';
 
 @Component({
     selector:        'terra-data-table',
