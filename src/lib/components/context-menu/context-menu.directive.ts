@@ -26,13 +26,13 @@ import { ContextMenuTrigger } from './context-menu-trigger';
 export class ContextMenuDirective implements OnDestroy, OnChanges
 {
     /**
-     * @description The context-menu content.
+     * @description The context menu content.
      */
     @Input()
     public tcContextMenu:TemplateRef<any>;
 
     /**
-     * @description The method how to trigger the context-menu. Default `hover`.
+     * @description The method how to trigger the context menu. Default `hover`.
      */
     @Input()
     public trigger:ContextMenuTrigger = ContextMenuTrigger.hover;
@@ -47,11 +47,11 @@ export class ContextMenuDirective implements OnDestroy, OnChanges
     @Input()
     public theme:string = 'terra-context-menu';
 
-    /** @description Function to be called when tooltip is shown. */
+    /** @description Function to be called when context menu is shown. */
     @Input()
     public onShown:() => void = noop;
 
-    /** @description Function to be called when tooltip is hidden. */
+    /** @description Function to be called when context menu is hidden. */
     @Input()
     public onHidden:() => void = noop;
 
