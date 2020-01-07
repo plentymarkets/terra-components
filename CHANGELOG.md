@@ -1,5 +1,5 @@
 <a name="4.8.1"></a>
-# 4.8.1 (Unreleased)
+# 4.8.1 (07.01.2020)
 
 ### Bug Fixes
  * **terra-portlets** removed negative margins from nested containers (portlets, toolbars, tables, infoboxes, pager)
