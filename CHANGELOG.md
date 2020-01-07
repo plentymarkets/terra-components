@@ -1,5 +1,11 @@
+<a name="4.8.1"></a>
+# 4.8.1 (07.01.2020)
+
+### Bug Fixes
+ * **terra-portlets** removed negative margins from nested containers (portlets, toolbars, tables, infoboxes, pager)
+
 <a name="4.8.0"></a>
-# 4.8.0 (Unreleased)
+# 4.8.0 (20.12.2019)
 
 ### Features
 * **terra-toggle** Added active/inactive color to disabled state.
