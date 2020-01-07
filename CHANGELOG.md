@@ -5,6 +5,8 @@
 * **space-variables** Added new space variables that are not affected by compact-mode, like var(--space-md-fix)
 * **mat-date-picker** styles for the [angular material datepicker](https://material.angular.io/components/datepicker/overview).
 * **matInput** updated styles to match `mat-date-picker`, `mat-select` and `matInput` appearance.
+* **terra-form** Added input `width` that sets the default width of any form element inside the form.
+* **terra-button-with-options** Added output property `optionsToggled` emitting current toggle state after options are toggled.
 
 ### Breaking Changes
 * **build** Terra-Components is now fully AOT compatible. 
@@ -17,9 +19,16 @@ Terra-Components now complies with the angular package format and code autocompl
 
 ### Fix
 * **terra-base-editor** removed unnecessary quill style import
+* **material-tabs** fixed min-width of tabs
+
+<a name="4.8.1"></a>
+# 4.8.1 (07.01.2020)
+
+### Bug Fixes
+ * **terra-portlets** removed negative margins from nested containers (portlets, toolbars, tables, infoboxes, pager)
 
 <a name="4.8.0"></a>
-# 4.8.0 (Unreleased)
+# 4.8.0 (20.12.2019)
 
 ### Features
 * **terra-toggle** Added active/inactive color to disabled state.

@@ -20,6 +20,7 @@ export { TerraFileChooserComponent } from './components/buttons/file-chooser/ter
 
 export { TerraBaseData } from './components/data/terra-base.data';
 export { TerraFilterComponent } from './components/filter/terra-filter.component';
+export { FilterComponent } from  './components/filter/filter.component';
 
 // FORM ELEMENTS
 export { TerraCheckboxComponent } from './components/forms/checkbox/terra-checkbox.component';
