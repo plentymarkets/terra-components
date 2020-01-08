@@ -4,13 +4,11 @@ import { AuthInterceptor } from './auth.interceptor';
 import { ErrorInterceptor } from './error.interceptor';
 import { LoadingInterceptor } from './loading.interceptor';
 import {
-    AlertService,
-    TerraLoadingSpinnerService
-} from '..';
-import {
     LocaleService,
     TranslationService
 } from 'angular-l10n';
+import { AlertService } from '../components/alert/alert.service';
+import { TerraLoadingSpinnerService } from '../components/loading-spinner/service/terra-loading-spinner.service';
 
 export { AuthInterceptor } from './auth.interceptor';
 export { ErrorInterceptor } from './error.interceptor';
