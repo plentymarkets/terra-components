@@ -21,6 +21,12 @@ Terra-Components now complies with the angular package format and code autocompl
 * **terra-base-editor** removed unnecessary quill style import
 * **material-tabs** fixed min-width of tabs
 
+<a name="4.8.2"></a>
+# 4.8.2 (XX.XX.XXXX)
+
+### Bug Fixes
+* **http-interceptors** added missing dependencies to their providers. You can now actually use the `httpInterceptorProviders` constant to make use of the `Auth`-, `Error`- and `LoadingInterceptor` in your app.
+
 <a name="4.8.1"></a>
 # 4.8.1 (07.01.2020)
 
