@@ -22,7 +22,7 @@ Terra-Components now complies with the angular package format and code autocompl
 * **material-tabs** fixed min-width of tabs
 
 <a name="4.8.2"></a>
-# 4.8.2 (XX.XX.XXXX)
+# 4.8.2 (08.01.2020)
 
 ### Bug Fixes
 * **http-interceptors** added missing dependencies to their providers. You can now actually use the `httpInterceptorProviders` constant to make use of the `Auth`-, `Error`- and `LoadingInterceptor` in your app.
