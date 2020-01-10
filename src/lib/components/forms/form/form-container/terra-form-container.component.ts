@@ -154,14 +154,14 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
             {
                 if(control.disabled)
                 {
-                    control.enable({onlySelf:true});
+                    control.enable();
                 }
             }
             else
             {
                 if(control.enabled)
                 {
-                    control.disable({onlySelf:true});
+                    control.disable();
                 }
             }
         }
