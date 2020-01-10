@@ -65,10 +65,7 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges, OnIn
         this._formGroup = TerraFormHelper.parseReactiveForm(this._formFields, this._values);
         this._valueChangesSubscription = this._formGroup.valueChanges.subscribe((changes:Data) =>
         {
-            Object.keys(changes).forEach((key:string) =>
-            {
-                this._values[key] = changes[key];
-            });
+            this._values = changes;
             this.scope.data = this._values;
             this._onChangeCallback(this._values);
         });
