@@ -62,6 +62,13 @@ export const listWithChildren:TerraFormFieldInterface = {
         name: 'Vertical'
     },
     children:     {
+        id: {
+            type: 'number',
+            isVisible: false,
+            options: {
+                name: 'Id'
+            }
+        },
         childSelect: select,
         childText:   {
             type:         'text',
