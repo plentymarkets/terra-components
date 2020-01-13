@@ -20,8 +20,7 @@ import {
     AbstractControl,
     ControlValueAccessor,
     FormGroup,
-    NG_VALUE_ACCESSOR,
-    Validators
+    NG_VALUE_ACCESSOR
 } from '@angular/forms';
 import { noop } from 'rxjs';
 import { TerraFormTypeInterface } from '../model/terra-form-type.interface';
