@@ -65,6 +65,7 @@ export const listWithChildren:TerraFormFieldInterface = {
         id: {
             type: 'number',
             isVisible: false,
+            defaultValue: 0,
             options: {
                 name: 'Id'
             }
