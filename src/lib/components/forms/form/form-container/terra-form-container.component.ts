@@ -156,7 +156,9 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
             {
                 if(!control.validator)
                 {
-                    const formField:TerraKeyValuePairInterface<TerraFormFieldInterface> = this._formFields.find((field:TerraKeyValuePairInterface<TerraFormFieldInterface>) => field.key === fieldKey);
+                    const formField:TerraKeyValuePairInterface<TerraFormFieldInterface> = this._formFields.find(
+                        (field:TerraKeyValuePairInterface<TerraFormFieldInterface>) => field.key === fieldKey
+                    );
                     control.setValidators(TerraFormHelper.generateValidators(formField.value));
                 }
             }
