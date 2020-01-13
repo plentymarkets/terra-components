@@ -122,5 +122,6 @@ export const formFields:TerraKeyValueInterface<TerraFormFieldInterface> = {
         }
     },
     listWithChildren: listWithChildren,
+    wrappedContainer: containerCompontent
 };
 
