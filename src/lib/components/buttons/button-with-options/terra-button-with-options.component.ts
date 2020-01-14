@@ -1,8 +1,10 @@
 import {
     Component,
     ElementRef,
+    EventEmitter,
     Input,
     OnInit,
+    Output,
     ViewChild
 } from '@angular/core';
 import { TerraButtonInterface } from '../button/data/terra-button.interface';
@@ -68,6 +70,12 @@ export class TerraButtonWithOptionsComponent implements OnInit
     @Input()
     public inputOptionsAlignment:TerraTextAlignEnum;
 
+    /**
+     * @description Emits the state of the button options each time the options are toggled.
+     */
+    @Output()
+    public optionsToggled:EventEmitter<boolean> = new EventEmitter<boolean>();
+
     public _optionsToggle:boolean;
     public _alignRight:boolean;
 
@@ -86,6 +94,7 @@ export class TerraButtonWithOptionsComponent implements OnInit
             if(!this._elementRef.nativeElement.contains(event.target))
             {
                 this._optionsToggle = false;
+                this.optionsToggled.emit(false);
             }
         };
 
@@ -150,5 +159,6 @@ export class TerraButtonWithOptionsComponent implements OnInit
         }
 
         this._optionsToggle = !this._optionsToggle;
+        this.optionsToggled.emit(this._optionsToggle);
     }
 }
