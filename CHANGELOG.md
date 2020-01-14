@@ -7,7 +7,6 @@
 * **matInput** updated styles to match `mat-date-picker`, `mat-select` and `matInput` appearance.
 * **terra-form** Added input `width` that sets the default width of any form element inside the form.
 * **terra-button-with-options** Added output property `optionsToggled` emitting current toggle state after options are toggled.
-* **terra-multi-split-view** remove deprecated terra-multi-split-view. See [SplitView migration guide](https://developers.plentymarkets.com/dev-doc/split-view-migration-guide) for upgrade.
 
 ### Breaking Changes
 * **build** Terra-Components is now fully AOT compatible. 
@@ -17,6 +16,7 @@ Terra-Components now complies with the angular package format and code autocompl
 * **terra-data-table** removed deprecated input `isSticky` sticky. No replacement will be provided for now. 
 * **float-thead** removed the directive. No replacement will be provided for now.
 * **terra-date-picker** deprecated. Use [angular material datepicker](https://material.angular.io/components/datepicker/overview) instead.
+* **terra-multi-split-view** remove deprecated terra-multi-split-view. See [SplitView migration guide](https://developers.plentymarkets.com/dev-doc/split-view-migration-guide) for upgrade.
 
 ### Fix
 * **terra-base-editor** removed unnecessary quill style import
