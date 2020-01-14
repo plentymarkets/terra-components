@@ -1,7 +1,4 @@
 import { Injectable } from '@angular/core';
-import { TerraBaseService } from '../../../../service/terra-base.service';
-import { TerraLoadingSpinnerService } from '../../../loading-spinner/service/terra-loading-spinner.service';
-import { Http } from '@angular/http';
 import {
     Observable,
     of
@@ -13,14 +10,8 @@ import {
 @Injectable({
     providedIn: 'root'
 })
-export class TerraDynamicFormService extends TerraBaseService
+export class TerraDynamicFormService
 {
-    constructor(private spinnerService:TerraLoadingSpinnerService,
-                private baseHttp:Http)
-    {
-        super(spinnerService, baseHttp, '', false);
-    }
-
     /**
      * @param data
      * @param url

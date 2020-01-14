@@ -9,7 +9,6 @@ import {
 } from '@angular/core/testing';
 import { TerraButtonComponent } from '../buttons/button/terra-button.component';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { LocalizationModule } from 'angular-l10n';
 import { l10nConfig } from '../../../app/translation/l10n.config';
@@ -36,7 +35,6 @@ describe('Component: TerraStopwatchComponent', () =>
             ],
             imports:      [
                 FormsModule,
-                HttpModule,
                 HttpClientModule,
                 LocalizationModule.forRoot(l10nConfig)
             ],
