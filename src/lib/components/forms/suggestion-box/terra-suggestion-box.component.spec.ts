@@ -19,10 +19,10 @@ import { By } from '@angular/platform-browser';
 import { TerraLabelTooltipDirective } from '../../../helpers/terra-label-tooltip.directive';
 import { TerraSuggestionBoxValueInterface } from './data/terra-suggestion-box.interface';
 import { TerraTextInputComponent } from '../input/text-input/terra-text-input.component';
-import Spy = jasmine.Spy;
 import { TooltipDirective } from '../../tooltip/tooltip.directive';
 import { Router } from '@angular/router';
 import { MockRouter } from '../../../testing/mock-router';
+import Spy = jasmine.Spy;
 
 describe('TerraSuggestionBoxComponent', () =>
 {
