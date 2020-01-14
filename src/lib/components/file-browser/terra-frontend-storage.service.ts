@@ -15,6 +15,7 @@ import {
 } from 'rxjs';
 import { AlertService } from '../alert/alert.service';
 import { HttpClient } from '@angular/common/http';
+import { createHttpParams } from '../../utils';
 
 @Injectable({
     providedIn: 'root'
@@ -63,7 +64,7 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
         return this._storageListSubject;
     }
 
-    public createDirectory(path:string):Observable<void | Object>
+    public createDirectory(path:string):Observable<void>
     {
         if(path.charAt(0) === '/')
         {
@@ -77,13 +78,14 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
 
         path = this.prepareKey(path);
 
-        return this.http.post(this.url + '?key=' + path, null)
-                   .pipe(tap(() =>
-                   {
-                       this._storageListSubject.next(
-                           this._storageList.insertObject(createS3StorageObject(path))
-                       );
-                   }));
+        return this.http.post<void>(this.url + '?key=' + path, null).pipe(
+            tap(() =>
+            {
+                this._storageListSubject.next(
+                    this._storageList.insertObject(createS3StorageObject(path))
+                );
+            })
+        );
     }
 
     public uploadFiles(files:FileList | Array<File>, path:string = '/'):Array<TerraUploadItem>
@@ -112,16 +114,17 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
             return from([this._metadataCache[key]]);
         }
 
-        return this.http.get(this.url + '/metadata?key=' + key)
-                   .pipe(tap((metadata:any) =>
-                       {
-                           this._metadataCache[key] = metadata;
-                       },
-                       () =>
-                       {
-                           delete this._metadataCache[key];
-                       }
-                   ));
+        return this.http.get(this.url + '/metadata?key=' + key).pipe(
+            tap((metadata:any) =>
+                {
+                    this._metadataCache[key] = metadata;
+                },
+                () =>
+                {
+                    delete this._metadataCache[key];
+                }
+            )
+        );
     }
 
     public updateMetadata(key:string, metadata:TerraImageMetadata):Observable<any>
@@ -129,31 +132,36 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
         return this.http.post(this.url + '/metadata', {
             key:      key,
             metadata: metadata
-        }).pipe(tap(() =>
-            {
-                this._metadataCache[key] = metadata;
-            },
-            () =>
-            {
-                delete this._metadataCache[key];
-            }
-        ));
+        }).pipe(
+            tap(() =>
+                {
+                    this._metadataCache[key] = metadata;
+                },
+                () =>
+                {
+                    delete this._metadataCache[key];
+                }
+            )
+        );
     }
 
-    public deleteFiles(keyList:Array<string>):Observable<void | Object>
+    public deleteFiles(keyList:Array<string>):Observable<void>
     {
-        return this.http.delete('/rest/storage/frontend/files?' + keyList.map((key:string):string => 'keyList[]=' + key).join('&'))
-                   .pipe(tap(():void =>
-                       {
-                           keyList.forEach((key:string):void => this._storageList.root.removeChild(key));
-                           this._storageListSubject.next(this._storageList);
-                       },
-                       ():void =>
-                       {
-                           this._storageInitialized = false;
-                           this._storageListSubject.next(null);
-                       }
-                   ));
+        return this.http.delete<void>('/rest/storage/frontend/files', {
+            params: createHttpParams(keyList, true)
+        }).pipe(
+            tap(() =>
+                {
+                    keyList.forEach((key:string):void => this._storageList.root.removeChild(key));
+                    this._storageListSubject.next(this._storageList);
+                },
+                ():void =>
+                {
+                    this._storageInitialized = false;
+                    this._storageListSubject.next(null);
+                }
+            )
+        );
     }
 
     private _uploadFile(file:File, path:string = '/'):TerraUploadItem
