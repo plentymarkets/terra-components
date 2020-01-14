@@ -166,7 +166,8 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
                 if(control.validator)
                 {
                     control.clearValidators();
-                    control.updateValueAndValidity();
+                    // update the control's validity when the current change detection cycle is over
+                    setTimeout(() => control.updateValueAndValidity());
                 }
             }
         }
