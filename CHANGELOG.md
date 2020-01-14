@@ -7,6 +7,7 @@
 * **matInput** updated styles to match `mat-date-picker`, `mat-select` and `matInput` appearance.
 * **terra-form** Added input `width` that sets the default width of any form element inside the form.
 * **terra-button-with-options** Added output property `optionsToggled` emitting current toggle state after options are toggled.
+* **terra-multi-split-view** remove deprecated terra-multi-split-view. See [SplitView migration guide](https://developers.plentymarkets.com/dev-doc/split-view-migration-guide) for upgrade.
 
 ### Breaking Changes
 * **build** Terra-Components is now fully AOT compatible. 
