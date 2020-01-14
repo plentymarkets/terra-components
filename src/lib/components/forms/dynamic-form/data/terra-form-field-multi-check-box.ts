@@ -4,6 +4,7 @@ import {
 } from './terra-form-field-base';
 import { TerraMultiCheckBoxValueInterface } from '../../multi-check-box/data/terra-multi-check-box-value.interface';
 import { TerraControlTypeEnum } from '../enum/terra-control-type.enum';
+
 /**
  * @deprecated since v5.0.0. Use terra-form instead.
  */
