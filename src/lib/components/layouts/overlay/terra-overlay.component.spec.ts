@@ -15,10 +15,10 @@ import {
     mockButtonOne,
     mockButtonTwo
 } from '../../../testing/mock-buttons';
-import Spy = jasmine.Spy;
 import { TooltipDirective } from '../../tooltip/tooltip.directive';
 import { Router } from '@angular/router';
 import { MockRouter } from '../../../testing/mock-router';
+import Spy = jasmine.Spy;
 
 describe('TerraOverlayComponent', () =>
 {
