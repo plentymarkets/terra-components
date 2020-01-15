@@ -46,7 +46,10 @@ export class ErrorInterceptor implements HttpInterceptor
                 {
                     this._alertService.error(this._translation.translate('errorInterceptor.unauthorized'));
 
-                    DispatchHelper.dispatchEvent(new CustomEvent('routeToLogin'));
+                    if(req.url.includes(window.location.hostname))
+                    {
+                        DispatchHelper.dispatchEvent(new CustomEvent('routeToLogin'));
+                    }
                 }
 
                 // http status 403 Forbidden
