@@ -24,6 +24,7 @@ import {
 } from '@angular/forms';
 import { noop } from 'rxjs';
 import { TerraFormTypeInterface } from '../model/terra-form-type.interface';
+import { TerraFormHelper } from '../helper/terra-form.helper';
 
 @Component({
     selector:  'terra-form-container',
@@ -152,16 +153,21 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
         {
             if(this._formFieldVisibility[fieldKey])
             {
-                if(control.disabled)
+                if(!control.validator)
                 {
-                    control.enable({onlySelf:true});
+                    const formField:TerraKeyValuePairInterface<TerraFormFieldInterface> = this._formFields.find(
+                        (field:TerraKeyValuePairInterface<TerraFormFieldInterface>) => field.key === fieldKey
+                    );
+                    control.setValidators(TerraFormHelper.generateValidators(formField.value));
                 }
             }
             else
             {
-                if(control.enabled)
+                if(control.validator)
                 {
-                    control.disable({onlySelf:true});
+                    control.clearValidators();
+                    // update the control's validity when the current change detection cycle is over
+                    setTimeout(() => control.updateValueAndValidity());
                 }
             }
         }
