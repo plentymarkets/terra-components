@@ -21,6 +21,9 @@ Terra-Components now complies with the angular package format and code autocompl
 * **terra-base-editor** removed unnecessary quill style import
 * **material-tabs** fixed min-width of tabs
 * **material-forms** removed custom paddings to avoid problems in compact-theme
+* **terra-form**
+    - fixed validation issues caused by invisible form fields.
+    - fixed inconsistency when treating the value of invisible form fields.
 
 <a name="4.8.2"></a>
 # 4.8.2 (08.01.2020)

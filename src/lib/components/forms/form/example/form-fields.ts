@@ -62,6 +62,14 @@ export const listWithChildren:TerraFormFieldInterface = {
         name: 'Vertical'
     },
     children:     {
+        id: {
+            type: 'number',
+            isVisible: false,
+            defaultValue: 0,
+            options: {
+                name: 'Id'
+            }
+        },
         childSelect: select,
         childText:   {
             type:         'text',
@@ -97,6 +105,22 @@ export const containerCompontent:TerraFormFieldInterface = {
 };
 
 export const formFields:TerraKeyValueInterface<TerraFormFieldInterface> = {
+    text: {
+        type: 'text',
+        options: {
+            name: 'Text',
+            required: true,
+        }
+    },
+    optionalText: {
+        type: 'text',
+        isVisible: 'text.length > 3',
+        options: {
+            name: 'Optional text',
+            required: true,
+            minLength: 3
+        }
+    },
     listWithChildren: listWithChildren,
     wrappedContainer: containerCompontent
 };
