@@ -18,6 +18,7 @@ Terra-Components now complies with the angular package format and code autocompl
 * **float-thead** removed the directive. No replacement will be provided for now.
 * **terra-date-picker** deprecated. Use [angular material datepicker](https://material.angular.io/components/datepicker/overview) instead.
 * **TerraBaseStorageService** removed extension to TerraBaseService. Instead make use of the new HttpClient in all derived classes (e.g. TerraFrontendStorageService). 
+* **http** removed deprecated TerraBaseService and @angular/http dependency.
 
 ### Fix
 * **terra-base-editor** removed unnecessary quill style import
