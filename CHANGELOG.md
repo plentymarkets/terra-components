@@ -17,6 +17,7 @@ Terra-Components now complies with the angular package format and code autocompl
 * **terra-data-table** removed deprecated input `isSticky` sticky. No replacement will be provided for now. 
 * **float-thead** removed the directive. No replacement will be provided for now.
 * **terra-date-picker** deprecated. Use [angular material datepicker](https://material.angular.io/components/datepicker/overview) instead.
+* **terra-multi-split-view** removed deprecated terra-multi-split-view. See [SplitView migration guide](https://developers.plentymarkets.com/dev-doc/split-view-migration-guide) for upgrade.
 * **TerraBaseStorageService** removed extension to TerraBaseService. Instead make use of the new HttpClient in all derived classes (e.g. TerraFrontendStorageService). 
 
 ### Fix
