@@ -6,7 +6,6 @@ import {
 } from '@angular/core/testing';
 import { LocalizationModule } from 'angular-l10n';
 import { l10nConfig } from '../../../../app/translation/l10n.config';
-import { HttpModule } from '@angular/http';
 import { TerraPagerComponent } from '../../pager/terra-pager.component';
 import { TerraButtonComponent } from '../../buttons/button/terra-button.component';
 import { TerraCheckboxComponent } from '../../forms/checkbox/terra-checkbox.component';
@@ -70,7 +69,6 @@ describe('TerraDataTableComponent', () =>
             imports:      [
                 CommonModule,
                 FormsModule,
-                HttpModule,
                 HttpClientModule,
                 NoopAnimationsModule,
                 LocalizationModule.forRoot(l10nConfig)
