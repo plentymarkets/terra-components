@@ -1,5 +1,6 @@
 import { isNullOrUndefined } from 'util';
 import * as cloneDeep_ from 'lodash.clonedeep';
+
 const cloneDeep:(val:Object) => Object = cloneDeep_;
 
 export class ObjectHelper
