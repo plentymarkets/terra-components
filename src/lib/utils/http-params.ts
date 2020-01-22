@@ -26,9 +26,9 @@ export function createHttpParams(params:Params, arrayAsArray:boolean = false):Ht
         {
             if(arrayAsArray && isArray(params[key]))
             {
-                (params[key] as Array<any>).forEach((arrayItem:any) =>
+                (params[key] as Array<unknown>).forEach((arrayItem:unknown) =>
                 {
-                    searchParams = searchParams.append(key + '[]', arrayItem.toString());
+                    searchParams = searchParams.append(key + '[]', (arrayItem instanceof Object) ? arrayItem.toString() : arrayItem as string);
                 });
             }
             else
