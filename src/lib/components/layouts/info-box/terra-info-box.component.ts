@@ -35,7 +35,7 @@ export class TerraInfoBoxComponent
     @Input()
     public inputNoWordBreak:boolean;
 
-    @ViewChild('buttonRef')
+    @ViewChild('buttonRef', { static: true })
     public _buttonRef:any;
 
     public get hasButtons():boolean
