@@ -160,10 +160,10 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
 
     }
 
-    @ViewChild('fileDropzone', {read: ElementRef})
+    @ViewChild('fileDropzone', { read: ElementRef, static: true })
     private _fileDropzoneElement:ElementRef;
 
-    @ViewChild(TerraSimpleTableComponent)
+    @ViewChild(TerraSimpleTableComponent, { static: false })
     private _fileTableComponent:TerraSimpleTableComponent<TerraStorageObject>;
 
     private _dragSubscription:Subscription;
