@@ -43,6 +43,7 @@ export class TerraFileBrowserComponent implements OnChanges, OnInit
 
     public onSelectedUrlChange:EventEmitter<string> = new EventEmitter();
 
+    /** @description Notifies whenever the storage service or the storage root has been updated. */
     public updatedStorageRootAndService:EventEmitter<[TerraBaseStorageService, TerraStorageObject]> =  new EventEmitter();
 
     public _rightColumnWidth:number = 0;
