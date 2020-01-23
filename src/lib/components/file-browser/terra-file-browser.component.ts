@@ -49,7 +49,7 @@ export class TerraFileBrowserComponent implements OnChanges, OnInit
     public _rightColumnWidth:number = 0;
     public _centerColumnWidth:number = 10;
 
-    @ViewChild(forwardRef(() => TerraFileListComponent))
+    @ViewChild(forwardRef(() => TerraFileListComponent), { static: true })
     public _fileListComponent:TerraFileListComponent;
 
     private _storageServices:Array<TerraBaseStorageService>;
