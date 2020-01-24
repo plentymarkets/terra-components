@@ -65,6 +65,7 @@
 		"karma-jasmine-html-reporter": "^0.2.2",
 		"karma-safari-launcher": "^1.0.0",
 		"ng-packagr": "^5.4.0",
+		"node-sass": "^4.13.1",
 		"node-sass-tilde-importer": "^1.0.2",
 		"rxjs": "~6.5.4",
 		"semver": "^6.3.0",
