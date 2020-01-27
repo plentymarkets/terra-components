@@ -57,10 +57,10 @@ export class TerraSimpleTableComponent<D> implements OnChanges
     @Output()
     public outputSelectedRowsChange:EventEmitter<Array<TerraSimpleTableRowInterface<D>>> = new EventEmitter();
 
-    @ViewChild('viewChildHeaderCheckbox')
+    @ViewChild('viewChildHeaderCheckbox', { static: false })
     public viewChildHeaderCheckbox:TerraCheckboxComponent;
 
-    @ViewChild('scrollContainer', {read: ElementRef})
+    @ViewChild('scrollContainer', { read: ElementRef, static: true })
     public scrollContainer:ElementRef;
 
     public onRowListChange:EventEmitter<void> = new EventEmitter();

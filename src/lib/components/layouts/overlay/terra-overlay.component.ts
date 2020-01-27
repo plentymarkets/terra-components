@@ -52,7 +52,7 @@ export class TerraOverlayComponent implements AfterViewInit
 
     public readonly _tooltipPlacement:TerraPlacementEnum.BOTTOM;
 
-    @ViewChild('viewChildOverlay')
+    @ViewChild('viewChildOverlay', { static: true })
     public _viewChildOverlay:ModalDirective;
 
     public ngAfterViewInit():void
