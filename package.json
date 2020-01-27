@@ -50,7 +50,7 @@
 		"@types/jasminewd2": "~2.0.3",
 		"@types/jquery": "^3.3.29",
 		"@types/node": "~8.9.4",
-		"angular-l10n": "8.1.2",
+		"angular-l10n": "^8.1.2",
 		"ckeditor4-angular": "^1.0.1",
 		"codelyzer": "^5.0.1",
 		"gulp": "^4.0.2",
