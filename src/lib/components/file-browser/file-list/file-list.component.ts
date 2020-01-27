@@ -5,8 +5,7 @@ import {
     Component,
     ElementRef,
     EventEmitter,
-    forwardRef,
-    Inject,
+    Host,
     Input,
     OnChanges,
     OnDestroy,
@@ -263,7 +262,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
                 private _translationService:TranslationService,
                 private _localeService:LocaleService,
                 private _alertService:AlertService,
-                @Inject(forwardRef(() => TerraFileBrowserComponent)) public _parentFileBrowser:TerraFileBrowserComponent)
+                @Host() public _parentFileBrowser:TerraFileBrowserComponent)
     {
     }
 
@@ -303,6 +302,12 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
                         (r:TerraSimpleTableRowInterface<TerraStorageObject>):boolean => r.value === object);
                 }
             }
+        });
+
+        this._parentFileBrowser.updatedStorageRootAndService.subscribe((value:[TerraBaseStorageService, TerraStorageObject]) =>
+        {
+            this.activeStorageService = value[0];
+            this.currentStorageRoot = value[1];
         });
     }
 
