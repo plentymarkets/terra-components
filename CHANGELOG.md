@@ -1,3 +1,9 @@
+<a name="4.9.0"></a>
+# 4.9.0 (XX.XX.2020)
+
+### Features
+* **terra-syntax-editor** is now deprecated. Use [ckEditor](https://github.com/ckeditor/ckeditor4-angular) instead.
+
 <a name="4.8.2"></a>
 # 4.8.2 (08.01.2020)
 
