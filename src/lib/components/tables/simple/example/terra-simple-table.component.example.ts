@@ -17,7 +17,7 @@ import { TerraButtonInterface } from '../../../buttons/button/data/terra-button.
 })
 export class TerraSimpleTableComponentExample implements OnInit
 {
-    @ViewChild('table')
+    @ViewChild('table', { static: true })
     public table:TerraSimpleTableComponent<unknown>;
 
     public _selectedRows:Array<TerraSimpleTableHeaderCellInterface>;

@@ -12,7 +12,7 @@ import { CKEditorComponent } from 'ckeditor4-angular';
 })
 export class CkEditorDirectiveExample
 {
-    @ViewChild('ckFull')
+    @ViewChild('ckFull', { static: true })
     public ckFull:CKEditorComponent;
 
     public _config:{} = ckEditorFullConfig;

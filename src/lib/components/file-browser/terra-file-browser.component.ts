@@ -1,13 +1,11 @@
 import {
     Component,
     EventEmitter,
-    forwardRef,
     Input,
     OnChanges,
     OnInit,
     Output,
     SimpleChanges,
-    ViewChild,
 } from '@angular/core';
 import { TerraFrontendStorageService } from './terra-frontend-storage.service';
 import { TerraStorageObject } from './model/terra-storage-object';
@@ -16,7 +14,6 @@ import { isNullOrUndefined } from 'util';
 import { TerraNodeTreeConfig } from '../tree/node-tree/data/terra-node-tree.config';
 import { TerraNodeInterface } from '../tree/node-tree/data/terra-node.interface';
 import { TerraStorageObjectList } from './model/terra-storage-object-list';
-import { TerraFileListComponent } from './file-list/file-list.component';
 import { StringHelper } from '../../helpers/string.helper';
 
 @Component({
@@ -46,11 +43,11 @@ export class TerraFileBrowserComponent implements OnChanges, OnInit
 
     public onSelectedUrlChange:EventEmitter<string> = new EventEmitter();
 
+    /** @description Notifies whenever the storage service or the storage root has been updated. */
+    public updatedStorageRootAndService:EventEmitter<[TerraBaseStorageService, TerraStorageObject]> =  new EventEmitter();
+
     public _rightColumnWidth:number = 0;
     public _centerColumnWidth:number = 10;
-
-    @ViewChild(forwardRef(() => TerraFileListComponent))
-    public _fileListComponent:TerraFileListComponent;
 
     private _storageServices:Array<TerraBaseStorageService>;
 
@@ -182,12 +179,7 @@ export class TerraFileBrowserComponent implements OnChanges, OnInit
                                        service:TerraBaseStorageService,
                                        root:TerraStorageObject):void
     {
-        node.onClick = ():void =>
-        {
-            // TODO maybe change to inputs
-            this._fileListComponent.activeStorageService = service;
-            this._fileListComponent.currentStorageRoot = root;
-        };
+        node.onClick = ():void => this.updatedStorageRootAndService.next([service, root]);
     }
 
     private _recursiveCreateNode(storage:TerraStorageObject,
@@ -211,12 +203,7 @@ export class TerraFileBrowserComponent implements OnChanges, OnInit
                 id:        storage.key,
                 name:      name,
                 icon:      storage.icon,
-                onClick:   ():void =>
-                           {
-                               // TODO maybe change to inputs
-                               this._fileListComponent.activeStorageService = service;
-                               this._fileListComponent.currentStorageRoot = storage;
-                           },
+                onClick:   ():void => this.updatedStorageRootAndService.next([service, storage]),
                 isVisible: true
             };
 

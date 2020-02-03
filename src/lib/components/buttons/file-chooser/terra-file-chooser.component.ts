@@ -82,10 +82,10 @@ export class TerraFileChooserComponent extends TerraButtonComponent
     @Output()
     public outputFileBrowserHide:EventEmitter<TerraFileBrowserComponent> = new EventEmitter<TerraFileBrowserComponent>();
 
-    @ViewChild('overlay')
+    @ViewChild('overlay', { static: true })
     public overlay:TerraOverlayComponent;
 
-    @ViewChild('fileBrowser')
+    @ViewChild('fileBrowser', { static: true })
     public fileBrowser:TerraFileBrowserComponent;
 
     public primaryOverlayButton:TerraOverlayButtonInterface;

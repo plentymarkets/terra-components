@@ -11,7 +11,6 @@ import {
     Router,
     RouterEvent
 } from '@angular/router';
-import { Event } from '@angular/router/src/events';
 import { TwoColumnHelper } from '../../../../helpers/two-column.helper';
 import { TerraTwoColumnsContainerComponent } from './terra-two-columns-container.component';
 import { isNullOrUndefined } from 'util';
@@ -39,7 +38,7 @@ export class TerraTwoColumnsContainerDirective implements OnInit, OnDestroy
 
     public ngOnInit():void
     {
-        let navigationEndEvents$:Observable<Event> = this._router.events.pipe(filter((event:RouterEvent) =>
+        let navigationEndEvents$:Observable<RouterEvent> = this._router.events.pipe(filter((event:RouterEvent) =>
         {
             return event instanceof NavigationEnd && event.urlAfterRedirects === this._basePath;
         }));

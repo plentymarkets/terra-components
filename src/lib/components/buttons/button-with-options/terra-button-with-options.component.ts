@@ -80,7 +80,7 @@ export class TerraButtonWithOptionsComponent implements OnInit
     public _alignRight:boolean;
 
     // view children
-    @ViewChild(TerraButtonComponent)
+    @ViewChild(TerraButtonComponent, { static: true })
     private _toggleButton:TerraButtonComponent;
 
     private readonly _clickListener:(event:Event) => void;

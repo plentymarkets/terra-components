@@ -33,16 +33,16 @@ export class TerraOverlayComponentExample implements OnInit
                                    'ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. ' +
                                    'Donec sodales sagittis magna.';
 
-    @ViewChild('viewChildOverlayWithoutButtons')
+    @ViewChild('viewChildOverlayWithoutButtons', { static: true })
     private _viewChildOverlayWithoutButtons:TerraOverlayComponent;
 
-    @ViewChild('viewChildOverlayWithPrimaryButton')
+    @ViewChild('viewChildOverlayWithPrimaryButton', { static: true })
     private _viewChildOverlayWithPrimaryButton:TerraOverlayComponent;
 
-    @ViewChild('viewChildOverlayWithSecondaryButton')
+    @ViewChild('viewChildOverlayWithSecondaryButton', { static: true })
     private _viewChildOverlayWithSecondaryButton:TerraOverlayComponent;
 
-    @ViewChild('viewChildOverlayStatic')
+    @ViewChild('viewChildOverlayStatic', { static: true })
     private _viewChildOverlayStatic:TerraOverlayComponent;
 
     private alert:TerraAlertComponent = TerraAlertComponent.getInstance();

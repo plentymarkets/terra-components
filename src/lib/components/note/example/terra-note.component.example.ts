@@ -12,7 +12,7 @@ import { TerraOverlayComponent } from '../../layouts/overlay/terra-overlay.compo
 })
 export class TerraNoteComponentExample implements OnInit
 {
-    @ViewChild('overlay')
+    @ViewChild('overlay', { static: true })
     public overlay:TerraOverlayComponent;
 
     public _noteTextAndID:string;

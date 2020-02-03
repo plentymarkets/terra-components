@@ -41,7 +41,7 @@ export class TerraCodeEditorComponent extends TerraBaseEditorComponent implement
     @Input()
     public switchFromCode:boolean = true;
 
-    @ViewChild('viewConfirmationOverlay')
+    @ViewChild('viewConfirmationOverlay', { static: true })
     public overlay:TerraOverlayComponent;
 
     @Language()

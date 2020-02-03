@@ -20,13 +20,16 @@ import 'brace/mode/text';
 import 'brace/ext/error_marker';
 import { TerraSyntaxEditorData } from './data/terra-syntax-editor.data';
 
+/**
+ * @deprecated Use [ckEditor](https://github.com/ckeditor/ckeditor4-angular) instead.
+ */
 @Component({
     selector:    'terra-syntax-editor',
     templateUrl: './terra-syntax-editor.component.html'
 })
 export class TerraSyntaxEditorComponent implements AfterViewInit
 {
-    @ViewChild('aceEditor')
+    @ViewChild('aceEditor', { static: true })
     public editor:AceEditorComponent;
 
     @Input()

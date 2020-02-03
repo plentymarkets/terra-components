@@ -76,7 +76,7 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
     @Input()
     public inputDisplayDateFormat:string;
 
-    @ViewChild('viewChildMyDatePicker')
+    @ViewChild('viewChildMyDatePicker', { static: true })
     public viewChildMyDatePicker:MyDatePicker;
 
     public _currentLocale:string;
