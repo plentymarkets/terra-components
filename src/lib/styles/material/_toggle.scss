@@ -1,32 +1,73 @@
-.mat-slide-toggle
+mat-slide-toggle.mat-slide-toggle
 {
-    .mat-slide-toggle-thumb
+    &.mat-disabled
     {
-        background-color: var(--color-structure-11);
+        opacity: .6;
+    
+        &.mat-accent .mat-slide-toggle-label
+        {
+            .mat-slide-toggle-bar
+            {
+                background-color: var(--color-structure-5);
+            }
+        }
+    
+        &:not(.mat-checked) .mat-slide-toggle-label
+        {
+            .mat-slide-toggle-bar
+            {
+                .mat-slide-toggle-thumb-container
+                {
+                    .mat-slide-toggle-thumb
+                    {
+                        border: 1px solid var(--color-structure-6);
+                        background-color: var(--color-structure-4);
+                    }
+                }
+            }
+        }
     }
     
-    .mat-slide-toggle-bar
+    .mat-slide-toggle-label
     {
-        //--color-structure-11
-        background-color: rgba(73, 76, 86, .54);
+        .mat-slide-toggle-bar
+        {
+            background-color: var(--color-structure-6);
+            
+            .mat-slide-toggle-thumb-container
+            {
+                .mat-slide-toggle-thumb
+                {
+                    background-color: var(--color-structure-10);
+                }
+            }
+        }
     }
     
     &.mat-checked
     {
-        .mat-slide-toggle-thumb
+        .mat-slide-toggle-label
         {
-            background-color: var(--color-active);
-        }
-        
-        .mat-ripple-element
-        {
-            background-color: var(--color-active);
-        }
-        
-        .mat-slide-toggle-bar
-        {
-            //--color-active
-            background-color: rgba(36, 179, 224, .54);
+            .mat-slide-toggle-bar
+            {
+                background-color: rgba(var(--color-group-active-rgb), .54);
+            
+                .mat-slide-toggle-thumb-container
+                {
+                    .mat-slide-toggle-thumb
+                    {
+                        background-color: var(--color-active);
+                    }
+                    
+                    .mat-slide-toggle-ripple
+                    {
+                        .mat-ripple-element
+                        {
+                            background-color: var(--color-active);
+                        }
+                    }
+                }
+            }
         }
     }
 }
