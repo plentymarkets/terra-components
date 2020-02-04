@@ -324,9 +324,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
     public _onInputClick(event:MouseEvent):void
     {
         this.outputClicked.emit(event);
-
         const eventTarget:HTMLInputElement = event.target as HTMLInputElement;
-
         // check if the input has been clicked
         if(eventTarget.nodeName === 'INPUT')
         {
