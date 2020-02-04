@@ -221,14 +221,14 @@ export class TooltipDirective implements OnDestroy, OnChanges
     {
         if(!this.tooltipEl)
         {
-            this.tooltipEl = tippy(this._elementRef.nativeElement, {
+            this.tooltipEl = (tippy(this._elementRef.nativeElement, {
                 content:     tooltip,
                 trigger:     'manual',
                 arrow:       true,
                 boundary:    'window',
                 hideOnClick: false,
                 placement:   this._placement as Placement
-            }) as Instance;
+            }) as Array<Instance>)[0];
         }
         else
         {
