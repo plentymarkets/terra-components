@@ -37,14 +37,14 @@ mat-slide-toggle.mat-slide-toggle
                 {
                     .mat-slide-toggle-thumb
                     {
-                        background-color: var(--color-active);
+                        background-color: var(--color-group-active);
                     }
                     
                     .mat-slide-toggle-ripple
                     {
                         .mat-ripple-element
                         {
-                            background-color: var(--color-active);
+                            background-color: var(--color-group-active);
                         }
                     }
                 }
