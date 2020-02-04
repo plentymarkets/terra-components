@@ -16,7 +16,7 @@ export class TerraSuggestionBoxComponentExample implements OnInit
     public _iconClass:string;
 
     public _contactsSuggestions:Array<TerraSuggestionBoxValueInterface> = [];
-    public _selectedContact:any;
+    public _selectedContact:{name:string, age:number};
     public _contactSelectionText:string;
 
     private _contacts:Array<{name:string, age:number}> = [
