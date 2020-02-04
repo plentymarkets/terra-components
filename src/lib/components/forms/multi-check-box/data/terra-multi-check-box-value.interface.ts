@@ -1,6 +1,6 @@
 export interface TerraMultiCheckBoxValueInterface
 {
-    value:any;
+    value:unknown;
     caption:string;
     selected?:boolean;
 }
