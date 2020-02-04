@@ -321,15 +321,17 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
      * workaround to prevent calling the select() method on the label click
      * @param event
      */
-    public _onInputClick(event:any):void
+    public _onInputClick(event:MouseEvent):void
     {
         this.outputClicked.emit(event);
 
+        const eventTarget:HTMLInputElement = event.target as HTMLInputElement;
+
         // check if the input has been clicked
-        if(event.target.nodeName === 'INPUT')
+        if(eventTarget.nodeName === 'INPUT')
         {
             // select the input text <-> mark all
-            event.target.select();
+            eventTarget.select();
         }
     }
 
