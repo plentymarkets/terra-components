@@ -2,29 +2,10 @@ mat-slide-toggle.mat-slide-toggle
 {
     &.mat-disabled
     {
-        opacity: .6;
-    
-        &.mat-accent .mat-slide-toggle-label
+        .mat-slide-toggle-label,
+        .mat-slide-toggle-thumb-container
         {
-            .mat-slide-toggle-bar
-            {
-                background-color: var(--color-structure-5);
-            }
-        }
-    
-        &:not(.mat-checked) .mat-slide-toggle-label
-        {
-            .mat-slide-toggle-bar
-            {
-                .mat-slide-toggle-thumb-container
-                {
-                    .mat-slide-toggle-thumb
-                    {
-                        border: 1px solid var(--color-structure-6);
-                        background-color: var(--color-structure-4);
-                    }
-                }
-            }
+            cursor: not-allowed;
         }
     }
     
