@@ -64,7 +64,7 @@ export class TerraMultiCheckBoxComponent implements OnInit, OnDestroy, ControlVa
     private readonly _langPrefix:string = 'terraMultiCheckBox';
 
     private onTouchedCallback:() => void = noop;
-    private onChangeCallback:(_:any) => void = noop;
+    private onChangeCallback:(_:unknown) => void = noop;
 
     constructor(private _translation:TranslationService)
     {}
@@ -76,12 +76,12 @@ export class TerraMultiCheckBoxComponent implements OnInit, OnDestroy, ControlVa
         this._checkHeaderCheckboxState();
     }
 
-    public registerOnChange(fn:any):void
+    public registerOnChange(fn:(_:unknown) => void):void
     {
         this.onChangeCallback = fn;
     }
 
-    public registerOnTouched(fn:any):void
+    public registerOnTouched(fn:() => void):void
     {
         this.onTouchedCallback = fn;
     }
@@ -151,7 +151,7 @@ export class TerraMultiCheckBoxComponent implements OnInit, OnDestroy, ControlVa
         }
     }
 
-    public _trackByValue(index:number, entry:TerraMultiCheckBoxValueInterface):any
+    public _trackByValue(index:number, entry:TerraMultiCheckBoxValueInterface):unknown
     {
         return entry.value;
     }
