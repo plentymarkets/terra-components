@@ -1,32 +1,4 @@
 <div class="col-12">
-    <p>Material toggles</p>
-    <mat-slide-toggle
-        class="m-3"
-        [tcTooltip]="'Material toggle'">
-    </mat-slide-toggle>
-    
-    <mat-slide-toggle
-        class="m-3"
-        [(ngModel)]="_isToggled"
-        [tcTooltip]="'With ngModel'">
-    </mat-slide-toggle>
-    <span>Toggle is toggled: {{_isToggled}}</span>
-    
-    <mat-slide-toggle
-        class="m-3"
-        [disabled]="true"
-        [tcTooltip]="'Disabled while not toggled'">
-    </mat-slide-toggle>
-    
-    <mat-slide-toggle
-        class="m-3"
-        [checked]="true"
-        [disabled]="true"
-        [tcTooltip]="'Disabled while toggled'">
-    </mat-slide-toggle>
-    
-</div>
-<div class="col-12">
     <p>Toggle (without icon)</p>
     <terra-toggle [inputTooltipText]="'Test toggle aktivieren?'">
     </terra-toggle>

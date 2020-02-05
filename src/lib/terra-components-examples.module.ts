@@ -4,15 +4,13 @@ import { examples } from './components/example-collection';
 import { TerraComponentsModule } from './terra-components.module';
 import { FormsModule } from '@angular/forms';
 import { CKEditorModule } from 'ckeditor4-angular';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
         CKEditorModule,
-        TerraComponentsModule,
-        MatSlideToggleModule
+        TerraComponentsModule
     ],
     declarations:    [...examples],
     entryComponents: [...examples],
