@@ -9,6 +9,7 @@
 * **terra-form** Added input `width` that sets the default width of any form element inside the form.
 * **terra-button-with-options** Added output property `optionsToggled` emitting current toggle state after options are toggled.
 * **tippy.js** Updated `tippy.js` to version 5.1.4.
+* **theme-core** Added rgb-variables for function group colors to enable alpha adjustment
 
 ### Breaking Changes
 * **build** Terra-Components is now fully AOT compatible. 
