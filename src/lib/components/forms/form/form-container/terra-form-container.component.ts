@@ -44,7 +44,7 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
     public inputScope:TerraFormScope;
 
     @Input()
-    public inputControlTypeMap:{ [key:string]:Type<any> | TerraFormTypeInterface } = {};
+    public inputControlTypeMap:{ [key:string]:Type<unknown> | TerraFormTypeInterface } = {};
 
     @Input()
     public set inputFormFields(fields:TerraKeyValueInterface<TerraFormFieldInterface>)
@@ -85,7 +85,7 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
     public _formFields:Array<TerraKeyValuePairInterface<TerraFormFieldInterface>> = [];
     public _formFieldVisibility:TerraKeyValueInterface<boolean> = {};
 
-    private _onChangeCallback:(value:any) => void = noop;
+    private _onChangeCallback:(value:unknown) => void = noop;
     private _onTouchedCallback:() => void = noop;
 
     public ngOnInit():void
@@ -104,7 +104,7 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
         }
     }
 
-    public registerOnChange(fn:(value:any) => void):void
+    public registerOnChange(fn:(value:unknown) => void):void
     {
         this._onChangeCallback = fn;
     }
@@ -114,7 +114,7 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
         this._onTouchedCallback = fn;
     }
 
-    public writeValue(value:any):void
+    public writeValue(value:unknown):void
     {
         if(isNullOrUndefined(value))
         {
