@@ -15,7 +15,7 @@ import { isNullOrUndefined } from 'util';
  * @author mkunze
  */
 @Component({
-    // tslint:disable-next-line
+    /* eslint-disable-next-line */
     selector:    'context-menu', // it still exists a terra-context-menu in terra, need to refactored first
     styleUrls:   ['./terra-data-table-context-menu.component.scss'],
     templateUrl: './terra-data-table-context-menu.component.html'
