@@ -54,7 +54,7 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges, OnIn
      * @param fields
      */
     @Input()
-    public set inputFormFields(fields:{ [key:string]:TerraFormFieldInterface } | Array<TerraFormFieldBase<any>>)
+    public set inputFormFields(fields:{ [key:string]:TerraFormFieldInterface } | Array<TerraFormFieldBase<unknown>>)
     {
         if(!isNullOrUndefined(this._valueChangesSubscription))
         {
@@ -76,7 +76,7 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges, OnIn
     /**
      * @description Get accessor for the form fields. Returns the previously set form fields.
      */
-    public get inputFormFields():{ [key:string]:TerraFormFieldInterface } | Array<TerraFormFieldBase<any>>
+    public get inputFormFields():{ [key:string]:TerraFormFieldInterface } | Array<TerraFormFieldBase<unknown>>
     {
         if(isNullOrUndefined(this._formFields))
         {
@@ -115,12 +115,12 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges, OnIn
      */
     public _width:string = 'col-12';
 
-    private _values:any = {};
+    private _values:unknown = {};
 
     private _formGroup:FormGroup = new FormGroup({});
     private _valueChangesSubscription:Subscription;
 
-    private _onChangeCallback:(value:any) => void = noop;
+    private _onChangeCallback:(value:unknown) => void = noop;
     private _onTouchedCallback:() => void = noop;
 
     /**
@@ -154,11 +154,11 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges, OnIn
      * If null or undefined is passed, the form is reset to default values.
      * @param values
      */
-    public writeValue(values:any):void
+    public writeValue(values:unknown):void
     {
         if(isNullOrUndefined(values))
         {
-            let defaultValues:any = TerraFormFieldHelper.parseDefaultValues(this._formFields);
+            let defaultValues:unknown = TerraFormFieldHelper.parseDefaultValues(this._formFields);
             this._values = defaultValues;
             this.scope.data = defaultValues;
             this.formGroup.reset(defaultValues);
@@ -177,7 +177,7 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges, OnIn
      * @description Registers a given callback method, which will be called whenever a value of any form field/control changes.
      * @param callback
      */
-    public registerOnChange(callback:(value:any) => void):void
+    public registerOnChange(callback:(value:unknown) => void):void
     {
         this._onChangeCallback = callback;
     }
