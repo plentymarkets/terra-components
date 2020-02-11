@@ -127,7 +127,7 @@ export class TerraCheckboxComponent implements ControlValueAccessor
     public _innerValue:boolean = false;
 
     private _onTouchedCallback:() => void = noop;
-    private _onChangeCallback:(value:any) => void = noop;
+    private _onChangeCallback:(value:unknown) => void = noop;
 
     constructor()
     {
@@ -176,7 +176,7 @@ export class TerraCheckboxComponent implements ControlValueAccessor
      * @description Registers a given callback method, which will be called whenever the value of the checkbox changes.
      * @param fn
      */
-    public registerOnChange(fn:(value:any) => void):void
+    public registerOnChange(fn:(value:unknown) => void):void
     {
         this._onChangeCallback = fn;
     }
