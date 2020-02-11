@@ -16,7 +16,7 @@ export class TerraInputComponentExample implements OnInit
     public _email:string;
     public _password:string;
     public _passwordRepeat:string;
-    public _birthday:any;
+    public _birthday:string;
     public _state:Array<TerraSelectBoxValueInterface>;
     public _address:string;
     public _zip:number;
