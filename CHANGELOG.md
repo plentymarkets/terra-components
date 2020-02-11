@@ -5,9 +5,11 @@
 * **space-variables** Added new space variables that are not affected by compact-mode, like var(--space-md-fix)
 * **mat-date-picker** styles for the [angular material datepicker](https://material.angular.io/components/datepicker/overview).
 * **matInput** updated styles to match `mat-date-picker`, `mat-select` and `matInput` appearance.
+* **mat-slide-toggle** styles for the [angular material slide toggle](https://material.angular.io/components/slide-toggle/overview).
 * **terra-form** Added input `width` that sets the default width of any form element inside the form.
 * **terra-button-with-options** Added output property `optionsToggled` emitting current toggle state after options are toggled.
 * **tippy.js** Updated `tippy.js` to version 5.1.4.
+* **theme-core** Added rgb-variables for function group colors to enable alpha adjustment.
 
 ### Breaking Changes
 * **build** Terra-Components is now fully AOT compatible. 
