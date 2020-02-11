@@ -13,7 +13,7 @@ export class TerraFormComponentExample
 {
     public _formFields:TerraKeyValueInterface<TerraFormFieldInterface> = formFields;
     public _formTypeMap:FormTypeMap = new FormTypeMap();
-    public _formValue:any = {
+    public _formValue:unknown = {
         id: 1231,
         listWithChildren: [
             {id: 1, childSelect: 'option2', childNumber: 1232131},
