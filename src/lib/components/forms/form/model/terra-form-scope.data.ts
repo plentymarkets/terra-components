@@ -4,20 +4,20 @@ import { TerraKeyValueInterface } from '../../../../models';
 
 export class TerraFormScope
 {
-    public onDataChanged:BehaviorSubject<any> = new BehaviorSubject<any>({});
+    public onDataChanged:BehaviorSubject<unknown> = new BehaviorSubject<unknown>({});
 
-    public get data():any
+    public get data():unknown
     {
         return this._data;
     }
 
-    public set data(value:any)
+    public set data(value:unknown)
     {
         this._data = value;
         this.onDataChanged.next(value);
     }
 
-    constructor(private _data:any = {}, private parent?:TerraFormScope)
+    constructor(private _data:unknown = {}, private parent?:TerraFormScope)
     {
     }
 
@@ -31,9 +31,9 @@ export class TerraFormScope
             }
             else
             {
-                let data:TerraKeyValueInterface<any> = this._getEvaluationData();
+                let data:TerraKeyValueInterface<unknown> = this._getEvaluationData();
                 let keys:Array<string> = Object.keys(data);
-                let values:Array<any> = keys.map((key:string) => data[key] || null);
+                let values:Array<unknown> = keys.map((key:string) => data[key] || null);
 
                 return (new Function(...keys, 'return ' + expression)).apply(null, values);
             }
@@ -44,7 +44,7 @@ export class TerraFormScope
         }
     }
 
-    public createChildScope(data:any = {}):TerraFormScope
+    public createChildScope(data:unknown = {}):TerraFormScope
     {
         let scope:TerraFormScope = new TerraFormScope(data, this);
         this.onDataChanged.subscribe(() =>
@@ -54,9 +54,9 @@ export class TerraFormScope
         return scope;
     }
 
-    protected _getEvaluationData():TerraKeyValueInterface<any>
+    protected _getEvaluationData():TerraKeyValueInterface<unknown>
     {
-        let result:TerraKeyValueInterface<any> = {};
+        let result:TerraKeyValueInterface<unknown> = {};
 
         if(!isNullOrUndefined(this.parent))
         {
