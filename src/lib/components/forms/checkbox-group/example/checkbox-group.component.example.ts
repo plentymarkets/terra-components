@@ -7,12 +7,12 @@ import { Component } from '@angular/core';
 })
 export class CheckboxGroupComponentExample
 {
-    public _values:Array<any> = [42];
-    public _values2:Array<any> = [];
+    public _values:Array<number | string> = [42];
+    public _values2:Array<number | string> = [];
 
     public _isDisabled:boolean = false;
 
-    public _checkboxes:Array<{caption:string, value:any}> = [
+    public _checkboxes:Array<{caption:string, value:number | string}> = [
         {
             caption: 'Checkbox A',
             value: 42
