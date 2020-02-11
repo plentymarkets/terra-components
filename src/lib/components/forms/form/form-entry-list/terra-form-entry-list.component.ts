@@ -53,7 +53,7 @@ export class TerraFormEntryListComponent implements OnInit, OnChanges, ControlVa
     public inputScope:TerraFormScope;
 
     @Input()
-    public inputControlTypeMap:{ [key:string]:Type<any> } = {};
+    public inputControlTypeMap:{ [key:string]:Type<unknown> } = {};
 
     @Input()
     public inputIsDisabled:boolean = false;
@@ -71,7 +71,7 @@ export class TerraFormEntryListComponent implements OnInit, OnChanges, ControlVa
     private _min:number;
     private _max:number;
 
-    private _onChangeCallback:(value:any) => void = noop;
+    private _onChangeCallback:(value:unknown) => void = noop;
     private _onTouchedCallback:() => void = noop;
 
     public ngOnInit():void
@@ -94,9 +94,9 @@ export class TerraFormEntryListComponent implements OnInit, OnChanges, ControlVa
                 return this.inputScope.createChildScope(this._createChildScopeData(control.value));
             });
 
-            this.formArray.valueChanges.subscribe((values:Array<any>) =>
+            this.formArray.valueChanges.subscribe((values:Array<unknown>) =>
             {
-                values.forEach((value:any, index:number) =>
+                values.forEach((value:unknown, index:number) =>
                 {
                     this._onElementValueChanged(index, value);
                 });
@@ -111,7 +111,7 @@ export class TerraFormEntryListComponent implements OnInit, OnChanges, ControlVa
         }
     }
 
-    public registerOnChange(fn:(value:any) => void):void
+    public registerOnChange(fn:(value:unknown) => void):void
     {
         this._onChangeCallback = fn;
     }
@@ -121,7 +121,7 @@ export class TerraFormEntryListComponent implements OnInit, OnChanges, ControlVa
         this._onTouchedCallback = fn;
     }
 
-    public writeValue(value:Array<any>):void
+    public writeValue(value:Array<unknown>):void
     {
         if(isNullOrUndefined(value) || !isArray(value))
         {
@@ -150,7 +150,7 @@ export class TerraFormEntryListComponent implements OnInit, OnChanges, ControlVa
     {
         if(this._canAddElement)
         {
-            let defaultValue:any = isNullOrUndefined(this.inputFormField.defaultValue) ? null : this.inputFormField.defaultValue;
+            let defaultValue:unknown = isNullOrUndefined(this.inputFormField.defaultValue) ? null : this.inputFormField.defaultValue;
             this._childScopes.push(this.inputScope.createChildScope(this._createChildScopeData(defaultValue)));
             this.formArray.push(TerraFormHelper.createNewControl(this.inputFormField.defaultValue, this.inputFormField));
         }
@@ -195,7 +195,7 @@ export class TerraFormEntryListComponent implements OnInit, OnChanges, ControlVa
         }
     }
 
-    private _onElementValueChanged(idx:number, value:any):void
+    private _onElementValueChanged(idx:number, value:unknown):void
     {
         // TODO: implement
         if(!isNullOrUndefined(this._childScopes[idx]))
@@ -208,10 +208,10 @@ export class TerraFormEntryListComponent implements OnInit, OnChanges, ControlVa
         }
     }
 
-    private _createChildScopeData(value:any):any
+    private _createChildScopeData(value:unknown):unknown
     {
         let loopKey:string = '$' + this.inputFormFieldKey;
-        let childData:any = {};
+        let childData:unknown = {};
         childData[loopKey] = value;
 
         return childData;
