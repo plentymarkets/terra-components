@@ -32,6 +32,7 @@ Terra-Components now complies with the angular package format and code autocompl
     - fixed validation issues caused by invisible form fields.
     - fixed inconsistency when treating the value of invisible form fields.
 * **terra-file-browser** resolved circular dependency between _terra-file-browser.component.ts_ and _file-list.component.ts_.
+* **material-tabs** fixed hiding the mat-ink-bar in mat-tabs
 * **terra-file-browser** changed parameter of delete method in TerraFrontendStorageService
 
 <a name="4.9.0"></a>
