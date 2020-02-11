@@ -46,11 +46,11 @@ export class RadioGroupComponent implements ControlValueAccessor, OnInit, OnChan
     @Input()
     public inline:boolean = false;
 
-    private _value:any;
+    private _value:unknown;
     private readonly _id:string;
 
     private touchedCallback:() => void = noop;
-    private changeCallback:(_:any) => void = noop;
+    private changeCallback:(_:unknown) => void = noop;
 
     constructor()
     {
@@ -86,7 +86,7 @@ export class RadioGroupComponent implements ControlValueAccessor, OnInit, OnChan
      * set the value of the radio group and update model binding by executing a registered #changeCallback
      * @param value
      */
-    public set value(value:any)
+    public set value(value:unknown)
     {
         this._value = value;
         this.changeCallback(this._value);
@@ -95,7 +95,7 @@ export class RadioGroupComponent implements ControlValueAccessor, OnInit, OnChan
     /**
      * get the current value of the radio group
      */
-    public get value():any
+    public get value():unknown
     {
         return this._value;
     }
@@ -104,7 +104,7 @@ export class RadioGroupComponent implements ControlValueAccessor, OnInit, OnChan
      * set the value of the radio group.
      * @param value
      */
-    public writeValue(value:any):void
+    public writeValue(value:unknown):void
     {
         this._value = value;
     }
@@ -113,7 +113,7 @@ export class RadioGroupComponent implements ControlValueAccessor, OnInit, OnChan
      * register a change callback which is executed when the #value of the radio group changes
      * @param fn
      */
-    public registerOnChange(fn:(_:any) => void):void
+    public registerOnChange(fn:(_:unknown) => void):void
     {
         this.changeCallback = fn;
     }
