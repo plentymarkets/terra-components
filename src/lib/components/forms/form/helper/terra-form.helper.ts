@@ -69,7 +69,7 @@ export class TerraFormHelper
             validators.push(Validators.max(formField.options.maxValue));
         }
 
-        if(!StringHelper.isNullUndefinedOrEmpty(formField.options.pattern) || formField.options.pattern instanceof RegExp)
+        if(!StringHelper.isNullUndefinedOrEmpty(formField.options.pattern as string) || formField.options.pattern instanceof RegExp)
         {
             validators.push(Validators.pattern(formField.options.pattern));
         }
@@ -125,13 +125,13 @@ export class TerraFormHelper
         Object.keys(formFields).forEach((formFieldKey:string) =>
         {
             let formField:TerraFormFieldInterface = formFields[formFieldKey];
-            let defaultValue:any = TerraFormFieldHelper.parseDefaultValue(formField);
+            let defaultValue:unknown = TerraFormFieldHelper.parseDefaultValue(formField);
             if(formField.isList)
             {
                 let formControls:Array<AbstractControl> = [];
                 if(!isNullOrUndefined(values) && isArray(values))
                 {
-                    formControls = (values as Array<any>).map((value:any, index:number) =>
+                    formControls = (values as Array<unknown>).map((value:unknown, index:number) =>
                     {
                         return this.createNewControl(value || defaultValue[index], formField);
                     });
@@ -150,7 +150,7 @@ export class TerraFormHelper
             }
             else
             {
-                let value:any = !isNullOrUndefined(values) ? values[formFieldKey] : defaultValue;
+                let value:unknown = !isNullOrUndefined(values) ? values[formFieldKey] : defaultValue;
                 controls[formFieldKey] = new FormControl(value, this.generateValidators(formField));
             }
         });
@@ -165,7 +165,7 @@ export class TerraFormHelper
      * @param formFields
      * @param values
      */
-    public static updateFormArrays(form:FormGroup, formFields:{ [key:string]:TerraFormFieldInterface }, values:any):any
+    public static updateFormArrays(form:FormGroup, formFields:{ [key:string]:TerraFormFieldInterface }, values:unknown):unknown
     {
         if(form instanceof FormGroup && !isObject(values))
         {
@@ -181,7 +181,7 @@ export class TerraFormHelper
                 values[formControlKey] = TerraFormFieldHelper.parseDefaultValue(formField);
             }
 
-            let controlValues:any = values[formControlKey];
+            let controlValues:unknown = values[formControlKey];
             if(formField.isList && control instanceof FormArray && Array.isArray(controlValues))
             {
                 let range:[number, number] = TerraFormFieldHelper.getListRange(formField.isList);
@@ -212,7 +212,7 @@ export class TerraFormHelper
      * @param value
      * @param formField
      */
-    public static createNewControl(value:any, formField:TerraFormFieldInterface):FormControl | FormGroup
+    public static createNewControl(value:unknown, formField:TerraFormFieldInterface):FormControl | FormGroup
     {
         if(!isNullOrUndefined(formField.children))
         {
