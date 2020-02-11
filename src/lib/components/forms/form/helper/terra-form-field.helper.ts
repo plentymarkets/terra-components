@@ -42,7 +42,7 @@ export class TerraFormFieldHelper
         codeEditor:           'codeEditor'
     };
 
-    public static extractFormFields(formModel:any):{ [key:string]:TerraFormFieldInterface }
+    public static extractFormFields(formModel:unknown):{ [key:string]:TerraFormFieldInterface }
     {
         let formFields:{ [key:string]:TerraFormFieldInterface }
             = Reflect.getMetadata(TERRA_FORM_PROPERTY_METADATA_KEY, formModel.constructor);
@@ -71,7 +71,7 @@ export class TerraFormFieldHelper
     public static injectOption(formFields:{ [key:string]:TerraFormFieldInterface },
                                type:string,
                                optionKey:string,
-                               optionValue:any):{ [key:string]:TerraFormFieldInterface }
+                               optionValue:unknown):{ [key:string]:TerraFormFieldInterface }
     {
         Object.keys(formFields).forEach((key:string) =>
         {
@@ -89,17 +89,19 @@ export class TerraFormFieldHelper
         return formFields;
     }
 
-    public static isLegacyFormFields(formFields:{ [key:string]:any } | Array<TerraFormFieldBase<any>>):boolean
+    public static isLegacyFormFields(formFields:{ [key:string]:unknown } | Array<TerraFormFieldBase<unknown>>):boolean
     {
         return isArray(formFields) || Object.keys(formFields).some((key:string) => !isNullOrUndefined(formFields[key].label));
     }
 
-    public static detectLegacyFormFields(formFields:{ [key:string]:any } | Array<TerraFormFieldBase<any>>):{ [key:string]:TerraFormFieldInterface }
+    public static detectLegacyFormFields(
+        formFields:{ [key:string]:unknown } | Array<TerraFormFieldBase<unknown>>
+    ):{ [key:string]:TerraFormFieldInterface }
     {
-        if(isArray(formFields))
+        if(Array.isArray(formFields))
         {
             let transformedFields:{ [key:string]:TerraFormFieldInterface } = {};
-            formFields.forEach((field:TerraFormFieldBase<any>) =>
+            formFields.forEach((field:TerraFormFieldBase<unknown>) =>
             {
                 let transformedField:{ key:string, field:TerraFormFieldInterface } = this._transformLegacyFormField(field);
                 transformedFields[transformedField.key] = transformedField.field;
@@ -144,7 +146,7 @@ export class TerraFormFieldHelper
      * @param formField
      * @param skipList - optional parameter that skips the list check and returns the defaultValue of the single entry, not a list.
      */
-    public static parseDefaultValue(formField:TerraFormFieldInterface, skipList:boolean = false):any
+    public static parseDefaultValue(formField:TerraFormFieldInterface, skipList:boolean = false):unknown
     {
         // check if a default value is given and can be returned
         if(!isNullOrUndefined(formField.defaultValue))
@@ -173,7 +175,7 @@ export class TerraFormFieldHelper
             }
             // create a list out of the default value of a single entry.
             const min:number = this.getListRange(formField.isList)[0];
-            const defaultValue:any = this.parseDefaultValue(formField, true);
+            const defaultValue:unknown = this.parseDefaultValue(formField, true);
 
             return Array(min).fill(defaultValue);
         }
@@ -199,13 +201,13 @@ export class TerraFormFieldHelper
      * @description Determines the default values for a set of #formFields.
      * @param formFields
      */
-    public static parseDefaultValues(formFields:TerraKeyValueInterface<TerraFormFieldInterface>):any
+    public static parseDefaultValues(formFields:TerraKeyValueInterface<TerraFormFieldInterface>):unknown
     {
         if(isNullOrUndefined(formFields))
         {
             return;
         }
-        let values:TerraKeyValueInterface<any> = {};
+        let values:TerraKeyValueInterface<unknown> = {};
         Object.keys(formFields).forEach((formFieldKey:string) =>
         {
             let formField:TerraFormFieldInterface = formFields[formFieldKey];
@@ -214,7 +216,7 @@ export class TerraFormFieldHelper
         return values;
     }
 
-    private static _transformLegacyFormField(field:TerraFormFieldBase<any>):{ key:string, field:TerraFormFieldInterface }
+    private static _transformLegacyFormField(field:TerraFormFieldBase<unknown>):{ key:string, field:TerraFormFieldInterface }
     {
         let result:{ key:string, field:TerraFormFieldInterface } = {
             key:   field.key,
@@ -325,7 +327,7 @@ export class TerraFormFieldHelper
      * Clone objects or arrays to prevent instance clash.
      * @param value to clone if isObject or isArray.
      */
-    private static _cloneDefaultValue(value:any):any
+    private static _cloneDefaultValue(value:unknown):unknown
     {
         if(isObject(value) || Array.isArray(value))
         {
