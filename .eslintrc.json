@@ -19,7 +19,8 @@
 		"sourceType": "module"
 	},
 	"plugins": [
-		"@typescript-eslint"
+		"@typescript-eslint",
+		"@angular-eslint"
 	],
 	"rules": {
 		"camelcase": "error",
@@ -53,12 +54,14 @@
 		"radix": "error",
 		"spaced-comment": ["error", "always"],
 		"semi": "error",
+		"@angular-eslint/component-class-suffix": ["error", {"suffixes": ["Component", "ComponentExample", "DirectiveExample"]}],
+		"@angular-eslint/component-selector": ["error", {"type": "element", "prefix":["terra", "tc"], "style": "kebab-case"}],
 		"@typescript-eslint/array-type": ["error", { "default": "generic" }],
 		"@typescript-eslint/brace-style": ["error", "allman", { "allowSingleLine": true }],
 		"@typescript-eslint/class-name-casing": "error",
 		"@typescript-eslint/explicit-member-accessibility": ["error", { "accessibility": "explicit", "overrides": { "constructors": "no-public"} }],
-		"@typescript-eslint/member-ordering": ["error", { "default":  ["public-field", "protected-field", "private-field", "constructor", "public-method", "protected-method", "private-method"] }],
-		"@typescript-eslint/no-explicit-any": "error",
+		"@typescript-eslint/member-ordering": ["error", { "default": ["public-field", "protected-field", "private-field", "constructor", "public-method", "protected-method", "private-method"] }],
+		"@typescript-eslint/no-explicit-any": "off",
 		"@typescript-eslint/no-unused-vars": "error",
 		"@typescript-eslint/no-use-before-define": ["error", { "classes": false }],
 		"@typescript-eslint/type-annotation-spacing": ["error", { "before": false, "after": false, "overrides": { "arrow": { "before": true, "after": true }} }],

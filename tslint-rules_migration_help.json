@@ -23,7 +23,6 @@
 		// angular codelyzer rules
 		// Future ESLint compatibility: https://github.com/mgechev/codelyzer/issues/763
 		// angular-eslint: https://github.com/angular-eslint/angular-eslint
-		"component-class-suffix": [true, "Component", "ComponentExample", "DirectiveExample"],
 		"component-max-inline-declarations": [
 			true,
 			{
