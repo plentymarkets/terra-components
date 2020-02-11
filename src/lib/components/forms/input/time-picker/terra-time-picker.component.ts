@@ -44,7 +44,7 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor, O
     private _value:Date;
 
     private _onTouchedCallback:() => void = noop;
-    private _onChangeCallback:(_:any) => void = noop;
+    private _onChangeCallback:(_:unknown) => void = noop;
 
     constructor()
     {
@@ -91,12 +91,12 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor, O
 
     }
 
-    public registerOnChange(fn:any):void
+    public registerOnChange(fn:(_:unknown) => void):void
     {
         this._onChangeCallback = fn;
     }
 
-    public registerOnTouched(fn:any):void
+    public registerOnTouched(fn:() => void):void
     {
         this._onTouchedCallback = fn;
     }
