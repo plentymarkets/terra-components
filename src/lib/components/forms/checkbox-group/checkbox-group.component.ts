@@ -40,7 +40,7 @@ export class CheckboxGroupComponent implements ControlValueAccessor
      * @description List of available checkboxes of the group
      */
     @Input()
-    public checkboxValues:Array<{ caption:string, value:any }> = [];
+    public checkboxValues:Array<{ caption:string, value:unknown }> = [];
 
     /**
      * @description set the initial collapsed state.
@@ -51,21 +51,21 @@ export class CheckboxGroupComponent implements ControlValueAccessor
 
     public _multiCheckboxValues:Array<TerraMultiCheckBoxValueInterface> = [];
 
-    private _values:Array<any>;
+    private _values:Array<unknown>;
     private _onTouchedCallback:() => void = noop;
-    private _onChangeCallback:(_:Array<any>) => void = noop;
+    private _onChangeCallback:(_:Array<unknown>) => void = noop;
 
-    public registerOnChange(fn:any):void
+    public registerOnChange(fn:(_:Array<unknown>) => void):void
     {
         this._onChangeCallback = fn;
     }
 
-    public registerOnTouched(fn:any):void
+    public registerOnTouched(fn:() => void):void
     {
         this._onTouchedCallback = fn;
     }
 
-    public writeValue(values:Array<any>):void
+    public writeValue(values:Array<unknown>):void
     {
         this._values = values;
         this._updateMultiCheckboxValues();
@@ -108,7 +108,7 @@ export class CheckboxGroupComponent implements ControlValueAccessor
 
     private _updateMultiCheckboxValues():void
     {
-        this._multiCheckboxValues = this.checkboxValues.map((checkbox:{ caption:string, value:any }) =>
+        this._multiCheckboxValues = this.checkboxValues.map((checkbox:{ caption:string, value:unknown }) =>
         {
             return {
                 caption:  checkbox.caption,
