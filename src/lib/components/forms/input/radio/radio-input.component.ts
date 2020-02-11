@@ -29,7 +29,7 @@ export class RadioInputComponent
      * The value related to this radio input
      */
     @Input()
-    public value:any;
+    public value:unknown;
 
     /**
      * The input is disabled if set to true
