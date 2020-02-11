@@ -38,7 +38,7 @@ export class TerraFormEntryComponent extends TerraFormEntryBase implements OnIni
     @Input()
     public inputFormControl:FormControl;
 
-    private _onChangeCallback:(_:any) => void = noop;
+    private _onChangeCallback:(_:unknown) => void = noop;
     private _onTouchedCallback:() => void = noop;
 
     constructor(componentFactoryResolver:ComponentFactoryResolver)
@@ -61,7 +61,7 @@ export class TerraFormEntryComponent extends TerraFormEntryBase implements OnIni
             if(isFunction(this._componentInstance.registerOnChange) &&
                isFunction(this._componentInstance.registerOnTouched))
             {
-                this._componentInstance.registerOnChange((value:any):void => this._onChangeCallback(value));
+                this._componentInstance.registerOnChange((value:unknown):void => this._onChangeCallback(value));
                 this._componentInstance.registerOnTouched(():void => this._onTouchedCallback());
             }
             else
@@ -88,7 +88,7 @@ export class TerraFormEntryComponent extends TerraFormEntryBase implements OnIni
      *     component changes its value.
      * @param changeCallback
      */
-    public registerOnChange(changeCallback:(value:any) => void):void
+    public registerOnChange(changeCallback:(value:unknown) => void):void
     {
         this._onChangeCallback = changeCallback;
     }
@@ -109,7 +109,7 @@ export class TerraFormEntryComponent extends TerraFormEntryBase implements OnIni
      * @description Writes a given value to the form field using the writeValue method of the dynamically created component instance.
      * @param value
      */
-    public writeValue(value:any):void
+    public writeValue(value:unknown):void
     {
         if(this._componentInstance && isFunction(this._componentInstance.writeValue))
         {
