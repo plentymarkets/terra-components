@@ -1,4 +1,4 @@
-import { TerraFormFieldOptionInterface } from './TerraFormFieldOption.interface';
+import { TerraFormFieldOptionInterface } from './terra-form-field-option.interface';
 
 export interface TerraFormFieldInterface
 {
