@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { TerraFormFieldBase } from './terra-form-field-base';
 import { TerraControlTypeEnum } from '../enum/terra-control-type.enum';
 import {
