@@ -92,7 +92,7 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
     private _value:IMyDateModel;
 
     private onTouchedCallback:() => void = noop;
-    private onChangeCallback:(_:any) => void = noop;
+    private onChangeCallback:(_:string) => void = noop;
 
     constructor()
     {
@@ -113,17 +113,17 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
         this.updateDatePickerOptions();
     }
 
-    public registerOnChange(fn:any):void
+    public registerOnChange(fn:(_:string) => void):void
     {
         this.onChangeCallback = fn;
     }
 
-    public registerOnTouched(fn:any):void
+    public registerOnTouched(fn:() => void):void
     {
         this.onTouchedCallback = fn;
     }
 
-    public writeValue(value:any):void
+    public writeValue(value:unknown):void
     {
         if(!isNullOrUndefined(value) && typeof (value) === 'string' && isNaN(Date.parse(value)) === false)
         {
