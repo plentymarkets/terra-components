@@ -31,7 +31,7 @@ export class TerraFormEntryBase implements OnChanges, OnDestroy
      *     rendered as well.
      */
     @Input()
-    public inputControlTypeMap:{ [key:string]:Type<any> | TerraFormTypeInterface } = {};
+    public inputControlTypeMap:{ [key:string]:Type<unknown> | TerraFormTypeInterface } = {};
 
     /**
      * @description May be used to disable/enable the form field.
@@ -43,9 +43,9 @@ export class TerraFormEntryBase implements OnChanges, OnDestroy
     @ViewChild(FormEntryContainerDirective, { static: true })
     protected _container:FormEntryContainerDirective;
 
-    protected _componentFactory:ComponentFactory<any>;
-    protected _componentRef:ComponentRef<any>;
-    protected get _componentInstance():any
+    protected _componentFactory:ComponentFactory<unknown>;
+    protected _componentRef:ComponentRef<unknown>;
+    protected get _componentInstance():unknown
     {
         return (!this._componentRef) ? null : this._componentRef.instance;
     }
@@ -57,7 +57,7 @@ export class TerraFormEntryBase implements OnChanges, OnDestroy
      * Implementation of the OnChanges life cycle hook.
      * @description Updates the input bindings of the dynamically created component instance.
      */
-    public ngOnChanges(changes:SimpleChanges):void
+    public ngOnChanges():void
     {
         this._bindInputProperties();
     }
@@ -74,13 +74,13 @@ export class TerraFormEntryBase implements OnChanges, OnDestroy
         }
     }
 
-    protected _getControlType(fallback:Type<any> = TerraTextInputComponent):Type<any>
+    protected _getControlType(fallback:Type<unknown> = TerraTextInputComponent):Type<unknown>
     {
         if(this.inputControlTypeMap.hasOwnProperty(this.inputFormField.type))
         {
             if(this.inputControlTypeMap[this.inputFormField.type] instanceof Type)
             {
-                return <Type<any>> this.inputControlTypeMap[this.inputFormField.type];
+                return <Type<unknown>> this.inputControlTypeMap[this.inputFormField.type];
             }
             else
             {
@@ -91,7 +91,7 @@ export class TerraFormEntryBase implements OnChanges, OnDestroy
         return fallback;
     }
 
-    protected _initComponent(defaultControlType:Type<any> = TerraTextInputComponent, projectableNodes?:Array<Array<any>>):void
+    protected _initComponent(defaultControlType:Type<unknown> = TerraTextInputComponent, projectableNodes?:Array<Array<unknown>>):void
     {
         this._componentFactory = this._componentFactoryResolver.resolveComponentFactory(
             this._getControlType(defaultControlType)
