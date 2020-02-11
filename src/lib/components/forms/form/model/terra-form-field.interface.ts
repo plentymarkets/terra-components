@@ -1,3 +1,4 @@
+import { TerraFormFieldOptionInterface } from './TerraFormFieldOption.interface';
 
 export interface TerraFormFieldInterface
 {
@@ -5,8 +6,8 @@ export interface TerraFormFieldInterface
     isList?:boolean | string;
     isVisible?:boolean | string;
     isValid?:string;
-    defaultValue?:any;
-    options?:{ [key:string]:any };
+    defaultValue?:unknown;
+    options?:TerraFormFieldOptionInterface;
     children?:{ [key:string]:TerraFormFieldInterface };
     width?:string;
 }
