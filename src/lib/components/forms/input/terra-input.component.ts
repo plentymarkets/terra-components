@@ -81,14 +81,14 @@ export class TerraInputComponent implements ControlValueAccessor
     public regex:string;
 
     // The internal data model
-    public _innerValue:any;
+    public _innerValue:unknown;
 
     private _alert:TerraAlertComponent = TerraAlertComponent.getInstance();
 
     // Placeholders for the callbacks which are later provided
     // by the Control Value Accessor
     private _onTouchedCallback:() => void = noop;
-    private _onChangeCallback:(_:any) => void = noop;
+    private _onChangeCallback:(_:unknown) => void = noop;
 
     constructor(private _inputRegex:string)
     {
@@ -108,13 +108,13 @@ export class TerraInputComponent implements ControlValueAccessor
     }
 
     // get accessor
-    public get value():any
+    public get value():unknown
     {
         return this._innerValue;
     }
 
     // set accessor including call the onchange callback
-    public set value(v:any)
+    public set value(v:unknown)
     {
         if(v !== this._innerValue)
         {
@@ -130,7 +130,7 @@ export class TerraInputComponent implements ControlValueAccessor
     }
 
     // From ControlValueAccessor interface
-    public writeValue(value:any):void
+    public writeValue(value:unknown):void
     {
         if(value !== this._innerValue)
         {
@@ -139,13 +139,13 @@ export class TerraInputComponent implements ControlValueAccessor
     }
 
     // From ControlValueAccessor interface
-    public registerOnChange(fn:any):void
+    public registerOnChange(fn:(_:unknown) => void):void
     {
         this._onChangeCallback = fn;
     }
 
     // From ControlValueAccessor interface
-    public registerOnTouched(fn:any):void
+    public registerOnTouched(fn:() => void):void
     {
         this._onTouchedCallback = fn;
     }
@@ -162,7 +162,7 @@ export class TerraInputComponent implements ControlValueAccessor
             {
                 this.isValid = false;
 
-                if(this.inputIsRequired && (isNullOrUndefined(this.value) || this.value.length === 0))
+                if(this.inputIsRequired && (isNullOrUndefined(this.value) || this.value['length'] === 0))
                 {
                     let emptyMessage:string;
 
@@ -183,7 +183,7 @@ export class TerraInputComponent implements ControlValueAccessor
                         });
                     }
                 }
-                else if(!isNullOrUndefined(this.value) && this.value.length > 0)
+                else if(!isNullOrUndefined(this.value) && this.value['length'] > 0)
                 {
                     let invalidMessage:string;
 
