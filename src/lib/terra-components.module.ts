@@ -32,7 +32,7 @@ import { CKEditorModule } from 'ckeditor4-angular';
         ModalModule.forRoot(),
         MyDatePickerModule,
         AceEditorModule,
-        QuillModule,
+        QuillModule.forRoot(),
         CKEditorModule,
         TerraInteractModule
     ],

@@ -37,6 +37,14 @@ body
     direction: ltr;
 }
 
+.ql-editor
+{
+    p
+    {
+        margin-bottom: 1rem;
+    }
+}
+
 .tippy-tooltip
 {
     font-size: var(--font-size-2);
