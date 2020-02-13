@@ -12,10 +12,10 @@ import { TerraCheckboxComponent } from '../terra-checkbox.component';
 })
 export class TerraCheckboxComponentExample implements OnInit
 {
-    @ViewChild('viewChildIndeterminateCb')
+    @ViewChild('viewChildIndeterminateCb', { static: true })
     private viewChildIndeterminateCb:TerraCheckboxComponent;
 
-    @ViewChild('viewChildTestCb')
+    @ViewChild('viewChildTestCb', { static: true })
     private viewChildTestCb:TerraCheckboxComponent;
 
     public ngOnInit():void

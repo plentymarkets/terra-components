@@ -12,12 +12,13 @@ import { ResizeOptions } from './resizeOptions.interface';
 import { InertiaOptions } from './inertiaOptions.interface';
 import { RestrictOptions } from './restrictOptions.interface';
 import { GridOptions } from './gridOptions.interface';
+import * as interact_ from 'interactjs';
 import {
     Interactable,
     InteractEvent,
     InteractStatic
 } from 'interactjs';
-import * as interact_ from 'interactjs';
+
 const interact:InteractStatic = interact_;
 
 @Directive({

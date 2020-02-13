@@ -15,13 +15,13 @@ import { StringHelper } from '../../../helpers/string.helper';
 })
 export class TerraCardComponent implements AfterContentChecked
 {
-    @ViewChild('header')
+    @ViewChild('header', { static: true })
     public _viewChildHeader:ElementRef;
 
-    @ViewChild('body')
+    @ViewChild('body', { static: true })
     public _viewChildBody:ElementRef;
 
-    @ViewChild('footer')
+    @ViewChild('footer', { static: true })
     public _viewChildFooter:ElementRef;
 
     /**

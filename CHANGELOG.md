@@ -1,13 +1,6 @@
 <a name="5.0.0"></a>
 # 5.0.0 (Unreleased)
 
-### Features
-* **space-variables** Added new space variables that are not affected by compact-mode, like var(--space-md-fix)
-* **mat-date-picker** styles for the [angular material datepicker](https://material.angular.io/components/datepicker/overview).
-* **matInput** updated styles to match `mat-date-picker`, `mat-select` and `matInput` appearance.
-* **terra-form** Added input `width` that sets the default width of any form element inside the form.
-* **terra-button-with-options** Added output property `optionsToggled` emitting current toggle state after options are toggled.
-
 ### Breaking Changes
 * **build** Terra-Components is now fully AOT compatible. 
 Terra-Components now complies with the angular package format and code autocompletion should work fine in your angular app.
@@ -16,10 +9,52 @@ Terra-Components now complies with the angular package format and code autocompl
 * **terra-data-table** removed deprecated input `isSticky` sticky. No replacement will be provided for now. 
 * **float-thead** removed the directive. No replacement will be provided for now.
 * **terra-date-picker** deprecated. Use [angular material datepicker](https://material.angular.io/components/datepicker/overview) instead.
+* **terra-multi-split-view** removed deprecated terra-multi-split-view. See [SplitView migration guide](https://developers.plentymarkets.com/dev-doc/split-view-migration-guide) for upgrade.
+* **TerraBaseStorageService** removed extension to TerraBaseService. Instead make use of the new HttpClient in all derived classes (e.g. TerraFrontendStorageService). 
+* **http** removed deprecated TerraBaseService and @angular/http dependency. See [TerraBaseService migration guide](https://developers.plentymarkets.com/dev-doc/migration-tbs-to-http-client) for instructions to replace it.
+* **dependencies** Updated [angular](https://github.com/angular/angular) and [angular-l10n](https://github.com/robisim74/angular-l10n) to v8. Please visit https://update.angular.io to figure out how to update your app to angular v8.
+
+### Features
+* **space-variables** Added new space variables that are not affected by compact-mode, like var(--space-md-fix)
+* **mat-date-picker** styles for the [angular material datepicker](https://material.angular.io/components/datepicker/overview).
+* **matInput** updated styles to match `mat-date-picker`, `mat-select` and `matInput` appearance.
+* **mat-slide-toggle** styles for the [angular material slide toggle](https://material.angular.io/components/slide-toggle/overview).
+* **terra-form** Added input `width` that sets the default width of any form element inside the form.
+* **terra-button-with-options** Added output property `optionsToggled` emitting current toggle state after options are toggled.
+* **tippy.js** Updated `tippy.js` to version 5.1.4.
+* **theme-core** Added rgb-variables for function group colors to enable alpha adjustment.
 
 ### Fix
 * **terra-base-editor** removed unnecessary quill style import
 * **terra-file-browser** Fixed deleting directories, sent only directories without children.
+* **material-tabs** fixed min-width of tabs
+* **material-forms** removed custom paddings to avoid problems in compact-theme
+* **terra-form**
+    - fixed validation issues caused by invisible form fields.
+    - fixed inconsistency when treating the value of invisible form fields.
+* **terra-file-browser** resolved circular dependency between _terra-file-browser.component.ts_ and _file-list.component.ts_.
+* **material-tabs** fixed hiding the mat-ink-bar in mat-tabs
+* **terra-file-browser** changed parameter of delete method in TerraFrontendStorageService
+* **utils** fixed encoding of http params. Implemented a custom encoder.
+
+<a name="4.9.0"></a>
+# 4.9.0 (29.01.2020)
+
+### Features
+* **terra-syntax-editor** is now deprecated. Use [ckEditor](https://github.com/ckeditor/ckeditor4-angular) instead.
+
+<a name="4.8.2"></a>
+# 4.8.2 (08.01.2020)
+
+### Bug Fixes
+* **http-interceptors** added missing dependencies to their providers. You can now actually use the `httpInterceptorProviders` constant to make use of the `Auth`-, `Error`- and `LoadingInterceptor` in your app.
+
+<a name="4.8.1"></a>
+# 4.8.1 (07.01.2020)
+
+### Bug Fixes
+ * **terra-portlets** removed negative margins from nested containers (portlets, toolbars, tables, infoboxes, pager)
+>>>>>>> 5.X.X
 
 <a name="4.8.0"></a>
 # 4.8.0 (20.12.2019)

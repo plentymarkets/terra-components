@@ -4,7 +4,6 @@ import {
     TestBed
 } from '@angular/core/testing';
 import { CommonModule } from '@angular/common';
-import { By } from '@angular/platform-browser';
 
 describe ('Component: TerraBaseToolbarComponent', () =>
 {

@@ -23,7 +23,7 @@ export class TerraDynamicComponentLoaderComponent implements AfterViewInit, OnDe
     @Input()
     public inputComponent:Type<any>;
 
-    @ViewChild('viewChildTarget', {read: ViewContainerRef})
+    @ViewChild('viewChildTarget', { read: ViewContainerRef, static: true })
     private _viewChildTarget:ViewContainerRef;
 
     private _cmpRef:ComponentRef<any>;
