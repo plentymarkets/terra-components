@@ -15,12 +15,12 @@ import { terraHttpParamEncoder } from './http-param-encoder';
  */
 export function createHttpParams(params:Params, arrayAsArray:boolean = false):HttpParams
 {
+    let searchParams:HttpParams = new HttpParams({encoder: terraHttpParamEncoder});
     if(isNullOrUndefined(params))
     {
-        return new HttpParams({encoder: terraHttpParamEncoder}); // return empty HttpParams
+        return searchParams;
     }
 
-    let searchParams:HttpParams = new HttpParams({encoder: terraHttpParamEncoder});
     Object.keys(params).forEach((key:string) =>
     {
         if(!isNullOrUndefined(params[key]) && params[key] !== '')
