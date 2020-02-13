@@ -3,7 +3,7 @@ import {
     HttpUrlEncodingCodec
 } from '@angular/common/http';
 
-export class QueryEncoder extends HttpUrlEncodingCodec
+class HttpParamEncoder extends HttpUrlEncodingCodec
 {
     public encodeKey(key:string):string
     {
@@ -16,4 +16,4 @@ export class QueryEncoder extends HttpUrlEncodingCodec
     }
 }
 
-export const terraHttpParamEncoder:HttpParameterCodec = new QueryEncoder();
+export const terraHttpParamEncoder:HttpParameterCodec = new HttpParamEncoder();
