@@ -3,6 +3,7 @@ import {
     HttpUrlEncodingCodec
 } from '@angular/common/http';
 
+/** @description A custom encoder for http params. */
 class HttpParamEncoder extends HttpUrlEncodingCodec
 {
     public encodeKey(key:string):string
@@ -16,4 +17,5 @@ class HttpParamEncoder extends HttpUrlEncodingCodec
     }
 }
 
+/** @description Instance of HttpParamEncoder, a custom encoder for http params. */
 export const terraHttpParamEncoder:HttpParameterCodec = new HttpParamEncoder();
