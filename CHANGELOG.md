@@ -54,7 +54,6 @@ Terra-Components now complies with the angular package format and code autocompl
 
 ### Bug Fixes
  * **terra-portlets** removed negative margins from nested containers (portlets, toolbars, tables, infoboxes, pager)
->>>>>>> 5.X.X
 
 <a name="4.8.0"></a>
 # 4.8.0 (20.12.2019)
