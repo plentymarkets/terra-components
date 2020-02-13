@@ -34,7 +34,6 @@ Terra-Components now complies with the angular package format and code autocompl
 * **terra-file-browser** resolved circular dependency between _terra-file-browser.component.ts_ and _file-list.component.ts_.
 * **material-tabs** fixed hiding the mat-ink-bar in mat-tabs
 * **terra-file-browser** changed parameter of delete method in TerraFrontendStorageService
-* **utils** fixed encoding of http params. Implemented a custom encoder.
 
 <a name="4.9.0"></a>
 # 4.9.0 (29.01.2020)
