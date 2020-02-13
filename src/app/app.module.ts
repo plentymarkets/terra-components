@@ -14,6 +14,12 @@ import { AppComponent } from './app.component';
 import { ShowcaseComponent } from './showcase/showcase.component';
 import { TerraComponentsExamplesModule } from '../lib/terra-components-examples.module';
 import { RouterModule } from '@angular/router';
+import { OverlayComponent } from './overlay.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { FormsModule } from '@angular/forms';
 
 export function initL10n(l10nLoader:L10nLoader):Function
 {
@@ -26,17 +32,27 @@ export function initL10n(l10nLoader:L10nLoader):Function
  * NOTE: It is not publicly accessible either.
  */
 @NgModule({
-    imports:      [
+    imports: [
         BrowserModule,
         BrowserAnimationsModule,
         RouterModule.forRoot([]),
         HttpClientModule,
         LocalizationModule.forRoot(l10nConfig),
-        TerraComponentsExamplesModule
+        TerraComponentsExamplesModule,
+        MatFormFieldModule,
+        MatButtonModule,
+        MatDialogModule,
+        MatInputModule,
+        FormsModule
+    ],
+    entryComponents: [
+        OverlayComponent
     ],
     declarations: [
+        OverlayComponent,
         AppComponent,
         ShowcaseComponent
+
     ],
     providers:    [
         {

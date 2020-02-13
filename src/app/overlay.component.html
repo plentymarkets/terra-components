@@ -1,0 +1,16 @@
+<h1 mat-dialog-title>Hi {{data.name}}</h1>
+<div mat-dialog-content>
+    <div>
+        <p>What's your favorite animal?</p>
+        <mat-form-field>
+            <input matInput [(ngModel)]="data.animal" placeholder="placeholder">
+        </mat-form-field>
+        <terra-code-editor-example></terra-code-editor-example>
+        <terra-data-table-example></terra-data-table-example>
+        <terra-3-col-example></terra-3-col-example>
+    </div>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">No Thanks</button>
+    <button mat-button [mat-dialog-close]="data.animal">Ok</button>
+</div>
