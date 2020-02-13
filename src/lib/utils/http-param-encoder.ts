@@ -18,4 +18,4 @@ class HttpParamEncoder extends HttpUrlEncodingCodec
 }
 
 /** @description Instance of HttpParamEncoder, a custom encoder for http params. */
-export const terraHttpParamEncoder:HttpParameterCodec = new HttpParamEncoder();
+export const httpParamEncoder:HttpParameterCodec = new HttpParamEncoder();

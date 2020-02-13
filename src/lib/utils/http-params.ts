@@ -4,7 +4,7 @@ import {
     isArray,
     isNullOrUndefined
 } from 'util';
-import { terraHttpParamEncoder } from './http-param-encoder';
+import { httpParamEncoder } from './http-param-encoder';
 
 /**
  * Creates an instance of HttpParams filled with given #params
@@ -15,7 +15,7 @@ import { terraHttpParamEncoder } from './http-param-encoder';
  */
 export function createHttpParams(params:Params, arrayAsArray:boolean = false):HttpParams
 {
-    let searchParams:HttpParams = new HttpParams({encoder: terraHttpParamEncoder});
+    let searchParams:HttpParams = new HttpParams({encoder: httpParamEncoder});
     if(isNullOrUndefined(params))
     {
         return searchParams;
