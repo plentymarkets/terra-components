@@ -1,9 +1,28 @@
-import { HttpParams } from '@angular/common/http';
+import {
+    HttpParameterCodec,
+    HttpParams,
+    HttpUrlEncodingCodec
+} from '@angular/common/http';
 import { Params } from '@angular/router';
 import {
     isArray,
     isNullOrUndefined
 } from 'util';
+
+export class QueryEncoder extends HttpUrlEncodingCodec
+{
+    public encodeKey(key:string):string
+    {
+        return encodeURIComponent(key);
+    }
+
+    public encodeValue(value:string):string
+    {
+        return encodeURIComponent(value);
+    }
+}
+
+export const TerraQueryEncoder:HttpParameterCodec = new QueryEncoder();
 
 /**
  * Creates an instance of HttpParams filled with given #params
@@ -16,10 +35,10 @@ export function createHttpParams(params:Params, arrayAsArray:boolean = false):Ht
 {
     if(isNullOrUndefined(params))
     {
-        return new HttpParams(); // return empty HttpParams
+        return new HttpParams({encoder: TerraQueryEncoder}); // return empty HttpParams
     }
 
-    let searchParams:HttpParams = new HttpParams();
+    let searchParams:HttpParams = new HttpParams({encoder: TerraQueryEncoder});
     Object.keys(params).forEach((key:string) =>
     {
         if(!isNullOrUndefined(params[key]) && params[key] !== '')
