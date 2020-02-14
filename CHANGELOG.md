@@ -26,6 +26,7 @@ Terra-Components now complies with the angular package format and code autocompl
 
 ### Fix
 * **terra-base-editor** removed unnecessary quill style import
+* **terra-file-browser** Fixed deleting directories, sent only directories without children.
 * **material-tabs** fixed min-width of tabs
 * **material-forms** removed custom paddings to avoid problems in compact-theme
 * **terra-form**
