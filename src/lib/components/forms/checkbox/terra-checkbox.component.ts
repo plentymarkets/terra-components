@@ -8,7 +8,6 @@ import {
     ControlValueAccessor,
     NG_VALUE_ACCESSOR
 } from '@angular/forms';
-import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum';
 import { noop } from 'rxjs';
 
 let nextId:number = 0;
@@ -48,13 +47,6 @@ export class TerraCheckboxComponent implements ControlValueAccessor
     /** @description Set the tooltip.*/
     @Input()
     public tooltipText:string;
-
-    /**
-     * @deprecated since v4. Is replaced by the TooltipDirective and will be removed with the next major version.
-     * @description Set the tooltip placement (bottom, top, left, right). Default top.
-     * */
-    @Input()
-    public tooltipPlacement:TerraPlacementEnum = TerraPlacementEnum.TOP;
 
     /** @deprecated Temporarily for {@see TerraCheckboxTreeComponent}*/
     @Input()

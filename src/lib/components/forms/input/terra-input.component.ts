@@ -5,7 +5,6 @@ import {
 } from '@angular/forms';
 import { TerraAlertComponent } from '../../alert/terra-alert.component';
 import { isNullOrUndefined } from 'util';
-import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum';
 import { noop } from 'rxjs';
 
 export class TerraInputComponent implements ControlValueAccessor
@@ -39,13 +38,6 @@ export class TerraInputComponent implements ControlValueAccessor
      */
     @Input()
     public inputIsDisabled:boolean;
-
-    /**
-     * @deprecated since v4. Is replaced by the TooltipDirective and will be removed with the next major version.
-     * @description Set the tooltip placement (bottom, top, left, right). Default top.
-     */
-    @Input()
-    public inputTooltipPlacement:TerraPlacementEnum;
 
     /**
      * @description Set a maximum number of characters allowed.
