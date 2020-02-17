@@ -42,7 +42,6 @@
         <terra-file-chooser class="input-group-btn"
                             [inputIcon]="'icon-more'"
                             [inputTooltipText]=" _translationPrefix + '.chooseFile' | translate:_lang"
-                            [inputTooltipPlacement]="'left'"
                             [inputAllowedExtensions]="inputAllowedExtensions"
                             [inputAllowFolders]="inputAllowFolders"
                             [inputStorageServices]="inputStorageServices"
@@ -52,7 +51,6 @@
         <terra-button class="input-group-btn margin-left"
                       [inputIcon]="'icon-reset'"
                       [inputTooltipText]="_translationPrefix + '.reset' | translate:_lang"
-                      [inputTooltipPlacement]="'left'"
                       (outputClicked)="resetValue()">
         </terra-button>
 

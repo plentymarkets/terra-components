@@ -50,11 +50,6 @@ export class TerraButtonWithOptionsComponent implements OnInit
      */
     @Input()
     public inputTooltipText:string;
-    /**
-     * @description Set the tooltip placement (bottom, top, left, right). Default top.
-     */
-    @Input()
-    public inputTooltipPlacement:TerraPlacementEnum; // top, bottom, left, right
 
     // new inputs
     /**
