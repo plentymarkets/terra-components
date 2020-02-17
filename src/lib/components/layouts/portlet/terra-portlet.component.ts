@@ -14,13 +14,12 @@ import {
     trigger
 } from '@angular/animations';
 import { TerraButtonInterface } from '../../buttons/button/data/terra-button.interface';
-import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum';
 
 @Component({
-    selector:   'terra-portlet',
-    styleUrls: ['./terra-portlet.component.scss'],
+    selector:    'terra-portlet',
+    styleUrls:   ['./terra-portlet.component.scss'],
     templateUrl: './terra-portlet.component.html',
-    animations: [
+    animations:  [
         trigger('collapsedState', [
             state('collapsed', style({
                 height:           0,
@@ -79,8 +78,6 @@ export class TerraPortletComponent implements OnChanges
     @Output()
     public inputCollapsedChange:EventEmitter<boolean> = new EventEmitter<boolean>();
 
-    public readonly _infoTextPlacement:TerraPlacementEnum = TerraPlacementEnum.RIGHT;
-
     public get _collapsedState():string
     {
         if(!this.inputIsCollapsable)
@@ -113,7 +110,7 @@ export class TerraPortletComponent implements OnChanges
      */
     public toggleCollapse():void
     {
-        if ( !this.inputIsDisabled )
+        if(!this.inputIsDisabled)
         {
             if(!this.inputIsCollapsable)
             {

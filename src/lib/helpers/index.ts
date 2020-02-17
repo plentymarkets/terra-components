@@ -14,7 +14,6 @@ export { StringHelper } from './string.helper';
 
 // enums
 export { TerraButtonColorEnum } from './enums/button-color.enum';
-export { TerraPlacementEnum } from './enums/terra-placement.enum';
 
 // misc
 export { TerraRegex } from './regex/terra-regex';

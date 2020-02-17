@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { TerraPlacementEnum } from '../../../../helpers/enums/terra-placement.enum';
 
 @Component({
     selector:    'terra-button-example',
@@ -8,8 +7,6 @@ import { TerraPlacementEnum } from '../../../../helpers/enums/terra-placement.en
 })
 export class TerraButtonComponentExample
 {
-    public _tooltipPlacement:TerraPlacementEnum = TerraPlacementEnum.TOP;
-
     public _sendMailPopup():void
     {
         alert('email has been send to test@plentymarkets.com');
