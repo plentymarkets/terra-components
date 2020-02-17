@@ -19,8 +19,8 @@ import { ColumnConfigInterface } from '../../../config/data/column-config.interf
 
 @Component({
     selector:        'tc-mat-table-example',
-    template:        require('./mat-table.component.example.html'),
-    styles:          [require('./mat-table.component.example.scss')],
+    templateUrl:       './mat-table.component.example.html',
+    styleUrls:          ['./mat-table.component.example.scss'],
     providers:       [TerraDataTableServiceExample,
                       TerraDataTableContextMenuService],
     changeDetection: ChangeDetectionStrategy.OnPush
@@ -36,7 +36,7 @@ export class MatTableComponentExample implements OnInit
         new SelectionModel<TerraDataTableExampleInterface>(true, []);
     protected readonly contextMenu:Array<TerraDataTableContextMenuEntryInterface<TerraDataTableExampleInterface>>;
 
-    @ViewChild(MatSort)
+    @ViewChild(MatSort, {static: true})
     private sort:MatSort;
 
     private previousIndex:number;

@@ -13,8 +13,8 @@ import { ColumnConfigInterface } from './data/column-config.interface';
 
 @Component({
     selector:        'tc-column-config',
-    template:        require('./column-config.component.html'),
-    styles:          [require('./column-config.component.scss')],
+    template:        './column-config.component.html',
+    styles:          ['./column-config.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ColumnConfigComponent
