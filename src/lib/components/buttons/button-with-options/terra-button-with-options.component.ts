@@ -1,8 +1,10 @@
 import {
     Component,
     ElementRef,
+    EventEmitter,
     Input,
     OnInit,
+    Output,
     ViewChild
 } from '@angular/core';
 import { TerraButtonInterface } from '../button/data/terra-button.interface';
@@ -12,9 +14,9 @@ import { TerraTextAlignEnum } from '../../tables/data-table/enums/terra-text-ali
 import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum';
 
 @Component({
-    selector: 'terra-button-with-options',
-    template: require('./terra-button-with-options.component.html'),
-    styles:   [require('./terra-button-with-options.component.scss')]
+    selector:    'terra-button-with-options',
+    templateUrl: './terra-button-with-options.component.html',
+    styleUrls:   ['./terra-button-with-options.component.scss']
 })
 export class TerraButtonWithOptionsComponent implements OnInit
 {
@@ -68,29 +70,36 @@ export class TerraButtonWithOptionsComponent implements OnInit
     @Input()
     public inputOptionsAlignment:TerraTextAlignEnum;
 
-    protected optionsToggle:boolean;
-    protected alignRight:boolean;
+    /**
+     * @description Emits the state of the button options each time the options are toggled.
+     */
+    @Output()
+    public optionsToggled:EventEmitter<boolean> = new EventEmitter<boolean>();
+
+    public _optionsToggle:boolean;
+    public _alignRight:boolean;
 
     // view children
-    @ViewChild(TerraButtonComponent)
-    private toggleButton:TerraButtonComponent;
+    @ViewChild(TerraButtonComponent, { static: true })
+    private _toggleButton:TerraButtonComponent;
 
-    private clickListener:(event:Event) => void;
+    private readonly _clickListener:(event:Event) => void;
 
-    constructor(private elementRef:ElementRef)
+    constructor(private _elementRef:ElementRef)
     {
         // define click listener
-        this.clickListener = (event:Event):void =>
+        this._clickListener = (event:Event):void =>
         {
             // check if it has been clicked elsewhere
-            if(!this.elementRef.nativeElement.contains(event.target))
+            if(!this._elementRef.nativeElement.contains(event.target))
             {
-                this.optionsToggle = false;
+                this._optionsToggle = false;
+                this.optionsToggled.emit(false);
             }
         };
 
         this.inputOptionsAlignment = TerraTextAlignEnum.RIGHT;
-        this.alignRight = true;
+        this._alignRight = true;
     }
 
     public ngOnInit():void
@@ -105,23 +114,23 @@ export class TerraButtonWithOptionsComponent implements OnInit
         {
             case TerraTextAlignEnum.LEFT:
             {
-                this.alignRight = false;
+                this._alignRight = false;
                 break;
             }
             case TerraTextAlignEnum.RIGHT:
             {
-                this.alignRight = true;
+                this._alignRight = true;
                 break;
             }
             case TerraTextAlignEnum.CENTER:
             {
-                this.alignRight = false;
+                this._alignRight = false;
                 break;
             }
         }
     }
 
-    private optionsClick(option:TerraButtonInterface):void
+    public _optionsClick(option:TerraButtonInterface):void
     {
         if(!option.isDisabled)
         {
@@ -129,26 +138,27 @@ export class TerraButtonWithOptionsComponent implements OnInit
             option.clickFunction();
 
             // close dropdown
-            this.toggleOptions();
+            this._toggleOptions();
         }
     }
 
-    private toggleOptions(event?:Event):void
+    public _toggleOptions(event?:Event):void
     {
         if(!isNullOrUndefined(event))
         {
             event.stopPropagation();
         }
 
-        if(!this.optionsToggle)
+        if(!this._optionsToggle)
         {
-            document.addEventListener('click', this.clickListener);
+            document.addEventListener('click', this._clickListener);
         }
         else
         {
-            document.removeEventListener('click', this.clickListener);
+            document.removeEventListener('click', this._clickListener);
         }
 
-        this.optionsToggle = !this.optionsToggle;
+        this._optionsToggle = !this._optionsToggle;
+        this.optionsToggled.emit(this._optionsToggle);
     }
 }

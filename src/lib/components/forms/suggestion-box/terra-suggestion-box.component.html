@@ -6,31 +6,31 @@
                   'disabled': inputIsDisabled,
                   'open': _toggleOpen
                 }"
-     (click)="onClick($event)"
-     (keydown)="onKeyDown($event)">
+     (click)="_onClick($event)"
+     (keydown)="_onKeyDown($event)">
 
     <terra-text-input [inputIsDisabled]="inputIsDisabled"
                       [inputName]="inputName"
-                      (outputOnInput)="onChange()"
-                      (click)="onInputClick($event)"
-                      [(ngModel)]="textInputValue">
+                      (outputOnInput)="_onChange()"
+                      (click)="_onInputClick($event)"
+                      [(ngModel)]="_textInputValue">
     </terra-text-input>
 
     <!-- suggestions -->
     <div class="select-box-dropdown">
-        <span *ngIf="displayListBoxValues.length === 0" (click)="$event.stopPropagation()">
-            <i>{{ noEntriesTextKey | translate:lang }} </i>
+        <span *ngIf="_displayListBoxValues.length === 0" (click)="$event.stopPropagation()">
+            <i>{{ _noEntriesTextKey | translate:_lang }} </i>
         </span>
 
-        <span *ngIf="displayListBoxValues.length > 0 && inputWithRecentlyUsed" class="select-box-dropdown-heading"
+        <span *ngIf="_displayListBoxValues.length > 0 && inputWithRecentlyUsed" class="select-box-dropdown-heading"
               (click)="$event.stopPropagation()">
-            <i><b> {{ listBoxHeadingKey | translate:lang }} </b></i>
+            <i><b> {{ _listBoxHeadingKey | translate:_lang }} </b></i>
         </span>
 
         <span #renderedListBoxValues
-              *ngFor="let item of displayListBoxValues"
-              (click)="select(item)"
-              [ngClass]="{active: item.value === selectedValue?.value, selected: item.value === tmpSelectedValue?.value}">
+              *ngFor="let item of _displayListBoxValues"
+              (click)="_select(item)"
+              [ngClass]="{active: item.value === _selectedValue?.value, selected: item.value === _tmpSelectedValue?.value}">
             <span class="{{item.icon}}" *ngIf="item.icon"></span>
             <img *ngIf="item.imgsrc" src="{{item.imgsrc}}"/>
             <span [innerHtml]="item.caption"></span>

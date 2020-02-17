@@ -3,17 +3,91 @@
 	"version": 1,
 	"newProjectRoot": "projects",
 	"projects": {
-		"terra-components": {
+		"dev-app": {
 			"root": "",
 			"sourceRoot": "src",
 			"projectType": "application",
-			"prefix": "terra",
+			"prefix": "tc",
 			"schematics": {
 				"@schematics/angular:component": {
-					"styleext": "scss"
+					"style": "scss"
+				}
+			},
+			"architect": {
+				"build": {
+					"builder": "@angular-devkit/build-angular:browser",
+					"options": {
+						"outputPath": "dist",
+						"index": "src/index.html",
+						"main": "src/main.ts",
+						"polyfills": "src/polyfills.ts",
+						"tsConfig": "src/tsconfig.app.json",
+						"assets": [
+							"src/assets"
+						],
+						"styles": [
+							"node_modules/tippy.js/dist/tippy.css",
+							"node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+							"node_modules/bootstrap/dist/css/bootstrap.css",
+							"src/styles.scss"
+						],
+						"scripts": [
+							"node_modules/jquery/dist/jquery.min.js"
+						],
+						"es5BrowserSupport": true,
+						"vendorChunk": true
+					}
+				},
+				"serve": {
+					"builder": "@angular-devkit/build-angular:dev-server",
+					"options": {
+						"browserTarget": "dev-app:build",
+						"port": 3001
+					}
+				}
+			}
+		},
+		"lib": {
+			"root": "src/lib",
+			"sourceRoot": "src/lib",
+			"projectType": "library",
+			"prefix": "tc",
+			"architect": {
+				"build": {
+					"builder": "@angular-devkit/build-ng-packagr:build",
+					"options": {
+						"tsConfig": "src/lib/tsconfig.lib.json",
+						"project": "src/lib/package.json"
+					}
+				},
+				"test": {
+					"builder": "@angular-devkit/build-angular:karma",
+					"options": {
+						"main": "src/test.ts",
+						"tsConfig": "src/lib/tsconfig.spec.json",
+						"karmaConfig": "./karma.conf.js",
+						"fileReplacements": [
+							{
+								"replace": "src/lib/environments/environment.ts",
+								"with": "src/lib/environments/environment.test.ts"
+							}
+						]
+					}
+				},
+				"lint": {
+					"builder": "@angular-devkit/build-angular:tslint",
+					"options": {
+						"tsConfig": [
+							"src/lib/tsconfig.lib.json"
+						],
+						"exclude": [
+							"**/node_modules/**",
+							"src/lib/environments/**"
+						]
+					}
 				}
 			}
 		}
 	},
-	"defaultProject": "terra-components"
+	"defaultProject": "lib"
 }

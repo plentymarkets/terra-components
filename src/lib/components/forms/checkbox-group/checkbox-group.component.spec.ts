@@ -11,10 +11,10 @@ import { l10nConfig } from '../../../../app/translation/l10n.config';
 import { TerraMultiCheckBoxComponent } from '../multi-check-box/terra-multi-check-box.component';
 import { TerraMultiCheckBoxValueInterface } from '../multi-check-box/data/terra-multi-check-box-value.interface';
 import { TerraCheckboxComponent } from '../checkbox/terra-checkbox.component';
-import Spy = jasmine.Spy;
 import { TooltipDirective } from '../../tooltip/tooltip.directive';
 import { Router } from '@angular/router';
 import { MockRouter } from '../../../testing/mock-router';
+import Spy = jasmine.Spy;
 
 describe('Component: CheckboxGroupComponent', () =>
 {

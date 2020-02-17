@@ -10,7 +10,7 @@ import {
 } from '@angular/material';
 
 @NgModule({
-    imports:         [
+    imports: [
         CommonModule,
         FormsModule,
         CKEditorModule,

@@ -1,5 +1,7 @@
 import { isNullOrUndefined } from 'util';
-import * as _ from 'lodash';
+import * as cloneDeep_ from 'lodash.clonedeep';
+
+const cloneDeep:(val:Object) => Object = cloneDeep_;
 
 export class ObjectHelper
 {
@@ -16,6 +18,6 @@ export class ObjectHelper
 
     public static cloneDeep(obj:Object):Object
     {
-        return _.cloneDeep(obj);
+        return cloneDeep(obj);
     }
 }
