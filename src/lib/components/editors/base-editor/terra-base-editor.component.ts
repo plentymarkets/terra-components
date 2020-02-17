@@ -12,7 +12,9 @@ import {
 } from '@angular/forms';
 import { isNullOrUndefined } from 'util';
 import { noop } from 'rxjs';
+import { quillBasePreset } from '../quill/presets';
 
+/** @deprecated since v5. Use quill-editor and our quillBasePreset instead */
 @Component({
     selector:    'terra-base-editor',
     templateUrl: './terra-base-editor.component.html',
@@ -63,14 +65,7 @@ export class TerraBaseEditorComponent implements OnInit, ControlValueAccessor
     {
         // initialize placeholder
         this._placeholder = this._translation.translate('terraNoteEditor.insertText');
-        this._modules = {
-            toolbar: [
-                ['bold',
-                 'italic',
-                 'underline',
-                 'strike']        // toggled buttons
-            ]
-        };
+        this._modules = quillBasePreset;
     }
 
     public ngOnInit():void

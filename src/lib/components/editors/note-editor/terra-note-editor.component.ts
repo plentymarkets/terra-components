@@ -5,7 +5,9 @@ import {
 import { TranslationService } from 'angular-l10n';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TerraBaseEditorComponent } from '../base-editor/terra-base-editor.component';
+import { quillNotePreset } from '../quill/presets';
 
+/** @deprecated since v5. Use the quill-editor and our quillNotePreset instead. */
 @Component({
     selector:    'terra-note-editor',
     templateUrl: './terra-note-editor.component.html',
@@ -24,31 +26,6 @@ export class TerraNoteEditorComponent extends TerraBaseEditorComponent
         // initialize placeholder
         this._placeholder = this._translation.translate('terraNoteEditor.insertText');
 
-        this._modules = {
-            toolbar: [
-                ['bold',
-                 'italic',
-                 'underline',
-                 'strike'],
-                // toggled buttons
-                [{'list': 'ordered'},
-                 {'list': 'bullet'}],
-                [{'script': 'sub'},
-                 {'script': 'super'}],
-                // superscript/subscript
-                [{
-                    'header': [1,
-                               2,
-                               3,
-                               4,
-                               5,
-                               6,
-                               false]
-                }],
-                // link and image, video
-                ['link',
-                 'image']
-            ]
-        };
+        this._modules = quillNotePreset;
     }
 }
