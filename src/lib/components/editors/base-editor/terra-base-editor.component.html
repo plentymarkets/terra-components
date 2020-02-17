@@ -1,10 +1,11 @@
 <div>
-    <quill-editor [placeholder]="placeholder"
-                  [(ngModel)]="value"
-                  (ngModelChange)="onChangeCallback(value)"
+    <quill-editor [placeholder]="_placeholder"
+                  [(ngModel)]="_value"
+                  (ngModelChange)="_onChangeCallback(_value);"
+                  (onBlur)="_onTouchedCallback(_value)"
                   [sanitize]="true"
                   [required]="required"
                   [styles]="{minHeight:inputMinHeight, height:inputFixedHeight}"
-                  [modules]="modules">
+                  [modules]="_modules">
     </quill-editor>
 </div>

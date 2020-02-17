@@ -1,34 +1,34 @@
 <label [tcTooltip]="tooltipText">{{inputHeaderLabel}}</label>
 <div class="editor-container">
-    <quill-editor [placeholder]="placeholder"
+    <quill-editor [placeholder]="_placeholder"
                   [(ngModel)]="editorContent"
-                  (ngModelChange)="emitChanges(true)"
+                  (ngModelChange)="_emitChanges(true)"
                   [styles]="{minHeight:inputMinHeight, height:inputFixedHeight}"
                   [sanitize]="true"
                   [required]="required"
-                  [modules]="modules">
+                  [modules]="_modules">
     </quill-editor>
     <textarea class="raw-input"
               [class.visible]="showCodeView"
               [(ngModel)]="rawContent"
-              (ngModelChange)="emitChanges(false)">
+              (ngModelChange)="_emitChanges(false)">
     </textarea>
-    <terra-button [class.visible]="showCodeView && isValidMarkup"
+    <terra-button [class.visible]="showCodeView && _isValidMarkup"
                   class="close-button"
                   inputIcon="icon-close"
-                  (outputClicked)="closeCodeView()">
+                  (outputClicked)="_closeCodeView()">
     </terra-button>
-    <terra-button [class.visible]="showCodeView && !isValidMarkup"
+    <terra-button [class.visible]="showCodeView && !_isValidMarkup"
                   class="error-button"
                   inputIcon="icon-warning"
-                  [inputTooltipText]="invalidMarkupHint"
+                  [inputTooltipText]="_invalidMarkupHint"
                   inputTooltipPlacement="left">
     </terra-button>
     <terra-overlay #viewConfirmationOverlay
-                   [inputOverlayTitle]="'terraCodeEditor.changeViewOverlay.title' | translate:lang"
-                   [inputPrimaryButtonInterface]="viewConfirmation.primaryButton"
-                   [inputSecondaryButtonInterface]="viewConfirmation.secondaryButton"
+                   [inputOverlayTitle]="'terraCodeEditor.changeViewOverlay.title' | translate:_lang"
+                   [inputPrimaryButtonInterface]="_viewConfirmation.primaryButton"
+                   [inputSecondaryButtonInterface]="_viewConfirmation.secondaryButton"
                    class="preview-overlay">
-        <p>{{'terraCodeEditor.changeViewOverlay.text' | translate:lang}}</p>
+        <p>{{'terraCodeEditor.changeViewOverlay.text' | translate:_lang}}</p>
     </terra-overlay>
 </div>

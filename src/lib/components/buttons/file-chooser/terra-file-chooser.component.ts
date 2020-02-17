@@ -15,42 +15,42 @@ import { TerraOverlayComponent } from '../../layouts/overlay/terra-overlay.compo
 import { TerraOverlayButtonInterface } from '../../layouts/overlay/data/terra-overlay-button.interface';
 
 @Component({
-    selector: 'terra-file-chooser',
-    template: require('./terra-file-chooser.component.html'),
-    styles:   [require('./terra-file-chooser.component.scss')]
+    selector:    'terra-file-chooser',
+    templateUrl: './terra-file-chooser.component.html',
+    styleUrls:   ['./terra-file-chooser.component.scss']
 })
 export class TerraFileChooserComponent extends TerraButtonComponent
 {
     @Input()
     public set inputPrimaryBrowserButtonCaption(value:string)
     {
-        this.primaryBrowserButtonCaption = value;
+        this._primaryBrowserButtonCaption = value;
     }
 
     public get inputPrimaryBrowserButtonCaption():string
     {
-        if(!isNullOrUndefined(this.primaryBrowserButtonCaption) && this.primaryBrowserButtonCaption.length > 0)
+        if(!isNullOrUndefined(this._primaryBrowserButtonCaption) && this._primaryBrowserButtonCaption.length > 0)
         {
-            return this.primaryBrowserButtonCaption;
+            return this._primaryBrowserButtonCaption;
         }
 
-        return this.translation.translate(this.translationPrefix + '.choose');
+        return this._translation.translate(this._translationPrefix + '.choose');
     }
 
     @Input()
     public set inputSecondaryBrowserButtonCaption(value:string)
     {
-        this.primaryBrowserButtonCaption = value;
+        this._primaryBrowserButtonCaption = value;
     }
 
     public get inputSecondaryBrowserButtonCaption():string
     {
-        if(!isNullOrUndefined(this.secondaryBrowserButtonCaption) && this.secondaryBrowserButtonCaption.length > 0)
+        if(!isNullOrUndefined(this._secondaryBrowserButtonCaption) && this._secondaryBrowserButtonCaption.length > 0)
         {
-            return this.secondaryBrowserButtonCaption;
+            return this._secondaryBrowserButtonCaption;
         }
 
-        return this.translation.translate(this.translationPrefix + '.cancel');
+        return this._translation.translate(this._translationPrefix + '.cancel');
     }
 
     @Input()
@@ -62,12 +62,12 @@ export class TerraFileChooserComponent extends TerraButtonComponent
     @Input()
     public set inputStorageServices(services:Array<TerraBaseStorageService>)
     {
-        this.storageServices = services;
+        this._storageServices = services;
     }
 
     public get inputStorageServices():Array<TerraBaseStorageService>
     {
-        return this.storageServices;
+        return this._storageServices;
     }
 
     @Output()
@@ -82,27 +82,27 @@ export class TerraFileChooserComponent extends TerraButtonComponent
     @Output()
     public outputFileBrowserHide:EventEmitter<TerraFileBrowserComponent> = new EventEmitter<TerraFileBrowserComponent>();
 
-    @ViewChild('overlay')
+    @ViewChild('overlay', { static: true })
     public overlay:TerraOverlayComponent;
 
-    @ViewChild('fileBrowser')
+    @ViewChild('fileBrowser', { static: true })
     public fileBrowser:TerraFileBrowserComponent;
 
     public primaryOverlayButton:TerraOverlayButtonInterface;
 
     public secondaryOverlayButton:TerraOverlayButtonInterface;
 
-    private translationPrefix:string = 'terraFileInput';
+    private _translationPrefix:string = 'terraFileInput';
 
-    private primaryBrowserButtonCaption:string = '';
+    private _primaryBrowserButtonCaption:string = '';
 
-    private secondaryBrowserButtonCaption:string = '';
+    private _secondaryBrowserButtonCaption:string = '';
 
-    private selectedObject:TerraStorageObject;
+    private _selectedObject:TerraStorageObject;
 
-    private storageServices:Array<TerraBaseStorageService>;
+    private _storageServices:Array<TerraBaseStorageService>;
 
-    constructor(private translation:TranslationService)
+    constructor(private _translation:TranslationService)
     {
         super();
 
@@ -112,7 +112,7 @@ export class TerraFileChooserComponent extends TerraButtonComponent
             isDisabled:    true,
             clickFunction: ():void =>
                            {
-                               this.outputSelected.emit(this.selectedObject);
+                               this.outputSelected.emit(this._selectedObject);
                                this.overlay.hideOverlay();
                            }
         };
@@ -144,7 +144,7 @@ export class TerraFileChooserComponent extends TerraButtonComponent
         else
         {
             this.primaryOverlayButton.isDisabled = false;
-            this.selectedObject = selectedObject;
+            this._selectedObject = selectedObject;
         }
     }
 

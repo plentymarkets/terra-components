@@ -1,7 +1,6 @@
 import {
     Component,
     EventEmitter,
-    forwardRef,
     Input,
     Output
 } from '@angular/core';
@@ -13,13 +12,13 @@ import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum'
 import { noop } from 'rxjs';
 
 @Component({
-    selector:  'terra-toggle',
-    styles:    [require('./terra-toggle.component.scss')],
-    template:  require('./terra-toggle.component.html'),
-    providers: [
+    selector:    'terra-toggle',
+    styleUrls:   ['./terra-toggle.component.scss'],
+    templateUrl: './terra-toggle.component.html',
+    providers:   [
         {
             provide:     NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => TerraToggleComponent),
+            useExisting: TerraToggleComponent,
             multi:       true
         }
     ]
@@ -62,10 +61,10 @@ export class TerraToggleComponent implements ControlValueAccessor
     @Output()
     public toggled:EventEmitter<boolean> = new EventEmitter<boolean>();
 
-    protected isActive:boolean = false;
+    public _isActive:boolean = false;
 
-    private onTouchedCallback:() => void = noop;
-    private onChangeCallback:(_:any) => void = noop;
+    private _onTouchedCallback:() => void = noop;
+    private _onChangeCallback:(_:any) => void = noop;
 
     constructor()
     {
@@ -75,32 +74,32 @@ export class TerraToggleComponent implements ControlValueAccessor
     // From ControlValueAccessor interface
     public writeValue(value:boolean):void
     {
-        if(value !== this.isActive)
+        if(value !== this._isActive)
         {
-            this.isActive = value;
+            this._isActive = value;
         }
     }
 
     // From ControlValueAccessor interface
     public registerOnChange(fn:(_:any) => void):void
     {
-        this.onChangeCallback = fn;
+        this._onChangeCallback = fn;
     }
 
     // From ControlValueAccessor interface
     public registerOnTouched(fn:() => void):void
     {
-        this.onTouchedCallback = fn;
+        this._onTouchedCallback = fn;
     }
 
-    protected toggle():void
+    public _toggle():void
     {
         if(!this.inputIsDisabled)
         {
-            this.isActive = !this.isActive;
-            this.toggled.emit(this.isActive);
-            this.onChangeCallback(this.isActive);
-            if(this.isActive)
+            this._isActive = !this._isActive;
+            this.toggled.emit(this._isActive);
+            this._onChangeCallback(this._isActive);
+            if(this._isActive)
             {
                 this.activated.emit();
             }

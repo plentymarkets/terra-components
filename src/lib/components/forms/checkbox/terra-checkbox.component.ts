@@ -1,7 +1,6 @@
 import {
     Component,
     EventEmitter,
-    forwardRef,
     Input,
     Output
 } from '@angular/core';
@@ -16,12 +15,12 @@ let nextId:number = 0;
 
 @Component({
     selector:  'terra-checkbox',
-    styles:    [require('./terra-checkbox.component.scss')],
-    template:  require('./terra-checkbox.component.html'),
+    styleUrls: ['./terra-checkbox.component.scss'],
+    templateUrl: './terra-checkbox.component.html',
     providers: [
         {
             provide:     NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => TerraCheckboxComponent),
+            useExisting: TerraCheckboxComponent,
             multi:       true
         }
     ]
@@ -78,7 +77,7 @@ export class TerraCheckboxComponent implements ControlValueAccessor
      */
     public get value():boolean
     {
-        return this.innerValue;
+        return this._innerValue;
     }
 
     /**
@@ -90,7 +89,7 @@ export class TerraCheckboxComponent implements ControlValueAccessor
     {
         if(value)
         {
-            this.innerValue = null;
+            this._innerValue = null;
         }
         this._isIndeterminate = value;
     }
@@ -121,19 +120,19 @@ export class TerraCheckboxComponent implements ControlValueAccessor
     /**
      * @description a unique string identifier for the specific input instance.
      */
-    protected id:string;
+    public _id:string;
+    public _isIndeterminate:boolean = false;
 
     // The internal data model
-    private innerValue:boolean = false;
-    private _isIndeterminate:boolean = false;
+    public _innerValue:boolean = false;
 
-    private onTouchedCallback:() => void = noop;
-    private onChangeCallback:(value:any) => void = noop;
+    private _onTouchedCallback:() => void = noop;
+    private _onChangeCallback:(value:any) => void = noop;
 
     constructor()
     {
         // generate the id of the input instance
-        this.id = `checkbox_#${nextId++}`;
+        this._id = `checkbox_#${nextId++}`;
     }
 
     /**
@@ -143,31 +142,31 @@ export class TerraCheckboxComponent implements ControlValueAccessor
      */
     public onChange(value:boolean):void
     {
-        this.onChangeCallback(value);
-        this.updateIntermediateState(false);
+        this._onChangeCallback(value);
+        this._updateIntermediateState(false);
         this.valueChange.emit(value);
     }
 
     /**
      * Part of the implementation of the ControlValueAccessor interface
-     * @description Updates the innerValue of the checkbox based on the given value.
+     * @description Updates the _innerValue of the checkbox based on the given value.
      * @param value
      */
     public writeValue(value:boolean):void
     {
-        if(value !== this.innerValue)
+        if(value !== this._innerValue)
         {
             if(value === null || value === undefined)
             {
                 value = false;
             }
 
-            this.updateIntermediateState(false);
-            this.innerValue = value;
+            this._updateIntermediateState(false);
+            this._innerValue = value;
 
             if(this.notifyOnChanges)
             {
-                this.onChangeCallback(value);
+                this._onChangeCallback(value);
             }
         }
     }
@@ -179,7 +178,7 @@ export class TerraCheckboxComponent implements ControlValueAccessor
      */
     public registerOnChange(fn:(value:any) => void):void
     {
-        this.onChangeCallback = fn;
+        this._onChangeCallback = fn;
     }
 
     /**
@@ -189,10 +188,10 @@ export class TerraCheckboxComponent implements ControlValueAccessor
      */
     public registerOnTouched(fn:() => void):void
     {
-        this.onTouchedCallback = fn;
+        this._onTouchedCallback = fn;
     }
 
-    private updateIntermediateState(newState:boolean):void
+    private _updateIntermediateState(newState:boolean):void
     {
         this._isIndeterminate = newState;
         this.isIndeterminateChange.emit(this.isIndeterminate);

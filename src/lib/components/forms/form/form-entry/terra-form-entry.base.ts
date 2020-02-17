@@ -40,17 +40,17 @@ export class TerraFormEntryBase implements OnChanges, OnDestroy
     @Input()
     public inputIsDisabled:boolean = false;
 
-    @ViewChild(FormEntryContainerDirective)
-    protected container:FormEntryContainerDirective;
+    @ViewChild(FormEntryContainerDirective, { static: true })
+    protected _container:FormEntryContainerDirective;
 
-    protected componentFactory:ComponentFactory<any>;
-    protected componentRef:ComponentRef<any>;
-    protected get componentInstance():any
+    protected _componentFactory:ComponentFactory<any>;
+    protected _componentRef:ComponentRef<any>;
+    protected get _componentInstance():any
     {
-        return (!this.componentRef) ? null : this.componentRef.instance;
+        return (!this._componentRef) ? null : this._componentRef.instance;
     }
 
-    constructor(protected componentFactoryResolver:ComponentFactoryResolver)
+    constructor(protected _componentFactoryResolver:ComponentFactoryResolver)
     {}
 
     /**
@@ -60,7 +60,7 @@ export class TerraFormEntryBase implements OnChanges, OnDestroy
      */
     public ngOnChanges(changes:SimpleChanges):void
     {
-        this.bindInputProperties();
+        this._bindInputProperties();
     }
 
     /**
@@ -69,13 +69,13 @@ export class TerraFormEntryBase implements OnChanges, OnDestroy
      */
     public ngOnDestroy():void
     {
-        if(!isNullOrUndefined(this.componentRef))
+        if(!isNullOrUndefined(this._componentRef))
         {
-            this.componentRef.destroy();
+            this._componentRef.destroy();
         }
     }
 
-    protected getControlType(fallback:Type<any> = TerraTextInputComponent):Type<any>
+    protected _getControlType(fallback:Type<any> = TerraTextInputComponent):Type<any>
     {
         if(this.inputControlTypeMap.hasOwnProperty(this.inputFormField.type))
         {
@@ -92,18 +92,18 @@ export class TerraFormEntryBase implements OnChanges, OnDestroy
         return fallback;
     }
 
-    protected initComponent(defaultControlType:Type<any> = TerraTextInputComponent, projectableNodes?:Array<Array<any>>):void
+    protected _initComponent(defaultControlType:Type<any> = TerraTextInputComponent, projectableNodes?:Array<Array<any>>):void
     {
-        this.componentFactory = this.componentFactoryResolver.resolveComponentFactory(
-            this.getControlType(defaultControlType)
+        this._componentFactory = this._componentFactoryResolver.resolveComponentFactory(
+            this._getControlType(defaultControlType)
         );
-        this.componentRef = this.container.viewContainerRef.createComponent(this.componentFactory, undefined, undefined, projectableNodes);
-        this.bindInputProperties();
+        this._componentRef = this._container.viewContainerRef.createComponent(this._componentFactory, undefined, undefined, projectableNodes);
+        this._bindInputProperties();
     }
 
-    protected bindInputProperties():void
+    protected _bindInputProperties():void
     {
-        if(!isNullOrUndefined(this.componentInstance))
+        if(!isNullOrUndefined(this._componentInstance))
         {
             let inputMap:{ [key:string]:string } = {};
             if(!(this.inputControlTypeMap[this.inputFormField.type] instanceof Type))
@@ -115,49 +115,49 @@ export class TerraFormEntryBase implements OnChanges, OnDestroy
             {
                 Object.keys(this.inputFormField.options).forEach((optionKey:string) =>
                 {
-                    this.performInputBindings(inputMap, optionKey);
+                    this._performInputBindings(inputMap, optionKey);
                 });
             }
 
             if(inputMap.hasOwnProperty('isDisabled'))
             {
-                this.componentInstance[inputMap['isDisabled']] = this.inputIsDisabled;
+                this._componentInstance[inputMap['isDisabled']] = this.inputIsDisabled;
             }
             else
             {
-                this.componentInstance['inputIsDisabled'] = this.inputIsDisabled;
+                this._componentInstance['inputIsDisabled'] = this.inputIsDisabled;
             }
         }
     }
 
-    protected performInputBindings(inputMap:{ [key:string]:string }, optionKey:string):void
+    protected _performInputBindings(inputMap:{ [key:string]:string }, optionKey:string):void
     {
-        let inputPropertyNames:Array<string> = this.componentFactory
+        let inputPropertyNames:Array<string> = this._componentFactory
                                                    .inputs
                                                    .map((input:{ propName:string; templateName:string; }) => input.propName);
         if(inputMap.hasOwnProperty(optionKey) && inputPropertyNames.indexOf(inputMap[optionKey]) >= 0)
         {
-            this.componentInstance[inputMap[optionKey]] = this.inputFormField.options[optionKey];
+            this._componentInstance[inputMap[optionKey]] = this.inputFormField.options[optionKey];
         }
         else if(inputPropertyNames.indexOf(optionKey) >= 0)
         {
-            this.componentInstance[optionKey] = this.inputFormField.options[optionKey];
+            this._componentInstance[optionKey] = this.inputFormField.options[optionKey];
         }
         else
         {
-            let prefixedOptionKey:string = this.transformInputPropertyName(optionKey);
+            let prefixedOptionKey:string = this._transformInputPropertyName(optionKey);
             if(inputPropertyNames.indexOf(prefixedOptionKey) >= 0)
             {
-                this.componentInstance[prefixedOptionKey] = this.inputFormField.options[optionKey];
+                this._componentInstance[prefixedOptionKey] = this.inputFormField.options[optionKey];
             }
             else
             {
-                console.warn('Cannot assign property ' + optionKey + ' on ' + this.componentInstance.constructor.name);
+                console.warn('Cannot assign property ' + optionKey + ' on ' + this._componentInstance.constructor.name);
             }
         }
     }
 
-    private transformInputPropertyName(propertyName:string):string
+    private _transformInputPropertyName(propertyName:string):string
     {
         return 'input' + propertyName.charAt(0).toUpperCase() + propertyName.substr(1);
     }

@@ -20,7 +20,6 @@ import { RouterModule } from '@angular/router';
 import { TerraInteractModule } from './components/interactables/interact.module';
 import { QuillModule } from 'ngx-quill';
 import { CKEditorModule } from 'ckeditor4-angular';
-import { HttpModule } from '@angular/http';
 import {
     MatButtonModule,
     MatMenuModule,
@@ -29,12 +28,11 @@ import {
 import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
-    imports: [
+    imports:         [
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
         RouterModule,
-        HttpModule,
         LocalizationModule,
         AlertModule.forRoot(),
         ModalModule.forRoot(),

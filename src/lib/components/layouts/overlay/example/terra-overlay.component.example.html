@@ -1,41 +1,41 @@
 <terra-button inputCaption="Open overlay with no buttons"
-              (outputClicked)="openOverlayWithoutButtons()">
+              (outputClicked)="_openOverlayWithoutButtons()">
 </terra-button>
 <terra-button inputCaption="Open overlay with primary button"
-              (outputClicked)="openOverlayWithPrimaryButton()">
+              (outputClicked)="_openOverlayWithPrimaryButton()">
 </terra-button>
 <terra-button inputCaption="Open overlay with secondary button"
-              (outputClicked)="openOverlayWithSecondaryButton()">
+              (outputClicked)="_openOverlayWithSecondaryButton()">
 </terra-button>
 <terra-button inputCaption="Open static overlay with primary and secondary button"
-              (outputClicked)="openOverlayStatic()">
+              (outputClicked)="_openOverlayStatic()">
 </terra-button>
 
 
 <terra-overlay #viewChildOverlayWithoutButtons
                inputOverlayTitle="Showcase overlay with no buttons"
                [inputIsSmall]="true">
-    <p>{{exampleText}}</p>
+    <p>{{_exampleText}}</p>
 </terra-overlay>
 
 <terra-overlay #viewChildOverlayWithPrimaryButton
                inputOverlayTitle="Showcase overlay with primary button (large)"
                [inputIsLarge]="true"
-               [inputPrimaryButtonInterface]="primaryButtonInterface">
-    <p>{{exampleText}}</p>
+               [inputPrimaryButtonInterface]="_primaryButtonInterface">
+    <p>{{_exampleText}}</p>
 </terra-overlay>
 
 <terra-overlay #viewChildOverlayWithSecondaryButton
                inputOverlayTitle="Showcase overlay with secondary button (small)"
                [inputIsSmall]="true"
-               [inputSecondaryButtonInterface]="secondaryButtonInterface">
-    <p>{{exampleText}}</p>
+               [inputSecondaryButtonInterface]="_secondaryButtonInterface">
+    <p>{{_exampleText}}</p>
 </terra-overlay>
 
 <terra-overlay #viewChildOverlayStatic
                inputOverlayTitle="Showcase static overlay with primary and secondary button"
-               [inputPrimaryButtonInterface]="staticPrimaryButtonInterface"
-               [inputSecondaryButtonInterface]="staticSecondaryButtonInterface"
+               [inputPrimaryButtonInterface]="_staticPrimaryButtonInterface"
+               [inputSecondaryButtonInterface]="_staticSecondaryButtonInterface"
                [inputIsStatic]="true">
-    <p>{{exampleText}}</p>
+    <p>{{_exampleText}}</p>
 </terra-overlay>

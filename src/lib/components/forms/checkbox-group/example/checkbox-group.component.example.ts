@@ -2,17 +2,17 @@ import { Component } from '@angular/core';
 
 @Component({
     selector: 'tc-checkbox-group-example',
-    template: require('./checkbox-group.component.example.html'),
-    styles: [require('./checkbox-group.component.example.scss')]
+    templateUrl: './checkbox-group.component.example.html',
+    styleUrls: [ './checkbox-group.component.example.scss']
 })
 export class CheckboxGroupComponentExample
 {
-    protected values:Array<any> = [42];
-    protected values2:Array<any> = [];
+    public _values:Array<any> = [42];
+    public _values2:Array<any> = [];
 
-    protected isDisabled:boolean = false;
+    public _isDisabled:boolean = false;
 
-    protected checkboxes:Array<{caption:string, value:any}> = [
+    public _checkboxes:Array<{caption:string, value:any}> = [
         {
             caption: 'Checkbox A',
             value: 42

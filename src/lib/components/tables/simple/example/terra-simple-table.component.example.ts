@@ -13,24 +13,24 @@ import { TerraButtonInterface } from '../../../buttons/button/data/terra-button.
 
 @Component({
     selector: 'terra-simple-table-example',
-    template: require('./terra-simple-table.component.example.html'),
-    styles:   [require('./terra-simple-table.component.example.scss')],
+    templateUrl: './terra-simple-table.component.example.html',
+    styleUrls: [ './terra-simple-table.component.example.scss'],
 })
 export class TerraSimpleTableComponentExample implements OnInit
 {
-    @ViewChild('table')
+    @ViewChild('table', { static: true })
     public table:TerraSimpleTableComponent<any>;
 
-    protected selectedRows:Array<TerraSimpleTableHeaderCellInterface>;
+    public _selectedRows:Array<TerraSimpleTableHeaderCellInterface>;
 
-    private viewContainerRef:ViewContainerRef;
+    private _viewContainerRef:ViewContainerRef;
     private _headerList:Array<TerraSimpleTableHeaderCellInterface> = [];
     private _rowList:Array<TerraSimpleTableRowInterface<any>> = [];
 
-    public constructor(viewContainerRef:ViewContainerRef)
+    constructor(viewContainerRef:ViewContainerRef)
     {
         // You need this small hack in order to catch application root view container ref
-        this.viewContainerRef = viewContainerRef;
+        this._viewContainerRef = viewContainerRef;
     }
 
     public ngOnInit():void

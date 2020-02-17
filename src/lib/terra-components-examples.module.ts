@@ -11,7 +11,7 @@ import {
 import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
-    imports:         [
+    imports: [
         CommonModule,
         FormsModule,
         CKEditorModule,

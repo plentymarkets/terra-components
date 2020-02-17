@@ -12,11 +12,14 @@ import { ResizeOptions } from './resizeOptions.interface';
 import { InertiaOptions } from './inertiaOptions.interface';
 import { RestrictOptions } from './restrictOptions.interface';
 import { GridOptions } from './gridOptions.interface';
+import * as interact_ from 'interactjs';
 import {
     Interactable,
-    InteractEvent
+    InteractEvent,
+    InteractStatic
 } from 'interactjs';
-import interact = require('interactjs');
+
+const interact:InteractStatic = interact_;
 
 @Directive({
     selector: '[terraResizable]'
@@ -117,11 +120,11 @@ export class TerraResizableDirective implements OnInit, OnChanges
     public onEnd:EventEmitter<InteractEvent> = new EventEmitter<InteractEvent>();
     /* tslint:enable:no-output-on-prefix no-input-rename no-output-rename */
 
-    private interactable:Interactable;
+    private _interactable:Interactable;
 
-    constructor(private el:ElementRef)
+    constructor(private _el:ElementRef)
     {
-        this.init();
+        this._init();
     }
 
     public ngOnInit():void
@@ -148,14 +151,14 @@ export class TerraResizableDirective implements OnInit, OnChanges
         {
             if(typeof changes[changedProperty].currentValue === 'object')
             {
-                this.prepareImmutableInput(changedProperty);
+                this._prepareImmutableInput(changedProperty);
             }
         });
 
-        this.init();
+        this._init();
     }
 
-    private prepareImmutableInput(input:string):void
+    private _prepareImmutableInput(input:string):void
     {
         if(this[input] && typeof this[input] === 'object')
         {
@@ -191,7 +194,7 @@ export class TerraResizableDirective implements OnInit, OnChanges
                               set:          (value:any):void =>
                                             {
                                                 this[input]['_' + property] = value;
-                                                this.init();
+                                                this._init();
                                             }
                           }
                       );
@@ -200,7 +203,7 @@ export class TerraResizableDirective implements OnInit, OnChanges
         }
     }
 
-    private init():void
+    private _init():void
     {
         let resizableConfig:any = {
             edges:               this.options.edges,
@@ -232,7 +235,7 @@ export class TerraResizableDirective implements OnInit, OnChanges
                 targets:        [
                     (x:number, y:number):{ x:number, y:number, range:number } =>
                     {
-                        return this.handleSnap(x, y);
+                        return this._handleSnap(x, y);
                     }
                 ],
                 endOnly:        this.grid && this.grid.endOnly,
@@ -245,15 +248,15 @@ export class TerraResizableDirective implements OnInit, OnChanges
             resizableConfig.restrict = this.restrict;
         }
 
-        if(!this.interactable)
+        if(!this._interactable)
         {
-            this.interactable = interact(this.el.nativeElement);
+            this._interactable = interact(this._el.nativeElement);
         }
 
-        this.interactable.resizable(resizableConfig);
+        this._interactable.resizable(resizableConfig);
     }
 
-    private handleSnap(x:number, y:number):{ x:number, y:number, range:number }
+    private _handleSnap(x:number, y:number):{ x:number, y:number, range:number }
     {
         if(this.grid)
         {
