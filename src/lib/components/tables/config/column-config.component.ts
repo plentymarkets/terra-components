@@ -1,9 +1,7 @@
 import {
     ChangeDetectionStrategy,
     Component,
-    EventEmitter,
-    Input,
-    Output,
+    EventEmitter
 } from '@angular/core';
 import {
     CdkDragDrop,
@@ -13,8 +11,8 @@ import { ColumnConfigInterface } from './data/column-config.interface';
 
 @Component({
     selector:        'tc-column-config',
-    template:        './column-config.component.html',
-    styles:          ['./column-config.component.scss'],
+    templateUrl:        './column-config.component.html',
+    styleUrls:          ['./column-config.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ColumnConfigComponent
