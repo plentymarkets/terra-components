@@ -2,8 +2,11 @@ export * from './service';
 export * from './http-interceptors';
 export * from './helpers';
 export * from './models';
-export * from './components/editors/ck-editor/presets';
 export * from './utils';
+
+// editor presets
+export * from './components/editors/ck-editor/presets'; // ck
+export * from './components/editors/quill/presets'; // quill
 
 export { TerraComponentsModule } from './terra-components.module';
 export { TerraComponentsExamplesModule } from './terra-components-examples.module';
