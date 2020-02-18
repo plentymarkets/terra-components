@@ -36,7 +36,7 @@ export class TerraDynamicComponentLoaderComponent implements AfterViewInit, OnDe
     {
         if(changes['inputComponent'])
         {
-            this.ngOnDestroy();
+            this._destroyCmpRef();
             this._updateComponent();
         }
     }
@@ -48,10 +48,7 @@ export class TerraDynamicComponentLoaderComponent implements AfterViewInit, OnDe
 
     public ngOnDestroy():void
     {
-        if(this._cmpRef)
-        {
-            this._cmpRef.destroy();
-        }
+        this._destroyCmpRef();
     }
 
     private _updateComponent():void
@@ -64,6 +61,14 @@ export class TerraDynamicComponentLoaderComponent implements AfterViewInit, OnDe
             viewContainerRef.clear();
 
             this._cmpRef = viewContainerRef.createComponent(componentFactory);
+        }
+    }
+
+    private _destroyCmpRef():void
+    {
+        if(this._cmpRef)
+        {
+            this._cmpRef.destroy();
         }
     }
 }
