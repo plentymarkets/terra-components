@@ -1,5 +1,5 @@
 <a name="5.0.0"></a>
-# 5.0.0 (Unreleased)
+# 5.0.0 (20.02.2020)
 
 ### Breaking Changes
 * **build** Terra-Components is now fully AOT compatible. 
