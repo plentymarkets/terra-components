@@ -1,5 +1,5 @@
 <a name="5.0.0"></a>
-# 5.0.0 (Unreleased)
+# 5.0.0 (20.02.2020)
 
 ### Breaking Changes
 * **build** Terra-Components is now fully AOT compatible. 
@@ -26,6 +26,7 @@ Terra-Components now complies with the angular package format and code autocompl
 
 ### Fix
 * **terra-base-editor** removed unnecessary quill style import
+* **terra-file-browser** Fixed deleting directories, sent only directories without children.
 * **material-tabs** fixed min-width of tabs
 * **material-forms** removed custom paddings to avoid problems in compact-theme
 * **terra-form**
@@ -34,12 +35,15 @@ Terra-Components now complies with the angular package format and code autocompl
 * **terra-file-browser** resolved circular dependency between _terra-file-browser.component.ts_ and _file-list.component.ts_.
 * **material-tabs** fixed hiding the mat-ink-bar in mat-tabs
 * **terra-file-browser** changed parameter of delete method in TerraFrontendStorageService
+* **utils** fixed encoding of http params. Implemented a custom encoder.
 
 <a name="4.9.0"></a>
 # 4.9.0 (29.01.2020)
 
 ### Features
 * **terra-syntax-editor** is now deprecated. Use [ckEditor](https://github.com/ckeditor/ckeditor4-angular) instead.
+* **icon** new icon 'content_item'.
+* **icon** new icon 'content_itemset'.
 
 <a name="4.8.2"></a>
 # 4.8.2 (08.01.2020)
