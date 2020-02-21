@@ -49,5 +49,4 @@ export function initL10n(l10nLoader:L10nLoader):Function
     bootstrap:    [AppComponent]
 })
 export class AppModule
-{
-}
+{}
