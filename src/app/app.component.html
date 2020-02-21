@@ -1,18 +1,1 @@
-<!--<tc-showcase></tc-showcase>-->
-<ol>
-    <li>
-        <mat-form-field>
-            <input matInput [(ngModel)]="name" placeholder="Wrong styling in here.">
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>Correct styling in here</mat-label>
-            <input matInput [(ngModel)]="name">
-        </mat-form-field>
-    </li>
-    <li>
-        <button mat-raised-button (click)="openDialog()">Pick one</button>
-    </li>
-    <li *ngIf="animal">
-        You chose: <i>{{animal}}</i>
-    </li>
-</ol>
+<tc-showcase></tc-showcase>
