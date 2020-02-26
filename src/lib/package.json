@@ -64,8 +64,7 @@
 				"ngx-quill": "ngx-quill",
 				"ckeditor4-angular": "ckeditor4-angular",
 				"angular-l10n": "ng.l10n",
-				"util": "util",
-				"flatted": "Flatted"
+				"util": "util"
 			}
 		},
 		"dest": "../../dist"
