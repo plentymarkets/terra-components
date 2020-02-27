@@ -108,11 +108,11 @@ export class CheckboxGroupComponent implements ControlValueAccessor
             {
                 let apos:number = this._multiCheckboxValues.findIndex((checkbox:TerraMultiCheckBoxValueInterface) =>
                 {
-                     return checkbox.value == a;
+                     return checkbox.value === a;
                 });
                 let bpos:number = this._multiCheckboxValues.findIndex((checkbox:TerraMultiCheckBoxValueInterface) =>
                 {
-                    return checkbox.value == b;
+                    return checkbox.value === b;
                 });
 
                 return apos < bpos ?  -1  : 1;
