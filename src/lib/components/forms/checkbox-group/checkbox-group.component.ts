@@ -115,7 +115,7 @@ export class CheckboxGroupComponent implements ControlValueAccessor
                     return checkbox.value === b;
                 });
 
-                return apos < bpos ?  -1  : 1;
+                return apos - bpos;
             });
         }
 
