@@ -17,7 +17,7 @@ mat-dialog-container.mat-dialog-container
     .mat-dialog-content
     {
         margin: 0;
-        padding: var(--space-lg) var(--space-lg);
+        padding: calc(var(--space-lg) + var(--space-md)) var(--space-lg);
         background-color: var(--modal-body-background-color,var(--color-structure-2));
     }
     
@@ -32,6 +32,7 @@ mat-dialog-container.mat-dialog-container
         align-items: center;
         -webkit-box-pack: end;
         justify-content: flex-end;
+        min-height: 0;
     }
 }
 
