@@ -1,8 +1,10 @@
-<a name="5.0.1"></a>
-# 5.0.1 (xx.xx.2020)
+<a name="5.1.0"></a>
+# 5.1.0 (xx.xx.2020)
 
 ### Fix
 * **matInput** fixed placeholder styling.
+
+### Features
 * **checkbox-group** Checkbox values are no longer appended every time checkboxes are selected. The sorting is preserved instead. 
 
 <a name="5.0.0"></a>
