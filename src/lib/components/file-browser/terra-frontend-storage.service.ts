@@ -148,7 +148,7 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
     public deleteFiles(keyList:Array<string>):Observable<void>
     {
         return this.http.delete<void>('/rest/storage/frontend/files', {
-            params: createHttpParams(keyList, true)
+            params: createHttpParams({keyList: keyList}, true)
         }).pipe(
             tap(() =>
                 {
