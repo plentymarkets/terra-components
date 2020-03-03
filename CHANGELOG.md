@@ -1,5 +1,5 @@
-<a name="5.0.1"></a>
-# 5.0.1 (xx.xx.2020)
+<a name="5.1.0"></a>
+# 5.1.0 (xx.xx.2020)
 
 ### Feature
 * **mat-dialog** styles for the [angular material dialog](https://v8.material.angular.io/components/dialog/overview).
