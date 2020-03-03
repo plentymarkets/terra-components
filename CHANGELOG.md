@@ -3,7 +3,7 @@
 
 ### Fix
 * **matInput** fixed placeholder styling.
-
+* **checkbox-group** Checkbox values are no longer appended every time checkboxes are selected. The sorting is preserved instead. 
 
 <a name="5.0.0"></a>
 # 5.0.0 (20.02.2020)
