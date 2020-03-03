@@ -1,5 +1,8 @@
-<a name="5.0.1"></a>
-# 5.0.1 (xx.xx.2020)
+<a name="5.1.0"></a>
+# 5.1.0 (xx.xx.2020)
+
+### Feature
+* **peerDependencies** removed `flatted` since we no longer depend on it.
 
 ### Fix
 * **matInput** fixed placeholder styling.
