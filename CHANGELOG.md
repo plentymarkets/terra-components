@@ -28,6 +28,7 @@ Terra-Components now complies with the angular package format and code autocompl
 * **mat-date-picker** styles for the [angular material datepicker](https://material.angular.io/components/datepicker/overview).
 * **matInput** updated styles to match `mat-date-picker`, `mat-select` and `matInput` appearance.
 * **mat-slide-toggle** styles for the [angular material slide toggle](https://material.angular.io/components/slide-toggle/overview).
+* **mat-dialog** styles for the [angular material dialog](https://v8.material.angular.io/components/dialog/overview).
 * **terra-form** Added input `width` that sets the default width of any form element inside the form.
 * **terra-button-with-options** Added output property `optionsToggled` emitting current toggle state after options are toggled.
 * **tippy.js** Updated `tippy.js` to version 5.1.4.
