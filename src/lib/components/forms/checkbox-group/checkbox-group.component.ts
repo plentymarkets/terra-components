@@ -102,6 +102,22 @@ export class CheckboxGroupComponent implements ControlValueAccessor
         {
             this._values = null;
         }
+        else
+        {
+            this._values.sort((a:any, b:any):number =>
+            {
+                let apos:number = this._multiCheckboxValues.findIndex((checkbox:TerraMultiCheckBoxValueInterface) =>
+                {
+                     return checkbox.value === a;
+                });
+                let bpos:number = this._multiCheckboxValues.findIndex((checkbox:TerraMultiCheckBoxValueInterface) =>
+                {
+                    return checkbox.value === b;
+                });
+
+                return apos - bpos;
+            });
+        }
 
         this._onChangeCallback(this._values);
         this._updateMultiCheckboxValues();

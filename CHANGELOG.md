@@ -1,14 +1,14 @@
 <a name="5.1.0"></a>
 # 5.1.0 (xx.xx.2020)
 
-### Feature
+### Features
 * **peerDependencies** removed `flatted` since we no longer depend on it.
 * **mat-dialog** styles for the [angular material dialog](https://v8.material.angular.io/components/dialog/overview).
+* **checkbox-group** Checkbox values are no longer appended every time checkboxes are selected. The sorting is preserved instead. 
 
-### Fix
+### Bug Fixes
 * **matInput** fixed placeholder styling.
 * **terra-portlet** using `border-bottom` on `portlet-head` when unfolded instead of `border-top` on `portlet-body`.
-
 
 <a name="5.0.0"></a>
 # 5.0.0 (20.02.2020)
