@@ -1,11 +1,14 @@
 <a name="5.1.0"></a>
 # 5.1.0 (xx.xx.2020)
 
-### Fix
-* **matInput** fixed placeholder styling.
-
 ### Features
+* **peerDependencies** removed `flatted` since we no longer depend on it.
+* **mat-dialog** styles for the [angular material dialog](https://v8.material.angular.io/components/dialog/overview).
 * **checkbox-group** Checkbox values are no longer appended every time checkboxes are selected. The sorting is preserved instead. 
+
+### Bug Fixes
+* **matInput** fixed placeholder styling.
+* **terra-portlet** using `border-bottom` on `portlet-head` when unfolded instead of `border-top` on `portlet-body`.
 
 <a name="5.0.0"></a>
 # 5.0.0 (20.02.2020)
@@ -28,7 +31,6 @@ Terra-Components now complies with the angular package format and code autocompl
 * **mat-date-picker** styles for the [angular material datepicker](https://material.angular.io/components/datepicker/overview).
 * **matInput** updated styles to match `mat-date-picker`, `mat-select` and `matInput` appearance.
 * **mat-slide-toggle** styles for the [angular material slide toggle](https://material.angular.io/components/slide-toggle/overview).
-* **mat-dialog** styles for the [angular material dialog](https://v8.material.angular.io/components/dialog/overview).
 * **terra-form** Added input `width` that sets the default width of any form element inside the form.
 * **terra-button-with-options** Added output property `optionsToggled` emitting current toggle state after options are toggled.
 * **tippy.js** Updated `tippy.js` to version 5.1.4.
