@@ -9,6 +9,7 @@
 ### Bug Fixes
 * **matInput** fixed placeholder styling.
 * **terra-portlet** using `border-bottom` on `portlet-head` when unfolded instead of `border-top` on `portlet-body`.
+* **security-vulnerability** dependency package `acorn
 
 <a name="5.0.0"></a>
 # 5.0.0 (20.02.2020)
