@@ -131,7 +131,7 @@ export class TooltipDirective implements OnDestroy, OnChanges
         {
             if(this.tooltipEl)
             {
-                this.tooltipEl.set({
+                this.tooltipEl.setProps({
                     placement: this._placement as Placement
                 });
             }

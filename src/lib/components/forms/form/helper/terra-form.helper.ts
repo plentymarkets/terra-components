@@ -225,6 +225,41 @@ export class TerraFormHelper
     }
 
     /**
+     * @description sanitise a string containing css-classes. Check whether it contains only valid bootstrap grid classes.
+     * @param width
+     */
+    public static sanitiseWidth(width:string):string
+    {
+        if(isNullOrUndefined(width))
+        {
+            return width;
+        }
+
+        let widths:Array<string> = width.split(' ');
+
+        return widths.filter((widthClass:string) =>
+        {
+            let startsWithCol:boolean = widthClass.startsWith('col-');
+
+            let widthClassSplitted:Array<string> = widthClass.split('-');
+
+            let lastSplittedPart:string = widthClassSplitted[widthClassSplitted.length - 1];
+
+            let endsWithNumber:boolean = false;
+
+            if(!isNaN(+lastSplittedPart))
+            {
+                if(+lastSplittedPart >= 0 && +lastSplittedPart < 13)
+                {
+                    endsWithNumber = true;
+                }
+            }
+
+            return startsWithCol && endsWithNumber && endsWithNumber;
+        }).join(' ');
+    }
+
+    /**
      * @description Fits the given list of controls into the range of the given formField by adding/removing controls.
      * @param formField
      * @param controls

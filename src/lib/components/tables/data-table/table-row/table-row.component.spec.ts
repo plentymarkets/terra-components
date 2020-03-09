@@ -10,10 +10,10 @@ import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { TerraDataTableRowInterface } from '../interfaces/terra-data-table-row.interface';
 import { DebugElement } from '@angular/core';
-import Spy = jasmine.Spy;
 import { TooltipDirective } from '../../../tooltip/tooltip.directive';
 import { Router } from '@angular/router';
 import { MockRouter } from '../../../../testing/mock-router';
+import Spy = jasmine.Spy;
 
 export const dataTableStub:Partial<TerraDataTableComponent<any, any>> =
     {

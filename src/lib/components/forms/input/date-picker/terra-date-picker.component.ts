@@ -23,6 +23,7 @@ let nextId:number = 0;
 
 /**
  * @author mfrank
+ * @deprecated since v5. Use {@link https://material.angular.io/components/datepicker/overview} instead.
  */
 @Component({
     selector:    'terra-date-picker',
@@ -74,7 +75,7 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
     @Input()
     public inputDisplayDateFormat:string;
 
-    @ViewChild('viewChildMyDatePicker') public viewChildMyDatePicker:MyDatePicker;
+    @ViewChild('viewChildMyDatePicker', { static: true }) public viewChildMyDatePicker:MyDatePicker;
 
     /**
      * @description a unique string identifier for the specific input instance.

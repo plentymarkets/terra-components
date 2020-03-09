@@ -2,7 +2,6 @@ import {
     DebugElement,
     ElementRef
 } from '@angular/core';
-import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import {
@@ -20,10 +19,10 @@ import { By } from '@angular/platform-browser';
 import { TerraLabelTooltipDirective } from '../../../helpers/terra-label-tooltip.directive';
 import { TerraSuggestionBoxValueInterface } from './data/terra-suggestion-box.interface';
 import { TerraTextInputComponent } from '../input/text-input/terra-text-input.component';
-import Spy = jasmine.Spy;
 import { TooltipDirective } from '../../tooltip/tooltip.directive';
 import { Router } from '@angular/router';
 import { MockRouter } from '../../../testing/mock-router';
+import Spy = jasmine.Spy;
 
 describe('TerraSuggestionBoxComponent', () =>
 {
@@ -45,7 +44,6 @@ describe('TerraSuggestionBoxComponent', () =>
             ],
             imports:      [
                 FormsModule,
-                HttpModule,
                 HttpClientModule,
                 LocalizationModule.forRoot(l10nConfig)
             ],

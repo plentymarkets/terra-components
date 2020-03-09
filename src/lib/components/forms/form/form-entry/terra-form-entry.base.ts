@@ -40,7 +40,7 @@ export class TerraFormEntryBase implements OnChanges, OnDestroy
     @Input()
     public inputIsDisabled:boolean = false;
 
-    @ViewChild(FormEntryContainerDirective)
+    @ViewChild(FormEntryContainerDirective, { static: true })
     protected _container:FormEntryContainerDirective;
 
     protected _componentFactory:ComponentFactory<any>;

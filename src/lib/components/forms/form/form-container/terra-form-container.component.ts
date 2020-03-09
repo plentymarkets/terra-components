@@ -12,7 +12,10 @@ import {
     isString
 } from 'util';
 import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
-import { TerraKeyValuePairInterface } from '../../../../models';
+import {
+    TerraKeyValueInterface,
+    TerraKeyValuePairInterface
+} from '../../../../models';
 import {
     AbstractControl,
     ControlValueAccessor,
@@ -21,6 +24,7 @@ import {
 } from '@angular/forms';
 import { noop } from 'rxjs';
 import { TerraFormTypeInterface } from '../model/terra-form-type.interface';
+import { TerraFormHelper } from '../helper/terra-form.helper';
 
 @Component({
     selector:  'terra-form-container',
@@ -43,7 +47,7 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
     public inputControlTypeMap:{ [key:string]:Type<any> | TerraFormTypeInterface } = {};
 
     @Input()
-    public set inputFormFields(fields:{ [key:string]:TerraFormFieldInterface })
+    public set inputFormFields(fields:TerraKeyValueInterface<TerraFormFieldInterface>)
     {
         this._formFields = Object.keys(fields).map((key:string) =>
         {
@@ -55,6 +59,10 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
 
         this._updateFieldVisibility();
     }
+
+    /** @description Set width of terra-form-container. Sets width of all form elements that don't overwrite it. Default col-12. */
+    @Input()
+    public width:string = 'col-12';
 
     /**
      * @description If true, the button will be disabled. Default false.
@@ -68,10 +76,14 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
         this._formGroup = formGroup;
     }
 
+    /** @description Indicate whether this container should be displayed horizontally. */
+    @Input()
+    public horizontal:boolean = false;
+
     public _formGroup:FormGroup;
 
     public _formFields:Array<TerraKeyValuePairInterface<TerraFormFieldInterface>> = [];
-    public _formFieldVisibility:{ [key:string]:boolean } = {};
+    public _formFieldVisibility:TerraKeyValueInterface<boolean> = {};
 
     private _onChangeCallback:(value:any) => void = noop;
     private _onTouchedCallback:() => void = noop;
@@ -141,16 +153,21 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
         {
             if(this._formFieldVisibility[fieldKey])
             {
-                if(control.disabled)
+                if(!control.validator)
                 {
-                    control.enable({onlySelf:true});
+                    const formField:TerraKeyValuePairInterface<TerraFormFieldInterface> = this._formFields.find(
+                        (field:TerraKeyValuePairInterface<TerraFormFieldInterface>) => field.key === fieldKey
+                    );
+                    control.setValidators(TerraFormHelper.generateValidators(formField.value));
                 }
             }
             else
             {
-                if(control.enabled)
+                if(control.validator)
                 {
-                    control.disable({onlySelf:true});
+                    control.clearValidators();
+                    // update the control's validity when the current change detection cycle is over
+                    setTimeout(() => control.updateValueAndValidity());
                 }
             }
         }
