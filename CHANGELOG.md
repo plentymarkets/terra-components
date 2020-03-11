@@ -1,5 +1,5 @@
 <a name="5.1.0"></a>
-# 5.1.0 (xx.xx.2020)
+# 5.1.0 (11.03.2020)
 
 ### Features
 * **peerDependencies** removed `flatted` since we no longer depend on it.
