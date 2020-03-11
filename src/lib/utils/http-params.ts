@@ -2,9 +2,14 @@ import { HttpParams } from '@angular/common/http';
 import { Params } from '@angular/router';
 import {
     isArray,
+    isDate,
     isNullOrUndefined
 } from 'util';
 import { httpParamEncoder } from './http-param-encoder';
+import { isMoment } from 'moment';
+
+import * as _moment from 'moment';
+const moment:Function = _moment;
 
 /**
  * Creates an instance of HttpParams filled with given #params
@@ -27,9 +32,10 @@ export function createHttpParams(params:Params, arrayAsArray:boolean = false):Ht
         {
             if(arrayAsArray && isArray(params[key]))
             {
-                (params[key] as Array<any>).forEach((arrayItem:any) =>
+                (params[key] as Array<unknown>).forEach((arrayItem:unknown) =>
                 {
-                    searchParams = searchParams.append(key + '[]', arrayItem.toString());
+                    const value:string = getStringValue(arrayItem);
+                    searchParams = searchParams.append(key + '[]', value);
                 });
             }
             else
@@ -39,4 +45,17 @@ export function createHttpParams(params:Params, arrayAsArray:boolean = false):Ht
         }
     });
     return searchParams;
+}
+
+function getStringValue(value:unknown):string
+{
+    if(isDate(value))
+    {
+        return moment(value).toISOString(true);
+    }
+    if(isMoment(value))
+    {
+        return value.toISOString(true);
+    }
+    return value.toString();
 }
