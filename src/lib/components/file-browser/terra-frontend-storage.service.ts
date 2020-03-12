@@ -1,13 +1,11 @@
 import { Injectable } from '@angular/core';
 import { TerraUploadItem } from './model/terra-upload-item';
 import { TerraUploadQueue } from './model/terra-upload-queue';
-import { Http } from '@angular/http';
 import { TerraStorageObjectList } from './model/terra-storage-object-list';
 import { createS3StorageObject } from './model/s3-storage-object.interface';
 import { TerraImageMetadata } from './model/terra-image-metadata.interface';
 import { TranslationService } from 'angular-l10n';
 import { isNullOrUndefined } from 'util';
-import { TerraLoadingSpinnerService } from '../loading-spinner/service/terra-loading-spinner.service';
 import { TerraBaseMetadataStorageService } from './terra-base-metadata-storage.interface';
 import { tap } from 'rxjs/operators';
 import {
@@ -16,6 +14,8 @@ import {
     Observable
 } from 'rxjs';
 import { AlertService } from '../alert/alert.service';
+import { HttpClient } from '@angular/common/http';
+import { createHttpParams } from '../../utils';
 
 @Injectable({
     providedIn: 'root'
@@ -28,13 +28,15 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
 
     public queue:TerraUploadQueue = new TerraUploadQueue('/rest/storage/frontend/file');
 
-    private storageInitialized:boolean = false;
+    private readonly url:string = '/rest/storage/frontend/file';
 
-    private storageListSubject:BehaviorSubject<TerraStorageObjectList> = new BehaviorSubject(null);
+    private _storageInitialized:boolean = false;
+
+    private _storageListSubject:BehaviorSubject<TerraStorageObjectList> = new BehaviorSubject(null);
 
     private get _storageList():TerraStorageObjectList
     {
-        return this.storageListSubject.getValue();
+        return this._storageListSubject.getValue();
     }
 
     public get uploadProgress():Observable<number>
@@ -42,25 +44,24 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
         return this.queue.progress;
     }
 
-    private metadataCache:{ [storageKey:string]:TerraImageMetadata } = {};
+    private _metadataCache:{ [storageKey:string]:TerraImageMetadata } = {};
 
-    constructor(terraLoadingSpinnerService:TerraLoadingSpinnerService,
-                http:Http,
-                private translation:TranslationService,
-                private alertService:AlertService)
+    constructor(private http:HttpClient,
+                private _translation:TranslationService,
+                private _alertService:AlertService)
     {
-        super(terraLoadingSpinnerService, http, '/rest/storage/frontend/file');
-        this.name = translation.translate('terraFileBrowser.myFiles');
+        super();
+        this.name = _translation.translate('terraFileBrowser.myFiles');
     }
 
     public getStorageList():Observable<TerraStorageObjectList>
     {
-        if(!this.storageInitialized)
+        if(!this._storageInitialized)
         {
-            this.initStorageList();
+            this._initStorageList();
         }
 
-        return this.storageListSubject;
+        return this._storageListSubject;
     }
 
     public createDirectory(path:string):Observable<void>
@@ -77,21 +78,14 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
 
         path = this.prepareKey(path);
 
-        this.setAuthorization();
-        return this.mapRequest(
-            this.http.post(
-                this.url + '?key=' + path,
-                null,
-                {
-                    headers: this.headers
-                }
-            )
-        ).pipe(tap(() =>
-        {
-            this.storageListSubject.next(
-                this._storageList.insertObject(createS3StorageObject(path))
-            );
-        }));
+        return this.http.post<void>(this.url + '?key=' + path, null).pipe(
+            tap(() =>
+            {
+                this._storageListSubject.next(
+                    this._storageList.insertObject(createS3StorageObject(path))
+                );
+            })
+        );
     }
 
     public uploadFiles(files:FileList | Array<File>, path:string = '/'):Array<TerraUploadItem>
@@ -106,7 +100,7 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
         /* tslint:disable:prefer-for-of */
         for(let i:number = 0; i < files.length; i++)
         {
-            uploadItems.push(this.uploadFile(files[i], path));
+            uploadItems.push(this._uploadFile(files[i], path));
         }
         /* tslint:enable:prefer-for-of */
 
@@ -115,79 +109,62 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
 
     public getMetadata(key:string):Observable<TerraImageMetadata>
     {
-        if(this.metadataCache.hasOwnProperty(key))
+        if(this._metadataCache.hasOwnProperty(key))
         {
-            return from([this.metadataCache[key]]);
+            return from([this._metadataCache[key]]);
         }
 
-        this.setAuthorization();
-        return this.mapRequest(
-            this.http.get(
-                this.url + '/metadata?key=' + key,
+        return this.http.get(this.url + '/metadata?key=' + key).pipe(
+            tap((metadata:any) =>
                 {
-                    headers: this.headers
+                    this._metadataCache[key] = metadata;
+                },
+                () =>
+                {
+                    delete this._metadataCache[key];
                 }
             )
-        ).pipe(tap((metadata:any) =>
-            {
-                this.metadataCache[key] = metadata;
-            },
-            () =>
-            {
-                delete this.metadataCache[key];
-            }
-        ));
+        );
     }
 
     public updateMetadata(key:string, metadata:TerraImageMetadata):Observable<any>
     {
-        this.setAuthorization();
-        return this.mapRequest(
-            this.http.post(
-                this.url + '/metadata',
+        return this.http.post(this.url + '/metadata', {
+            key:      key,
+            metadata: metadata
+        }).pipe(
+            tap(() =>
                 {
-                    key:      key,
-                    metadata: metadata
+                    this._metadataCache[key] = metadata;
                 },
+                () =>
                 {
-                    headers: this.headers
+                    delete this._metadataCache[key];
                 }
             )
-        ).pipe(tap(() =>
-            {
-                this.metadataCache[key] = metadata;
-            },
-            () =>
-            {
-                delete this.metadataCache[key];
-            }
-        ));
+        );
     }
 
     public deleteFiles(keyList:Array<string>):Observable<void>
     {
-        this.setAuthorization();
-        return this.mapRequest(
-            this.http.delete(
-                '/rest/storage/frontend/files?' + keyList.map((key:string):string => 'keyList[]=' + key).join('&'),
+        return this.http.delete<void>('/rest/storage/frontend/files', {
+            params: createHttpParams({keyList: keyList}, true)
+        }).pipe(
+            tap(() =>
                 {
-                    headers: this.headers
+                    keyList.forEach((key:string):void => this._storageList.root.removeChild(key));
+                    this._storageListSubject.next(this._storageList);
+                },
+                ():void =>
+                {
+                    this._storageInitialized = false;
+                    this._storageListSubject.next(null);
                 }
             )
-        ).pipe(tap(():void =>
-            {
-                keyList.forEach((key:string):void => this._storageList.root.removeChild(key));
-                this.storageListSubject.next(this._storageList);
-            },
-            ():void =>
-            {
-                this.storageInitialized = false;
-                this.storageListSubject.next(null);
-            }
-        ));
+        );
     }
 
-    private uploadFile(file:File, path:string = '/'):TerraUploadItem
+    private _uploadFile(file:File, path:string = '/'):TerraUploadItem
     {
         if(isNullOrUndefined(file))
         {
@@ -197,7 +174,7 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
         let item:TerraUploadItem = new TerraUploadItem(file, path, this);
         item.beforeUpload(() =>
         {
-            this.storageListSubject.next(
+            this._storageListSubject.next(
                 this._storageList.insertObject(createS3StorageObject(item.pathname))
             );
         });
@@ -206,13 +183,13 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
         {
             if(status === 413)
             {
-                this.cleanStorageList(item);
-                this.alertService.error(this.translation.translate('terraFileBrowser.error.tooLargePayload'));
+                this._cleanStorageList(item);
+                this._alertService.error(this._translation.translate('terraFileBrowser.error.tooLargePayload'));
             }
             else
             {
                 let s3Data:any = JSON.parse(response);
-                this.storageListSubject.next(
+                this._storageListSubject.next(
                     this._storageList.insertObject({
                         eTag:         s3Data.eTag,
                         key:          s3Data.key,
@@ -227,12 +204,12 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
 
         item.onError(() =>
         {
-            this.cleanStorageList(item);
+            this._cleanStorageList(item);
         });
 
         item.onCancel(() =>
         {
-            this.cleanStorageList(item);
+            this._cleanStorageList(item);
         });
 
         this.queue.add(item);
@@ -242,15 +219,15 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
         return item;
     }
 
-    private cleanStorageList(item:any):void
+    private _cleanStorageList(item:any):void
     {
         this._storageList.root.removeChild(item.pathname);
-        this.storageListSubject.next(this._storageList);
+        this._storageListSubject.next(this._storageList);
     }
 
-    private initStorageList(continuationToken?:string):void
+    private _initStorageList(continuationToken?:string):void
     {
-        this.storageInitialized = true;
+        this._storageInitialized = true;
 
         let url:string = '/rest/storage/frontend/files';
         if(!isNullOrUndefined(continuationToken))
@@ -258,23 +235,22 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
             url += '?continuationToken=' + encodeURIComponent(continuationToken);
         }
 
-        this.setAuthorization();
-        this.mapRequest(this.http.get(url, {headers: this.headers})).subscribe((results:any):void =>
+        this.http.get(url).subscribe((results:any):void =>
             {
-                let storageList:TerraStorageObjectList = this.storageListSubject.getValue() || new TerraStorageObjectList();
+                let storageList:TerraStorageObjectList = this._storageListSubject.getValue() || new TerraStorageObjectList();
                 storageList.insertObjects(results.objects);
-                this.storageListSubject.next(storageList);
+                this._storageListSubject.next(storageList);
 
                 if(results.isTruncated && results.nextContinuationToken.length > 0)
                 {
-                    this.initStorageList(results.nextContinuationToken);
+                    this._initStorageList(results.nextContinuationToken);
                 }
             },
             (err:any):void =>
             {
                 console.error(err);
-                this.storageInitialized = false;
-                this.storageListSubject.next(null);
+                this._storageInitialized = false;
+                this._storageListSubject.next(null);
             }
         );
     }

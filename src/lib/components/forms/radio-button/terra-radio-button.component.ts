@@ -1,6 +1,5 @@
 import {
     Component,
-    forwardRef,
     HostListener,
     Input
 } from '@angular/core';
@@ -15,12 +14,12 @@ import {
  */
 @Component({
     selector:  'terra-radio-button',
-    template:  require('./terra-radio-button.component.html'),
-    styles:    [require('./terra-radio-button.component.scss')],
+    templateUrl:  './terra-radio-button.component.html',
+    styleUrls: ['./terra-radio-button.component.scss'],
     providers: [
         {
             provide:     NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => TerraRadioButtonComponent),
+            useExisting: TerraRadioButtonComponent,
             multi:       true
         }
     ]
@@ -39,7 +38,7 @@ export class TerraRadioButtonComponent implements ControlValueAccessor
     @Input()
     public inputIsUncheckable:boolean;
 
-    public value:any;
+    public _value:any;
 
     constructor()
     {
@@ -56,22 +55,22 @@ export class TerraRadioButtonComponent implements ControlValueAccessor
             return;
         }
 
-        if(this.inputIsUncheckable && this.inputValue === this.value)
+        if(this.inputIsUncheckable && this.inputValue === this._value)
         {
-            this.value = undefined;
+            this._value = undefined;
         }
         else
         {
-            this.value = this.inputValue;
+            this._value = this.inputValue;
         }
 
         this.onTouchedCallback();
-        this.onChangeCallback(this.value);
+        this.onChangeCallback(this._value);
     }
 
     public writeValue(value:any):void
     {
-        this.value = value;
+        this._value = value;
     }
 
     public registerOnChange(fn:(_:any) => void):void

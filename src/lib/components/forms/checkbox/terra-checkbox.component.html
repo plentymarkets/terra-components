@@ -1,16 +1,15 @@
 <div class="checkbox-container"
-     [ngClass]="{'disabled-chk': inputIsDisabled}"
      [tcTooltip]="tooltipText"
      [placement]="tooltipPlacement">
-    <label class="input-control checkbox small-check">
+    <label class="input-control checkbox small-check" [ngClass]="{'disabled-chk': inputIsDisabled}">
         <input type="checkbox"
-               [(ngModel)]="innerValue"
+               [(ngModel)]="_innerValue"
                (ngModelChange)="onChange($event)"
                [disabled]="inputIsDisabled"
                [indeterminate]="_isIndeterminate"
-               id="{{id}}">
+               id="{{_id}}">
         <span class="check" [ngClass]="{ 'invalid': !isValid }"></span>
         <span *ngIf="inputIcon" class="checkbox-icon" [ngClass]="inputIcon"></span>
-        <span *ngIf="inputCaption" [ngClass]="{'disabled-chk': inputIsDisabled}">{{inputCaption}}</span>
+        <span *ngIf="inputCaption">{{inputCaption}}</span>
     </label>
 </div>

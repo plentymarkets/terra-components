@@ -1,11 +1,7 @@
 import {
     APP_INITIALIZER,
-    Compiler,
-    COMPILER_OPTIONS,
-    CompilerFactory,
     NgModule
 } from '@angular/core';
-import { JitCompilerFactory } from '@angular/platform-browser-dynamic';
 import {
     L10nLoader,
     LocalizationModule
@@ -16,19 +12,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { l10nConfig } from './translation/l10n.config';
 import { AppComponent } from './app.component';
 import { ShowcaseComponent } from './showcase/showcase.component';
-import { TerraComponentsExamplesModule } from '../lib/terra-components-examples.module';
-import { TerraComponentsModule } from '../lib';
+import { TerraComponentsExamplesModule } from '../lib';
 import { RouterModule } from '@angular/router';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 
-function createCompiler(compilerFactory:CompilerFactory):Compiler
-{
-    return compilerFactory.createCompiler();
-}
-
-function initL10n(l10nLoader:L10nLoader):Function
+export function initL10n(l10nLoader:L10nLoader):Function
 {
     return ():Promise<void> => l10nLoader.load();
 }
@@ -39,10 +29,10 @@ function initL10n(l10nLoader:L10nLoader):Function
  * NOTE: It is not publicly accessible either.
  */
 @NgModule({
-    imports: [
-        RouterModule.forRoot([]),
+    imports:      [
         BrowserModule,
         BrowserAnimationsModule,
+        RouterModule.forRoot([]),
         HttpClientModule,
         LocalizationModule.forRoot(l10nConfig),
         TerraComponentsExamplesModule,
@@ -50,31 +40,19 @@ function initL10n(l10nLoader:L10nLoader):Function
         MatTableModule,
         MatSortModule
     ],
-    declarations: [AppComponent, ShowcaseComponent],
-    providers: [
-        {
-            provide:  COMPILER_OPTIONS,
-            useValue: {},
-            multi:    true
-        },
-        {
-            provide:  CompilerFactory,
-            useClass: JitCompilerFactory,
-            deps:     [COMPILER_OPTIONS]
-        },
+    declarations: [
+        AppComponent,
+        ShowcaseComponent
+    ],
+    providers:    [
         {
             provide:    APP_INITIALIZER,
             useFactory: initL10n,
             deps:       [L10nLoader],
             multi:      true
-        },
-        {
-            provide:    Compiler,
-            useFactory: createCompiler,
-            deps:       [CompilerFactory]
         }
     ],
-    bootstrap: [AppComponent]
+    bootstrap:    [AppComponent]
 })
 export class AppModule
 {}

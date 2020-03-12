@@ -10,11 +10,14 @@ import { TerraButtonComponent } from '../../buttons/button/terra-button.componen
 import { HttpClientModule } from '@angular/common/http';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TooltipDirective } from '../../tooltip/tooltip.directive';
+import { Router } from '@angular/router';
+import { MockRouter } from '../../../testing/mock-router';
 
 describe('Component: TerraGroupFunctionComponent', () =>
 {
     let component:TerraGroupFunctionComponent;
     let fixture:ComponentFixture<TerraGroupFunctionComponent>;
+    const router:MockRouter = new MockRouter();
 
     beforeEach(async(() =>
     {
@@ -27,7 +30,12 @@ describe('Component: TerraGroupFunctionComponent', () =>
                 NoopAnimationsModule,
                 HttpClientModule,
                 LocalizationModule.forRoot(l10nConfig)
-            ]
+            ],
+            providers:    [
+                {
+                    provide:  Router,
+                    useValue: router
+                }]
         }).compileComponents();
     }));
 

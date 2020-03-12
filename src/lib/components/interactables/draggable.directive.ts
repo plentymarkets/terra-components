@@ -12,11 +12,14 @@ import { GridOptions } from './gridOptions.interface';
 import { DraggableOptions } from './draggableOptions.interface';
 import { RestrictOptions } from './restrictOptions.interface';
 import { InertiaOptions } from './inertiaOptions.interface';
+import * as interact_ from 'interactjs';
 import {
     Interactable,
-    InteractEvent
+    InteractEvent,
+    InteractStatic
 } from 'interactjs';
-import interact = require('interactjs');
+
+const interact:InteractStatic = interact_;
 
 @Directive({
     selector: '[terraDraggable]'
@@ -121,11 +124,11 @@ export class TerraDraggableDirective implements OnInit, OnChanges
     public onEnd:EventEmitter<InteractEvent> = new EventEmitter<InteractEvent>();
     /* tslint:enable:no-output-on-prefix no-input-rename no-output-rename */
 
-    private interactable:Interactable;
+    private _interactable:Interactable;
 
-    constructor(private el:ElementRef)
+    constructor(private _el:ElementRef)
     {
-        this.init();
+        this._init();
     }
 
     public ngOnInit():void
@@ -152,14 +155,14 @@ export class TerraDraggableDirective implements OnInit, OnChanges
         {
             if(typeof changes[changedProperty].currentValue === 'object')
             {
-                this.prepareImmutableInput(changedProperty);
+                this._prepareImmutableInput(changedProperty);
             }
         });
 
-        this.init();
+        this._init();
     }
 
-    private prepareImmutableInput(input:string):void
+    private _prepareImmutableInput(input:string):void
     {
         if(this[input] && typeof this[input] === 'object')
         {
@@ -193,7 +196,7 @@ export class TerraDraggableDirective implements OnInit, OnChanges
                               set:          (value:any):void =>
                                             {
                                                 this[input]['_' + property] = value;
-                                                this.init();
+                                                this._init();
                                             }
                           }
                       );
@@ -202,7 +205,7 @@ export class TerraDraggableDirective implements OnInit, OnChanges
         }
     }
 
-    private init():void
+    private _init():void
     {
         let draggableConfig:any = {
             max:          (this.options || {}).max || 1,
@@ -241,7 +244,7 @@ export class TerraDraggableDirective implements OnInit, OnChanges
                 targets:        [
                     (x:number, y:number):{ x:number, y:number, range:number } =>
                     {
-                        return this.handleSnap(x, y);
+                        return this._handleSnap(x, y);
                     }
                 ],
                 endOnly:        this.grid && this.grid.endOnly,
@@ -254,15 +257,15 @@ export class TerraDraggableDirective implements OnInit, OnChanges
             draggableConfig.restrict = this.restrict;
         }
 
-        if(!this.interactable)
+        if(!this._interactable)
         {
-            this.interactable = interact(this.el.nativeElement);
+            this._interactable = interact(this._el.nativeElement);
         }
 
-        this.interactable.draggable(draggableConfig);
+        this._interactable.draggable(draggableConfig);
     }
 
-    private handleSnap(x:number, y:number):{ x:number, y:number, range:number }
+    private _handleSnap(x:number, y:number):{ x:number, y:number, range:number }
     {
         if(this.grid)
         {

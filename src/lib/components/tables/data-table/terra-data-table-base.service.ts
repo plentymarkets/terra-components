@@ -1,4 +1,3 @@
-import { TerraPagerParameterInterface } from '../../pager/data/terra-pager.parameter.interface';
 import { TerraPagerInterface } from '../../pager/data/terra-pager.interface';
 import { TerraSelectBoxValueInterface } from '../../forms/select-box/data/terra-select-box.interface';
 import { TerraDataTableSortOrderEnum } from './enums/terra-data-table-sort-order.enum';
@@ -52,7 +51,7 @@ export abstract class TerraDataTableBaseService<T, P>
     public set defaultPagingSize(value:number)
     {
         this._defaultPagingSize = value;
-        this._pagingData.itemsPerPage = this.itemsPerPage;
+        this._pagingData.itemsPerPage = this._itemsPerPage;
     }
 
     public get pagingSizes():Array<TerraSelectBoxValueInterface>
@@ -63,7 +62,7 @@ export abstract class TerraDataTableBaseService<T, P>
     public set pagingSizes(value:Array<TerraSelectBoxValueInterface>)
     {
         this._pagingSizes = value;
-        this._pagingData.itemsPerPage = this.itemsPerPage;
+        this._pagingData.itemsPerPage = this._itemsPerPage;
     }
 
     /**
@@ -90,7 +89,7 @@ export abstract class TerraDataTableBaseService<T, P>
         return this._rowList;
     }
 
-    private get itemsPerPage():number
+    private get _itemsPerPage():number
     {
         let itemsPerPage:number = 25;
         if(this._defaultPagingSize && this.pagingSizes.some((size:TerraSelectBoxValueInterface) => +size.value === this._defaultPagingSize))
@@ -115,7 +114,7 @@ export abstract class TerraDataTableBaseService<T, P>
 
     /**
      * @description Updates the stored paging data with the given data
-     * @param {TerraPagerInterface} pagerData
+     * @param pagerData
      */
     public updatePagingData(pagerData:TerraPagerInterface<T>):void
     {
@@ -175,7 +174,7 @@ export abstract class TerraDataTableBaseService<T, P>
         // request table data from the server
         this._requestPending = true;
         this._rowList = [];
-        this.markForCheck();
+        this._markForCheck();
         this.requestTableData(params).pipe(
             tap((res:TerraPagerInterface<T>) => this.updatePagingData(res)),
             map((res:TerraPagerInterface<T>) => res.entries.map((entry:T) => this.dataToRowMapping(entry))),
@@ -183,27 +182,25 @@ export abstract class TerraDataTableBaseService<T, P>
             finalize(() =>
             {
                 this._requestPending = false;
-                this.markForCheck();
+                this._markForCheck();
             })
         ).subscribe();
     }
 
     /**
      * @description Placeholder for the specific data-retrieval method. In General the specific rest call is given here.
-     * @param {TerraPagerParameterInterface} params
-     * @returns {Observable<TerraPagerInterface<T>>}
+     * @param params
      */
     public abstract requestTableData(params?:P):Observable<TerraPagerInterface<T>>;
 
     /**
      * @description Placeholder for the specific data mapping method.
      * The response data is mapped to the `TerraDataTableRowInterface` in order to be able to display the data in the table.
-     * @param {T} res
-     * @returns {TerraDataTableRowInterface<T>}
+     * @param res
      */
     public abstract dataToRowMapping(res:T):TerraDataTableRowInterface<T>;
 
-    private markForCheck():void
+    private _markForCheck():void
     {
         if(!isNullOrUndefined(this.cdr))
         {

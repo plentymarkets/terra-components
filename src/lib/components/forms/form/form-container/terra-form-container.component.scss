@@ -8,23 +8,7 @@
     .form-entry-container
     {
         padding-left: var(--space-lg);
+        padding-bottom: var(--space-lg);
     }
 }
 
-:host-context(.form-entry-horizontal)
-{
-    > .form
-    {
-        display: flex;
-        
-        > .form-entry
-        {
-            flex: 1;
-            
-            + .form-entry
-            {
-                margin-left: var(--space-sm)
-            }
-        }
-    }
-}

@@ -1,7 +1,6 @@
 import {
     Component,
     ComponentFactoryResolver,
-    forwardRef,
     Input,
     OnChanges,
     OnDestroy,
@@ -21,12 +20,12 @@ import { TerraFormEntryBase } from './terra-form-entry.base';
 
 @Component({
     selector:  'terra-form-entry',
-    template:  require('./terra-form-entry.component.html'),
-    styles:    [require('./terra-form-entry.component.scss')],
+    templateUrl:  './terra-form-entry.component.html',
+    styleUrls:    ['./terra-form-entry.component.scss'],
     providers: [
         {
             provide:     NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => TerraFormEntryComponent),
+            useExisting: TerraFormEntryComponent,
             multi:       true
         }
     ]
@@ -39,8 +38,8 @@ export class TerraFormEntryComponent extends TerraFormEntryBase implements OnIni
     @Input()
     public inputFormControl:FormControl;
 
-    private onChangeCallback:(_:any) => void = noop;
-    private onTouchedCallback:() => void = noop;
+    private _onChangeCallback:(_:any) => void = noop;
+    private _onTouchedCallback:() => void = noop;
 
     constructor(componentFactoryResolver:ComponentFactoryResolver)
     {
@@ -55,20 +54,20 @@ export class TerraFormEntryComponent extends TerraFormEntryBase implements OnIni
      */
     public ngOnInit():void
     {
-        if(!this.hasChildren)
+        if(!this._hasChildren)
         {
-            this.initComponent();
+            this._initComponent();
 
-            if(isFunction(this.componentInstance.registerOnChange) &&
-               isFunction(this.componentInstance.registerOnTouched))
+            if(isFunction(this._componentInstance.registerOnChange) &&
+               isFunction(this._componentInstance.registerOnTouched))
             {
-                this.componentInstance.registerOnChange((value:any):void => this.onChangeCallback(value));
-                this.componentInstance.registerOnTouched(():void => this.onTouchedCallback());
+                this._componentInstance.registerOnChange((value:any):void => this._onChangeCallback(value));
+                this._componentInstance.registerOnTouched(():void => this._onTouchedCallback());
             }
             else
             {
                 console.error(
-                    'Cannot bind component ' + this.getControlType().name + ' to dynamic form. ' +
+                    'Cannot bind component ' + this._getControlType().name + ' to dynamic form. ' +
                     'Bound components needs to implement the ControlValueAccessor interface.'
                 );
             }
@@ -76,9 +75,9 @@ export class TerraFormEntryComponent extends TerraFormEntryBase implements OnIni
 
         this.inputFormControl.statusChanges.subscribe((status:string) =>
         {
-            if(!isNullOrUndefined(this.componentInstance))
+            if(!isNullOrUndefined(this._componentInstance))
             {
-                this.componentInstance.isValid = status === 'VALID';
+                this._componentInstance.isValid = status === 'VALID';
             }
         });
     }
@@ -93,7 +92,7 @@ export class TerraFormEntryComponent extends TerraFormEntryBase implements OnIni
      */
     public registerOnChange(changeCallback:(value:any) => void):void
     {
-        this.onChangeCallback = changeCallback;
+        this._onChangeCallback = changeCallback;
     }
 
     /**
@@ -104,7 +103,7 @@ export class TerraFormEntryComponent extends TerraFormEntryBase implements OnIni
      */
     public registerOnTouched(touchedCallback:() => void):void
     {
-        this.onTouchedCallback = touchedCallback;
+        this._onTouchedCallback = touchedCallback;
     }
 
     /**
@@ -114,13 +113,13 @@ export class TerraFormEntryComponent extends TerraFormEntryBase implements OnIni
      */
     public writeValue(value:any):void
     {
-        if(this.componentInstance && isFunction(this.componentInstance.writeValue))
+        if(this._componentInstance && isFunction(this._componentInstance.writeValue))
         {
-            this.componentInstance.writeValue(value);
+            this._componentInstance.writeValue(value);
         }
     }
 
-    protected get hasChildren():boolean
+    protected get _hasChildren():boolean
     {
         return !isNullOrUndefined(this.inputFormField.children);
     }

@@ -15,8 +15,10 @@ import {
     mockButtonOne,
     mockButtonTwo
 } from '../../../testing/mock-buttons';
-import Spy = jasmine.Spy;
 import { TooltipDirective } from '../../tooltip/tooltip.directive';
+import { Router } from '@angular/router';
+import { MockRouter } from '../../../testing/mock-router';
+import Spy = jasmine.Spy;
 
 describe('TerraOverlayComponent', () =>
 {
@@ -25,6 +27,7 @@ describe('TerraOverlayComponent', () =>
     let divElement:DebugElement;
     let modalDialogElement:DebugElement;
     const overlayTitle:string = 'Test';
+    const router:MockRouter = new MockRouter();
 
     beforeEach(async(() =>
     {
@@ -35,7 +38,12 @@ describe('TerraOverlayComponent', () =>
             declarations: [TooltipDirective,
                            TerraButtonComponent,
                            TerraOverlayComponent
-            ]
+            ],
+            providers:    [
+                {
+                    provide:  Router,
+                    useValue: router
+                }]
         }).compileComponents();
     }));
 
@@ -116,8 +124,8 @@ describe('TerraOverlayComponent', () =>
         component.ngAfterViewInit();
 
         expect(component.inputIsStatic).toBe(true);
-        expect(component.viewChildOverlay.config.backdrop).toBe('static');
-        expect(component.viewChildOverlay.config.keyboard).toBe(false);
+        expect(component._viewChildOverlay.config.backdrop).toBe('static');
+        expect(component._viewChildOverlay.config.keyboard).toBe(false);
     });
 
     it(`should show header depending on 'inputOverlayTitle'`, () =>
@@ -246,7 +254,7 @@ describe('TerraOverlayComponent', () =>
 
     it(`should trigger the show method of viewChild when #showOverlay is called`, () =>
     {
-        let spy:Spy = spyOn(component.viewChildOverlay, 'show');
+        let spy:Spy = spyOn(component._viewChildOverlay, 'show');
 
         component.showOverlay();
 
@@ -255,7 +263,7 @@ describe('TerraOverlayComponent', () =>
 
     it(`should trigger the hide method of viewChild when #hideOverlay is called`, () =>
     {
-        let spy:Spy = spyOn(component.viewChildOverlay, 'hide');
+        let spy:Spy = spyOn(component._viewChildOverlay, 'hide');
 
         component.hideOverlay();
 
@@ -266,7 +274,7 @@ describe('TerraOverlayComponent', () =>
     {
         component.outputOnHide.subscribe((directive:ModalDirective) =>
         {
-            expect(directive).toBe(component.viewChildOverlay);
+            expect(directive).toBe(component._viewChildOverlay);
             done();
         });
 
@@ -277,7 +285,7 @@ describe('TerraOverlayComponent', () =>
     {
         component.outputOnShow.subscribe((directive:ModalDirective) =>
         {
-            expect(directive).toBe(component.viewChildOverlay);
+            expect(directive).toBe(component._viewChildOverlay);
             done();
         });
 

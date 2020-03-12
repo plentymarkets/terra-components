@@ -29,11 +29,11 @@ export class TerraUploadItem
         return pathname;
     }
 
-    private beforeUploadList:Array<(file:File) => void> = [];
-    private onSuccessList:Array<UploadCallback> = [];
-    private onCancelList:Array<UploadCallback> = [];
-    private onErrorList:Array<UploadCallback> = [];
-    private onProgressList:Array<(progress:number) => void> = [];
+    private _beforeUploadList:Array<(file:File) => void> = [];
+    private _onSuccessList:Array<UploadCallback> = [];
+    private _onCancelList:Array<UploadCallback> = [];
+    private _onErrorList:Array<UploadCallback> = [];
+    private _onProgressList:Array<(progress:number) => void> = [];
 
     constructor(public file:File, private path:string, private uploadService:TerraBaseStorageService)
     {
@@ -49,31 +49,31 @@ export class TerraUploadItem
 
     public beforeUpload(callback:(file:File) => void):TerraUploadItem
     {
-        this.beforeUploadList.push(callback);
+        this._beforeUploadList.push(callback);
         return this;
     }
 
     public onSuccess(callback:UploadCallback):TerraUploadItem
     {
-        this.onSuccessList.push(callback);
+        this._onSuccessList.push(callback);
         return this;
     }
 
     public onError(callback:UploadCallback):TerraUploadItem
     {
-        this.onErrorList.push(callback);
+        this._onErrorList.push(callback);
         return this;
     }
 
     public onCancel(callback:UploadCallback):TerraUploadItem
     {
-        this.onCancelList.push(callback);
+        this._onCancelList.push(callback);
         return this;
     }
 
     public onProgress(callback:(progress:number) => void):TerraUploadItem
     {
-        this.onProgressList.push(callback);
+        this._onProgressList.push(callback);
         return this;
     }
 
@@ -95,7 +95,8 @@ export class TerraUploadItem
             'onCancel',
             'onProgress'].indexOf(event) >= 0)
         {
-            this[event + 'List'].forEach((callback:(...args:Array<any>) => void) =>
+            // TODO: this access is insecure since it breaks when the variables are renamed
+            this['_' + event + 'List'].forEach((callback:(...args:Array<any>) => void) =>
             {
                 callback(...args);
             });

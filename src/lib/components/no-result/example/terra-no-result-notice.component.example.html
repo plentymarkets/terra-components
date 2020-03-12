@@ -4,8 +4,8 @@
 <terra-button inputCaption="Search without results"
               (outputClicked)="checkResult(false)">
 </terra-button>
-<terra-no-result-notice *ngIf="result === false"
-                        [inputButtons]="buttons"
+<terra-no-result-notice *ngIf="_result === false"
+                        [inputButtons]="_buttons"
                         inputTextPrimary="No results found"
                         inputTextSecondary="try again!">
 </terra-no-result-notice>

@@ -1,9 +1,15 @@
 @import '../../../styles/variables';
 
+:host
+{
+    display: block;
+    margin: var(--terra-data-table-margin);
+}
+
 .table-responsive
 {
-    margin: var(--space-container);
-    box-shadow: var(--box-shadow);
+    margin: var(--table-responsive-margin, var(--space-container));
+    box-shadow: var(--table-responsive-box-shadow, var(--box-shadow));
     border-radius: var(--border-radius);
     width: auto;
     --no-result-margin: 0; //in case of a no-result page placed in a table to avoid doubled margins
@@ -146,22 +152,3 @@
     }
 }
 
-@media (max-width: 767px)
-{
-    table, td, tr, th, thead, tbody
-    {
-        display: block;
-    }
-    th, td
-    {
-        border: 0 !important;
-        width: 100% !important;
-        padding: 4px 9px !important;
-    }
-}
-
-terra-pager
-{
-    --toolbar-border-radius: var(--border-radius) var(--border-radius) 0 0;
-    --toolbar-margin: 0 var(--space-xs) var(--space-sm) var(--space-xs);
-}

@@ -1,10 +1,16 @@
-<terra-3-col [leftColumnWidth]="2" [rightColumnWidth]="rightColumnWidth" [centerColumnWidth]="centerColumnWidth">
-    <terra-node-tree left [inputConfig]="nodeTreeConfig"></terra-node-tree>
-    <terra-file-list center [inputStorageServices]="inputStorageServices"
-                     (showImagePreview)="showImagePreview($event)"
-                     (hideImagePreview)="hideImagePreview()"
-                     (selectNode)="selectNode($event)"></terra-file-list>
+<terra-3-col [leftColumnWidth]="2" [rightColumnWidth]="_rightColumnWidth" [centerColumnWidth]="_centerColumnWidth">
+    <terra-node-tree left
+                     [inputConfig]="_nodeTreeConfig">
+    </terra-node-tree>
+    <terra-file-list center
+                     #fileList
+                     [inputStorageServices]="inputStorageServices"
+                     (showImagePreview)="_showImagePreview($event)"
+                     (hideImagePreview)="_hideImagePreview()"
+                     (selectNode)="selectNode($event)">
+    </terra-file-list>
     <terra-image-preview right
-                         [inputStorageService]="fileListComponent.activeStorageService"
-                         [inputStorageObject]="fileListComponent.imagePreviewObject"></terra-image-preview>
+                         [inputStorageService]="fileList.activeStorageService"
+                         [inputStorageObject]="fileList.imagePreviewObject">
+    </terra-image-preview>
 </terra-3-col>
