@@ -1,6 +1,6 @@
-<mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+<mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort tcCustomizableHeader>
     <ng-container *ngFor="let column of columns; let i = index" [matColumnDef]="column">
-        <mat-header-cell *matHeaderCellDef cdkDrag mat-sort-header>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
             {{ column }}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{ row[column] }}  </mat-cell>

@@ -85,8 +85,8 @@ export class AppComponent implements OnInit, AfterViewInit
 
     public ngAfterViewInit():void
     {
-        this.createDropList();
-        this.drags.changes.subscribe(() => this.createDropList())
+        // this.createDropList();
+        // this.drags.changes.subscribe(() => this.createDropList())
     }
 
     public drop(event:any):void

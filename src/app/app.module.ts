@@ -12,7 +12,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { l10nConfig } from './translation/l10n.config';
 import { AppComponent } from './app.component';
 import { ShowcaseComponent } from './showcase/showcase.component';
-import { TerraComponentsExamplesModule } from '../lib';
+import {
+    TerraComponentsExamplesModule,
+    TerraComponentsModule
+} from '../lib';
 import { RouterModule } from '@angular/router';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatTableModule } from '@angular/material/table';
@@ -29,7 +32,7 @@ export function initL10n(l10nLoader:L10nLoader):Function
  * NOTE: It is not publicly accessible either.
  */
 @NgModule({
-    imports:      [
+    imports: [
         BrowserModule,
         BrowserAnimationsModule,
         RouterModule.forRoot([]),
@@ -38,7 +41,8 @@ export function initL10n(l10nLoader:L10nLoader):Function
         TerraComponentsExamplesModule,
         DragDropModule,
         MatTableModule,
-        MatSortModule
+        MatSortModule,
+        TerraComponentsModule
     ],
     declarations: [
         AppComponent,
