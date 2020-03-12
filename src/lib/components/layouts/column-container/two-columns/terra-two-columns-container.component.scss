@@ -14,10 +14,18 @@
     {
         height: 100%;
         flex-wrap: nowrap;
-
-        .overflow-auto
+    
+        > div
         {
-            overflow: auto;
+            &:first-child
+            {
+                padding-left: calc(var(--space-xs) * 2);
+            }
+    
+            &:last-child
+            {
+                padding-right: calc(var(--space-xs) * 2);
+            }
         }
     }
 }
