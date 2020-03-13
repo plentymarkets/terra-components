@@ -151,7 +151,7 @@ export class TerraNodeTreeComponent<D> implements OnDestroy, OnInit
         }
 
         // search node names if no tags found
-        if(!hasValidCaptionOrTag)
+        if(!hasValidCaptionOrTag && !isNullOrUndefined(node.name))
         {
             let name:string = this._translation.translate(node.name);
 
