@@ -133,24 +133,24 @@ export class TerraNodeTreeComponent<D> implements OnDestroy, OnInit
 
     private _matchesSearchString(node:TerraNodeInterface<D>, searchValue:string):boolean
     {
-        return this._matchesName(node, searchValue) || this._matchesTags(node, searchValue);
+        return this._matchesName(node.name, searchValue) || this._matchesTags(node.tags, searchValue);
     }
 
-    private _matchesTags(node:TerraNodeInterface<D>, searchValue:string):boolean
+    private _matchesTags(nodeTags:Array<string>, searchValue:string):boolean
     {
-        const tags:Array<string> = node.tags || [];
+        const tags:Array<string> = nodeTags || [];
         return tags.some((tag:string) =>
         {
             return tag.toUpperCase().includes(searchValue.toUpperCase());
         });
     }
 
-    private _matchesName(node:TerraNodeInterface<D>, searchValue:string):boolean
+    private _matchesName(nodeName:string, searchValue:string):boolean
     {
-        if(!isNullOrUndefined(node.name))
+        if(!isNullOrUndefined(nodeName))
         {
             // TODO do not translate name here, should be translated from outside
-            let name:string = this._translation.translate(node.name);
+            let name:string = this._translation.translate(nodeName);
 
             let suggestion:string = name.toUpperCase();
 
