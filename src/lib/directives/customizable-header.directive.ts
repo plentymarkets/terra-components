@@ -1,95 +1,76 @@
 import {
-  AfterContentInit,
   AfterViewInit,
-  ContentChild,
-  ContentChildren,
   Directive,
-  ElementRef,
-  QueryList,
-  ViewChildren
+  ElementRef
 } from '@angular/core';
 import {
-  CdkDrag,
   DragDrop,
-  moveItemInArray,
+  DragRef,
   DropListRef,
-  DragRef
+  moveItemInArray
 } from '@angular/cdk/drag-drop';
 import {
   MatHeaderCell,
-  MatHeaderCellDef,
-  MatHeaderRow,
-  MatHeaderRowDef,
   MatTable
 } from '@angular/material/table';
-import { CdkColumnDef } from '@angular/cdk/table/typings/cell';
-import { CdkHeaderRowDef } from '@angular/cdk/table';
-import { takeUntil } from 'rxjs/operators';
 
 @Directive({
-  selector: '[tcCustomizableHeader]'
+    selector: '[tcCustomizableHeader]'
 })
 export class CustomizableHeaderDirective implements AfterViewInit
 {
-  private dropListRef:DropListRef;
-  private headerRow:MatHeaderRow;
-  private columns:Array<string> = [];
+    private dropListRef:DropListRef;
+    private columns:Array<string> = [];
 
-  constructor(private table:MatTable<any>, private dndService:DragDrop)
-  {
-  }
+    constructor(private table:MatTable<any>, private headerRow:ElementRef, private dndService:DragDrop)
+    {}
 
-  public ngAfterViewInit():void
-  {
-    this.headerRow = (this.table._headerRowOutlet.elementRef.nativeElement as HTMLElement).nextElementSibling;
-    this.dropListRef = this.createDropList(this.headerRow, this.createDrags(this.getHeaderCells(this.headerRow as Element)));
-    this.columns = this.table._contentHeaderRowDefs.first.columns as Array<string>;
-    console.log(this.columns);
-  }
-
-  private getHeaderCells(rowElem:Element):Array<MatHeaderCell>
-  {
-    const headerCells:Array<MatHeaderCell> = [];
-    for(let i:number = 0; i < rowElem.children.length; i++)
+    public ngAfterViewInit():void
     {
-      headerCells.push(rowElem.children.item(i));
+        this.dropListRef = this.createDropList(this.headerRow, this.createDrags(this.getHeaderCells(this.headerRow.nativeElement)));
+        this.columns = this.table._contentHeaderRowDefs.first.columns as Array<string>;
+        console.log(this.columns);
     }
-    return headerCells;
-  }
 
-  public drop(event:any):void
-  {
-    moveItemInArray(this.columns, event.previousIndex, event.currentIndex);
-    setTimeout(() =>
+    public drop(event:any):void
     {
-      this.dropListRef.dispose();
-      this.createDropList(this.headerRow, this.createDrags(this.getHeaderCells(this.headerRow as Element)));
-    }, 0);
-  }
+        moveItemInArray(this.columns, event.previousIndex, event.currentIndex);
+    }
 
-  private createDrags(cellRefs:Array<MatHeaderCell>):Array<DragRef>
-  {
-    return cellRefs.map((cellRef:MatHeaderCell) =>
+    private getHeaderCells(rowElem:Element):Array<MatHeaderCell>
     {
-      const drag:DragRef = this.dndService.createDrag(cellRef as ElementRef);
-      drag.lockAxis = 'x';
-      return drag;
-    });
-  }
+        const headerCells:Array<MatHeaderCell> = [];
+        for(let i:number = 0; i < rowElem.children.length; i++)
+        {
+            headerCells.push(rowElem.children.item(i));
+        }
+        return headerCells;
+    }
 
-  private createDropList(headerRowDef:MatHeaderRow, drags:Array<DragRef>):DropListRef
-  {
-    const dropListRef:DropListRef = this.dndService.createDropList(headerRowDef as ElementRef);
-    dropListRef.withItems(drags);
-    dropListRef.withOrientation('horizontal');
-    dropListRef.dropped.subscribe((event:{
-      item:DragRef;
-      currentIndex:number;
-      previousIndex:number;
-      container:DropListRef<any>;
-      previousContainer:DropListRef<any>;
-      isPointerOverContainer:boolean;
-    }) => this.drop(event));
-    return dropListRef;
-  }
+
+    private createDrags(cellRefs:Array<MatHeaderCell>):Array<DragRef>
+    {
+        return cellRefs.map((cellRef:MatHeaderCell) =>
+        {
+            const drag:DragRef = this.dndService.createDrag(cellRef as ElementRef);
+            drag.lockAxis = 'x';
+            return drag;
+        });
+    }
+
+    private createDropList(headerRowDef:ElementRef, drags:Array<DragRef>):DropListRef
+    {
+        const dropListRef:DropListRef = this.dndService.createDropList(headerRowDef);
+        dropListRef.withItems(drags);
+        dropListRef.withOrientation('horizontal');
+        dropListRef.dropped.subscribe((event:{
+            item:DragRef;
+            currentIndex:number;
+            previousIndex:number;
+            container:DropListRef<any>;
+            previousContainer:DropListRef<any>;
+            isPointerOverContainer:boolean;
+        }) => this.drop(event));
+        return dropListRef;
+    }
 }

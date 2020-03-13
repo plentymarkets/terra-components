@@ -64,6 +64,8 @@ export class AppComponent implements OnInit, AfterViewInit
         'symbol'
     ];
 
+    public displayedColumns:Array<string> = [ 'position', 'name', 'weight', 'symbol'];
+
     public dataSource:MatTableDataSource<PeriodicElement> = new MatTableDataSource(ELEMENT_DATA);
 
     @ViewChild(MatSort, {static: true })
