@@ -138,17 +138,11 @@ export class TerraNodeTreeComponent<D> implements OnDestroy, OnInit
 
     private _matchesTags(node:TerraNodeInterface<D>, searchValue:string):boolean
     {
-        const tags:Array<string> = node.tags;
-
-        if(!isNullOrUndefined(tags))
+        const tags:Array<string> = node.tags || [];
+        return tags.some((tag:string) =>
         {
-            return tags.some((tag:string) =>
-            {
-                return tag.toUpperCase().includes(searchValue.toUpperCase());
-            });
-        }
-
-        return false;
+            return tag.toUpperCase().includes(searchValue.toUpperCase());
+        });
     }
 
     private _matchesName(node:TerraNodeInterface<D>, searchValue:string):boolean
