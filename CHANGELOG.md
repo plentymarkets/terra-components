@@ -1,3 +1,8 @@
+# 5.1.1 (XX.XX.2020)
+
+### Bug Fixes
+* **terra-stopwatch** we don't use deprecated inputTooltipPlacement of the TerraButtonComponent anymore.
+
 <a name="5.1.0"></a>
 # 5.1.0 (11.03.2020)
 
@@ -10,7 +15,6 @@
 * **matInput** fixed placeholder styling.
 * **terra-portlet** using `border-bottom` on `portlet-head` when unfolded instead of `border-top` on `portlet-body`.
 * **security-vulnerability** dependency package `acorn
-* **terra-stopwatch** don't use deprecated inputTooltipPlacement of the TerraButtonComponent anymore.
 
 <a name="5.0.0"></a>
 # 5.0.0 (20.02.2020)
