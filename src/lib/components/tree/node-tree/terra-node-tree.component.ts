@@ -16,7 +16,7 @@ import {
     debounceTime,
     distinctUntilChanged
 } from 'rxjs/operators';
-import { StringHelper } from '../../../helpers/string.helper';
+import { StringHelper } from '../../../helpers';
 
 @Component({
     selector:    'terra-node-tree',
