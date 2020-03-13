@@ -131,11 +131,13 @@ export class TerraNodeTreeComponent<D> implements OnDestroy, OnInit
         return isVisible || hasVisibleChild;
     }
 
+    /** @description Checks whether a node matches a given search string */
     private _matchesSearchString(node:TerraNodeInterface<D>, searchValue:string):boolean
     {
         return this._matchesName(node.name, searchValue) || this._matchesTags(node.tags, searchValue);
     }
 
+    /** @description Checks whether a given search string matches some of the node's tags. */
     private _matchesTags(nodeTags:Array<string>, searchValue:string):boolean
     {
         const tags:Array<string> = nodeTags || [];
@@ -145,6 +147,7 @@ export class TerraNodeTreeComponent<D> implements OnDestroy, OnInit
         });
     }
 
+    /** @description Checks whether a given search string matches the name of a node. */
     private _matchesName(nodeName:string, searchValue:string):boolean
     {
         if(!isNullOrUndefined(nodeName))
