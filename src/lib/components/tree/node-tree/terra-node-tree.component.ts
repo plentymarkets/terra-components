@@ -98,7 +98,7 @@ export class TerraNodeTreeComponent<D> implements OnDestroy, OnInit
             return;
         }
 
-        let isVisible:boolean = isParentVisible || this._checkVisibility(node, searchValue);
+        let isVisible:boolean = isParentVisible || this._matchesSearchString(node, searchValue);
         let isEmptySearchString:boolean = isNullOrUndefined(searchValue) || searchValue.length === 0;
 
         let hasVisibleChild:boolean = false;
@@ -131,39 +131,39 @@ export class TerraNodeTreeComponent<D> implements OnDestroy, OnInit
         return isVisible || hasVisibleChild;
     }
 
-    private _checkVisibility(node:TerraNodeInterface<D>, searchValue:string):boolean
+    private _matchesSearchString(node:TerraNodeInterface<D>, searchValue:string):boolean
     {
-        let hasValidCaptionOrTag:boolean = false;
+        return this._matchesName(node, searchValue) || this._matchesTags(node, searchValue);
+    }
 
-        let tags:Array<string> = node.tags;
+    private _matchesTags(node:TerraNodeInterface<D>, searchValue:string):boolean
+    {
+        const tags:Array<string> = node.tags;
 
-        // search for tags first
         if(!isNullOrUndefined(tags))
         {
-            tags.forEach((tag:string) =>
+            return tags.some((tag:string) =>
             {
-                if(tag.toUpperCase().includes(searchValue.toUpperCase()))
-                {
-                    hasValidCaptionOrTag = true;
-                    return;
-                }
+                return tag.toUpperCase().includes(searchValue.toUpperCase());
             });
         }
 
-        // search node names if no tags found
-        if(!hasValidCaptionOrTag && !isNullOrUndefined(node.name))
+        return false;
+    }
+
+    private _matchesName(node:TerraNodeInterface<D>, searchValue:string):boolean
+    {
+        if(!isNullOrUndefined(node.name))
         {
+            // TODO do not translate name here, should be translated from outside
             let name:string = this._translation.translate(node.name);
 
             let suggestion:string = name.toUpperCase();
 
             // check if search string is included in the given suggestion
-            if(suggestion.includes(searchValue.toUpperCase()))
-            {
-                hasValidCaptionOrTag = true;
-            }
+            return suggestion.includes(searchValue.toUpperCase());
         }
 
-        return hasValidCaptionOrTag;
+        return false;
     }
 }
