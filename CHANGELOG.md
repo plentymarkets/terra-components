@@ -1,3 +1,10 @@
+# UNRELEASED
+
+### Bug Fixes
+* **terra-two-columns-container** updated outer paddings
+* **terra-three-columns-container** updated outer paddings
+
+
 <a name="5.1.0"></a>
 # 5.1.0 (11.03.2020)
 
