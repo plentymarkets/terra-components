@@ -1,9 +1,9 @@
-# UNRELEASED
+# 5.1.1 (XX.XX.2020)
 
 ### Bug Fixes
+* **terra-node-tree** fixed error that was thrown when the user searches for a node and one of the node's name was undefined.
 * **terra-two-columns-container** updated outer paddings
 * **terra-three-columns-container** updated outer paddings
-
 
 <a name="5.1.0"></a>
 # 5.1.0 (11.03.2020)
