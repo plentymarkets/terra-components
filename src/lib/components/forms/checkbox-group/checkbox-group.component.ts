@@ -12,6 +12,9 @@ import { TerraMultiCheckBoxValueInterface } from '../multi-check-box/data/terra-
 import { isNullOrUndefined } from 'util';
 import { noop } from 'rxjs';
 
+/**
+ * @deprecated Use mat select with multiple selections instead. {@link https://material.angular.io/components/select/overview#multiple-selection}
+ */
 @Component({
     selector:    'tc-checkbox-group',
     templateUrl: './checkbox-group.component.html',
