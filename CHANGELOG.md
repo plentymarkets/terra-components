@@ -1,9 +1,22 @@
-<a name="5.0.1"></a>
-# 5.0.1 (xx.xx.2020)
+# 5.1.1 (XX.XX.2020)
 
-### Fix
+### Bug Fixes
+* **terra-node-tree** fixed error that was thrown when the user searches for a node and one of the node's name was undefined.
+* **terra-two-columns-container** updated outer paddings
+* **terra-three-columns-container** updated outer paddings
+
+<a name="5.1.0"></a>
+# 5.1.0 (11.03.2020)
+
+### Features
+* **peerDependencies** removed `flatted` since we no longer depend on it.
+* **mat-dialog** styles for the [angular material dialog](https://v8.material.angular.io/components/dialog/overview).
+* **checkbox-group** Checkbox values are no longer appended every time checkboxes are selected. The sorting is preserved instead. 
+
+### Bug Fixes
 * **matInput** fixed placeholder styling.
-
+* **terra-portlet** using `border-bottom` on `portlet-head` when unfolded instead of `border-top` on `portlet-body`.
+* **security-vulnerability** dependency package `acorn
 
 <a name="5.0.0"></a>
 # 5.0.0 (20.02.2020)
