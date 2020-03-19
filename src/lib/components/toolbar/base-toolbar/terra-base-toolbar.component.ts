@@ -1,13 +1,13 @@
 import {
     Component,
+    HostBinding,
     Input
 } from '@angular/core';
 
 @Component({
     selector:    'terra-base-toolbar',
     styleUrls:   ['./terra-base-toolbar.component.scss'],
-    templateUrl: './terra-base-toolbar.component.html',
-    host:        {'[class.terra-sticky-toolbar]': 'isSticky'}
+    templateUrl: './terra-base-toolbar.component.html'
 })
 export class TerraBaseToolbarComponent
 {
@@ -22,6 +22,12 @@ export class TerraBaseToolbarComponent
      */
     @Input()
     public isSticky:boolean;
+
+    @HostBinding('class.terra-sticky-toolbar')
+    public get sticky():boolean
+    {
+        return this.isSticky;
+    }
 
     constructor()
     {
