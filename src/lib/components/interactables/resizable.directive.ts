@@ -50,7 +50,7 @@ export class TerraResizableDirective implements OnInit, OnChanges
     @Output()
     public end:EventEmitter<InteractEvent> = new EventEmitter<InteractEvent>();
 
-    /* tslint:disable:no-output-on-prefix no-input-rename no-output-rename */
+    /* eslint-disable @angular-eslint/no-input-rename, @angular-eslint/no-output-rename, @angular-eslint/no-output-on-prefix */
     /**
      * @deprecated since 3.x.x. Use options instead
      */
@@ -118,7 +118,7 @@ export class TerraResizableDirective implements OnInit, OnChanges
      */
     @Output('terra-resizable-onEnd')
     public onEnd:EventEmitter<InteractEvent> = new EventEmitter<InteractEvent>();
-    /* tslint:enable:no-output-on-prefix no-input-rename no-output-rename */
+    /* eslint-enable @angular-eslint/no-input-rename, @angular-eslint/no-output-rename, @angular-eslint/no-output-on-prefix */
 
     private _interactable:Interactable;
 
