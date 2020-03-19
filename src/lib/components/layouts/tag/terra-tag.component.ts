@@ -79,13 +79,13 @@ export class TerraTagComponent implements OnInit, OnChanges, OnDestroy
     @Input()
     public names:Array<TerraTagNameInterface> = [];
 
-    /* tslint:disable:no-output-on-prefix */
+    /* eslint-disable @angular-eslint/no-output-on-prefix */
     /**
      * @deprecated use closeTag instead
      */
     @Output()
     public onCloseTag:EventEmitter<number> = new EventEmitter<number>();
-    /* tslint:enable:no-output-on-prefix */
+    /* eslint-enable @angular-eslint/no-output-on-prefix */
 
     /**
      * Notifies when the user clicks on the close icon.
