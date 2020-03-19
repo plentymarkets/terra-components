@@ -20,13 +20,13 @@ export class TerraTaglistComponent implements OnInit
     @Input()
     public isReadOnly:boolean;
 
-    /* tslint:disable:no-output-on-prefix */
+    /* eslint-disable @angular-eslint/no-output-rename */
     /**
      * @deprecated use closeTag instead
      */
     @Output()
     public onCloseTag:EventEmitter<number> = new EventEmitter<number>();
-    /* tslint:enable:no-output-on-prefix */
+    /* eslint-enable @angular-eslint/no-output-rename */
 
     @Output()
     public closeTag:EventEmitter<number> = new EventEmitter<number>();
