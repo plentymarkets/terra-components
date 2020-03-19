@@ -26,7 +26,7 @@ const interact:InteractStatic = interact_;
 })
 export class TerraDraggableDirective implements OnInit, OnChanges
 {
-    /* tslint:disable-next-line:no-input-rename */
+    /* eslint-disable-next-line @angular-eslint/no-input-rename */
     @Input('terraDraggable')
     public options?:DraggableOptions = null;
 
@@ -54,7 +54,7 @@ export class TerraDraggableDirective implements OnInit, OnChanges
     @Output()
     public end:EventEmitter<InteractEvent> = new EventEmitter<InteractEvent>();
 
-    /* tslint:disable:no-output-on-prefix no-input-rename no-output-rename */
+    /* eslint-disable @angular-eslint/no-input-rename, @angular-eslint/no-output-rename, @angular-eslint/no-output-on-prefix */
     /**
      * @deprecated since 3.x.x. Use disabled instead.
      */
@@ -122,7 +122,7 @@ export class TerraDraggableDirective implements OnInit, OnChanges
      */
     @Output('terra-draggable-onEnd')
     public onEnd:EventEmitter<InteractEvent> = new EventEmitter<InteractEvent>();
-    /* tslint:enable:no-output-on-prefix no-input-rename no-output-rename */
+    /* eslint-enable @angular-eslint/no-input-rename, @angular-eslint/no-output-rename, @angular-eslint/no-output-on-prefix */
 
     private _interactable:Interactable;
 
