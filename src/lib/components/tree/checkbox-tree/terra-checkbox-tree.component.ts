@@ -40,7 +40,7 @@ export class TerraCheckboxTreeComponent extends TerraBaseTreeComponent implement
      * @description get the current selected leaf list
      */
     @Output()
-    public valueChange:EventEmitter<TerraCheckboxLeafInterface> = new EventEmitter<TerraCheckboxLeafInterface>();
+    public readonly valueChange:EventEmitter<TerraCheckboxLeafInterface> = new EventEmitter<TerraCheckboxLeafInterface>();
 
     public _selectedLeafList:Array<TerraCheckboxLeafInterface> = [];
 
