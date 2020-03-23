@@ -57,13 +57,13 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
     public inputStorageServices:Array<TerraBaseStorageService> = null;
 
     @Output()
-    public showImagePreview:EventEmitter<boolean> = new EventEmitter<boolean>();
+    public readonly showImagePreview:EventEmitter<boolean> = new EventEmitter<boolean>();
 
     @Output()
-    public hideImagePreview:EventEmitter<void> = new EventEmitter<void>();
+    public readonly hideImagePreview:EventEmitter<void> = new EventEmitter<void>();
 
     @Output()
-    public selectNode:EventEmitter<TerraStorageObject> = new EventEmitter<TerraStorageObject>();
+    public readonly selectNode:EventEmitter<TerraStorageObject> = new EventEmitter<TerraStorageObject>();
 
     public imagePreviewObject:TerraStorageObject;
 
