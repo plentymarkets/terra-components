@@ -33,7 +33,7 @@ export class TerraPagerComponent implements OnInit, OnDestroy
     public inputRequestPending:boolean;
 
     @Output()
-    public outputDoPaging:EventEmitter<TerraPagerInterface<unknown>> = new EventEmitter<TerraPagerInterface<unknown>>();
+    public readonly outputDoPaging:EventEmitter<TerraPagerInterface<unknown>> = new EventEmitter<TerraPagerInterface<unknown>>();
 
     @Language()
     public _lang:string;
