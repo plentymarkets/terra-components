@@ -24,13 +24,13 @@ export class TerraLabelTooltipDirective implements OnInit
     public tooltipTextOfInput:string;
 
     @Output()
-    public tooltipOfInputDisabledChange:EventEmitter<boolean> = new EventEmitter<boolean>();
+    public readonly tooltipOfInputDisabledChange:EventEmitter<boolean> = new EventEmitter<boolean>();
 
     @Output()
-    public tooltipDisabledChange:EventEmitter<boolean> = new EventEmitter<boolean>();
+    public readonly tooltipDisabledChange:EventEmitter<boolean> = new EventEmitter<boolean>();
 
     @Output()
-    public tooltipTextChange:EventEmitter<string> = new EventEmitter<string>();
+    public readonly tooltipTextChange:EventEmitter<string> = new EventEmitter<string>();
 
     private _tooltipOfInputDisabled:boolean;
 
