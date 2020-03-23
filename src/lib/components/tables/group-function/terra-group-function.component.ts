@@ -56,7 +56,7 @@ export class TerraGroupFunctionComponent implements OnInit, OnDestroy
      * @description emits if the execute group functions button has been clicked
      */
     @Output()
-    public executeGroupFunction:EventEmitter<void> = new EventEmitter();
+    public readonly executeGroupFunction:EventEmitter<void> = new EventEmitter();
 
     /**
      * @description currently selected language
