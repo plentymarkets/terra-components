@@ -54,7 +54,7 @@ export class TerraTextInputComponent extends TerraInputComponent
      * @description notifies if something is typed in the input element. Emits the string that has been entered.
      */
     @Output()
-    public outputOnInput:EventEmitter<string> = new EventEmitter<string>();
+    public readonly outputOnInput:EventEmitter<string> = new EventEmitter<string>();
 
     /**
      * @description a unique string identifier for the specific input instance.
