@@ -53,13 +53,13 @@ export class TerraToggleComponent implements ControlValueAccessor
     public inputTooltipPlacement:TerraPlacementEnum;
 
     @Output()
-    public deactivated:EventEmitter<any> = new EventEmitter<any>();
+    public readonly deactivated:EventEmitter<any> = new EventEmitter<any>();
 
     @Output()
-    public activated:EventEmitter<any> = new EventEmitter<any>();
+    public readonly activated:EventEmitter<any> = new EventEmitter<any>();
 
     @Output()
-    public toggled:EventEmitter<boolean> = new EventEmitter<boolean>();
+    public readonly toggled:EventEmitter<boolean> = new EventEmitter<boolean>();
 
     public _isActive:boolean = false;
 
