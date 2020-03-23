@@ -21,13 +21,13 @@ export class FilterComponent implements OnInit, OnDestroy
      * @description Notifies when the search button has been clicked or the enter key has been pressed.
      */
     @Output()
-    public search:EventEmitter<void> = new EventEmitter<void>();
+    public readonly search:EventEmitter<void> = new EventEmitter<void>();
 
     /**
      * @description Notifies when the reset button has been clicked
      */
     @Output()
-    public reset:EventEmitter<void> = new EventEmitter<void>();
+    public readonly reset:EventEmitter<void> = new EventEmitter<void>();
 
     @Language()
     public _lang:string;
