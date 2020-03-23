@@ -107,13 +107,13 @@ export class TerraCheckboxComponent implements ControlValueAccessor
      * @deprecated use ngModelChange instead.
      */
     @Output()
-    public valueChange:EventEmitter<boolean> = new EventEmitter<boolean>();
+    public readonly valueChange:EventEmitter<boolean> = new EventEmitter<boolean>();
 
     /**
      * @description Emits the current isIndeterminate state when it has changed.
      */
     @Output()
-    public isIndeterminateChange:EventEmitter<boolean> = new EventEmitter<boolean>();
+    public readonly isIndeterminateChange:EventEmitter<boolean> = new EventEmitter<boolean>();
 
     public isValid:boolean = true;
 
