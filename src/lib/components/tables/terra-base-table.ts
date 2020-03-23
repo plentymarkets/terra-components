@@ -12,7 +12,7 @@ export class TerraBaseTable<T>
      *     `inputHasCheckboxes` is true.
      */
     @Output()
-    public outputRowCheckBoxChanged:EventEmitter<TerraDataTableRowInterface<T>> = new EventEmitter();
+    public readonly outputRowCheckBoxChanged:EventEmitter<TerraDataTableRowInterface<T>> = new EventEmitter();
 
     public _headerCheckbox:{ checked:boolean, isIndeterminate:boolean };
     protected readonly _rowList:Array<TerraDataTableRowInterface<T>>;
