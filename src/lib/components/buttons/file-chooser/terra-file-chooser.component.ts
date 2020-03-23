@@ -71,16 +71,16 @@ export class TerraFileChooserComponent extends TerraButtonComponent
     }
 
     @Output()
-    public outputSelected:EventEmitter<TerraStorageObject> = new EventEmitter<TerraStorageObject>();
+    public readonly outputSelected:EventEmitter<TerraStorageObject> = new EventEmitter<TerraStorageObject>();
 
     @Output()
-    public outputCancelled:EventEmitter<void> = new EventEmitter<void>();
+    public readonly outputCancelled:EventEmitter<void> = new EventEmitter<void>();
 
     @Output()
-    public outputFileBrowserShow:EventEmitter<TerraFileBrowserComponent> = new EventEmitter<TerraFileBrowserComponent>();
+    public readonly outputFileBrowserShow:EventEmitter<TerraFileBrowserComponent> = new EventEmitter<TerraFileBrowserComponent>();
 
     @Output()
-    public outputFileBrowserHide:EventEmitter<TerraFileBrowserComponent> = new EventEmitter<TerraFileBrowserComponent>();
+    public readonly outputFileBrowserHide:EventEmitter<TerraFileBrowserComponent> = new EventEmitter<TerraFileBrowserComponent>();
 
     @ViewChild('overlay', { static: true })
     public overlay:TerraOverlayComponent;
