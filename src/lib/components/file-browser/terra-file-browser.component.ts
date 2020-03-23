@@ -39,7 +39,7 @@ export class TerraFileBrowserComponent implements OnChanges, OnInit
     public inputAllowFolders:boolean = true;
 
     @Output()
-    public outputSelectedChange:EventEmitter<TerraStorageObject> = new EventEmitter<TerraStorageObject>();
+    public readonly outputSelectedChange:EventEmitter<TerraStorageObject> = new EventEmitter<TerraStorageObject>();
 
     public onSelectedUrlChange:EventEmitter<string> = new EventEmitter();
 
