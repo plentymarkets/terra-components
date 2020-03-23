@@ -74,7 +74,7 @@ export class TerraButtonWithOptionsComponent implements OnInit
      * @description Emits the state of the button options each time the options are toggled.
      */
     @Output()
-    public optionsToggled:EventEmitter<boolean> = new EventEmitter<boolean>();
+    public readonly optionsToggled:EventEmitter<boolean> = new EventEmitter<boolean>();
 
     public _optionsToggle:boolean;
     public _alignRight:boolean;
