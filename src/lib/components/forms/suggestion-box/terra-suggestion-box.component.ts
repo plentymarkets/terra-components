@@ -61,10 +61,10 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
     public inputWithRecentlyUsed:boolean;
 
     @Output()
-    public outputClicked:EventEmitter<Event> = new EventEmitter<Event>();
+    public readonly outputClicked:EventEmitter<Event> = new EventEmitter<Event>();
 
     @Output()
-    public textInputValueChange:EventEmitter<string> = new EventEmitter<string>();
+    public readonly textInputValueChange:EventEmitter<string> = new EventEmitter<string>();
 
     public isValid:boolean = true;
 
