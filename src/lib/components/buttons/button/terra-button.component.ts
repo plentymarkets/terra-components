@@ -93,7 +93,7 @@ export class TerraButtonComponent
     public inputIsMajor:boolean;
 
     @Output()
-    public outputClicked:EventEmitter<Event> = new EventEmitter<Event>();
+    public readonly outputClicked:EventEmitter<Event> = new EventEmitter<Event>();
 
     constructor()
     {
