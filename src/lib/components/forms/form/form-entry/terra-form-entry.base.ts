@@ -6,7 +6,6 @@ import {
     Input,
     OnChanges,
     OnDestroy,
-    SimpleChanges,
     Type,
     ViewChild
 } from '@angular/core';
@@ -57,7 +56,7 @@ export class TerraFormEntryBase implements OnChanges, OnDestroy
      * Implementation of the OnChanges life cycle hook.
      * @description Updates the input bindings of the dynamically created component instance.
      */
-    public ngOnChanges(changes:SimpleChanges):void
+    public ngOnChanges():void
     {
         this._bindInputProperties();
     }
