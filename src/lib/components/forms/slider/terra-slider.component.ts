@@ -43,7 +43,7 @@ export class TerraSliderComponent implements OnInit, OnChanges, ControlValueAcce
      * @deprecated use `ngModelChange` instead
      */
     @Output()
-    public inputValueChange:EventEmitter<number> = new EventEmitter<number>();
+    public readonly inputValueChange:EventEmitter<number> = new EventEmitter<number>();
 
     /**
      * label text
