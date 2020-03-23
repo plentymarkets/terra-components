@@ -45,10 +45,10 @@ export class TerraOverlayComponent implements AfterViewInit
     public inputIsExtraLarge:boolean = false;
 
     @Output()
-    public outputOnHide:EventEmitter<ModalDirective> = new EventEmitter<ModalDirective>();
+    public readonly outputOnHide:EventEmitter<ModalDirective> = new EventEmitter<ModalDirective>();
 
     @Output()
-    public outputOnShow:EventEmitter<ModalDirective> = new EventEmitter<ModalDirective>();
+    public readonly outputOnShow:EventEmitter<ModalDirective> = new EventEmitter<ModalDirective>();
 
     public readonly _tooltipPlacement:TerraPlacementEnum.BOTTOM;
 
