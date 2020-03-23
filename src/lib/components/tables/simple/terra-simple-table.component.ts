@@ -43,19 +43,19 @@ export class TerraSimpleTableComponent<D> implements OnChanges
     public inputHighlightedRow:TerraSimpleTableRowInterface<D>;
 
     @Output()
-    public outputHeaderCheckBoxChanged:EventEmitter<boolean> = new EventEmitter();
+    public readonly outputHeaderCheckBoxChanged:EventEmitter<boolean> = new EventEmitter();
 
     @Output()
-    public outputRowCheckBoxChanged:EventEmitter<TerraSimpleTableRowInterface<D>> = new EventEmitter();
+    public readonly outputRowCheckBoxChanged:EventEmitter<TerraSimpleTableRowInterface<D>> = new EventEmitter();
 
     @Output()
-    public outputRowClicked:EventEmitter<TerraSimpleTableRowInterface<D>> = new EventEmitter();
+    public readonly outputRowClicked:EventEmitter<TerraSimpleTableRowInterface<D>> = new EventEmitter();
 
     @Output()
-    public outputHighlightedRowChange:EventEmitter<TerraSimpleTableRowInterface<D>> = new EventEmitter();
+    public readonly outputHighlightedRowChange:EventEmitter<TerraSimpleTableRowInterface<D>> = new EventEmitter();
 
     @Output()
-    public outputSelectedRowsChange:EventEmitter<Array<TerraSimpleTableRowInterface<D>>> = new EventEmitter();
+    public readonly outputSelectedRowsChange:EventEmitter<Array<TerraSimpleTableRowInterface<D>>> = new EventEmitter();
 
     @ViewChild('viewChildHeaderCheckbox', { static: false })
     public viewChildHeaderCheckbox:TerraCheckboxComponent;
