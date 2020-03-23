@@ -77,7 +77,7 @@ export class TerraPortletComponent implements OnChanges
     public infoText:string;
 
     @Output()
-    public inputCollapsedChange:EventEmitter<boolean> = new EventEmitter<boolean>();
+    public readonly inputCollapsedChange:EventEmitter<boolean> = new EventEmitter<boolean>();
 
     public readonly _infoTextPlacement:TerraPlacementEnum = TerraPlacementEnum.RIGHT;
 
