@@ -80,7 +80,7 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges, OnDestroy
     public inputShowDeprecatedEntries:boolean = false;
 
     @Output()
-    public inputShowDeprecatedEntriesChange:EventEmitter<boolean> = new EventEmitter();
+    public readonly inputShowDeprecatedEntriesChange:EventEmitter<boolean> = new EventEmitter();
 
     @Language()
     public _lang:string;
