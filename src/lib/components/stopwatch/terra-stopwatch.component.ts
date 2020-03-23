@@ -57,7 +57,7 @@ export class TerraStopwatchComponent implements OnInit, OnDestroy
      *     single second.
      */
     @Output()
-    public secondsChange:EventEmitter<number> = new EventEmitter<number>();
+    public readonly secondsChange:EventEmitter<number> = new EventEmitter<number>();
 
     @Language()
     public _lang:string;
