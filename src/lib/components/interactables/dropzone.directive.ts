@@ -43,24 +43,24 @@ export class TerraDropzoneDirective implements OnInit, OnChanges
     public disabled:boolean = false;
 
     @Output()
-    public dropActivate:EventEmitter<DropEvent> = new EventEmitter<DropEvent>();
+    public readonly dropActivate:EventEmitter<DropEvent> = new EventEmitter<DropEvent>();
 
     @Output()
-    public dropDeactivate:EventEmitter<DropEvent> = new EventEmitter<DropEvent>();
+    public readonly dropDeactivate:EventEmitter<DropEvent> = new EventEmitter<DropEvent>();
 
     @Output()
-    public dragEnter:EventEmitter<DropEvent> = new EventEmitter<DropEvent>();
+    public readonly dragEnter:EventEmitter<DropEvent> = new EventEmitter<DropEvent>();
 
     @Output()
-    public dragLeave:EventEmitter<DropEvent> = new EventEmitter<DropEvent>();
+    public readonly dragLeave:EventEmitter<DropEvent> = new EventEmitter<DropEvent>();
 
     @Output()
-    public dropMove:EventEmitter<DropEvent> = new EventEmitter<DropEvent>();
+    public readonly dropMove:EventEmitter<DropEvent> = new EventEmitter<DropEvent>();
 
     @Output()
-    public drop:EventEmitter<DropEvent> = new EventEmitter<DropEvent>();
+    public readonly drop:EventEmitter<DropEvent> = new EventEmitter<DropEvent>();
 
-    /* eslint-disable @angular-eslint/no-input-rename, @angular-eslint/no-output-rename, @angular-eslint/no-output-on-prefix */
+    /* eslint-disable */
     /**
      * @deprecated since 3.x.x. Use accept instead
      */
@@ -126,7 +126,7 @@ export class TerraDropzoneDirective implements OnInit, OnChanges
      */
     @Output('terra-dropzone-onDrop')
     public onDrop:EventEmitter<DropEvent> = new EventEmitter<DropEvent>();
-    /* eslint-enable @angular-eslint/no-input-rename, @angular-eslint/no-output-rename, @angular-eslint/no-output-on-prefix */
+    /* eslint-enable */
 
     private _interactable:any = null;
 
