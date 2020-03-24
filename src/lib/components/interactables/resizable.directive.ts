@@ -42,13 +42,13 @@ export class TerraResizableDirective implements OnInit, OnChanges
     public inertia:boolean | InertiaOptions = false;
 
     @Output()
-    public start:EventEmitter<InteractEvent> = new EventEmitter<InteractEvent>();
+    public readonly start:EventEmitter<InteractEvent> = new EventEmitter<InteractEvent>();
 
     @Output()
-    public move:EventEmitter<InteractEvent> = new EventEmitter<InteractEvent>();
+    public readonly move:EventEmitter<InteractEvent> = new EventEmitter<InteractEvent>();
 
     @Output()
-    public end:EventEmitter<InteractEvent> = new EventEmitter<InteractEvent>();
+    public readonly end:EventEmitter<InteractEvent> = new EventEmitter<InteractEvent>();
 
     /* eslint-disable */
     /**
