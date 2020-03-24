@@ -46,15 +46,15 @@ export class TerraDraggableDirective implements OnInit, OnChanges
     public dragData:any;
 
     @Output()
-    public start:EventEmitter<InteractEvent> = new EventEmitter<InteractEvent>();
+    public readonly start:EventEmitter<InteractEvent> = new EventEmitter<InteractEvent>();
 
     @Output()
-    public move:EventEmitter<InteractEvent> = new EventEmitter<InteractEvent>();
+    public readonly move:EventEmitter<InteractEvent> = new EventEmitter<InteractEvent>();
 
     @Output()
-    public end:EventEmitter<InteractEvent> = new EventEmitter<InteractEvent>();
+    public readonly end:EventEmitter<InteractEvent> = new EventEmitter<InteractEvent>();
 
-    /* eslint-disable @angular-eslint/no-input-rename, @angular-eslint/no-output-rename, @angular-eslint/no-output-on-prefix */
+    /* eslint-disable */
     /**
      * @deprecated since 3.x.x. Use disabled instead.
      */
@@ -122,7 +122,7 @@ export class TerraDraggableDirective implements OnInit, OnChanges
      */
     @Output('terra-draggable-onEnd')
     public onEnd:EventEmitter<InteractEvent> = new EventEmitter<InteractEvent>();
-    /* eslint-enable @angular-eslint/no-input-rename, @angular-eslint/no-output-rename, @angular-eslint/no-output-on-prefix */
+    /* eslint-enable */
 
     private _interactable:Interactable;
 
