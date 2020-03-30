@@ -1,0 +1,109 @@
+@import '../../styles/variables';
+
+.mat-table
+{
+    margin: 0;
+    
+    .mat-header-row
+    {
+        min-height: 0;
+        height: var(--height-lg);
+        
+        .mat-header-cell
+        {
+            padding: var(--table-head-th-padding, var(--space-md));
+            font-size: var(--font-size-3);
+            @include font-rendering;
+            
+            &.cdk-drop-list-receiving, //all elements that can receive a drag
+            &.cdk-drop-list-dragging //element where you drag over
+            {
+                transition: transform 0.2s ease;
+            }
+            
+            &.cdk-drag-placeholder
+            {
+                background-color: var(--color-structure-2);
+            }
+            
+            &.cdk-drag
+            {
+                cursor: move;
+            }
+            
+            .mat-sort-header-container
+            {
+                button.mat-sort-header-button
+                {
+                    &:focus
+                    {
+                        outline: none;
+                    }
+                }
+                
+                .mat-sort-header-arrow
+                {
+                    color: var(--table-head-color, var(--color-structure-0));
+                }
+            }
+        }
+    }
+    
+    .mat-row
+    {
+        min-height: 0;
+        color: var(--color-structure-11);
+        border-bottom: 1px solid var(--border-color);
+        height: var(--height-lg);
+        
+        &.disabled
+        {
+            cursor: not-allowed;
+            
+            .mat-cell
+            {
+                opacity: 0.5;
+            }
+        }
+        
+        &:nth-child(odd)
+        {
+            background-color: var(--color-structure-1);
+        }
+        
+        .mat-cell
+        {
+            padding: var(--table-body-td-padding, var(--space-md));
+            vertical-align: middle;
+            white-space: nowrap;
+            font-size: var(--font-size-3);
+            @include font-rendering;
+        }
+        
+        &:hover
+        {
+            background: var(--color-structure-2);
+            cursor: pointer;
+        }
+        
+        &.selected, &.isActive
+        {
+            background-color: var(--color-active);
+            
+            .mat-cell
+            {
+                color: var(--color-structure-0);
+                
+                a[href]
+                {
+                    color: var(--color-structure-0);
+                    
+                    &:hover
+                    {
+                        color: var(--color-structure-13);
+                    }
+                }
+            }
+        }
+    }
+}

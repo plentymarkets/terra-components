@@ -14,6 +14,7 @@ import { AppComponent } from './app.component';
 import { ShowcaseComponent } from './showcase/showcase.component';
 import { TerraComponentsExamplesModule } from '../lib/terra-components-examples.module';
 import { RouterModule } from '@angular/router';
+import { MatTableModule } from '@angular/material/table';
 
 export function initL10n(l10nLoader:L10nLoader):Function
 {
@@ -26,13 +27,14 @@ export function initL10n(l10nLoader:L10nLoader):Function
  * NOTE: It is not publicly accessible either.
  */
 @NgModule({
-    imports:      [
+    imports: [
         BrowserModule,
         BrowserAnimationsModule,
         RouterModule.forRoot([]),
         HttpClientModule,
         LocalizationModule.forRoot(l10nConfig),
-        TerraComponentsExamplesModule
+        TerraComponentsExamplesModule,
+        MatTableModule
     ],
     declarations: [
         AppComponent,
