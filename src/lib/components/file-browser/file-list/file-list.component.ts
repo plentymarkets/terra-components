@@ -391,10 +391,6 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
             objects.forEach((object:TerraStorageObject) =>
             {
                 keyList.push(object.key);
-                if(object.isDirectory)
-                {
-                    extractKeys(object.children);
-                }
             });
         };
         extractKeys(this._objectsToDelete);

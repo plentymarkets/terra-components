@@ -7,11 +7,11 @@
 		"test-once": "ng test lib --watch=false --browsers=Chrome,Firefox,Safari",
 		"test-headless": "ng test lib --watch=false --browsers=ChromeHeadless,FirefoxHeadless",
 		"lint": "ng lint lib",
-		"reinstall": "rm -rf node_modules/ && npm i"
+		"reinstall": "rm -rf node_modules/ && npm i",
+		"prepare-release": "npm run reinstall && npm run build && npm run test-once && npm start"
 	},
 	"dependencies": {
 		"bootstrap": "^4.4.1",
-		"flatted": "^2.0.0",
 		"htmlhint": "~0.10.3",
 		"iban": "^0.0.12",
 		"interactjs": "1.3.4",
@@ -29,11 +29,11 @@
 		"ts-keycode-enum": "^1.0.6"
 	},
 	"devDependencies": {
-		"@angular-devkit/build-angular": "~0.803.23",
-		"@angular-devkit/build-ng-packagr": "~0.803.23",
+		"@angular-devkit/build-angular": "~0.803.25",
+		"@angular-devkit/build-ng-packagr": "~0.803.25",
 		"@angular/animations": "~8.2.14",
 		"@angular/cdk": "^8.2.3",
-		"@angular/cli": "~8.3.23",
+		"@angular/cli": "~8.3.25",
 		"@angular/common": "~8.2.14",
 		"@angular/compiler": "~8.2.14",
 		"@angular/compiler-cli": "~8.2.14",
@@ -67,14 +67,14 @@
 		"ng-packagr": "^5.4.0",
 		"node-sass-tilde-importer": "^1.0.2",
 		"rxjs": "~6.5.4",
-		"semver": "^6.3.0",
+		"semver": "^7.1.3",
 		"ts-node": "~7.0.0",
 		"tsickle": "^0.37.0",
 		"tslib": "^1.10.0",
 		"tslint": "^5.17.0",
 		"tslint-eslint-rules": "^5.4.0",
 		"typescript": "~3.5.3",
-		"yargs": "^14.2.0",
+		"yargs": "^15.1.0",
 		"zone.js": "~0.9.1"
 	}
 }

@@ -4,6 +4,7 @@ import {
     isArray,
     isNullOrUndefined
 } from 'util';
+import { httpParamEncoder } from './http-param-encoder';
 
 /**
  * Creates an instance of HttpParams filled with given #params
@@ -14,12 +15,12 @@ import {
  */
 export function createHttpParams(params:Params, arrayAsArray:boolean = false):HttpParams
 {
+    let searchParams:HttpParams = new HttpParams({encoder: httpParamEncoder});
     if(isNullOrUndefined(params))
     {
-        return new HttpParams(); // return empty HttpParams
+        return searchParams;
     }
 
-    let searchParams:HttpParams = new HttpParams();
     Object.keys(params).forEach((key:string) =>
     {
         if(!isNullOrUndefined(params[key]) && params[key] !== '')
