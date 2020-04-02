@@ -4,6 +4,7 @@
 * **terra-node-tree** fixed error that was thrown when the user searches for a node and one of the node's name was undefined.
 * **terra-two-columns-container** updated outer paddings
 * **terra-three-columns-container** updated outer paddings
+* **terra-stopwatch** you are now able to import `TerraStopwatchComponent` from _@plentymarkets/terra-components_.
 
 <a name="5.1.0"></a>
 # 5.1.0 (11.03.2020)
