@@ -96,10 +96,7 @@ export class TerraStopwatchComponent implements OnInit, OnDestroy
      */
     public start():void
     {
-        if(!this.isRunning)
-        {
-            this._timer = window.setInterval(() => this.incrementSeconds(), 1000);
-        }
+        this._timer = window.setInterval(() => this.incrementSeconds(), 1000);
     }
 
     /**
@@ -107,11 +104,8 @@ export class TerraStopwatchComponent implements OnInit, OnDestroy
      */
     public stop():void
     {
-        if(this.isRunning)
-        {
-            window.clearInterval(this._timer);
-            this._timer = null;
-        }
+        window.clearInterval(this._timer);
+        this._timer = null;
     }
 
     /**
