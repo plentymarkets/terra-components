@@ -1,11 +1,11 @@
-<terra-filter (outputOnSearchBtnClicked)="onSearchBtnClicked()"
-              (outputOnResetBtnClicked)="onResetBtnClicked()"
-              (outputOnEnterSubmit)="onSubmit()">
+<terra-filter (outputOnSearchBtnClicked)="_onSearchBtnClicked()"
+              (outputOnResetBtnClicked)="_onResetBtnClicked()"
+              (outputOnEnterSubmit)="_onSubmit()">
     <terra-text-input inputName="Name"
-                      [(ngModel)]="name">
+                      [(ngModel)]="_name">
     </terra-text-input>
-    <terra-select-box [inputListBoxValues]="listBoxValues"
-                      [(ngModel)]="selectedListBoxValue">
+    <terra-select-box [inputListBoxValues]="_listBoxValues"
+                      [(ngModel)]="_selectedListBoxValue">
     </terra-select-box>
 </terra-filter>
 

@@ -5,7 +5,9 @@ body
         ////// Function Groups //////
         
         // Add
-        --color-group-add: #6AD26A;
+        --color-group-add-hex: #6ad26a;
+        --color-group-add-rgb: 106, 210, 106;
+        --color-group-add: rgb(var(--color-group-add-rgb), 1.0);
         --button-background-color-group-add: var(--color-group-navigation);
         --button-text-color-group-add: var(--color-structure-0);
         --button-border-bottom-group-add: 4px solid var(--color-group-add);
@@ -14,7 +16,9 @@ body
         --color-add-dark: var(--color-group-add); // deprecated
         
         // Active
-        --color-group-active: #24B3E0;
+        --color-group-active-hex: #24b3e0;                                      // only for reference in intelliJ
+        --color-group-active-rgb: 36, 179, 224;                                 // used if alpha value is necessary. Example: rgba(var(--color-active-rgb), .5);
+        --color-group-active: rgb(var(--color-group-active-rgb), 1.0);          // the actual color being used
         --button-background-color-group-active: var(--color-group-navigation);
         --button-text-color-group-active: var(--color-structure-0);
         --button-border-bottom-group-active: 4px solid var(--color-group-active);
@@ -23,7 +27,9 @@ body
         --color-active-dark: var(--color-group-active); // deprecated
         
         // Alert
-        --color-group-alert: #F11539;
+        --color-group-alert-hex: #f11539;
+        --color-group-alert-rgb: 241, 21, 57;
+        --color-group-alert: rgb(var(--color-group-alert-rgb), 1.0);
         --button-background-color-group-alert: var(--color-group-navigation);
         --button-text-color-group-alert: var(--color-structure-0);
         --button-border-bottom-group-alert: 4px solid var(--color-group-alert);
@@ -32,7 +38,9 @@ body
         --color-alert-dark: var(--color-group-alert); // deprecated
         
         // Action
-        --color-group-action: #FFDB4C;
+        --color-group-action-hex: #FFDB4C;
+        --color-group-action-rgb: 255, 219, 76;
+        --color-group-action: rgb(var(--color-group-action-rgb), 1.0);
         --button-background-color-group-action: var(--color-group-navigation);
         --button-text-color-group-action: var(--color-structure-0);
         --button-border-bottom-group-action: 4px solid var(--color-group-action);
@@ -41,19 +49,25 @@ body
         --color-accent-dark: var(--color-group-action); // deprecated
         
         // Warning
-        --color-group-warning: #FF873E;
+        --color-group-warning-hex: #FF873E;
+        --color-group-warning-rgb: 255, 135, 62;
+        --color-group-warning: rgb(var(--color-group-warning-rgb), 1.0);
         --button-background-color-group-warning: var(--color-group-navigation);
         --button-text-color-group-warning: var(--color-structure-0);
         --button-border-bottom-group-warning: 4px solid var(--color-group-warning);
         
         // Info
-        --color-group-info: #3F54D0;
+        --color-group-info-hex: #3F54D0;
+        --color-group-info-rgb: 63, 84, 208;
+        --color-group-info: rgb(var(--color-group-info-rgb), 1.0);
         --button-background-color-group-info: var(--color-group-navigation);
         --button-text-color-group-info: var(--color-structure-0);
         --button-border-bottom-group-info: 4px solid var(--color-group-info);
         
         // Transfer
-        --color-group-transfer: #E468F3;
+        --color-group-transfer-hex: #E468F3;
+        --color-group-transfer-rgb: 228, 104, 243;
+        --color-group-transfer: rgb(var(--color-group-transfer-rgb), 1.0);
         --button-background-color-group-transfer: var(--color-group-navigation);
         --button-text-color-group-transfer: var(--color-structure-0);
         --button-border-bottom-group-transfer: 4px solid var(--color-group-transfer);
@@ -128,6 +142,19 @@ body
         --header-height: calc(var(--navbar-height) + var(--tabbar-height));
         --breadcrumbs-height: 36px;
         --tab-content-fullscreen-top: 5px; //space between tab-content and fullscreen-top
+    
+        //////////// Fixed Spaces (don't scale in compact mode) //////////
+    
+        --height-sm-fix: 24px;
+        --height-md-fix: 36px;
+        --height-lg-fix: 48px;
+    
+        --space-xs-fix: 2px;
+        --space-sm-fix: 4px;
+        --space-md-fix: 8px;
+        --space-lg-fix: 12px;
+        --space-xl-fix: 24px;
+        --space-container-fix: 0 var(--space-xs-fix) var(--space-md-fix) var(--space-xs-fix); //for margins of container-elements like portlets or infoboxes
         
         //////////// Others //////////
         

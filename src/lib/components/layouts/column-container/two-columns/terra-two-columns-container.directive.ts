@@ -12,7 +12,6 @@ import {
     Router,
     RouterEvent
 } from '@angular/router';
-import { Event } from '@angular/router/src/events';
 import { TwoColumnHelper } from '../../../../helpers/two-column.helper';
 import { TerraTwoColumnsContainerComponent } from './terra-two-columns-container.component';
 import { isNullOrUndefined } from 'util';
@@ -27,71 +26,71 @@ import { filter } from 'rxjs/operators';
 })
 export class TerraTwoColumnsContainerDirective implements OnInit, OnDestroy
 {
-    private basePath:string;
-    private dataSub:Subscription;
-    private eventsSub:Subscription;
+    private _basePath:string;
+    private _dataSub:Subscription;
+    private _eventsSub:Subscription;
 
-    constructor(private route:ActivatedRoute,
-                private router:Router,
-                @Host() @Optional() private twoColComponent:TerraTwoColumnsContainerComponent)
+    constructor(private _route:ActivatedRoute,
+                private _router:Router,
+                @Host() @Optional() private _twoColComponent:TerraTwoColumnsContainerComponent)
     {
-        this.basePath = router.url;
+        this._basePath = _router.url;
     }
 
     public ngOnInit():void
     {
-        let navigationEndEvents$:Observable<Event> = this.router.events.pipe(filter((event:RouterEvent) =>
+        let navigationEndEvents$:Observable<RouterEvent> = this._router.events.pipe(filter((event:RouterEvent) =>
         {
-            return event instanceof NavigationEnd && event.urlAfterRedirects === this.basePath;
+            return event instanceof NavigationEnd && event.urlAfterRedirects === this._basePath;
         }));
 
-        this.eventsSub = navigationEndEvents$.subscribe((event:NavigationEnd) =>
+        this._eventsSub = navigationEndEvents$.subscribe((event:NavigationEnd) =>
         {
             if(event.url !== event.urlAfterRedirects)
             {
-                this.setColumnHidden('right');
+                this._setColumnHidden('right');
             }
             else
             {
-                this.setColumnHidden('left');
+                this._setColumnHidden('left');
             }
         });
 
-        this.dataSub = this.route.data.subscribe((data:Data) =>
+        this._dataSub = this._route.data.subscribe((data:Data) =>
         {
-            this.basePath = this.router.url;
+            this._basePath = this._router.url;
         });
 
-        this.setColumnHidden('left');
+        this._setColumnHidden('left');
     }
 
     public ngOnDestroy():void
     {
-        this.eventsSub.unsubscribe();
-        this.dataSub.unsubscribe();
+        this._eventsSub.unsubscribe();
+        this._dataSub.unsubscribe();
     }
 
-    private setColumnHidden(column:string):void
+    private _setColumnHidden(column:string):void
     {
-        if(!isNullOrUndefined(this.twoColComponent))
+        if(!isNullOrUndefined(this._twoColComponent))
         {
             if(column === 'right')
             {
-                this.twoColComponent.leftColumn = TwoColumnHelper.leftRightColXS()
-                                                  + TwoColumnHelper.leftColMD(this.twoColComponent.leftColumnWidth)
-                                                  + TwoColumnHelper.leftColLG(this.twoColComponent.leftColumnWidth);
-                this.twoColComponent.rightColumn = TwoColumnHelper.leftRightHiddenXS()
-                                                   + TwoColumnHelper.rightColMD(this.twoColComponent.leftColumnWidth)
-                                                   + TwoColumnHelper.rightColLG(this.twoColComponent.leftColumnWidth);
+                this._twoColComponent._leftColumn = TwoColumnHelper.leftRightColXS()
+                                                    + TwoColumnHelper.leftColMD(this._twoColComponent.leftColumnWidth)
+                                                    + TwoColumnHelper.leftColLG(this._twoColComponent.leftColumnWidth);
+                this._twoColComponent._rightColumn = TwoColumnHelper.leftRightHiddenXS()
+                                                     + TwoColumnHelper.rightColMD(this._twoColComponent.leftColumnWidth)
+                                                     + TwoColumnHelper.rightColLG(this._twoColComponent.leftColumnWidth);
             }
             else if(column === 'left')
             {
-                this.twoColComponent.leftColumn = TwoColumnHelper.leftRightHiddenXS()
-                                                  + TwoColumnHelper.leftColMD(this.twoColComponent.leftColumnWidth)
-                                                  + TwoColumnHelper.leftColLG(this.twoColComponent.leftColumnWidth);
-                this.twoColComponent.rightColumn = TwoColumnHelper.leftRightColXS()
-                                                   + TwoColumnHelper.rightColMD(this.twoColComponent.leftColumnWidth)
-                                                   + TwoColumnHelper.rightColLG(this.twoColComponent.leftColumnWidth);
+                this._twoColComponent._leftColumn = TwoColumnHelper.leftRightHiddenXS()
+                                                    + TwoColumnHelper.leftColMD(this._twoColComponent.leftColumnWidth)
+                                                    + TwoColumnHelper.leftColLG(this._twoColComponent.leftColumnWidth);
+                this._twoColComponent._rightColumn = TwoColumnHelper.leftRightColXS()
+                                                     + TwoColumnHelper.rightColMD(this._twoColComponent.leftColumnWidth)
+                                                     + TwoColumnHelper.rightColLG(this._twoColComponent.leftColumnWidth);
             }
         }
     }

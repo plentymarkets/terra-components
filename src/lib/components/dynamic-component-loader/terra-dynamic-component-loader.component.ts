@@ -16,19 +16,19 @@ import { isNullOrUndefined } from 'util';
 
 @Component({
     selector: 'terra-dynamic-component-loader',
-    template: require('./terra-dynamic-component-loader.component.html'),
+    templateUrl: './terra-dynamic-component-loader.component.html',
 })
 export class TerraDynamicComponentLoaderComponent implements AfterViewInit, OnDestroy, OnChanges
 {
-    @ViewChild('viewChildTarget', {read: ViewContainerRef})
-    public viewChildTarget:ViewContainerRef;
-
     @Input()
     public inputComponent:Type<any>;
 
-    private cmpRef:ComponentRef<any>;
+    @ViewChild('viewChildTarget', { read: ViewContainerRef, static: true })
+    private _viewChildTarget:ViewContainerRef;
 
-    constructor(private componentFactoryResolver:ComponentFactoryResolver)
+    private _cmpRef:ComponentRef<any>;
+
+    constructor(private _componentFactoryResolver:ComponentFactoryResolver)
     {
     }
 
@@ -37,33 +37,33 @@ export class TerraDynamicComponentLoaderComponent implements AfterViewInit, OnDe
         if(changes['inputComponent'])
         {
             this.ngOnDestroy();
-            this.updateComponent();
+            this._updateComponent();
         }
     }
 
     public ngAfterViewInit():void
     {
-        this.updateComponent();
+        this._updateComponent();
     }
 
     public ngOnDestroy():void
     {
-        if(this.cmpRef)
+        if(this._cmpRef)
         {
-            this.cmpRef.destroy();
+            this._cmpRef.destroy();
         }
     }
 
-    private updateComponent():void
+    private _updateComponent():void
     {
         if(!isNullOrUndefined(this.inputComponent))
         {
-            let componentFactory:ComponentFactory<any> = this.componentFactoryResolver.resolveComponentFactory(this.inputComponent);
+            let componentFactory:ComponentFactory<any> = this._componentFactoryResolver.resolveComponentFactory(this.inputComponent);
 
-            let viewContainerRef:ViewContainerRef = this.viewChildTarget;
+            let viewContainerRef:ViewContainerRef = this._viewChildTarget;
             viewContainerRef.clear();
 
-            this.cmpRef = viewContainerRef.createComponent(componentFactory);
+            this._cmpRef = viewContainerRef.createComponent(componentFactory);
         }
     }
 }

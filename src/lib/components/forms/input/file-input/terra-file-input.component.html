@@ -20,7 +20,7 @@
                  [ngClass]="{'error': !isValid, 'disabled': isDisabled}">
 
                 <input #valueInput
-                       id="{{id}}"
+                       id="{{_id}}"
                        type="text"
                        [(ngModel)]="value"
                        name="{{inputName}}"
@@ -29,20 +29,20 @@
                        [disabled]="isDisabled"
                        pattern="{{regex}}"
                        readonly="true"
-                       placeholder="{{inputPlaceholder}}"
+                       placeholder="{{inputName}}"
                        required
                        (click)="valueInput.select()">
             </div>
             <label [tcTooltip]="inputName"
                    tabindex="-1"
                    [onlyEllipsisTooltip]="true"
-                   htmlFor="{{id}}">{{inputName}}
+                   htmlFor="{{_id}}">{{inputName}}
                 <span *ngIf="inputIsRequired">*</span>
             </label>
         </div>
         <terra-file-chooser class="input-group-btn"
                             [inputIcon]="'icon-more'"
-                            [inputTooltipText]=" translationPrefix + '.chooseFile' | translate:lang"
+                            [inputTooltipText]=" _translationPrefix + '.chooseFile' | translate:_lang"
                             [inputTooltipPlacement]="'left'"
                             [inputAllowedExtensions]="inputAllowedExtensions"
                             [inputAllowFolders]="inputAllowFolders"
@@ -52,7 +52,7 @@
         </terra-file-chooser>
         <terra-button class="input-group-btn margin-left"
                       [inputIcon]="'icon-reset'"
-                      [inputTooltipText]="translationPrefix + '.reset' | translate:lang"
+                      [inputTooltipText]="_translationPrefix + '.reset' | translate:_lang"
                       [inputTooltipPlacement]="'left'"
                       (outputClicked)="resetValue()">
         </terra-button>

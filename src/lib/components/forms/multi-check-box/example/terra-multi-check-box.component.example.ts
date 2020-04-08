@@ -6,19 +6,19 @@ import { TerraMultiCheckBoxValueInterface } from '../data/terra-multi-check-box-
 
 @Component({
     selector: 'terra-multi-check-box-example',
-    styles:   [require('./terra-multi-check-box.component.example.scss')],
-    template: require('./terra-multi-check-box.component.example.html'),
+    styleUrls: [ './terra-multi-check-box.component.example.scss'],
+    templateUrl: './terra-multi-check-box.component.example.html',
 })
 export class TerraMultiCheckBoxComponentExample implements OnInit
 {
-    protected values:Array<TerraMultiCheckBoxValueInterface>;
-    protected readonly disabled:boolean = true;
-    protected currentChangedCheckboxes:Array<TerraMultiCheckBoxValueInterface>;
-    protected ngModelChangeCount:number = 0;
+    public _values:Array<TerraMultiCheckBoxValueInterface>;
+    public readonly _disabled:boolean = true;
+    public _currentChangedCheckboxes:Array<TerraMultiCheckBoxValueInterface>;
+    public _ngModelChangeCount:number = 0;
 
     public ngOnInit():void
     {
-        this.values = [
+        this._values = [
             {
                 value:    '1',
                 caption:  'Value 1',
@@ -47,13 +47,13 @@ export class TerraMultiCheckBoxComponentExample implements OnInit
         ];
     }
 
-    protected valuesChanged():void
+    public _valuesChanged():void
     {
-        this.ngModelChangeCount++;
+        this._ngModelChangeCount++;
     }
 
-    protected checkboxesChanged(checkboxes:Array<TerraMultiCheckBoxValueInterface>):void
+    public _checkboxesChanged(checkboxes:Array<TerraMultiCheckBoxValueInterface>):void
     {
-        this.currentChangedCheckboxes = checkboxes;
+        this._currentChangedCheckboxes = checkboxes;
     }
 }

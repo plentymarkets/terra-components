@@ -1,7 +1,11 @@
+@import "../../../lib/styles/variables";
+
 // material select
 
-.mat-form-field
+mat-form-field.mat-form-field
 {
+    font-family: inherit;
+    
     &.mat-focused
     {
         color: var(--color-active);
@@ -10,6 +14,7 @@
         {
             color: var(--color-active);
         }
+        
         .mat-form-field-underline .mat-form-field-ripple
         {
             background-color: var(--color-active);
@@ -27,9 +32,17 @@
         {
             &.mat-form-field-should-float
             {
-                .mat-form-field-label
+                label.mat-form-field-label
                 {
+                    font-variant: all-small-caps;
                     text-transform: uppercase;
+                    @include font-rendering;
+    
+                    mat-label,
+                    span
+                    {
+                        font-size: 18px;
+                    }
                 }
             }
         }
@@ -40,12 +53,14 @@
             {
                 .mat-form-field-infix
                 {
-                    padding: calc(var(--space-sm) * 1.7) 0;
-                    
                     mat-select
                     {
+                        height: 0;
+                        
                         .mat-select-trigger
                         {
+                            height: 0;
+                            
                             .mat-select-value
                             {
                                 .mat-select-value-text
@@ -57,12 +72,55 @@
                                     }
                                 }
                             }
+                            
+                            .mat-select-arrow-wrapper
+                            {
+                                padding-top: var(--space-sm);
+                            }
                         }
                     }
+                    
                     textarea, input
                     {
-                        color: var(--color-structure-12);
+                        color: var(--input-color, var(--color-structure-12));
                         font-weight: var(--font-weight-2);
+                        font-size: var(--font-size-3);
+                        caret-color: inherit;
+                    }
+                    
+                    .mat-form-field-label-wrapper
+                    {
+                        label.mat-form-field-label
+                        {
+                            color: var(--input-placeholder-color, var(--color-structure-7));
+                            font-weight: var(--font-weight-1);
+                        }
+                    }
+                }
+                
+                .mat-form-field-suffix
+                {
+                    mat-datepicker-toggle
+                    {
+                        color: var(--color-structure-11);
+                        
+                        &.mat-datepicker-toggle-active
+                        {
+                            color: var(--color-active);
+                        }
+                        
+                        button
+                        {
+                            &:focus
+                            {
+                                outline: none;
+                            }
+                            
+                            .mat-datepicker-toggle-default-icon
+                            {
+                                font-size: var(--font-size-6);
+                            }
+                        }
                     }
                 }
             }
@@ -70,9 +128,14 @@
             .mat-form-field-underline
             {
                 border-bottom: var(--input-wrapper-border, 1px solid var(--border-color));
+                
+                .mat-form-field-ripple
+                {
+                    background-color: var(--color-active);
+                }
             }
         }
-    
+        
         &.ng-invalid
         {
             color: var(--color-alert);
@@ -88,11 +151,11 @@
                 }
             }
         }
-    
+        
         &.mat-form-field-disabled
         {
             color: var(--color-structure-6);
-    
+            
             .mat-form-field-wrapper
             {
                 .mat-form-field-flex
@@ -113,11 +176,12 @@
                                 }
                             }
                         }
+                        
                         textarea, input
                         {
                             color: var(--color-structure-6);
                         }
-    
+                        
                         .mat-form-field-label-wrapper
                         {
                             .mat-form-field-label
@@ -133,7 +197,7 @@
                     }
                 }
             }
-    
+            
             .mat-form-field-underline
             {
                 border-bottom-style: inherit;
@@ -167,6 +231,50 @@
                                 {
                                     color: var(--color-structure-0);
                                     background-color: var(--color-active);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            
+            .mat-datepicker-content
+            {
+                .mat-calendar
+                {
+                    mat-calendar-header
+                    {
+                        .mat-calendar-header
+                        {
+                            .mat-calendar-controls
+                            {
+                                button
+                                {
+                                    &:focus
+                                    {
+                                        outline: none;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    
+                    .mat-calendar-content
+                    {
+                        table.mat-calendar-table
+                        {
+                            tbody.mat-calendar-body
+                            {
+                                tr
+                                {
+                                    td.mat-calendar-body-cell.mat-calendar-body-active
+                                    {
+                                        .mat-calendar-body-selected
+                                        {
+                                            background-color: var(--color-active);
+                                        }
+                                        
+                                    }
                                 }
                             }
                         }

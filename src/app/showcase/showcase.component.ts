@@ -14,5 +14,5 @@ import { examples } from '../../lib/components/example-collection';
 })
 export class ShowcaseComponent
 {
-    protected readonly examples:Array<Type<any>> = examples;
+    public readonly examples:Array<Type<any>> = examples;
 }

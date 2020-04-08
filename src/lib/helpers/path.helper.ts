@@ -4,7 +4,7 @@ export class PathHelper
 {
     public static readonly DELIMITER:string = '/';
 
-    private static getPaths(path:string):Array<string>
+    private static _getPaths(path:string):Array<string>
     {
         let paths:Array<string> = path.split(this.DELIMITER);
         while(paths.length > 0 && paths[0].length <= 0)
@@ -24,10 +24,7 @@ export class PathHelper
 
     /**
      * Check if a path is absolute.
-     *
-     * @param {string} path
-     *
-     * @returns {boolean}
+     * @param path
      */
     public static isAbsolute(path:string):boolean
     {
@@ -36,10 +33,7 @@ export class PathHelper
 
     /**
      * Check if a path is a directory.
-     *
-     * @param {string} path
-     *
-     * @returns {boolean}
+     * @param path
      */
     public static isDirectory(path:string):boolean
     {
@@ -48,10 +42,7 @@ export class PathHelper
 
     /**
      * Check if a path is a file.
-     *
-     * @param {string} path
-     *
-     * @returns {boolean}
+     * @param path
      */
     public static isFile(path:string):boolean
     {
@@ -60,29 +51,23 @@ export class PathHelper
 
     /**
      * Get the basename (dirname or filename) of a path.
-     *
-     * @param {string} path
-     *
-     * @returns {string}
+     * @param path
      */
     public static basename(path:string):string
     {
-        let paths:Array<string> = this.getPaths(path);
+        let paths:Array<string> = this._getPaths(path);
         let i:number = paths.length - 1;
         return paths[i];
     }
 
     /**
      * Get the name of the directory of a file
-     *
-     * @param {string} path
-     *
-     * @return {string}
+     * @param path
      */
     public static dirname(path:string):string
     {
         let prefix:string = this.isAbsolute(path) ? '/' : '';
-        let paths:Array<string> = this.getPaths(path);
+        let paths:Array<string> = this._getPaths(path);
         paths.pop();
 
         return prefix + paths.join(this.DELIMITER);
@@ -91,10 +76,7 @@ export class PathHelper
     /**
      * Get the file extension of a path.
      * Extension will be transformed to lower case.
-     *
-     * @param {string} path
-     *
-     * @returns {string}
+     * @param path
      */
     public static extName(path:string):string
     {
@@ -114,14 +96,11 @@ export class PathHelper
 
     /**
      * Join multiple paths.
-     *
-     * @param {string} paths
-     *
-     * @returns {string}
+     * @param paths
      */
     public static join(...paths:Array<string>):string
     {
-        return paths.map((path:string) =>
+        let completePath:string = paths.map((path:string) =>
         {
             if(path.charAt(0) === this.DELIMITER)
             {
@@ -134,14 +113,12 @@ export class PathHelper
 
             return path;
         }).join(this.DELIMITER);
+        return completePath;
     }
 
     /**
      * Convert a number to a readable memory size.
-     *
-     * @param {number} size
-     *
-     * @returns {string}
+     * @param size
      */
     public static sizeString(size:number):string
     {

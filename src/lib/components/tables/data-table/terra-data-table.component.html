@@ -1,37 +1,37 @@
 <ng-content select="terra-group-function"></ng-content>
 
 <terra-pager *ngIf="inputHasPager"
-             [hidden]="!dataAvailableOrRequestPending"
+             [hidden]="!_dataAvailableOrRequestPending"
              [inputPagingSize]="inputService?.pagingSizes"
              [inputDefaultPagingSize]="inputService?.defaultPagingSize"
              [inputPagingData]="inputService?.pagingData"
              [inputRequestPending]="inputService?.requestPending"
-             (outputDoPaging)="doPaging()">
+             (outputDoPaging)="_doPaging()">
 </terra-pager>
 
 <div class="table-responsive">
     <context-menu [links]="inputContextMenu"></context-menu>
-    <table [floatThead]="isSticky" class="table data-table" [ngClass]="{'terra-sticky-table': isSticky}" [hidden]="!dataAvailableOrRequestPending">
+    <table class="table data-table" [hidden]="!_dataAvailableOrRequestPending">
         <thead>
         <tr>
-            <th *ngIf="inputHasCheckboxes" width="{{checkboxColumnWidth}}px">
-                <terra-checkbox (change)="onHeaderCheckboxChange()"
+            <th *ngIf="inputHasCheckboxes" width="{{_checkboxColumnWidth}}px">
+                <terra-checkbox (change)="_onHeaderCheckboxChange()"
                                 (click)="$event.stopPropagation()"
-                                [value]="headerCheckbox.checked"
-                                [isIndeterminate]="headerCheckbox.isIndeterminate">
+                                [value]="_headerCheckbox.checked"
+                                [isIndeterminate]="_headerCheckbox.isIndeterminate">
                 </terra-checkbox>
             </th>
             <ng-template ngFor let-header [ngForOf]="inputHeaderList">
                 <th *ngIf="!header.isHidden"
                     width="{{header.width}}px"
                     [ngStyle]="{ 'text-align': getTextAlign(header) }"
-                    [class.sortable]="isSortable(header)"
-                    (click)="columnHeaderClicked.emit(header)">
+                    [class.sortable]="_isSortable(header)"
+                    (click)="_columnHeaderClicked.emit(header)">
                     <span [tcTooltip]="header.tooltipText"
                           [placement]="header.tooltipPlacement">
                           {{header.caption}}
                         <span
-                            [ngClass]="{'icon-table_sort': isUnsorted(header),'icon-sort_asc': isSortedAsc(header),'icon-sort_desc': isSortedDesc(header)}">
+                            [ngClass]="{'icon-table_sort': _isUnsorted(header),'icon-sort_asc': _isSortedAsc(header),'icon-sort_desc': _isSortedDesc(header)}">
                         </span>
                     </span>
 
@@ -40,10 +40,10 @@
         </tr>
         </thead>
         <tbody *ngIf="!useContentBody">
-        <tr *ngFor="let row of rowList" [tcTableRow]="row" hasContextMenu [rowData]="row.data">
+        <tr *ngFor="let row of _rowList" [tcTableRow]="row" hasContextMenu [rowData]="row.data">
             <ng-template ngFor let-cell [ngForOf]="row.cellList" let-i="index">
                 <td *ngIf="!cell.isHidden"
-                    [ngSwitch]="getCellDataType(cell.data)"
+                    [ngSwitch]="_getCellDataType(cell.data)"
                     [ngStyle]="{ 'text-align': getTextAlign(inputHeaderList[i]) }"
                     [tcTooltip]="cell.tooltipText"
                     [placement]="cell.tooltipPlacement">
@@ -65,16 +65,16 @@
                     </ng-container>
 
                     <ng-container *ngSwitchCase="'TerraRefTypeInterface'">
-                        <a *ngIf="cell.data.type === refType.email || cell.data.type === refType.phone"
+                        <a *ngIf="cell.data.type === _refType.email || cell.data.type === _refType.phone"
                            href="{{cell.data.type}}:{{cell.data.value}}"
                            (click)="$event.stopPropagation()">
                             {{ cell.data.caption || cell.data.value}}
                         </a>
-                        <a *ngIf="cell.data.type === refType.function" href="javascript:void(0);"
+                        <a *ngIf="cell.data.type === _refType.function" href="javascript:void(0);"
                            (click)="cell.data.value(); $event.stopPropagation();">
                             {{cell.data.caption}}
                         </a>
-                        <a *ngIf="cell.data.type === refType.url" href="{{cell.data.value}}" target="{{cell.data.target || '_self'}}"
+                        <a *ngIf="cell.data.type === _refType.url" href="{{cell.data.value}}" target="{{cell.data.target || '_self'}}"
                            (click)="$event.stopPropagation()">
                             {{cell.data.caption || cell.data.value}}
                         </a>
@@ -107,7 +107,7 @@
         <ng-content select="tbody" *ngIf="useContentBody"></ng-content>
     </table>
 
-    <div [hidden]="dataAvailableOrRequestPending">
+    <div [hidden]="_dataAvailableOrRequestPending">
         <ng-content select="terra-no-result-notice"></ng-content>
     </div>
 

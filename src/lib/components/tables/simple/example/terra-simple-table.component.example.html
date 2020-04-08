@@ -5,6 +5,6 @@
                     [inputEnableHotkeys]="true"
                     [inputHeaderList]="headerList"
                     [inputRowList]="rowList"
-                    (outputSelectedRowsChange)="selectedRows = $event">
+                    (outputSelectedRowsChange)="_selectedRows = $event">
 </terra-simple-table>
-{{ selectedRows | json }}
+{{ _selectedRows | json }}

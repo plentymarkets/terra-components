@@ -1,6 +1,5 @@
 import {
     Component,
-    forwardRef,
     Input
 } from '@angular/core';
 import {
@@ -12,13 +11,13 @@ import { isNullOrUndefined } from 'util';
 import { noop } from 'rxjs';
 
 @Component({
-    selector:  'tc-checkbox-group',
-    template:  require('./checkbox-group.component.html'),
-    styles:    [require('./checkbox-group.component.scss')],
-    providers: [
+    selector:    'tc-checkbox-group',
+    templateUrl: './checkbox-group.component.html',
+    styleUrls:   ['./checkbox-group.component.scss'],
+    providers:   [
         {
             provide:     NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => CheckboxGroupComponent),
+            useExisting: CheckboxGroupComponent,
             multi:       true
         }
     ]
@@ -50,36 +49,35 @@ export class CheckboxGroupComponent implements ControlValueAccessor
     @Input()
     public collapsed:boolean = false;
 
-    protected values:Array<any>;
 
-    protected multiCheckboxValues:Array<TerraMultiCheckBoxValueInterface> = [];
+    public _multiCheckboxValues:Array<TerraMultiCheckBoxValueInterface> = [];
 
-    private onTouchedCallback:() => void = noop;
-
-    private onChangeCallback:(_:Array<any>) => void = noop;
+    private _values:Array<any>;
+    private _onTouchedCallback:() => void = noop;
+    private _onChangeCallback:(_:Array<any>) => void = noop;
 
     public registerOnChange(fn:any):void
     {
-        this.onChangeCallback = fn;
+        this._onChangeCallback = fn;
     }
 
     public registerOnTouched(fn:any):void
     {
-        this.onTouchedCallback = fn;
+        this._onTouchedCallback = fn;
     }
 
     public writeValue(values:Array<any>):void
     {
-        this.values = values;
-        this.updateMultiCheckboxValues();
+        this._values = values;
+        this._updateMultiCheckboxValues();
     }
 
-    protected onMultiCheckboxChanged(checkboxValues:Array<TerraMultiCheckBoxValueInterface>):void
+    public _onMultiCheckboxChanged(checkboxValues:Array<TerraMultiCheckBoxValueInterface>):void
     {
         // if the value is null or undefined, initialize the array to be able to add selected values
-        if(isNullOrUndefined(this.values))
+        if(isNullOrUndefined(this._values))
         {
-            this.values = [];
+            this._values = [];
         }
 
         // go through the changed checkboxes
@@ -87,36 +85,52 @@ export class CheckboxGroupComponent implements ControlValueAccessor
         {
             if(changedValue.selected)
             {
-                this.values.push(changedValue.value);
+                this._values.push(changedValue.value);
             }
             else
             {
-                let idx:number = this.values.indexOf(changedValue.value);
+                let idx:number = this._values.indexOf(changedValue.value);
                 if(idx >= 0)
                 {
-                    this.values.splice(idx, 1);
+                    this._values.splice(idx, 1);
                 }
             }
         });
 
         // if nothing is selected, the value should be null
-        if(this.values.length === 0)
+        if(this._values.length === 0)
         {
-            this.values = null;
+            this._values = null;
+        }
+        else
+        {
+            this._values.sort((a:any, b:any):number =>
+            {
+                let apos:number = this._multiCheckboxValues.findIndex((checkbox:TerraMultiCheckBoxValueInterface) =>
+                {
+                     return checkbox.value === a;
+                });
+                let bpos:number = this._multiCheckboxValues.findIndex((checkbox:TerraMultiCheckBoxValueInterface) =>
+                {
+                    return checkbox.value === b;
+                });
+
+                return apos - bpos;
+            });
         }
 
-        this.onChangeCallback(this.values);
-        this.updateMultiCheckboxValues();
+        this._onChangeCallback(this._values);
+        this._updateMultiCheckboxValues();
     }
 
-    private updateMultiCheckboxValues():void
+    private _updateMultiCheckboxValues():void
     {
-        this.multiCheckboxValues = this.checkboxValues.map((checkbox:{ caption:string, value:any }) =>
+        this._multiCheckboxValues = this.checkboxValues.map((checkbox:{ caption:string, value:any }) =>
         {
             return {
                 caption:  checkbox.caption,
                 value:    checkbox.value,
-                selected: (this.values || []).indexOf(checkbox.value) >= 0
+                selected: (this._values || []).indexOf(checkbox.value) >= 0
             };
         });
     }

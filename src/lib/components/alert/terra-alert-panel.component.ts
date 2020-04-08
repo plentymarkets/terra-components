@@ -13,63 +13,63 @@ import { Subscription } from 'rxjs';
  */
 @Component({
     selector: 'terra-alert-panel',
-    template: require('./terra-alert-panel.component.html'),
-    styles:   [require('./terra-alert-panel.component.scss')]
+    templateUrl: './terra-alert-panel.component.html',
+    styleUrls:   ['./terra-alert-panel.component.scss'],
 })
 export class TerraAlertPanelComponent implements OnInit, OnDestroy
 {
-    protected alerts:Array<TerraAlertInterface>;
-    private alert:TerraAlertComponent = TerraAlertComponent.getInstance();
+    public _alerts:Array<TerraAlertInterface>;
+    private _alert:TerraAlertComponent = TerraAlertComponent.getInstance();
 
-    private addAlertSub:Subscription;
-    private closeAlertSub:Subscription;
+    private _addAlertSub:Subscription;
+    private _closeAlertSub:Subscription;
 
-    private readonly addAlertListener:EventListener;
-    private readonly closeAlertListener:EventListener;
+    private readonly _addAlertListener:EventListener;
+    private readonly _closeAlertListener:EventListener;
 
-    constructor(private service:AlertService)
+    constructor(private _service:AlertService)
     {
-        this.alerts = this.alert.alerts;
+        this._alerts = this._alert.alerts;
 
         // init event listeners
-        this.addAlertListener = (event:CustomEvent<TerraAlertInterface>):void => this.addAlert(event.detail);
-        this.closeAlertListener = (event:CustomEvent<string>):void => this.closeAlert(event.detail);
+        this._addAlertListener = (event:CustomEvent<TerraAlertInterface>):void => this._addAlert(event.detail);
+        this._closeAlertListener = (event:CustomEvent<string>):void => this._closeAlert(event.detail);
     }
 
     public ngOnInit():void
     {
         // listen to the EventEmitters of the service
-        this.addAlertSub = this.service.addAlert.subscribe((alert:TerraAlertInterface) => this.addAlert(alert));
-        this.closeAlertSub = this.service.closeAlert.subscribe((identifier:string) => this.closeAlert(identifier));
+        this._addAlertSub = this._service.addAlert.subscribe((alert:TerraAlertInterface) => this._addAlert(alert));
+        this._closeAlertSub = this._service.closeAlert.subscribe((identifier:string) => this._closeAlert(identifier));
 
-        // listen to events that concern alerts and are dispatched to the hosting window
-        window.addEventListener(this.service.addEvent, this.addAlertListener);
-        window.addEventListener(this.service.closeEvent, this.closeAlertListener);
+        // listen to events that concern _alerts and are dispatched to the hosting window
+        window.addEventListener(this._service.addEvent, this._addAlertListener);
+        window.addEventListener(this._service.closeEvent, this._closeAlertListener);
     }
 
     public ngOnDestroy():void
     {
         // unsubscribe to the EventEmitters of the service
-        this.addAlertSub.unsubscribe();
-        this.closeAlertSub.unsubscribe();
+        this._addAlertSub.unsubscribe();
+        this._closeAlertSub.unsubscribe();
 
         // remove listeners from the hosting window
-        window.removeEventListener(this.service.addEvent, this.addAlertListener);
-        window.removeEventListener(this.service.closeEvent, this.closeAlertListener);
+        window.removeEventListener(this._service.addEvent, this._addAlertListener);
+        window.removeEventListener(this._service.closeEvent, this._closeAlertListener);
     }
 
-    protected closeAlertByIndex(index:number):void
+    public _closeAlertByIndex(index:number):void
     {
-        this.alert.closeAlert(index);
+        this._alert.closeAlert(index);
     }
 
-    private addAlert(alert:TerraAlertInterface):void
+    private _addAlert(alert:TerraAlertInterface):void
     {
-        this.alert.addAlert(alert);
+        this._alert.addAlert(alert);
     }
 
-    private closeAlert(identifier:string):void
+    private _closeAlert(identifier:string):void
     {
-        this.alert.closeAlertByIdentifier(identifier);
+        this._alert.closeAlertByIdentifier(identifier);
     }
 }

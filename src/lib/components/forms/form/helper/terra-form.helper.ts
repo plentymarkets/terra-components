@@ -88,6 +88,7 @@ export class TerraFormHelper
     }
 
     /**
+     * @description Parses a set of _formFields (TerraFormFieldInterface) and creates a representative FormGroup instance.
      * @description Generates a list of validators based on the given formField's options that may be attached to a FormArray instance.
      * @param formField
      */
@@ -109,7 +110,6 @@ export class TerraFormHelper
     }
 
     /**
-     * @description Parses a set of formFields (TerraFormFieldInterface) and creates a representative FormGroup instance.
      * This FormGroup instance may be initialized by passing a set of values.
      * @param formFields
      * @param values
@@ -131,14 +131,14 @@ export class TerraFormHelper
                 let formControls:Array<AbstractControl> = [];
                 if(!isNullOrUndefined(values) && isArray(values))
                 {
-                    formControls = values.map((value:any, index:number) =>
+                    formControls = (values as Array<any>).map((value:any, index:number) =>
                     {
                         return this.createNewControl(value || defaultValue[index], formField);
                     });
                 }
                 if(isString(formField.isList))
                 {
-                    this.fitControlsToRange(formField, formControls);
+                    this._fitControlsToRange(formField, formControls);
                 }
                 controls[formFieldKey] = new FormArray(formControls, this.generateFormArrayValidators(formField));
             }
@@ -225,11 +225,46 @@ export class TerraFormHelper
     }
 
     /**
+     * @description sanitise a string containing css-classes. Check whether it contains only valid bootstrap grid classes.
+     * @param width
+     */
+    public static sanitiseWidth(width:string):string
+    {
+        if(isNullOrUndefined(width))
+        {
+            return width;
+        }
+
+        let widths:Array<string> = width.split(' ');
+
+        return widths.filter((widthClass:string) =>
+        {
+            let startsWithCol:boolean = widthClass.startsWith('col-');
+
+            let widthClassSplitted:Array<string> = widthClass.split('-');
+
+            let lastSplittedPart:string = widthClassSplitted[widthClassSplitted.length - 1];
+
+            let endsWithNumber:boolean = false;
+
+            if(!isNaN(+lastSplittedPart))
+            {
+                if(+lastSplittedPart >= 0 && +lastSplittedPart < 13)
+                {
+                    endsWithNumber = true;
+                }
+            }
+
+            return startsWithCol && endsWithNumber && endsWithNumber;
+        }).join(' ');
+    }
+
+    /**
      * @description Fits the given list of controls into the range of the given formField by adding/removing controls.
      * @param formField
      * @param controls
      */
-    private static fitControlsToRange(formField:TerraFormFieldInterface, controls:Array<AbstractControl>):void
+    private static _fitControlsToRange(formField:TerraFormFieldInterface, controls:Array<AbstractControl>):void
     {
         if(isNullOrUndefined(controls) || isNullOrUndefined(formField))
         {

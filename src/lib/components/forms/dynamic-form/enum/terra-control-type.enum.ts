@@ -1,5 +1,5 @@
 /**
- * @author mfrank
+ * @deprecated since v5.0.0. Use terra-form instead.
  */
 export enum TerraControlTypeEnum
 {

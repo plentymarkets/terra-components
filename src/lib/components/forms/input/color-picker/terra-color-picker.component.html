@@ -9,8 +9,7 @@
         (blur)="onBlur()"
            autocomplete="off"
         [disabled]="isDisabled"
-        [required]="inputIsRequired"
-        placeholder="{{inputIsRequired ? inputName + '*' : inputName}}">
+        [required]="inputIsRequired">
     <label [tcTooltip]="inputName"
         [onlyEllipsisTooltip]="true">{{inputName}}
         <span *ngIf="inputIsRequired">*</span>

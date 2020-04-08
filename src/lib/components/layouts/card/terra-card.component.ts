@@ -10,19 +10,19 @@ import { StringHelper } from '../../../helpers/string.helper';
 
 @Component({
     selector: 'terra-card',
-    styles:   [require('./terra-card.component.scss')],
-    template: require('./terra-card.component.html')
+    styleUrls: [ './terra-card.component.scss'],
+    templateUrl: './terra-card.component.html'
 })
 export class TerraCardComponent implements AfterContentChecked
 {
-    @ViewChild('header')
-    public viewChildHeader:ElementRef;
+    @ViewChild('header', { static: true })
+    public _viewChildHeader:ElementRef;
 
-    @ViewChild('body')
-    public viewChildBody:ElementRef;
+    @ViewChild('body', { static: true })
+    public _viewChildBody:ElementRef;
 
-    @ViewChild('footer')
-    public viewChildFooter:ElementRef;
+    @ViewChild('footer', { static: true })
+    public _viewChildFooter:ElementRef;
 
     /**
      * @description an url to set for the background image of the card
@@ -42,25 +42,18 @@ export class TerraCardComponent implements AfterContentChecked
     @Input()
     public inputIsSelected:boolean = false;
 
-    private showHeader:boolean;
-    private showBody:boolean;
-    private showFooter:boolean;
-
-    constructor()
-    {
-        this.showHeader = false;
-        this.showBody = false;
-        this.showFooter = false;
-    }
+    public _showHeader:boolean = false;
+    public _showBody:boolean = false;
+    public _showFooter:boolean = false;
 
     public ngAfterContentChecked():void
     {
-        this.showHeader = this.viewChildHeader.nativeElement.children.length > 0;
-        this.showBody = this.viewChildBody.nativeElement.children.length > 0;
-        this.showFooter = this.viewChildFooter.nativeElement.children.length > 0;
+        this._showHeader = this._viewChildHeader.nativeElement.children.length > 0;
+        this._showBody = this._viewChildBody.nativeElement.children.length > 0;
+        this._showFooter = this._viewChildFooter.nativeElement.children.length > 0;
     }
 
-    protected get hasImageOrPlaceholderIcon():boolean
+    public get _hasImageOrPlaceholderIcon():boolean
     {
         return !StringHelper.isNullUndefinedOrEmpty(this.inputImagePath) || !isNullOrUndefined(this.inputPlaceholderIcon);
     }

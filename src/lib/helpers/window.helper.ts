@@ -1,3 +1,5 @@
+import { environment } from '../environments/environment';
+
 export class WindowHelper
 {
     /**
@@ -6,6 +8,6 @@ export class WindowHelper
     public static get isRootWindow():boolean
     {
         // since tests are run in an iframe, we need to check for test environment here to make them work
-        return window === window.parent || process.env.ENV === 'test';
+        return window === window.parent || environment.test;
     }
 }

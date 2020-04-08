@@ -63,21 +63,21 @@ describe(`TerraSliderComponent:`, () =>
         it(`should update slider position (#handlePosition) when calling #writeValue`, () =>
         {
             component.writeValue(0.2);
-            expect(component.handlePosition).toBe(sliderWidth * 0.2);
+            expect(component._handlePosition).toBe(sliderWidth * 0.2);
 
             component.writeValue(0.4);
-            expect(component.handlePosition).toBe(sliderWidth * 0.4);
+            expect(component._handlePosition).toBe(sliderWidth * 0.4);
         });
 
         it(`should update slider position (#handlePosition) when updating #inputValue`, () =>
         {
             component.inputValue = 0.2;
             component.ngOnChanges({inputValue: null});
-            expect(component.handlePosition).toBe(sliderWidth * 0.2);
+            expect(component._handlePosition).toBe(sliderWidth * 0.2);
 
             component.inputValue = 0.7;
             component.ngOnChanges({inputValue: null});
-            expect(component.handlePosition).toBe(sliderWidth * 0.7);
+            expect(component._handlePosition).toBe(sliderWidth * 0.7);
         });
 
         it(`should emit on #inputValueChanged and call registered #changeCallback when setting the value of #handlePosition`, () =>
@@ -88,7 +88,7 @@ describe(`TerraSliderComponent:`, () =>
             component.inputValueChange.subscribe((value:number) => emittedValue = value);
 
             const testValue:number = 0.6;
-            component.handlePosition = sliderWidth * testValue;
+            component._handlePosition = sliderWidth * testValue;
 
             expect(spy).toHaveBeenCalledWith(testValue);
             expect(emittedValue).toBe(testValue);

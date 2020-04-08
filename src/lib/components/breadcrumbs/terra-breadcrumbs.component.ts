@@ -6,34 +6,34 @@ import { TerraBreadcrumb } from './terra-breadcrumb';
 import { TerraBreadcrumbContainer } from './terra-breadcrumb-container';
 
 @Component({
-    selector:  'terra-breadcrumbs',
-    styles:    [require('./terra-breadcrumbs.component.scss')],
-    template:  require('./terra-breadcrumbs.component.html'),
-    providers: [TerraBreadcrumbsService]
+    selector:    'terra-breadcrumbs',
+    styleUrls:   ['./terra-breadcrumbs.component.scss'],
+    templateUrl: './terra-breadcrumbs.component.html',
+    providers:   [TerraBreadcrumbsService]
 })
 export class TerraBreadcrumbsComponent
 {
-    protected mouseLeft:string = '0px';
+    public _mouseLeft:string = '0px';
 
     constructor(public readonly breadcrumbsService:TerraBreadcrumbsService,
-                private activatedRoute:ActivatedRoute)
+                private _activatedRoute:ActivatedRoute)
     {
-        this.breadcrumbsService.activatedRoute = this.activatedRoute.snapshot;
+        this.breadcrumbsService.activatedRoute = this._activatedRoute.snapshot;
     }
 
-    protected get breadcrumbContainers():Array<TerraBreadcrumbContainer>
+    public get _breadcrumbContainers():Array<TerraBreadcrumbContainer>
     {
         return this.breadcrumbsService.containers;
     }
 
-    protected closeBreadcrumb(container:TerraBreadcrumbContainer, breadcrumb:TerraBreadcrumb, event:Event):void
+    public _closeBreadcrumb(container:TerraBreadcrumbContainer, breadcrumb:TerraBreadcrumb, event:Event):void
     {
         event.stopPropagation();
 
         this.breadcrumbsService.closeBreadcrumb(container, breadcrumb);
     }
 
-    protected checkActiveRoute(bcc:TerraBreadcrumb, container:HTMLLIElement):boolean
+    public _checkActiveRoute(bcc:TerraBreadcrumb, container:HTMLLIElement):boolean
     {
         let isRouteActive:boolean = this.breadcrumbsService.checkActiveRoute(bcc);
 
@@ -45,7 +45,7 @@ export class TerraBreadcrumbsComponent
         return isRouteActive;
     }
 
-    protected calculatePosition(container:HTMLLIElement, contextMenu:HTMLUListElement):void
+    public _calculatePosition(container:HTMLLIElement, contextMenu:HTMLUListElement):void
     {
         let containerClientRect:ClientRect = container.getBoundingClientRect();
         let contextMenuClientRect:ClientRect = contextMenu.getBoundingClientRect();
@@ -63,12 +63,12 @@ export class TerraBreadcrumbsComponent
             left = containerClientRect.left;
         }
 
-        this.mouseLeft = left + 'px';
+        this._mouseLeft = left + 'px';
     }
 
-    protected checkLastBreadcrumbContainer(index:number):boolean
+    public _checkLastBreadcrumbContainer(index:number):boolean
     {
-        let nextContainer:TerraBreadcrumbContainer = this.breadcrumbContainers[index + 1];
+        let nextContainer:TerraBreadcrumbContainer = this._breadcrumbContainers[index + 1];
 
         return !isNullOrUndefined(nextContainer) &&
                !isNullOrUndefined(nextContainer.currentSelectedBreadcrumb) &&

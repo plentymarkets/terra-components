@@ -5,12 +5,12 @@ import { TerraLoadingSpinnerService } from '../service/terra-loading-spinner.ser
  * @author mscharf
  */
 @Component({
-    selector: 'terra-loading-spinner-example',
-    styles:   [require('./terra-loading-spinner.component.example.scss')],
-    template: require('./terra-loading-spinner.component.example.html')
+    selector:    'terra-loading-spinner-example',
+    templateUrl: './terra-loading-spinner.component.example.html',
+    styleUrls:   ['./terra-loading-spinner.component.example.scss']
 })
 export class TerraLoadingSpinnerComponentExample
 {
-    constructor(protected service:TerraLoadingSpinnerService)
+    constructor(public _service:TerraLoadingSpinnerService)
     {}
 }

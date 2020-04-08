@@ -11,8 +11,8 @@ import { TerraDataTableComponent } from '../terra-data-table.component';
 /* tslint:disable:component-selector */
 @Component({
     selector:    'tr[tcTableRow]',
-    template: require('./table-row.component.html'),
-    styles:   [require('./table-row.component.scss')]
+    templateUrl: './table-row.component.html',
+    styleUrls:   ['./table-row.component.scss']
 })
 export class TableRowComponent
 {
@@ -20,32 +20,32 @@ export class TableRowComponent
     @Input('tcTableRow')
     public row:TerraDataTableRowInterface<any>;
 
-    constructor(@Host() protected dataTable:TerraDataTableComponent<any, any>)
+    constructor(@Host() public _dataTable:TerraDataTableComponent<any, any>)
     {
     }
 
     @HostBinding('class.selected')
-    private get selected():boolean
+    public get selected():boolean
     {
         return this.row.selected;
     }
 
     @HostBinding('class.isActive')
-    private get isActive():boolean
+    public get isActive():boolean
     {
         return this.row.isActive;
     }
 
     @HostBinding('class.disabled')
-    private get disabled():boolean
+    public get disabled():boolean
     {
         return this.row.disabled;
     }
 
     @HostListener('click')
-    private onClick():void
+    public onClick():void
     {
-        this.dataTable.rowClicked(this.row);
+        this._dataTable.rowClicked(this.row);
     }
 }
 

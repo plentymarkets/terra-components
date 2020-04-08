@@ -12,10 +12,10 @@ import { TerraLabelTooltipDirective } from '../../../../helpers/terra-label-tool
 import { HttpClientModule } from '@angular/common/http';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
-import Spy = jasmine.Spy;
 import { TooltipDirective } from '../../../tooltip/tooltip.directive';
 import { Router } from '@angular/router';
 import { MockRouter } from '../../../../testing/mock-router';
+import Spy = jasmine.Spy;
 
 describe('Component: TerraTextInputComponent', () =>
 {

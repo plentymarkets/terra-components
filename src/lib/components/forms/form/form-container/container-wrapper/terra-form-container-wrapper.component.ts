@@ -21,8 +21,8 @@ import { TerraPortletComponent } from '../../../../layouts/portlet/terra-portlet
  * This enables usage of structural components to render nested forms
  */
 @Component({
-    selector: 'terra-form-container-wrapper',
-    template: require('./terra-form-container-wrapper.component.html')
+    selector:    'terra-form-container-wrapper',
+    templateUrl: './terra-form-container-wrapper.component.html'
 })
 export class TerraFormContainerWrapperComponent extends TerraFormEntryBase implements OnInit, OnChanges, OnDestroy
 {
@@ -57,14 +57,14 @@ export class TerraFormContainerWrapperComponent extends TerraFormEntryBase imple
     public ngOnInit():void
     {
         // create instance of nested TerraFormContainerComponent
-        this.innerComponentRef = this.componentFactoryResolver
+        this.innerComponentRef = this._componentFactoryResolver
                                   .resolveComponentFactory(TerraFormContainerComponent)
                                   .create(this.injector);
 
         this.app.attachView(this.innerComponentRef.hostView);
         this.passInputProperties();
 
-        this.initComponent(TerraPortletComponent, [[this.innerComponentRef.location.nativeElement]]);
+        this._initComponent(TerraPortletComponent, [[this.innerComponentRef.location.nativeElement]]);
     }
 
     /**
@@ -84,7 +84,7 @@ export class TerraFormContainerWrapperComponent extends TerraFormEntryBase imple
     public ngOnDestroy():void
     {
         super.ngOnDestroy();
-        if(this.componentRef)
+        if(this._componentRef)
         {
             this.innerComponentRef.destroy();
         }

@@ -55,14 +55,14 @@
         <div class="col-md-3">
             <h5>Tooltip</h5>
             <terra-button inputTooltipText="edit"
-                          [inputTooltipPlacement]="tooltipPlacement"
+                          [inputTooltipPlacement]="_tooltipPlacement"
                           inputCaption="Tooltip top">
             </terra-button>
         </div>
         <div class="col-md-3">
             <h5>Disabled</h5>
             <terra-button inputIcon="icon-email_send"
-                          (outputClicked)="sendMailPopup()"
+                          (outputClicked)="_sendMailPopup()"
                           [inputIsDisabled]="true">
             </terra-button>
         </div>
@@ -84,7 +84,7 @@
         <div class="col-md-3">
             <h5>Has outputClicked</h5>
             <terra-button inputIcon="icon-email_send"
-                          (outputClicked)="sendMailPopup()">
+                          (outputClicked)="_sendMailPopup()">
             </terra-button>
         </div>
         <div class="col-md-3">

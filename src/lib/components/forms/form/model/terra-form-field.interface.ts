@@ -1,3 +1,4 @@
+
 export interface TerraFormFieldInterface
 {
     type:string;
@@ -7,4 +8,5 @@ export interface TerraFormFieldInterface
     defaultValue?:any;
     options?:{ [key:string]:any };
     children?:{ [key:string]:TerraFormFieldInterface };
+    width?:string;
 }

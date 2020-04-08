@@ -5,12 +5,12 @@
                 <terra-button
                     [inputIcon]="'icon-collapse_up'"
                     [inputIsDisabled]="first"
-                    (outputClicked)="moveElement(i, -1)">
+                    (outputClicked)="_moveElement(i, -1)">
                 </terra-button>
                 <terra-button
                     [inputIcon]="'icon-collapse_down'"
                     [inputIsDisabled]="last"
-                    (outputClicked)="moveElement(i, 1)">
+                    (outputClicked)="_moveElement(i, 1)">
                 </terra-button>
             </div>
             <terra-form-entry
@@ -27,23 +27,25 @@
                 [formGroupName]="i"
                 [inputFormFields]="inputFormField.children"
                 [inputFormGroup]="control"
-                [inputScope]="childScopes[i]"
+                [inputScope]="_childScopes[i]"
                 [inputControlTypeMap]="inputControlTypeMap"
                 [inputIsDisabled]="inputIsDisabled"
+                [width]="width"
+                [horizontal]="inputFormField.type === 'horizontal'"
             ></terra-form-container>
             
             <terra-button
                 [inputIcon]="'icon-delete'"
-                [inputTooltipText]="'terraDynamicForm.removeListEntry' | translate:lang"
-                [inputIsDisabled]="!canRemoveElement"
-                (outputClicked)="removeElement(i)">
+                [inputTooltipText]="'terraDynamicForm.removeListEntry' | translate:_lang"
+                [inputIsDisabled]="!_canRemoveElement"
+                (outputClicked)="_removeElement(i)">
             </terra-button>
         </div>
         <terra-button
             [inputIcon]="'icon-add'"
-            [inputTooltipText]="'terraDynamicForm.addListEntry' | translate:lang"
-            [inputIsDisabled]="!canAddElement"
-            (outputClicked)="addElement()">
+            [inputTooltipText]="'terraDynamicForm.addListEntry' | translate:_lang"
+            [inputIsDisabled]="!_canAddElement"
+            (outputClicked)="_addElement()">
         </terra-button>
     </div>
 </div>

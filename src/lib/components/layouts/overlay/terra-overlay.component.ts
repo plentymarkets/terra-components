@@ -15,14 +15,11 @@ import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum'
  */
 @Component({
     selector: 'terra-overlay',
-    template: require('./terra-overlay.component.html'),
-    styles:   [require('./terra-overlay.component.scss')]
+    templateUrl: './terra-overlay.component.html',
+    styleUrls: [ './terra-overlay.component.scss']
 })
 export class TerraOverlayComponent implements AfterViewInit
 {
-    @ViewChild('viewChildOverlay')
-    public viewChildOverlay:ModalDirective;
-
     @Input()
     public inputOverlayTitle:string;
 
@@ -53,7 +50,10 @@ export class TerraOverlayComponent implements AfterViewInit
     @Output()
     public outputOnShow:EventEmitter<ModalDirective> = new EventEmitter<ModalDirective>();
 
-    protected readonly tooltipPlacement:TerraPlacementEnum.BOTTOM;
+    public readonly _tooltipPlacement:TerraPlacementEnum.BOTTOM;
+
+    @ViewChild('viewChildOverlay', { static: true })
+    public _viewChildOverlay:ModalDirective;
 
     public ngAfterViewInit():void
     {
@@ -64,28 +64,28 @@ export class TerraOverlayComponent implements AfterViewInit
 
         if(this.inputIsStatic)
         {
-            this.viewChildOverlay.config.backdrop = 'static';
-            this.viewChildOverlay.config.keyboard = false;
+            this._viewChildOverlay.config.backdrop = 'static';
+            this._viewChildOverlay.config.keyboard = false;
         }
     }
 
     public showOverlay():void
     {
-        this.viewChildOverlay.show();
+        this._viewChildOverlay.show();
     }
 
     public hideOverlay():void
     {
-        this.viewChildOverlay.hide();
+        this._viewChildOverlay.hide();
     }
 
     public emitOutputOnShow():void
     {
-        this.outputOnShow.emit(this.viewChildOverlay);
+        this.outputOnShow.emit(this._viewChildOverlay);
     }
 
     public emitOutputOnHide():void
     {
-        this.outputOnHide.emit(this.viewChildOverlay);
+        this.outputOnHide.emit(this._viewChildOverlay);
     }
 }

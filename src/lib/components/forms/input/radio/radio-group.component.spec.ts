@@ -89,7 +89,7 @@ describe(`RadioGroupComponent:`, () =>
             radioGroupComponent.ngOnChanges({name: new SimpleChange(null, '', true)});
             fixture.detectChanges();
 
-            expect(radioGroupComponent.name).toBe(radioGroupComponent['id']);
+            expect(radioGroupComponent.name).toBe(radioGroupComponent['_id']);
         });
 
         it(`#writeValue should update the #value of the radio group`, () =>

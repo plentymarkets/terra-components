@@ -3,15 +3,15 @@
      [placement]="inputTooltipPlacement"
      [ngClass]="{'error': !isValid, 'isSmall': inputIsSmall}">
 
-    <input id="{{id}}"
+    <input id="{{_id}}"
            [type]="inputIsPassword?'password':'text'"
            [(ngModel)]="value"
            name="{{inputName}}"
-           (blur)="onCustomBlur(value)"
+           (blur)="_onCustomBlur(value)"
            (input)="onInput()"
            autocomplete="off"
            [disabled]="isDisabled"
-           [ngClass]="{'isSmall' : inputIsSmall, 'isEmpty' : !innerValue && innerValue !== 0}"
+           [ngClass]="{'isSmall' : inputIsSmall, 'isEmpty' : !_innerValue && _innerValue !== 0}"
            pattern="{{regex}}"
            maxlength="{{inputMaxLength}}"
            minlength="{{inputMinLength}}"
@@ -21,8 +21,8 @@
     <label [tcTooltip]="inputName"
            tabindex="-1"
            [onlyEllipsisTooltip]="true"
-           *ngIf="(innerValue || innerValue === 0) && inputName"
-           htmlFor="{{id}}">{{inputName}}
+           *ngIf="(_innerValue || _innerValue === 0) && inputName"
+           htmlFor="{{_id}}">{{inputName}}
         <span *ngIf="inputIsRequired">*</span>
     </label>
 </div>

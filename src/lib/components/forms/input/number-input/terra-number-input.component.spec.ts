@@ -18,10 +18,10 @@ import { TerraNumberInputComponent } from './terra-number-input.component';
 import { By } from '@angular/platform-browser';
 import { TerraButtonComponent } from '../../../buttons/button/terra-button.component';
 import { TerraRegex } from '../../../../helpers/regex/terra-regex';
-import Spy = jasmine.Spy;
 import { TooltipDirective } from '../../../tooltip/tooltip.directive';
 import { Router } from '@angular/router';
 import { MockRouter } from '../../../../testing/mock-router';
+import Spy = jasmine.Spy;
 
 describe('TerraNumberInputComponent', () =>
 {

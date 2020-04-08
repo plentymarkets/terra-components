@@ -14,9 +14,9 @@ import { Language } from 'angular-l10n';
 import { debounceTime } from 'rxjs/operators';
 
 @Component({
-    selector: 'terra-pager',
-    styles:   [require('./terra-pager.component.scss')],
-    template: require('./terra-pager.component.html')
+    selector:    'terra-pager',
+    styleUrls:   ['./terra-pager.component.scss'],
+    templateUrl: './terra-pager.component.html'
 })
 export class TerraPagerComponent implements OnInit, OnDestroy
 {
@@ -36,13 +36,13 @@ export class TerraPagerComponent implements OnInit, OnDestroy
     public outputDoPaging:EventEmitter<TerraPagerInterface<any>> = new EventEmitter<TerraPagerInterface<any>>();
 
     @Language()
-    protected lang:string;
+    public _lang:string;
 
-    private pagingClicks:Subject<TerraPagerInterface<any>> = new Subject<TerraPagerInterface<any>>();
+    private _pagingClicks:Subject<TerraPagerInterface<any>> = new Subject<TerraPagerInterface<any>>();
 
     public ngOnInit():void
     {
-        this.pagingClicks.pipe(debounceTime(400)).subscribe((e:TerraPagerInterface<any>) => this.outputDoPaging.emit(e));
+        this._pagingClicks.pipe(debounceTime(400)).subscribe((e:TerraPagerInterface<any>) => this.outputDoPaging.emit(e));
 
         if(!this.inputDefaultPagingSize)
         {
@@ -136,7 +136,7 @@ export class TerraPagerComponent implements OnInit, OnDestroy
     {
         if(!this.inputRequestPending)
         {
-            this.pagingClicks.next(this.inputPagingData);
+            this._pagingClicks.next(this.inputPagingData);
         }
     }
 }

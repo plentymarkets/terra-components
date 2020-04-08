@@ -15,12 +15,12 @@ import { finalize } from 'rxjs/operators';
 @Injectable()
 export class LoadingInterceptor implements HttpInterceptor
 {
-    constructor(private loadingSpinner:TerraLoadingSpinnerService)
+    constructor(private _loadingSpinner:TerraLoadingSpinnerService)
     {}
 
     public intercept(req:HttpRequest<any>, next:HttpHandler):Observable<HttpEvent<any>>
     {
-        this.loadingSpinner.start();
-        return next.handle(req).pipe(finalize(() => this.loadingSpinner.stop()));
+        this._loadingSpinner.start();
+        return next.handle(req).pipe(finalize(() => this._loadingSpinner.stop()));
     }
 }

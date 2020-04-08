@@ -1,6 +1,6 @@
 <terra-multi-check-box [inputIsDisabled]="isDisabled"
                        [inputName]="name"
-                       [ngModel]="multiCheckboxValues"
+                       [ngModel]="_multiCheckboxValues"
                        [collapsed]="collapsed"
-                       (checkboxStateChanges)="onMultiCheckboxChanged($event)">
+                       (checkboxStateChanges)="_onMultiCheckboxChanged($event)">
 </terra-multi-check-box>

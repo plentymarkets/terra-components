@@ -1,4 +1,3 @@
-import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import {
     FormsModule,
@@ -37,10 +36,10 @@ import { TerraLoadingSpinnerService } from '../../../loading-spinner/service/ter
 import { TerraFileBrowserService } from '../../../file-browser/terra-file-browser.service';
 import { TerraStorageObject } from '../../../file-browser/model/terra-storage-object';
 import { TerraInfoComponent } from '../../../info/terra-info.component';
-import Spy = jasmine.Spy;
 import { TooltipDirective } from '../../../tooltip/tooltip.directive';
 import { Router } from '@angular/router';
 import { MockRouter } from '../../../../testing/mock-router';
+import Spy = jasmine.Spy;
 
 describe('TerraFileInputComponent', () =>
 {
@@ -77,7 +76,6 @@ describe('TerraFileInputComponent', () =>
                 ModalModule.forRoot(),
                 FormsModule,
                 ReactiveFormsModule,
-                HttpModule,
                 HttpClientModule,
                 LocalizationModule.forRoot(l10nConfig)
             ],
