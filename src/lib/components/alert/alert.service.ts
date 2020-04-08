@@ -1,10 +1,11 @@
 import {
     EventEmitter,
+    Inject,
     Injectable
 } from '@angular/core';
 import { TerraAlertInterface } from './data/terra-alert.interface';
 import { AlertType } from './alert-type.enum';
-import { WindowHelper } from '../../helpers/window.helper';
+import { IS_ROOT_WINDOW } from '../../utils/window';
 
 @Injectable({
     providedIn: 'root'
@@ -29,6 +30,9 @@ export class AlertService
     public readonly  closeEvent:string = 'closeAlert';
 
     private readonly defaultTimeout:number = 5000;
+
+    constructor(@Inject(IS_ROOT_WINDOW) private isRootWindow:boolean)
+    {}
 
     /**
      * add a success alert
@@ -77,7 +81,7 @@ export class AlertService
     public close(identifier:string):void
     {
         // check whether the service is used in the root window or in an iframe
-        if(WindowHelper.isRootWindow)
+        if(this.isRootWindow)
         {
             // it is used in the root window -> use EventEmitter to notify the alert panel directly.
             this.closeAlert.emit(identifier);
@@ -99,7 +103,7 @@ export class AlertService
         };
 
         // check whether the service is used in the root window or in an iframe
-        if(WindowHelper.isRootWindow)
+        if(this.isRootWindow)
         {
             // it is used in the root window -> use EventEmitter to notify the alert panel directly.
             this.addAlert.emit(alert);

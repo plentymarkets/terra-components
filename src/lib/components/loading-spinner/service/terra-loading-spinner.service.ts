@@ -1,4 +1,5 @@
 import {
+    Inject,
     Injectable,
     NgZone
 } from '@angular/core';
@@ -6,7 +7,7 @@ import {
     Observable,
     Subscriber
 } from 'rxjs';
-import { WindowHelper } from '../../../helpers/window.helper';
+import { IS_ROOT_WINDOW } from '../../../utils/window';
 
 /**
  * @author mscharf
@@ -21,7 +22,8 @@ export class TerraLoadingSpinnerService
     private _isLoading:boolean = false;
     private subscriber:Subscriber<boolean>;
 
-    constructor(private zone:NgZone)
+    constructor(private zone:NgZone,
+                @Inject(IS_ROOT_WINDOW) private isRootWindow:boolean)
     {
         this.observable = new Observable<boolean>((subscriber:Subscriber<boolean>):void =>
         {
@@ -76,7 +78,7 @@ export class TerraLoadingSpinnerService
     {
         this.subscriber.next(isLoading);
         // also dispatch event to the parent windows if the current one is not the root
-        if(!WindowHelper.isRootWindow)
+        if(!this.isRootWindow)
         {
             window.dispatchEvent(new CustomEvent<boolean>('loadingStatus', {detail: isLoading, bubbles: true}));
         }
