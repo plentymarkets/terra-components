@@ -1,3 +1,10 @@
+# 5.2.0 (XX.XX.2020)
+
+### Features
+* **terraDraggable** deprecate directive
+* **terraDropzone** deprecate directive
+* **terraResizable** deprecate directive
+
 # 5.1.1 (XX.XX.2020)
 
 ### Bug Fixes
