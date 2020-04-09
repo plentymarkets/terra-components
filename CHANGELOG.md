@@ -1,9 +1,16 @@
-# 5.1.1 (XX.XX.2020)
+# 5.2.0 (XX.XX.2020)
+
+### Features
+* **terra-loading-spinner** when using the service in a plentymarkets plugin ui, it now automatically notifies the parent application about the loading status.
+* **terraDraggable** deprecate directive.
+* **terraDropzone** deprecate directive.
+* **terraResizable** deprecate directive.
 
 ### Bug Fixes
 * **terra-node-tree** fixed error that was thrown when the user searches for a node and one of the node's name was undefined.
 * **terra-two-columns-container** updated outer paddings
 * **terra-three-columns-container** updated outer paddings
+* **terra-stopwatch** you are now able to import `TerraStopwatchComponent` from _@plentymarkets/terra-components_.
 
 <a name="5.1.0"></a>
 # 5.1.0 (11.03.2020)
