@@ -80,7 +80,7 @@ export class TerraLoadingSpinnerService
         // also dispatch event to the parent windows if the current one is not the root
         if(!this.isRootWindow)
         {
-            window.dispatchEvent(new CustomEvent<boolean>('loadingStatus', {detail: isLoading, bubbles: true}));
+            window.dispatchEvent(new CustomEvent<{isLoading:boolean}>('loadingStatus', {detail: {isLoading}, bubbles: true}));
         }
     }
 }
