@@ -22,7 +22,7 @@ describe('TerraLoadingSpinnerService: ', () =>
         expect(service).toBeTruthy();
     });
 
-    it(`should not be loading right after its instantiation`, () =>
+    it('should not be loading right after its instantiation', () =>
     {
         expect(service.isLoading).toBe(false);
     });
@@ -48,7 +48,7 @@ describe('TerraLoadingSpinnerService: ', () =>
         expect(service.isLoading).toBe(false);
     });
 
-    describe('in a iframe', () =>
+    describe('in an iframe', () =>
     {
         let expectedValue:boolean;
         const listener:EventListener = (event:CustomEvent) => expect(event.detail.isLoading).toBe(expectedValue);
