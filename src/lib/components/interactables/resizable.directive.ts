@@ -1,3 +1,4 @@
+/* eslint-disable */
 import {
     Directive,
     ElementRef,
@@ -53,7 +54,6 @@ export class TerraResizableDirective implements OnInit, OnChanges
     @Output()
     public readonly end:EventEmitter<InteractEvent> = new EventEmitter<InteractEvent>();
 
-    /* eslint-disable */
     /**
      * @deprecated since 3.x.x. Use options instead
      */
@@ -121,7 +121,6 @@ export class TerraResizableDirective implements OnInit, OnChanges
      */
     @Output('terra-resizable-onEnd')
     public onEnd:EventEmitter<InteractEvent> = new EventEmitter<InteractEvent>();
-    /* eslint-enable */
 
     private _interactable:Interactable;
 
@@ -291,3 +290,4 @@ export class TerraResizableDirective implements OnInit, OnChanges
         }
     }
 }
+/* eslint-enable */

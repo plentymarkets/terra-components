@@ -1,3 +1,4 @@
+/* eslint-disable */
 import {
     Directive,
     ElementRef,
@@ -63,7 +64,6 @@ export class TerraDropzoneDirective implements OnInit, OnChanges
     @Output()
     public readonly drop:EventEmitter<DropEvent> = new EventEmitter<DropEvent>();
 
-    /* eslint-disable */
     /**
      * @deprecated since 3.x.x. Use accept instead
      */
@@ -129,7 +129,6 @@ export class TerraDropzoneDirective implements OnInit, OnChanges
      */
     @Output('terra-dropzone-onDrop')
     public onDrop:EventEmitter<DropEvent> = new EventEmitter<DropEvent>();
-    /* eslint-enable */
 
     private _interactable:any = null;
 
@@ -299,3 +298,4 @@ export class TerraDropzoneDirective implements OnInit, OnChanges
         };
     }
 }
+/* eslint-enable */

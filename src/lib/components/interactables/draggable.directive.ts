@@ -1,3 +1,4 @@
+/* eslint-disable */
 import {
     Directive,
     ElementRef,
@@ -57,7 +58,6 @@ export class TerraDraggableDirective implements OnInit, OnChanges
     @Output()
     public readonly end:EventEmitter<InteractEvent> = new EventEmitter<InteractEvent>();
 
-    /* eslint-disable */
     /**
      * @deprecated since 3.x.x. Use disabled instead.
      */
@@ -125,7 +125,6 @@ export class TerraDraggableDirective implements OnInit, OnChanges
      */
     @Output('terra-draggable-onEnd')
     public onEnd:EventEmitter<InteractEvent> = new EventEmitter<InteractEvent>();
-    /* eslint-enable */
 
     private _interactable:Interactable;
 
@@ -300,3 +299,4 @@ export class TerraDraggableDirective implements OnInit, OnChanges
         }
     }
 }
+/* eslint-enable */
