@@ -7,8 +7,7 @@ import {
     Input,
     OnChanges,
     OnDestroy,
-    OnInit,
-    SimpleChanges
+    OnInit
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { TerraFormEntryBase } from '../../form-entry/terra-form-entry.base';
