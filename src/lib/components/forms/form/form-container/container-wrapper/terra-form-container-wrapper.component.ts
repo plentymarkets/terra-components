@@ -71,10 +71,10 @@ export class TerraFormContainerWrapperComponent extends TerraFormEntryBase imple
      * Implementation of the OnChanges life cycle hook.
      * @description Pass input properties to inner form container component.
      */
-    public ngOnChanges(changes:SimpleChanges):void
+    public ngOnChanges():void
     {
          this.passInputProperties();
-         super.ngOnChanges(changes);
+         super.ngOnChanges();
     }
 
     /**

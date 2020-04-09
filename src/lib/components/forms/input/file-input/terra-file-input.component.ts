@@ -99,7 +99,7 @@ export class TerraFileInputComponent extends TerraInputComponent implements OnIn
 
     public onPreviewClicked():void
     {
-        if(this.isWebImage(this.value))
+        if(this.isWebImage(this.value as string))
         {
             this._previewOverlay.showOverlay();
         }

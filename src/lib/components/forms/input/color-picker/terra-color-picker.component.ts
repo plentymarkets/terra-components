@@ -25,7 +25,7 @@ export class TerraColorPickerComponent extends TerraInputComponent
 
     public get color():string
     {
-        return this.value || '#ffffff';
+        return this.value as string || '#ffffff';
     }
 
     public set color(c:string)

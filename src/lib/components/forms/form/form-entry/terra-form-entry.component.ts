@@ -17,6 +17,7 @@ import {
 } from '@angular/forms';
 import { noop } from 'rxjs';
 import { TerraFormEntryBase } from './terra-form-entry.base';
+import { TerraFormTypeGuardsHelper } from '../helper/terra-form-type-guards.helper';
 
 @Component({
     selector:  'terra-form-entry',
@@ -58,7 +59,8 @@ export class TerraFormEntryComponent extends TerraFormEntryBase implements OnIni
         {
             this._initComponent();
 
-            if(isFunction(this._componentInstance.registerOnChange) &&
+            if(TerraFormTypeGuardsHelper.isControlValueAccessor(this._componentInstance) &&
+               isFunction(this._componentInstance.registerOnChange) &&
                isFunction(this._componentInstance.registerOnTouched))
             {
                 this._componentInstance.registerOnChange((value:unknown):void => this._onChangeCallback(value));
@@ -75,7 +77,7 @@ export class TerraFormEntryComponent extends TerraFormEntryBase implements OnIni
 
         this.inputFormControl.statusChanges.subscribe((status:string) =>
         {
-            if(!isNullOrUndefined(this._componentInstance))
+            if(!isNullOrUndefined(this._componentInstance) && TerraFormTypeGuardsHelper.hasIsValid(this._componentInstance))
             {
                 this._componentInstance.isValid = status === 'VALID';
             }
@@ -111,7 +113,9 @@ export class TerraFormEntryComponent extends TerraFormEntryBase implements OnIni
      */
     public writeValue(value:unknown):void
     {
-        if(this._componentInstance && isFunction(this._componentInstance.writeValue))
+        if(this._componentInstance &&
+           TerraFormTypeGuardsHelper.isControlValueAccessor(this._componentInstance) &&
+           isFunction(this._componentInstance.writeValue))
         {
             this._componentInstance.writeValue(value);
         }
