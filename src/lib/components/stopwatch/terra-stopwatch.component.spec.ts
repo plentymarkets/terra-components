@@ -147,4 +147,17 @@ describe('Component: TerraStopwatchComponent', () =>
         expect(component.isRunning).toBe(true);
         expect(window.setInterval).toHaveBeenCalledTimes(1);
     });
+
+    it('should not clear the timer on #stop() if it is not running', () =>
+    {
+        spyOn(window, 'clearInterval').and.callThrough();
+        expect(component.isRunning).toBe(false);
+        component.stop();
+        expect(window.clearInterval).not.toHaveBeenCalled();
+
+        component.start();
+        expect(component.isRunning).toBe(true);
+        component.stop();
+        expect(window.clearInterval).toHaveBeenCalled();
+    });
 });
