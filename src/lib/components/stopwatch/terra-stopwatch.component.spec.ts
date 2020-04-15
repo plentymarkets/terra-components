@@ -136,4 +136,15 @@ describe('Component: TerraStopwatchComponent', () =>
         tick(ticksInMilliseconds);
         expect(component.seconds).toEqual(ticks);
     }));
+
+    it('should not start the timer again, if it is already running', () =>
+    {
+        spyOn(window, 'setInterval').and.callThrough();
+        component.start();
+        expect(component.isRunning).toBe(true);
+
+        component.start();
+        expect(component.isRunning).toBe(true);
+        expect(window.setInterval).toHaveBeenCalledTimes(1);
+    });
 });
