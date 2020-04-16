@@ -7,6 +7,7 @@
 * **terraResizable** deprecate directive.
 
 ### Bug Fixes
+* **terra-portlet** removed overflow
 * **terra-node-tree** fixed error that was thrown when the user searches for a node and one of the node's name was undefined.
 * **terra-two-columns-container** updated outer paddings
 * **terra-three-columns-container** updated outer paddings

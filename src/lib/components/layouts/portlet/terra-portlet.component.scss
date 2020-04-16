@@ -8,6 +8,7 @@
     {
         padding: var(--space-md) var(--space-lg);
         background: var(--color-structure-0);
+        overflow-x: hidden;
 
         display: -webkit-flex; /* Safari */
         -webkit-justify-content: flex-start; /* Safari 6.1+ */
@@ -46,6 +47,7 @@
         padding: var(--portlet-body-padding, var(--space-lg));
         transition: padding var(--transition-lg);
         border-radius: var(--border-radius);
+        overflow-x: hidden;
     
         --portlet-box-shadow: none;
         --info-box-box-shadow: none;
