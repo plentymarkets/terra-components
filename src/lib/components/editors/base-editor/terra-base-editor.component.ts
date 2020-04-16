@@ -1,16 +1,29 @@
 import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum';
 import {
+    Component,
     ElementRef,
     Input,
     OnInit
 } from '@angular/core';
 import { TranslationService } from 'angular-l10n';
-import { ControlValueAccessor } from '@angular/forms';
+import {
+    ControlValueAccessor,
+    NG_VALUE_ACCESSOR
+} from '@angular/forms';
 import { isNullOrUndefined } from 'util';
 import { noop } from 'rxjs';
 import { quillBasePreset } from '../quill/presets';
 
 /** @deprecated since v5. Use quill-editor and our quillBasePreset instead */
+@Component({
+    selector:    'terra-base-editor',
+    templateUrl: './terra-base-editor.component.html',
+    providers:   [{
+        provide:     NG_VALUE_ACCESSOR,
+        useExisting: TerraBaseEditorComponent,
+        multi:       true
+    }]
+})
 export class TerraBaseEditorComponent implements OnInit, ControlValueAccessor
 {
     @Input()
