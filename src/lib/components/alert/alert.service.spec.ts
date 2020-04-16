@@ -4,12 +4,13 @@ import { AlertService, } from './alert.service';
 import { TerraAlertInterface } from './data/terra-alert.interface';
 import { Subscription } from 'rxjs';
 import { AlertType } from './alert-type.enum';
+import { IS_ROOT_WINDOW } from '../../utils/window';
 
 describe('AlertService', () =>
 {
     let service:AlertService;
     beforeEach(() => TestBed.configureTestingModule({
-        providers: [AlertService]
+        providers: [AlertService, {provide: IS_ROOT_WINDOW, useValue: true}]
     }));
 
     beforeEach(() =>

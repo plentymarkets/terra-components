@@ -33,11 +33,15 @@
                 margin-left: var(--space-xl);
             }
         }
+        
+        &.unfolded
+        {
+            border-bottom: 1px solid var(--color-structure-2);
+        }
     }
 
     .portlet-body
     {
-        border-top: 1px solid var(--color-structure-2);
         background-color: var(--portlet-body-background-color, var(--color-structure-0));
         padding: var(--portlet-body-padding, var(--space-lg));
         transition: padding var(--transition-lg);

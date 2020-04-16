@@ -1,5 +1,32 @@
+# 5.2.0 (XX.XX.2020)
+
+### Features
+* **terra-loading-spinner** when using the service in a plentymarkets plugin ui, it now automatically notifies the parent application about the loading status.
+* **terraDraggable** deprecate directive.
+* **terraDropzone** deprecate directive.
+* **terraResizable** deprecate directive.
+
+### Bug Fixes
+* **terra-node-tree** fixed error that was thrown when the user searches for a node and one of the node's name was undefined.
+* **terra-two-columns-container** updated outer paddings
+* **terra-three-columns-container** updated outer paddings
+* **terra-stopwatch** you are now able to import `TerraStopwatchComponent` from _@plentymarkets/terra-components_.
+
+<a name="5.1.0"></a>
+# 5.1.0 (11.03.2020)
+
+### Features
+* **peerDependencies** removed `flatted` since we no longer depend on it.
+* **mat-dialog** styles for the [angular material dialog](https://v8.material.angular.io/components/dialog/overview).
+* **checkbox-group** Checkbox values are no longer appended every time checkboxes are selected. The sorting is preserved instead. 
+
+### Bug Fixes
+* **matInput** fixed placeholder styling.
+* **terra-portlet** using `border-bottom` on `portlet-head` when unfolded instead of `border-top` on `portlet-body`.
+* **security-vulnerability** dependency package `acorn
+
 <a name="5.0.0"></a>
-# 5.0.0 (Unreleased)
+# 5.0.0 (20.02.2020)
 
 ### Breaking Changes
 * **build** Terra-Components is now fully AOT compatible. 
@@ -42,6 +69,8 @@ Terra-Components now complies with the angular package format and code autocompl
 
 ### Features
 * **terra-syntax-editor** is now deprecated. Use [ckEditor](https://github.com/ckeditor/ckeditor4-angular) instead.
+* **icon** new icon 'content_item'.
+* **icon** new icon 'content_itemset'.
 
 <a name="4.8.2"></a>
 # 4.8.2 (08.01.2020)
