@@ -5,7 +5,7 @@
 * **terraDraggable** deprecate directive.
 * **terraDropzone** deprecate directive.
 * **terraResizable** deprecate directive.
-* **quill-presets** introduced two presets for [quill](https://quilljs.com/) rich text editor.
+* **quill-presets** introduced two presets (base and note) for [quill](https://quilljs.com/) rich text editor.
 * **terra-note-editor** is deprecated now. Use `<quill-editor>` component provided by [ngx-quill](https://github.com/KillerCodeMonkey/ngx-quill) and our note preset instead.
 
 ### Bug Fixes
