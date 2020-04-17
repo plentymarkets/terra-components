@@ -16,6 +16,7 @@
 * **terra-stopwatch**
     - you are now able to import `TerraStopwatchComponent` from _@plentymarkets/terra-components_.
     - prevent starting the timer more than once.
+    - does not use `TerraButtonComponent`'s deprecated `inputTooltipPlacement` anymore.
 
 <a name="5.1.0"></a>
 # 5.1.0 (11.03.2020)
