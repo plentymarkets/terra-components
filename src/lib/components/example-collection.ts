@@ -54,7 +54,7 @@ import { CkEditorDirectiveExample } from './editors/ck-editor/example/ck-editor-
 import { TerraFileBrowserComponentExample } from './file-browser/example/terra-file-browser.component.example';
 import { TerraLoadingSpinnerComponentExample } from './loading-spinner/example/terra-loading-spinner.component.example';
 import { TooltipDirectiveExample } from './tooltip/example/tooltip-directive.example';
-import { QuillEditorExample } from './editors/quill/quill-editor-example/quill-editor-example.component';
+import { QuillEditorComponentExample } from './editors/quill/quill-editor-example/quill-editor.component.example';
 
 export const examples:Array<Type<any>> = [
     TooltipDirectiveExample,
@@ -110,7 +110,7 @@ export const examples:Array<Type<any>> = [
 
     // editors
     CkEditorDirectiveExample,
-    QuillEditorExample,
+    QuillEditorComponentExample,
     TerraNoteEditorComponentExample,
     TerraCodeEditorComponentExample,
 
