@@ -1,4 +1,6 @@
-export const quillNotePreset:{ [key:string]:Object } = {
+import { QuillModules } from 'ngx-quill';
+
+export const quillNotePreset:QuillModules = {
     toolbar: [
         ['bold', 'italic', 'underline', 'strike'], // toggled buttons
         [{'list': 'ordered'}, {'list': 'bullet'}],

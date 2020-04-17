@@ -4,13 +4,15 @@ import { examples } from './components/example-collection';
 import { TerraComponentsModule } from './terra-components.module';
 import { FormsModule } from '@angular/forms';
 import { CKEditorModule } from 'ckeditor4-angular';
+import { QuillModule } from 'ngx-quill';
 
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
         CKEditorModule,
-        TerraComponentsModule
+        TerraComponentsModule,
+        QuillModule
     ],
     declarations:    [...examples],
     entryComponents: [...examples],
