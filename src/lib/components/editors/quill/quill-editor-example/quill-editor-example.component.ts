@@ -7,8 +7,7 @@ import { QuillModules } from 'ngx-quill';
 
 @Component({
   selector: 'tc-quill-editor-example',
-  templateUrl: './quill-editor-example.component.html',
-  styleUrls: ['./quill-editor-example.component.css']
+  templateUrl: './quill-editor-example.component.html'
 })
 export class QuillEditorExample
 {
