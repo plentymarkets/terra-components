@@ -29,6 +29,9 @@ export type AcceptFn = (args:{
     dragData:any
 }) => boolean;
 
+/**
+ * @deprecated since 5.x.x. Please use another DnD library e.g. Angular Material CDK.
+ */
 @Directive({
     selector: '[terraDropzone]'
 })
@@ -135,6 +138,7 @@ export class TerraDropzoneDirective implements OnInit, OnChanges
     constructor(private _el:ElementRef)
     {
         this._init();
+        console.warn('TerraDropzoneDirective is deprecated. Please use another DnD library e.g. Angular Material CDK.');
     }
 
     public ngOnInit():void

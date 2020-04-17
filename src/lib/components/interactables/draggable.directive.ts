@@ -21,6 +21,9 @@ import {
 
 const interact:InteractStatic = interact_;
 
+/**
+ * @deprecated since 5.x.x. Please use another DnD library e.g. Angular Material CDK.
+ */
 @Directive({
     selector: '[terraDraggable]'
 })
@@ -129,6 +132,7 @@ export class TerraDraggableDirective implements OnInit, OnChanges
     constructor(private _el:ElementRef)
     {
         this._init();
+        console.warn('TerraDraggableDirective is deprecated. Please use another DnD library e.g. Angular Material CDK.');
     }
 
     public ngOnInit():void
