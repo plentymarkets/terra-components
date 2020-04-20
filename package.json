@@ -7,7 +7,7 @@
 		"test-once": "ng test lib --watch=false --browsers=Chrome,Firefox,Safari",
 		"test-headless": "ng test lib --watch=false --browsers=ChromeHeadless,FirefoxHeadless",
 		"lint": "ng lint lib",
-		"reinstall": "rm -rf node_modules/ && npm i",
+		"reinstall": "npm ci",
 		"prepare-release": "npm run reinstall && npm run build && npm run test-once && npm start"
 	},
 	"dependencies": {
