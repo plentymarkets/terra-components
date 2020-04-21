@@ -1,3 +1,14 @@
+# 6.0.0 (XX.XX.XX)
+
+### Breaking Changes
+* **alert** removed `TerraAlertComponent`. Use `AlertService` instead.
+
+### Features
+* **alert**
+    - deprecate `AlertService`'s `addAlert` and `closeAlert` event emitter properties.
+    - added method `closeAlertByIndex` to the public API of the `AlertService`. It provides the possibility to close an alert by its index in the list of alerts.
+    - added method `closeAlertsByIdentifier` to the public API of the `AlertService`. It provides the possibility to close all alerts matching a given identifier.
+
 # 5.2.0 (20.04.2020)
 
 ### Features
