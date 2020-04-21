@@ -122,4 +122,22 @@ describe('AlertService', () =>
             latest = undefined;
         });
     });
+
+    it('should register listeners on the window for adding and closing alerts when created', () =>
+    {
+        spyOn(window, 'addEventListener');
+        const newService:AlertService = new AlertService(true);
+        expect(window.addEventListener).toHaveBeenCalledTimes(2);
+        expect(window.addEventListener).toHaveBeenCalledWith(newService.addEvent, newService['_addAlertListener']);
+        expect(window.addEventListener).toHaveBeenCalledWith(newService.closeEvent, newService['_closeAlertListener']);
+    });
+
+    it('should remove the event listeners on the window when destroyed', () =>
+    {
+        spyOn(window, 'removeEventListener');
+        service.ngOnDestroy();
+        expect(window.removeEventListener).toHaveBeenCalledTimes(2);
+        expect(window.removeEventListener).toHaveBeenCalledWith(service.addEvent, service['_addAlertListener']);
+        expect(window.removeEventListener).toHaveBeenCalledWith(service.closeEvent, service['_closeAlertListener']);
+    });
 });
