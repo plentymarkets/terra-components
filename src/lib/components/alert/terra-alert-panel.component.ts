@@ -18,7 +18,7 @@ export class TerraAlertPanelComponent
     /**
      * @description Closes an alert identified by its index in the list of alerts.
      * @param index
-     * @private
+     * @internal
      */
     public _closeAlertByIndex(index:number):void
     {
