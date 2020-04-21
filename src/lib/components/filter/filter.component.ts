@@ -23,11 +23,14 @@ export class FilterComponent implements OnInit, OnDestroy
     @Output()
     public readonly search:EventEmitter<void> = new EventEmitter<void>();
 
+    // TODO https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/reset_event
+    /* eslint-disable @angular-eslint/no-output-native */
     /**
      * @description Notifies when the reset button has been clicked
      */
     @Output()
     public readonly reset:EventEmitter<void> = new EventEmitter<void>();
+    /* eslint-enable @angular-eslint/no-output-native */
 
     @Language()
     public _lang:string;
