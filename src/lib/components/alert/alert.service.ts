@@ -12,21 +12,22 @@ import { IS_ROOT_WINDOW } from '../../utils/window';
 })
 export class AlertService
 {
+    /** @description List of alerts that are currently shown in the panel. */
+    public alerts:Array<TerraAlertInterface> = [];
     /**
-     * Notifies that an alert is supposed to be added
+     * @deprecated since v6. Will be removed in a future major release.
+     * @description Notifies that an alert is supposed to be added
      */
     public addAlert:EventEmitter<TerraAlertInterface> = new EventEmitter<TerraAlertInterface>();
     /**
-     * Notifies that an alert is supposed to be closed.
+     * @deprecated since v6. Will be removed in a future major release.
+     * @description Notifies that an alert is supposed to be closed.
      */
     public closeAlert:EventEmitter<string> = new EventEmitter<string>();
-    /**
-     * Name of the CustomEvent that is dispatched to the parent window to add an alert
-     */
+
+    /** @description Name of the CustomEvent that is dispatched to the parent window to add an alert. */
     public readonly addEvent:string = 'addAlert';
-    /**
-     * Name of the CustomEvent that is dispatched to the parent window to close an alert
-     */
+    /** @description Name of the CustomEvent that is dispatched to the parent window to close an alert. */
     public readonly  closeEvent:string = 'closeAlert';
 
     private readonly defaultTimeout:number = 5000;
@@ -83,6 +84,8 @@ export class AlertService
         // check whether the service is used in the root window or in an iframe
         if(this.isRootWindow)
         {
+            // close alert
+            this.closeAlertsByIdentifier(identifier);
             // it is used in the root window -> use EventEmitter to notify the alert panel directly.
             this.closeAlert.emit(identifier);
         }
@@ -91,6 +94,24 @@ export class AlertService
             // it is used in an app that is hosted in an iframe -> use CustomEvent to notify the parent window.
             this.closeAlertForPlugin(identifier);
         }
+    }
+
+    /** @description Closes an alert by its index in the list of shown alerts. */
+    public closeAlertByIndex(index:number):void
+    {
+        this.alerts.splice(index, 1);
+    }
+
+    /** @description Closes all alerts matching the given identifier */
+    public closeAlertsByIdentifier(identifier:string):void
+    {
+        this.alerts.forEach((alert:TerraAlertInterface, index:number) =>
+        {
+            if(alert.identifier === identifier)
+            {
+                this.closeAlertByIndex(index);
+            }
+        });
     }
 
     private _add(msg:string, type:AlertType, timeout:number, identifier?:string):void
@@ -105,6 +126,8 @@ export class AlertService
         // check whether the service is used in the root window or in an iframe
         if(this.isRootWindow)
         {
+            // add the alert
+            this.alerts.unshift(alert);
             // it is used in the root window -> use EventEmitter to notify the alert panel directly.
             this.addAlert.emit(alert);
         }
@@ -115,18 +138,20 @@ export class AlertService
         }
     }
 
+    /** @description Dispatches event to the parent window indicating that an alert should be added. */
     private addAlertForPlugin(alert:TerraAlertInterface):void
     {
-        let event:CustomEvent<TerraAlertInterface> = new CustomEvent<TerraAlertInterface>(this.addEvent, {
+        const event:CustomEvent<TerraAlertInterface> = new CustomEvent<TerraAlertInterface>(this.addEvent, {
             detail: alert,
             bubbles: false
         });
         window.parent.window.dispatchEvent(event);
     }
 
+    /** @description Dispatches event to the parent window indicating that an alert should be closed. */
     private closeAlertForPlugin(identifier:string):void
     {
-        let event:CustomEvent<string> = new CustomEvent<string>(this.closeEvent, {
+        const event:CustomEvent<string> = new CustomEvent<string>(this.closeEvent, {
             detail: identifier,
             bubbles: false
         });
