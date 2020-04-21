@@ -96,7 +96,7 @@ export class AlertService implements OnDestroy
     }
 
     /**
-     * Close an alert by its identifier
+     * @description Closes the first alert that matches the given identifier.
      * @param identifier
      */
     public close(identifier:string):void
@@ -104,7 +104,7 @@ export class AlertService implements OnDestroy
         // check whether the service is used in the root window or in an iframe
         if(this.isRootWindow)
         {
-            // close alert // TODO: previously all alerts matching the identifier have been closed here! What should we do now?
+            // close alert
             this.closeAlertByIdentifier(identifier);
             // it is used in the root window -> use EventEmitter to notify the alert panel directly.
             this.closeAlert.emit(identifier);
@@ -116,23 +116,20 @@ export class AlertService implements OnDestroy
         }
     }
 
-    /** @description Closes an alert by its index in the list of shown alerts. */
-    public closeAlertByIndex(index:number):void
+    /**
+     * @description Closes the alert at the given index.
+     * @internal
+     */
+    public _closeAlertByIndex(index:number):void
     {
         this.alerts.splice(index, 1);
     }
 
     /** @description Closes the first alert that matches the given identifier. */
-    public closeAlertByIdentifier(identifier:string):void
+    private closeAlertByIdentifier(identifier:string):void
     {
         const index:number = this.alerts.findIndex((alert:TerraAlertInterface) => alert.identifier === identifier);
-        this.closeAlertByIndex(index);
-    }
-
-    /** @description Closes all alerts matching the given identifier */
-    public closeAlertsByIdentifier(identifier:string):void
-    {
-        this.alerts = this.alerts.filter((alert:TerraAlertInterface) => alert.identifier !== identifier);
+        this._closeAlertByIndex(index);
     }
 
     private _add(msg:string, type:AlertType, timeout:number, identifier?:string):void

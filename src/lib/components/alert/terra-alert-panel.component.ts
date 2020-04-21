@@ -22,6 +22,6 @@ export class TerraAlertPanelComponent
      */
     public _closeAlertByIndex(index:number):void
     {
-        this._service.closeAlertByIndex(index);
+        this._service._closeAlertByIndex(index);
     }
 }
