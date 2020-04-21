@@ -1,7 +1,8 @@
 import {
     EventEmitter,
     Inject,
-    Injectable
+    Injectable,
+    OnDestroy
 } from '@angular/core';
 import { TerraAlertInterface } from './data/terra-alert.interface';
 import { AlertType } from './alert-type.enum';
@@ -10,7 +11,7 @@ import { IS_ROOT_WINDOW } from '../../utils/window';
 @Injectable({
     providedIn: 'root'
 })
-export class AlertService
+export class AlertService implements OnDestroy
 {
     /** @description List of alerts that are currently shown in the panel. */
     public alerts:Array<TerraAlertInterface> = [];
@@ -30,10 +31,29 @@ export class AlertService
     /** @description Name of the CustomEvent that is dispatched to the parent window to close an alert. */
     public readonly  closeEvent:string = 'closeAlert';
 
+    private readonly _addAlertListener:EventListener;
+    private readonly _closeAlertListener:EventListener;
+
+
     private readonly defaultTimeout:number = 5000;
 
     constructor(@Inject(IS_ROOT_WINDOW) private isRootWindow:boolean)
-    {}
+    {
+        // init event listeners
+        this._addAlertListener = (event:CustomEvent<TerraAlertInterface>):void => this._add(event.detail.msg, event.detail.type, event.detail.dismissOnTimeout, event.detail.identifier);
+        this._closeAlertListener = (event:CustomEvent<string>):void => this.close(event.detail);
+
+        // listen to events that concern alerts and are dispatched to the hosting window
+        window.addEventListener(this.addEvent, this._addAlertListener);
+        window.addEventListener(this.closeEvent, this._closeAlertListener);
+    }
+
+    public ngOnDestroy():void
+    {
+        // remove listeners from the hosting window
+        window.removeEventListener(this.addEvent, this._addAlertListener);
+        window.removeEventListener(this.closeEvent, this._closeAlertListener);
+    }
 
     /**
      * add a success alert

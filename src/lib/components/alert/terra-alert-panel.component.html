@@ -1,4 +1,4 @@
-<alert *ngFor="let alert of _alerts; let i = index"
+<alert *ngFor="let alert of _service.alerts; let i = index"
        [type]="alert.type"
        (close)="_closeAlertByIndex(i)"
        [dismissible]="true"
