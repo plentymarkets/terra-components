@@ -9,7 +9,7 @@
 		"lint": "ng lint lib",
 		"eslint": "eslint 'src/app/**/*.ts' 'src/lib/**/*.ts' --quiet=true",
 		"release": "ng build lib && gulp release",
-		"reinstall": "rm -rf node_modules/ && npm i",
+		"reinstall": "npm ci",
 		"prepare-release": "npm run reinstall && npm run build && npm run test-once && npm start"
 	},
 	"dependencies": {
