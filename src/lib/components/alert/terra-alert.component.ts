@@ -35,7 +35,8 @@ export class TerraAlertComponent
         return TerraAlertComponent._instance;
     }
 
-    /** @description Closes an alert by its index.
+    /**
+     * @description Closes an alert by its index.
      * @deprecated use closeAlertByIndex instead. */
     public closeAlert(i:number):void
     {
