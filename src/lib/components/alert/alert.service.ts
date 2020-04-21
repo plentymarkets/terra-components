@@ -9,7 +9,7 @@ import { AlertType } from './alert-type.enum';
 import { IS_ROOT_WINDOW } from '../../utils/window';
 
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root' // TODO: We may change this to platform in Angular v9!?
 })
 export class AlertService implements OnDestroy
 {
