@@ -132,6 +132,13 @@ export class AlertService implements OnDestroy
         this._closeAlertByIndex(index);
     }
 
+    /** @description Closes a given alert reference. */
+    private closeAlertByReference(alert:TerraAlertInterface):void
+    {
+        const index:number = this.alerts.indexOf(alert);
+        this._closeAlertByIndex(index);
+    }
+
     private _add(msg:string, type:AlertType, timeout:number, identifier?:string):void
     {
         let alert:TerraAlertInterface = {
@@ -140,6 +147,12 @@ export class AlertService implements OnDestroy
             dismissOnTimeout: timeout,
             identifier:       identifier
         };
+
+        // close the alert automatically after the given period of time
+        if(timeout > 0)
+        {
+            setTimeout(() => this.closeAlertByReference(alert), timeout);
+        }
 
         // check whether the service is used in the root window or in an iframe
         if(this.isRootWindow)

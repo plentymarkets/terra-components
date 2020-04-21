@@ -9,6 +9,11 @@
     - added method `closeAlertByIndex` to the public API of the `AlertService`. It provides the possibility to close an alert by its index in the list of alerts.
     - added method `closeAlertsByIdentifier` to the public API of the `AlertService`. It provides the possibility to close all alerts matching a given identifier.
 
+# 5.3.0 (XX.XX.2020)
+
+### Features
+* **terra-alert-panel** use native [bootstrap](https://getbootstrap.com/) alert instead of the alert component provided by [ngx-bootstrap](https://valor-software.com/ngx-bootstrap).
+
 # 5.2.0 (20.04.2020)
 
 ### Features
