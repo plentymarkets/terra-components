@@ -15,6 +15,11 @@ export class TerraAlertPanelComponent
     constructor(public _service:AlertService)
     {}
 
+    /**
+     * @description Closes an alert identified by its index in the list of alerts.
+     * @param index
+     * @private
+     */
     public _closeAlertByIndex(index:number):void
     {
         this._service.closeAlertByIndex(index);
