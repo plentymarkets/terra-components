@@ -104,8 +104,8 @@ export class AlertService implements OnDestroy
         // check whether the service is used in the root window or in an iframe
         if(this.isRootWindow)
         {
-            // close alert
-            this.closeAlertsByIdentifier(identifier);
+            // close alert // TODO: previously all alerts matching the identifier have been closed here! What should we do now?
+            this.closeAlertByIdentifier(identifier);
             // it is used in the root window -> use EventEmitter to notify the alert panel directly.
             this.closeAlert.emit(identifier);
         }
@@ -122,16 +122,17 @@ export class AlertService implements OnDestroy
         this.alerts.splice(index, 1);
     }
 
+    /** @description Closes the first alert that matches the given identifier. */
+    public closeAlertByIdentifier(identifier:string):void
+    {
+        const index:number = this.alerts.findIndex((alert:TerraAlertInterface) => alert.identifier === identifier);
+        this.closeAlertByIndex(index);
+    }
+
     /** @description Closes all alerts matching the given identifier */
     public closeAlertsByIdentifier(identifier:string):void
     {
-        this.alerts.forEach((alert:TerraAlertInterface, index:number) =>
-        {
-            if(alert.identifier === identifier)
-            {
-                this.closeAlertByIndex(index);
-            }
-        });
+        this.alerts = this.alerts.filter((alert:TerraAlertInterface) => alert.identifier !== identifier);
     }
 
     private _add(msg:string, type:AlertType, timeout:number, identifier?:string):void

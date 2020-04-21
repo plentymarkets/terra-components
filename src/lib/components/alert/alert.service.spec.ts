@@ -1,21 +1,16 @@
-import { TestBed } from '@angular/core/testing';
+import { Subscription } from 'rxjs';
 
 import { AlertService, } from './alert.service';
 import { TerraAlertInterface } from './data/terra-alert.interface';
-import { Subscription } from 'rxjs';
 import { AlertType } from './alert-type.enum';
-import { IS_ROOT_WINDOW } from '../../utils/window';
 
 describe('AlertService', () =>
 {
     let service:AlertService;
-    beforeEach(() => TestBed.configureTestingModule({
-        providers: [AlertService, {provide: IS_ROOT_WINDOW, useValue: true}]
-    }));
 
     beforeEach(() =>
     {
-        service = TestBed.get(AlertService);
+        service = new AlertService(true);
     });
 
     it('should be created', () =>
@@ -139,5 +134,43 @@ describe('AlertService', () =>
         expect(window.removeEventListener).toHaveBeenCalledTimes(2);
         expect(window.removeEventListener).toHaveBeenCalledWith(service.addEvent, service['_addAlertListener']);
         expect(window.removeEventListener).toHaveBeenCalledWith(service.closeEvent, service['_closeAlertListener']);
+    });
+
+    it('closeAlertByIndex() should close the alert at the given index', () =>
+    {
+        const message:string = 'success';
+        service.success(message);
+        expect(service.alerts.length).toBe(1);
+        expect(service.alerts[0].msg).toBe(message);
+
+        service.closeAlertByIndex(0);
+        expect(service.alerts.length).toBe(0);
+    });
+
+    it('closeAlertByIdentifier() should close the first alert that matches a given identifier', () =>
+    {
+        const identifier:string = 'identifier';
+        const message:string = 'test';
+        service.info(message);
+        service.success(message, identifier);
+        service.error(message, identifier);
+        expect(service.alerts.length).toBe(3);
+
+        service.closeAlertByIdentifier(identifier);
+        expect(service.alerts.length).toBe(2);
+    });
+
+    it('closeAlertsByIdentifier() should close all alerts matching a given identifier', () =>
+    {
+        const identifier:string = 'identifier';
+        const message:string = 'test';
+        service.info(message);
+        service.success(message, identifier);
+        service.error(message, identifier);
+        expect(service.alerts.length).toBe(3);
+
+        service.closeAlertsByIdentifier(identifier);
+        expect(service.alerts.length).toBe(1);
+        expect(service.alerts[0].identifier).toBeUndefined();
     });
 });
