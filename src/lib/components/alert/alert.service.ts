@@ -101,19 +101,11 @@ export class AlertService implements OnDestroy
      */
     public close(identifier:string):void
     {
-        // check whether the service is used in the root window or in an iframe
-        if(this.isRootWindow)
-        {
-            // close alert
-            this.closeAlertByIdentifier(identifier);
-            // it is used in the root window -> use EventEmitter to notify the alert panel directly.
-            this.closeAlert.emit(identifier);
-        }
-        else
-        {
-            // it is used in an app that is hosted in an iframe -> use CustomEvent to notify the parent window.
-            this.closeAlertForPlugin(identifier);
-        }
+        // close alert
+        this.closeAlertByIdentifier(identifier);
+
+        // notify
+        this.notifyOnClose(identifier);
     }
 
     /**
@@ -148,25 +140,16 @@ export class AlertService implements OnDestroy
             identifier:       identifier
         };
 
+        // add the alert
+        this.alerts.unshift(alert);
+
         // close the alert automatically after the given period of time
         if(timeout > 0)
         {
             setTimeout(() => this.closeAlertByReference(alert), timeout);
         }
 
-        // check whether the service is used in the root window or in an iframe
-        if(this.isRootWindow)
-        {
-            // add the alert
-            this.alerts.unshift(alert);
-            // it is used in the root window -> use EventEmitter to notify the alert panel directly.
-            this.addAlert.emit(alert);
-        }
-        else
-        {
-            // it is used in an app that is hosted in an iframe -> use CustomEvent to notify the parent window.
-            this.addAlertForPlugin(alert);
-        }
+        this.notifyOnAdd(alert);
     }
 
     /** @description Dispatches event to the parent window indicating that an alert should be added. */
@@ -193,5 +176,37 @@ export class AlertService implements OnDestroy
             bubbles: false
         });
         window.parent.window.dispatchEvent(event);
+    }
+
+    /** @description Notifies whenever an alert has been added. */
+    private notifyOnAdd(alert:TerraAlertInterface):void
+    {
+        // check whether the service is used in the root window or in an iframe
+        if(this.isRootWindow)
+        {
+            // it is used in the root window -> use EventEmitter to notify the alert panel directly.
+            this.addAlert.emit(alert);
+        }
+        else
+        {
+            // it is used in an app that is hosted in an iframe -> use CustomEvent to notify the parent window.
+            this.addAlertForPlugin(alert);
+        }
+    }
+
+    /** @description Notifies whenever an alert has been closed. */
+    private notifyOnClose(identifier:string):void
+    {
+        // check whether the service is used in the root window or in an iframe
+        if(this.isRootWindow)
+        {
+            // it is used in the root window -> use EventEmitter to notify the alert panel directly.
+            this.closeAlert.emit(identifier);
+        }
+        else
+        {
+            // it is used in an app that is hosted in an iframe -> use CustomEvent to notify the parent window.
+            this.closeAlertForPlugin(identifier);
+        }
     }
 }

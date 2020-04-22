@@ -16,7 +16,7 @@ export class TerraAlertPanelComponent
     {}
 
     /**
-     * @description Closes an alert identified by its index in the list of alerts.
+     * @description Removes the alert at the given index.
      * @param index
      * @internal
      */
