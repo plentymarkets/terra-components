@@ -60,7 +60,7 @@ export class TerraAlertPanelComponent implements OnInit, OnDestroy
 
     public _closeAlertByIndex(index:number):void
     {
-        this._alert.closeAlert(index);
+        this._alert.closeAlertByIndex(index);
     }
 
     private _addAlert(alert:TerraAlertInterface):void
