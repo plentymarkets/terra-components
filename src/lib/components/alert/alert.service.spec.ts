@@ -117,46 +117,4 @@ describe('AlertService', () =>
             latest = undefined;
         });
     });
-
-    it('should register listeners on the window for adding and closing alerts when created', () =>
-    {
-        spyOn(window, 'addEventListener');
-        const newService:AlertService = new AlertService(true);
-        expect(window.addEventListener).toHaveBeenCalledTimes(2);
-        expect(window.addEventListener).toHaveBeenCalledWith(newService.addEvent, newService['_addAlertListener']);
-        expect(window.addEventListener).toHaveBeenCalledWith(newService.closeEvent, newService['_closeAlertListener']);
-    });
-
-    it('should remove the event listeners on the window when destroyed', () =>
-    {
-        spyOn(window, 'removeEventListener');
-        service.ngOnDestroy();
-        expect(window.removeEventListener).toHaveBeenCalledTimes(2);
-        expect(window.removeEventListener).toHaveBeenCalledWith(service.addEvent, service['_addAlertListener']);
-        expect(window.removeEventListener).toHaveBeenCalledWith(service.closeEvent, service['_closeAlertListener']);
-    });
-
-    it('_closeAlertByIndex() should close the alert at the given index', () =>
-    {
-        const message:string = 'success';
-        service.success(message);
-        expect(service.alerts.length).toBe(1);
-        expect(service.alerts[0].msg).toBe(message);
-
-        service._closeAlertByIndex(0);
-        expect(service.alerts.length).toBe(0);
-    });
-
-    it('close() should close the first alert that matches a given identifier', () =>
-    {
-        const identifier:string = 'identifier';
-        const message:string = 'test';
-        service.info(message);
-        service.success(message, identifier);
-        service.error(message, identifier);
-        expect(service.alerts.length).toBe(3);
-
-        service.close(identifier);
-        expect(service.alerts.length).toBe(2);
-    });
 });
