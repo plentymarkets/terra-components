@@ -1,4 +1,4 @@
-# 5.3.0 (XX.XX.2020)
+# 5.3.0 (24.04.2020)
 
 ### Features
 * **terra-alert-panel** use native [bootstrap](https://getbootstrap.com/) alert instead of the alert component provided by [ngx-bootstrap](https://valor-software.com/ngx-bootstrap).
