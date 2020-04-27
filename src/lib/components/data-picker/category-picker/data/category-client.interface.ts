@@ -1,4 +1,3 @@
-export interface CategoryClientInterface
-{
-    plentyId:number;
+export interface CategoryClientInterface {
+  plentyId: number;
 }

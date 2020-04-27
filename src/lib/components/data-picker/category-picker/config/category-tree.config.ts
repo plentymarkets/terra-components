@@ -4,10 +4,8 @@ import { Injectable } from '@angular/core';
 import { CategoryDataInterface } from '../data/category-data.interface';
 
 @Injectable()
-export class CategoryTreeConfig extends TerraNodeTreeConfig<CategoryDataInterface>
-{
-    constructor(translation:TranslationService)
-    {
-        super(translation);
-    }
+export class CategoryTreeConfig extends TerraNodeTreeConfig<CategoryDataInterface> {
+  constructor(translation: TranslationService) {
+    super(translation);
+  }
 }
