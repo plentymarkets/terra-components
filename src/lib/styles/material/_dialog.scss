@@ -1,39 +1,33 @@
-mat-dialog-container.mat-dialog-container
-{
-    padding: 0;
-    border-radius: var(--border-radius);
-    
-    .mat-dialog-title
-    {
-        padding: var(--space-md) var(--space-lg);
-        --btn-padding: 0;
-        line-height: var(--height-md);
-        font-weight: var(--font-weight-2);
-        color: var(--color-structure-10);
-        font-size: var(--font-size-5);
-        margin: 0;
-    }
-    
-    .mat-dialog-content
-    {
-        margin: 0;
-        padding: calc(var(--space-lg) + var(--space-md)) var(--space-lg);
-        background-color: var(--modal-body-background-color,var(--color-structure-2));
-    }
-    
-    .mat-dialog-actions
-    {
-        margin: 0;
-        padding: var(--space-md) var(--space-lg);
-        display: -webkit-box;
-        display: flex;
-        flex-wrap: wrap;
-        -webkit-box-align: center;
-        align-items: center;
-        -webkit-box-pack: end;
-        justify-content: flex-end;
-        min-height: 0;
-    }
+mat-dialog-container.mat-dialog-container {
+  padding: 0;
+  border-radius: var(--border-radius);
+
+  .mat-dialog-title {
+    padding: var(--space-md) var(--space-lg);
+    --btn-padding: 0;
+    line-height: var(--height-md);
+    font-weight: var(--font-weight-2);
+    color: var(--color-structure-10);
+    font-size: var(--font-size-5);
+    margin: 0;
+  }
+
+  .mat-dialog-content {
+    margin: 0;
+    padding: calc(var(--space-lg) + var(--space-md)) var(--space-lg);
+    background-color: var(--modal-body-background-color, var(--color-structure-2));
+  }
+
+  .mat-dialog-actions {
+    margin: 0;
+    padding: var(--space-md) var(--space-lg);
+    display: -webkit-box;
+    display: flex;
+    flex-wrap: wrap;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: end;
+    justify-content: flex-end;
+    min-height: 0;
+  }
 }
-
-
