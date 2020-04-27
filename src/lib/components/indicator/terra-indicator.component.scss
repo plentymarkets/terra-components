@@ -1,98 +1,88 @@
-.label
-{
-    display: inline-block;
-    padding: .25em .4em;
-    font-size: 75%;
-    font-weight: bold;
-    line-height: 1;
-    color: var(--color-structure-0);
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: baseline;
-    border-radius: 0.15rem;
+.label {
+  display: inline-block;
+  padding: 0.25em 0.4em;
+  font-size: 75%;
+  font-weight: bold;
+  line-height: 1;
+  color: var(--color-structure-0);
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.15rem;
 }
 
-.label:empty
-{
-    display: none;
+.label:empty {
+  display: none;
 }
 
-.btn .label
-{
-    position: relative;
-    top: -1px;
+.btn .label {
+  position: relative;
+  top: -1px;
 }
 
-a.label:focus, a.label:hover
-{
-    color: var(--color-structure-0);
-    text-decoration: none;
-    cursor: pointer;
+a.label:focus,
+a.label:hover {
+  color: var(--color-structure-0);
+  text-decoration: none;
+  cursor: pointer;
 }
 
-.label-pill
-{
-    padding-right: .6em;
-    padding-left: .6em;
-    border-radius: 10rem;
+.label-pill {
+  padding-right: 0.6em;
+  padding-left: 0.6em;
+  border-radius: 10rem;
 }
 
-.label-default
-{
-    background-color: var(--color-structure-9);
+.label-default {
+  background-color: var(--color-structure-9);
 }
 
-.label-default[href]:focus, .label-default[href]:hover
-{
-    background-color: var(--color-structure-11);
+.label-default[href]:focus,
+.label-default[href]:hover {
+  background-color: var(--color-structure-11);
 }
 
-.label-primary
-{
-    background-color: var(--color-active);
+.label-primary {
+  background-color: var(--color-active);
 }
 
-.label-primary[href]:focus, .label-primary[href]:hover
-{
-    background-color: var(--color-active-dark);
+.label-primary[href]:focus,
+.label-primary[href]:hover {
+  background-color: var(--color-active-dark);
 }
 
-.label-success
-{
-    background-color: var(--color-active);
+.label-success {
+  background-color: var(--color-active);
 }
 
-.label-success[href]:focus, .label-success[href]:hover
-{
-    background-color: var(--color-active-dark);
+.label-success[href]:focus,
+.label-success[href]:hover {
+  background-color: var(--color-active-dark);
 }
 
-.label-info
-{
-    background-color: var(--color-active-light);
+.label-info {
+  background-color: var(--color-active-light);
 }
 
-.label-info[href]:focus, .label-info[href]:hover
-{
-    background-color: var(--color-active-light);
+.label-info[href]:focus,
+.label-info[href]:hover {
+  background-color: var(--color-active-light);
 }
 
-.label-warning
-{
-    background-color: var(--color-accent);
+.label-warning {
+  background-color: var(--color-accent);
 }
 
-.label-warning[href]:focus, .label-warning[href]:hover
-{
-    background-color: var(--color-accent-dark);
+.label-warning[href]:focus,
+.label-warning[href]:hover {
+  background-color: var(--color-accent-dark);
 }
 
-.label-danger
-{
-    background-color: var(--color-alert);
+.label-danger {
+  background-color: var(--color-alert);
 }
 
-.label-danger[href]:focus, .label-danger[href]:hover
-{
-    background-color: var(--color-alert-dark);
+.label-danger[href]:focus,
+.label-danger[href]:hover {
+  background-color: var(--color-alert-dark);
 }
