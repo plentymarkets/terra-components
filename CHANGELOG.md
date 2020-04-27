@@ -1,9 +1,13 @@
+# 5.4.0 (XX.XX.XXXX)
+
+### Features
+* **quill-presets** introduced two presets (base and note) for [quill](https://quilljs.com/) rich text editor.
+* **terra-note-editor** is deprecated now. Use `<quill-editor>` component provided by [ngx-quill](https://github.com/KillerCodeMonkey/ngx-quill) and our note preset instead.
+
 # 5.3.0 (24.04.2020)
 
 ### Features
 * **terra-alert-panel** use native [bootstrap](https://getbootstrap.com/) alert instead of the alert component provided by [ngx-bootstrap](https://valor-software.com/ngx-bootstrap).
-* **quill-presets** introduced two presets (base and note) for [quill](https://quilljs.com/) rich text editor.
-* **terra-note-editor** is deprecated now. Use `<quill-editor>` component provided by [ngx-quill](https://github.com/KillerCodeMonkey/ngx-quill) and our note preset instead.
 
 ### Bug Fixes
 * **terra-portlet** remove overflow
