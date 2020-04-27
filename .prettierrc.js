@@ -1,5 +1,5 @@
 module.exports = {
-    parser: 'typescript',
+    // parser: 'typescript', // Don't use this. Just DON'T!
     //filePath: '', // path to a parser...?
     printWidth: 100, // d=80
     tabWidth: 2, // d
@@ -18,5 +18,6 @@ module.exports = {
     insertPragma: false, // d add an Pragma, if the file is formatted
     proseWrap: 'preserve', // d
     htmlWhitespaceSensitivity: 'css', // d
-    // vueIndentScriptAndStyle: false // d only useful for vue...
+    // vueIndentScriptAndStyle: false // d only useful for vue..
+    endOfLine: 'lf'
 }
