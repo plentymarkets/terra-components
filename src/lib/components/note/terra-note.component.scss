@@ -1,84 +1,71 @@
 $padding-border: 16px;
 
-.note
-{
-    background-color: var(--color-accent-light);
-    -moz-border-radius: var(--border-radius);
-    -webkit-border-radius: var(--border-radius);
-    border-radius: var(--border-radius);
-    padding: var(--space-lg);
-    min-width: 200px;
-    margin: var(--space-container);
-    height: auto;
-    overflow-x: auto;
-    box-shadow: var(--box-shadow);
-    
-    &.selected
-    {
-        background-color: var(--color-active);
-        
-        .note-inner
-        {
-            .note-text
-            {
-                color: var(--color-structure-0);
-            }
-        }
-        
-        .note-footer
-        {
-            .note-id
-            {
-                color: var(--color-structure-0);
-            }
-        }
+.note {
+  background-color: var(--color-accent-light);
+  -moz-border-radius: var(--border-radius);
+  -webkit-border-radius: var(--border-radius);
+  border-radius: var(--border-radius);
+  padding: var(--space-lg);
+  min-width: 200px;
+  margin: var(--space-container);
+  height: auto;
+  overflow-x: auto;
+  box-shadow: var(--box-shadow);
+
+  &.selected {
+    background-color: var(--color-active);
+
+    .note-inner {
+      .note-text {
+        color: var(--color-structure-0);
+      }
     }
-    
-    .note-inner
-    {
-        display: flex;
-        justify-content: space-between;
-        height: calc(100% - 26px);
-        
-        .note-text
-        {
-            padding-right: var(--space-lg);
-            max-width: 77%;
-            white-space: normal;
-            color: var(--color-structure-11);
-            
-            .note-header
-            {
-                font-weight: bold;
-            }
-            
-            hr
-            {
-                margin: 0;
-            }
-            
-            div
-            {
-                white-space: pre-wrap;
-                text-overflow: ellipsis;
-                overflow: hidden;
-            }
-        }
-        
-        .note-sidebar
-        {
-            display: flex;
-            align-items: flex-end;
-            flex-direction: column;
-            
-            .note-id
-            {
-                margin-top: auto;
-                color: var(--color-structure-8);
-                width: 100%;
-                text-align: center;
-                padding-top: var(--space-lg);
-            }
-        }
+
+    .note-footer {
+      .note-id {
+        color: var(--color-structure-0);
+      }
     }
+  }
+
+  .note-inner {
+    display: flex;
+    justify-content: space-between;
+    height: calc(100% - 26px);
+
+    .note-text {
+      padding-right: var(--space-lg);
+      max-width: 77%;
+      white-space: normal;
+      color: var(--color-structure-11);
+
+      .note-header {
+        font-weight: bold;
+      }
+
+      hr {
+        margin: 0;
+      }
+
+      div {
+        white-space: pre-wrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+    }
+
+    .note-sidebar {
+      display: flex;
+      align-items: flex-end;
+      flex-direction: column;
+
+      .note-id {
+        margin-top: auto;
+        color: var(--color-structure-8);
+        width: 100%;
+        text-align: center;
+        padding-top: var(--space-lg);
+      }
+    }
+  }
 }
