@@ -1,57 +1,78 @@
 <terra-base-toolbar>
-    <div class="btn-group" role="group">
-        <terra-button [inputIcon]="'icon-add'"
-                      [inputTooltipText]="'New entry'"
-                      (outputClicked)="_addEntry()">
-        </terra-button>
-        <terra-button [inputIcon]="'icon-settings_transfer'"
-                      [inputTooltipText]="'Group function'"
-                      (outputClicked)="showGroupFunction = !showGroupFunction">
-        </terra-button>
-        <terra-button [inputIcon]="'icon-reset'"
-                      [inputTooltipText]="'Reset sorting'"
-                      (outputClicked)="_resetSorting()">
-        </terra-button>
-    </div>
+  <div class="btn-group" role="group">
+    <terra-button
+      [inputIcon]="'icon-add'"
+      [inputTooltipText]="'New entry'"
+      (outputClicked)="_addEntry()"
+    >
+    </terra-button>
+    <terra-button
+      [inputIcon]="'icon-settings_transfer'"
+      [inputTooltipText]="'Group function'"
+      (outputClicked)="showGroupFunction = !showGroupFunction"
+    >
+    </terra-button>
+    <terra-button
+      [inputIcon]="'icon-reset'"
+      [inputTooltipText]="'Reset sorting'"
+      (outputClicked)="_resetSorting()"
+    >
+    </terra-button>
+  </div>
 </terra-base-toolbar>
 
 <terra-data-table
-    [inputService]="_service"
-    [inputHasCheckboxes]="true"
-    [inputHeaderList]="_headerList"
-    [inputContextMenu]="_contextMenu"
-    [useContentBody]="true"
-    #table>
-    
-    <terra-group-function [show]="showGroupFunction"
-                          [disableExecution]="false"
-                          (executeGroupFunction)="_executeGroupFunction(table.selectedRowList)">
-        <terra-text-input [inputName]="'Text'"></terra-text-input>
-    </terra-group-function>
-    
-    <terra-no-result-notice
-        [inputButtons]="_noResultButtons"
-        [inputTextPrimary]="_noResultTextPrimary"
-        [inputTextSecondary]="_noResultTextSecondary">
-    </terra-no-result-notice>
-    
-    <tbody>
-    <tr [tcTableRow]="row" hasContextMenu [rowData]="row.data" *ngFor="let row of _service.rowList; let index = index">
-        <td>{{ row.data.id }}</td>
-        <td>
-            <form (submit)="_saveData(row.data)" (focusout)="_saveData($event)">
-                <terra-text-input name="value" inputName="Edit value" [(ngModel)]="row.data.value"></terra-text-input>
-            </form>
-        </td>
-        <td>
-            <form (submit)="_saveData(row.data)" (focusout)="_saveData($event)">
-                <terra-text-input name="email" inputName="Edit mail" [(ngModel)]="row.data.mail"></terra-text-input>
-            </form>
-        </td>
-        <td>
-            <!-- empty column -->
-        </td>
-    </tr>
-    </tbody>
+  [inputService]="_service"
+  [inputHasCheckboxes]="true"
+  [inputHeaderList]="_headerList"
+  [inputContextMenu]="_contextMenu"
+  [useContentBody]="true"
+  #table
+>
+  <terra-group-function
+    [show]="showGroupFunction"
+    [disableExecution]="false"
+    (executeGroupFunction)="_executeGroupFunction(table.selectedRowList)"
+  >
+    <terra-text-input [inputName]="'Text'"></terra-text-input>
+  </terra-group-function>
 
+  <terra-no-result-notice
+    [inputButtons]="_noResultButtons"
+    [inputTextPrimary]="_noResultTextPrimary"
+    [inputTextSecondary]="_noResultTextSecondary"
+  >
+  </terra-no-result-notice>
+
+  <tbody>
+    <tr
+      [tcTableRow]="row"
+      hasContextMenu
+      [rowData]="row.data"
+      *ngFor="let row of _service.rowList; let index = index"
+    >
+      <td>{{ row.data.id }}</td>
+      <td>
+        <form (submit)="_saveData(row.data)" (focusout)="_saveData($event)">
+          <terra-text-input
+            name="value"
+            inputName="Edit value"
+            [(ngModel)]="row.data.value"
+          ></terra-text-input>
+        </form>
+      </td>
+      <td>
+        <form (submit)="_saveData(row.data)" (focusout)="_saveData($event)">
+          <terra-text-input
+            name="email"
+            inputName="Edit mail"
+            [(ngModel)]="row.data.mail"
+          ></terra-text-input>
+        </form>
+      </td>
+      <td>
+        <!-- empty column -->
+      </td>
+    </tr>
+  </tbody>
 </terra-data-table>

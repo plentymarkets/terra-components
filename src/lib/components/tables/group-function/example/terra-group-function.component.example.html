@@ -1,11 +1,15 @@
 <terra-base-toolbar>
-    <terra-button [inputIcon]="'icon-settings_transfer'"
-                  [inputTooltipText]="'Group function'"
-                  (outputClicked)="_showGroupFunction = !_showGroupFunction">
-    </terra-button>
+  <terra-button
+    [inputIcon]="'icon-settings_transfer'"
+    [inputTooltipText]="'Group function'"
+    (outputClicked)="_showGroupFunction = !_showGroupFunction"
+  >
+  </terra-button>
 </terra-base-toolbar>
-<terra-group-function [show]="_showGroupFunction"
-                      [disableExecution]="false"
-                      (executeGroupFunction)="_doSomething(input.value)">
-    <terra-text-input #input [inputName]="'Text'"></terra-text-input>
+<terra-group-function
+  [show]="_showGroupFunction"
+  [disableExecution]="false"
+  (executeGroupFunction)="_doSomething(input.value)"
+>
+  <terra-text-input #input [inputName]="'Text'"></terra-text-input>
 </terra-group-function>
