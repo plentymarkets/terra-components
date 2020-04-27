@@ -1,258 +1,227 @@
-import {
-    async,
-    ComponentFixture,
-    TestBed
-} from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TerraTagComponent } from './terra-tag.component';
-import {
-    tagOne,
-    tagTwo
-} from '../../../testing/mock-tags';
-import {
-    DebugElement,
-    SimpleChange
-} from '@angular/core';
+import { tagOne, tagTwo } from '../../../testing/mock-tags';
+import { DebugElement, SimpleChange } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { TerraTagNameInterface } from './data/terra-tag-name.interface';
 import { MockTranslationModule } from '../../../testing/mock-translation-module';
 import { TranslationService } from 'angular-l10n';
 import { MockTranslationService } from '../../../testing/mock-translation-service';
 
-describe('TerraTagComponent', () =>
-{
-    let component:TerraTagComponent;
-    let fixture:ComponentFixture<TerraTagComponent>;
-    let tagDiv:DebugElement;
-    const customClass:string = 'testClass';
-    const name:string = 'Test';
+describe('TerraTagComponent', () => {
+  let component: TerraTagComponent;
+  let fixture: ComponentFixture<TerraTagComponent>;
+  let tagDiv: DebugElement;
+  const customClass: string = 'testClass';
+  const name: string = 'Test';
 
-    beforeEach(async(() =>
-    {
-        TestBed.configureTestingModule({
-            declarations: [TerraTagComponent],
-            imports:      [MockTranslationModule]
-        }).compileComponents();
-    }));
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [TerraTagComponent],
+      imports: [MockTranslationModule]
+    }).compileComponents();
+  }));
 
-    beforeEach(() =>
-    {
-        fixture = TestBed.createComponent(TerraTagComponent);
-        component = fixture.componentInstance;
+  beforeEach(() => {
+    fixture = TestBed.createComponent(TerraTagComponent);
+    component = fixture.componentInstance;
 
-        tagDiv = fixture.debugElement.query(By.css('div.tag'));
+    tagDiv = fixture.debugElement.query(By.css('div.tag'));
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('should be initialized', () => {
+    expect(component.inputIsTaggable).toBe(false);
+    expect(component.inputCustomClass).toBeUndefined();
+    expect(component.inputColor).toBeUndefined();
+    expect(component.inputBadge).toBeUndefined();
+    expect(component.name).toBeUndefined();
+    expect(component.names).toEqual([]);
+    expect(component.inputIsTagged).toBe(false);
+    expect(component.isClosable).toBe(false);
+    expect(component.tagId).toBeUndefined();
+  });
+
+  it('should have set tagDiv classes equal to `inputCustomClass`', () => {
+    expect(Object.entries(tagDiv.classes).length).toBe(0); // no classes set
+
+    component.inputCustomClass = customClass;
+
+    fixture.detectChanges();
+
+    expect(Object.entries(tagDiv.classes).length).toBeGreaterThan(0);
+    expect(tagDiv.classes[customClass]).toBe(true);
+  });
+
+  describe('taggable', () => {
+    it('should show tag icon depending on inputIsTaggable', () => {
+      let iconElement: DebugElement = tagDiv.query(By.css('span.tag-icon'));
+      expect(iconElement).toBeFalsy();
+
+      component.inputIsTaggable = true;
+
+      fixture.detectChanges();
+
+      iconElement = tagDiv.query(By.css('span.tag-icon'));
+
+      expect(iconElement).toBeTruthy();
     });
 
-    it('should create', () =>
-    {
-        expect(component).toBeTruthy();
+    it('should set classes to tag icon depending on inputIsTagged', () => {
+      component.inputIsTaggable = true;
+      component.inputIsTagged = true;
+
+      fixture.detectChanges();
+
+      let iconElement: DebugElement = tagDiv.query(By.css('span.tag-icon'));
+
+      expect(iconElement.classes['isTagged']).toBe(true);
+      expect(iconElement.classes['icon-ticket_prio1']).toBe(true);
+      expect(iconElement.classes['icon-ticket_prio8']).toBe(false);
+
+      component.inputIsTagged = false;
+
+      fixture.detectChanges();
+
+      expect(iconElement.classes['isTagged']).toBe(false);
+      expect(iconElement.classes['icon-ticket_prio1']).toBe(false);
+      expect(iconElement.classes['icon-ticket_prio8']).toBe(true);
+    });
+  });
+
+  describe(`depending on #inputColor`, () => {
+    it('should have background-color style equal to #inputColor', () => {
+      expect(tagDiv.styles['background-color']).toBeFalsy(); // no background color set
+
+      component.inputColor = tagOne.color;
+
+      fixture.detectChanges();
+
+      expect(tagDiv.styles['background-color']).toEqual(tagOne.color);
     });
 
-    it('should be initialized', () =>
-    {
-        expect(component.inputIsTaggable).toBe(false);
-        expect(component.inputCustomClass).toBeUndefined();
-        expect(component.inputColor).toBeUndefined();
-        expect(component.inputBadge).toBeUndefined();
-        expect(component.name).toBeUndefined();
-        expect(component.names).toEqual([]);
-        expect(component.inputIsTagged).toBe(false);
-        expect(component.isClosable).toBe(false);
-        expect(component.tagId).toBeUndefined();
+    it('should set color style to tag icon depending on #inputColor', () => {
+      component.inputIsTaggable = true;
+      fixture.detectChanges();
+
+      let iconElement: DebugElement = tagDiv.query(By.css('span.tag-icon'));
+
+      expect(iconElement.styles['color']).toBeFalsy(); // style is not present
+
+      component.inputColor = tagTwo.color;
+
+      fixture.detectChanges();
+
+      iconElement = tagDiv.query(By.css('span.tag-icon'));
+
+      // getting access to protected/private methods
+      expect(iconElement.styles['color']).toEqual(component['_color']); // style is present and equals #ffffff or #000000
     });
 
-    it('should have set tagDiv classes equal to `inputCustomClass`', () =>
-    {
-        expect(Object.entries(tagDiv.classes).length).toBe(0); // no classes set
+    it('should set color style to tag text depending on #inputColor', () => {
+      let textElement: DebugElement = tagDiv.query(By.css('span.tag-text'));
 
-        component.inputCustomClass = customClass;
+      expect(textElement.styles['color']).toBeFalsy(); // style is not present
 
-        fixture.detectChanges();
+      component.inputColor = tagTwo.color;
 
-        expect(Object.entries(tagDiv.classes).length).toBeGreaterThan(0);
-        expect(tagDiv.classes[customClass]).toBe(true);
+      fixture.detectChanges();
+
+      // getting access to protected/private methods
+      expect(textElement.styles['color']).toEqual(component['_color']); // style is present and equals #ffffff or #000000
+    });
+  });
+
+  describe(`translates the tag name`, () => {
+    beforeEach(() => {
+      fixture.detectChanges(); // this needs to be called to initialize the Language-Decorator!!
     });
 
-    describe('taggable', () =>
-    {
-        it('should show tag icon depending on inputIsTaggable', () =>
-        {
-            let iconElement:DebugElement = tagDiv.query(By.css('span.tag-icon'));
-            expect(iconElement).toBeFalsy();
+    it('should set text depending on inputBadge', () => {
+      component.inputBadge = name;
+      component.ngOnChanges({ inputBadge: new SimpleChange(null, name, true) });
+      fixture.detectChanges();
 
-            component.inputIsTaggable = true;
+      let textElement: DebugElement = tagDiv.query(By.css('span.tag-text'));
+      let text: HTMLSpanElement = textElement.nativeElement;
+      expect(text.innerText).toEqual(name);
 
-            fixture.detectChanges();
+      component.inputBadge = null;
+      component.name = name;
 
-            iconElement = tagDiv.query(By.css('span.tag-icon'));
+      component.ngOnChanges({ name: new SimpleChange(null, name, true) });
+      fixture.detectChanges();
 
-            expect(iconElement).toBeTruthy();
-        });
+      textElement = tagDiv.query(By.css('span.tag-text'));
+      text = textElement.nativeElement;
 
-        it('should set classes to tag icon depending on inputIsTagged', () =>
-        {
-            component.inputIsTaggable = true;
-            component.inputIsTagged = true;
-
-            fixture.detectChanges();
-
-            let iconElement:DebugElement = tagDiv.query(By.css('span.tag-icon'));
-
-            expect(iconElement.classes['isTagged']).toBe(true);
-            expect(iconElement.classes['icon-ticket_prio1']).toBe(true);
-            expect(iconElement.classes['icon-ticket_prio8']).toBe(false);
-
-            component.inputIsTagged = false;
-
-            fixture.detectChanges();
-
-            expect(iconElement.classes['isTagged']).toBe(false);
-            expect(iconElement.classes['icon-ticket_prio1']).toBe(false);
-            expect(iconElement.classes['icon-ticket_prio8']).toBe(true);
-        });
+      expect(text.innerText).toEqual(name);
     });
 
-    describe(`depending on #inputColor`, () =>
-    {
-        it('should have background-color style equal to #inputColor', () =>
-        {
-            expect(tagDiv.styles['background-color']).toBeFalsy(); // no background color set
+    it('should set text depending on name', () => {
+      component.inputBadge = null;
+      component.name = name;
 
-            component.inputColor = tagOne.color;
+      component.ngOnChanges({ name: new SimpleChange(null, name, true) });
+      fixture.detectChanges();
 
-            fixture.detectChanges();
+      let textElement: DebugElement = tagDiv.query(By.css('span.tag-text'));
+      let text: HTMLSpanElement = textElement.nativeElement;
 
-            expect(tagDiv.styles['background-color']).toEqual(tagOne.color);
-        });
-
-        it('should set color style to tag icon depending on #inputColor', () =>
-        {
-            component.inputIsTaggable = true;
-            fixture.detectChanges();
-
-            let iconElement:DebugElement = tagDiv.query(By.css('span.tag-icon'));
-
-            expect(iconElement.styles['color']).toBeFalsy(); // style is not present
-
-            component.inputColor = tagTwo.color;
-
-            fixture.detectChanges();
-
-            iconElement = tagDiv.query(By.css('span.tag-icon'));
-
-            // getting access to protected/private methods
-            expect(iconElement.styles['color']).toEqual(component['_color']); // style is present and equals #ffffff or #000000
-        });
-
-        it('should set color style to tag text depending on #inputColor', () =>
-        {
-            let textElement:DebugElement = tagDiv.query(By.css('span.tag-text'));
-
-            expect(textElement.styles['color']).toBeFalsy(); // style is not present
-
-            component.inputColor = tagTwo.color;
-
-            fixture.detectChanges();
-
-            // getting access to protected/private methods
-            expect(textElement.styles['color']).toEqual(component['_color']); // style is present and equals #ffffff or #000000
-        });
+      expect(text.innerText).toEqual(name);
     });
 
-    describe(`translates the tag name`, () =>
-    {
-        beforeEach(() =>
-        {
-            fixture.detectChanges(); // this needs to be called to initialize the Language-Decorator!!
-        });
+    it('should set text depending on names', () => {
+      component.inputBadge = null;
+      component.name = null;
+      component.names = tagOne.names;
 
-        it('should set text depending on inputBadge', () =>
-        {
-            component.inputBadge = name;
-            component.ngOnChanges({inputBadge: new SimpleChange(null, name, true)});
-            fixture.detectChanges();
+      component.ngOnChanges({ names: new SimpleChange(null, tagOne.names, true) });
+      fixture.detectChanges();
 
-            let textElement:DebugElement = tagDiv.query(By.css('span.tag-text'));
-            let text:HTMLSpanElement = textElement.nativeElement;
-            expect(text.innerText).toEqual(name);
+      let textElement: DebugElement = tagDiv.query(By.css('span.tag-text'));
+      let text: HTMLSpanElement = textElement.nativeElement;
 
-            component.inputBadge = null;
-            component.name = name;
+      let translationService: MockTranslationService = TestBed.get(TranslationService);
+      let tagName: TerraTagNameInterface = tagOne.names.find(
+        (tag: TerraTagNameInterface) => tag.language === translationService.getLanguage()
+      );
+      expect(text.innerText).toEqual(tagName.name);
+    });
+  });
 
-            component.ngOnChanges({name: new SimpleChange(null, name, true)});
-            fixture.detectChanges();
+  describe('closable', () => {
+    it('should show close icon depending on isClosable', () => {
+      let closeElement: DebugElement = tagDiv.query(By.css('span.icon-close'));
+      expect(closeElement).toBeNull();
 
-            textElement = tagDiv.query(By.css('span.tag-text'));
-            text = textElement.nativeElement;
+      component.isClosable = true;
 
-            expect(text.innerText).toEqual(name);
-        });
+      fixture.detectChanges();
 
-        it('should set text depending on name', () =>
-        {
-            component.inputBadge = null;
-            component.name = name;
+      closeElement = tagDiv.query(By.css('span.icon-close'));
 
-            component.ngOnChanges({name: new SimpleChange(null, name, true)});
-            fixture.detectChanges();
-
-            let textElement:DebugElement = tagDiv.query(By.css('span.tag-text'));
-            let text:HTMLSpanElement = textElement.nativeElement;
-
-            expect(text.innerText).toEqual(name);
-        });
-
-        it('should set text depending on names', () =>
-        {
-            component.inputBadge = null;
-            component.name = null;
-            component.names = tagOne.names;
-
-            component.ngOnChanges({names: new SimpleChange(null, tagOne.names, true)});
-            fixture.detectChanges();
-
-            let textElement:DebugElement = tagDiv.query(By.css('span.tag-text'));
-            let text:HTMLSpanElement = textElement.nativeElement;
-
-            let translationService:MockTranslationService = TestBed.get(TranslationService);
-            let tagName:TerraTagNameInterface = tagOne.names.find((tag:TerraTagNameInterface) => tag.language === translationService.getLanguage());
-            expect(text.innerText).toEqual(tagName.name);
-        });
+      expect(closeElement).toBeDefined();
     });
 
-    describe('closable', () =>
-    {
-        it('should show close icon depending on isClosable', () =>
-        {
-            let closeElement:DebugElement = tagDiv.query(By.css('span.icon-close'));
-            expect(closeElement).toBeNull();
+    it('should close tag on close icon click', (done: DoneFn) => {
+      component.isClosable = true;
+      component.tagId = 1337;
 
-            component.isClosable = true;
+      fixture.detectChanges();
 
-            fixture.detectChanges();
+      component.onCloseTag.subscribe((id: number) => {
+        expect(id).toBe(component.tagId);
+        done();
+      });
 
-            closeElement = tagDiv.query(By.css('span.icon-close'));
+      let closeElement: DebugElement = tagDiv.query(By.css('span.icon-close'));
 
-            expect(closeElement).toBeDefined();
-        });
-
-        it('should close tag on close icon click', (done:DoneFn) =>
-        {
-            component.isClosable = true;
-            component.tagId = 1337;
-
-            fixture.detectChanges();
-
-            component.onCloseTag.subscribe((id:number) =>
-            {
-                expect(id).toBe(component.tagId);
-                done();
-            });
-
-            let closeElement:DebugElement = tagDiv.query(By.css('span.icon-close'));
-
-            closeElement.triggerEventHandler('click', null);
-        });
+      closeElement.triggerEventHandler('click', null);
     });
+  });
 });
-

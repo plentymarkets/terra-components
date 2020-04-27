@@ -1,6 +1,9 @@
-<terra-number-input [inputName]="'Left column width'" [(ngModel)]="_leftColumnWidth"></terra-number-input>
+<terra-number-input
+  [inputName]="'Left column width'"
+  [(ngModel)]="_leftColumnWidth"
+></terra-number-input>
 
 <terra-2-col [leftColumnWidth]="_leftColumnWidth">
-    <div left [style.background]="'red'">Left</div>
-    <div right [style.background]="'green'">Right</div>
+  <div left [style.background]="'red'">Left</div>
+  <div right [style.background]="'green'">Right</div>
 </terra-2-col>
