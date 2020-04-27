@@ -1,10 +1,11 @@
 <terra-base-toolbar>
-    <terra-button
-        inputTooltipPlacement="bottom"
-        inputIcon="icon-save"
-        (outputClicked)="saveCkFull()"
-        [inputTooltipText]="'Save full CKEditor'">
-    </terra-button>
+  <terra-button
+    inputTooltipPlacement="bottom"
+    inputIcon="icon-save"
+    (outputClicked)="saveCkFull()"
+    [inputTooltipText]="'Save full CKEditor'"
+  >
+  </terra-button>
 </terra-base-toolbar>
 <ckeditor #ckFull tcCkEditor [config]="_config"></ckeditor>
 
