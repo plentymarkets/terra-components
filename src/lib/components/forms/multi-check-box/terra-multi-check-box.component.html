@@ -1,36 +1,42 @@
 <div class="multiselect-container">
-    <div class="multiselect-element" [ngClass]="{'disabled': inputIsDisabled}">
-        <div class="multiselect">
-            <div class="multiselect-header"
-                 [class.roundedBottomBorder]="collapsed"
-                 (click)="_toggleCollapsed()">
-                <div class="checkbox-container">
-                    <terra-checkbox type="checkbox"
-                                    (click)="$event.stopPropagation()"
-                                    [inputIsDisabled]="inputIsDisabled"
-                                    [(isIndeterminate)]="_headerCheckboxIndeterminate"
-                                    [inputCaption]="inputName.toUpperCase()"
-                                    [(ngModel)]="_headerCheckboxValue"
-                                    (ngModelChange)="_onHeaderCheckboxChange($event)">
-                    </terra-checkbox>
-                </div>
-                <span [ngClass]="{'icon-collapse_down': collapsed, 'icon-collapse_up': !collapsed}">
-                </span>
-            </div>
-            <div class="option-list" [hidden]="collapsed">
-                <div *ngFor="let listEntry of _valueList; trackBy: _trackByValue">
-                    <div class="input-group">
-                        <div class="input-group-addon">
-                            <terra-checkbox type="checkbox"
-                                            [inputIsDisabled]="inputIsDisabled"
-                                            [(ngModel)]="listEntry.selected"
-                                            (ngModelChange)="_checkboxChanged(listEntry)"
-                                            [inputCaption]="listEntry.caption">
-                            </terra-checkbox>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <div class="multiselect-element" [ngClass]="{ disabled: inputIsDisabled }">
+    <div class="multiselect">
+      <div
+        class="multiselect-header"
+        [class.roundedBottomBorder]="collapsed"
+        (click)="_toggleCollapsed()"
+      >
+        <div class="checkbox-container">
+          <terra-checkbox
+            type="checkbox"
+            (click)="$event.stopPropagation()"
+            [inputIsDisabled]="inputIsDisabled"
+            [(isIndeterminate)]="_headerCheckboxIndeterminate"
+            [inputCaption]="inputName.toUpperCase()"
+            [(ngModel)]="_headerCheckboxValue"
+            (ngModelChange)="_onHeaderCheckboxChange($event)"
+          >
+          </terra-checkbox>
         </div>
+        <span [ngClass]="{ 'icon-collapse_down': collapsed, 'icon-collapse_up': !collapsed }">
+        </span>
+      </div>
+      <div class="option-list" [hidden]="collapsed">
+        <div *ngFor="let listEntry of _valueList; trackBy: _trackByValue">
+          <div class="input-group">
+            <div class="input-group-addon">
+              <terra-checkbox
+                type="checkbox"
+                [inputIsDisabled]="inputIsDisabled"
+                [(ngModel)]="listEntry.selected"
+                (ngModelChange)="_checkboxChanged(listEntry)"
+                [inputCaption]="listEntry.caption"
+              >
+              </terra-checkbox>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>

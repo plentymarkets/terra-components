@@ -1,26 +1,29 @@
-<div class="input-wrapper"
-    [tcTooltip]="inputTooltipText"
-    [placement]="inputTooltipPlacement"
-    [ngClass]="{'error': !isValid, 'disabled': isDisabled}">
-
-    <input type="text"
-        [(ngModel)]="color"
-        pattern="{{regex}}"
-        (blur)="onBlur()"
-           autocomplete="off"
-        [disabled]="isDisabled"
-        [required]="inputIsRequired">
-    <label [tcTooltip]="inputName"
-        [onlyEllipsisTooltip]="true">{{inputName}}
-        <span *ngIf="inputIsRequired">*</span>
-
-    </label>
-    <input type="color"
-        [(ngModel)]="color"
-           autocomplete="off"
-        pattern="{{regex}}"
-        [disabled]="isDisabled"
-        [required]="inputIsRequired">
-    <div class="color-picker" [style.background-color]="color" [class.text-invert]="isDark()">
-    </div>
+<div
+  class="input-wrapper"
+  [tcTooltip]="inputTooltipText"
+  [placement]="inputTooltipPlacement"
+  [ngClass]="{ error: !isValid, disabled: isDisabled }"
+>
+  <input
+    type="text"
+    [(ngModel)]="color"
+    pattern="{{ regex }}"
+    (blur)="onBlur()"
+    autocomplete="off"
+    [disabled]="isDisabled"
+    [required]="inputIsRequired"
+  />
+  <label [tcTooltip]="inputName" [onlyEllipsisTooltip]="true"
+    >{{ inputName }}
+    <span *ngIf="inputIsRequired">*</span>
+  </label>
+  <input
+    type="color"
+    [(ngModel)]="color"
+    autocomplete="off"
+    pattern="{{ regex }}"
+    [disabled]="isDisabled"
+    [required]="inputIsRequired"
+  />
+  <div class="color-picker" [style.background-color]="color" [class.text-invert]="isDark()"></div>
 </div>

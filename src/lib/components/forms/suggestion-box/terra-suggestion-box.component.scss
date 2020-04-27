@@ -1,13 +1,10 @@
-@import "../input/terra-input.component";
-@import "../select-box/terra-select-box.component";
+@import '../input/terra-input.component';
+@import '../select-box/terra-select-box.component';
 
-.select-box-wrapper
-{
-    .select-box-dropdown
-    {
-        img
-        {
-            max-height: var(--select-box-dropdown-img-max-height, var(--input-unit-v1-line-height))
-        }
+.select-box-wrapper {
+  .select-box-dropdown {
+    img {
+      max-height: var(--select-box-dropdown-img-max-height, var(--input-unit-v1-line-height));
     }
+  }
 }

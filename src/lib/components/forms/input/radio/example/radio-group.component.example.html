@@ -1,46 +1,48 @@
 <div class="container">
-    <div class="row">
-        <div class="col-md-2">
-            <h3>Default</h3>
-            <tc-radio-group name="radio1">
-                <tc-radio-input [label]="'Option 1'" [value]="1"></tc-radio-input>
-                <tc-radio-input [label]="'Option 2'" [value]="2"></tc-radio-input>
-            </tc-radio-group>
-        </div>
-    
-        <div class="col-md-2">
-            <h3>With underlaying elements</h3>
-            <tc-radio-group name="radio5" [(ngModel)]="_radioValueWithElements">
-                <tc-radio-input [label]="'Option 1'" [value]="1"></tc-radio-input>
-                <terra-text-input *ngIf="_radioValueWithElements === 1" [inputName]="'Name'"></terra-text-input>
-                <tc-radio-input [label]="'Option 2'" [value]="2"></tc-radio-input>
-            </tc-radio-group>
-        </div>
-        
-        <div class="col-md-2">
-            <h3>With legend</h3>
-            <tc-radio-group name="radio2" [legend]="'Select an option'">
-                <tc-radio-input [label]="'Option 1'" [value]="1"></tc-radio-input>
-                <tc-radio-input [label]="'Option 2'" [value]="2"></tc-radio-input>
-            </tc-radio-group>
-        </div>
-        
-        <div class="col-md-2">
-            <h3>With ngModel</h3>
-            <tc-radio-group name="radio3" [(ngModel)]="_radioValue">
-                <tc-radio-input [label]="'Option 1'" [value]="1"></tc-radio-input>
-                <tc-radio-input [label]="'Option 2'" [value]="2"></tc-radio-input>
-            </tc-radio-group>
-            Current value: {{_radioValue}}
-        </div>
-        
-        <div class="col-md-2">
-            <h3>Inline</h3>
-            <tc-radio-group name="radio4" [inline]="true">
-                <tc-radio-input [label]="'Option 1'" [value]="1"></tc-radio-input>
-                <tc-radio-input [label]="'Option 2'" [value]="2"></tc-radio-input>
-            </tc-radio-group>
-        </div>
+  <div class="row">
+    <div class="col-md-2">
+      <h3>Default</h3>
+      <tc-radio-group name="radio1">
+        <tc-radio-input [label]="'Option 1'" [value]="1"></tc-radio-input>
+        <tc-radio-input [label]="'Option 2'" [value]="2"></tc-radio-input>
+      </tc-radio-group>
     </div>
-</div>
 
+    <div class="col-md-2">
+      <h3>With underlaying elements</h3>
+      <tc-radio-group name="radio5" [(ngModel)]="_radioValueWithElements">
+        <tc-radio-input [label]="'Option 1'" [value]="1"></tc-radio-input>
+        <terra-text-input
+          *ngIf="_radioValueWithElements === 1"
+          [inputName]="'Name'"
+        ></terra-text-input>
+        <tc-radio-input [label]="'Option 2'" [value]="2"></tc-radio-input>
+      </tc-radio-group>
+    </div>
+
+    <div class="col-md-2">
+      <h3>With legend</h3>
+      <tc-radio-group name="radio2" [legend]="'Select an option'">
+        <tc-radio-input [label]="'Option 1'" [value]="1"></tc-radio-input>
+        <tc-radio-input [label]="'Option 2'" [value]="2"></tc-radio-input>
+      </tc-radio-group>
+    </div>
+
+    <div class="col-md-2">
+      <h3>With ngModel</h3>
+      <tc-radio-group name="radio3" [(ngModel)]="_radioValue">
+        <tc-radio-input [label]="'Option 1'" [value]="1"></tc-radio-input>
+        <tc-radio-input [label]="'Option 2'" [value]="2"></tc-radio-input>
+      </tc-radio-group>
+      Current value: {{_radioValue}}
+    </div>
+
+    <div class="col-md-2">
+      <h3>Inline</h3>
+      <tc-radio-group name="radio4" [inline]="true">
+        <tc-radio-input [label]="'Option 1'" [value]="1"></tc-radio-input>
+        <tc-radio-input [label]="'Option 2'" [value]="2"></tc-radio-input>
+      </tc-radio-group>
+    </div>
+  </div>
+</div>

@@ -1,162 +1,199 @@
-<terra-portlet *ngIf="inputUsePortlet;else formWithoutPortlet" [inputPortletHeader]="inputPortletHeader">
-    <terra-dynamic-switch [inputFormFields]="inputFormFields"
-                          [inputFormGroup]="inputFormGroup"
-                          [inputShowDeprecatedConfig]="inputShowDeprecatedConfig"
-                          [inputUsePortlet]="false"
-                          [inputSubSwitch]="inputSubSwitch">
-    </terra-dynamic-switch>
+<terra-portlet
+  *ngIf="inputUsePortlet; else formWithoutPortlet"
+  [inputPortletHeader]="inputPortletHeader"
+>
+  <terra-dynamic-switch
+    [inputFormFields]="inputFormFields"
+    [inputFormGroup]="inputFormGroup"
+    [inputShowDeprecatedConfig]="inputShowDeprecatedConfig"
+    [inputUsePortlet]="false"
+    [inputSubSwitch]="inputSubSwitch"
+  >
+  </terra-dynamic-switch>
 </terra-portlet>
 
 <ng-template #formWithoutPortlet>
-    <form [formGroup]="inputFormGroup" [ngClass]="{'horizontalGroupForm': inputSubSwitch}">
-        <ng-container *ngFor="let formField of inputFormFields">
-            <ng-container *ngIf="!formField.isHidden || (formField.isHidden && inputShowDeprecatedConfig)"
-                          [ngSwitch]="formField?.controlType">
-                <terra-text-input *ngSwitchCase="_controlTypeEnum.INPUT_TEXT"
-                                  [ngClass]="{'horizontalGroupEntry': inputSubSwitch}"
-                                  [formControlName]="formField.key"
-                                  [inputName]="formField.label  | translate:_lang"
-                                  [inputIsRequired]="formField.required"
-                                  [inputIsDisabled]="inputIsDisabled"
-                                  [inputIsPassword]="formField.isPassword"
-                                  [inputIsIban]="formField.isIBAN"
-                                  [inputIsReadonly]="formField.isReadOnly"
-                                  [inputTooltipText]="formField.tooltip"
-                                  [inputTooltipPlacement]="formField.tooltipPlacement">
-                </terra-text-input>
-                
-                <terra-file-input *ngSwitchCase="_controlTypeEnum.INPUT_FILE"
-                                  [ngClass]="{'horizontalGroupEntry': inputSubSwitch}"
-                                  [formControlName]="formField.key"
-                                  [inputName]="formField.label  | translate:_lang"
-                                  [inputIsRequired]="formField.required"
-                                  [inputAllowedExtensions]="formField.inputAllowedExtensions"
-                                  [inputIsDisabled]="inputIsDisabled"
-                                  [inputTooltipText]="formField.tooltip"
-                                  [inputTooltipPlacement]="formField.tooltipPlacement">
-                </terra-file-input>
-                
-                <terra-text-area-input *ngSwitchCase="_controlTypeEnum.INPUT_TEXT_AREA"
-                                       [ngClass]="{'horizontalGroupEntry': inputSubSwitch}"
-                                       [formControlName]="formField.key"
-                                       [inputName]="formField.label  | translate:_lang"
-                                       [inputIsRequired]="formField.required"
-                                       [inputIsDisabled]="inputIsDisabled"
-                                       [inputTooltipText]="formField.tooltip"
-                                       [inputTooltipPlacement]="formField.tooltipPlacement">
-                </terra-text-area-input>
-                
-                <terra-number-input *ngSwitchCase="_controlTypeEnum.INPUT_NUMBER"
-                                    [ngClass]="{horizontalGroupEntry: inputSubSwitch}"
-                                    [formControlName]="formField.key"
-                                    [inputName]="formField.label  | translate:_lang"
-                                    [inputIsRequired]="formField.required"
-                                    [inputIsDisabled]="inputIsDisabled"
-                                    [inputTooltipText]="formField.tooltip"
-                                    [inputTooltipPlacement]="formField.tooltipPlacement">
-                </terra-number-input>
-                
-                <terra-checkbox *ngSwitchCase="_controlTypeEnum.CHECK_BOX"
-                                [formControlName]="formField.key"
-                                [inputIsDisabled]="inputIsDisabled"
-                                [inputCaption]="formField.label | translate:_lang"
-                                [(ngModel)]="formField.defaultValue">
-                </terra-checkbox>
-                
-                <terra-double-input *ngSwitchCase="_controlTypeEnum.INPUT_DOUBLE"
-                                    [ngClass]="{horizontalGroupEntry: inputSubSwitch}"
-                                    [formControlName]="formField.key"
-                                    [inputName]="formField.label  | translate:_lang"
-                                    [inputIsRequired]="formField.required"
-                                    [inputIsDisabled]="inputIsDisabled"
-                                    [inputIsPriceInput]="formField.isPrice"
-                                    [inputDecimalCount]="formField.decimalCount"
-                                    [inputTooltipText]="formField.tooltip"
-                                    [inputTooltipPlacement]="formField.tooltipPlacement">
-                </terra-double-input>
-                
-                <terra-category-picker *ngSwitchCase="_controlTypeEnum.CATEGORY_PICKER"
-                                       [ngClass]="{horizontalGroupEntry: inputSubSwitch}"
-                                       [formControlName]="formField.key"
-                                       [inputTooltipText]="formField.tooltip"
-                                       [inputName]="formField.label"
-                                       [inputIsDisabled]="inputIsDisabled"
-                                       [inputCategoryService]="formField.categoryService">
-                </terra-category-picker>
-                
-                <terra-select-box *ngSwitchCase="_controlTypeEnum.SELECT_BOX"
-                                  [ngClass]="{horizontalGroupEntry: inputSubSwitch}"
-                                  [formControlName]="formField.key"
-                                  [inputName]="formField.label | translate:_lang"
-                                  [inputIsRequired]="formField.required"
-                                  [inputIsDisabled]="inputIsDisabled"
-                                  [inputListBoxValues]="formField.selectBoxValues"
-                                  [inputTooltipText]="formField.tooltip"
-                                  [inputTooltipPlacement]="formField.tooltipPlacement">
-                </terra-select-box>
-                
-                <terra-multi-check-box *ngSwitchCase="_controlTypeEnum.MULTI_CHECK_BOX"
-                                       [ngClass]="{horizontalGroupEntry: inputSubSwitch}"
-                                       [formControlName]="formField.key"
-                                       [inputName]="formField.label | translate:_lang"
-                                       [inputIsDisabled]="inputIsDisabled">
-                </terra-multi-check-box>
-                
-                <terra-date-picker *ngSwitchCase="_controlTypeEnum.DATE_PICKER"
-                                   [ngClass]="{horizontalGroupEntry: inputSubSwitch}"
-                                   [formControlName]="formField.key"
-                                   [inputName]="formField.label | translate:_lang"
-                                   [inputIsRequired]="formField.required"
-                                   [inputIsDisabled]="inputIsDisabled"
-                                   [inputOpenCalendarTop]="formField.openCalenderTop">
-                </terra-date-picker>
-                
-                <terra-color-picker *ngSwitchCase="_controlTypeEnum.COLOR_PICKER"
-                                    [ngClass]="{horizontalGroupEntry: inputSubSwitch}"
-                                    [formControlName]="formField.key"
-                                    [inputName]="formField.label | translate:_lang"
-                                    [inputIsRequired]="formField.required"
-                                    [inputIsDisabled]="inputIsDisabled">
-                </terra-color-picker>
-                
-                <terra-note-editor *ngSwitchCase="_controlTypeEnum.NOTE_EDITOR"
-                                   [formControlName]="formField.key"
-                                   [inputPlaceholder]="formField.label"
-                                   [(ngModel)]="formField.defaultValue">
-                </terra-note-editor>
-                <terra-code-editor *ngSwitchCase="_controlTypeEnum.CODE_EDITOR"
-                                   [formControlName]="formField.key"
-                                   [inputFixedHeight]="formField.fixedHeight"
-                                   [inputHeaderLabel]="formField.label"
-                                   [(ngModel)]="formField.defaultValue">
-                </terra-code-editor>
-                
-                <ng-container *ngSwitchCase="_controlTypeEnum.HORIZONTAL_CONTAINER">
-                    <div class="horizontalGroup">
-                        <terra-dynamic-switch class="subSwitch"
-                                              [formGroupName]="formField.key"
-                                              [inputFormGroup]="inputFormGroup.controls[formField.key]"
-                                              [inputFormFields]="formField.containerEntries"
-                                              [inputPortletHeader]="formField.label | translate:_lang"
-                                              [inputSubSwitch]="true"
-                                              [inputUsePortlet]="true">
-                        </terra-dynamic-switch>
-                    </div>
-                </ng-container>
-                
-                <ng-container *ngSwitchCase="_controlTypeEnum.VERTICAL_CONTAINER">
-                    <div class="verticalGroup">
-                        <terra-dynamic-switch class="subSwitch"
-                                              [formGroupName]="formField.key"
-                                              [inputFormGroup]="inputFormGroup.controls[formField.key]"
-                                              [inputFormFields]="formField.containerEntries"
-                                              [inputPortletHeader]="formField.label | translate:_lang"
-                                              [inputSubSwitch]="true"
-                                              [inputUsePortlet]="true">
-                        </terra-dynamic-switch>
-                    </div>
-                </ng-container>
-            </ng-container>
+  <form [formGroup]="inputFormGroup" [ngClass]="{ horizontalGroupForm: inputSubSwitch }">
+    <ng-container *ngFor="let formField of inputFormFields">
+      <ng-container
+        *ngIf="!formField.isHidden || (formField.isHidden && inputShowDeprecatedConfig)"
+        [ngSwitch]="formField?.controlType"
+      >
+        <terra-text-input
+          *ngSwitchCase="_controlTypeEnum.INPUT_TEXT"
+          [ngClass]="{ horizontalGroupEntry: inputSubSwitch }"
+          [formControlName]="formField.key"
+          [inputName]="formField.label | translate: _lang"
+          [inputIsRequired]="formField.required"
+          [inputIsDisabled]="inputIsDisabled"
+          [inputIsPassword]="formField.isPassword"
+          [inputIsIban]="formField.isIBAN"
+          [inputIsReadonly]="formField.isReadOnly"
+          [inputTooltipText]="formField.tooltip"
+          [inputTooltipPlacement]="formField.tooltipPlacement"
+        >
+        </terra-text-input>
+
+        <terra-file-input
+          *ngSwitchCase="_controlTypeEnum.INPUT_FILE"
+          [ngClass]="{ horizontalGroupEntry: inputSubSwitch }"
+          [formControlName]="formField.key"
+          [inputName]="formField.label | translate: _lang"
+          [inputIsRequired]="formField.required"
+          [inputAllowedExtensions]="formField.inputAllowedExtensions"
+          [inputIsDisabled]="inputIsDisabled"
+          [inputTooltipText]="formField.tooltip"
+          [inputTooltipPlacement]="formField.tooltipPlacement"
+        >
+        </terra-file-input>
+
+        <terra-text-area-input
+          *ngSwitchCase="_controlTypeEnum.INPUT_TEXT_AREA"
+          [ngClass]="{ horizontalGroupEntry: inputSubSwitch }"
+          [formControlName]="formField.key"
+          [inputName]="formField.label | translate: _lang"
+          [inputIsRequired]="formField.required"
+          [inputIsDisabled]="inputIsDisabled"
+          [inputTooltipText]="formField.tooltip"
+          [inputTooltipPlacement]="formField.tooltipPlacement"
+        >
+        </terra-text-area-input>
+
+        <terra-number-input
+          *ngSwitchCase="_controlTypeEnum.INPUT_NUMBER"
+          [ngClass]="{ horizontalGroupEntry: inputSubSwitch }"
+          [formControlName]="formField.key"
+          [inputName]="formField.label | translate: _lang"
+          [inputIsRequired]="formField.required"
+          [inputIsDisabled]="inputIsDisabled"
+          [inputTooltipText]="formField.tooltip"
+          [inputTooltipPlacement]="formField.tooltipPlacement"
+        >
+        </terra-number-input>
+
+        <terra-checkbox
+          *ngSwitchCase="_controlTypeEnum.CHECK_BOX"
+          [formControlName]="formField.key"
+          [inputIsDisabled]="inputIsDisabled"
+          [inputCaption]="formField.label | translate: _lang"
+          [(ngModel)]="formField.defaultValue"
+        >
+        </terra-checkbox>
+
+        <terra-double-input
+          *ngSwitchCase="_controlTypeEnum.INPUT_DOUBLE"
+          [ngClass]="{ horizontalGroupEntry: inputSubSwitch }"
+          [formControlName]="formField.key"
+          [inputName]="formField.label | translate: _lang"
+          [inputIsRequired]="formField.required"
+          [inputIsDisabled]="inputIsDisabled"
+          [inputIsPriceInput]="formField.isPrice"
+          [inputDecimalCount]="formField.decimalCount"
+          [inputTooltipText]="formField.tooltip"
+          [inputTooltipPlacement]="formField.tooltipPlacement"
+        >
+        </terra-double-input>
+
+        <terra-category-picker
+          *ngSwitchCase="_controlTypeEnum.CATEGORY_PICKER"
+          [ngClass]="{ horizontalGroupEntry: inputSubSwitch }"
+          [formControlName]="formField.key"
+          [inputTooltipText]="formField.tooltip"
+          [inputName]="formField.label"
+          [inputIsDisabled]="inputIsDisabled"
+          [inputCategoryService]="formField.categoryService"
+        >
+        </terra-category-picker>
+
+        <terra-select-box
+          *ngSwitchCase="_controlTypeEnum.SELECT_BOX"
+          [ngClass]="{ horizontalGroupEntry: inputSubSwitch }"
+          [formControlName]="formField.key"
+          [inputName]="formField.label | translate: _lang"
+          [inputIsRequired]="formField.required"
+          [inputIsDisabled]="inputIsDisabled"
+          [inputListBoxValues]="formField.selectBoxValues"
+          [inputTooltipText]="formField.tooltip"
+          [inputTooltipPlacement]="formField.tooltipPlacement"
+        >
+        </terra-select-box>
+
+        <terra-multi-check-box
+          *ngSwitchCase="_controlTypeEnum.MULTI_CHECK_BOX"
+          [ngClass]="{ horizontalGroupEntry: inputSubSwitch }"
+          [formControlName]="formField.key"
+          [inputName]="formField.label | translate: _lang"
+          [inputIsDisabled]="inputIsDisabled"
+        >
+        </terra-multi-check-box>
+
+        <terra-date-picker
+          *ngSwitchCase="_controlTypeEnum.DATE_PICKER"
+          [ngClass]="{ horizontalGroupEntry: inputSubSwitch }"
+          [formControlName]="formField.key"
+          [inputName]="formField.label | translate: _lang"
+          [inputIsRequired]="formField.required"
+          [inputIsDisabled]="inputIsDisabled"
+          [inputOpenCalendarTop]="formField.openCalenderTop"
+        >
+        </terra-date-picker>
+
+        <terra-color-picker
+          *ngSwitchCase="_controlTypeEnum.COLOR_PICKER"
+          [ngClass]="{ horizontalGroupEntry: inputSubSwitch }"
+          [formControlName]="formField.key"
+          [inputName]="formField.label | translate: _lang"
+          [inputIsRequired]="formField.required"
+          [inputIsDisabled]="inputIsDisabled"
+        >
+        </terra-color-picker>
+
+        <terra-note-editor
+          *ngSwitchCase="_controlTypeEnum.NOTE_EDITOR"
+          [formControlName]="formField.key"
+          [inputPlaceholder]="formField.label"
+          [(ngModel)]="formField.defaultValue"
+        >
+        </terra-note-editor>
+        <terra-code-editor
+          *ngSwitchCase="_controlTypeEnum.CODE_EDITOR"
+          [formControlName]="formField.key"
+          [inputFixedHeight]="formField.fixedHeight"
+          [inputHeaderLabel]="formField.label"
+          [(ngModel)]="formField.defaultValue"
+        >
+        </terra-code-editor>
+
+        <ng-container *ngSwitchCase="_controlTypeEnum.HORIZONTAL_CONTAINER">
+          <div class="horizontalGroup">
+            <terra-dynamic-switch
+              class="subSwitch"
+              [formGroupName]="formField.key"
+              [inputFormGroup]="inputFormGroup.controls[formField.key]"
+              [inputFormFields]="formField.containerEntries"
+              [inputPortletHeader]="formField.label | translate: _lang"
+              [inputSubSwitch]="true"
+              [inputUsePortlet]="true"
+            >
+            </terra-dynamic-switch>
+          </div>
         </ng-container>
-    </form>
+
+        <ng-container *ngSwitchCase="_controlTypeEnum.VERTICAL_CONTAINER">
+          <div class="verticalGroup">
+            <terra-dynamic-switch
+              class="subSwitch"
+              [formGroupName]="formField.key"
+              [inputFormGroup]="inputFormGroup.controls[formField.key]"
+              [inputFormFields]="formField.containerEntries"
+              [inputPortletHeader]="formField.label | translate: _lang"
+              [inputSubSwitch]="true"
+              [inputUsePortlet]="true"
+            >
+            </terra-dynamic-switch>
+          </div>
+        </ng-container>
+      </ng-container>
+    </ng-container>
+  </form>
 </ng-template>

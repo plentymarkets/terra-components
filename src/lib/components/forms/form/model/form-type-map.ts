@@ -21,90 +21,89 @@ import { TerraSuggestionBoxComponent } from '../../suggestion-box/terra-suggesti
  * @description A map of control types that may be passed to the <terra-form> in order to support those controls.
  * Please note: All of the control types contained in this map have to implement the ControlValueAccessor interface.
  */
-export class FormTypeMap
-{
-    public readonly checkbox:TerraFormTypeInterface = {
-        inputMap:  {
-            name: 'inputCaption'
-        },
-        component: TerraCheckboxComponent
-    };
-    public readonly date:TerraFormTypeInterface = {
-        inputMap:  {
-            required: 'inputIsRequired'
-        },
-        component: TerraDatePickerComponent
-    };
-    public readonly file:TerraFormTypeInterface = {
-        inputMap:  {
-            required: 'inputIsRequired'
-        },
-        component: TerraFileInputComponent
-    };
-    public readonly text:TerraFormTypeInterface = {
-        inputMap:  {
-            required: 'inputIsRequired'
-        },
-        component: TerraTextInputComponent
-    };
-    public readonly textarea:TerraFormTypeInterface = {
-        inputMap:  {
-            required: 'inputIsRequired'
-        },
-        component: TerraTextAreaInputComponent
-    };
-    public readonly number:TerraFormTypeInterface = {
-        inputMap:  {
-            required: 'inputIsRequired'
-        },
-        component: TerraNumberInputComponent
-    };
-    public readonly double:TerraFormTypeInterface = {
-        inputMap:  {
-            required: 'inputIsRequired'
-        },
-        component: TerraDoubleInputComponent
-    };
-    public readonly select:TerraFormTypeInterface = {
-        inputMap:  {
-            required: 'inputIsRequired'
-        },
-        component: TerraSelectBoxComponent
-    };
-    public readonly category:Type<TerraCategoryPickerComponent> = TerraCategoryPickerComponent;
-    public readonly color:TerraFormTypeInterface = {
-        inputMap:  {
-            required: 'inputIsRequired'
-        },
-        component: TerraColorPickerComponent
-    };
-    public readonly checkboxGroup:Type<CheckboxGroupComponent> = CheckboxGroupComponent;
-    public readonly slider:Type<TerraSliderComponent> = TerraSliderComponent;
-    public readonly noteEditor:TerraFormTypeInterface = {
-        inputMap:  {
-            name: 'inputHeaderLabel'
-        },
-        component: TerraNoteEditorComponent
-    };
-    public readonly codeEditor:TerraFormTypeInterface = {
-        inputMap:  {
-            name: 'inputHeaderLabel'
-        },
-        component: TerraCodeEditorComponent
-    };
+export class FormTypeMap {
+  public readonly checkbox: TerraFormTypeInterface = {
+    inputMap: {
+      name: 'inputCaption'
+    },
+    component: TerraCheckboxComponent
+  };
+  public readonly date: TerraFormTypeInterface = {
+    inputMap: {
+      required: 'inputIsRequired'
+    },
+    component: TerraDatePickerComponent
+  };
+  public readonly file: TerraFormTypeInterface = {
+    inputMap: {
+      required: 'inputIsRequired'
+    },
+    component: TerraFileInputComponent
+  };
+  public readonly text: TerraFormTypeInterface = {
+    inputMap: {
+      required: 'inputIsRequired'
+    },
+    component: TerraTextInputComponent
+  };
+  public readonly textarea: TerraFormTypeInterface = {
+    inputMap: {
+      required: 'inputIsRequired'
+    },
+    component: TerraTextAreaInputComponent
+  };
+  public readonly number: TerraFormTypeInterface = {
+    inputMap: {
+      required: 'inputIsRequired'
+    },
+    component: TerraNumberInputComponent
+  };
+  public readonly double: TerraFormTypeInterface = {
+    inputMap: {
+      required: 'inputIsRequired'
+    },
+    component: TerraDoubleInputComponent
+  };
+  public readonly select: TerraFormTypeInterface = {
+    inputMap: {
+      required: 'inputIsRequired'
+    },
+    component: TerraSelectBoxComponent
+  };
+  public readonly category: Type<TerraCategoryPickerComponent> = TerraCategoryPickerComponent;
+  public readonly color: TerraFormTypeInterface = {
+    inputMap: {
+      required: 'inputIsRequired'
+    },
+    component: TerraColorPickerComponent
+  };
+  public readonly checkboxGroup: Type<CheckboxGroupComponent> = CheckboxGroupComponent;
+  public readonly slider: Type<TerraSliderComponent> = TerraSliderComponent;
+  public readonly noteEditor: TerraFormTypeInterface = {
+    inputMap: {
+      name: 'inputHeaderLabel'
+    },
+    component: TerraNoteEditorComponent
+  };
+  public readonly codeEditor: TerraFormTypeInterface = {
+    inputMap: {
+      name: 'inputHeaderLabel'
+    },
+    component: TerraCodeEditorComponent
+  };
 
-    public readonly suggestion:TerraFormTypeInterface = {
-        inputMap:  {
-            required: 'inputIsRequired'
-        },
-        component: TerraSuggestionBoxComponent
-    };
+  public readonly suggestion: TerraFormTypeInterface = {
+    inputMap: {
+      required: 'inputIsRequired'
+    },
+    component: TerraSuggestionBoxComponent
+  };
 
-    // CONTAINER TYPES
-    public readonly portlet:TerraFormTypeInterface = {
-        inputMap: {
-            name: 'inputPortletHeader'
-        },
-        component: TerraPortletComponent
-    };
+  // CONTAINER TYPES
+  public readonly portlet: TerraFormTypeInterface = {
+    inputMap: {
+      name: 'inputPortletHeader'
+    },
+    component: TerraPortletComponent
+  };
 }

@@ -1,22 +1,25 @@
-<div class="input-wrapper textarea-wrapper"
-     [placement]="inputTooltipPlacement"
-     [tcTooltip]="inputTooltipText"
-     [ngClass]="{'error': !isValid, 'disabled': inputIsDisabled}">
-    <textarea id="{{_id}}"
-              [(ngModel)]="value"
-              name="{{inputName}}"
-              (blur)="onBlur()"
-              [maxlength]="inputMaxLength"
-              [rows]="inputMaxRows"
-              [required]="inputIsRequired"
-              autocomplete="off"
-              [disabled]="inputIsDisabled"
-              placeholder="{{inputName}}"
-              [class.resizable]="!inputHasFixedHeight">
-    </textarea>
-    <label tabindex="-1"
-           class="textarea-label"
-           htmlFor="{{_id}}">{{inputName}}
-        <span *ngIf="inputIsRequired">*</span>
-    </label>
+<div
+  class="input-wrapper textarea-wrapper"
+  [placement]="inputTooltipPlacement"
+  [tcTooltip]="inputTooltipText"
+  [ngClass]="{ error: !isValid, disabled: inputIsDisabled }"
+>
+  <textarea
+    id="{{ _id }}"
+    [(ngModel)]="value"
+    name="{{ inputName }}"
+    (blur)="onBlur()"
+    [maxlength]="inputMaxLength"
+    [rows]="inputMaxRows"
+    [required]="inputIsRequired"
+    autocomplete="off"
+    [disabled]="inputIsDisabled"
+    placeholder="{{ inputName }}"
+    [class.resizable]="!inputHasFixedHeight"
+  >
+  </textarea>
+  <label tabindex="-1" class="textarea-label" htmlFor="{{ _id }}"
+    >{{ inputName }}
+    <span *ngIf="inputIsRequired">*</span>
+  </label>
 </div>

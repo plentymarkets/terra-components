@@ -1,21 +1,35 @@
 <terra-portlet>
-    <form (ngSubmit)="_submit()">
-        <terra-text-input [inputName]="'text'"></terra-text-input>
-        <terra-number-input [inputName]="'number'"></terra-number-input>
-        <terra-slider [inputName]="'slider'" [inputInterval]="0.1" [inputPrecision]="1" [inputMax]="10"></terra-slider>
-        <terra-checkbox [inputCaption]="'checkbox'"></terra-checkbox>
-        <tc-radio-group name="radio" [(ngModel)]="_radioValue">
-            <tc-radio-input [label]="'Option 1'" [value]="1"></tc-radio-input>
-            <tc-radio-input [label]="'Option 2'" [value]="2" [disabled]="true"></tc-radio-input>
-            <tc-radio-input [label]="'Option 3'" [value]="3"></tc-radio-input>
-        </tc-radio-group>
-        <terra-select-box [inputName]="'select'" [inputListBoxValues]="_listBoxValues"></terra-select-box>
-        <terra-suggestion-box [inputName]="'suggestion'" [inputListBoxValues]="_listBoxValues"></terra-suggestion-box>
-        <terra-multi-check-box [(ngModel)]="_multiCheckboxValues" [inputName]="'multiCheckbox'"
-                               name="'multiCheckbox'"></terra-multi-check-box>
-        <terra-date-picker [inputName]="'date'"></terra-date-picker>
-        <button type="submit" [hidden]="true">
-            Submit
-        </button>
-    </form>
+  <form (ngSubmit)="_submit()">
+    <terra-text-input [inputName]="'text'"></terra-text-input>
+    <terra-number-input [inputName]="'number'"></terra-number-input>
+    <terra-slider
+      [inputName]="'slider'"
+      [inputInterval]="0.1"
+      [inputPrecision]="1"
+      [inputMax]="10"
+    ></terra-slider>
+    <terra-checkbox [inputCaption]="'checkbox'"></terra-checkbox>
+    <tc-radio-group name="radio" [(ngModel)]="_radioValue">
+      <tc-radio-input [label]="'Option 1'" [value]="1"></tc-radio-input>
+      <tc-radio-input [label]="'Option 2'" [value]="2" [disabled]="true"></tc-radio-input>
+      <tc-radio-input [label]="'Option 3'" [value]="3"></tc-radio-input>
+    </tc-radio-group>
+    <terra-select-box
+      [inputName]="'select'"
+      [inputListBoxValues]="_listBoxValues"
+    ></terra-select-box>
+    <terra-suggestion-box
+      [inputName]="'suggestion'"
+      [inputListBoxValues]="_listBoxValues"
+    ></terra-suggestion-box>
+    <terra-multi-check-box
+      [(ngModel)]="_multiCheckboxValues"
+      [inputName]="'multiCheckbox'"
+      name="'multiCheckbox'"
+    ></terra-multi-check-box>
+    <terra-date-picker [inputName]="'date'"></terra-date-picker>
+    <button type="submit" [hidden]="true">
+      Submit
+    </button>
+  </form>
 </terra-portlet>

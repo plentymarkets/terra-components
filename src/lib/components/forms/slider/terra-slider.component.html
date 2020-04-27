@@ -1,32 +1,32 @@
-<div class="slider"
-     [class.has-ticks]="inputShowTicks"
-     [class.disabled]="inputIsDisabled">
-    <div class="slider-label" *ngIf="inputName">{{ inputName }}</div>
-    
-    <div class="slider-container">
-        <span *ngIf="inputShowMinMax">{{ inputMin.toFixed(inputPrecision) }}</span>
-        <div class="slider-inner">
-            <div>
-                <div #sliderBar
-                     class="slider-bar"
-                     (click)="_onBarClicked($event)"></div>
-                
-                <div class="slider-handle"
-                     [style.left.px]="_handlePosition"
-                     terraDraggable
-                     tabindex="0"
-                     (keydown)="_onKeyDown($event)"
-                     [restrict]="'self'"
-                     [grid]="_grid"
-                     (move)="_onDrag( $event )">
-                    {{ _value?.toFixed(inputPrecision) }}
-                </div>
-                
-                <div *ngIf="inputShowTicks" class="slider-ticks">
-                    <span *ngFor="let tick of _getTicks()" [style.left.%]="tick.position">{{ tick.caption.toFixed(inputPrecision) }}</span>
-                </div>
-            </div>
+<div class="slider" [class.has-ticks]="inputShowTicks" [class.disabled]="inputIsDisabled">
+  <div class="slider-label" *ngIf="inputName">{{ inputName }}</div>
+
+  <div class="slider-container">
+    <span *ngIf="inputShowMinMax">{{ inputMin.toFixed(inputPrecision) }}</span>
+    <div class="slider-inner">
+      <div>
+        <div #sliderBar class="slider-bar" (click)="_onBarClicked($event)"></div>
+
+        <div
+          class="slider-handle"
+          [style.left.px]="_handlePosition"
+          terraDraggable
+          tabindex="0"
+          (keydown)="_onKeyDown($event)"
+          [restrict]="'self'"
+          [grid]="_grid"
+          (move)="_onDrag($event)"
+        >
+          {{ _value?.toFixed(inputPrecision) }}
         </div>
-        <span *ngIf="inputShowMinMax">{{ inputMax.toFixed(inputPrecision) }}</span>
+
+        <div *ngIf="inputShowTicks" class="slider-ticks">
+          <span *ngFor="let tick of _getTicks()" [style.left.%]="tick.position">{{
+            tick.caption.toFixed(inputPrecision)
+          }}</span>
+        </div>
+      </div>
     </div>
+    <span *ngIf="inputShowMinMax">{{ inputMax.toFixed(inputPrecision) }}</span>
+  </div>
 </div>
