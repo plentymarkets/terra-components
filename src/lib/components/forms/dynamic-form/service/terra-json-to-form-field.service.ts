@@ -31,6 +31,7 @@ export class TerraJsonToFormFieldService {
     return formFields;
   }
 
+  // tslint:disable:max-function-line-count
   private static createFormField(
     formFieldKey: string,
     formFieldData: { [key: string]: any }
@@ -169,6 +170,7 @@ export class TerraJsonToFormFieldService {
 
     return formField;
   }
+  // tslint:enable:max-function-line-count
 
   private static createContainerFormField(
     formFieldKey: string,
