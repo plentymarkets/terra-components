@@ -1,27 +1,24 @@
-:host
-{
-    &.terra-sticky-toolbar
-    {
-        display: block;
-        position: -webkit-sticky;
-        position: sticky;
-        top: 0;
-        z-index: 1;
-    }
-    
-    .btn-toolbar
-    {
-        display: block;
-        flex-wrap: initial;
-        justify-content: initial;
-        background-color: var(--toolbar-background-color, var(--color-structure-0));
-        padding: var(--toolbar-padding, var(--space-sm));
-        margin: var(--toolbar-margin, var(--space-container));
-        border-radius: var(--toolbar-border-radius, 0 0 var(--border-radius) var(--border-radius));
-        border-bottom: var(--toolbar-border-bottom, (none));
-        box-shadow: var(--toolbar-box-shadow, var(--box-shadow));
-        position: relative;
-        z-index: var(--toolbar-z-index);
-        --select-box-wrapper-margin-bottom: 0;
-    }
+:host {
+  &.terra-sticky-toolbar {
+    display: block;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+
+  .btn-toolbar {
+    display: block;
+    flex-wrap: initial;
+    justify-content: initial;
+    background-color: var(--toolbar-background-color, var(--color-structure-0));
+    padding: var(--toolbar-padding, var(--space-sm));
+    margin: var(--toolbar-margin, var(--space-container));
+    border-radius: var(--toolbar-border-radius, 0 0 var(--border-radius) var(--border-radius));
+    border-bottom: var(--toolbar-border-bottom, (none));
+    box-shadow: var(--toolbar-box-shadow, var(--box-shadow));
+    position: relative;
+    z-index: var(--toolbar-z-index);
+    --select-box-wrapper-margin-bottom: 0;
+  }
 }
