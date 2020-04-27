@@ -1,5 +1,5 @@
 {
-  "extends": "./node_modules/@plentymarkets/terra-lint-rules/tslint-rules.json",
+  "extends": ["./node_modules/@plentymarkets/terra-lint-rules/tslint-rules.json", "tslint-config-prettier"],
   "rulesDirectory": [
     "node_modules/codelyzer",
     "node_modules/tslint-eslint-rules/dist/rules",
