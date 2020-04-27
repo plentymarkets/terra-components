@@ -1,68 +1,60 @@
-:host
-{
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin-left: 3px;
-    overflow-y: auto;
+:host {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin-left: 3px;
+  overflow-y: auto;
 
-    > div
-    {
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-    }
+  > div {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
 }
 
-.image-preview
-{
-    .preview-container
-    {
-        width: 100%;
-        padding-top: 100%;
-        position: relative;
-        margin-bottom: .5rem;
-        box-shadow: var(--box-shadow);
+.image-preview {
+  .preview-container {
+    width: 100%;
+    padding-top: 100%;
+    position: relative;
+    margin-bottom: 0.5rem;
+    box-shadow: var(--box-shadow);
 
-        > div
-        {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center center;
-        }
+    > div {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center center;
     }
+  }
 
-    .preview-size
-    {
-        display: block;
-        font-size: .7rem;
-        color: var(--color-structure-9);
-    }
+  .preview-size {
+    display: block;
+    font-size: 0.7rem;
+    color: var(--color-structure-9);
+  }
 }
 
-.loader
-{
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.4);
+.loader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
 
-    .icon-loading
-    {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        font-size: 5rem;
-        --icon-color: var(--color-structure-0);
-    }
+  .icon-loading {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 5rem;
+    --icon-color: var(--color-structure-0);
+  }
 }

@@ -1,12 +1,10 @@
-terra-file-browser
-{
-    height: 100%;
-    display: block;
+terra-file-browser {
+  height: 100%;
+  display: block;
 
-    > div
-    {
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-    }
+  > div {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
 }
