@@ -7,6 +7,7 @@
 These are the official plugin components developed by plentymarkets. This repository provides components to build plugins for the [plentymarkets 7](https://www.plentymarkets.eu/tour/) back end.
 
 ## Plugin documentation
+
 - Learn how to create your [first plentymarkets angular plugin](https://developers.plentymarkets.com/tutorials/angular-plugin)
 - Terra Components [API documentation](https://developers.plentymarkets.com/terra-doc/components)
 - Overview of plentymarkets [plugin interfaces](https://developers.plentymarkets.com/dev-doc/basics#guide-interface)
@@ -14,10 +15,9 @@ These are the official plugin components developed by plentymarkets. This reposi
 
 ## Browser Compatibility
 
-| ![Chrome](https://raw.github.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png) | ![Firefox](https://raw.github.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png) | 
-| ---------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | 
-| Latest ✔                                                                                 | Latest ✔                                                                                    | 
-
+| ![Chrome](https://raw.github.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png) | ![Firefox](https://raw.github.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png) |
+| ---------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| Latest ✔                                                                                 | Latest ✔                                                                                    |
 
 ## Join our community
 

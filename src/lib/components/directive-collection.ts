@@ -7,12 +7,12 @@ import { FormEntryContainerDirective } from './forms/form/form-entry/form-entry-
 import { CKEditorDirective } from './editors/ck-editor/ck-editor.directive';
 import { TooltipDirective } from './tooltip/tooltip.directive';
 
-export const directives:Array<Type<any>> = [
-    TerraDataTableContextMenuDirective,
-    TerraTwoColumnsContainerDirective,
-    FixedHeaderDirective,
-    TerraLabelTooltipDirective,
-    FormEntryContainerDirective,
-    CKEditorDirective,
-    TooltipDirective
+export const directives: Array<Type<any>> = [
+  TerraDataTableContextMenuDirective,
+  TerraTwoColumnsContainerDirective,
+  FixedHeaderDirective,
+  TerraLabelTooltipDirective,
+  FormEntryContainerDirective,
+  CKEditorDirective,
+  TooltipDirective
 ];

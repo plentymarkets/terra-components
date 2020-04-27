@@ -1,7 +1,9 @@
 # Versioning
-Terra components use semantic versioning (see http://semver.org/ for further information). 
+
+Terra components use semantic versioning (see http://semver.org/ for further information).
 
 We differentiate between these changes:
+
 - MAJOR: Angular update to a new major release or other possible breaking changes
 - MINOR: New features or other non-breaking changes
 - PATCH: Non-breaking bug fixes

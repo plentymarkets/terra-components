@@ -20,7 +20,7 @@ export { TerraFileChooserComponent } from './components/buttons/file-chooser/ter
 
 export { TerraBaseData } from './components/data/terra-base.data';
 export { TerraFilterComponent } from './components/filter/terra-filter.component';
-export { FilterComponent } from  './components/filter/filter.component';
+export { FilterComponent } from './components/filter/filter.component';
 
 // FORM ELEMENTS
 export { TerraCheckboxComponent } from './components/forms/checkbox/terra-checkbox.component';
@@ -89,7 +89,7 @@ export { TerraDataTableTextInterface } from './components/tables/data-table/inte
 export { TerraDataTableHeaderCellInterface } from './components/tables/data-table/interfaces/terra-data-table-header-cell.interface';
 export { TerraDataTableRowInterface } from './components/tables/data-table/interfaces/terra-data-table-row.interface';
 export { TerraDataTableContextMenuDirective } from './components/tables/data-table/context-menu/terra-data-table-context-menu.directive';
-export { TerraDataTableContextMenuEntryInterface }from './components/tables/data-table/context-menu/data/terra-data-table-context-menu-entry.interface';
+export { TerraDataTableContextMenuEntryInterface } from './components/tables/data-table/context-menu/data/terra-data-table-context-menu-entry.interface';
 export { TerraDataTableContextMenuService } from './components/tables/data-table/context-menu/terra-data-table-context-menu.service';
 export { TerraDataTableContextMenuComponent } from './components/tables/data-table/context-menu/terra-data-table-context-menu.component';
 export { TerraDataTableComponent } from './components/tables/data-table/terra-data-table.component';
@@ -116,26 +116,22 @@ export { TerraDynamicComponentLoaderComponent } from './components/dynamic-compo
 
 // TODO file browser index
 export {
-    createS3StorageObject,
-    S3StorageObjectInterface
+  createS3StorageObject,
+  S3StorageObjectInterface
 } from './components/file-browser/model/s3-storage-object.interface';
 export { TerraImageMetadata } from './components/file-browser/model/terra-image-metadata.interface';
 export { TerraStorageObject } from './components/file-browser/model/terra-storage-object';
 export { TerraStorageObjectList } from './components/file-browser/model/terra-storage-object-list';
+export { TerraUploadItem, UploadCallback } from './components/file-browser/model/terra-upload-item';
 export {
-    TerraUploadItem,
-    UploadCallback
-} from './components/file-browser/model/terra-upload-item';
-export {
-    TerraUploadQueue,
-    UploadQueueUrlFactory
-}from './components/file-browser/model/terra-upload-queue';
+  TerraUploadQueue,
+  UploadQueueUrlFactory
+} from './components/file-browser/model/terra-upload-queue';
 export { TerraBaseStorageService } from './components/file-browser/terra-base-storage.interface';
 export { TerraFrontendStorageService } from './components/file-browser/terra-frontend-storage.service';
 export { TerraFileBrowserService } from './components/file-browser/terra-file-browser.service';
 export { TerraFileBrowserComponent } from './components/file-browser/terra-file-browser.component';
 export { TerraBasePrivateStorageService } from './components/file-browser/terra-base-private-storage.interface';
-
 
 export { TerraNoResultNoticeComponent } from './components/no-result/terra-no-result-notice.component';
 export { TerraNoteEditorComponent } from './components/editors/note-editor/terra-note-editor.component';
@@ -177,7 +173,6 @@ export { NestedValueInterface } from './components/data-picker/nested-data-picke
 
 export { TerraValidators } from './validators/validators';
 
-
 export { TerraFormComponent } from './components/forms/form/terra-form.component';
 export { TerraFormContainerComponent } from './components/forms/form/form-container/terra-form-container.component';
 export { TerraFormEntryComponent } from './components/forms/form/form-entry/terra-form-entry.component';
@@ -188,8 +183,8 @@ export { TerraFormScope } from './components/forms/form/model/terra-form-scope.d
 export { TerraFormTypeMap } from './components/forms/form/model/terra-form-type-map.enum';
 export { FormTypeMap } from './components/forms/form/model/form-type-map';
 export {
-    TERRA_FORM_PROPERTY_METADATA_KEY, // TODO: may be removed from public api
-    TerraFormProperty
+  TERRA_FORM_PROPERTY_METADATA_KEY, // TODO: may be removed from public api
+  TerraFormProperty
 } from './components/forms/form/model/terra-form-property.decorator';
 export { TerraBreadcrumbsComponent } from './components/breadcrumbs/terra-breadcrumbs.component';
 export { TerraBreadcrumb } from './components/breadcrumbs/terra-breadcrumb';
