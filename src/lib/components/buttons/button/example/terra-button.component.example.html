@@ -1,112 +1,95 @@
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-md-3">
-            <h5>Add</h5>
-            <terra-button inputIcon='icon-add'>
-            </terra-button>
-        </div>
-        <div class="col-md-3">
-            <h5>Alert</h5>
-            <terra-button inputIcon='icon-delete'>
-            </terra-button>
-        </div>
-        <div class="col-md-3">
-            <h5>Action</h5>
-            <terra-button inputIcon='icon-edit'>
-            </terra-button>
-        </div>
-        <div class="col-md-3">
-            <h5>Warning</h5>
-            <terra-button inputIcon='icon-warning'>
-            </terra-button>
-        </div>
+  <div class="row">
+    <div class="col-md-3">
+      <h5>Add</h5>
+      <terra-button inputIcon="icon-add"> </terra-button>
     </div>
-    <hr>
-    <div class="row">
-        <div class="col-md-3">
-            <h5>Navigation</h5>
-            <terra-button inputIcon='icon-zoom'>
-            </terra-button>
-        </div>
-        <div class="col-md-3">
-            <h5>Info</h5>
-            <terra-button inputIcon='icon-info'>
-            </terra-button>
-        </div>
-        <div class="col-md-3">
-            <h5>Transfer</h5>
-            <terra-button inputIcon="icon-email_send">
-            </terra-button>
-        </div>
+    <div class="col-md-3">
+      <h5>Alert</h5>
+      <terra-button inputIcon="icon-delete"> </terra-button>
     </div>
-    <hr>
-    <div class="row">
-        <div class="col-md-3">
-            <h5>Caption</h5>
-            <terra-button inputCaption="caption">
-            </terra-button>
-        </div>
-        <div class="col-md-3">
-            <h5>Caption and icon</h5>
-            <terra-button inputCaption="settings"
-                          inputIcon="icon-settings">
-            </terra-button>
-        </div>
-        <div class="col-md-3">
-            <h5>Tooltip</h5>
-            <terra-button inputTooltipText="edit"
-                          [inputTooltipPlacement]="_tooltipPlacement"
-                          inputCaption="Tooltip top">
-            </terra-button>
-        </div>
-        <div class="col-md-3">
-            <h5>Disabled</h5>
-            <terra-button inputIcon="icon-email_send"
-                          (outputClicked)="_sendMailPopup()"
-                          [inputIsDisabled]="true">
-            </terra-button>
-        </div>
+    <div class="col-md-3">
+      <h5>Action</h5>
+      <terra-button inputIcon="icon-edit"> </terra-button>
     </div>
-    <hr>
-    <div class="row">
-        <div class="col-md-3">
-            <h5>Flagged</h5>
-            <terra-button [inputIsFlagged]="true"
-                          inputIcon='icon-plugin_productive_deploy'>
-            </terra-button>
-        </div>
-        <div class="col-md-3">
-            <h5>Active</h5>
-            <terra-button [inputIsActive]="true"
-                          inputIcon="icon-active">
-            </terra-button>
-        </div>
-        <div class="col-md-3">
-            <h5>Has outputClicked</h5>
-            <terra-button inputIcon="icon-email_send"
-                          (outputClicked)="_sendMailPopup()">
-            </terra-button>
-        </div>
-        <div class="col-md-3">
-            <h5>Link</h5>
-            <terra-button [inputIsLink]="true"
-                          inputCaption="link">
-            </terra-button>
-        </div>
+    <div class="col-md-3">
+      <h5>Warning</h5>
+      <terra-button inputIcon="icon-warning"> </terra-button>
     </div>
-    <hr>
-    <div class="row">
-        <div class="col-md-3">
-            <h5>Large</h5>
-            <terra-button [inputIsLarge]="true"
-                          inputCaption="Large">
-            </terra-button>
-        </div>
-        <div class="col-md-3">
-            <h5>Small</h5>
-            <terra-button [inputIsSmall]="true"
-                          inputCaption="Small">
-            </terra-button>
-        </div>
+  </div>
+  <hr />
+  <div class="row">
+    <div class="col-md-3">
+      <h5>Navigation</h5>
+      <terra-button inputIcon="icon-zoom"> </terra-button>
     </div>
+    <div class="col-md-3">
+      <h5>Info</h5>
+      <terra-button inputIcon="icon-info"> </terra-button>
+    </div>
+    <div class="col-md-3">
+      <h5>Transfer</h5>
+      <terra-button inputIcon="icon-email_send"> </terra-button>
+    </div>
+  </div>
+  <hr />
+  <div class="row">
+    <div class="col-md-3">
+      <h5>Caption</h5>
+      <terra-button inputCaption="caption"> </terra-button>
+    </div>
+    <div class="col-md-3">
+      <h5>Caption and icon</h5>
+      <terra-button inputCaption="settings" inputIcon="icon-settings"> </terra-button>
+    </div>
+    <div class="col-md-3">
+      <h5>Tooltip</h5>
+      <terra-button
+        inputTooltipText="edit"
+        [inputTooltipPlacement]="_tooltipPlacement"
+        inputCaption="Tooltip top"
+      >
+      </terra-button>
+    </div>
+    <div class="col-md-3">
+      <h5>Disabled</h5>
+      <terra-button
+        inputIcon="icon-email_send"
+        (outputClicked)="_sendMailPopup()"
+        [inputIsDisabled]="true"
+      >
+      </terra-button>
+    </div>
+  </div>
+  <hr />
+  <div class="row">
+    <div class="col-md-3">
+      <h5>Flagged</h5>
+      <terra-button [inputIsFlagged]="true" inputIcon="icon-plugin_productive_deploy">
+      </terra-button>
+    </div>
+    <div class="col-md-3">
+      <h5>Active</h5>
+      <terra-button [inputIsActive]="true" inputIcon="icon-active"> </terra-button>
+    </div>
+    <div class="col-md-3">
+      <h5>Has outputClicked</h5>
+      <terra-button inputIcon="icon-email_send" (outputClicked)="_sendMailPopup()"> </terra-button>
+    </div>
+    <div class="col-md-3">
+      <h5>Link</h5>
+      <terra-button [inputIsLink]="true" inputCaption="link"> </terra-button>
+    </div>
+  </div>
+  <hr />
+  <div class="row">
+    <div class="col-md-3">
+      <h5>Large</h5>
+      <terra-button [inputIsLarge]="true" inputCaption="Large"> </terra-button>
+    </div>
+    <div class="col-md-3">
+      <h5>Small</h5>
+      <terra-button [inputIsSmall]="true" inputCaption="Small"> </terra-button>
+    </div>
+  </div>
 </div>
