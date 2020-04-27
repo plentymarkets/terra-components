@@ -23,13 +23,13 @@ const INTERNAL_METHODS = [
   'constructor',
 
   // tabIndex exists on all elements, no need to document it
-  'tabIndex',
+  'tabIndex'
 ];
 
 module.exports = function docsPrivateFilter() {
   return {
     $runBefore: ['categorizer'],
-    $process: docs => docs.filter(doc => isPublicDoc(doc))
+    $process: (docs) => docs.filter((doc) => isPublicDoc(doc))
   };
 };
 
@@ -39,17 +39,17 @@ function isPublicDoc(doc) {
   } else if (doc.docType === 'member') {
     return !isInternalMember(doc);
   } else if (doc.docType === 'class') {
-    doc.members = doc.members.filter(memberDoc => isPublicDoc(memberDoc));
+    doc.members = doc.members.filter((memberDoc) => isPublicDoc(memberDoc));
   }
 
   return true;
 }
 
 function isInternalMember(memberDoc) {
-  return INTERNAL_METHODS.includes(memberDoc.name)
+  return INTERNAL_METHODS.includes(memberDoc.name);
 }
 
 function hasDocsPrivateTag(doc) {
   let tags = doc.tags && doc.tags.tags;
-  return tags ? tags.find(d => d.tagName == 'docs-private') : false;
+  return tags ? tags.find((d) => d.tagName == 'docs-private') : false;
 }

@@ -3,12 +3,12 @@
  * them as such in the source code. Thus, we maintain a separate blacklist of selectors
  * that should not be emitted in the documentation.
  */
-const SELECTOR_BLACKLIST  = new Set([
+const SELECTOR_BLACKLIST = new Set([
   '[portal]',
   '[portalHost]',
   'textarea[md-autosize]',
   '[overlay-origin]',
-  '[connected-overlay]',
+  '[connected-overlay]'
 ]);
 
 /**
@@ -23,7 +23,7 @@ module.exports = function categorizer() {
   return {
     $runBefore: ['docs-processed'],
     $process: function (docs) {
-      docs.filter(doc => doc.docType === 'class').forEach(doc => decorateClassDoc(doc));
+      docs.filter((doc) => doc.docType === 'class').forEach((doc) => decorateClassDoc(doc));
     }
   };
 
@@ -38,8 +38,8 @@ module.exports = function categorizer() {
     classDoc.properties = classDoc.members.filter(isProperty).filter(filterDuplicateMembers);
 
     // Call decorate hooks that can modify the method and property docs.
-    classDoc.methods.forEach(doc => decorateMethodDoc(doc));
-    classDoc.properties.forEach(doc => decoratePropertyDoc(doc));
+    classDoc.methods.forEach((doc) => decorateMethodDoc(doc));
+    classDoc.properties.forEach((doc) => decoratePropertyDoc(doc));
 
     decoratePublicDoc(classDoc);
 
@@ -51,27 +51,27 @@ module.exports = function categorizer() {
     if (isDirective(classDoc)) {
       classDoc.isDirective = true;
       classDoc.directiveExportAs = getMetadataProperty(classDoc, 'exportAs');
-      classDoc.directiveSelectors =  getDirectiveSelectors(classDoc);
+      classDoc.directiveSelectors = getDirectiveSelectors(classDoc);
     } else if (isService(classDoc)) {
       classDoc.isService = true;
     } else if (isNgModule(classDoc)) {
       classDoc.isNgModule = true;
     }
   }
-    function isNullUndefinedEmpty(inputVar) {
-        switch (inputVar) {
-            case undefined:
-                return true;
-                break;
-            case null:
-                return true;
-                break;
-            default :
-                break;
-        }
-        if(inputVar.length === 0)return true;
-        else return false;
+  function isNullUndefinedEmpty(inputVar) {
+    switch (inputVar) {
+      case undefined:
+        return true;
+        break;
+      case null:
+        return true;
+        break;
+      default:
+        break;
     }
+    if (inputVar.length === 0) return true;
+    else return false;
+  }
   /**
    * Method that will be called for each method doc. The parameters for the method-docs
    * will be normalized, so that they can be easily used inside of dgeni templates.
@@ -79,15 +79,13 @@ module.exports = function categorizer() {
   function decorateMethodDoc(methodDoc) {
     normalizeMethodParameters(methodDoc);
     decoratePublicDoc(methodDoc);
-      methodDoc.showReturns = true;
+    methodDoc.showReturns = true;
     // Mark methods with a `void` return type so we can omit show the return type in the docs.
-      if (!isNullUndefinedEmpty(methodDoc.type)) {
-          methodDoc.returnType = methodDoc.type;
-      }
-      else
-      {
-          methodDoc.returnType = 'void';
-      }
+    if (!isNullUndefinedEmpty(methodDoc.type)) {
+      methodDoc.returnType = methodDoc.type;
+    } else {
+      methodDoc.returnType = 'void';
+    }
   }
 
   /**
@@ -99,7 +97,6 @@ module.exports = function categorizer() {
     propertyDoc.deprecated = propertyDoc.deprecated;
     propertyDoc.isDirectiveInput = isDirectiveInput(propertyDoc);
     propertyDoc.directiveInputAlias = getDirectiveInputAlias(propertyDoc);
-
 
     propertyDoc.isDirectiveOutput = isDirectiveOutput(propertyDoc);
     propertyDoc.directiveOutputAlias = getDirectiveOutputAlias(propertyDoc);
@@ -131,13 +128,17 @@ function sortMembers(docA, docB) {
   }
 
   // Sort in the order of: Inputs, Outputs, neither
-  if ((isDirectiveInput(docA) && !isDirectiveInput(docB)) ||
-      (isDirectiveOutput(docA) && !isDirectiveInput(docB) && !isDirectiveOutput(docB))) {
+  if (
+    (isDirectiveInput(docA) && !isDirectiveInput(docB)) ||
+    (isDirectiveOutput(docA) && !isDirectiveInput(docB) && !isDirectiveOutput(docB))
+  ) {
     return -1;
   }
 
-  if ((isDirectiveInput(docB) && !isDirectiveInput(docA)) ||
-      (isDirectiveOutput(docB) && !isDirectiveInput(docA) && !isDirectiveOutput(docA))) {
+  if (
+    (isDirectiveInput(docB) && !isDirectiveInput(docA)) ||
+    (isDirectiveOutput(docB) && !isDirectiveInput(docA) && !isDirectiveOutput(docA))
+  ) {
     return 1;
   }
 
@@ -165,7 +166,7 @@ function sortMembers(docA, docB) {
  */
 function normalizeMethodParameters(method) {
   if (method.parameters) {
-    method.parameters.forEach(parameter => {
+    method.parameters.forEach((parameter) => {
       let [parameterName, parameterType] = parameter.split(':');
 
       // If the parameter is optional, the name here will contain a '?'. We store whether the
@@ -180,15 +181,14 @@ function normalizeMethodParameters(method) {
         method.params = [];
       }
 
-      let jsDocParam = method.params.find(p => p.name == parameterName);
+      let jsDocParam = method.params.find((p) => p.name == parameterName);
 
       if (!jsDocParam) {
-        jsDocParam = {name: parameterName};
+        jsDocParam = { name: parameterName };
         method.params.push(jsDocParam);
       }
 
-      jsDocParam.type = parameterType ? parameterType.trim() :
-      jsDocParam.isOptional = isOptional;
+      jsDocParam.type = parameterType ? parameterType.trim() : (jsDocParam.isOptional = isOptional);
     });
   }
 }
@@ -210,7 +210,7 @@ function isDirective(doc) {
 }
 
 function isService(doc) {
-  return hasClassDecorator(doc, 'Injectable')
+  return hasClassDecorator(doc, 'Injectable');
 }
 
 function isNgModule(doc) {
@@ -226,15 +226,15 @@ function isDirectiveInput(doc) {
 }
 
 function isDeprecatedDoc(doc) {
-  return (doc.tags && doc.tags.tags || []).some(tag => tag.tagName === 'deprecated');
+  return ((doc.tags && doc.tags.tags) || []).some((tag) => tag.tagName === 'deprecated');
 }
 
 function getDirectiveInputAlias(doc) {
-  return isDirectiveInput(doc) ? doc.decorators.find(d => d.name == 'Input').arguments[0] : '';
+  return isDirectiveInput(doc) ? doc.decorators.find((d) => d.name == 'Input').arguments[0] : '';
 }
 
 function getDirectiveOutputAlias(doc) {
-  return isDirectiveOutput(doc) ? doc.decorators.find(d => d.name == 'Output').arguments[0] : '';
+  return isDirectiveOutput(doc) ? doc.decorators.find((d) => d.name == 'Output').arguments[0] : '';
 }
 
 function getDirectiveSelectors(classDoc) {
@@ -242,19 +242,22 @@ function getDirectiveSelectors(classDoc) {
 
   if (directiveSelectors) {
     // Filter blacklisted selectors and remove line-breaks in resolved selectors.
-    return directiveSelectors.replace(/[\r\n]/g, '').split(/\s*,\s*/)
-      .filter(s => s !== '' && !s.includes('mat') && !SELECTOR_BLACKLIST.has(s));
+    return directiveSelectors
+      .replace(/[\r\n]/g, '')
+      .split(/\s*,\s*/)
+      .filter((s) => s !== '' && !s.includes('mat') && !SELECTOR_BLACKLIST.has(s));
   }
 }
 
 function getMetadataProperty(doc, property) {
-  const metadata = doc.decorators
-    .find(d => d.name === 'Component' || d.name === 'Directive').arguments[0];
+  const metadata = doc.decorators.find((d) => d.name === 'Component' || d.name === 'Directive')
+    .arguments[0];
 
   // Use a Regex to determine the given metadata property. This is necessary, because we can't
   // parse the JSON due to environment variables inside of the JSON (e.g module.id)
-  let matches = new RegExp(`${property}s*:\\s*(?:"|'|\`)((?:.|\\n|\\r)+?)(?:"|'|\`)`)
-    .exec(metadata);
+  let matches = new RegExp(`${property}s*:\\s*(?:"|'|\`)((?:.|\\n|\\r)+?)(?:"|'|\`)`).exec(
+    metadata
+  );
 
   return matches && matches[1].trim();
 }
@@ -268,7 +271,7 @@ function hasClassDecorator(doc, decoratorName) {
 }
 
 function hasDecorator(doc, decoratorName) {
-  return doc.decorators &&
-      doc.decorators.length &&
-      doc.decorators.some(d => d.name == decoratorName);
+  return (
+    doc.decorators && doc.decorators.length && doc.decorators.some((d) => d.name == decoratorName)
+  );
 }
