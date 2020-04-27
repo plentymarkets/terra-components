@@ -1,15 +1,10 @@
-import {
-    Observable,
-    ReplaySubject
-} from 'rxjs';
+import { Observable, ReplaySubject } from 'rxjs';
 import { Data } from '@angular/router';
 
-export class MockActivatedRoute
-{
-    private subject:ReplaySubject<Data> = new ReplaySubject<Data>();
+export class MockActivatedRoute {
+  private subject: ReplaySubject<Data> = new ReplaySubject<Data>();
 
-    public get data():Observable<Data>
-    {
-        return this.subject.asObservable();
-    }
+  public get data(): Observable<Data> {
+    return this.subject.asObservable();
+  }
 }
