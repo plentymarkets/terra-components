@@ -55,6 +55,7 @@
     "codelyzer": "^5.0.1",
     "gulp": "^4.0.2",
     "gulp-sass": "^4.0.2",
+    "husky": "^4.2.5",
     "jasmine-core": "~3.4.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~4.1.0",
@@ -64,6 +65,8 @@
     "karma-jasmine": "~2.0.1",
     "karma-jasmine-html-reporter": "~1.4.0",
     "karma-safari-launcher": "^1.0.0",
+    "lint-staged": "^10.1.7",
+    "ng-lint-staged": "^0.1.6",
     "ng-packagr": "^5.4.0",
     "node-sass-tilde-importer": "^1.0.2",
     "prettier": "2.0.5",
@@ -78,5 +81,14 @@
     "typescript": "~3.5.3",
     "yargs": "^15.1.0",
     "zone.js": "~0.9.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*": "prettier --write",
+    "src/**/*.ts": "ng-lint-staged lint --fix --"
   }
 }
