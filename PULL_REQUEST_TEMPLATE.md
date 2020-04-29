@@ -6,41 +6,41 @@
 
 Testing
 
-- [ ] Person 1 (mandatory)
+-   [ ] Person 1 (mandatory)
 
-  Browser-Support (relevant for changes in scss / appearance of components and jQuery)
+    Browser-Support (relevant for changes in scss / appearance of components and jQuery)
 
-  - [ ] Chrome
-  - [ ] Firefox
-  - [ ] Safari
+    -   [ ] Chrome
+    -   [ ] Firefox
+    -   [ ] Safari
 
-  Responsiveness
+    Responsiveness
 
-  - [ ] Desktop
-  - [ ] Tablet
-  - [ ] Mobile
+    -   [ ] Desktop
+    -   [ ] Tablet
+    -   [ ] Mobile
 
-- [ ] Person 2 (mandatory)
+-   [ ] Person 2 (mandatory)
 
-  Browser-Support
+    Browser-Support
 
-  - [ ] Chrome
-  - [ ] Firefox
-  - [ ] Safari
+    -   [ ] Chrome
+    -   [ ] Firefox
+    -   [ ] Safari
 
-  Responsiveness
+    Responsiveness
 
-  - [ ] Desktop
-  - [ ] Tablet
-  - [ ] Mobile
+    -   [ ] Desktop
+    -   [ ] Tablet
+    -   [ ] Mobile
 
 Information transfer
 
-- [ ] Inform Ceres about changes in `TerraFormComponent` (optional: relevant for changes in this component)
+-   [ ] Inform Ceres about changes in `TerraFormComponent` (optional: relevant for changes in this component)
 
 Terra Basic Plugin
 
-- [ ] Adapt changes (optional: relevant for version updates, global design changes, l10n)
+-   [ ] Adapt changes (optional: relevant for version updates, global design changes, l10n)
 
 ---
 
@@ -50,10 +50,10 @@ Please inform a member of Terra (@plentymarkets/team-terra) to get the upper par
 
 Documentation
 
-- [ ] Changelog (optional: relevant for every change which influences the API)
-- [ ] Example (updated or created)
-- [ ] JSDoc (optional: relevant for every change which influences the API)
+-   [ ] Changelog (optional: relevant for every change which influences the API)
+-   [ ] Example (updated or created)
+-   [ ] JSDoc (optional: relevant for every change which influences the API)
 
 Testing
 
-- [ ] Unit Test (updated or created)
+-   [ ] Unit Test (updated or created)

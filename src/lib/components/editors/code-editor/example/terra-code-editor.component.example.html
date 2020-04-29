@@ -1,19 +1,19 @@
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-md-12">
-      <div class="editor-output-container" [innerHTML]="_changedText"></div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="editor-output-container" [innerHTML]="_changedText"></div>
+        </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-md-12">
-      <terra-code-editor
-        [inputPlaceholder]="'Platzhalter'"
-        [inputHeaderLabel]="'Code Editor'"
-        [tooltipText]="'tooltip text'"
-        [tooltipPlacement]="'top'"
-        [(ngModel)]="_changedText"
-      >
-      </terra-code-editor>
+    <div class="row">
+        <div class="col-md-12">
+            <terra-code-editor
+                [inputPlaceholder]="'Platzhalter'"
+                [inputHeaderLabel]="'Code Editor'"
+                [tooltipText]="'tooltip text'"
+                [tooltipPlacement]="'top'"
+                [(ngModel)]="_changedText"
+            >
+            </terra-code-editor>
+        </div>
     </div>
-  </div>
 </div>

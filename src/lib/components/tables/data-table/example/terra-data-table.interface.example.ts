@@ -1,5 +1,5 @@
 export interface TerraDataTableExampleInterface {
-  id: number;
-  value: number;
-  mail?: string;
+    id: number;
+    value: number;
+    mail?: string;
 }

@@ -8,11 +8,11 @@ import { CKEditorDirective } from './editors/ck-editor/ck-editor.directive';
 import { TooltipDirective } from './tooltip/tooltip.directive';
 
 export const directives: Array<Type<any>> = [
-  TerraDataTableContextMenuDirective,
-  TerraTwoColumnsContainerDirective,
-  FixedHeaderDirective,
-  TerraLabelTooltipDirective,
-  FormEntryContainerDirective,
-  CKEditorDirective,
-  TooltipDirective
+    TerraDataTableContextMenuDirective,
+    TerraTwoColumnsContainerDirective,
+    FixedHeaderDirective,
+    TerraLabelTooltipDirective,
+    FormEntryContainerDirective,
+    CKEditorDirective,
+    TooltipDirective
 ];

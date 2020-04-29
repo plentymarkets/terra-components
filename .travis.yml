@@ -4,23 +4,23 @@ sudo: false
 language: node_js
 
 node_js:
-  - '12'
+    - '12'
 
 addons:
-  chrome: stable
+    chrome: stable
 
 cache:
-  directories:
-    - ./node_modules
+    directories:
+        - ./node_modules
 
 install:
-  - npm run reinstall
+    - npm run reinstall
 
 jobs:
-  include:
-    - name: 'Test Build'
-      script: npm run build-test
-    - name: 'Headless Unit Tests'
-      script: npm run test-headless
-    - name: 'TSlint'
-      script: npm run lint
+    include:
+        - name: 'Test Build'
+          script: npm run build-test
+        - name: 'Headless Unit Tests'
+          script: npm run test-headless
+        - name: 'TSlint'
+          script: npm run lint

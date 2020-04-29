@@ -1,38 +1,38 @@
 .input-group {
-  margin-bottom: 12px;
-  flex-wrap: initial !important;
-  align-items: initial !important;
+    margin-bottom: 12px;
+    flex-wrap: initial !important;
+    align-items: initial !important;
 
-  & > .input-group-text {
-    width: 100%;
-    display: initial;
-    align-items: initial;
-    padding: initial;
-    margin-bottom: initial;
-    font-size: initial;
-    font-weight: initial;
-    line-height: initial;
-    color: inherit;
-    text-align: initial;
-    white-space: initial;
-    background-color: initial;
-    border: initial;
-    border-radius: initial;
+    & > .input-group-text {
+        width: 100%;
+        display: initial;
+        align-items: initial;
+        padding: initial;
+        margin-bottom: initial;
+        font-size: initial;
+        font-weight: initial;
+        line-height: initial;
+        color: inherit;
+        text-align: initial;
+        white-space: initial;
+        background-color: initial;
+        border: initial;
+        border-radius: initial;
 
-    .input-wrapper,
-    .select-box-wrapper,
-    .btn {
-      margin-bottom: 0;
+        .input-wrapper,
+        .select-box-wrapper,
+        .btn {
+            margin-bottom: 0;
+        }
     }
-  }
 
-  & > .input-group-btn {
-    width: auto;
+    & > .input-group-btn {
+        width: auto;
 
-    .input-wrapper,
-    .select-box-wrapper,
-    .btn {
-      margin-bottom: 0;
+        .input-wrapper,
+        .select-box-wrapper,
+        .btn {
+            margin-bottom: 0;
+        }
     }
-  }
 }

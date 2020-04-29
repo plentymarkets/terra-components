@@ -1,40 +1,40 @@
 .info-handler {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
 
-  &:hover,
-  &:active,
-  &.active {
-    color: var(--color-group-active);
-  }
+    &:hover,
+    &:active,
+    &.active {
+        color: var(--color-group-active);
+    }
 
-  height: 100%;
-  line-height: 100%;
-  text-align: center;
-  white-space: nowrap;
-  cursor: pointer;
-  user-select: none;
-  border: 0;
-  overflow: hidden;
-  text-decoration: none;
-  padding: 0 8px;
-  border-radius: var(--border-radius);
-  font-size: var(--font-size-5);
+    height: 100%;
+    line-height: 100%;
+    text-align: center;
+    white-space: nowrap;
+    cursor: pointer;
+    user-select: none;
+    border: 0;
+    overflow: hidden;
+    text-decoration: none;
+    padding: 0 8px;
+    border-radius: var(--border-radius);
+    font-size: var(--font-size-5);
 
-  &::before {
-    vertical-align: middle;
-  }
+    &::before {
+        vertical-align: middle;
+    }
 }
 
 .disabled {
-  cursor: not-allowed;
-  color: var(--color-structure-7);
-
-  &:hover,
-  &:active,
-  &.active {
-    color: var(--color-structure-7);
     cursor: not-allowed;
-  }
+    color: var(--color-structure-7);
+
+    &:hover,
+    &:active,
+    &.active {
+        color: var(--color-structure-7);
+        cursor: not-allowed;
+    }
 }

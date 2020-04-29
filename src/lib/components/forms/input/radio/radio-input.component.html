@@ -1,13 +1,13 @@
 <label for="{{ _id }}" [ngClass]="{ disabled: disabled, inline: _group?.inline }">
-  <input
-    type="radio"
-    id="{{ _id }}"
-    [name]="_group?.name"
-    [value]="value"
-    [disabled]="disabled"
-    [checked]="value === _group?.value"
-    (change)="_group.value = value"
-  />
-  <span class="check"></span>
-  <span *ngIf="label">{{ label }}</span>
+    <input
+        type="radio"
+        id="{{ _id }}"
+        [name]="_group?.name"
+        [value]="value"
+        [disabled]="disabled"
+        [checked]="value === _group?.value"
+        (change)="_group.value = value"
+    />
+    <span class="check"></span>
+    <span *ngIf="label">{{ label }}</span>
 </label>

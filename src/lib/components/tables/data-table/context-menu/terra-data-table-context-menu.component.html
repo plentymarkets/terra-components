@@ -1,20 +1,20 @@
 <ul
-  #list
-  *ngIf="_linksAreSet"
-  class="context-menu"
-  id="menu"
-  [ngClass]="{ visible: _isShown }"
-  [style.top]="_topAsString"
-  [style.left]="_leftAsString"
+    #list
+    *ngIf="_linksAreSet"
+    class="context-menu"
+    id="menu"
+    [ngClass]="{ visible: _isShown }"
+    [style.top]="_topAsString"
+    [style.left]="_leftAsString"
 >
-  <ng-template ngFor let-link [ngForOf]="links">
-    <li
-      *ngIf="!link.isDivider"
-      (click)="link.clickFunction(_eventData.data)"
-      [ngStyle]="{ background: link.buttonColor }"
-    >
-      <a>{{ link.title }}</a>
-    </li>
-    <div *ngIf="link.isDivider" class="context-menu-divider"></div>
-  </ng-template>
+    <ng-template ngFor let-link [ngForOf]="links">
+        <li
+            *ngIf="!link.isDivider"
+            (click)="link.clickFunction(_eventData.data)"
+            [ngStyle]="{ background: link.buttonColor }"
+        >
+            <a>{{ link.title }}</a>
+        </li>
+        <div *ngIf="link.isDivider" class="context-menu-divider"></div>
+    </ng-template>
 </ul>

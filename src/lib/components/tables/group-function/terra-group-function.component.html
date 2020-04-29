@@ -1,14 +1,14 @@
 <div class="group-function" [@collapsedState]="_collapsedState">
-  <div class="group-function-head">
-    <terra-button
-      inputIcon="icon-execute"
-      [inputIsDisabled]="disableExecution"
-      (outputClicked)="executeGroupFunction.emit()"
-    >
-    </terra-button>
-    <span>{{ 'terraDataTable.groupFunction' | translate: _lang }}</span>
-  </div>
-  <div class="group-function-body">
-    <ng-content></ng-content>
-  </div>
+    <div class="group-function-head">
+        <terra-button
+            inputIcon="icon-execute"
+            [inputIsDisabled]="disableExecution"
+            (outputClicked)="executeGroupFunction.emit()"
+        >
+        </terra-button>
+        <span>{{ 'terraDataTable.groupFunction' | translate: _lang }}</span>
+    </div>
+    <div class="group-function-body">
+        <ng-content></ng-content>
+    </div>
 </div>

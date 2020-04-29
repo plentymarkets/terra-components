@@ -1,15 +1,15 @@
 {
-  "information": {
-    "name": "changelog",
-    "version": "1.0",
-    "terra-components-version": "2.1.55-zlk",
-    "change-date": "21-02-2018"
-  },
-  "new-release-changelog": [
-    {
-      "component-name": "terra-node-tree",
-      "date": "21-2-2018"
-    }
-  ],
-  "changelog": []
+    "information": {
+        "name": "changelog",
+        "version": "1.0",
+        "terra-components-version": "2.1.55-zlk",
+        "change-date": "21-02-2018"
+    },
+    "new-release-changelog": [
+        {
+            "component-name": "terra-node-tree",
+            "date": "21-2-2018"
+        }
+    ],
+    "changelog": []
 }

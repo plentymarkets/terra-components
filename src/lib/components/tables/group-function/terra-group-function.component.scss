@@ -1,24 +1,24 @@
 .group-function {
-  background-color: var(--color-structure-0);
-  box-shadow: var(--box-shadow);
-  border-radius: var(--border-radius);
-  margin-bottom: var(--space-md);
-  margin: 0 var(--space-xs) var(--space-md) var(--space-xs);
+    background-color: var(--color-structure-0);
+    box-shadow: var(--box-shadow);
+    border-radius: var(--border-radius);
+    margin-bottom: var(--space-md);
+    margin: 0 var(--space-xs) var(--space-md) var(--space-xs);
 
-  .group-function-head {
-    padding: var(--space-sm);
+    .group-function-head {
+        padding: var(--space-sm);
 
-    span {
-      padding: var(--space-sm);
-      color: var(--color-structure-12);
-      font-size: var(--font-size-4);
-      font-weight: var(--font-weight-2);
-      vertical-align: middle;
+        span {
+            padding: var(--space-sm);
+            color: var(--color-structure-12);
+            font-size: var(--font-size-4);
+            font-weight: var(--font-weight-2);
+            vertical-align: middle;
+        }
     }
-  }
 
-  .group-function-body {
-    padding: var(--space-lg);
-    transition: padding var(--transition-lg);
-  }
+    .group-function-body {
+        padding: var(--space-lg);
+        transition: padding var(--transition-lg);
+    }
 }

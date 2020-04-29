@@ -1,81 +1,59 @@
 <div class="col-12">
-  <p>Toggle (without icon)</p>
-  <terra-toggle [inputTooltipText]="'Test toggle aktivieren?'"> </terra-toggle>
-  <terra-toggle [inputTooltipText]="'Test toggle aktivieren?'" [inputIsDisabled]="true">
-  </terra-toggle>
+    <p>Toggle (without icon)</p>
+    <terra-toggle [inputTooltipText]="'Test toggle aktivieren?'"> </terra-toggle>
+    <terra-toggle [inputTooltipText]="'Test toggle aktivieren?'" [inputIsDisabled]="true"> </terra-toggle>
 </div>
 <div class="col-12">
-  <p>Toggle (normal)</p>
-  <terra-toggle [inputIcon]="'icon-confirm'" [inputTooltipText]="'Test toggle aktivieren?'">
-  </terra-toggle>
-  <terra-toggle
-    [inputIcon]="'icon-confirm'"
-    [inputTooltipText]="'Test toggle aktivieren?'"
-    [inputIsDisabled]="true"
-  >
-  </terra-toggle>
+    <p>Toggle (normal)</p>
+    <terra-toggle [inputIcon]="'icon-confirm'" [inputTooltipText]="'Test toggle aktivieren?'"> </terra-toggle>
+    <terra-toggle [inputIcon]="'icon-confirm'" [inputTooltipText]="'Test toggle aktivieren?'" [inputIsDisabled]="true">
+    </terra-toggle>
 </div>
 <div class="col-12">
-  <p>Toggle (small)</p>
-  <terra-toggle
-    [inputIcon]="'icon-confirm'"
-    [inputIsSmall]="true"
-    [inputTooltipText]="'Small toggle'"
-  >
-  </terra-toggle>
-  <terra-toggle
-    [inputIcon]="'icon-confirm'"
-    [inputIsSmall]="true"
-    [inputTooltipText]="'Small toggle'"
-    [inputIsDisabled]="true"
-  >
-  </terra-toggle>
+    <p>Toggle (small)</p>
+    <terra-toggle [inputIcon]="'icon-confirm'" [inputIsSmall]="true" [inputTooltipText]="'Small toggle'">
+    </terra-toggle>
+    <terra-toggle
+        [inputIcon]="'icon-confirm'"
+        [inputIsSmall]="true"
+        [inputTooltipText]="'Small toggle'"
+        [inputIsDisabled]="true"
+    >
+    </terra-toggle>
 </div>
 <div class="col-12">
-  <p>Toggle (large)</p>
-  <terra-toggle
-    [inputIcon]="'icon-confirm'"
-    [inputIsLarge]="true"
-    [inputTooltipText]="'Large toggle'"
-  >
-  </terra-toggle>
-  <terra-toggle
-    [inputIcon]="'icon-confirm'"
-    [inputIsLarge]="true"
-    [inputTooltipText]="'Large toggle'"
-    [inputIsDisabled]="true"
-  >
-  </terra-toggle>
+    <p>Toggle (large)</p>
+    <terra-toggle [inputIcon]="'icon-confirm'" [inputIsLarge]="true" [inputTooltipText]="'Large toggle'">
+    </terra-toggle>
+    <terra-toggle
+        [inputIcon]="'icon-confirm'"
+        [inputIsLarge]="true"
+        [inputTooltipText]="'Large toggle'"
+        [inputIsDisabled]="true"
+    >
+    </terra-toggle>
 </div>
 <div class="col-12">
-  <p>Toggle Events</p>
-  <terra-toggle
-    [inputIcon]="'icon-confirm'"
-    (toggled)="_showMessage('toggled')"
-    [inputTooltipText]="'toggled'"
-  >
-  </terra-toggle>
-  <terra-toggle
-    [inputIcon]="'icon-confirm'"
-    (activated)="_showMessage('activated')"
-    [inputTooltipText]="'activated'"
-  >
-  </terra-toggle>
-  <terra-toggle
-    [inputIcon]="'icon-confirm'"
-    (deactivated)="_showMessage('deactivated')"
-    [inputTooltipText]="'deactivated'"
-  >
-  </terra-toggle>
+    <p>Toggle Events</p>
+    <terra-toggle [inputIcon]="'icon-confirm'" (toggled)="_showMessage('toggled')" [inputTooltipText]="'toggled'">
+    </terra-toggle>
+    <terra-toggle [inputIcon]="'icon-confirm'" (activated)="_showMessage('activated')" [inputTooltipText]="'activated'">
+    </terra-toggle>
+    <terra-toggle
+        [inputIcon]="'icon-confirm'"
+        (deactivated)="_showMessage('deactivated')"
+        [inputTooltipText]="'deactivated'"
+    >
+    </terra-toggle>
 </div>
 <div class="col-12">
-  <p>Toggle ngModel</p>
-  <terra-toggle
-    [inputIcon]="'icon-confirm'"
-    [inputTooltipText]="'toggled with ngModel'"
-    [(ngModel)]="_isToggled"
-    [inputTooltipPlacement]="'right'"
-  >
-  </terra-toggle>
-  <span *ngIf="_isToggled">Toggled!</span>
+    <p>Toggle ngModel</p>
+    <terra-toggle
+        [inputIcon]="'icon-confirm'"
+        [inputTooltipText]="'toggled with ngModel'"
+        [(ngModel)]="_isToggled"
+        [inputTooltipPlacement]="'right'"
+    >
+    </terra-toggle>
+    <span *ngIf="_isToggled">Toggled!</span>
 </div>

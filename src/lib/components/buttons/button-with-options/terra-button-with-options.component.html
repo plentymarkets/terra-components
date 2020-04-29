@@ -1,36 +1,36 @@
 <terra-button
-  #optionsToggleButton
-  [inputCaption]="inputCaption"
-  [inputIcon]="inputIcon"
-  [inputIsSmall]="inputIsSmall"
-  [inputIsDisabled]="inputIsDisabled"
-  [inputTooltipPlacement]="inputTooltipPlacement"
-  [inputTooltipText]="inputTooltipText"
-  (outputClicked)="_toggleOptions($event)"
+    #optionsToggleButton
+    [inputCaption]="inputCaption"
+    [inputIcon]="inputIcon"
+    [inputIsSmall]="inputIsSmall"
+    [inputIsDisabled]="inputIsDisabled"
+    [inputTooltipPlacement]="inputTooltipPlacement"
+    [inputTooltipText]="inputTooltipText"
+    (outputClicked)="_toggleOptions($event)"
 >
-  <!-- options dropdown -->
-  <ul
-    btn-outer
-    *ngIf="_optionsToggle"
-    class="context-menu"
-    [ngClass]="{ alignRight: _alignRight, small: inputIsSmall }"
-  >
-    <li *ngFor="let option of inputOptions">
-      <a
-        [hidden]="option.isHidden"
-        *ngIf="!option.isDivider"
-        (click)="_optionsClick(option)"
-        [ngClass]="{ disabled: option.isDisabled, alignRight: _alignRight }"
-      >
-        <span
-          *ngIf="option.icon"
-          class="left-icon"
-          [ngClass]="option.icon"
-          [ngStyle]="{ color: option.iconColor }"
-        ></span>
-        {{ option.caption }}
-      </a>
-      <div *ngIf="option.isDivider" class="context-menu-divider"></div>
-    </li>
-  </ul>
+    <!-- options dropdown -->
+    <ul
+        btn-outer
+        *ngIf="_optionsToggle"
+        class="context-menu"
+        [ngClass]="{ alignRight: _alignRight, small: inputIsSmall }"
+    >
+        <li *ngFor="let option of inputOptions">
+            <a
+                [hidden]="option.isHidden"
+                *ngIf="!option.isDivider"
+                (click)="_optionsClick(option)"
+                [ngClass]="{ disabled: option.isDisabled, alignRight: _alignRight }"
+            >
+                <span
+                    *ngIf="option.icon"
+                    class="left-icon"
+                    [ngClass]="option.icon"
+                    [ngStyle]="{ color: option.iconColor }"
+                ></span>
+                {{ option.caption }}
+            </a>
+            <div *ngIf="option.isDivider" class="context-menu-divider"></div>
+        </li>
+    </ul>
 </terra-button>

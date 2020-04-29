@@ -8,35 +8,35 @@ import { Router } from '@angular/router';
 import { MockRouter } from '../../testing/mock-router';
 
 describe('TerraInfoComponent:', () => {
-  let component: TerraInfoComponent;
-  let fixture: ComponentFixture<TerraInfoComponent>;
-  const router: MockRouter = new MockRouter();
+    let component: TerraInfoComponent;
+    let fixture: ComponentFixture<TerraInfoComponent>;
+    const router: MockRouter = new MockRouter();
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [TooltipDirective, TerraInfoComponent],
-      imports: [LocalizationModule.forRoot(l10nConfig)],
-      providers: [
-        {
-          provide: Router,
-          useValue: router
-        }
-      ]
-    }).compileComponents();
-  }));
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [TooltipDirective, TerraInfoComponent],
+            imports: [LocalizationModule.forRoot(l10nConfig)],
+            providers: [
+                {
+                    provide: Router,
+                    useValue: router
+                }
+            ]
+        }).compileComponents();
+    }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(TerraInfoComponent);
-    component = fixture.componentInstance;
+    beforeEach(() => {
+        fixture = TestBed.createComponent(TerraInfoComponent);
+        component = fixture.componentInstance;
 
-    fixture.detectChanges();
-  });
+        fixture.detectChanges();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 
-  it(`should #textPlacement be set to top by default if not set by input`, () => {
-    expect(component.textPlacement).toBe(TerraPlacementEnum.TOP);
-  });
+    it(`should #textPlacement be set to top by default if not set by input`, () => {
+        expect(component.textPlacement).toBe(TerraPlacementEnum.TOP);
+    });
 });

@@ -7,9 +7,9 @@ import { Component, ViewEncapsulation } from '@angular/core';
  * NOTE: This app is not compiled when running `npm run build`. Hence, it will also not be published.
  */
 @Component({
-  selector: 'tc-sandbox-app',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
-  encapsulation: ViewEncapsulation.None
+    selector: 'tc-sandbox-app',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {}

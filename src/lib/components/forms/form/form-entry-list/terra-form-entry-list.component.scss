@@ -1,52 +1,52 @@
 .form-list {
-  > terra-button {
-    float: right;
-  }
+    > terra-button {
+        float: right;
+    }
 
-  margin-bottom: var(--space-sm);
+    margin-bottom: var(--space-sm);
 }
 
 .form-list-entry {
-  display: flex;
+    display: flex;
 
-  > terra-form-container,
-  > terra-form-entry {
-    flex: 1;
-    padding: 0 var(--space-md);
-  }
+    > terra-form-container,
+    > terra-form-entry {
+        flex: 1;
+        padding: 0 var(--space-md);
+    }
 }
 
 .form-list-sort {
-  position: relative;
-  width: 17px;
+    position: relative;
+    width: 17px;
 
-  > terra-button {
-    --btn-height: 17px;
-    --btn-line-height: 18px;
-    --button-border-bottom-group-navigation: none;
-    --color-group-active: var(--color-structure-11);
-    --button-text-color-group-navigation: var(--color-structure-0);
-    --button-background-color-group-navigation: var(--color-structure-9);
-    --btn-padding: 0;
+    > terra-button {
+        --btn-height: 17px;
+        --btn-line-height: 18px;
+        --button-border-bottom-group-navigation: none;
+        --color-group-active: var(--color-structure-11);
+        --button-text-color-group-navigation: var(--color-structure-0);
+        --button-background-color-group-navigation: var(--color-structure-9);
+        --btn-padding: 0;
 
-    position: absolute;
-    display: block;
-    left: 0;
-    top: 0;
+        position: absolute;
+        display: block;
+        left: 0;
+        top: 0;
 
-    &:last-child {
-      top: 17px;
+        &:last-child {
+            top: 17px;
+        }
     }
-  }
 }
 
 :host-context(.theme-compact) {
-  .form-list-sort {
-    width: 42px;
+    .form-list-sort {
+        width: 42px;
 
-    > terra-button:last-child {
-      top: 0;
-      left: 21px;
+        > terra-button:last-child {
+            top: 0;
+            left: 21px;
+        }
     }
-  }
 }

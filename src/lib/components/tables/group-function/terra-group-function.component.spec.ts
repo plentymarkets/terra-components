@@ -10,37 +10,37 @@ import { Router } from '@angular/router';
 import { MockRouter } from '../../../testing/mock-router';
 
 describe('Component: TerraGroupFunctionComponent', () => {
-  let component: TerraGroupFunctionComponent;
-  let fixture: ComponentFixture<TerraGroupFunctionComponent>;
-  const router: MockRouter = new MockRouter();
+    let component: TerraGroupFunctionComponent;
+    let fixture: ComponentFixture<TerraGroupFunctionComponent>;
+    const router: MockRouter = new MockRouter();
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [TooltipDirective, TerraGroupFunctionComponent, TerraButtonComponent],
-      imports: [NoopAnimationsModule, HttpClientModule, LocalizationModule.forRoot(l10nConfig)],
-      providers: [
-        {
-          provide: Router,
-          useValue: router
-        }
-      ]
-    }).compileComponents();
-  }));
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [TooltipDirective, TerraGroupFunctionComponent, TerraButtonComponent],
+            imports: [NoopAnimationsModule, HttpClientModule, LocalizationModule.forRoot(l10nConfig)],
+            providers: [
+                {
+                    provide: Router,
+                    useValue: router
+                }
+            ]
+        }).compileComponents();
+    }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(TerraGroupFunctionComponent);
-    component = fixture.componentInstance;
+    beforeEach(() => {
+        fixture = TestBed.createComponent(TerraGroupFunctionComponent);
+        component = fixture.componentInstance;
 
-    fixture.detectChanges();
-  });
+        fixture.detectChanges();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 
-  it('should initialize the component properties', () => {
-    expect(component.show).toEqual(false);
-    expect(component.disableExecution).toEqual(true);
-    expect(component.executeGroupFunction).toBeTruthy();
-  });
+    it('should initialize the component properties', () => {
+        expect(component.show).toEqual(false);
+        expect(component.disableExecution).toEqual(true);
+        expect(component.executeGroupFunction).toBeTruthy();
+    });
 });

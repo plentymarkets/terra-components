@@ -12,274 +12,274 @@
 @import '../components/forms/input/terra-input.component.glob';
 
 * {
-  &:focus {
-    outline: none;
-  }
+    &:focus {
+        outline: none;
+    }
 }
 
 body {
-  font-family: var(--font-family);
-  font-size: var(--font-size-3);
-  font-weight: var(--font-weight-1);
-  line-height: 1.5 !important;
-  color: var(--color-structure-12);
-  background-color: var(--color-structure-2);
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: 0;
-  border: 0;
-  padding: 0;
-  direction: ltr;
+    font-family: var(--font-family);
+    font-size: var(--font-size-3);
+    font-weight: var(--font-weight-1);
+    line-height: 1.5 !important;
+    color: var(--color-structure-12);
+    background-color: var(--color-structure-2);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0;
+    border: 0;
+    padding: 0;
+    direction: ltr;
 }
 
 .tippy-tooltip {
-  font-size: var(--font-size-2);
-  opacity: 1 !important;
+    font-size: var(--font-size-2);
+    opacity: 1 !important;
 
-  &.tippy-arrow {
-    border-top-color: var(--tooltip-arrow-border-color, var(--color-structure-12));
-  }
-  &.tippy-arrow {
-    border-left-color: var(--tooltip-arrow-border-color, var(--color-structure-12));
-  }
-  &.tippy-arrow {
-    border-bottom-color: var(--tooltip-arrow-border-color, var(--color-structure-12));
-  }
-  &.tippy-arrow {
-    border-right-color: var(--tooltip-arrow-border-color, var(--color-structure-12));
-  }
+    &.tippy-arrow {
+        border-top-color: var(--tooltip-arrow-border-color, var(--color-structure-12));
+    }
+    &.tippy-arrow {
+        border-left-color: var(--tooltip-arrow-border-color, var(--color-structure-12));
+    }
+    &.tippy-arrow {
+        border-bottom-color: var(--tooltip-arrow-border-color, var(--color-structure-12));
+    }
+    &.tippy-arrow {
+        border-right-color: var(--tooltip-arrow-border-color, var(--color-structure-12));
+    }
 
-  .tippy-inner {
-    background-color: var(--tooltip-background-color, var(--color-structure-12));
-    color: var(--tooltip-color, var(--color-structure-12));
-    box-shadow: var(--box-shadow);
-    @include font-rendering;
-  }
+    .tippy-inner {
+        background-color: var(--tooltip-background-color, var(--color-structure-12));
+        color: var(--tooltip-color, var(--color-structure-12));
+        box-shadow: var(--box-shadow);
+        @include font-rendering;
+    }
 }
 
 .terra-view {
-  height: 100%;
+    height: 100%;
 }
 
 ///////////////// BOOTSTRAP GRID /////////////////
 .container-fluid,
 .container {
-  padding-right: var(--space-xs);
-  padding-left: var(--space-xs);
+    padding-right: var(--space-xs);
+    padding-left: var(--space-xs);
 }
 
 .row {
-  margin-left: calc(-1 * var(--space-xs));
-  margin-right: calc(-1 * var(--space-xs));
+    margin-left: calc(-1 * var(--space-xs));
+    margin-right: calc(-1 * var(--space-xs));
 }
 
 [class^='col-'],
 [class*=' col-'],
 .col {
-  padding-right: var(--space-xs);
-  padding-left: var(--space-xs);
-  transition: all var(--transition-md);
+    padding-right: var(--space-xs);
+    padding-left: var(--space-xs);
+    transition: all var(--transition-md);
 }
 
 /////////////////// HEADINGS ///////////////////
 h1 {
-  font-size: var(--font-size-7);
-  font-weight: var(--font-weight-3);
+    font-size: var(--font-size-7);
+    font-weight: var(--font-weight-3);
 }
 
 h2 {
-  font-size: var(--font-size-6);
-  font-weight: var(--font-weight-3);
+    font-size: var(--font-size-6);
+    font-weight: var(--font-weight-3);
 }
 
 h3 {
-  font-size: var(--font-size-5);
-  font-weight: var(--font-weight-3);
+    font-size: var(--font-size-5);
+    font-weight: var(--font-weight-3);
 }
 
 h4 {
-  font-size: var(--font-size-5);
-  font-weight: var(--font-weight-3);
+    font-size: var(--font-size-5);
+    font-weight: var(--font-weight-3);
 }
 
 h5 {
-  font-size: var(--font-size-4);
-  font-weight: var(--font-weight-3);
+    font-size: var(--font-size-4);
+    font-weight: var(--font-weight-3);
 }
 
 p,
 span,
 a {
-  font-size: var(--font-size-3);
-  font-weight: var(--font-weight-1);
+    font-size: var(--font-size-3);
+    font-weight: var(--font-weight-1);
 }
 
 a[href] {
-  color: var(--color-link);
-  text-decoration: none;
+    color: var(--color-link);
+    text-decoration: none;
 
-  &:hover {
-    color: var(--color-active);
-    cursor: pointer;
-  }
+    &:hover {
+        color: var(--color-active);
+        cursor: pointer;
+    }
 }
 
 /// context-menu ////
 
 .context-menu {
-  font-family: var(--font-family);
-  font-weight: var(--font-weight-1);
-  position: absolute;
-  opacity: 0;
-  visibility: hidden;
-  transition: var(--transition-menu);
-  transition-delay: var(--transition-menu-delay);
-  padding: var(--space-sm) 0;
-  background-color: var(--context-menu-background-color, var(--color-structure-11));
-  border-radius: var(--border-radius);
+    font-family: var(--font-family);
+    font-weight: var(--font-weight-1);
+    position: absolute;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition-menu);
+    transition-delay: var(--transition-menu-delay);
+    padding: var(--space-sm) 0;
+    background-color: var(--context-menu-background-color, var(--color-structure-11));
+    border-radius: var(--border-radius);
 
-  right: 0;
-  display: block;
-  list-style-type: none;
-  margin: 0;
-  text-align: left;
-  z-index: var(--zIndex-9);
-  box-shadow: var(--box-shadow);
+    right: 0;
+    display: block;
+    list-style-type: none;
+    margin: 0;
+    text-align: left;
+    z-index: var(--zIndex-9);
+    box-shadow: var(--box-shadow);
 
-  li {
-    color: var(--context-menu-color, var(--color-structure-0)) !important;
-
-    &:hover {
-      background-color: var(--color-active);
-      color: var(--color-structure-0) !important;
-    }
-
-    a {
-      cursor: pointer;
-      padding: 4px 18px 4px 10px;
-      display: list-item;
-      width: 100%;
-      text-decoration: none;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      overflow: hidden;
-      font-size: var(--context-menu-a-font-size, var(--font-size-1));
-      line-height: var(--font-size-5);
-      font-weight: var(--font-weight-1);
-      color: inherit;
-      @include font-rendering;
-
-      &:hover {
-        color: inherit;
-      }
-
-      .left-icon {
-        padding-right: 2px;
-        &:before {
-          vertical-align: middle;
-        }
-      }
-      .right-icon {
-        position: absolute;
-        right: 4px;
-        line-height: var(--font-size-5);
+    li {
+        color: var(--context-menu-color, var(--color-structure-0)) !important;
 
         &:hover {
-          color: var(--color-active);
-          opacity: 1;
+            background-color: var(--color-active);
+            color: var(--color-structure-0) !important;
         }
-      }
-      &.disabled {
-        color: var(--color-structure-6) !important;
-        &:hover {
-          background-color: inherit;
-          cursor: not-allowed;
+
+        a {
+            cursor: pointer;
+            padding: 4px 18px 4px 10px;
+            display: list-item;
+            width: 100%;
+            text-decoration: none;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            font-size: var(--context-menu-a-font-size, var(--font-size-1));
+            line-height: var(--font-size-5);
+            font-weight: var(--font-weight-1);
+            color: inherit;
+            @include font-rendering;
+
+            &:hover {
+                color: inherit;
+            }
+
+            .left-icon {
+                padding-right: 2px;
+                &:before {
+                    vertical-align: middle;
+                }
+            }
+            .right-icon {
+                position: absolute;
+                right: 4px;
+                line-height: var(--font-size-5);
+
+                &:hover {
+                    color: var(--color-active);
+                    opacity: 1;
+                }
+            }
+            &.disabled {
+                color: var(--color-structure-6) !important;
+                &:hover {
+                    background-color: inherit;
+                    cursor: not-allowed;
+                }
+            }
         }
-      }
     }
-  }
 }
 
 .tab-wrapper {
-  .nav-item:first-child {
-    .context-menu {
-      left: 0;
-      right: initial;
+    .nav-item:first-child {
+        .context-menu {
+            left: 0;
+            right: initial;
+        }
     }
-  }
 }
 
 .rating-positive {
-  color: var(--color-accent);
+    color: var(--color-accent);
 }
 
 .rating-negative {
-  color: var(--color-alert);
+    color: var(--color-alert);
 }
 
 terra-alert-panel,
 * {
-  .alert {
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
+    .alert {
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow);
 
-    &.alert-danger {
-      background-color: var(--color-alert);
-      border: 2px solid var(--color-alert);
-      color: var(--color-structure-0);
-      &::before {
-        color: var(--color-structure-0);
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-      }
-    }
-    &.alert-success {
-      background-color: var(--color-add);
-      border: 2px solid var(--color-add);
-      color: var(--color-structure-0);
-      &::before {
-        color: var(--color-structure-0);
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-      }
-    }
-    &.alert-warning {
-      background-color: var(--color-accent);
-      border: 2px solid var(--color-accent);
-      color: var(--color-structure-11);
-      &::before {
-        color: var(--color-structure-11);
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-      }
-    }
-    &.alert-info {
-      background-color: var(--color-active);
-      border: 2px solid var(--color-active);
-      color: var(--color-structure-0);
-      &::before {
-        color: var(--color-structure-0);
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-      }
-    }
-    button {
-      &.close {
-        text-shadow: none;
-
-        &:hover,
-        &:focus {
-          color: var(--color-structur-0);
+        &.alert-danger {
+            background-color: var(--color-alert);
+            border: 2px solid var(--color-alert);
+            color: var(--color-structure-0);
+            &::before {
+                color: var(--color-structure-0);
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
         }
-      }
+        &.alert-success {
+            background-color: var(--color-add);
+            border: 2px solid var(--color-add);
+            color: var(--color-structure-0);
+            &::before {
+                color: var(--color-structure-0);
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
+        }
+        &.alert-warning {
+            background-color: var(--color-accent);
+            border: 2px solid var(--color-accent);
+            color: var(--color-structure-11);
+            &::before {
+                color: var(--color-structure-11);
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
+        }
+        &.alert-info {
+            background-color: var(--color-active);
+            border: 2px solid var(--color-active);
+            color: var(--color-structure-0);
+            &::before {
+                color: var(--color-structure-0);
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
+        }
+        button {
+            &.close {
+                text-shadow: none;
+
+                &:hover,
+                &:focus {
+                    color: var(--color-structur-0);
+                }
+            }
+        }
     }
-  }
 }
 
 .btn-group,
 .btn-group-vertical {
-  display: inline-block;
+    display: inline-block;
 }

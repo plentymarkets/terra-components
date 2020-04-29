@@ -1,35 +1,35 @@
 <div class="terra-tree">
-  <ul>
-    <ng-template ngFor let-leaf [ngForOf]="inputLeafList">
-      <li
-        class="node leaf"
-        [ngClass]="{ collapsed: !leaf.isOpen, active: leaf.isActive, disabled: leaf.isDisabled }"
-      >
-        <div class="leaf-titel flex-container" (click)="_onLeafClick(leaf)">
-          <terra-checkbox
-            [inputIsDisabled]="leaf.isDisabled"
-            [inputCaption]="leaf.caption"
-            (ngModelChange)="_onCheckboxValueChange($event, leaf)"
-            [(ngModel)]="leaf.checkboxChecked"
-            [notifyOnChanges]="true"
-            [isIndeterminate]="leaf.isIndeterminate"
-          >
-          </terra-checkbox>
-        </div>
-        <span
-          class="node-toggle"
-          *ngIf="leaf.subLeafList && leaf.subLeafList.length > 0"
-          (click)="_toggleOpen(leaf)"
-        ></span>
-        <terra-checkbox-tree
-          *ngIf="leaf.subLeafList && leaf.subLeafList.length > 0"
-          [inputLeafList]="leaf.subLeafList"
-          [inputParentLeafList]="inputLeafList"
-          (valueChange)="valueChange.emit($event)"
-          [inputCompleteLeafList]="inputCompleteLeafList"
-        >
-        </terra-checkbox-tree>
-      </li>
-    </ng-template>
-  </ul>
+    <ul>
+        <ng-template ngFor let-leaf [ngForOf]="inputLeafList">
+            <li
+                class="node leaf"
+                [ngClass]="{ collapsed: !leaf.isOpen, active: leaf.isActive, disabled: leaf.isDisabled }"
+            >
+                <div class="leaf-titel flex-container" (click)="_onLeafClick(leaf)">
+                    <terra-checkbox
+                        [inputIsDisabled]="leaf.isDisabled"
+                        [inputCaption]="leaf.caption"
+                        (ngModelChange)="_onCheckboxValueChange($event, leaf)"
+                        [(ngModel)]="leaf.checkboxChecked"
+                        [notifyOnChanges]="true"
+                        [isIndeterminate]="leaf.isIndeterminate"
+                    >
+                    </terra-checkbox>
+                </div>
+                <span
+                    class="node-toggle"
+                    *ngIf="leaf.subLeafList && leaf.subLeafList.length > 0"
+                    (click)="_toggleOpen(leaf)"
+                ></span>
+                <terra-checkbox-tree
+                    *ngIf="leaf.subLeafList && leaf.subLeafList.length > 0"
+                    [inputLeafList]="leaf.subLeafList"
+                    [inputParentLeafList]="inputLeafList"
+                    (valueChange)="valueChange.emit($event)"
+                    [inputCompleteLeafList]="inputCompleteLeafList"
+                >
+                </terra-checkbox-tree>
+            </li>
+        </ng-template>
+    </ul>
 </div>

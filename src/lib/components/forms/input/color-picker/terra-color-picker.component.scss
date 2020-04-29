@@ -1,33 +1,33 @@
 @import '../terra-input.component';
 
 .input-wrapper {
-  input[type='color'] {
-    opacity: 0;
-    margin: 0;
-    padding: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: var(--height-md);
-    height: var(--height-md);
-    z-index: var(--zIndex-1);
+    input[type='color'] {
+        opacity: 0;
+        margin: 0;
+        padding: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: var(--height-md);
+        height: var(--height-md);
+        z-index: var(--zIndex-1);
 
-    &:hover {
-      cursor: pointer;
+        &:hover {
+            cursor: pointer;
+        }
     }
-  }
 
-  .color-picker {
-    border: 1px solid var(--border-color);
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: var(--height-md);
-    height: var(--height-md);
-    z-index: 0;
+    .color-picker {
+        border: 1px solid var(--border-color);
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: var(--height-md);
+        height: var(--height-md);
+        z-index: 0;
 
-    &.text-invert {
-      color: var(--color-structure-0);
+        &.text-invert {
+            color: var(--color-structure-0);
+        }
     }
-  }
 }

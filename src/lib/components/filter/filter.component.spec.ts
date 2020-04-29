@@ -18,72 +18,70 @@ import { MockRouter } from '../../testing/mock-router';
 import Spy = jasmine.Spy;
 
 describe('FilterComponent:', () => {
-  let filterComponent: FilterComponent;
-  let fixture: ComponentFixture<FilterComponent>;
-  let buttons: Array<DebugElement>;
-  const router: MockRouter = new MockRouter();
+    let filterComponent: FilterComponent;
+    let fixture: ComponentFixture<FilterComponent>;
+    let buttons: Array<DebugElement>;
+    const router: MockRouter = new MockRouter();
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [
-        TooltipDirective,
-        TerraLabelTooltipDirective,
-        TerraButtonComponent,
-        TerraBaseToolbarComponent,
-        TerraInfoComponent,
-        TerraPortletComponent,
-        FilterComponent
-      ],
-      imports: [BrowserAnimationsModule, HttpClientModule, LocalizationModule.forRoot(l10nConfig)],
-      providers: [
-        {
-          provide: Router,
-          useValue: router
-        }
-      ]
-    }).compileComponents();
-  }));
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [
+                TooltipDirective,
+                TerraLabelTooltipDirective,
+                TerraButtonComponent,
+                TerraBaseToolbarComponent,
+                TerraInfoComponent,
+                TerraPortletComponent,
+                FilterComponent
+            ],
+            imports: [BrowserAnimationsModule, HttpClientModule, LocalizationModule.forRoot(l10nConfig)],
+            providers: [
+                {
+                    provide: Router,
+                    useValue: router
+                }
+            ]
+        }).compileComponents();
+    }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(FilterComponent);
-    filterComponent = fixture.componentInstance;
-    buttons = fixture.debugElement.queryAll(
-      By.css('form terra-base-toolbar div.btn-group terra-button')
-    );
+    beforeEach(() => {
+        fixture = TestBed.createComponent(FilterComponent);
+        filterComponent = fixture.componentInstance;
+        buttons = fixture.debugElement.queryAll(By.css('form terra-base-toolbar div.btn-group terra-button'));
 
-    fixture.detectChanges();
-  });
-
-  it(`should create`, () => {
-    expect(filterComponent).toBeTruthy();
-  });
-
-  it(`should initialize correctly`, () => {
-    expect(filterComponent.reset).toBeDefined();
-    expect(filterComponent.search).toBeDefined();
-  });
-
-  it(`should emit on #search if search button is clicked`, () => {
-    let spy: Spy = jasmine.createSpy('search');
-
-    filterComponent.search.subscribe(() => {
-      spy();
+        fixture.detectChanges();
     });
 
-    buttons[0].componentInstance.outputClicked.emit();
-
-    expect(spy).toHaveBeenCalled();
-  });
-
-  it(`should emit on #reset if reset button is clicked`, () => {
-    let spy: Spy = jasmine.createSpy('reset');
-
-    filterComponent.reset.subscribe(() => {
-      spy();
+    it(`should create`, () => {
+        expect(filterComponent).toBeTruthy();
     });
 
-    buttons[1].componentInstance.outputClicked.emit();
+    it(`should initialize correctly`, () => {
+        expect(filterComponent.reset).toBeDefined();
+        expect(filterComponent.search).toBeDefined();
+    });
 
-    expect(spy).toHaveBeenCalled();
-  });
+    it(`should emit on #search if search button is clicked`, () => {
+        let spy: Spy = jasmine.createSpy('search');
+
+        filterComponent.search.subscribe(() => {
+            spy();
+        });
+
+        buttons[0].componentInstance.outputClicked.emit();
+
+        expect(spy).toHaveBeenCalled();
+    });
+
+    it(`should emit on #reset if reset button is clicked`, () => {
+        let spy: Spy = jasmine.createSpy('reset');
+
+        filterComponent.reset.subscribe(() => {
+            spy();
+        });
+
+        buttons[1].componentInstance.outputClicked.emit();
+
+        expect(spy).toHaveBeenCalled();
+    });
 });

@@ -1,27 +1,19 @@
 <terra-3-col>
-  <terra-number-input
-    left
-    [inputName]="'Left column width'"
-    [(ngModel)]="_leftColumnWidth"
-  ></terra-number-input>
-  <terra-number-input
-    center
-    [inputName]="'center column width'"
-    [(ngModel)]="_centerColumnWidth"
-  ></terra-number-input>
-  <terra-number-input
-    right
-    [inputName]="'Right column width'"
-    [(ngModel)]="_rightColumnWidth"
-  ></terra-number-input>
+    <terra-number-input left [inputName]="'Left column width'" [(ngModel)]="_leftColumnWidth"></terra-number-input>
+    <terra-number-input
+        center
+        [inputName]="'center column width'"
+        [(ngModel)]="_centerColumnWidth"
+    ></terra-number-input>
+    <terra-number-input right [inputName]="'Right column width'" [(ngModel)]="_rightColumnWidth"></terra-number-input>
 </terra-3-col>
 
 <terra-3-col
-  [leftColumnWidth]="_leftColumnWidth"
-  [centerColumnWidth]="_centerColumnWidth"
-  [rightColumnWidth]="_rightColumnWidth"
+    [leftColumnWidth]="_leftColumnWidth"
+    [centerColumnWidth]="_centerColumnWidth"
+    [rightColumnWidth]="_rightColumnWidth"
 >
-  <div left [style.background]="'red'">Left</div>
-  <div center [style.background]="'blue'">Center</div>
-  <div right [style.background]="'green'">Right</div>
+    <div left [style.background]="'red'">Left</div>
+    <div center [style.background]="'blue'">Center</div>
+    <div right [style.background]="'green'">Right</div>
 </terra-3-col>

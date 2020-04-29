@@ -10,15 +10,15 @@ import { uniqueValuesValidator } from './unique-values-validator';
  * controls and returns a map of errors. A null map means that validation has passed.
  */
 export class TerraValidators {
-  public static decimal(maxLength: number, decimals: number): ValidatorFn {
-    return terraDecimalValidator(maxLength, decimals);
-  }
+    public static decimal(maxLength: number, decimals: number): ValidatorFn {
+        return terraDecimalValidator(maxLength, decimals);
+    }
 
-  public static iban(control: AbstractControl): ValidationErrors | null {
-    return ibanValidator(control);
-  }
+    public static iban(control: AbstractControl): ValidationErrors | null {
+        return ibanValidator(control);
+    }
 
-  public static uniqueValues(uniqueKeys?: Array<string>): ValidatorFn {
-    return uniqueValuesValidator(uniqueKeys);
-  }
+    public static uniqueValues(uniqueKeys?: Array<string>): ValidatorFn {
+        return uniqueValuesValidator(uniqueKeys);
+    }
 }

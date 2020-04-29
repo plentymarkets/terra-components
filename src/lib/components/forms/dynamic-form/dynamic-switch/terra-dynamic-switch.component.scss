@@ -1,53 +1,53 @@
 :host-context(div.horizontalGroup terra-portlet) {
-  form.horizontalGroupForm {
-    display: flex;
+    form.horizontalGroupForm {
+        display: flex;
 
-    > * {
-      flex-grow: 1;
-      flex-basis: 0;
-      align-self: center;
-    }
+        > * {
+            flex-grow: 1;
+            flex-basis: 0;
+            align-self: center;
+        }
 
-    > :not(:last-child) {
-      margin-right: 5px;
+        > :not(:last-child) {
+            margin-right: 5px;
+        }
     }
-  }
 }
 
 .horizontalGroup {
-  padding: var(--space-sm) 0;
+    padding: var(--space-sm) 0;
 
-  .horizontalGroupLabel {
-    display: block;
-    font-weight: bold;
-  }
+    .horizontalGroupLabel {
+        display: block;
+        font-weight: bold;
+    }
 
-  .horizontalGroupEntry {
-    width: 100%;
-  }
+    .horizontalGroupEntry {
+        width: 100%;
+    }
 }
 
 .verticalGroup {
-  padding: var(--space-sm) 0;
-  width: 100%;
-
-  .subSwitch {
+    padding: var(--space-sm) 0;
     width: 100%;
-  }
 
-  .verticalGroupLabel {
-    font-weight: bold;
-  }
+    .subSwitch {
+        width: 100%;
+    }
 
-  .verticalGroupEntry {
-    width: 100%;
-  }
+    .verticalGroupLabel {
+        font-weight: bold;
+    }
 
-  &:not(:last-child) {
-    margin-right: 0;
-  }
+    .verticalGroupEntry {
+        width: 100%;
+    }
+
+    &:not(:last-child) {
+        margin-right: 0;
+    }
 }
 
 .conditionalSwitch {
-  margin-top: 5px;
+    margin-top: 5px;
 }

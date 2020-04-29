@@ -1,56 +1,47 @@
-<terra-button
-  inputCaption="Open overlay with no buttons"
-  (outputClicked)="_openOverlayWithoutButtons()"
->
+<terra-button inputCaption="Open overlay with no buttons" (outputClicked)="_openOverlayWithoutButtons()">
+</terra-button>
+<terra-button inputCaption="Open overlay with primary button" (outputClicked)="_openOverlayWithPrimaryButton()">
+</terra-button>
+<terra-button inputCaption="Open overlay with secondary button" (outputClicked)="_openOverlayWithSecondaryButton()">
 </terra-button>
 <terra-button
-  inputCaption="Open overlay with primary button"
-  (outputClicked)="_openOverlayWithPrimaryButton()"
->
-</terra-button>
-<terra-button
-  inputCaption="Open overlay with secondary button"
-  (outputClicked)="_openOverlayWithSecondaryButton()"
->
-</terra-button>
-<terra-button
-  inputCaption="Open static overlay with primary and secondary button"
-  (outputClicked)="_openOverlayStatic()"
+    inputCaption="Open static overlay with primary and secondary button"
+    (outputClicked)="_openOverlayStatic()"
 >
 </terra-button>
 
 <terra-overlay
-  #viewChildOverlayWithoutButtons
-  inputOverlayTitle="Showcase overlay with no buttons"
-  [inputIsSmall]="true"
+    #viewChildOverlayWithoutButtons
+    inputOverlayTitle="Showcase overlay with no buttons"
+    [inputIsSmall]="true"
 >
-  <p>{{_exampleText}}</p>
+    <p>{{_exampleText}}</p>
 </terra-overlay>
 
 <terra-overlay
-  #viewChildOverlayWithPrimaryButton
-  inputOverlayTitle="Showcase overlay with primary button (large)"
-  [inputIsLarge]="true"
-  [inputPrimaryButtonInterface]="_primaryButtonInterface"
+    #viewChildOverlayWithPrimaryButton
+    inputOverlayTitle="Showcase overlay with primary button (large)"
+    [inputIsLarge]="true"
+    [inputPrimaryButtonInterface]="_primaryButtonInterface"
 >
-  <p>{{_exampleText}}</p>
+    <p>{{_exampleText}}</p>
 </terra-overlay>
 
 <terra-overlay
-  #viewChildOverlayWithSecondaryButton
-  inputOverlayTitle="Showcase overlay with secondary button (small)"
-  [inputIsSmall]="true"
-  [inputSecondaryButtonInterface]="_secondaryButtonInterface"
+    #viewChildOverlayWithSecondaryButton
+    inputOverlayTitle="Showcase overlay with secondary button (small)"
+    [inputIsSmall]="true"
+    [inputSecondaryButtonInterface]="_secondaryButtonInterface"
 >
-  <p>{{_exampleText}}</p>
+    <p>{{_exampleText}}</p>
 </terra-overlay>
 
 <terra-overlay
-  #viewChildOverlayStatic
-  inputOverlayTitle="Showcase static overlay with primary and secondary button"
-  [inputPrimaryButtonInterface]="_staticPrimaryButtonInterface"
-  [inputSecondaryButtonInterface]="_staticSecondaryButtonInterface"
-  [inputIsStatic]="true"
+    #viewChildOverlayStatic
+    inputOverlayTitle="Showcase static overlay with primary and secondary button"
+    [inputPrimaryButtonInterface]="_staticPrimaryButtonInterface"
+    [inputSecondaryButtonInterface]="_staticSecondaryButtonInterface"
+    [inputIsStatic]="true"
 >
-  <p>{{_exampleText}}</p>
+    <p>{{_exampleText}}</p>
 </terra-overlay>

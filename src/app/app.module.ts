@@ -10,7 +10,7 @@ import { TerraComponentsExamplesModule } from '../lib/terra-components-examples.
 import { RouterModule } from '@angular/router';
 
 export function initL10n(l10nLoader: L10nLoader): Function {
-  return (): Promise<void> => l10nLoader.load();
+    return (): Promise<void> => l10nLoader.load();
 }
 
 /**
@@ -19,23 +19,23 @@ export function initL10n(l10nLoader: L10nLoader): Function {
  * NOTE: It is not publicly accessible either.
  */
 @NgModule({
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    RouterModule.forRoot([]),
-    HttpClientModule,
-    LocalizationModule.forRoot(l10nConfig),
-    TerraComponentsExamplesModule
-  ],
-  declarations: [AppComponent, ShowcaseComponent],
-  providers: [
-    {
-      provide: APP_INITIALIZER,
-      useFactory: initL10n,
-      deps: [L10nLoader],
-      multi: true
-    }
-  ],
-  bootstrap: [AppComponent]
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        RouterModule.forRoot([]),
+        HttpClientModule,
+        LocalizationModule.forRoot(l10nConfig),
+        TerraComponentsExamplesModule
+    ],
+    declarations: [AppComponent, ShowcaseComponent],
+    providers: [
+        {
+            provide: APP_INITIALIZER,
+            useFactory: initL10n,
+            deps: [L10nLoader],
+            multi: true
+        }
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule {}

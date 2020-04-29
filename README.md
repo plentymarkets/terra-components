@@ -8,10 +8,10 @@ These are the official plugin components developed by plentymarkets. This reposi
 
 ## Plugin documentation
 
-- Learn how to create your [first plentymarkets angular plugin](https://developers.plentymarkets.com/tutorials/angular-plugin)
-- Terra Components [API documentation](https://developers.plentymarkets.com/terra-doc/components)
-- Overview of plentymarkets [plugin interfaces](https://developers.plentymarkets.com/dev-doc/basics#guide-interface)
-- The plentymarkets [REST API](https://developers.plentymarkets.com/rest-doc/introduction)
+-   Learn how to create your [first plentymarkets angular plugin](https://developers.plentymarkets.com/tutorials/angular-plugin)
+-   Terra Components [API documentation](https://developers.plentymarkets.com/terra-doc/components)
+-   Overview of plentymarkets [plugin interfaces](https://developers.plentymarkets.com/dev-doc/basics#guide-interface)
+-   The plentymarkets [REST API](https://developers.plentymarkets.com/rest-doc/introduction)
 
 ## Browser Compatibility
 

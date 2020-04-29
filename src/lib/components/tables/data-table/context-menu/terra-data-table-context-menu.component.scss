@@ -1,24 +1,24 @@
 .context-menu {
-  position: absolute;
-  right: auto;
-  z-index: 1030;
+    position: absolute;
+    right: auto;
+    z-index: 1030;
 
-  &.visible {
-    display: inline-block;
-    visibility: visible;
-    opacity: 1;
-    transition: var(--transition-0);
-  }
+    &.visible {
+        display: inline-block;
+        visibility: visible;
+        opacity: 1;
+        transition: var(--transition-0);
+    }
 
-  a {
-    --context-menu-a-font-size: 12px;
-  }
+    a {
+        --context-menu-a-font-size: 12px;
+    }
 }
 
 .context-menu-divider {
-  background: var(--color-structure-3);
-  cursor: default;
-  height: 1px;
-  overflow: hidden;
-  margin: 0.5rem 0;
+    background: var(--color-structure-3);
+    cursor: default;
+    height: 1px;
+    overflow: hidden;
+    margin: 0.5rem 0;
 }

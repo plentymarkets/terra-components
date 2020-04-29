@@ -8,92 +8,88 @@ const tildeImporter = require('node-sass-tilde-importer');
 
 // convert global scss styles to css files
 function compileGlobalStyles() {
-  return src(config.sources.scss)
-    .pipe(
-      sass({
-        importer: tildeImporter,
-        outputStyle: 'compressed'
-      }).on('error', sass.logError)
-    )
-    .pipe(dest('dist/styles'));
+    return src(config.sources.scss)
+        .pipe(
+            sass({
+                importer: tildeImporter,
+                outputStyle: 'compressed'
+            }).on('error', sass.logError)
+        )
+        .pipe(dest('dist/styles'));
 }
 const compileStyles = compileGlobalStyles;
 exports.compileStyles = compileStyles;
 
 //copy fonts to dist
 function copyFonts() {
-  return src(config.fileSelectors.allFonts).pipe(dest(config.destinations.fontsOutputPath));
+    return src(config.fileSelectors.allFonts).pipe(dest(config.destinations.fontsOutputPath));
 }
 
 //copy lang to dist
 function copyLang() {
-  return src(config.fileSelectors.allLang).pipe(dest(config.destinations.langOutputPath));
+    return src(config.fileSelectors.allLang).pipe(dest(config.destinations.langOutputPath));
 }
 
 //copy README to dist
 function copyReadme() {
-  return src(config.sources.readme).pipe(dest(config.destinations.tsOutputPath));
+    return src(config.sources.readme).pipe(dest(config.destinations.tsOutputPath));
 }
 
 function copyIconsScss() {
-  return src('src/lib/styles/icons.scss').pipe(dest(config.destinations.styles));
+    return src('src/lib/styles/icons.scss').pipe(dest(config.destinations.styles));
 }
 
 function copyVariablesScss() {
-  return src('src/lib/styles/_variables.scss').pipe(dest(config.destinations.styles));
+    return src('src/lib/styles/_variables.scss').pipe(dest(config.destinations.styles));
 }
 
 function copyPlentyIconsScss() {
-  return src('src/lib/styles/fonts/plentyicons.scss').pipe(
-    dest(config.destinations.styles + 'fonts')
-  );
+    return src('src/lib/styles/fonts/plentyicons.scss').pipe(dest(config.destinations.styles + 'fonts'));
 }
 
 function copyCustomDataTableScss() {
-  return src('src/lib/components/tables/data-table/custom-data-table.scss').pipe(
-    dest('dist/components/tables/data-table')
-  );
+    return src('src/lib/components/tables/data-table/custom-data-table.scss').pipe(
+        dest('dist/components/tables/data-table')
+    );
 }
 
 function copyNodeTreeScss() {
-  return src('src/lib/components/tree/node-tree/terra-node-tree.component.scss').pipe(
-    dest('dist/components/tree/node-tree')
-  );
+    return src('src/lib/components/tree/node-tree/terra-node-tree.component.scss').pipe(
+        dest('dist/components/tree/node-tree')
+    );
 }
 
 function copyTagScss() {
-  return src('src/lib/components/layouts/tag/terra-tag.component.scss').pipe(
-    dest('dist/components/layouts/tag')
-  );
+    return src('src/lib/components/layouts/tag/terra-tag.component.scss').pipe(dest('dist/components/layouts/tag'));
 }
 
 function copyTagListScss() {
-  return src('src/lib/components/layouts/taglist/terra-taglist.component.scss').pipe(
-    dest('dist/components/layouts/taglist')
-  );
+    return src('src/lib/components/layouts/taglist/terra-taglist.component.scss').pipe(
+        dest('dist/components/layouts/taglist')
+    );
 }
 
 function copyButtonScss() {
-  return src('src/lib/components/buttons/button/terra-button.component.scss').pipe(
-    dest('dist/components/buttons/button')
-  );
+    return src('src/lib/components/buttons/button/terra-button.component.scss').pipe(
+        dest('dist/components/buttons/button')
+    );
 }
 
 const copySassFiles = parallel(
-  copyIconsScss,
-  copyVariablesScss,
-  copyPlentyIconsScss,
-  copyCustomDataTableScss,
-  copyNodeTreeScss,
-  copyTagScss,
-  copyTagListScss,
-  copyButtonScss
+    copyIconsScss,
+    copyVariablesScss,
+    copyPlentyIconsScss,
+    copyCustomDataTableScss,
+    copyNodeTreeScss,
+    copyTagScss,
+    copyTagListScss,
+    copyButtonScss
 );
 const copyFilesToDist = parallel(copyFonts, copyLang, copyReadme, copySassFiles);
 
 //copy files from dist to terra
 function copyToTerra() {
-  return src(config.sources.dist).pipe(dest(config.destinations.terra));
+    return src(config.sources.dist).pipe(dest(config.destinations.terra));
 }
 
 /**
@@ -122,25 +118,25 @@ exports.copy = copy;
  *
  **/
 function changeVersion(done) {
-  const libPath = 'src/lib/package.json';
-  const distPath = 'dist/package.json';
-  const increment = argv.increment ? argv.increment : 'patch';
-  const preid = argv.preid ? argv.preid : '';
-  const jsonLib = JSON.parse(fs.readFileSync(libPath));
-  const jsonDist = JSON.parse(fs.readFileSync(distPath));
+    const libPath = 'src/lib/package.json';
+    const distPath = 'dist/package.json';
+    const increment = argv.increment ? argv.increment : 'patch';
+    const preid = argv.preid ? argv.preid : '';
+    const jsonLib = JSON.parse(fs.readFileSync(libPath));
+    const jsonDist = JSON.parse(fs.readFileSync(distPath));
 
-  console.log('-------------------------------------------------');
-  console.log('--- OLD PACKAGE VERSION: ' + jsonDist.version + ' ---');
+    console.log('-------------------------------------------------');
+    console.log('--- OLD PACKAGE VERSION: ' + jsonDist.version + ' ---');
 
-  const version = semver.inc(jsonDist.version, increment, preid);
+    const version = semver.inc(jsonDist.version, increment, preid);
 
-  console.log('--- NEW PACKAGE VERSION: ' + version + ' ---');
-  console.log('-------------------------------------------------');
+    console.log('--- NEW PACKAGE VERSION: ' + version + ' ---');
+    console.log('-------------------------------------------------');
 
-  jsonDist.version = version;
-  jsonLib.version = version;
-  fs.writeFileSync(libPath, JSON.stringify(jsonLib, null, '\t'));
-  fs.writeFileSync(distPath, JSON.stringify(jsonDist, null, '\t'));
-  done();
+    jsonDist.version = version;
+    jsonLib.version = version;
+    fs.writeFileSync(libPath, JSON.stringify(jsonLib, null, '\t'));
+    fs.writeFileSync(distPath, JSON.stringify(jsonDist, null, '\t'));
+    done();
 }
 exports.changeVersion = changeVersion;

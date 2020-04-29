@@ -1,37 +1,29 @@
 <terra-portlet inputPortletHeader="TerraTagSelect">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-8">
-        <terra-tag-select [(ngModel)]="_selectedTags" [tags]="_tags"></terra-tag-select>
-      </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <terra-tag-select [(ngModel)]="_selectedTags" [tags]="_tags"></terra-tag-select>
+            </div>
+        </div>
     </div>
-  </div>
 </terra-portlet>
 
 <terra-portlet inputPortletHeader="Disabled TerraTagSelect">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-8">
-        <terra-tag-select
-          [(ngModel)]="_selectedTags"
-          [tags]="_tags"
-          [isDisabled]="true"
-        ></terra-tag-select>
-      </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <terra-tag-select [(ngModel)]="_selectedTags" [tags]="_tags" [isDisabled]="true"></terra-tag-select>
+            </div>
+        </div>
     </div>
-  </div>
 </terra-portlet>
 
 <terra-portlet inputPortletHeader="Read only TerraTagSelect">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-8">
-        <terra-tag-select
-          [(ngModel)]="_selectedTags"
-          [tags]="_tags"
-          [isReadOnly]="true"
-        ></terra-tag-select>
-      </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <terra-tag-select [(ngModel)]="_selectedTags" [tags]="_tags" [isReadOnly]="true"></terra-tag-select>
+            </div>
+        </div>
     </div>
-  </div>
 </terra-portlet>

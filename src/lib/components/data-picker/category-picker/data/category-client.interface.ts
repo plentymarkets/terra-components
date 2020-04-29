@@ -1,3 +1,3 @@
 export interface CategoryClientInterface {
-  plentyId: number;
+    plentyId: number;
 }

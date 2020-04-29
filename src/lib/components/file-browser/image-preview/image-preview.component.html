@@ -1,37 +1,37 @@
 <div *ngIf="inputStorageObject && inputStorageService?.isImagePreviewEnabled">
-  <terra-base-toolbar *ngIf="_canHandleMetadata">
-    <div class="btn-group" role="group">
-      <terra-button
-        inputIcon="icon-save"
-        [inputTooltipText]="_translationPrefix + '.saveMetadata' | translate: _lang"
-        (outputClicked)="_updateMetadata()"
-      >
-      </terra-button>
-    </div>
-  </terra-base-toolbar>
+    <terra-base-toolbar *ngIf="_canHandleMetadata">
+        <div class="btn-group" role="group">
+            <terra-button
+                inputIcon="icon-save"
+                [inputTooltipText]="_translationPrefix + '.saveMetadata' | translate: _lang"
+                (outputClicked)="_updateMetadata()"
+            >
+            </terra-button>
+        </div>
+    </terra-base-toolbar>
 
-  <terra-portlet>
-    <div class="image-preview">
-      <div class="preview-container">
-        <div [style.background-image]="'url(' + inputStorageObject.previewUrl + ')'"></div>
-      </div>
+    <terra-portlet>
+        <div class="image-preview">
+            <div class="preview-container">
+                <div [style.background-image]="'url(' + inputStorageObject.previewUrl + ')'"></div>
+            </div>
 
-      <div *ngIf="_canHandleMetadata">
-        <terra-text-input
-          [inputName]="_translationPrefix + '.imageSize' | translate: _lang"
-          [inputIsReadonly]="true"
-          [ngModel]="_metadata.width ? _metadata.width + ' x ' + _metadata.height + ' px' : '-'"
-        ></terra-text-input>
+            <div *ngIf="_canHandleMetadata">
+                <terra-text-input
+                    [inputName]="_translationPrefix + '.imageSize' | translate: _lang"
+                    [inputIsReadonly]="true"
+                    [ngModel]="_metadata.width ? _metadata.width + ' x ' + _metadata.height + ' px' : '-'"
+                ></terra-text-input>
 
-        <terra-text-input
-          [inputName]="_translationPrefix + '.altText' | translate: _lang"
-          [(ngModel)]="_metadata.alttext"
-        ></terra-text-input>
-      </div>
-    </div>
+                <terra-text-input
+                    [inputName]="_translationPrefix + '.altText' | translate: _lang"
+                    [(ngModel)]="_metadata.alttext"
+                ></terra-text-input>
+            </div>
+        </div>
 
-    <div class="loader" *ngIf="_isLoading">
-      <div class="icon-loading"></div>
-    </div>
-  </terra-portlet>
+        <div class="loader" *ngIf="_isLoading">
+            <div class="icon-loading"></div>
+        </div>
+    </terra-portlet>
 </div>

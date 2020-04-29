@@ -11,21 +11,21 @@ import { TerraLoadingSpinnerService } from '../components/loading-spinner/servic
  * @description List of providers for all http interceptors
  */
 export const httpInterceptorProviders: Array<Provider> = [
-  {
-    provide: HTTP_INTERCEPTORS,
-    useClass: AuthInterceptor,
-    multi: true
-  },
-  {
-    provide: HTTP_INTERCEPTORS,
-    useClass: ErrorInterceptor,
-    multi: true,
-    deps: [AlertService, TranslationService, LocaleService]
-  },
-  {
-    provide: HTTP_INTERCEPTORS,
-    useClass: LoadingInterceptor,
-    multi: true,
-    deps: [TerraLoadingSpinnerService]
-  }
+    {
+        provide: HTTP_INTERCEPTORS,
+        useClass: AuthInterceptor,
+        multi: true
+    },
+    {
+        provide: HTTP_INTERCEPTORS,
+        useClass: ErrorInterceptor,
+        multi: true,
+        deps: [AlertService, TranslationService, LocaleService]
+    },
+    {
+        provide: HTTP_INTERCEPTORS,
+        useClass: LoadingInterceptor,
+        multi: true,
+        deps: [TerraLoadingSpinnerService]
+    }
 ];

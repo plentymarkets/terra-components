@@ -1,24 +1,17 @@
 <div>
-  <p>Simple Checkbox</p>
-  <div>
-    <terra-checkbox inputCaption="Test" [tooltipText]="'This is a tooltip'" #viewChildTestCb>
-    </terra-checkbox>
-    <terra-button (outputClicked)="_setCheckboxValue()" inputCaption="change value"> </terra-button>
-  </div>
-  <div>
-    <terra-checkbox inputCaption="Disabled" [inputIsDisabled]="true"> </terra-checkbox>
-  </div>
-  <div>
-    <terra-checkbox #viewChildIndeterminateCb inputCaption="Indeterminate"> </terra-checkbox>
-    <terra-button
-      (outputClicked)="_getCheckboxIndeterminateState()"
-      inputCaption="get indeterminate"
-    >
-    </terra-button>
-    <terra-button
-      (outputClicked)="_setCheckboxIndeterminateState()"
-      inputCaption="set indeterminate"
-    >
-    </terra-button>
-  </div>
+    <p>Simple Checkbox</p>
+    <div>
+        <terra-checkbox inputCaption="Test" [tooltipText]="'This is a tooltip'" #viewChildTestCb> </terra-checkbox>
+        <terra-button (outputClicked)="_setCheckboxValue()" inputCaption="change value"> </terra-button>
+    </div>
+    <div>
+        <terra-checkbox inputCaption="Disabled" [inputIsDisabled]="true"> </terra-checkbox>
+    </div>
+    <div>
+        <terra-checkbox #viewChildIndeterminateCb inputCaption="Indeterminate"> </terra-checkbox>
+        <terra-button (outputClicked)="_getCheckboxIndeterminateState()" inputCaption="get indeterminate">
+        </terra-button>
+        <terra-button (outputClicked)="_setCheckboxIndeterminateState()" inputCaption="set indeterminate">
+        </terra-button>
+    </div>
 </div>

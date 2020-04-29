@@ -155,11 +155,11 @@ button.btn[data-icon='icon-search_apply'],
 div.adminActionIcon.icon-search_apply,
 button.adminButton[data-icon='icon-search_apply'],
 %icon-search_apply {
-  --function-group-color: var(--color-group-add);
-  --function-group-color-highlighted: var(--color-group-add);
-  border-bottom: var(--button-border-bottom-group-add);
-  color: var(--button-text-color-group-add);
-  background-color: var(--button-background-color-group-add);
+    --function-group-color: var(--color-group-add);
+    --function-group-color-highlighted: var(--color-group-add);
+    border-bottom: var(--button-border-bottom-group-add);
+    color: var(--button-text-color-group-add);
+    background-color: var(--button-background-color-group-add);
 }
 
 // Alert: Fehler, Löschen, Gefahr, Leeren, Entfernen, Problem
@@ -207,11 +207,11 @@ button.btn[data-icon='icon-telephone_hangup'],
 div.adminActionIcon.icon-telephone_hangup,
 button.adminButton[data-icon='icon-telephone_hangup'],
 %icon-telephone_hangup {
-  --function-group-color: var(--color-group-alert);
-  --function-group-color-highlighted: var(--color-group-alert);
-  border-bottom: var(--button-border-bottom-group-alert);
-  color: var(--button-text-color-group-alert);
-  background-color: var(--button-background-color-group-alert);
+    --function-group-color: var(--color-group-alert);
+    --function-group-color-highlighted: var(--color-group-alert);
+    border-bottom: var(--button-border-bottom-group-alert);
+    color: var(--button-text-color-group-alert);
+    background-color: var(--button-background-color-group-alert);
 }
 
 // Action: Bearbeiten, Kopieren, Einfügen, Ausschneiden, Umwandeln, Transformieren, Ändern, Trennen, Splitten, Verbinden, Verknüpfen
@@ -538,11 +538,11 @@ button.btn[data-icon='icon-box_plus_disabled'],
 div.adminActionIcon.icon-box_plus_disabled,
 button.adminButton[data-icon='icon-box_plus_disabled'],
 %icon-box_plus_disabled {
-  --function-group-color: var(--color-group-action);
-  --function-group-color-highlighted: var(--color-group-action);
-  border-bottom: var(--button-border-bottom-group-action);
-  color: var(--button-text-color-group-action);
-  background-color: var(--button-background-color-group-action);
+    --function-group-color: var(--color-group-action);
+    --function-group-color-highlighted: var(--color-group-action);
+    border-bottom: var(--button-border-bottom-group-action);
+    color: var(--button-text-color-group-action);
+    background-color: var(--button-background-color-group-action);
 }
 
 // Warning: Warnung, Reset, Zurücksetzen, Aktualisieren, Neu Laden, Neu Berechnen, Refresh
@@ -566,11 +566,11 @@ button.btn[data-icon='icon-reset_32'],
 div.adminActionIcon.icon-reset_32,
 button.adminButton[data-icon='icon-reset_32'],
 %icon-reset_32 {
-  --function-group-color: var(--color-group-warning);
-  --function-group-color-highlighted: var(--color-group-warning);
-  border-bottom: var(--button-border-bottom-group-warning);
-  color: var(--button-text-color-group-warning);
-  background-color: var(--button-background-color-group-warning);
+    --function-group-color: var(--color-group-warning);
+    --function-group-color-highlighted: var(--color-group-warning);
+    border-bottom: var(--button-border-bottom-group-warning);
+    color: var(--button-text-color-group-warning);
+    background-color: var(--button-background-color-group-warning);
 }
 
 // Info: Vorschau, Anzeigen, Information
@@ -991,11 +991,11 @@ button.btn[data-icon='icon-search'],
 div.adminActionIcon.icon-search,
 button.adminButton[data-icon='icon-search'],
 %icon-search {
-  --function-group-color: var(--color-group-info);
-  --function-group-color-highlighted: var(--color-group-info);
-  border-bottom: var(--button-border-bottom-group-info);
-  color: var(--button-text-color-group-info);
-  background-color: var(--button-background-color-group-info);
+    --function-group-color: var(--color-group-info);
+    --function-group-color-highlighted: var(--color-group-info);
+    border-bottom: var(--button-border-bottom-group-info);
+    color: var(--button-text-color-group-info);
+    background-color: var(--button-background-color-group-info);
 }
 
 // Transfer: Senden (E-Mail), Verschicken, Drucken, Download, Herunterladen, Export, Upload, Datei auswählen, Import
@@ -1063,11 +1063,11 @@ button.btn[data-icon='icon-ticket_link'],
 div.adminActionIcon.icon-ticket_link,
 button.adminButton[data-icon='icon-ticket_link'],
 %icon-ticket_link {
-  --function-group-color: var(--color-group-transfer);
-  --function-group-color-highlighted: var(--color-group-transfer);
-  border-bottom: var(--button-border-bottom-group-transfer);
-  color: var(--button-text-color-group-transfer);
-  background-color: var(--button-background-color-group-transfer);
+    --function-group-color: var(--color-group-transfer);
+    --function-group-color-highlighted: var(--color-group-transfer);
+    border-bottom: var(--button-border-bottom-group-transfer);
+    color: var(--button-text-color-group-transfer);
+    background-color: var(--button-background-color-group-transfer);
 }
 
 /* Navigation:
@@ -1777,11 +1777,11 @@ button.btn[data-icon='icon-ticket_folder_move'],
 div.adminActionIcon.icon-ticket_folder_move,
 button.adminButton[data-icon='icon-ticket_folder_move'],
 %icon-ticket_folder_move {
-  --function-group-color: var(--color-group-navigation);
-  --function-group-color-highlighted: var(--color-group-active);
-  border-bottom: var(--button-border-bottom-group-navigation);
-  color: var(--button-text-color-group-navigation);
-  background-color: var(--button-background-color-group-navigation);
+    --function-group-color: var(--color-group-navigation);
+    --function-group-color-highlighted: var(--color-group-active);
+    border-bottom: var(--button-border-bottom-group-navigation);
+    color: var(--button-text-color-group-navigation);
+    background-color: var(--button-background-color-group-navigation);
 }
 
 // Brand
@@ -2197,35 +2197,35 @@ button.btn[data-icon='icon-dropbox'],
 div.adminActionIcon.icon-dropbox,
 button.adminButton[data-icon='icon-dropbox'],
 %icon-dropbox {
-  --function-group-color: var(--color-group-navigation);
-  --function-group-color-highlighted: var(--color-group-active);
-  border-bottom: var(--button-border-bottom-group-navigation);
-  color: var(--button-text-color-group-navigation);
-  background-color: var(--button-background-color-group-navigation);
+    --function-group-color: var(--color-group-navigation);
+    --function-group-color-highlighted: var(--color-group-active);
+    border-bottom: var(--button-border-bottom-group-navigation);
+    color: var(--button-text-color-group-navigation);
+    background-color: var(--button-background-color-group-navigation);
 }
 
 terra-button .btn,
 div.adminActionIcon,
 button.adminButton,
 div.terraIcon {
-  box-sizing: border-box;
-  background-color: var(--color-group-navigation);
-  color: var(--color-structure-0);
+    box-sizing: border-box;
+    background-color: var(--color-group-navigation);
+    color: var(--color-structure-0);
 
-  // Exceptions
-  &.btn-link {
-    border: none;
-  }
+    // Exceptions
+    &.btn-link {
+        border: none;
+    }
 
-  &.btn-major {
-    background-color: var(--function-group-color);
-  }
+    &.btn-major {
+        background-color: var(--function-group-color);
+    }
 
-  // Active: Hover, Fokus, Highlight, Aktiv
-  &:hover {
-    background-color: var(--color-group-active) !important;
-    color: var(--color-structure-0) !important;
-  }
+    // Active: Hover, Fokus, Highlight, Aktiv
+    &:hover {
+        background-color: var(--color-group-active) !important;
+        color: var(--color-structure-0) !important;
+    }
 }
 
 terra-button .btn-handler,
@@ -2233,19 +2233,19 @@ terra-button .btn,
 div.adminActionIcon,
 button.adminButton,
 div.terraIcon {
-  // Disabled: Deaktiviert, Nicht auswählbar
+    // Disabled: Deaktiviert, Nicht auswählbar
 
-  &.Disabled {
-    background-color: var(--color-group-disabled) !important;
-    color: var(--color-structure-8) !important;
-    opacity: 1 !important;
-    border: none;
-  }
+    &.Disabled {
+        background-color: var(--color-group-disabled) !important;
+        color: var(--color-structure-8) !important;
+        opacity: 1 !important;
+        border: none;
+    }
 
-  &.disabled .btn {
-    background-color: var(--color-group-disabled) !important;
-    color: var(--color-structure-8) !important;
-    opacity: 1 !important;
-    border: none;
-  }
+    &.disabled .btn {
+        background-color: var(--color-group-disabled) !important;
+        color: var(--color-structure-8) !important;
+        opacity: 1 !important;
+        border: none;
+    }
 }

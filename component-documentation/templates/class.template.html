@@ -1,14 +1,14 @@
 <h6 class="docs-api-class-named api-class-headers">
-  <span class="codeTag">{$ class.name $}</span>
+    <span class="codeTag">{$ class.name $}</span>
 </h6>
 <p class="docs-api-class-description">{$ class.description | marked | safe $}</p>
 
 {%- if class.directiveSelectors -%}
 <div class="docs-api-directive-selectors">
-  <h5 class="docs-api-class-selector-label">Selector</h5>
-  {% for selector in class.directiveSelectors %}
-  <h6 class="docs-api-class-selector-name codeTag api-class-headers">{$ selector $}</h6>
-  {% endfor %}
+    <h5 class="docs-api-class-selector-label">Selector</h5>
+    {% for selector in class.directiveSelectors %}
+    <h6 class="docs-api-class-selector-name codeTag api-class-headers">{$ selector $}</h6>
+    {% endfor %}
 </div>
 {%- endif -%} {%- if class.directiveExportAs -%}
 <span class="docs-api-h4 docs-api-class-export-label">Exported as:</span>

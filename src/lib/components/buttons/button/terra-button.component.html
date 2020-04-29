@@ -1,35 +1,31 @@
 <div
-  class="btn-handler"
-  [tcTooltip]="inputTooltipText"
-  [placement]="inputTooltipPlacement"
-  [ngClass]="{ 'float-right': inputIsAlignRight, disabled: inputIsDisabled }"
-  (click)="_click($event)"
+    class="btn-handler"
+    [tcTooltip]="inputTooltipText"
+    [placement]="inputTooltipPlacement"
+    [ngClass]="{ 'float-right': inputIsAlignRight, disabled: inputIsDisabled }"
+    (click)="_click($event)"
 >
-  <button
-    class="btn"
-    [attr.data-icon]="inputIcon"
-    [ngClass]="{
-      'btn-sm': inputIsSmall,
-      'btn-lg': inputIsLarge,
-      activated: inputIsActive && !inputIsDivider,
-      highlighted: inputIsHighlighted,
-      'btn-divider': inputIsDivider,
-      'btn-link': inputIsLink,
-      'btn-major': inputIsMajor
-    }"
-    [hidden]="inputIsHidden"
-    [type]="inputType"
-  >
-    <span *ngIf="inputIcon" class="icon_dist_top" [ngClass]="inputIcon"></span>
-    {{ inputCaption }}
-    <ng-content select="[btn-inner]"></ng-content>
-  </button>
-  <ng-content select="[btn-outer]"></ng-content>
-  <div
-    *ngIf="inputIsFlagged && !inputIsHidden"
-    class="flag"
-    [ngClass]="{ disabled: inputIsDisabled }"
-  >
-    <span [ngClass]="{ disabled: inputIsDisabled }"></span>
-  </div>
+    <button
+        class="btn"
+        [attr.data-icon]="inputIcon"
+        [ngClass]="{
+            'btn-sm': inputIsSmall,
+            'btn-lg': inputIsLarge,
+            activated: inputIsActive && !inputIsDivider,
+            highlighted: inputIsHighlighted,
+            'btn-divider': inputIsDivider,
+            'btn-link': inputIsLink,
+            'btn-major': inputIsMajor
+        }"
+        [hidden]="inputIsHidden"
+        [type]="inputType"
+    >
+        <span *ngIf="inputIcon" class="icon_dist_top" [ngClass]="inputIcon"></span>
+        {{ inputCaption }}
+        <ng-content select="[btn-inner]"></ng-content>
+    </button>
+    <ng-content select="[btn-outer]"></ng-content>
+    <div *ngIf="inputIsFlagged && !inputIsHidden" class="flag" [ngClass]="{ disabled: inputIsDisabled }">
+        <span [ngClass]="{ disabled: inputIsDisabled }"></span>
+    </div>
 </div>

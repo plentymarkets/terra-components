@@ -14,164 +14,163 @@ import { MockRouter } from '../../../testing/mock-router';
 import Spy = jasmine.Spy;
 
 describe('Component: CheckboxGroupComponent', () => {
-  let component: CheckboxGroupComponent;
-  let multicheckboxComponent: TerraMultiCheckBoxComponent;
-  let fixture: ComponentFixture<CheckboxGroupComponent>;
+    let component: CheckboxGroupComponent;
+    let multicheckboxComponent: TerraMultiCheckBoxComponent;
+    let fixture: ComponentFixture<CheckboxGroupComponent>;
 
-  const checkboxValues: Array<TerraMultiCheckBoxValueInterface> = [
-    {
-      caption: 'A',
-      value: 0
-    },
-    {
-      caption: 'B',
-      value: 1
-    },
-    {
-      caption: 'C',
-      value: 2
-    }
-  ];
-  const router: MockRouter = new MockRouter();
-
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [
-        TooltipDirective,
-        CheckboxGroupComponent,
-        TerraMultiCheckBoxComponent,
-        TerraCheckboxComponent
-      ],
-      imports: [HttpClientModule, FormsModule, LocalizationModule.forRoot(l10nConfig)],
-      providers: [
+    const checkboxValues: Array<TerraMultiCheckBoxValueInterface> = [
         {
-          provide: Router,
-          useValue: router
-        }
-      ]
-    }).compileComponents();
-  });
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(CheckboxGroupComponent);
-    component = fixture.componentInstance;
-    multicheckboxComponent = fixture.debugElement.query(By.css('terra-multi-check-box'))
-      .componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create an instance', () => {
-    expect(component).toBeTruthy();
-  });
-
-  it(`should init its inputs`, () => {
-    expect(component.isDisabled).toBe(false);
-    expect(component.checkboxValues).toEqual([]);
-    expect(component.collapsed).toBe(false);
-  });
-
-  it('should pass properties "isDisabled", "name" and "collapsed" to terra-multi-check-box component', () => {
-    component.isDisabled = true;
-    component.name = 'Custom name';
-    component.collapsed = true;
-    fixture.detectChanges();
-
-    expect(multicheckboxComponent.inputIsDisabled).toEqual(component.isDisabled);
-    expect(multicheckboxComponent.inputName).toEqual(component.name);
-    expect(multicheckboxComponent.collapsed).toEqual(true);
-  });
-
-  it('should check all checkboxes included in value list', (done: () => void) => {
-    let writeValueSpy: Spy = spyOn(multicheckboxComponent, 'writeValue');
-    component.checkboxValues = checkboxValues;
-    component.writeValue([0, 2]);
-    fixture.detectChanges();
-
-    fixture.whenStable().then(() => {
-      expect(writeValueSpy).toHaveBeenCalledWith([
-        {
-          caption: 'A',
-          value: 0,
-          selected: true
+            caption: 'A',
+            value: 0
         },
         {
-          caption: 'B',
-          value: 1,
-          selected: false
+            caption: 'B',
+            value: 1
         },
         {
-          caption: 'C',
-          value: 2,
-          selected: true
+            caption: 'C',
+            value: 2
         }
-      ]);
+    ];
+    const router: MockRouter = new MockRouter();
 
-      done();
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            declarations: [
+                TooltipDirective,
+                CheckboxGroupComponent,
+                TerraMultiCheckBoxComponent,
+                TerraCheckboxComponent
+            ],
+            imports: [HttpClientModule, FormsModule, LocalizationModule.forRoot(l10nConfig)],
+            providers: [
+                {
+                    provide: Router,
+                    useValue: router
+                }
+            ]
+        }).compileComponents();
     });
-  });
 
-  it('should be able to check any checkbox also if `null` or `undefined` was set initially', () => {
-    // initialization
-    component.checkboxValues = checkboxValues;
-    component.writeValue(null);
-    fixture.detectChanges();
+    beforeEach(() => {
+        fixture = TestBed.createComponent(CheckboxGroupComponent);
+        component = fixture.componentInstance;
+        multicheckboxComponent = fixture.debugElement.query(By.css('terra-multi-check-box')).componentInstance;
+        fixture.detectChanges();
+    });
 
-    // register spy
-    let onChangeSpy: Spy = jasmine.createSpy('onChange');
-    component.registerOnChange(onChangeSpy);
+    it('should create an instance', () => {
+        expect(component).toBeTruthy();
+    });
 
-    // perform action -> change checkbox state
-    multicheckboxComponent.checkboxStateChanges.emit([
-      {
-        caption: checkboxValues[1].caption,
-        value: checkboxValues[1].value,
-        selected: true
-      }
-    ]);
-    expect(onChangeSpy).toHaveBeenCalledWith([1]);
-  });
+    it(`should init its inputs`, () => {
+        expect(component.isDisabled).toBe(false);
+        expect(component.checkboxValues).toEqual([]);
+        expect(component.collapsed).toBe(false);
+    });
 
-  it('should call registered #onChangeCallback with `null` if all selections have been reset', () => {
-    // initialization
-    component.checkboxValues = checkboxValues;
-    component.writeValue([checkboxValues[1].value]);
-    fixture.detectChanges();
+    it('should pass properties "isDisabled", "name" and "collapsed" to terra-multi-check-box component', () => {
+        component.isDisabled = true;
+        component.name = 'Custom name';
+        component.collapsed = true;
+        fixture.detectChanges();
 
-    // register spy
-    let onChangeSpy: Spy = jasmine.createSpy('onChange');
-    component.registerOnChange(onChangeSpy);
+        expect(multicheckboxComponent.inputIsDisabled).toEqual(component.isDisabled);
+        expect(multicheckboxComponent.inputName).toEqual(component.name);
+        expect(multicheckboxComponent.collapsed).toEqual(true);
+    });
 
-    // perform action -> change checkbox state
-    multicheckboxComponent.checkboxStateChanges.emit([
-      {
-        caption: checkboxValues[1].caption,
-        value: checkboxValues[1].value,
-        selected: false
-      }
-    ]);
-    expect(onChangeSpy).toHaveBeenCalledWith(null);
-  });
+    it('should check all checkboxes included in value list', (done: () => void) => {
+        let writeValueSpy: Spy = spyOn(multicheckboxComponent, 'writeValue');
+        component.checkboxValues = checkboxValues;
+        component.writeValue([0, 2]);
+        fixture.detectChanges();
 
-  it('should preserve sorting order when checkboxes are selected/deselected', () => {
-    // initialization
-    component.checkboxValues = checkboxValues;
-    component.writeValue([checkboxValues[0].value, checkboxValues[2].value]);
-    fixture.detectChanges();
+        fixture.whenStable().then(() => {
+            expect(writeValueSpy).toHaveBeenCalledWith([
+                {
+                    caption: 'A',
+                    value: 0,
+                    selected: true
+                },
+                {
+                    caption: 'B',
+                    value: 1,
+                    selected: false
+                },
+                {
+                    caption: 'C',
+                    value: 2,
+                    selected: true
+                }
+            ]);
 
-    // register spy
-    let onChangeSpy: Spy = jasmine.createSpy('onChange');
-    component.registerOnChange(onChangeSpy);
+            done();
+        });
+    });
 
-    // prepare preselected checkbox object -> update checkbox group values
-    let preselectedCheckbox: TerraMultiCheckBoxValueInterface = checkboxValues[1];
-    preselectedCheckbox.selected = true;
-    component._onMultiCheckboxChanged([preselectedCheckbox]);
+    it('should be able to check any checkbox also if `null` or `undefined` was set initially', () => {
+        // initialization
+        component.checkboxValues = checkboxValues;
+        component.writeValue(null);
+        fixture.detectChanges();
 
-    // check order of checkbox group values
-    expect(onChangeSpy).toHaveBeenCalledWith([
-      checkboxValues[0].value,
-      checkboxValues[1].value,
-      checkboxValues[2].value
-    ]);
-  });
+        // register spy
+        let onChangeSpy: Spy = jasmine.createSpy('onChange');
+        component.registerOnChange(onChangeSpy);
+
+        // perform action -> change checkbox state
+        multicheckboxComponent.checkboxStateChanges.emit([
+            {
+                caption: checkboxValues[1].caption,
+                value: checkboxValues[1].value,
+                selected: true
+            }
+        ]);
+        expect(onChangeSpy).toHaveBeenCalledWith([1]);
+    });
+
+    it('should call registered #onChangeCallback with `null` if all selections have been reset', () => {
+        // initialization
+        component.checkboxValues = checkboxValues;
+        component.writeValue([checkboxValues[1].value]);
+        fixture.detectChanges();
+
+        // register spy
+        let onChangeSpy: Spy = jasmine.createSpy('onChange');
+        component.registerOnChange(onChangeSpy);
+
+        // perform action -> change checkbox state
+        multicheckboxComponent.checkboxStateChanges.emit([
+            {
+                caption: checkboxValues[1].caption,
+                value: checkboxValues[1].value,
+                selected: false
+            }
+        ]);
+        expect(onChangeSpy).toHaveBeenCalledWith(null);
+    });
+
+    it('should preserve sorting order when checkboxes are selected/deselected', () => {
+        // initialization
+        component.checkboxValues = checkboxValues;
+        component.writeValue([checkboxValues[0].value, checkboxValues[2].value]);
+        fixture.detectChanges();
+
+        // register spy
+        let onChangeSpy: Spy = jasmine.createSpy('onChange');
+        component.registerOnChange(onChangeSpy);
+
+        // prepare preselected checkbox object -> update checkbox group values
+        let preselectedCheckbox: TerraMultiCheckBoxValueInterface = checkboxValues[1];
+        preselectedCheckbox.selected = true;
+        component._onMultiCheckboxChanged([preselectedCheckbox]);
+
+        // check order of checkbox group values
+        expect(onChangeSpy).toHaveBeenCalledWith([
+            checkboxValues[0].value,
+            checkboxValues[1].value,
+            checkboxValues[2].value
+        ]);
+    });
 });

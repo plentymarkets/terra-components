@@ -1,119 +1,116 @@
 .terra-breadcrumbs-wrapper {
-  background-color: var(--terra-breadcrumbs-wrapper-background-color, var(--color-structure-9));
-  margin: var(--terra-breadcrumbs-wrapper-margin, 0);
-  border-radius: var(
-    --terra-breadcrumbs-wrapper-border-radius,
-    0 0 var(--border-radius) var(--border-radius)
-  );
-  padding: var(--terra-breadcrumbs-wrapper-padding, 0);
-  z-index: var(--terra-breadcrumbs-wrapper-z-index, var(--zIndex-1));
-  position: relative;
-  box-shadow: var(--box-shadow);
+    background-color: var(--terra-breadcrumbs-wrapper-background-color, var(--color-structure-9));
+    margin: var(--terra-breadcrumbs-wrapper-margin, 0);
+    border-radius: var(--terra-breadcrumbs-wrapper-border-radius, 0 0 var(--border-radius) var(--border-radius));
+    padding: var(--terra-breadcrumbs-wrapper-padding, 0);
+    z-index: var(--terra-breadcrumbs-wrapper-z-index, var(--zIndex-1));
+    position: relative;
+    box-shadow: var(--box-shadow);
 }
 
 .terra-breadcrumbs {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  height: var(--terra-breadcrumbs-height, var(--breadcrumbs-height));
-  transition: height var(--transition-lg);
-  display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    height: var(--terra-breadcrumbs-height, var(--breadcrumbs-height));
+    transition: height var(--transition-lg);
+    display: flex;
 
-  &.breadcrumbs-overflow-auto {
-    overflow-x: auto;
-    overflow-y: hidden;
-  }
+    &.breadcrumbs-overflow-auto {
+        overflow-x: auto;
+        overflow-y: hidden;
+    }
 
-  .terra-breadcrumb-container {
-    cursor: pointer;
+    .terra-breadcrumb-container {
+        cursor: pointer;
 
-    .terra-breadcrumb-wrapper {
-      text-decoration: none;
-      padding: var(--terra-breadcrumbs-li-padding, (0 var(--space-md)));
-      line-height: var(--terra-breadcrumbs-line-height, var(--breadcrumbs-height));
-      transition: padding var(--transition-lg);
-      position: relative;
-      display: flex;
-      float: left;
-      color: var(--terra-breadcrumb-color, var(--color-structure-0));
-      white-space: nowrap;
-      height: var(--breadcrumbs-height);
-
-      .terra-breadcrumb {
-        font-weight: var(--font-weight-2);
-        font-size: var(--font-size-2);
-        color: inherit;
-        max-width: 120px;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        text-decoration: none;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-
-        &.active {
-          color: var(--color-active);
-          cursor: default;
-        }
-
-        &:not(.active):hover {
-          color: var(--color-active);
-        }
-      }
-
-      &:hover {
-        color: var(--color-active);
-      }
-
-      .icon-caret {
-        overflow: hidden;
-        font-size: var(--font-size-6);
-        line-height: var(--terra-breadcrumbs-icon-caret-line-height, var(--breadcrumbs-height));
-        padding-left: 8px;
-
-        .context-menu {
-          position: fixed;
-          width: 150px;
-          transition: all var(--transition-0);
-          transition-delay: var(--transition-delay-0);
-
-          li {
-            float: none;
+        .terra-breadcrumb-wrapper {
+            text-decoration: none;
+            padding: var(--terra-breadcrumbs-li-padding, (0 var(--space-md)));
+            line-height: var(--terra-breadcrumbs-line-height, var(--breadcrumbs-height));
+            transition: padding var(--transition-lg);
+            position: relative;
             display: flex;
-            align-items: center;
-            height: var(--height-sm);
+            float: left;
+            color: var(--terra-breadcrumb-color, var(--color-structure-0));
+            white-space: nowrap;
+            height: var(--breadcrumbs-height);
 
-            span {
-              margin-right: 5px;
+            .terra-breadcrumb {
+                font-weight: var(--font-weight-2);
+                font-size: var(--font-size-2);
+                color: inherit;
+                max-width: 120px;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                text-decoration: none;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+
+                &.active {
+                    color: var(--color-active);
+                    cursor: default;
+                }
+
+                &:not(.active):hover {
+                    color: var(--color-active);
+                }
             }
-          }
-        }
-      }
 
-      &:hover {
-        .icon-caret {
-          .context-menu {
-            display: block;
-            visibility: visible;
-            opacity: 1;
-            transition: all var(--transition-0);
-            transition-delay: var(--transition-delay-0);
-          }
-        }
-      }
-    }
+            &:hover {
+                color: var(--color-active);
+            }
 
-    .icon-next {
-      &::before {
-        display: inline-block;
-        line-height: var(--terra-breadcrumbs-icon-next-line-height, var(--breadcrumbs-height));
-        font-size: var(--font-size-6);
-        color: var(--terra-breadcrumb-icon-color, var(--color-structure-4));
-      }
+            .icon-caret {
+                overflow: hidden;
+                font-size: var(--font-size-6);
+                line-height: var(--terra-breadcrumbs-icon-caret-line-height, var(--breadcrumbs-height));
+                padding-left: 8px;
+
+                .context-menu {
+                    position: fixed;
+                    width: 150px;
+                    transition: all var(--transition-0);
+                    transition-delay: var(--transition-delay-0);
+
+                    li {
+                        float: none;
+                        display: flex;
+                        align-items: center;
+                        height: var(--height-sm);
+
+                        span {
+                            margin-right: 5px;
+                        }
+                    }
+                }
+            }
+
+            &:hover {
+                .icon-caret {
+                    .context-menu {
+                        display: block;
+                        visibility: visible;
+                        opacity: 1;
+                        transition: all var(--transition-0);
+                        transition-delay: var(--transition-delay-0);
+                    }
+                }
+            }
+        }
+
+        .icon-next {
+            &::before {
+                display: inline-block;
+                line-height: var(--terra-breadcrumbs-icon-next-line-height, var(--breadcrumbs-height));
+                font-size: var(--font-size-6);
+                color: var(--terra-breadcrumb-icon-color, var(--color-structure-4));
+            }
+        }
     }
-  }
 }
 
 .main-breadcrumbs {
-  --terra-breadcrumbs-wrapper-z-index: var(--zIndex-2);
-  --terra-breadcrumbs-wrapper-border-radius: none;
+    --terra-breadcrumbs-wrapper-z-index: var(--zIndex-2);
+    --terra-breadcrumbs-wrapper-border-radius: none;
 }

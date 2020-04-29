@@ -1,5 +1,5 @@
 export interface TerraImageMetadata {
-  alttext?: string;
-  width?: number;
-  height?: number;
+    alttext?: string;
+    width?: number;
+    height?: number;
 }

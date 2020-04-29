@@ -1,36 +1,36 @@
 <terra-portlet>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-8">
-        <terra-suggestion-box
-          inputName="icons"
-          [inputListBoxValues]="_iconList"
-          [(ngModel)]="_iconClass"
-          (textInputValueChange)="_textInputValue = $event"
-        >
-        </terra-suggestion-box>
-      </div>
-      <div class="col-md-4 text-md-left h2">
-        <span [ngClass]="_iconClass"></span>
-        <span>{{_iconClass}}</span>
-        <span>{{_textInputValue}}</span>
-      </div>
-    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <terra-suggestion-box
+                    inputName="icons"
+                    [inputListBoxValues]="_iconList"
+                    [(ngModel)]="_iconClass"
+                    (textInputValueChange)="_textInputValue = $event"
+                >
+                </terra-suggestion-box>
+            </div>
+            <div class="col-md-4 text-md-left h2">
+                <span [ngClass]="_iconClass"></span>
+                <span>{{_iconClass}}</span>
+                <span>{{_textInputValue}}</span>
+            </div>
+        </div>
 
-    <div class="row">
-      <div class="col-md-8">
-        <terra-suggestion-box
-          inputName="Contacts"
-          [inputListBoxValues]="_contactsSuggestions"
-          [(ngModel)]="_selectedContact"
-          (textInputValueChange)="_contactSelectionText = $event"
-        >
-        </terra-suggestion-box>
-      </div>
-      <div class="col-md-4 text-md-left h2">
-        <span>{{_contactSelectionText}}</span>
-        <span>{{_selectedContact | json }}</span>
-      </div>
+        <div class="row">
+            <div class="col-md-8">
+                <terra-suggestion-box
+                    inputName="Contacts"
+                    [inputListBoxValues]="_contactsSuggestions"
+                    [(ngModel)]="_selectedContact"
+                    (textInputValueChange)="_contactSelectionText = $event"
+                >
+                </terra-suggestion-box>
+            </div>
+            <div class="col-md-4 text-md-left h2">
+                <span>{{_contactSelectionText}}</span>
+                <span>{{_selectedContact | json }}</span>
+            </div>
+        </div>
     </div>
-  </div>
 </terra-portlet>

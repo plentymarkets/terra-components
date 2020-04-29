@@ -1,31 +1,31 @@
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-md-3">
-      <h2>With name</h2>
-      <div class="tag-container">
-        <terra-tag [name]="'Terra'"></terra-tag>
-      </div>
+    <div class="row">
+        <div class="col-md-3">
+            <h2>With name</h2>
+            <div class="tag-container">
+                <terra-tag [name]="'Terra'"></terra-tag>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <h2>With color</h2>
+            <div class="tag-container">
+                <terra-tag [inputColor]="'red'" [name]="'Terra'"> </terra-tag>
+            </div>
+            <div class="tag-container">
+                <terra-tag [inputColor]="'#4286f4'" [name]="'Terra'"> </terra-tag>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <h2>taggable</h2>
+            <div class="tag-container">
+                <terra-tag [inputIsTaggable]="true" [name]="'Terra'"> </terra-tag>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <h2>tagged</h2>
+            <div class="tag-container">
+                <terra-tag [inputIsTagged]="true" [inputIsTaggable]="true" [name]="'Terra'"> </terra-tag>
+            </div>
+        </div>
     </div>
-    <div class="col-md-3">
-      <h2>With color</h2>
-      <div class="tag-container">
-        <terra-tag [inputColor]="'red'" [name]="'Terra'"> </terra-tag>
-      </div>
-      <div class="tag-container">
-        <terra-tag [inputColor]="'#4286f4'" [name]="'Terra'"> </terra-tag>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <h2>taggable</h2>
-      <div class="tag-container">
-        <terra-tag [inputIsTaggable]="true" [name]="'Terra'"> </terra-tag>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <h2>tagged</h2>
-      <div class="tag-container">
-        <terra-tag [inputIsTagged]="true" [inputIsTaggable]="true" [name]="'Terra'"> </terra-tag>
-      </div>
-    </div>
-  </div>
 </div>

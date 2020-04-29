@@ -1,76 +1,74 @@
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-md-6">
-      <h2>Info box using buttons</h2>
-      <terra-info-box>
-        <span body>
-          This is the content of an info-box!
-        </span>
-        <div buttons>
-          <terra-button
-            [inputIcon]="'icon-settings'"
-            [inputTooltipText]="'settings'"
-            (outputClicked)="clickFunction('settings')"
-          >
-          </terra-button>
-          <terra-button
-            [inputIcon]="'icon-delete'"
-            [inputTooltipText]="'delete'"
-            (outputClicked)="clickFunction('delete')"
-          >
-          </terra-button>
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Info box using buttons</h2>
+            <terra-info-box>
+                <span body>
+                    This is the content of an info-box!
+                </span>
+                <div buttons>
+                    <terra-button
+                        [inputIcon]="'icon-settings'"
+                        [inputTooltipText]="'settings'"
+                        (outputClicked)="clickFunction('settings')"
+                    >
+                    </terra-button>
+                    <terra-button
+                        [inputIcon]="'icon-delete'"
+                        [inputTooltipText]="'delete'"
+                        (outputClicked)="clickFunction('delete')"
+                    >
+                    </terra-button>
+                </div>
+            </terra-info-box>
         </div>
-      </terra-info-box>
+        <div class="col-md-6">
+            <h2>Info box using <u>TerraButton</u> list</h2>
+            <terra-info-box [inputButtonList]="_buttonList">
+                <span body>
+                    This is the content of an info-box!
+                </span>
+            </terra-info-box>
+        </div>
     </div>
-    <div class="col-md-6">
-      <h2>Info box using <u>TerraButton</u> list</h2>
-      <terra-info-box [inputButtonList]="_buttonList">
-        <span body>
-          This is the content of an info-box!
-        </span>
-      </terra-info-box>
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Info box using <u>TerraTag</u> list</h2>
+            <terra-info-box [inputTagList]="_tagList">
+                <span body>
+                    This is the content of an info-box!
+                </span>
+            </terra-info-box>
+        </div>
+        <div class="col-md-6">
+            <h2>Info box is selected</h2>
+            <terra-info-box [inputIsSelected]="true">
+                <span body>
+                    This is the content of an info-box!
+                </span>
+            </terra-info-box>
+        </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-md-6">
-      <h2>Info box using <u>TerraTag</u> list</h2>
-      <terra-info-box [inputTagList]="_tagList">
-        <span body>
-          This is the content of an info-box!
-        </span>
-      </terra-info-box>
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Info box using id</h2>
+            <terra-info-box [inputId]="8">
+                <span body>
+                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
+                    labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
+                    et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                </span>
+            </terra-info-box>
+        </div>
+        <div class="col-md-6">
+            <h2>Info box no word break</h2>
+            <terra-info-box [inputNoWordBreak]="true">
+                <span body>
+                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
+                    labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
+                    et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                </span>
+            </terra-info-box>
+        </div>
     </div>
-    <div class="col-md-6">
-      <h2>Info box is selected</h2>
-      <terra-info-box [inputIsSelected]="true">
-        <span body>
-          This is the content of an info-box!
-        </span>
-      </terra-info-box>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-6">
-      <h2>Info box using id</h2>
-      <terra-info-box [inputId]="8">
-        <span body>
-          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-          invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
-          accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
-          sanctus est Lorem ipsum dolor sit amet.
-        </span>
-      </terra-info-box>
-    </div>
-    <div class="col-md-6">
-      <h2>Info box no word break</h2>
-      <terra-info-box [inputNoWordBreak]="true">
-        <span body>
-          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-          invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
-          accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
-          sanctus est Lorem ipsum dolor sit amet.
-        </span>
-      </terra-info-box>
-    </div>
-  </div>
 </div>

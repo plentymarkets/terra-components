@@ -1,89 +1,87 @@
 <div *ngIf="horizontal; else vertical" class="row">
-  <ng-container *ngFor="let field of _formFields">
-    <ng-container *ngTemplateOutlet="forms; context: { $implicit: field }"></ng-container>
-  </ng-container>
+    <ng-container *ngFor="let field of _formFields">
+        <ng-container *ngTemplateOutlet="forms; context: { $implicit: field }"></ng-container>
+    </ng-container>
 </div>
 
 <ng-template #vertical>
-  <div class="row" *ngFor="let field of _formFields">
-    <ng-container *ngTemplateOutlet="forms; context: { $implicit: field }"></ng-container>
-  </div>
+    <div class="row" *ngFor="let field of _formFields">
+        <ng-container *ngTemplateOutlet="forms; context: { $implicit: field }"></ng-container>
+    </div>
 </ng-template>
 
 <ng-template #forms let-field>
-  <div
-    *ngIf="_formFieldVisibility[field.key]"
-    [ngClass]="[
-      'form-entry',
-      'form-entry-' + field.value.type,
-      horizontal ? field.value.width || 'col' : field.value.width || width
-    ]"
-    [formGroup]="_formGroup"
-  >
-    <terra-form-entry
-      *ngIf="!field.value.isList && !field.value.children"
-      [formControlName]="field.key"
-      [inputFormControl]="_formGroup.get(field.key)"
-      [inputFormField]="field.value"
-      [inputIsDisabled]="inputIsDisabled"
-      [inputControlTypeMap]="inputControlTypeMap"
-    >
-    </terra-form-entry>
-
     <div
-      *ngIf="
-        !field.value.isList &&
-        field.value.children &&
-        (field.value.type === 'vertical' || field.value.type === 'horizontal')
-      "
+        *ngIf="_formFieldVisibility[field.key]"
+        [ngClass]="[
+            'form-entry',
+            'form-entry-' + field.value.type,
+            horizontal ? field.value.width || 'col' : field.value.width || width
+        ]"
+        [formGroup]="_formGroup"
     >
-      <span class="form-entry-label" *ngIf="field.value.options?.name">{{
-        field.value.options?.name
-      }}</span>
-      <div class="form-entry-container">
-        <terra-form-container
-          [formGroupName]="field.key"
-          [inputFormFields]="field.value.children"
-          [inputFormGroup]="_formGroup.get(field.key)"
-          [inputScope]="inputScope"
-          [inputControlTypeMap]="inputControlTypeMap"
-          [width]="width"
-          [horizontal]="field.value.type === 'horizontal'"
+        <terra-form-entry
+            *ngIf="!field.value.isList && !field.value.children"
+            [formControlName]="field.key"
+            [inputFormControl]="_formGroup.get(field.key)"
+            [inputFormField]="field.value"
+            [inputIsDisabled]="inputIsDisabled"
+            [inputControlTypeMap]="inputControlTypeMap"
         >
-        </terra-form-container>
-      </div>
-    </div>
+        </terra-form-entry>
 
-    <div
-      *ngIf="
-        !field.value.isList &&
-        field.value.children &&
-        field.value.type !== 'vertical' &&
-        field.value.type !== 'horizontal'
-      "
-    >
-      <terra-form-container-wrapper
-        [formGroupName]="field.key"
-        [inputFormField]="field.value"
-        [inputFormGroup]="_formGroup.get(field.key)"
-        [inputScope]="inputScope"
-        [inputControlTypeMap]="inputControlTypeMap"
-        [inputIsDisabled]="inputIsDisabled"
-      >
-      </terra-form-container-wrapper>
-    </div>
+        <div
+            *ngIf="
+                !field.value.isList &&
+                field.value.children &&
+                (field.value.type === 'vertical' || field.value.type === 'horizontal')
+            "
+        >
+            <span class="form-entry-label" *ngIf="field.value.options?.name">{{ field.value.options?.name }}</span>
+            <div class="form-entry-container">
+                <terra-form-container
+                    [formGroupName]="field.key"
+                    [inputFormFields]="field.value.children"
+                    [inputFormGroup]="_formGroup.get(field.key)"
+                    [inputScope]="inputScope"
+                    [inputControlTypeMap]="inputControlTypeMap"
+                    [width]="width"
+                    [horizontal]="field.value.type === 'horizontal'"
+                >
+                </terra-form-container>
+            </div>
+        </div>
 
-    <terra-form-entry-list
-      *ngIf="field.value.isList"
-      [formArrayName]="field.key"
-      [inputFormGroup]="_formGroup"
-      [inputFormFieldKey]="field.key"
-      [inputFormField]="field.value"
-      [inputIsDisabled]="inputIsDisabled"
-      [inputScope]="inputScope"
-      [inputControlTypeMap]="inputControlTypeMap"
-      [width]="width"
-    >
-    </terra-form-entry-list>
-  </div>
+        <div
+            *ngIf="
+                !field.value.isList &&
+                field.value.children &&
+                field.value.type !== 'vertical' &&
+                field.value.type !== 'horizontal'
+            "
+        >
+            <terra-form-container-wrapper
+                [formGroupName]="field.key"
+                [inputFormField]="field.value"
+                [inputFormGroup]="_formGroup.get(field.key)"
+                [inputScope]="inputScope"
+                [inputControlTypeMap]="inputControlTypeMap"
+                [inputIsDisabled]="inputIsDisabled"
+            >
+            </terra-form-container-wrapper>
+        </div>
+
+        <terra-form-entry-list
+            *ngIf="field.value.isList"
+            [formArrayName]="field.key"
+            [inputFormGroup]="_formGroup"
+            [inputFormFieldKey]="field.key"
+            [inputFormField]="field.value"
+            [inputIsDisabled]="inputIsDisabled"
+            [inputScope]="inputScope"
+            [inputControlTypeMap]="inputControlTypeMap"
+            [width]="width"
+        >
+        </terra-form-entry-list>
+    </div>
 </ng-template>

@@ -1,5 +1,5 @@
 export enum TerraTextAlignEnum {
-  LEFT = 'left',
-  RIGHT = 'right',
-  CENTER = 'center'
+    LEFT = 'left',
+    RIGHT = 'right',
+    CENTER = 'center'
 }

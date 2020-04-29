@@ -1,73 +1,73 @@
 @import '../../../buttons/button/terra-button.component';
 
 li {
-  list-style: none;
-  width: 100%;
-  border-top: 1px solid var(--color-structure-11);
-
-  .btn-handler {
+    list-style: none;
     width: 100%;
+    border-top: 1px solid var(--color-structure-11);
 
-    .btn {
-      text-align: left;
-      padding: 0;
-      border-radius: 0;
+    .btn-handler {
+        width: 100%;
 
-      .buttonText {
-        display: table-cell;
-        vertical-align: middle;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
+        .btn {
+            text-align: left;
+            padding: 0;
+            border-radius: 0;
 
-      span {
-        &.icon_dist_top {
-          padding: 0 8px;
-          display: table-cell;
-          vertical-align: middle;
-          top: initial;
+            .buttonText {
+                display: table-cell;
+                vertical-align: middle;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            span {
+                &.icon_dist_top {
+                    padding: 0 8px;
+                    display: table-cell;
+                    vertical-align: middle;
+                    top: initial;
+                }
+
+                &.icon-right {
+                    position: absolute;
+                    right: 0;
+                    top: 0;
+                    width: var(--height-md);
+                    line-height: var(--height-md);
+                    text-align: center;
+                    background-color: var(--color-structure-10);
+                    border-left: 1px solid var(--color-structure-11);
+
+                    &:hover {
+                        background: var(--color-structure-11);
+                    }
+                }
+            }
+
+            &.isLoading {
+                background-color: var(--color-structure-10);
+            }
+
+            &:hover {
+                background-color: var(--color-active);
+            }
+        }
+    }
+
+    ul {
+        padding-left: 16px;
+        background-color: var(--color-structure-12);
+        animation-name: layer-offset;
+        animation-duration: 0.4s;
+    }
+
+    @keyframes layer-offset {
+        from {
+            padding-left: 0;
         }
 
-        &.icon-right {
-          position: absolute;
-          right: 0;
-          top: 0;
-          width: var(--height-md);
-          line-height: var(--height-md);
-          text-align: center;
-          background-color: var(--color-structure-10);
-          border-left: 1px solid var(--color-structure-11);
-
-          &:hover {
-            background: var(--color-structure-11);
-          }
+        to {
+            padding-left: 16px;
         }
-      }
-
-      &.isLoading {
-        background-color: var(--color-structure-10);
-      }
-
-      &:hover {
-        background-color: var(--color-active);
-      }
     }
-  }
-
-  ul {
-    padding-left: 16px;
-    background-color: var(--color-structure-12);
-    animation-name: layer-offset;
-    animation-duration: 0.4s;
-  }
-
-  @keyframes layer-offset {
-    from {
-      padding-left: 0;
-    }
-
-    to {
-      padding-left: 16px;
-    }
-  }
 }

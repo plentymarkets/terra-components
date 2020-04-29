@@ -1,3 +1,3 @@
 export interface TerraKeyValueInterface<T> {
-  [key: string]: T;
+    [key: string]: T;
 }

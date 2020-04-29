@@ -30,128 +30,128 @@ import { MockActivatedRoute } from '../../../testing/mock-activated-route';
 import Spy = jasmine.Spy;
 
 describe('TerraDataTableComponent', () => {
-  let component: TerraDataTableComponent<any, any>;
-  let fixture: ComponentFixture<TerraDataTableComponent<any, any>>;
-  let router: MockRouter = new MockRouter();
+    let component: TerraDataTableComponent<any, any>;
+    let fixture: ComponentFixture<TerraDataTableComponent<any, any>>;
+    let router: MockRouter = new MockRouter();
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [
-        TooltipDirective,
-        TerraDataTableComponent,
-        TerraButtonComponent,
-        TerraPagerComponent,
-        TerraCheckboxComponent,
-        TerraDataTableContextMenuComponent,
-        TerraDataTableContextMenuDirective,
-        TerraNoResultNoticeComponent,
-        TerraTaglistComponent,
-        TerraTagComponent,
-        TerraBaseToolbarComponent,
-        TerraNumberInputComponent,
-        TerraSelectBoxComponent,
-        TableRowComponent,
-        TerraLabelTooltipDirective
-      ],
-      imports: [
-        CommonModule,
-        FormsModule,
-        HttpClientModule,
-        NoopAnimationsModule,
-        LocalizationModule.forRoot(l10nConfig)
-      ],
-      providers: [
-        TerraDataTableServiceExample,
-        TerraLoadingSpinnerService,
-        {
-          provide: Router,
-          useValue: router
-        },
-        {
-          provide: ActivatedRoute,
-          useClass: MockActivatedRoute
-        }
-      ]
-    })
-      .overrideComponent(TerraDataTableComponent, {
-        set: new Component({
-          changeDetection: ChangeDetectionStrategy.Default
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [
+                TooltipDirective,
+                TerraDataTableComponent,
+                TerraButtonComponent,
+                TerraPagerComponent,
+                TerraCheckboxComponent,
+                TerraDataTableContextMenuComponent,
+                TerraDataTableContextMenuDirective,
+                TerraNoResultNoticeComponent,
+                TerraTaglistComponent,
+                TerraTagComponent,
+                TerraBaseToolbarComponent,
+                TerraNumberInputComponent,
+                TerraSelectBoxComponent,
+                TableRowComponent,
+                TerraLabelTooltipDirective
+            ],
+            imports: [
+                CommonModule,
+                FormsModule,
+                HttpClientModule,
+                NoopAnimationsModule,
+                LocalizationModule.forRoot(l10nConfig)
+            ],
+            providers: [
+                TerraDataTableServiceExample,
+                TerraLoadingSpinnerService,
+                {
+                    provide: Router,
+                    useValue: router
+                },
+                {
+                    provide: ActivatedRoute,
+                    useClass: MockActivatedRoute
+                }
+            ]
         })
-      })
-      .compileComponents();
-  }));
+            .overrideComponent(TerraDataTableComponent, {
+                set: new Component({
+                    changeDetection: ChangeDetectionStrategy.Default
+                })
+            })
+            .compileComponents();
+    }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(TerraDataTableComponent);
-    component = fixture.componentInstance;
-    spyOn(console, 'error'); // do not log anything to console
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-
-  describe('With an #inputService', () => {
-    let service: TerraDataTableServiceExample;
     beforeEach(() => {
-      service = TestBed.get(TerraDataTableServiceExample);
-      component.inputService = service;
-    });
-
-    it('should have an #inputService', () => {
-      expect(component.inputService).toBeDefined();
-    });
-
-    describe('#inputHasPager', () => {
-      it('should initialise #inputHasPager with true', () => {
-        expect(component.inputHasPager).toBe(true);
-      });
-
-      it('should hide the pager if #inputHasPager is set but no data is available', () => {
-        let pagerDE: DebugElement = fixture.nativeElement.querySelector('terra-pager');
-        expect(service.rowList).toBeDefined();
-        expect(service.rowList.length).toEqual(0);
-        expect(pagerDE.attributes.hasOwnProperty('hidden')).toBe(true);
-      });
-
-      it('should show the pager if #inputHasPager is set and data is available', async(() => {
-        service.addEntry();
-        service.getResults();
+        fixture = TestBed.createComponent(TerraDataTableComponent);
+        component = fixture.componentInstance;
+        spyOn(console, 'error'); // do not log anything to console
         fixture.detectChanges();
-
-        let pagerDE: DebugElement = fixture.debugElement.query(By.css('terra-pager'));
-        expect(service.rowList).toBeDefined();
-        expect(service.rowList.length).toBeGreaterThan(0);
-        expect(pagerDE.attributes.hasOwnProperty('hidden')).toBe(false);
-      }));
-
-      it(`should hide the pager if #inputHasPager is not set`, () => {
-        component.inputHasPager = false;
-        service.addEntry();
-        service.getResults();
-        fixture.detectChanges();
-
-        let pagerDE: DebugElement = fixture.debugElement.query(By.css('terra-pager'));
-        expect(service.rowList).toBeDefined();
-        expect(service.rowList.length).toBeGreaterThan(0);
-        expect(pagerDE).toBeNull();
-      });
     });
 
-    it(`should #getResults() and #resetSelectedRows when the pager-component emits on #outputDoPaging`, () => {
-      let spy: Spy = spyOn(service, 'getResults').and.callThrough();
-      service.addEntry();
-      service.getResults();
-
-      fixture.detectChanges();
-
-      let pagerDE: DebugElement = fixture.debugElement.query(By.css('terra-pager'));
-      let pagerComponent: TerraPagerComponent = pagerDE.componentInstance;
-      pagerComponent.outputDoPaging.emit();
-
-      expect(spy).toHaveBeenCalled();
-      expect(component.selectedRowList.length).toEqual(0);
+    it('should create', () => {
+        expect(component).toBeTruthy();
     });
-  });
+
+    describe('With an #inputService', () => {
+        let service: TerraDataTableServiceExample;
+        beforeEach(() => {
+            service = TestBed.get(TerraDataTableServiceExample);
+            component.inputService = service;
+        });
+
+        it('should have an #inputService', () => {
+            expect(component.inputService).toBeDefined();
+        });
+
+        describe('#inputHasPager', () => {
+            it('should initialise #inputHasPager with true', () => {
+                expect(component.inputHasPager).toBe(true);
+            });
+
+            it('should hide the pager if #inputHasPager is set but no data is available', () => {
+                let pagerDE: DebugElement = fixture.nativeElement.querySelector('terra-pager');
+                expect(service.rowList).toBeDefined();
+                expect(service.rowList.length).toEqual(0);
+                expect(pagerDE.attributes.hasOwnProperty('hidden')).toBe(true);
+            });
+
+            it('should show the pager if #inputHasPager is set and data is available', async(() => {
+                service.addEntry();
+                service.getResults();
+                fixture.detectChanges();
+
+                let pagerDE: DebugElement = fixture.debugElement.query(By.css('terra-pager'));
+                expect(service.rowList).toBeDefined();
+                expect(service.rowList.length).toBeGreaterThan(0);
+                expect(pagerDE.attributes.hasOwnProperty('hidden')).toBe(false);
+            }));
+
+            it(`should hide the pager if #inputHasPager is not set`, () => {
+                component.inputHasPager = false;
+                service.addEntry();
+                service.getResults();
+                fixture.detectChanges();
+
+                let pagerDE: DebugElement = fixture.debugElement.query(By.css('terra-pager'));
+                expect(service.rowList).toBeDefined();
+                expect(service.rowList.length).toBeGreaterThan(0);
+                expect(pagerDE).toBeNull();
+            });
+        });
+
+        it(`should #getResults() and #resetSelectedRows when the pager-component emits on #outputDoPaging`, () => {
+            let spy: Spy = spyOn(service, 'getResults').and.callThrough();
+            service.addEntry();
+            service.getResults();
+
+            fixture.detectChanges();
+
+            let pagerDE: DebugElement = fixture.debugElement.query(By.css('terra-pager'));
+            let pagerComponent: TerraPagerComponent = pagerDE.componentInstance;
+            pagerComponent.outputDoPaging.emit();
+
+            expect(spy).toHaveBeenCalled();
+            expect(component.selectedRowList.length).toEqual(0);
+        });
+    });
 });

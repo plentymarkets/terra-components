@@ -1,9 +1,9 @@
 # Developers’ guide
 
-- [Creating an example for a Terra component](#example)
-- [Adding a description to a method or property](#description)
-- [Adding a description to a method parameter](#paramdescription)
-- [Setting components, methods or properties to be deprecated](#deprecated)
+-   [Creating an example for a Terra component](#example)
+-   [Adding a description to a method or property](#description)
+-   [Adding a description to a method parameter](#paramdescription)
+-   [Setting components, methods or properties to be deprecated](#deprecated)
 
 ## <a name="example"></a>Creating an example for a Terra component
 
@@ -23,10 +23,10 @@ If you create a new component or want to add an example to an existing component
 
 2. Create three files.
 
-- the `.html` , `.scss` , and `.ts` file.
-- You can create an `.md` file to show text in the overview.
-- The correct convention to name a file is '`selector.component.example.extension`'.
-- Example: `terra-button.component.example.ts`
+-   the `.html` , `.scss` , and `.ts` file.
+-   You can create an `.md` file to show text in the overview.
+-   The correct convention to name a file is '`selector.component.example.extension`'.
+-   Example: `terra-button.component.example.ts`
 
 Now the directory should look like this:
 
@@ -35,17 +35,17 @@ Now the directory should look like this:
 
 3. Create an angular component.
 
-- The correct convention to name the component `selector` is '`selector`-example'.
-- Example: `terra-button-example`
-- Link the `.html` and `.scss` file to the component.
+-   The correct convention to name the component `selector` is '`selector`-example'.
+-   Example: `terra-button-example`
+-   Link the `.html` and `.scss` file to the component.
 
 <space>
 <img src="images/step4.png" width="1000px">
 
 4. Add the new example component to the `NgModule` in the `terra-components.module.ts` file.
 
-- The component you are writing the example for has to be exported in `terra-components.module.ts`.
-  <space>
+-   The component you are writing the example for has to be exported in `terra-components.module.ts`.
+    <space>
 
 <img src="images/step8.png" width="1000px">
 

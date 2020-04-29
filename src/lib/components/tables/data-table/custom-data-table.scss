@@ -1,103 +1,103 @@
 @import '../../../styles/variables';
 
 tbody {
-  background-color: var(--color-structure-0);
+    background-color: var(--color-structure-0);
 
-  //standard table styles
-  tr {
-    color: var(--color-structure-11);
+    //standard table styles
+    tr {
+        color: var(--color-structure-11);
 
-    &:nth-child(odd) {
-      background-color: var(--color-structure-1);
-    }
-    td {
-      padding: var(--table-body-td-padding, var(--space-md));
-      transition: padding var(--transition-lg);
-      vertical-align: middle;
-      border-bottom: 1px solid var(--border-color);
-      border-top: 1px solid var(--border-color);
-      white-space: nowrap;
-      span {
-        font-size: var(--font-size-3);
-        @include font-rendering;
-      }
-    }
-    &:last-child {
-      td {
-        &:first-child {
-          border-radius: 0 0 0 var(--border-radius);
+        &:nth-child(odd) {
+            background-color: var(--color-structure-1);
+        }
+        td {
+            padding: var(--table-body-td-padding, var(--space-md));
+            transition: padding var(--transition-lg);
+            vertical-align: middle;
+            border-bottom: 1px solid var(--border-color);
+            border-top: 1px solid var(--border-color);
+            white-space: nowrap;
+            span {
+                font-size: var(--font-size-3);
+                @include font-rendering;
+            }
         }
         &:last-child {
-          border-radius: 0 0 var(--border-radius) 0;
+            td {
+                &:first-child {
+                    border-radius: 0 0 0 var(--border-radius);
+                }
+                &:last-child {
+                    border-radius: 0 0 var(--border-radius) 0;
+                }
+            }
         }
-      }
-    }
-  }
-
-  //custom styles for components that are inserted in a table cell
-  tr {
-    td {
-      --table-body-td-padding: var(--space-sm);
     }
 
-    &.selected,
-    &.isActive {
-      td {
-        --color-active: var(--color-structure-11);
-        --color-group-active: var(--color-structure-11);
-      }
-    }
+    //custom styles for components that are inserted in a table cell
+    tr {
+        td {
+            --table-body-td-padding: var(--space-sm);
+        }
 
-    // inputs
-    --input-wrapper-border: 1px solid transparent;
-    --input-wrapper-border-hover: 1px solid transparent;
-    --input-wrapper-margin-bottom: 0;
-    --input-wrapper-padding-left: var(--space-md);
+        &.selected,
+        &.isActive {
+            td {
+                --color-active: var(--color-structure-11);
+                --color-group-active: var(--color-structure-11);
+            }
+        }
 
-    &:nth-child(odd) {
-      --input-background-color: var(--color-structure-1);
-    }
-    &:nth-child(even) {
-      --input-background-color: var(--color-structure-0);
-    }
+        // inputs
+        --input-wrapper-border: 1px solid transparent;
+        --input-wrapper-border-hover: 1px solid transparent;
+        --input-wrapper-margin-bottom: 0;
+        --input-wrapper-padding-left: var(--space-md);
 
-    &:hover {
-      --input-background-color: var(--color-structure-0);
-    }
+        &:nth-child(odd) {
+            --input-background-color: var(--color-structure-1);
+        }
+        &:nth-child(even) {
+            --input-background-color: var(--color-structure-0);
+        }
 
-    // select-boxes
-    --select-box-border-bottom: 1px solid transparent;
-    --select-box-wrapper-margin-bottom: 0;
-    --select-box-labeled-padding-left: var(--space-md);
+        &:hover {
+            --input-background-color: var(--color-structure-0);
+        }
 
-    &:nth-child(odd) {
-      --select-box-wrapper-background-color: var(--color-structure-1);
-    }
-    &:nth-child(even) {
-      --select-box-wrapper-background-color: var(--color-structure-0);
-    }
+        // select-boxes
+        --select-box-border-bottom: 1px solid transparent;
+        --select-box-wrapper-margin-bottom: 0;
+        --select-box-labeled-padding-left: var(--space-md);
 
-    &:hover {
-      --select-box-wrapper-background-color: var(--color-structure-0);
+        &:nth-child(odd) {
+            --select-box-wrapper-background-color: var(--color-structure-1);
+        }
+        &:nth-child(even) {
+            --select-box-wrapper-background-color: var(--color-structure-0);
+        }
+
+        &:hover {
+            --select-box-wrapper-background-color: var(--color-structure-0);
+        }
     }
-  }
 }
 tbody tr:hover {
-  background: var(--color-structure-2);
-  cursor: pointer;
+    background: var(--color-structure-2);
+    cursor: pointer;
 }
 tbody {
-  tr {
-    &.selected,
-    &.isActive {
-      background-color: var(--color-active);
-      color: var(--color-structure-0);
-      td a[href] {
-        color: var(--color-structure-0);
-        &:hover {
-          color: var(--color-structure-13);
+    tr {
+        &.selected,
+        &.isActive {
+            background-color: var(--color-active);
+            color: var(--color-structure-0);
+            td a[href] {
+                color: var(--color-structure-0);
+                &:hover {
+                    color: var(--color-structure-13);
+                }
+            }
         }
-      }
     }
-  }
 }

@@ -5,8 +5,8 @@ import { Directive, ViewContainerRef } from '@angular/core';
  * element's view is done. Thus, a component may be created and added dynamically to a host element during the initialization of the host component.
  */
 @Directive({
-  selector: '[tcFormEntryContainer]'
+    selector: '[tcFormEntryContainer]'
 })
 export class FormEntryContainerDirective {
-  constructor(public viewContainerRef: ViewContainerRef) {}
+    constructor(public viewContainerRef: ViewContainerRef) {}
 }

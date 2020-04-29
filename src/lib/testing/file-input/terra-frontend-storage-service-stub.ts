@@ -5,8 +5,8 @@ import { TerraStorageObjectList } from '../../components/file-browser/model/terr
 import { TerraUploadQueue } from '../../components/file-browser/model/terra-upload-queue';
 
 export const terraFrontendStorageServiceStub: Partial<TerraFrontendStorageService> = {
-  getStorageList: (): Observable<TerraStorageObjectList> => {
-    return of(new TerraStorageObjectList().insertObjects(fileData.objects));
-  },
-  queue: new TerraUploadQueue('/rest/storage/frontend/file')
+    getStorageList: (): Observable<TerraStorageObjectList> => {
+        return of(new TerraStorageObjectList().insertObjects(fileData.objects));
+    },
+    queue: new TerraUploadQueue('/rest/storage/frontend/file')
 };

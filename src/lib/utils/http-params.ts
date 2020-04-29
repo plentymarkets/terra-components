@@ -11,21 +11,21 @@ import { httpParamEncoder } from './http-param-encoder';
  * @returns An instance of HttpParams with the same key-value-pairs as delivered by #params
  */
 export function createHttpParams(params: Params, arrayAsArray: boolean = false): HttpParams {
-  let searchParams: HttpParams = new HttpParams({ encoder: httpParamEncoder });
-  if (isNullOrUndefined(params)) {
-    return searchParams;
-  }
-
-  Object.keys(params).forEach((key: string) => {
-    if (!isNullOrUndefined(params[key]) && params[key] !== '') {
-      if (arrayAsArray && isArray(params[key])) {
-        (params[key] as Array<any>).forEach((arrayItem: any) => {
-          searchParams = searchParams.append(key + '[]', arrayItem.toString());
-        });
-      } else {
-        searchParams = searchParams.set(key, params[key]);
-      }
+    let searchParams: HttpParams = new HttpParams({ encoder: httpParamEncoder });
+    if (isNullOrUndefined(params)) {
+        return searchParams;
     }
-  });
-  return searchParams;
+
+    Object.keys(params).forEach((key: string) => {
+        if (!isNullOrUndefined(params[key]) && params[key] !== '') {
+            if (arrayAsArray && isArray(params[key])) {
+                (params[key] as Array<any>).forEach((arrayItem: any) => {
+                    searchParams = searchParams.append(key + '[]', arrayItem.toString());
+                });
+            } else {
+                searchParams = searchParams.set(key, params[key]);
+            }
+        }
+    });
+    return searchParams;
 }

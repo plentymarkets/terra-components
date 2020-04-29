@@ -116,17 +116,14 @@ export { TerraDynamicComponentLoaderComponent } from './components/dynamic-compo
 
 // TODO file browser index
 export {
-  createS3StorageObject,
-  S3StorageObjectInterface
+    createS3StorageObject,
+    S3StorageObjectInterface
 } from './components/file-browser/model/s3-storage-object.interface';
 export { TerraImageMetadata } from './components/file-browser/model/terra-image-metadata.interface';
 export { TerraStorageObject } from './components/file-browser/model/terra-storage-object';
 export { TerraStorageObjectList } from './components/file-browser/model/terra-storage-object-list';
 export { TerraUploadItem, UploadCallback } from './components/file-browser/model/terra-upload-item';
-export {
-  TerraUploadQueue,
-  UploadQueueUrlFactory
-} from './components/file-browser/model/terra-upload-queue';
+export { TerraUploadQueue, UploadQueueUrlFactory } from './components/file-browser/model/terra-upload-queue';
 export { TerraBaseStorageService } from './components/file-browser/terra-base-storage.interface';
 export { TerraFrontendStorageService } from './components/file-browser/terra-frontend-storage.service';
 export { TerraFileBrowserService } from './components/file-browser/terra-file-browser.service';
@@ -183,8 +180,8 @@ export { TerraFormScope } from './components/forms/form/model/terra-form-scope.d
 export { TerraFormTypeMap } from './components/forms/form/model/terra-form-type-map.enum';
 export { FormTypeMap } from './components/forms/form/model/form-type-map';
 export {
-  TERRA_FORM_PROPERTY_METADATA_KEY, // TODO: may be removed from public api
-  TerraFormProperty
+    TERRA_FORM_PROPERTY_METADATA_KEY, // TODO: may be removed from public api
+    TerraFormProperty
 } from './components/forms/form/model/terra-form-property.decorator';
 export { TerraBreadcrumbsComponent } from './components/breadcrumbs/terra-breadcrumbs.component';
 export { TerraBreadcrumb } from './components/breadcrumbs/terra-breadcrumb';

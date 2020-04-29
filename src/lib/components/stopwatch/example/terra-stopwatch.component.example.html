@@ -1,24 +1,23 @@
 <terra-portlet>
-  <h3>Terra-Stopwatch without controls</h3>
-  <terra-base-toolbar>
-    <terra-stopwatch></terra-stopwatch>
-  </terra-base-toolbar>
-  <h3>Terra-Stopwatch without controls but with autoplay</h3>
-  <terra-base-toolbar>
-    <terra-stopwatch [autoPlay]="true"> </terra-stopwatch>
-  </terra-base-toolbar>
-  <h3>Terra-Stopwatch with controls</h3>
-  <terra-base-toolbar>
-    <terra-stopwatch [controls]="true"> </terra-stopwatch>
-  </terra-base-toolbar>
-  <h3>Terra-Stopwatch with small controls</h3>
-  <terra-base-toolbar>
-    <terra-stopwatch [isSmall]="true" [controls]="true"> </terra-stopwatch>
-  </terra-base-toolbar>
-  <h3>Terra-Stopwatch with autoplay and controls</h3>
-  <terra-base-toolbar>
-    <terra-stopwatch [controls]="true" [autoPlay]="true" [(seconds)]="currentValue">
-    </terra-stopwatch>
-    <span> {{currentValue}}</span>
-  </terra-base-toolbar>
+    <h3>Terra-Stopwatch without controls</h3>
+    <terra-base-toolbar>
+        <terra-stopwatch></terra-stopwatch>
+    </terra-base-toolbar>
+    <h3>Terra-Stopwatch without controls but with autoplay</h3>
+    <terra-base-toolbar>
+        <terra-stopwatch [autoPlay]="true"> </terra-stopwatch>
+    </terra-base-toolbar>
+    <h3>Terra-Stopwatch with controls</h3>
+    <terra-base-toolbar>
+        <terra-stopwatch [controls]="true"> </terra-stopwatch>
+    </terra-base-toolbar>
+    <h3>Terra-Stopwatch with small controls</h3>
+    <terra-base-toolbar>
+        <terra-stopwatch [isSmall]="true" [controls]="true"> </terra-stopwatch>
+    </terra-base-toolbar>
+    <h3>Terra-Stopwatch with autoplay and controls</h3>
+    <terra-base-toolbar>
+        <terra-stopwatch [controls]="true" [autoPlay]="true" [(seconds)]="currentValue"> </terra-stopwatch>
+        <span> {{currentValue}}</span>
+    </terra-base-toolbar>
 </terra-portlet>

@@ -13,21 +13,21 @@ import { QuillModule } from 'ngx-quill';
 import { CKEditorModule } from 'ckeditor4-angular';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    RouterModule,
-    LocalizationModule,
-    ModalModule.forRoot(),
-    MyDatePickerModule,
-    AceEditorModule,
-    QuillModule,
-    CKEditorModule,
-    TerraInteractModule
-  ],
-  declarations: [...components, ...directives],
-  entryComponents: [...exportedComponents],
-  exports: [...exportedComponents, ...directives]
+    imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        RouterModule,
+        LocalizationModule,
+        ModalModule.forRoot(),
+        MyDatePickerModule,
+        AceEditorModule,
+        QuillModule,
+        CKEditorModule,
+        TerraInteractModule
+    ],
+    declarations: [...components, ...directives],
+    entryComponents: [...exportedComponents],
+    exports: [...exportedComponents, ...directives]
 })
 export class TerraComponentsModule {}

@@ -1,9 +1,9 @@
 export class TerraSliderTick {
-  public position: number;
-  public caption: number;
+    public position: number;
+    public caption: number;
 
-  constructor(position: number, caption: number) {
-    this.position = position;
-    this.caption = caption;
-  }
+    constructor(position: number, caption: number) {
+        this.position = position;
+        this.caption = caption;
+    }
 }

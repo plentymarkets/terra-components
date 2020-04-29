@@ -1,12 +1,12 @@
 <terra-simple-table
-  #table
-  [inputIsStriped]="true"
-  [inputHasCheckboxes]="true"
-  [inputUseHighlighting]="true"
-  [inputEnableHotkeys]="true"
-  [inputHeaderList]="headerList"
-  [inputRowList]="rowList"
-  (outputSelectedRowsChange)="_selectedRows = $event"
+    #table
+    [inputIsStriped]="true"
+    [inputHasCheckboxes]="true"
+    [inputUseHighlighting]="true"
+    [inputEnableHotkeys]="true"
+    [inputHeaderList]="headerList"
+    [inputRowList]="rowList"
+    (outputSelectedRowsChange)="_selectedRows = $event"
 >
 </terra-simple-table>
 {{ _selectedRows | json }}

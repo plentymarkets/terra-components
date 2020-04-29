@@ -1,83 +1,83 @@
 .card {
-  &.terra-card {
-    border-radius: var(--border-radius);
-    border: 2px solid transparent;
-    box-shadow: var(--box-shadow);
-    margin: var(--space-md);
-    display: inline-block;
-    width: var(--terra-card-width, 200px);
-    transition: margin var(--transition-md);
+    &.terra-card {
+        border-radius: var(--border-radius);
+        border: 2px solid transparent;
+        box-shadow: var(--box-shadow);
+        margin: var(--space-md);
+        display: inline-block;
+        width: var(--terra-card-width, 200px);
+        transition: margin var(--transition-md);
 
-    &.selected {
-      border: 2px solid var(--color-active);
-    }
-
-    &:hover {
-      &:not(.selected) {
-        border: 2px solid var(--color-active);
-      }
-
-      .card-footer {
-        &:last-child {
-          border-radius: 0;
+        &.selected {
+            border: 2px solid var(--color-active);
         }
-      }
-    }
-  }
 
-  .card-img-top {
-    min-height: var(--terra-card-img-top-min-height, (calc(var(--space-xl) * 5)));
-    margin: var(--space-md) calc(var(--space-xl) * 2);
-    border-radius: 0;
-    width: initial;
+        &:hover {
+            &:not(.selected) {
+                border: 2px solid var(--color-active);
+            }
 
-    &.terra-card-image {
-      background: no-repeat center;
-      background-size: var(--terra-card-image-background-size, contain);
-      margin: 2px;
+            .card-footer {
+                &:last-child {
+                    border-radius: 0;
+                }
+            }
+        }
     }
 
-    &.terra-card-placeholder {
-      font-size: var(--terra-card-img-top-placeholder-font-size, 6rem);
-      display: flex;
-      align-items: center;
-      color: var(--color-structure-7);
+    .card-img-top {
+        min-height: var(--terra-card-img-top-min-height, (calc(var(--space-xl) * 5)));
+        margin: var(--space-md) calc(var(--space-xl) * 2);
+        border-radius: 0;
+        width: initial;
 
-      &:before {
-        margin: 0 auto;
-      }
-    }
-  }
+        &.terra-card-image {
+            background: no-repeat center;
+            background-size: var(--terra-card-image-background-size, contain);
+            margin: 2px;
+        }
 
-  .card-header {
-    min-height: var(--terra-card-header-min-height, (calc(var(--space-xl) * 2.5)));
-    background-color: var(--color-structure-0);
-    padding: var(--space-md);
-    display: flex;
-    align-items: center;
-  }
+        &.terra-card-placeholder {
+            font-size: var(--terra-card-img-top-placeholder-font-size, 6rem);
+            display: flex;
+            align-items: center;
+            color: var(--color-structure-7);
 
-  .card-block {
-    padding: var(--space-md);
-    transition: padding var(--transition-md);
-  }
-
-  .card-footer {
-    min-height: var(--terra-card-footer-min-height, (calc(var(--space-xl) * 1.5)));
-    padding: var(--space-md);
-    background-color: var(--card-footer-background-color, var(--color-structure-0));
-    transition: padding var(--transition-md);
-
-    &:last-child {
-      border-radius: 0 0 var(--border-radius) var(--border-radius);
+            &:before {
+                margin: 0 auto;
+            }
+        }
     }
 
-    &.selected {
-      border-top: 1px solid var(--color-active);
-      color: var(--color-structure-0);
-      background-color: var(--color-active);
-      border-radius: 0;
-      transition: all var(--transition-md);
+    .card-header {
+        min-height: var(--terra-card-header-min-height, (calc(var(--space-xl) * 2.5)));
+        background-color: var(--color-structure-0);
+        padding: var(--space-md);
+        display: flex;
+        align-items: center;
     }
-  }
+
+    .card-block {
+        padding: var(--space-md);
+        transition: padding var(--transition-md);
+    }
+
+    .card-footer {
+        min-height: var(--terra-card-footer-min-height, (calc(var(--space-xl) * 1.5)));
+        padding: var(--space-md);
+        background-color: var(--card-footer-background-color, var(--color-structure-0));
+        transition: padding var(--transition-md);
+
+        &:last-child {
+            border-radius: 0 0 var(--border-radius) var(--border-radius);
+        }
+
+        &.selected {
+            border-top: 1px solid var(--color-active);
+            color: var(--color-structure-0);
+            background-color: var(--color-active);
+            border-radius: 0;
+            transition: all var(--transition-md);
+        }
+    }
 }
