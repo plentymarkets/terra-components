@@ -27,20 +27,32 @@ export function createHttpParams(params:Params, arrayAsArray:boolean = false):Ht
         {
             if(arrayAsArray && isArray(params[key]))
             {
-                (params[key] as Array<any>).forEach((arrayItem:any) =>
-                {
-                    if (arrayItem === null)
-                    {
-                        return;
-                    }
-                    searchParams = searchParams.append(key + '[]', arrayItem.toString());
-                });
+                searchParams = getParamsFromArray(params, key, searchParams);
             }
             else
             {
                 searchParams = searchParams.set(key, params[key]);
             }
         }
+    });
+    return searchParams;
+}
+
+/**
+ *  Gets Params from an array
+ * @param params
+ * @param key
+ * @param searchParams
+ */
+function getParamsFromArray(params:Params, key:string, searchParams:HttpParams):HttpParams
+{
+    (params[key] as Array<any>).forEach((arrayItem:any) =>
+    {
+        if(arrayItem === null)
+        {
+            return;
+        }
+        searchParams = searchParams.append(key + '[]', arrayItem.toString());
     });
     return searchParams;
 }
