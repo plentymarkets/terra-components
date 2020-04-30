@@ -1,3 +1,8 @@
+# 5.4.0 (XX.XX.2020)
+
+### Features
+* **peerDependencies** removed `jquery` since we no longer depend on it.
+
 # 5.3.0 (24.04.2020)
 
 ### Features
