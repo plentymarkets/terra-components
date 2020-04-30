@@ -29,6 +29,10 @@ export function createHttpParams(params:Params, arrayAsArray:boolean = false):Ht
             {
                 (params[key] as Array<any>).forEach((arrayItem:any) =>
                 {
+                    if (arrayItem === null)
+                    {
+                        return;
+                    }
                     searchParams = searchParams.append(key + '[]', arrayItem.toString());
                 });
             }

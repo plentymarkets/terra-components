@@ -1,3 +1,8 @@
+# 5.x.x (XX.XX.XX)
+
+### Bug Fixes
+* **http-params** handling the null case in the http params
+
 # 5.3.0 (24.04.2020)
 
 ### Features
