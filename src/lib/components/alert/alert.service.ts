@@ -1,10 +1,11 @@
 import {
     EventEmitter,
+    Inject,
     Injectable
 } from '@angular/core';
 import { TerraAlertInterface } from './data/terra-alert.interface';
 import { AlertType } from './alert-type.enum';
-import { environment } from '../../environments/environment';
+import { IS_ROOT_WINDOW } from '../../utils/window';
 
 @Injectable({
     providedIn: 'root'
@@ -29,6 +30,9 @@ export class AlertService
     public readonly  closeEvent:string = 'closeAlert';
 
     private readonly defaultTimeout:number = 5000;
+
+    constructor(@Inject(IS_ROOT_WINDOW) private isRootWindow:boolean)
+    {}
 
     /**
      * add a success alert
@@ -122,19 +126,10 @@ export class AlertService
 
     private closeAlertForPlugin(identifier:string):void
     {
-        let event:CustomEvent<string> =  new CustomEvent<string>(this.closeEvent, {
+        let event:CustomEvent<string> = new CustomEvent<string>(this.closeEvent, {
             detail: identifier,
             bubbles: false
         });
         window.parent.window.dispatchEvent(event);
-    }
-
-    /**
-     * checks whether this service is used in the root window, or in the test environment
-     */
-    private get isRootWindow():boolean
-    {
-        // since tests are run in an iframe, we need to check for test environment here to make them work
-        return window === window.parent || environment.test;
     }
 }

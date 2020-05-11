@@ -1,5 +1,36 @@
+# 5.4.0 (XX.XX.2020)
+
+### Features
+* **peerDependencies** removed `jquery` since we no longer depend on it.
+
+# 5.3.0 (24.04.2020)
+
+### Features
+* **terra-alert-panel** use native [bootstrap](https://getbootstrap.com/) alert instead of the alert component provided by [ngx-bootstrap](https://valor-software.com/ngx-bootstrap).
+
+### Bug Fixes
+* **terra-portlet** remove overflow
+
+# 5.2.0 (20.04.2020)
+
+### Features
+* **terra-loading-spinner** when using the service in a plentymarkets plugin ui, it now automatically notifies the parent application about the loading status.
+* **terraDraggable** deprecate directive.
+* **terraDropzone** deprecate directive.
+* **terraResizable** deprecate directive.
+
+### Bug Fixes
+* **terra-portlet** removed overflow
+* **terra-node-tree** fixed error that was thrown when the user searches for a node and one of the node's name was undefined.
+* **terra-two-columns-container** updated outer paddings
+* **terra-three-columns-container** updated outer paddings
+* **terra-stopwatch**
+    - you are now able to import `TerraStopwatchComponent` from _@plentymarkets/terra-components_.
+    - prevent starting the timer more than once.
+    - does not use `TerraButtonComponent`'s deprecated `inputTooltipPlacement` anymore.
+
 <a name="5.1.0"></a>
-# 5.1.0 (xx.xx.2020)
+# 5.1.0 (11.03.2020)
 
 ### Features
 * **peerDependencies** removed `flatted` since we no longer depend on it.
@@ -9,6 +40,7 @@
 ### Bug Fixes
 * **matInput** fixed placeholder styling.
 * **terra-portlet** using `border-bottom` on `portlet-head` when unfolded instead of `border-top` on `portlet-body`.
+* **security-vulnerability** dependency package `acorn
 
 <a name="5.0.0"></a>
 # 5.0.0 (20.02.2020)

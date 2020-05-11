@@ -4,10 +4,7 @@ import {
     exportedComponents
 } from './components/component-collection';
 import { directives } from './components/directive-collection';
-import {
-    AlertModule,
-    ModalModule
-} from 'ngx-bootstrap';
+import { ModalModule } from 'ngx-bootstrap';
 import { CommonModule } from '@angular/common';
 import {
     FormsModule,
@@ -28,7 +25,6 @@ import { CKEditorModule } from 'ckeditor4-angular';
         ReactiveFormsModule,
         RouterModule,
         LocalizationModule,
-        AlertModule.forRoot(),
         ModalModule.forRoot(),
         MyDatePickerModule,
         AceEditorModule,
