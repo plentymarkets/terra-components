@@ -163,4 +163,24 @@ describe('Component: CheckboxGroupComponent', () =>
         }]);
         expect(onChangeSpy).toHaveBeenCalledWith(null);
     });
+
+    it('should preserve sorting order when checkboxes are selected/deselected', () =>
+    {
+        // initialization
+        component.checkboxValues = checkboxValues;
+        component.writeValue([checkboxValues[0].value, checkboxValues[2].value]);
+        fixture.detectChanges();
+
+        // register spy
+        let onChangeSpy:Spy = jasmine.createSpy('onChange');
+        component.registerOnChange(onChangeSpy)
+
+        // prepare preselected checkbox object -> update checkbox group values
+        let preselectedCheckbox:TerraMultiCheckBoxValueInterface = checkboxValues[1];
+        preselectedCheckbox.selected = true;
+        component._onMultiCheckboxChanged([preselectedCheckbox]);
+
+        // check order of checkbox group values
+        expect(onChangeSpy).toHaveBeenCalledWith([checkboxValues[0].value, checkboxValues[1].value, checkboxValues[2].value]);
+    });
 });

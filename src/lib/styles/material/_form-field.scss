@@ -35,9 +35,14 @@ mat-form-field.mat-form-field
                 label.mat-form-field-label
                 {
                     font-variant: all-small-caps;
-                    font-size: 18px;
                     text-transform: uppercase;
                     @include font-rendering;
+    
+                    mat-label,
+                    span
+                    {
+                        font-size: 18px;
+                    }
                 }
             }
         }

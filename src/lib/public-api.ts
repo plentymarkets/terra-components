@@ -202,3 +202,5 @@ export { AlertService } from './components/alert/alert.service';
 export { CKEditorDirective } from './components/editors/ck-editor/ck-editor.directive';
 export { TooltipDirective } from './components/tooltip/tooltip.directive';
 export { AllowedColors } from './components/forms/select-box/data/allowed.colors.enum';
+
+export { TerraStopwatchComponent } from './components/stopwatch/terra-stopwatch.component';

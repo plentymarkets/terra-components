@@ -8,7 +8,7 @@
 Testing
 - [ ] Person 1 (mandatory)
 
-    Browser-Support (relevant for changes in scss / appearance of components and jQuery)
+    Browser-Support (relevant for changes in scss / appearance of components)
     - [ ] Chrome
     - [ ] Firefox
     - [ ] Safari

@@ -1,4 +1,5 @@
 import {
+    Inject,
     Injectable,
     NgZone
 } from '@angular/core';
@@ -6,6 +7,7 @@ import {
     Observable,
     Subscriber
 } from 'rxjs';
+import { IS_ROOT_WINDOW } from '../../../utils/window';
 
 /**
  * @author mscharf
@@ -20,7 +22,8 @@ export class TerraLoadingSpinnerService
     private _isLoading:boolean = false;
     private subscriber:Subscriber<boolean>;
 
-    constructor(private zone:NgZone)
+    constructor(private zone:NgZone,
+                @Inject(IS_ROOT_WINDOW) private isRootWindow:boolean)
     {
         this.observable = new Observable<boolean>((subscriber:Subscriber<boolean>):void =>
         {
@@ -34,7 +37,7 @@ export class TerraLoadingSpinnerService
         if(this.subscriber && !this._isLoading)
         {
             this._isLoading = true;
-            this.subscriber.next(this._isLoading);
+            this.notify(this._isLoading);
         }
     }
 
@@ -65,9 +68,19 @@ export class TerraLoadingSpinnerService
                 // run inside angular zone to detect changes from isLoading to false
                 this.zone.run(() =>
                 {
-                    this.subscriber.next(this._isLoading);
+                    this.notify(this._isLoading);
                 });
             }
         }, 100);
+    }
+
+    private notify(isLoading:boolean):void
+    {
+        this.subscriber.next(isLoading);
+        // also dispatch event to the parent windows if the current one is not the root
+        if(!this.isRootWindow)
+        {
+            window.dispatchEvent(new CustomEvent<{isLoading:boolean}>('loadingStatus', {detail: {isLoading}, bubbles: true}));
+        }
     }
 }
