@@ -1,13 +1,22 @@
 import { TableDataSource } from './table-data-source';
-import { MatSort } from '@angular/material/sort';
+import {
+    MatSort,
+    SortDirection
+} from '@angular/material/sort';
 import {
     debounceTime,
     switchMap,
     takeUntil,
     tap
 } from 'rxjs/operators';
+import { CollectionViewer } from '@angular/cdk/collections';
+import {
+    EMPTY,
+    merge,
+    Observable
+} from 'rxjs';
 
-export class TableSortingDataSource<T> extends TableDataSource
+export abstract class TableSortingDataSource<T> extends TableDataSource<T>
 {
     public sort:MatSort;
 
