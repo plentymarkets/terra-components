@@ -52,12 +52,12 @@ export abstract class TableDataSource<T> extends DataSource<T>
 
     public abstract request():Observable<Array<T>>;
 
-    protected sorting():Observable<never> | EventEmitter<Sort>
+    protected sorting():EventEmitter<Sort> | Observable<never>
     {
         return EMPTY;
     }
 
-    protected paging():Observable<never> | EventEmitter<PageEvent>
+    protected paging():EventEmitter<PageEvent> | Observable<never>
     {
         return EMPTY;
     }
