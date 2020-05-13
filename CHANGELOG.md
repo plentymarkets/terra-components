@@ -2,7 +2,8 @@
 
 ### Features
 * **peerDependencies** removed `jquery` since we no longer depend on it.
-* **terra-node-tree** removed dependency to `TranslationService` from `TerraNodeTreeConfig` 
+* **terra-node-tree** removed dependency to `TranslationService` from `TerraNodeTreeConfig`. 
+* **terra-nested-data-picker** removed dependency to `TranslationService` from `NestedDataTreeConfig`.
 
 # 5.3.0 (24.04.2020)
 
