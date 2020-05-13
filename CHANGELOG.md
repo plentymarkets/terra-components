@@ -2,6 +2,7 @@
 
 ### Features
 * **peerDependencies** removed `jquery` since we no longer depend on it.
+* **terra-category-picker** removed provider for `TerraNodeTreeConfig` since it was not used anymore.
 
 # 5.3.0 (24.04.2020)
 
