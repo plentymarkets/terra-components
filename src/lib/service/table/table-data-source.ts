@@ -20,7 +20,6 @@ import { PageEvent } from '@angular/material/paginator';
 
 /**
  * @description Data Source base class for a data table.
- * @extends DataSource<T>
  */
 export abstract class TableDataSource<T> extends DataSource<T>
 {
@@ -84,13 +83,13 @@ export abstract class TableDataSource<T> extends DataSource<T>
 
     /**
      * @description The request to get the data.
-     * @returns {Observable<Array<T>>}
+     * @returns Observable<Array<T>>
      */
     public abstract request():Observable<Array<T>>;
 
     /**
      * @description Return the sort event or an empty observable.
-     * @returns {EventEmitter<Sort>} or {Observable<never>}
+     * @returns EventEmitter<Sort> or Observable<never>
      */
     protected sorting():EventEmitter<Sort> | Observable<never>
     {
@@ -99,7 +98,7 @@ export abstract class TableDataSource<T> extends DataSource<T>
 
     /**
      * @description Return the page event or an empty observable.
-     * @returns {EventEmitter<PageEvent>} or {Observable<never>}
+     * @returns EventEmitter<PageEvent> or Observable<never>
      */
     protected paging():EventEmitter<PageEvent> | Observable<never>
     {

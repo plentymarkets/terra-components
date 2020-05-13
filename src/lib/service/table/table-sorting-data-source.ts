@@ -12,7 +12,6 @@ import { EventEmitter } from '@angular/core';
 
 /**
  * @description Data Source base class for a data table with sorting.
- * @extends TableDataSource<T>
  */
 export abstract class TableSortingDataSource<T> extends TableDataSource<T>
 {
@@ -23,7 +22,7 @@ export abstract class TableSortingDataSource<T> extends TableDataSource<T>
 
     /**
      * @description Return the sort event or an empty observable.
-     * @returns {EventEmitter<Sort>} or {Observable<never>}
+     * @returns EventEmitter<Sort> or Observable<never>
      */
     protected sorting():Observable<never> | EventEmitter<Sort>
     {
@@ -32,7 +31,7 @@ export abstract class TableSortingDataSource<T> extends TableDataSource<T>
 
     /**
      * @description Get the current sorting key.
-     * @returns {string}
+     * @returns string
      */
     public get sortBy():string
     {
@@ -41,7 +40,7 @@ export abstract class TableSortingDataSource<T> extends TableDataSource<T>
 
     /**
      * @description Get the current sorting direction.
-     * @returns {SortDirection}
+     * @returns SortDirection
      */
     public get sortDirection():SortDirection
     {

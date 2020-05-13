@@ -11,7 +11,6 @@ import { EventEmitter } from '@angular/core';
 
 /**
  * Data Source base class for a data table with pagination.
- * @extends TableDataSource<T>
  */
 export abstract class TablePagingDataSource<T> extends TableDataSource<T>
 {
@@ -22,7 +21,7 @@ export abstract class TablePagingDataSource<T> extends TableDataSource<T>
 
     /**
      * @description Get the current page index or undefined if no paginator is specified.
-     * @returns {number}
+     * @returns number
      */
     public get pageIndex():number
     {
@@ -31,7 +30,7 @@ export abstract class TablePagingDataSource<T> extends TableDataSource<T>
 
     /**
      * @description Get the current items pet page or undefined if no paginator is specified.
-     * @returns {number}
+     * @returns number
      */
     public get itemsPerPage():number
     {
@@ -41,7 +40,7 @@ export abstract class TablePagingDataSource<T> extends TableDataSource<T>
     /**
      * @description Return the page event or an empty observable.
      * @override
-     * @returns {EventEmitter<PageEvent>} or {Observable<never>}
+     * @returns EventEmitter<PageEvent> or Observable<never>
      */
     protected paging():EventEmitter<PageEvent> | Observable<never>
     {
