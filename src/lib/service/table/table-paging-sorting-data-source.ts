@@ -14,6 +14,10 @@ import {
 } from 'rxjs';
 import { EventEmitter } from '@angular/core';
 
+/**
+ * Data Source base class for a data table with pagination and sorting.
+ * @extends TableDataSource<T>
+ */
 export abstract class TablePagingSortingDataSource<T> extends TableDataSource<T>
 {
     /**
