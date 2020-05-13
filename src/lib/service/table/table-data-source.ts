@@ -3,6 +3,8 @@ import {
     DataSource
 } from '@angular/cdk/collections';
 import {
+    EMPTY,
+    merge,
     Observable,
     Subject
 } from 'rxjs';
@@ -12,6 +14,9 @@ import {
     takeUntil,
     tap
 } from 'rxjs/operators';
+import { EventEmitter } from '@angular/core';
+import { Sort } from '@angular/material/sort';
+import { PageEvent } from '@angular/material/paginator';
 
 export abstract class TableDataSource<T> extends DataSource<T>
 {
@@ -22,7 +27,11 @@ export abstract class TableDataSource<T> extends DataSource<T>
 
     public connect(collectionViewer:CollectionViewer):Observable<Array<T>>
     {
-        return this._search$.pipe(
+        return merge(
+            this._search$,
+            this.sorting(),
+            this.paging()
+        ).pipe(
             takeUntil(this._disconnect$),
             debounceTime(400),
             switchMap(() => this.request()),
@@ -42,4 +51,14 @@ export abstract class TableDataSource<T> extends DataSource<T>
     }
 
     public abstract request():Observable<Array<T>>;
+
+    protected sorting():Observable<never> | EventEmitter<Sort>
+    {
+        return EMPTY;
+    }
+
+    protected paging():Observable<never> | EventEmitter<PageEvent>
+    {
+        return EMPTY;
+    }
 }
