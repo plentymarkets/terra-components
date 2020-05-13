@@ -1,7 +1,8 @@
 import { TableDataSource } from './table-data-source';
 import {
     MatSort,
-    Sort
+    Sort,
+    SortDirection
 } from '@angular/material/sort';
 import { EventEmitter } from '@angular/core';
 import {
@@ -9,7 +10,7 @@ import {
     Observable
 } from 'rxjs';
 
-export class TableSortingDataSource<T> extends TableDataSource
+export class TableSortingDataSource<T> extends TableDataSource<T>
 {
     public sort:MatSort;
 
