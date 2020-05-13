@@ -38,6 +38,7 @@ export abstract class TablePagingDataSource<T> extends TableDataSource<T>
     /**
      * @override
      * Return the paginator or an empty observable
+     * @returns {EventEmitter<PageEvent>} or {Observable<never>}
      */
     protected paging():Observable<never> | EventEmitter<PageEvent>
     {
