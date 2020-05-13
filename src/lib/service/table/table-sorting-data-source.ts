@@ -4,13 +4,13 @@ import {
     Sort,
     SortDirection
 } from '@angular/material/sort';
-import { EventEmitter } from '@angular/core';
 import {
     EMPTY,
     Observable
 } from 'rxjs';
+import { EventEmitter } from '@angular/core';
 
-export class TableSortingDataSource<T> extends TableDataSource<T>
+export abstract class TableSortingDataSource<T> extends TableDataSource<T>
 {
     public sort:MatSort;
 
