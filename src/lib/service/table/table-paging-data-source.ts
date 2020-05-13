@@ -25,7 +25,6 @@ export abstract class TablePagingDataSource<T> extends TableDataSource<T>
         ).pipe(
             takeUntil(this._disconnect$),
             debounceTime(400),
-            tap(() => console.log(this.pageIndex, this.itemsPerPage)),
             switchMap(() => this.request()),
             tap((data:Array<T>) => this.data = data)
         );
