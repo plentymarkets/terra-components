@@ -15,6 +15,9 @@ import { EventEmitter } from '@angular/core';
  */
 export abstract class TablePagingDataSource<T> extends TableDataSource<T>
 {
+    /**
+     * The paginator instance of the data table
+     */
     public paginator:MatPaginator;
 
     /**
@@ -36,11 +39,11 @@ export abstract class TablePagingDataSource<T> extends TableDataSource<T>
     }
 
     /**
-     * @override
      * Return the paginator or an empty observable
+     * @override
      * @returns {EventEmitter<PageEvent>} or {Observable<never>}
      */
-    protected paging():Observable<never> | EventEmitter<PageEvent>
+    protected paging():EventEmitter<PageEvent> | Observable<never>
     {
         return this.paginator ? this.paginator.page : EMPTY;
     }
