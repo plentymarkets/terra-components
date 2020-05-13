@@ -1,27 +1,21 @@
 import { TableDataSource } from './table-data-source';
-import { MatSort } from '@angular/material/sort';
 import {
-    debounceTime,
-    switchMap,
-    takeUntil,
-    tap
-} from 'rxjs/operators';
+    MatSort,
+    Sort
+} from '@angular/material/sort';
+import { EventEmitter } from '@angular/core';
+import {
+    EMPTY,
+    Observable
+} from 'rxjs';
 
 export class TableSortingDataSource<T> extends TableDataSource
 {
     public sort:MatSort;
 
-    public connect(collectionViewer:CollectionViewer):Observable<Array<T>>
+    protected sorting():Observable<never> | EventEmitter<Sort>
     {
-        return merge(
-            this._search$,
-            this.sort ? this.sort.sortChange : EMPTY,
-        ).pipe(
-            takeUntil(this._disconnect$),
-            debounceTime(400),
-            switchMap(() => this.request()),
-            tap((data:Array<T>) => this.data = data)
-        );
+        return this.sort ? this.sort.sortChange : EMPTY;
     }
 
     public get sortBy():string
