@@ -10,7 +10,7 @@ import {
 import { EventEmitter } from '@angular/core';
 
 /**
- * Base class for a data when a pagination is needed.
+ * Data Source base class for a data table with pagination.
  * @extends TableDataSource<T>
  */
 export abstract class TablePagingDataSource<T> extends TableDataSource<T>
