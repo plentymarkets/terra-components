@@ -4,6 +4,9 @@
 * **peerDependencies** removed `jquery` since we no longer depend on it.
 * **terra-node-tree** removed dependency to `TranslationService` from `TerraNodeTreeConfig`. 
 * **terra-nested-data-picker** removed dependency to `TranslationService` from `NestedDataTreeConfig`.
+* **terra-category-picker**
+    - `CategoryTreeConfig` is deprecated now.
+    - removed dependency to `TranslationService` from `CategoryTreeConfig`.
 
 # 5.3.0 (24.04.2020)
 
