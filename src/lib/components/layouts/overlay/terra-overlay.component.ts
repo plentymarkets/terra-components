@@ -12,6 +12,7 @@ import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum'
 
 /**
  * @author mfrank
+ * @deprecated since v5. Use angular material's [dialog](https://material.angular.io/components/dialog/overview) instead.
  */
 @Component({
     selector: 'terra-overlay',
