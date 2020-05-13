@@ -15,7 +15,7 @@ export class TableSortingDataSource<T> extends TableDataSource
     {
         return merge(
             this._search$,
-            this.sort ? this.sort.sortChange : EMPTY,
+            this.sort ? this.sort.sortChange : EMPTY
         ).pipe(
             takeUntil(this._disconnect$),
             debounceTime(400),
