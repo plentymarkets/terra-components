@@ -17,6 +17,7 @@ import {
 import { EventEmitter } from '@angular/core';
 import { Sort } from '@angular/material/sort';
 import { PageEvent } from '@angular/material/paginator';
+import { TerraFilter } from './filter';
 
 /**
  * @description Data Source base class for a data table.
@@ -29,9 +30,9 @@ export abstract class TableDataSource<T> extends DataSource<T>
     public data:Array<T> = [];
 
     /**
-     * @description Stream to trigger the search.
+     * @description The filter instance
      */
-    protected _search$:Subject<void> = new Subject();
+    public filter:TerraFilter<unknown>;
 
     /**
      * @description Stream to finish all events.
@@ -49,7 +50,7 @@ export abstract class TableDataSource<T> extends DataSource<T>
     public connect(collectionViewer:CollectionViewer):Observable<Array<T>>
     {
         return merge(
-            this._search$,
+            this.filtering(),
             this.sorting(),
             this.paging()
         ).pipe(
@@ -78,7 +79,7 @@ export abstract class TableDataSource<T> extends DataSource<T>
      */
     public search():void
     {
-        this._search$.next();
+        this.filter.search();
     }
 
     /**
@@ -103,5 +104,10 @@ export abstract class TableDataSource<T> extends DataSource<T>
     protected paging():EventEmitter<PageEvent> | Observable<never>
     {
         return EMPTY;
+    }
+
+    protected filtering():Observable<unknown>
+    {
+        return this.filter ? this.filter.search$ : EMPTY;
     }
 }
