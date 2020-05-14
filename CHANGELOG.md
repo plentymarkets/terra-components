@@ -2,6 +2,7 @@
 
 ### Features
 * **peerDependencies** removed `jquery` since we no longer depend on it.
+* **mat-dialog** styles for the [angular material table](https://v8.material.angular.io/components/table/overview).
 
 # 5.3.0 (24.04.2020)
 
