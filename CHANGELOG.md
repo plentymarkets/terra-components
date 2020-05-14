@@ -2,6 +2,7 @@
 
 ### Features
 * **peerDependencies** removed `jquery` since we no longer depend on it.
+* **terra-dynamic-component-loader** is deprecated now. Use angular's [NgComponentOutlet](https://angular.io/api/common/NgComponentOutlet) instead.
 
 # 5.3.0 (24.04.2020)
 
