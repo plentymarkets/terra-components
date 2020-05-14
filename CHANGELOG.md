@@ -2,6 +2,7 @@
 
 ### Features
 * **peerDependencies** removed `jquery` since we no longer depend on it.
+* **terra-base-data** is deprecated now. Use `{}` instead.
 
 # 5.3.0 (24.04.2020)
 
