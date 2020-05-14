@@ -37,7 +37,7 @@ export abstract class TableDataSource<T> extends DataSource<T>
     /**
      * @description Stream to finish all events.
      */
-    protected _disconnect$:Subject<void> = new Subject();
+    private _disconnect$:Subject<void> = new Subject();
 
     /**
      * @description Connects a collection viewer (such as a data-table) to this data source. Note that
