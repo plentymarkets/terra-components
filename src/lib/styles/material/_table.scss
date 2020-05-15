@@ -1,0 +1,153 @@
+@import '../../styles/variables';
+
+.mat-table-container
+{
+    margin: var(--space-container);
+    
+    .mat-table
+    {
+        box-shadow: var(--box-shadow);
+        
+        .mat-header-row
+        {
+            min-height: 0;
+            height: calc(var(--height-lg) - var(--space-sm));
+            background: var(--mat-table-head-background-color, var(--color-structure-0));
+            border-bottom: 1px solid var(--color-structure-4);
+            
+            .mat-header-cell
+            {
+                color: var(--mat-table-head-color, var(--color-structure-8));
+                padding: var(--table-head-th-padding, var(--space-md));
+                border: none;
+                font-size: var(--font-size-3);
+                @include font-rendering;
+                
+                .mat-sort-header-container
+                {
+                    button.mat-sort-header-button
+                    {
+                        &:focus
+                        {
+                            outline: none;
+                        }
+                    }
+                    
+                    .mat-sort-header-arrow
+                    {
+                        color: var(--mat-table-head-color, var(--color-structure-8));
+                    }
+                }
+            }
+        }
+        
+        .mat-row
+        {
+            min-height: 0;
+            height: calc(var(--height-lg) - var(--space-sm));
+            color: var(--color-structure-11);
+            border-bottom: 1px solid var(--border-color);
+            
+            &.disabled
+            {
+                cursor: not-allowed !important;
+                
+                .mat-cell
+                {
+                    opacity: 0.5;
+                    pointer-events: none;
+                }
+            }
+            
+            &:nth-child(odd)
+            {
+                background-color: var(--color-structure-1);
+            }
+            
+            .mat-cell
+            {
+                padding: var(--table-body-td-padding, var(--space-md));
+                vertical-align: middle;
+                white-space: nowrap;
+                font-size: var(--font-size-3);
+                border-bottom-color: var(--color-structure-4);
+                @include font-rendering;
+            }
+            
+            &:hover
+            {
+                background: var(--color-structure-2);
+                cursor: pointer;
+            }
+            
+            &.selected, &.isActive
+            {
+                background-color: var(--color-active);
+                
+                .mat-cell
+                {
+                    color: var(--color-structure-0);
+                    
+                    a[href]
+                    {
+                        color: var(--color-structure-0);
+                        
+                        &:hover
+                        {
+                            color: var(--color-structure-13);
+                        }
+                    }
+                }
+            }
+        }
+        
+        .mat-footer-row
+        {
+            height: calc(var(--height-lg) - var(--space-sm));
+            
+            .mat-footer-cell
+            {
+                padding: var(--table-body-td-padding, var(--space-md));
+                color: var(--mat-table-head-color, var(--color-structure-8));
+                border-bottom: 0;
+            }
+        }
+    }
+    
+    .mat-paginator
+    {
+        box-shadow: var(--box-shadow);
+        margin-bottom: 0;
+        border-bottom: 1px solid var(--color-structure-4);
+        
+        .mat-paginator-outer-container
+        {
+            .mat-paginator-container
+            {
+                min-height: 0;
+                height: calc(var(--height-lg) - var(--space-sm));
+                
+                .mat-paginator-page-size-label, .mat-paginator-range-label
+                {
+                    font-size: var(--font-size-3);
+                    @include font-rendering;
+                }
+                
+                .mat-paginator-range-actions
+                {
+                    height: inherit;
+                    
+                    button
+                    {
+                        height: inherit;
+                    }
+                }
+            }
+        }
+        mat-form-field
+        {
+            margin-top: 0;
+            height: calc(var(--height-lg) - var(--space-sm));
+        }
+    }
+}
