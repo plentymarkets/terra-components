@@ -2,7 +2,9 @@
 
 ### Features
 * **peerDependencies** removed `jquery` since we no longer depend on it.
-* **terra-overlay** is deprecated now. Use angular material's [dialog](https://material.angular.io/components/dialog/overview) instead.
+* **terra-dynamic-component-loader** is deprecated now. Use angular's [NgComponentOutlet](https://angular.io/api/common/NgComponentOutlet) instead.
+* **terra-toggle** is deprecated now. Use angular material's [slide-toggle](https://material.angular.io/components/slide-toggle) instead.
+* **terra-overlay** is deprecated now. Use angular material's [dialog](https://material.angular.io/components/dialog) instead.
 
 # 5.3.0 (24.04.2020)
 

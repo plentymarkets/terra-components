@@ -14,6 +14,7 @@ import {
 } from '@angular/core';
 import { isNullOrUndefined } from 'util';
 
+/** @deprecated since v5. Use angular's [NgComponentOutlet](https://angular.io/api/common/NgComponentOutlet) instead. */
 @Component({
     selector: 'terra-dynamic-component-loader',
     templateUrl: './terra-dynamic-component-loader.component.html',
