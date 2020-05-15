@@ -23,22 +23,6 @@
                 font-size: var(--font-size-3);
                 @include font-rendering;
                 
-                &.cdk-drop-list-receiving, //all elements that can receive a drag
-                &.cdk-drop-list-dragging //element where you drag over
-                {
-                    transition: transform 0.2s ease;
-                }
-                
-                &.cdk-drag-placeholder
-                {
-                    background-color: var(--color-structure-2);
-                }
-                
-                &.cdk-drag
-                {
-                    cursor: move;
-                }
-                
                 .mat-sort-header-container
                 {
                     button.mat-sort-header-button
