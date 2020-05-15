@@ -148,6 +148,7 @@ export abstract class TableDataSource<T> extends DataSource<T>
                'lastPageNumber' in response &&
                'firstOnPage' in response &&
                'lastOnPage' in response &&
-               'itemsPerPage' in response;
+               'itemsPerPage' in response &&
+               'entries' in response;
     }
 }
