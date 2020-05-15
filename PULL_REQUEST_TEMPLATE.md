@@ -45,6 +45,7 @@ Documentation
 - [ ] Changelog (optional: relevant for every change which influences the API)
 - [ ] Example (updated or created)
 - [ ] JSDoc (optional: relevant for every change which influences the API)
+- [ ] [Google spreadsheet](https://docs.google.com/spreadsheets/d/1OINnux8TEoitV-qdAxqUQaf9oGI_fqFVwfRWenRFfhI/edit#gid=0) (relevant when deprecating public APIs or features)
 
 Testing
 - [ ] Unit Test (updated or created)
