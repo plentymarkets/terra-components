@@ -16,7 +16,6 @@ import { TerraNestedDataPickerComponent } from '../nested-data-picker/terra-nest
 import { NestedDataTreeConfig } from '../nested-data-picker/config/nested-data-tree.config';
 import { NestedDataInterface } from '../nested-data-picker/data/nested-data.interface';
 import { TerraPagerInterface } from '../../pager/data/terra-pager.interface';
-import { TerraNodeTreeConfig } from '../../tree/node-tree/data/terra-node-tree.config';
 import { tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
@@ -30,7 +29,6 @@ import { Observable } from 'rxjs';
             useExisting: TerraCategoryPickerComponent,
             multi:       true
         },
-        TerraNodeTreeConfig,
         NestedDataTreeConfig
     ]
 })
