@@ -10,14 +10,19 @@ import {
 } from 'rxjs';
 import {
     debounceTime,
+    map,
     switchMap,
     takeUntil,
     tap
 } from 'rxjs/operators';
 import { EventEmitter } from '@angular/core';
 import { Sort } from '@angular/material/sort';
-import { PageEvent } from '@angular/material/paginator';
+import {
+    MatPaginator,
+    PageEvent
+} from '@angular/material/paginator';
 import { TerraFilter } from './filter';
+import { TerraPagerInterface } from '../../components/pager/data/terra-pager.interface';
 
 /**
  * @description Data Source base class for a data table.
@@ -57,6 +62,15 @@ export abstract class TableDataSource<T> extends DataSource<T>
             takeUntil(this._disconnect$),
             debounceTime(400),
             switchMap(() => this.request()),
+             map((response:unknown) =>
+             {
+                 if(this.isPagerInterface(response))
+                 {
+                     this.paginator.length = response.totalsCount;
+                     return response.entries;
+                 }
+                 return response;
+             }),
             tap((data:Array<T>) => this.data = data)
         );
     }
@@ -86,7 +100,18 @@ export abstract class TableDataSource<T> extends DataSource<T>
      * @description The request to get the data.
      * @returns Observable<Array<T>>
      */
-    public abstract request():Observable<Array<T>>;
+    public abstract request():Observable<Array<T>> | Observable<TerraPagerInterface<T>>;
+
+    /**
+     * @description get the paginator
+     */
+    public abstract get paginator():MatPaginator
+
+    /**
+     * @description set the paginator
+     * @param paginator
+     */
+    public abstract set paginator(paginator:MatPaginator);
 
     /**
      * @description Return the sort event or an empty observable.
@@ -109,5 +134,20 @@ export abstract class TableDataSource<T> extends DataSource<T>
     protected filtering():Observable<unknown>
     {
         return this.filter ? this.filter.search$ : EMPTY;
+    }
+
+    /**
+     * Checks if the given response is a paging response
+     * @param response
+     */
+    private isPagerInterface(response:any):response is TerraPagerInterface<T>
+    {
+        return 'page' in response &&
+               'totalsCount' in response &&
+               'isLastPage' in response &&
+               'lastPageNumber' in response &&
+               'firstOnPage' in response &&
+               'lastOnPage' in response &&
+               'itemsPerPage' in response;
     }
 }

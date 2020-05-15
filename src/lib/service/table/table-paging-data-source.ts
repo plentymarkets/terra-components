@@ -17,7 +17,19 @@ export abstract class TablePagingDataSource<T> extends TableDataSource<T>
     /**
      * @description The paginator instance of the material table.
      */
-    public paginator:MatPaginator;
+    private _paginator:MatPaginator;
+
+    // tslint:disable-next-line:get-set
+    public get paginator():MatPaginator
+    {
+        return this._paginator;
+    }
+
+    // tslint:disable-next-line:get-set
+    public set paginator(paginator:MatPaginator)
+    {
+        this._paginator = paginator;
+    }
 
     /**
      * @description Get the current page index or undefined if no paginator is specified.

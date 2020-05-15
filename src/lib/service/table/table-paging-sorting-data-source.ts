@@ -20,13 +20,26 @@ import { EventEmitter } from '@angular/core';
 export abstract class TablePagingSortingDataSource<T> extends TableDataSource<T>
 {
     /**
-     * @description The paginator instance of the material table.
-     */
-    public paginator:MatPaginator;
-    /**
      * @description The sort instance of the material table.
      */
     public sort:MatSort;
+
+    /**
+     * @description The paginator instance of the material table.
+     */
+    private _paginator:MatPaginator;
+
+    // tslint:disable-next-line:get-set
+    public get paginator():MatPaginator
+    {
+        return this._paginator;
+    }
+
+    // tslint:disable-next-line:get-set
+    public set paginator(paginator:MatPaginator)
+    {
+        this._paginator = paginator;
+    }
 
     /**
      * @description Return the page event or an empty observable.
