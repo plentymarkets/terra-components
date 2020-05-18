@@ -130,7 +130,6 @@ export abstract class TableDataSource<T> extends DataSource<T>
     /**
      * Checks if the given response is a paging response
      * @param response
-     * @private
      */
     private _isPagerInterface(response:any):response is TerraPagerInterface<T>
     {
@@ -147,7 +146,6 @@ export abstract class TableDataSource<T> extends DataSource<T>
     /**
      * Check if the given data source has a paginator
      * @param dataSource
-     * @private
      */
     private _hasPager(dataSource:any):dataSource is HasPaginatorInterface
     {
