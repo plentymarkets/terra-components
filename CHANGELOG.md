@@ -1,7 +1,11 @@
 # 5.4.0 (XX.XX.2020)
 
 ### Features
+* **mat-table** styles for the [angular material table](https://v8.material.angular.io/components/table/overview).
 * **peerDependencies** removed `jquery` since we no longer depend on it.
+* **terra-dynamic-component-loader** is deprecated now. Use angular's [NgComponentOutlet](https://angular.io/api/common/NgComponentOutlet) instead.
+* **terra-toggle** is deprecated now. Use angular material's [slide-toggle](https://material.angular.io/components/slide-toggle) instead.
+* **terra-category-picker** removed provider for `TerraNodeTreeConfig` since it was not used anymore.
 
 # 5.3.0 (24.04.2020)
 
