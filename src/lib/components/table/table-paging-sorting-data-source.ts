@@ -14,11 +14,12 @@ import {
 } from 'rxjs';
 import { EventEmitter } from '@angular/core';
 import { HasPaginatorInterface } from './has-paginator.interface';
+import { HasSortingInterface } from './has-sorting.interface';
 
 /**
  * Data Source base class for a data table with pagination and sorting.
  */
-export abstract class TablePagingSortingDataSource<T> extends TableDataSource<T> implements HasPaginatorInterface
+export abstract class TablePagingSortingDataSource<T> extends TableDataSource<T> implements HasPaginatorInterface, HasSortingInterface
 {
     /**
      * @description The sort instance of the material table.
