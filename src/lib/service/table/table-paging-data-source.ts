@@ -8,11 +8,12 @@ import {
     PageEvent
 } from '@angular/material/paginator';
 import { EventEmitter } from '@angular/core';
+import { HasPaginatorInterface } from './has-paginator.interface';
 
 /**
  * Data Source base class for a data table with pagination.
  */
-export abstract class TablePagingDataSource<T> extends TableDataSource<T>
+export abstract class TablePagingDataSource<T> extends TableDataSource<T> implements HasPaginatorInterface
 {
     /**
      * @description The paginator instance of the material table.

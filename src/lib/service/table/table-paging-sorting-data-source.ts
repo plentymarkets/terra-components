@@ -13,20 +13,22 @@ import {
     Observable
 } from 'rxjs';
 import { EventEmitter } from '@angular/core';
+import { HasPaginatorInterface } from './has-paginator.interface';
 
 /**
  * Data Source base class for a data table with pagination and sorting.
  */
-export abstract class TablePagingSortingDataSource<T> extends TableDataSource<T>
+export abstract class TablePagingSortingDataSource<T> extends TableDataSource<T> implements HasPaginatorInterface
 {
-    /**
-     * @description The paginator instance of the material table.
-     */
-    public paginator:MatPaginator;
     /**
      * @description The sort instance of the material table.
      */
     public sort:MatSort;
+
+    /**
+     * @description The paginator instance of the material table.
+     */
+    public paginator:MatPaginator;
 
     /**
      * @description Return the page event or an empty observable.
