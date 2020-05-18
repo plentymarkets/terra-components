@@ -18,11 +18,11 @@ import {
 import { EventEmitter } from '@angular/core';
 import { Sort } from '@angular/material/sort';
 import {
-    MatPaginator,
     PageEvent
 } from '@angular/material/paginator';
 import { TerraFilter } from './filter';
 import { TerraPagerInterface } from '../../components/pager/data/terra-pager.interface';
+import { HasPaginatorInterface } from './has-paginator.interface';
 
 /**
  * @description Data Source base class for a data table.
@@ -64,7 +64,7 @@ export abstract class TableDataSource<T> extends DataSource<T>
             switchMap(() => this.request()),
              map((response:unknown) =>
              {
-                 if(this.isPagerInterface(response))
+                 if(this.isPagerInterface(response) && this.hasPager(this))
                  {
                      this.paginator.length = response.totalsCount;
                      return response.entries;
@@ -102,16 +102,7 @@ export abstract class TableDataSource<T> extends DataSource<T>
      */
     public abstract request():Observable<Array<T>> | Observable<TerraPagerInterface<T>>;
 
-    /**
-     * @description get the paginator
-     */
-    public abstract get paginator():MatPaginator
 
-    /**
-     * @description set the paginator
-     * @param paginator
-     */
-    public abstract set paginator(paginator:MatPaginator);
 
     /**
      * @description Return the sort event or an empty observable.
@@ -150,5 +141,10 @@ export abstract class TableDataSource<T> extends DataSource<T>
                'lastOnPage' in response &&
                'itemsPerPage' in response &&
                'entries' in response;
+    }
+
+    private hasPager(hasPager:any):hasPager is HasPaginatorInterface
+    {
+        return 'paginator' in hasPager;
     }
 }
