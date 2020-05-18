@@ -55,16 +55,16 @@ export abstract class TableDataSource<T> extends DataSource<T>
     public connect(collectionViewer:CollectionViewer):Observable<Array<T>>
     {
         return merge(
-            this.filtering(),
-            this.sorting(),
-            this.paging()
+            this._filtering(),
+            this._sorting(),
+            this._paging()
         ).pipe(
             takeUntil(this._disconnect$),
             debounceTime(400),
             switchMap(() => this.request()),
              map((response:unknown) =>
              {
-                 if(this.isPagerInterface(response) && this.hasPager(this))
+                 if(this._isPagerInterface(response) && this._hasPager(this))
                  {
                      this.paginator.length = response.totalsCount;
                      return response.entries;
@@ -108,7 +108,7 @@ export abstract class TableDataSource<T> extends DataSource<T>
      * @description Return the sort event or an empty observable.
      * @returns EventEmitter<Sort> or Observable<never>
      */
-    protected sorting():EventEmitter<Sort> | Observable<never>
+    protected _sorting():EventEmitter<Sort> | Observable<never>
     {
         return EMPTY;
     }
@@ -117,12 +117,12 @@ export abstract class TableDataSource<T> extends DataSource<T>
      * @description Return the page event or an empty observable.
      * @returns EventEmitter<PageEvent> or Observable<never>
      */
-    protected paging():EventEmitter<PageEvent> | Observable<never>
+    protected _paging():EventEmitter<PageEvent> | Observable<never>
     {
         return EMPTY;
     }
 
-    protected filtering():Observable<unknown>
+    protected _filtering():Observable<unknown>
     {
         return this.filter ? this.filter.search$ : EMPTY;
     }
@@ -130,8 +130,9 @@ export abstract class TableDataSource<T> extends DataSource<T>
     /**
      * Checks if the given response is a paging response
      * @param response
+     * @private
      */
-    private isPagerInterface(response:any):response is TerraPagerInterface<T>
+    private _isPagerInterface(response:any):response is TerraPagerInterface<T>
     {
         return 'page' in response &&
                'totalsCount' in response &&
@@ -143,8 +144,13 @@ export abstract class TableDataSource<T> extends DataSource<T>
                'entries' in response;
     }
 
-    private hasPager(hasPager:any):hasPager is HasPaginatorInterface
+    /**
+     * Check if the given data source has a paginator
+     * @param dataSource
+     * @private
+     */
+    private _hasPager(dataSource:any):dataSource is HasPaginatorInterface
     {
-        return 'paginator' in hasPager;
+        return 'paginator' in dataSource;
     }
 }

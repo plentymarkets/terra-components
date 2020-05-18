@@ -25,7 +25,7 @@ export abstract class TableSortingDataSource<T> extends TableDataSource<T> imple
      * @description Return the sort event or an empty observable.
      * @returns EventEmitter<Sort> or Observable<never>
      */
-    protected sorting():Observable<never> | EventEmitter<Sort>
+    protected _sorting():Observable<never> | EventEmitter<Sort>
     {
         return this.sort ? this.sort.sortChange : EMPTY;
     }

@@ -36,7 +36,7 @@ export abstract class TablePagingSortingDataSource<T> extends TableDataSource<T>
      * @override
      * @returns EventEmitter<PageEvent> or Observable<never>
      */
-    protected paging():EventEmitter<PageEvent> | Observable<never>
+    protected _paging():EventEmitter<PageEvent> | Observable<never>
     {
         return this.paginator ? this.paginator.page : EMPTY;
     }
@@ -45,7 +45,7 @@ export abstract class TablePagingSortingDataSource<T> extends TableDataSource<T>
      * @description Return the sort event or an empty observable.
      * @returns EventEmitter<Sort> or Observable<never>
      */
-    protected sorting():Observable<never> | EventEmitter<Sort>
+    protected _sorting():Observable<never> | EventEmitter<Sort>
     {
         return this.sort ? this.sort.sortChange : EMPTY;
     }
