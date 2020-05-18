@@ -21,7 +21,7 @@ import {
     PageEvent
 } from '@angular/material/paginator';
 import { TerraFilter } from './filter';
-import { TerraPagerInterface } from '../../components/pager/data/terra-pager.interface';
+import { TerraPagerInterface } from '../pager/data/terra-pager.interface';
 import { HasPaginatorInterface } from './has-paginator.interface';
 
 /**

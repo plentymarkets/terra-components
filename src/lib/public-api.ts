@@ -102,6 +102,13 @@ export { TerraSimpleTableComponent } from './components/tables/simple/terra-simp
 
 export { TerraBaseToolbarComponent } from './components/toolbar/base-toolbar/terra-base-toolbar.component';
 
+// MatTable Data Sources
+export { TerraFilter } from './components/table/filter';
+export { TableDataSource } from './components/table/table-data-source';
+export { TablePagingDataSource } from './components/table/table-paging-data-source';
+export { TableSortingDataSource } from './components/table/table-sorting-data-source';
+export { TablePagingSortingDataSource } from './components/table/table-paging-sorting-data-source';
+
 // TODO: Should be removed from the public API
 export { TerraBaseTreeComponent } from './components/tree/base/terra-base-tree.component';
 
