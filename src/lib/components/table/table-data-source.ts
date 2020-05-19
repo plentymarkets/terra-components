@@ -17,9 +17,7 @@ import {
 } from 'rxjs/operators';
 import { EventEmitter } from '@angular/core';
 import { Sort } from '@angular/material/sort';
-import {
-    PageEvent
-} from '@angular/material/paginator';
+import { PageEvent } from '@angular/material/paginator';
 import { TerraFilter } from './filter';
 import { TerraPagerInterface } from '../pager/data/terra-pager.interface';
 import { HasPaginatorInterface } from './has-paginator.interface';
@@ -62,15 +60,15 @@ export abstract class TableDataSource<T> extends DataSource<T>
             takeUntil(this._disconnect$),
             debounceTime(400),
             switchMap(() => this.request()),
-             map((response:unknown) =>
-             {
-                 if(this._isPaginated(response) && this._hasPager(this))
-                 {
-                     this.paginator.length = response.totalsCount;
-                     return response.entries;
-                 }
-                 return response;
-             }),
+            map((response:unknown) =>
+            {
+                if(this._isPaginated(response) && this._hasPager(this))
+                {
+                    this.paginator.length = response.totalsCount;
+                    return response.entries;
+                }
+                return response;
+            }),
             tap((data:Array<T>) => this.data = data)
         );
     }
