@@ -1,43 +1,31 @@
 import {
-    async,
     ComponentFixture,
     TestBed
 } from '@angular/core/testing';
-import { LocalizationModule } from 'angular-l10n';
-import { l10nConfig } from '../../../../app/translation/l10n.config';
-import { TerraGroupFunctionComponent } from './terra-group-function.component';
-import { TerraButtonComponent } from '../../buttons/button/terra-button.component';
-import { HttpClientModule } from '@angular/common/http';
+import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { TooltipDirective } from '../../tooltip/tooltip.directive';
-import { Router } from '@angular/router';
-import { MockRouter } from '../../../testing/mock-router';
+import { TranslationModule } from 'angular-l10n';
+import { TerraGroupFunctionComponent } from './terra-group-function.component';
+import { TerraButtonComponentStub } from '../../../testing/terra-button.component.stub';
 
 describe('Component: TerraGroupFunctionComponent', () =>
 {
     let component:TerraGroupFunctionComponent;
     let fixture:ComponentFixture<TerraGroupFunctionComponent>;
-    const router:MockRouter = new MockRouter();
 
-    beforeEach(async(() =>
+    beforeEach(() =>
     {
         TestBed.configureTestingModule({
-            declarations: [TooltipDirective,
-                           TerraGroupFunctionComponent,
-                           TerraButtonComponent
+            declarations: [
+                TerraGroupFunctionComponent,
+                TerraButtonComponentStub
             ],
             imports:      [
                 NoopAnimationsModule,
-                HttpClientModule,
-                LocalizationModule.forRoot(l10nConfig)
+                TranslationModule.forRoot({})
             ],
-            providers:    [
-                {
-                    provide:  Router,
-                    useValue: router
-                }]
-        }).compileComponents();
-    }));
+        });
+    });
 
     beforeEach(() =>
     {
@@ -57,5 +45,13 @@ describe('Component: TerraGroupFunctionComponent', () =>
         expect(component.show).toEqual(false);
         expect(component.disableExecution).toEqual(true);
         expect(component.executeGroupFunction).toBeTruthy();
+    });
+
+    it('should emit on #executeGroupFunction when the button is clicked', () =>
+    {
+        const button:TerraButtonComponentStub = fixture.debugElement.query(By.directive(TerraButtonComponentStub)).componentInstance;
+        spyOn(component.executeGroupFunction, 'emit');
+        button.outputClicked.emit();
+        expect(component.executeGroupFunction.emit).toHaveBeenCalled();
     });
 });
