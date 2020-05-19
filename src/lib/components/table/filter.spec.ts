@@ -1,13 +1,11 @@
 import { TerraFilter } from './filter';
-import createSpyObj = jasmine.createSpyObj;
-import SpyObj = jasmine.SpyObj;
 
 interface FilterParams
 {
     id:number;
 }
 
-fdescribe('Filter', () =>
+describe('Filter', () =>
 {
     let filter:TerraFilter<FilterParams>;
 
@@ -33,11 +31,6 @@ fdescribe('Filter', () =>
 
     it('should emit search$ after search call', () =>
     {
-        // let spy:SpyObj<unknown> = spyOnProperty(filter, 'search$');
-        //
-        // filter.search();
-        // expect(spy).toHaveBeenCalled();
-
         filter.search$.subscribe(() => expect().nothing());
         filter.search();
     });
