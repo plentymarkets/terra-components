@@ -43,12 +43,10 @@ export abstract class TableDataSource<T> extends DataSource<T>
     private _disconnect$:Subject<void> = new Subject();
 
     /**
-     * Connects a collection viewer (such as a data-table) to this data source. Note that
-     * the stream provided will be accessed during change detection and should not directly change
-     * values that are bound in template views.
-     * @param collectionViewer The component that exposes a view over the data provided by this
-     *     data source.
-     * @returns Observable that emits a new value when the data changes.
+     * Connects the data table to the api for. It also checks if the api call is filtered, sorted or paginated.
+     * This is called from the data table itself.
+     * @param collectionViewer
+     * @returns Observable that emits a new value when a search, sorting or pagination is triggered.
      */
     public connect(collectionViewer:CollectionViewer):Observable<Array<T>>
     {
@@ -74,10 +72,8 @@ export abstract class TableDataSource<T> extends DataSource<T>
     }
 
     /**
-     * Disconnects a collection viewer (such as a data-table) from this data source. Can be used
-     * to perform any clean-up or tear-down operations when a view is being destroyed.
-     * @param collectionViewer The component that exposes a view over the data provided by this
-     *     data source.
+     * Disconnects the data table from the data source. This is called from the data table itself.
+     * @param collectionViewer
      */
     public disconnect(collectionViewer:CollectionViewer):void
     {
