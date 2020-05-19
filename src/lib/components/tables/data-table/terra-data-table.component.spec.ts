@@ -19,7 +19,6 @@ import { TerraSelectBoxComponent } from '../../forms/select-box/terra-select-box
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { TerraTagComponent } from '../../layouts/tag/terra-tag.component';
-import { HttpClientModule } from '@angular/common/http';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TerraDataTableServiceExample } from './example/terra-data-table.service.example';
 import { TerraLoadingSpinnerService } from '../../loading-spinner/service/terra-loading-spinner.service';
@@ -69,7 +68,6 @@ describe('TerraDataTableComponent', () =>
             imports:      [
                 CommonModule,
                 FormsModule,
-                HttpClientModule,
                 NoopAnimationsModule,
                 LocalizationModule.forRoot(l10nConfig)
             ],

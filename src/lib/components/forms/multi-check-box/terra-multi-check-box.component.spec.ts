@@ -5,7 +5,6 @@ import {
 } from '@angular/core/testing';
 import { CheckboxGroupComponent } from '../checkbox-group/checkbox-group.component';
 import { TerraCheckboxComponent } from '../checkbox/terra-checkbox.component';
-import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { LocalizationModule } from 'angular-l10n';
 import { l10nConfig } from '../../../../app/translation/l10n.config';
@@ -34,7 +33,6 @@ describe('TerraMultiCheckBoxComponent:', () =>
                                TerraMultiCheckBoxComponent
                 ],
                 imports:      [
-                    HttpClientModule,
                     FormsModule,
                     LocalizationModule.forRoot(l10nConfig)
                 ],

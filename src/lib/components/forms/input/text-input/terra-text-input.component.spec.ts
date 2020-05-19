@@ -9,7 +9,6 @@ import { FormsModule } from '@angular/forms';
 import { LocalizationModule } from 'angular-l10n';
 import { l10nConfig } from '../../../../../app/translation/l10n.config';
 import { TerraLabelTooltipDirective } from '../../../../helpers/terra-label-tooltip.directive';
-import { HttpClientModule } from '@angular/common/http';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 import { TooltipDirective } from '../../../tooltip/tooltip.directive';
@@ -34,7 +33,6 @@ describe('Component: TerraTextInputComponent', () =>
                                TooltipDirective,
                                TerraLabelTooltipDirective],
                 imports:      [
-                    HttpClientModule,
                     FormsModule,
                     LocalizationModule.forRoot(l10nConfig)
                 ],

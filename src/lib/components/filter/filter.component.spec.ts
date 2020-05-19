@@ -1,5 +1,4 @@
 import { DebugElement } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
 import {
     async,
     ComponentFixture,
@@ -41,7 +40,6 @@ describe('FilterComponent:', () =>
             ],
             imports:      [
                 BrowserAnimationsModule,
-                HttpClientModule,
                 LocalizationModule.forRoot(l10nConfig)
             ],
             providers:    [
