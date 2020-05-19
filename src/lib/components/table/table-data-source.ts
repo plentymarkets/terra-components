@@ -64,7 +64,7 @@ export abstract class TableDataSource<T> extends DataSource<T>
             switchMap(() => this.request()),
              map((response:unknown) =>
              {
-                 if(this._isPagerInterface(response) && this._hasPager(this))
+                 if(this._isPaginated(response) && this._hasPager(this))
                  {
                      this.paginator.length = response.totalsCount;
                      return response.entries;
@@ -96,7 +96,7 @@ export abstract class TableDataSource<T> extends DataSource<T>
     }
 
     /**
-     * The request to get the data.
+     * The request to get the data. Either paginated or a plain list.
      * @returns Observable<Array<T>>
      */
     public abstract request():Observable<Array<T>> | Observable<TerraPagerInterface<T>>;
@@ -134,7 +134,7 @@ export abstract class TableDataSource<T> extends DataSource<T>
      * Checks if the given response is a paging response
      * @param response
      */
-    private _isPagerInterface(response:any):response is TerraPagerInterface<T>
+    private _isPaginated(response:any):response is TerraPagerInterface<T>
     {
         return 'page' in response &&
                'totalsCount' in response &&
