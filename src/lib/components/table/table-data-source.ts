@@ -25,27 +25,27 @@ import { TerraPagerInterface } from '../pager/data/terra-pager.interface';
 import { HasPaginatorInterface } from './has-paginator.interface';
 
 /**
- * @description Data Source base class for a data table.
+ * Data Source base class for a data table.
  */
 export abstract class TableDataSource<T> extends DataSource<T>
 {
     /**
-     * @description The data to display in the table.
+     * The data to display in the table.
      */
     public data:Array<T> = [];
 
     /**
-     * @description The filter instance
+     * The filter instance
      */
     public filter:TerraFilter<unknown>;
 
     /**
-     * @description Stream to finish all events.
+     * Stream to finish all events.
      */
     private _disconnect$:Subject<void> = new Subject();
 
     /**
-     * @description Connects a collection viewer (such as a data-table) to this data source. Note that
+     * Connects a collection viewer (such as a data-table) to this data source. Note that
      * the stream provided will be accessed during change detection and should not directly change
      * values that are bound in template views.
      * @param collectionViewer The component that exposes a view over the data provided by this
@@ -76,9 +76,8 @@ export abstract class TableDataSource<T> extends DataSource<T>
     }
 
     /**
-     * @description Disconnects a collection viewer (such as a data-table) from this data source. Can be used
+     * Disconnects a collection viewer (such as a data-table) from this data source. Can be used
      * to perform any clean-up or tear-down operations when a view is being destroyed.
-     *
      * @param collectionViewer The component that exposes a view over the data provided by this
      *     data source.
      */
@@ -89,7 +88,7 @@ export abstract class TableDataSource<T> extends DataSource<T>
     }
 
     /**
-     * @description Executes the search with given request.
+     * Executes the search with given request.
      */
     public search():void
     {
@@ -97,7 +96,7 @@ export abstract class TableDataSource<T> extends DataSource<T>
     }
 
     /**
-     * @description The request to get the data.
+     * The request to get the data.
      * @returns Observable<Array<T>>
      */
     public abstract request():Observable<Array<T>> | Observable<TerraPagerInterface<T>>;
@@ -105,7 +104,7 @@ export abstract class TableDataSource<T> extends DataSource<T>
 
 
     /**
-     * @description Return the sort event or an empty observable.
+     * Return the sort event or an empty observable.
      * @returns EventEmitter<Sort> or Observable<never>
      */
     protected _sorting():EventEmitter<Sort> | Observable<never>
@@ -114,7 +113,7 @@ export abstract class TableDataSource<T> extends DataSource<T>
     }
 
     /**
-     * @description Return the page event or an empty observable.
+     * Return the page event or an empty observable.
      * @returns EventEmitter<PageEvent> or Observable<never>
      */
     protected _paging():EventEmitter<PageEvent> | Observable<never>
@@ -122,6 +121,10 @@ export abstract class TableDataSource<T> extends DataSource<T>
         return EMPTY;
     }
 
+    /**
+     * Return the filter or an empty observable
+     * @returns Observable<unknown>
+     */
     protected _filtering():Observable<unknown>
     {
         return this.filter ? this.filter.search$ : EMPTY;
