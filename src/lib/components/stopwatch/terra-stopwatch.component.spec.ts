@@ -1,21 +1,25 @@
-import { TerraStopwatchComponent } from './terra-stopwatch.component';
 import {
-    async,
+    Component,
+    Input
+} from '@angular/core';
+import {
     ComponentFixture,
     discardPeriodicTasks,
     fakeAsync,
     TestBed,
     tick
 } from '@angular/core/testing';
-import { TerraButtonComponent } from '../buttons/button/terra-button.component';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-import { LocalizationModule } from 'angular-l10n';
-import { l10nConfig } from '../../../app/translation/l10n.config';
-import { TooltipDirective } from '../tooltip/tooltip.directive';
-import { Router } from '@angular/router';
-import { MockRouter } from '../../testing/mock-router';
-import Spy = jasmine.Spy;
+import { TranslationModule } from 'angular-l10n';
+import { TerraStopwatchComponent } from './terra-stopwatch.component';
+
+@Component({selector: 'terra-button', template: ''})
+/* tslint:disable-next-line:component-class-suffix */
+export class TerraButtonComponentStub {
+    @Input() public inputIcon:string;
+    @Input() public inputCaption:string;
+    @Input() public inputIsSmall:boolean;
+    @Input() public inputTooltipText:string;
+}
 
 describe('Component: TerraStopwatchComponent', () =>
 {
@@ -23,28 +27,19 @@ describe('Component: TerraStopwatchComponent', () =>
     let fixture:ComponentFixture<TerraStopwatchComponent>;
     const ticks:number = 2;
     const ticksInMilliseconds:number = ticks * 1000 + 1;
-    const router:MockRouter = new MockRouter();
 
-    beforeEach(async(() =>
+    beforeEach(() =>
     {
         TestBed.configureTestingModule({
             declarations: [
                 TerraStopwatchComponent,
-                TerraButtonComponent,
-                TooltipDirective
+                TerraButtonComponentStub
             ],
             imports:      [
-                FormsModule,
-                HttpClientModule,
-                LocalizationModule.forRoot(l10nConfig)
-            ],
-            providers:    [
-                {
-                    provide:  Router,
-                    useValue: router
-                }]
-        }).compileComponents();
-    }));
+                TranslationModule.forRoot({})
+            ]
+        });
+    });
 
     beforeEach(() =>
     {
@@ -88,9 +83,9 @@ describe('Component: TerraStopwatchComponent', () =>
 
     it('should call the #stop method when calling #reset', () =>
     {
-        let spy:Spy = spyOn(component, 'stop');
+        spyOn(component, 'stop');
         component.reset();
-        expect(spy).toHaveBeenCalled();
+        expect(component.stop).toHaveBeenCalled();
     });
 
     it('should start the watch when calling the #start method', fakeAsync(() =>
@@ -104,11 +99,11 @@ describe('Component: TerraStopwatchComponent', () =>
 
     it('should start automatically if #autoPlay is true', fakeAsync(() =>
     {
-        let spy:Spy = spyOn(component, 'start').and.callThrough();
+        spyOn(component, 'start').and.callThrough();
         component.autoPlay = true;
         component.ngOnInit();
 
-        expect(spy).toHaveBeenCalled();
+        expect(component.start).toHaveBeenCalled();
         tick(ticksInMilliseconds);
         expect(component.seconds).toBeGreaterThan(0);
 
@@ -117,11 +112,11 @@ describe('Component: TerraStopwatchComponent', () =>
 
     it('should not start automatically if #autoPlay is false', fakeAsync(() =>
     {
-        let spy:Spy = spyOn(component, 'start').and.callThrough();
+        spyOn(component, 'start').and.callThrough();
         component.autoPlay = false;
         component.ngOnInit();
 
-        expect(spy).not.toHaveBeenCalled();
+        expect(component.start).not.toHaveBeenCalled();
         tick(ticksInMilliseconds);
         expect(component.seconds).toBe(0);
     }));
