@@ -6,14 +6,13 @@ import {
     ComponentFixture,
     TestBed
 } from '@angular/core/testing';
-import { TranslationModule } from 'angular-l10n';
-
 import { By } from '@angular/platform-browser';
+import { TranslationModule } from 'angular-l10n';
 import { FilterComponent } from './filter.component';
 import { TerraButtonComponent } from '../buttons/button/terra-button.component';
 import Spy = jasmine.Spy;
 
-fdescribe('FilterComponent:', () =>
+describe('FilterComponent:', () =>
 {
     let filterComponent:FilterComponent;
     let fixture:ComponentFixture<FilterComponent>;
@@ -35,7 +34,7 @@ fdescribe('FilterComponent:', () =>
     {
         fixture = TestBed.createComponent(FilterComponent);
         filterComponent = fixture.componentInstance;
-        buttons = fixture.debugElement.queryAll(By.css('form terra-base-toolbar div.btn-group terra-button'));
+        buttons = fixture.debugElement.queryAll(By.directive(TerraButtonComponent));
 
         fixture.detectChanges();
     });
