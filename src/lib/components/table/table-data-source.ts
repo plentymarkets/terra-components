@@ -131,7 +131,7 @@ export abstract class TableDataSource<T> extends DataSource<T>
      * Checks if the given response is a paging response
      * @param response
      */
-    private _isPagerInterface(response:any):response is TerraPagerInterface<T>
+    private _isPaginated(response:any):response is TerraPagerInterface<T>
     {
         return 'page' in response &&
                'totalsCount' in response &&
