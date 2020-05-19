@@ -1,8 +1,8 @@
 {
-	"extends": "./node_modules/@plentymarkets/terra-lint-rules/tslint-rules.json",
-	"rulesDirectory": [
-		"node_modules/codelyzer",
-		"node_modules/tslint-eslint-rules/dist/rules",
-		"node_modules/@plentymarkets/terra-lint-rules"
-	]
+    //	"extends": "./node_modules/@plentymarkets/terra-lint-rules/tslint-rules.json",
+    "rulesDirectory": [
+        "node_modules/codelyzer",
+        "node_modules/tslint-eslint-rules/dist/rules",
+        "node_modules/@plentymarkets/terra-lint-rules"
+    ]
 }
