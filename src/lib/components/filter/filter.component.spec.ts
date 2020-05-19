@@ -10,7 +10,6 @@ import { By } from '@angular/platform-browser';
 import { TranslationModule } from 'angular-l10n';
 import { FilterComponent } from './filter.component';
 import { TerraButtonComponent } from '../buttons/button/terra-button.component';
-import Spy = jasmine.Spy;
 
 describe('FilterComponent:', () =>
 {
@@ -52,29 +51,19 @@ describe('FilterComponent:', () =>
 
     it(`should emit on #search if search button is clicked`, () =>
     {
-        let spy:Spy = jasmine.createSpy('search');
-
-        filterComponent.search.subscribe(() =>
-        {
-            spy();
-        });
+        spyOn(filterComponent.search, 'emit');
 
         buttons[0].componentInstance.outputClicked.emit();
 
-        expect(spy).toHaveBeenCalled();
+        expect(filterComponent.search.emit).toHaveBeenCalled();
     });
 
     it(`should emit on #reset if reset button is clicked`, () =>
     {
-        let spy:Spy = jasmine.createSpy('reset');
-
-        filterComponent.reset.subscribe(() =>
-        {
-            spy();
-        });
+        spyOn(filterComponent.reset, 'emit');
 
         buttons[1].componentInstance.outputClicked.emit();
 
-        expect(spy).toHaveBeenCalled();
+        expect(filterComponent.reset.emit).toHaveBeenCalled();
     });
 });
