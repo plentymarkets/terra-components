@@ -1,22 +1,16 @@
-import { DebugElement } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
 import {
-    async,
+    DebugElement,
+    NO_ERRORS_SCHEMA
+} from '@angular/core';
+import {
     ComponentFixture,
     TestBed
 } from '@angular/core/testing';
-import { LocalizationModule } from 'angular-l10n';
+import { TranslationModule } from 'angular-l10n';
 
 import { By } from '@angular/platform-browser';
 import { FilterComponent } from './filter.component';
-import { TerraBaseToolbarComponent } from '../toolbar/base-toolbar/terra-base-toolbar.component';
 import { TerraButtonComponent } from '../buttons/button/terra-button.component';
-import { TerraPortletComponent } from '../layouts/portlet/terra-portlet.component';
-import { l10nConfig } from '../../../app/translation/l10n.config';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { TerraLabelTooltipDirective } from '../../helpers/terra-label-tooltip.directive';
-import { TerraInfoComponent } from '../info/terra-info.component';
-import { TooltipDirective } from '../tooltip/tooltip.directive';
 import Spy = jasmine.Spy;
 
 fdescribe('FilterComponent:', () =>
@@ -25,25 +19,17 @@ fdescribe('FilterComponent:', () =>
     let fixture:ComponentFixture<FilterComponent>;
     let buttons:Array<DebugElement>;
 
-    beforeEach(async(() =>
+    beforeEach(() =>
     {
         TestBed.configureTestingModule({
-            declarations: [TooltipDirective,
-                           TerraLabelTooltipDirective,
-                           TerraButtonComponent,
-                           TerraBaseToolbarComponent,
-                           TerraInfoComponent,
-                           TerraPortletComponent,
-                           FilterComponent
+            declarations: [
+                TerraButtonComponent,
+                FilterComponent
             ],
-            imports:      [
-                BrowserAnimationsModule,
-                HttpClientModule,
-                LocalizationModule.forRoot(l10nConfig)
-            ],
-            providers:    []
-        }).compileComponents();
-    }));
+            imports:      [TranslationModule.forRoot({})],
+            schemas:      [NO_ERRORS_SCHEMA]
+        });
+    });
 
     beforeEach(() =>
     {
