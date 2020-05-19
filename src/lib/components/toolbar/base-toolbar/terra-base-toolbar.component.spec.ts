@@ -20,7 +20,7 @@ describe ('Component: TerraBaseToolbarComponent', () =>
                     CommonModule
                 ]
             }
-        ).compileComponents();
+        );
     });
 
     beforeEach(() =>
