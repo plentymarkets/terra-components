@@ -5,8 +5,14 @@ import {
 
 export class TerraFilter<T>
 {
+    /**
+     * @description The filter parameter
+     */
     public filterParameter:T = {} as T;
 
+    /**
+     * @description The search callback
+     */
     public search$:Observable<void>;
 
     private _search$:Subject<void> = new Subject();
@@ -16,6 +22,9 @@ export class TerraFilter<T>
         this.search$ = this._search$.asObservable();
     }
 
+    /**
+     * @description Called to emit the next filter search
+     */
     public search():void
     {
         this._search$.next();
