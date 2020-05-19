@@ -21,6 +21,8 @@ import { PageEvent } from '@angular/material/paginator';
 import { TerraFilter } from './filter';
 import { TerraPagerInterface } from '../pager/data/terra-pager.interface';
 import { HasPaginatorInterface } from './has-paginator.interface';
+import { HasSortingInterface } from './has-sorting.interface';
+import { RequestParameterInterface } from './request-parameter.interface';
 
 /**
  * Data Source base class for a data table.
@@ -57,10 +59,10 @@ export abstract class TableDataSource<T> extends DataSource<T>
         ).pipe(
             takeUntil(this._disconnect$),
             debounceTime(400),
-            switchMap(() => this.request()),
+            switchMap(() => this.request(this._collectRequestParams())),
             map((response:unknown) =>
             {
-                if(this._isPaginated(response) && this._hasPager(this))
+                if(this._isPaginated(response) && this._hasPaginator(this))
                 {
                     this.paginator.length = response.totalsCount;
                     return response.entries;
@@ -93,7 +95,7 @@ export abstract class TableDataSource<T> extends DataSource<T>
      * The request to get the data. Either paginated or a plain list.
      * @returns Observable<Array<T>>
      */
-    public abstract request():Observable<Array<T>> | Observable<TerraPagerInterface<T>>;
+    public abstract request(requestParams:RequestParameterInterface):Observable<Array<T>> | Observable<TerraPagerInterface<T>>;
 
 
 
@@ -124,6 +126,25 @@ export abstract class TableDataSource<T> extends DataSource<T>
         return this.filter ? this.filter.search$ : EMPTY;
     }
 
+    private _collectRequestParams():RequestParameterInterface
+    {
+        let requestParams:RequestParameterInterface = {...this.filter.filterParameter} as RequestParameterInterface;
+
+        if(this._hasPaginator(this))
+        {
+            requestParams.page = this.pageIndex;
+            requestParams.itemsPerPage = this.itemsPerPage;
+        }
+
+        if(this._hasSorting(this))
+        {
+            requestParams.sortBy = this.sortBy;
+            requestParams.sortOrder = this.sortDirection;
+        }
+
+        return requestParams;
+    }
+
     /**
      * Checks if the given response is a paging response
      * @param response
@@ -144,8 +165,17 @@ export abstract class TableDataSource<T> extends DataSource<T>
      * Check if the given data source has a paginator
      * @param dataSource
      */
-    private _hasPager(dataSource:any):dataSource is HasPaginatorInterface
+    private _hasPaginator(dataSource:any):dataSource is HasPaginatorInterface
     {
-        return 'paginator' in dataSource;
+        return 'paginator' in dataSource && 'pageIndex' in dataSource && 'itemsPerPage' in dataSource;
+    }
+
+    /**
+     * Check if the given data source has sorting
+     * @param dataSource
+     */
+    private _hasSorting(dataSource:any):dataSource is HasSortingInterface
+    {
+        return 'sort' in dataSource && 'sortBy' in dataSource && 'sortDirection' in dataSource;
     }
 }
