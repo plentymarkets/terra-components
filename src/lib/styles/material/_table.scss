@@ -124,12 +124,10 @@
         {
             .mat-paginator-container
             {
-                @media (min-width: 1200px)
-                {
-                    min-height: 0;
-                    height: calc(var(--height-lg) - var(--space-sm));
-                    line-height: calc(var(--height-lg) - var(--space-sm));
-                }
+                min-height: 0;
+                height: calc(var(--height-lg) - var(--space-sm));
+                line-height: calc(var(--height-lg) - var(--space-sm));
+
                 
                 .mat-paginator-page-size-label, .mat-paginator-range-label
                 {
