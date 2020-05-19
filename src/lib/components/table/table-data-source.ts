@@ -38,7 +38,7 @@ export abstract class TableDataSource<T> extends DataSource<T>
     public filter:TerraFilter<unknown>;
 
     /**
-     * Stream to finish all events.
+     * Stream to cancel all subscriptions.
      */
     private _disconnect$:Subject<void> = new Subject();
 
