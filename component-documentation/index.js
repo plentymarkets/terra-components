@@ -9,14 +9,11 @@ const jsdocPackage = require('dgeni-packages/jsdoc');
 const nunjucksPackage = require('dgeni-packages/nunjucks');
 const typescriptPackage = require('dgeni-packages/typescript');
 
-
 // Project configuration.
 const projectRootDir = path.resolve(__dirname, '..');
 const sourceDir = path.resolve(projectRootDir, './src');
 const outputDir = path.resolve(projectRootDir, paths.dgeniOutputPath);
 const templateDir = path.resolve(__dirname, './templates');
-
-
 
 // Package definition for material2 api docs. This only *defines* the package- it does not yet
 // actually *run* anything.
@@ -30,15 +27,11 @@ const templateDir = path.resolve(__dirname, './templates');
 // A config block can inject any services/processors and configure them before
 // docs processing begins.
 
-const dgeniPackageDeps = [
-    jsdocPackage,
-    nunjucksPackage,
-    typescriptPackage,
-];
+const dgeniPackageDeps = [jsdocPackage, nunjucksPackage, typescriptPackage];
 
 var apiDocsPackage = new DgeniPackage('material2-api-docs', dgeniPackageDeps)
 
-// Processor that filters out symbols that should not be shown in the docs.
+    // Processor that filters out symbols that should not be shown in the docs.
     .processor(require('./processors/docs-private-filter'))
 
     // Processor that appends categorization flags to the docs, e.g. `isDirective`, `isNgModule`, etc.
@@ -47,12 +40,12 @@ var apiDocsPackage = new DgeniPackage('material2-api-docs', dgeniPackageDeps)
     // Processor to group components into top-level groups such as "Tabs", "Sidenav", etc.
     .processor(require('./processors/component-filter'))
 
-    .config(function(log) {
+    .config(function (log) {
         log.level = 'info';
     })
 
     // Configure the processor for reading files from the file system.
-    .config(function(readFilesProcessor, writeFilesProcessor) {
+    .config(function (readFilesProcessor, writeFilesProcessor) {
         readFilesProcessor.basePath = sourceDir;
         readFilesProcessor.$enabled = false; // disable for now as we are using readTypeScriptModules
 
@@ -60,40 +53,34 @@ var apiDocsPackage = new DgeniPackage('material2-api-docs', dgeniPackageDeps)
     })
 
     // Configure the output path for written files (i.e., file names).
-    .config(function(computePathsProcessor) {
-        computePathsProcessor.pathTemplates = [{
-            docTypes: ['componentGroup'],
-            pathTemplate: '${name}',
-            outputPathTemplate: '${name}.html'
-        }];
+    .config(function (computePathsProcessor) {
+        computePathsProcessor.pathTemplates = [
+            {
+                docTypes: ['componentGroup'],
+                pathTemplate: '${name}',
+                outputPathTemplate: '${name}.html'
+            }
+        ];
     })
 
     // Configure custom JsDoc tags.
-    .config(function(parseTagsProcessor) {
-        parseTagsProcessor.tagDefinitions = parseTagsProcessor.tagDefinitions.concat([
-            {name: 'docs-private'}
-        ]);
+    .config(function (parseTagsProcessor) {
+        parseTagsProcessor.tagDefinitions = parseTagsProcessor.tagDefinitions.concat([{ name: 'docs-private' }]);
     })
 
     // Configure the processor for understanding TypeScript.
-    .config(function(readTypeScriptModules) {
+    .config(function (readTypeScriptModules) {
         console.log(sourceDir);
         readTypeScriptModules.basePath = projectRootDir;
         readTypeScriptModules.ignoreExportsMatching = [/^_/];
 
         readTypeScriptModules.hidePrivateMembers = true;
 
-        readTypeScriptModules.sourceFiles = [
-            'src/index.ts'
-
-        ];
-
-
+        readTypeScriptModules.sourceFiles = ['src/index.ts'];
     })
 
-
     // Configure processor for finding nunjucks templates.
-    .config(function(templateFinder, templateEngine) {
+    .config(function (templateFinder, templateEngine) {
         // Where to find the templates for the doc rendering
         templateFinder.templateFolders = [templateDir];
 
@@ -110,7 +97,6 @@ var apiDocsPackage = new DgeniPackage('material2-api-docs', dgeniPackageDeps)
             '${ doc.id }.template.json',
             '${ doc.docType }.template.json',
             'common.template.html'
-
         ];
 
         // dgeni disables autoescape by default, but we want this turned on.
@@ -122,6 +108,5 @@ var apiDocsPackage = new DgeniPackage('material2-api-docs', dgeniPackageDeps)
             variableEnd: '$}'
         };
     });
-
 
 module.exports = apiDocsPackage;

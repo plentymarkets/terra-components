@@ -1,90 +1,80 @@
 <table class="docs-api-method-table">
     <tr class="docs-api-method-name-row">
-    
-    <tr colspan="2" class="docs-api-method-name-cell">
-        <div class="method_container">
-            <span>public</span>
-            <strong>{$ method.name $}</strong>
-            <span>(</span>
-            {%- if method.params.length -%}
-            {% for parameter in method.params %}
-            <span class="docs-api-method-parameter-name">
-         {$ parameter.name $}:
-          <span class="docs-api-method-parameter-type codeTag">{$ parameter.type $}</span>
-          {%- if loop.last -%}
-            <span></span>
-            {%- else -%}
-             <span>,</span>
-             {%- endif -%}
-          {%- if parameter.isOptional -%}
-          <span class="docs-api-method-parameter-optional-marker">?</span>
-          {%- endif -%}
-        </span>
-            {% endfor %}
-            {%- endif -%}
-            
-            <span>)</span>
-            {%- if method.showReturns -%}
-            <span>:</span><span class="codeTag docs-api-method-returns-type"> {$ method.returnType $}</span>
-            {%- endif -%}
-        
-        </div>
-    <tr>
-        
-        {%- if method.isDeprecated -%}
-        <div class="panel panel-warning">
-            <div class="panel-heading">
-                <h5 class="panel-title">
-                    <span class="icon-warning"></span>
-                    <small>Deprecated!</small>
-                </h5>
-            </div>
-            <div class="panel-body">
-                <span> {$ method.deprecated $} </span>
-            </div>
-        </div>
-        {%- endif -%}
-    
-        <span class="docs-api-method-description-cell">
-            {$ method.description | marked | safe $}
-        </span>
-    </tr>
-    
-    
-    {%- if method.params.length -%}
-    <div class="method_description_table">
-        <strong>
-            Parameters
-        </strong>
-        <table class="table table-condensed">
-            {% for parameter in method.params %}
-            <tr>
-                <td class="docs-api-method-parameter-type codeTag">
-                    {$ parameter.type $}
-                </td>
-                <td class="docs-api-method-parameter-name">
-                    {$ parameter.name $}
-                    {%- if parameter.isOptional -%}
+        <td colspan="2" class="docs-api-method-name-cell">
+            <div class="method_container">
+                <span>public</span>
+                <strong>{$ method.name $}</strong>
+                <span>(</span>
+                {%- if method.params.length -%} {% for parameter in method.params %}
+                <span class="docs-api-method-parameter-name">
+                    {$ parameter.name $}:
+                    <span class="docs-api-method-parameter-type codeTag">{$ parameter.type $}</span>
+                    {%- if loop.last -%}
+                    <span></span>
+                    {%- else -%}
+                    <span>,</span>
+                    {%- endif -%} {%- if parameter.isOptional -%}
                     <span class="docs-api-method-parameter-optional-marker">?</span>
                     {%- endif -%}
-                </td>
-                <td class="docs-api-method-parameter-description">
-                    {%- if parameter.description -%}
-                    <span>{$ parameter.description $}</span>
-                    {%- endif -%}
-                </td>
-            </tr>
-            {% endfor %}
-        </table>
-    </div>
-    {%- endif -%}
+                </span>
+                {% endfor %} {%- endif -%}
 
-    {%- if method.params.length == null -%}
-        {%- if method.description.length == null -%}
-            <br>
-        {%- endif -%}
-    {%- endif -%}
-    </tr>
-    </tr>
+                <span>)</span>
+                {%- if method.showReturns -%}
+                <span>:</span>
+                <span class="codeTag docs-api-method-returns-type"> {$ method.returnType $}</span>
+                {%- endif -%}
+            </div>
+        </td>
+        <td>
+            {%- if method.isDeprecated -%}
+            <div class="panel panel-warning">
+                <div class="panel-heading">
+                    <h5 class="panel-title">
+                        <span class="icon-warning"></span>
+                        <small>Deprecated!</small>
+                    </h5>
+                </div>
+                <div class="panel-body">
+                    <span> {$ method.deprecated $} </span>
+                </div>
+            </div>
+            {%- endif -%}
 
+            <span class="docs-api-method-description-cell">
+                {$ method.description | marked | safe $}
+            </span>
+        </td>
+
+        <td>
+            {%- if method.params.length -%}
+            <div class="method_description_table">
+                <strong>
+                    Parameters
+                </strong>
+                <table class="table table-condensed">
+                    {% for parameter in method.params %}
+                    <tr>
+                        <td class="docs-api-method-parameter-type codeTag">
+                            {$ parameter.type $}
+                        </td>
+                        <td class="docs-api-method-parameter-name">
+                            {$ parameter.name $} {%- if parameter.isOptional -%}
+                            <span class="docs-api-method-parameter-optional-marker">?</span>
+                            {%- endif -%}
+                        </td>
+                        <td class="docs-api-method-parameter-description">
+                            {%- if parameter.description -%}
+                            <span>{$ parameter.description $}</span>
+                            {%- endif -%}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            {%- endif -%} {%- if method.params.length == null -%} {%- if method.description.length == null -%}
+            <br />
+            {%- endif -%} {%- endif -%}
+        </td>
+    </tr>
 </table>
