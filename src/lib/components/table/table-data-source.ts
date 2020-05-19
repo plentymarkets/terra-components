@@ -97,7 +97,7 @@ export abstract class TableDataSource<T> extends DataSource<T>
     }
 
     /**
-     * @description The request to get the data.
+     * @description The request to get the data. Either paginated or a plain list.
      * @returns Observable<Array<T>>
      */
     public abstract request():Observable<Array<T>> | Observable<TerraPagerInterface<T>>;
