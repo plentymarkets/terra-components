@@ -128,7 +128,7 @@ export abstract class TableDataSource<T> extends DataSource<T>
 
     private _collectRequestParams():RequestParameterInterface
     {
-        let requestParams:RequestParameterInterface = {...this.filter.filterParameter} as RequestParameterInterface;
+        let requestParams:RequestParameterInterface = {...this.filter.filterParameter} as {[key:string]:unknown};
 
         if(this._hasPaginator(this))
         {
