@@ -26,6 +26,7 @@ import { RequestParameterInterface } from './request-parameter.interface';
 
 /**
  * Data Source base class for a data table.
+ * @experimental
  */
 export abstract class TableDataSource<T> extends DataSource<T>
 {

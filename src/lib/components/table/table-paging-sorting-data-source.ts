@@ -18,6 +18,7 @@ import { HasSortingInterface } from './has-sorting.interface';
 
 /**
  * Data Source base class for a data table with pagination and sorting.
+ * @experimental
  */
 export abstract class TablePagingSortingDataSource<T> extends TableDataSource<T> implements HasPaginatorInterface, HasSortingInterface
 {

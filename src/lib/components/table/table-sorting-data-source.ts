@@ -12,7 +12,8 @@ import { EventEmitter } from '@angular/core';
 import { HasSortingInterface } from './has-sorting.interface';
 
 /**
- * @description Data Source base class for a data table with sorting.
+ * Data Source base class for a data table with sorting.
+ * @experimental
  */
 export abstract class TableSortingDataSource<T> extends TableDataSource<T> implements HasSortingInterface
 {

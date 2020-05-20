@@ -12,6 +12,7 @@ import { HasPaginatorInterface } from './has-paginator.interface';
 
 /**
  * Data Source base class for a data table with pagination.
+ * @experimental
  */
 export abstract class TablePagingDataSource<T> extends TableDataSource<T> implements HasPaginatorInterface
 {
