@@ -123,7 +123,7 @@ export abstract class TableDataSource<T> extends DataSource<T>
      */
     protected _filtering():Observable<unknown>
     {
-        return this.filter ? this.filter.search$.pipe(debounceTime(400)) : EMPTY;
+        return this.filter ? this.filter.search$ : EMPTY;
     }
 
     private _collectRequestParams():RequestParameterInterface
