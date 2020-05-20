@@ -18,7 +18,7 @@ class TestDataSource extends TablePagingSortingDataSource<{}>
     }
 }
 
-fdescribe('TablePagingSortingDataSource', () =>
+describe('TablePagingSortingDataSource', () =>
 {
     let dataSource:TestDataSource;
     let paginator:MatPaginator;
