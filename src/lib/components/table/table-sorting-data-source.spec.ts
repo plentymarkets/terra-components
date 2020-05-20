@@ -15,7 +15,7 @@ class TestDataSource extends TableSortingDataSource<{}>
     }
 }
 
-fdescribe('TableSortingDataSource', () =>
+describe('TableSortingDataSource', () =>
 {
     let dataSource:TestDataSource;
     let sort:MatSort;
