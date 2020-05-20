@@ -18,43 +18,35 @@ class Test extends TablePagingDataSource<{}>
     }
 }
 
-interface FilterParams
-{
-    id:number;
-}
-
 fdescribe('TablePagingDataSource', () =>
 {
     let dataSource:TablePagingDataSource<unknown>;
-    let filter:TerraFilter<FilterParams>;
     let paginator:MatPaginator;
 
     beforeEach(() =>
     {
         dataSource = new Test();
-        filter = new TerraFilter<FilterParams>();
         paginator = new MatPaginator(new MatPaginatorIntl(), undefined);
 
-        dataSource.filter = filter;
         dataSource.paginator = paginator;
     });
 
-    it('should create', function()
+    it('should create', () =>
     {
         expect(dataSource).toBeTruthy();
     });
 
-    it('should have a paginator instance', function()
+    it('should have a paginator instance', () =>
     {
         expect(dataSource.paginator).toBe(paginator);
     });
 
-    it('should give pageIndex', function()
+    it('should give pageIndex', () =>
     {
         expect(dataSource.pageIndex).toBe(1);
     });
 
-    it('should give itemsPerPage', function()
+    it('should give itemsPerPage', () =>
     {
         dataSource.paginator.pageSize = 10;
         expect(dataSource.itemsPerPage).toBe(10);
