@@ -8,9 +8,8 @@ import {
     MatPaginator,
     MatPaginatorIntl
 } from '@angular/material/paginator';
-import { TerraFilter } from './filter';
 
-class Test extends TablePagingDataSource<{}>
+class TestDataSource extends TablePagingDataSource<{}>
 {
     public request(requestParams:RequestParameterInterface):Observable<Array<{}>>
     {
@@ -20,12 +19,12 @@ class Test extends TablePagingDataSource<{}>
 
 fdescribe('TablePagingDataSource', () =>
 {
-    let dataSource:TablePagingDataSource<unknown>;
+    let dataSource:TestDataSource;
     let paginator:MatPaginator;
 
     beforeEach(() =>
     {
-        dataSource = new Test();
+        dataSource = new TestDataSource();
         paginator = new MatPaginator(new MatPaginatorIntl(), undefined);
 
         dataSource.paginator = paginator;
