@@ -9,6 +9,7 @@ import {
 } from '@angular/material/paginator';
 import { EventEmitter } from '@angular/core';
 import { HasPaginatorInterface } from './has-paginator.interface';
+import { debounceTime } from 'rxjs/operators';
 
 /**
  * Data Source base class for a data table with pagination.
@@ -44,8 +45,8 @@ export abstract class TablePagingDataSource<T> extends TableDataSource<T> implem
      * @override
      * @returns EventEmitter<PageEvent> or Observable<never>
      */
-    protected _paging():EventEmitter<PageEvent> | Observable<never>
+    protected _paging():Observable<PageEvent> | Observable<never>
     {
-        return this.paginator ? this.paginator.page : EMPTY;
+        return this.paginator ? this.paginator.page.pipe(debounceTime(400)) : EMPTY;
     }
 }

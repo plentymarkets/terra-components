@@ -10,6 +10,7 @@ import {
 } from 'rxjs';
 import { EventEmitter } from '@angular/core';
 import { HasSortingInterface } from './has-sorting.interface';
+import { debounceTime } from 'rxjs/operators';
 
 /**
  * Data Source base class for a data table with sorting.
@@ -26,9 +27,9 @@ export abstract class TableSortingDataSource<T> extends TableDataSource<T> imple
      * @description Return the sort event or an empty observable.
      * @returns EventEmitter<Sort> or Observable<never>
      */
-    protected _sorting():Observable<never> | EventEmitter<Sort>
+    protected _sorting():Observable<Sort> | Observable<never>
     {
-        return this.sort ? this.sort.sortChange : EMPTY;
+        return this.sort ? this.sort.sortChange.pipe(debounceTime(400)) : EMPTY;
     }
 
     /**

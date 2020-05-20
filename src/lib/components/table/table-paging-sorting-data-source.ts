@@ -15,6 +15,7 @@ import {
 import { EventEmitter } from '@angular/core';
 import { HasPaginatorInterface } from './has-paginator.interface';
 import { HasSortingInterface } from './has-sorting.interface';
+import { debounceTime } from 'rxjs/operators';
 
 /**
  * Data Source base class for a data table with pagination and sorting.
@@ -37,18 +38,18 @@ export abstract class TablePagingSortingDataSource<T> extends TableDataSource<T>
      * @override
      * @returns EventEmitter<PageEvent> or Observable<never>
      */
-    protected _paging():EventEmitter<PageEvent> | Observable<never>
+    protected _paging():Observable<PageEvent> | Observable<never>
     {
-        return this.paginator ? this.paginator.page : EMPTY;
+        return this.paginator ? this.paginator.page.pipe(debounceTime(400)) : EMPTY;
     }
 
     /**
      * @description Return the sort event or an empty observable.
      * @returns EventEmitter<Sort> or Observable<never>
      */
-    protected _sorting():Observable<never> | EventEmitter<Sort>
+    protected _sorting():Observable<Sort> | Observable<never>
     {
-        return this.sort ? this.sort.sortChange : EMPTY;
+        return this.sort ? this.sort.sortChange.pipe(debounceTime(400)) : EMPTY;
     }
 
     /**

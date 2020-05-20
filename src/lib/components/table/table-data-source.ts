@@ -59,7 +59,6 @@ export abstract class TableDataSource<T> extends DataSource<T>
             this._paging()
         ).pipe(
             takeUntil(this._disconnect$),
-            debounceTime(400),
             switchMap(() => this.request(this._collectRequestParams())),
             map((response:unknown) =>
             {
@@ -104,7 +103,7 @@ export abstract class TableDataSource<T> extends DataSource<T>
      * Return the sort event or an empty observable.
      * @returns EventEmitter<Sort> or Observable<never>
      */
-    protected _sorting():EventEmitter<Sort> | Observable<never>
+    protected _sorting():Observable<Sort> | Observable<never>
     {
         return EMPTY;
     }
@@ -113,7 +112,7 @@ export abstract class TableDataSource<T> extends DataSource<T>
      * Return the page event or an empty observable.
      * @returns EventEmitter<PageEvent> or Observable<never>
      */
-    protected _paging():EventEmitter<PageEvent> | Observable<never>
+    protected _paging():Observable<PageEvent> | Observable<never>
     {
         return EMPTY;
     }
