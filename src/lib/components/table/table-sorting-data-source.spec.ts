@@ -18,16 +18,23 @@ class TestDataSource extends TableSortingDataSource<{}>
 fdescribe('TableSortingDataSource', () =>
 {
     let dataSource:TestDataSource;
+    let sort:MatSort;
 
     beforeEach(() =>
     {
         dataSource = new TestDataSource();
-        dataSource.sort = new MatSort();
+        sort = new MatSort();
+        dataSource.sort = sort;
     });
 
     it('should create', () =>
     {
         expect(dataSource).toBeTruthy();
+    });
+
+    it('should have a sort instance', () =>
+    {
+        expect(dataSource.sort).toBe(sort);
     });
 
     it('should set active sorting by param', () =>
