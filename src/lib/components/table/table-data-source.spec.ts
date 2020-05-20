@@ -34,7 +34,6 @@ describe('TableDataSource', () =>
     it('should create', () =>
     {
         expect(dataSource).toBeTruthy();
-        expect(filter).toBeTruthy();
     });
 
     it('should create an observable for a request', () =>
