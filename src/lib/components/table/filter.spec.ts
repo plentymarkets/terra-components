@@ -31,7 +31,8 @@ describe('Filter', () =>
 
     it('should emit search$ after search call', () =>
     {
-        filter.search$.subscribe(() => expect().nothing());
+        spyOn(filter.search$, 'next');
         filter.search();
+        expect(filter.search$.next).toHaveBeenCalled();
     });
 });
