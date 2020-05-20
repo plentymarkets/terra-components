@@ -3,6 +3,10 @@ import {
     Subject
 } from 'rxjs';
 
+/**
+ *
+ * @experimental
+ */
 export class TerraFilter<T>
 {
     /**
