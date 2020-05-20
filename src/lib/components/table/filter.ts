@@ -4,7 +4,7 @@ import {
 } from 'rxjs';
 
 /**
- *
+ * Stores the filter parameters and notifies the data source to perform a search.
  * @experimental
  */
 export class TerraFilter<T>
