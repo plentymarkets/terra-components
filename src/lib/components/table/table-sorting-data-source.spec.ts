@@ -4,7 +4,6 @@ import {
     Observable,
     of
 } from 'rxjs';
-import { TerraFilter } from './filter';
 import { TableSortingDataSource } from './table-sorting-data-source';
 import { MatSort } from '@angular/material/sort';
 
