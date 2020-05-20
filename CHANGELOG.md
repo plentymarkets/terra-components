@@ -2,6 +2,10 @@
 
 ### Features
 * **mat-table** styles for the [angular material table](https://v8.material.angular.io/components/table/overview).
+* **TableDataSource** add new data source with filtering for a material data table.
+* **TablePagingDataSource** add new data source with filtering and paging for a material data table.
+* **TableSortingDataSource** add new data source with filtering and sorting for a material data table.
+* **TablePagingSortingDataSource** add new data source with filtering, paging and sorting for a material data table.
 * **peerDependencies** removed `jquery` since we no longer depend on it.
 * **terra-dynamic-component-loader** is deprecated now. Use angular's [NgComponentOutlet](https://angular.io/api/common/NgComponentOutlet) instead.
 * **terra-toggle** is deprecated now. Use angular material's [slide-toggle](https://material.angular.io/components/slide-toggle) instead.
