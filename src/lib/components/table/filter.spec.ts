@@ -32,11 +32,11 @@ describe('Filter', () =>
         expect(filter.filterParameter).toEqual({ } as FilterParams);
     });
 
-    it('should emit search$ after search call', fakeAsync(() => {
+    it('should emit search$ after search call', () => {
         let emitted:boolean = false;
         filter.search$.subscribe(data => emitted = true);
         filter.search();
 
         expect(emitted).toEqual(true);
-    }));
+    });
 });
