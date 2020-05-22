@@ -1,4 +1,7 @@
 import { TerraFilter } from './filter';
+import {
+    fakeAsync
+} from '@angular/core/testing';
 
 interface FilterParams
 {
@@ -29,10 +32,11 @@ describe('Filter', () =>
         expect(filter.filterParameter).toEqual({ } as FilterParams);
     });
 
-    it('should emit search$ after search call', () =>
-    {
-        spyOn(filter.search$, 'next');
+    it('should emit search$ after search call', fakeAsync(() => {
+        let emitted:boolean = false;
+        filter.search$.subscribe(data => emitted = true);
         filter.search();
-        expect(filter.search$.next).toHaveBeenCalled();
-    });
+
+        expect(emitted).toEqual(true);
+    }));
 });
