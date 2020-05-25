@@ -100,4 +100,17 @@ fdescribe('TableDataSource', () =>
         expect(spy).not.toHaveBeenCalled();
         expect(dataSource.data).toEqual([{id: 123}]);
     });
+
+    it('should get the correct/filtererd data from request', () =>
+    {
+        filter.filterParameter = {id: 1};
+        dataSource.filter = filter;
+
+        dataSource.connect(undefined).subscribe();
+
+        dataSource.request(undefined).subscribe((result:[{}]) =>
+        {
+            expect(result).toEqual([{}]);
+        });
+    });
 });
