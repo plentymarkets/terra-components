@@ -32,7 +32,7 @@ describe('Filter', () =>
     it('should emit search$ after search call', () =>
     {
         let emitted:boolean = false;
-        filter.search$.subscribe((data:void) => emitted = true);
+        filter.search$.subscribe(() => emitted = true);
         filter.search();
 
         expect(emitted).toEqual(true);
