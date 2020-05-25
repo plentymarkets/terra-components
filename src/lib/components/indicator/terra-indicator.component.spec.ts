@@ -13,12 +13,12 @@ describe('TerraIndicatorComponent:', () =>
     let component:TerraIndicatorComponent;
     let fixture:ComponentFixture<TerraIndicatorComponent>;
 
-    beforeEach(async(() =>
+    beforeEach(() =>
     {
         TestBed.configureTestingModule({
             declarations: [TerraIndicatorComponent]
-        }).compileComponents();
-    }));
+        });
+    });
 
     beforeEach(() =>
     {

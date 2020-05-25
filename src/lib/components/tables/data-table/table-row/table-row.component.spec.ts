@@ -35,7 +35,7 @@ describe('Component: TableRowComponent', () =>
     let fixture:ComponentFixture<TableRowComponent>;
     const router:MockRouter = new MockRouter();
 
-    beforeEach(async(() =>
+    beforeEach(() =>
     {
         TestBed.configureTestingModule({
             declarations: [TooltipDirective,
@@ -55,8 +55,8 @@ describe('Component: TableRowComponent', () =>
                     useValue: dataTableStub
                 }
             ]
-        }).compileComponents();
-    }));
+        });
+    });
 
     beforeEach(() =>
     {

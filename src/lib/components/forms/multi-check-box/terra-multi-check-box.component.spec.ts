@@ -44,7 +44,7 @@ describe('TerraMultiCheckBoxComponent:', () =>
                         useValue: router
                     }]
             }
-        ).compileComponents();
+        );
     });
 
     beforeEach(() =>
