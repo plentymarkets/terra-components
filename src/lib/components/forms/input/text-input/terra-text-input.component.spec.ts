@@ -44,7 +44,7 @@ describe('Component: TerraTextInputComponent', () =>
                         useValue: router
                     }]
             }
-        ).compileComponents();
+        );
     });
 
     beforeEach(() =>

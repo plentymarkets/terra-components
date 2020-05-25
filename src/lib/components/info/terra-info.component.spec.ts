@@ -17,7 +17,7 @@ describe('TerraInfoComponent:', () =>
     let fixture:ComponentFixture<TerraInfoComponent>;
     const router:MockRouter = new MockRouter();
 
-    beforeEach(async(() =>
+    beforeEach(() =>
     {
         TestBed.configureTestingModule({
             declarations: [TooltipDirective,
@@ -31,8 +31,8 @@ describe('TerraInfoComponent:', () =>
                     provide:  Router,
                     useValue: router
                 }]
-        }).compileComponents();
-    }));
+        });
+    });
 
     beforeEach(() =>
     {

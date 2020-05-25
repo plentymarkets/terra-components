@@ -8,6 +8,7 @@ import { isNullOrUndefined } from 'util';
 import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum';
 import { noop } from 'rxjs';
 
+/** @deprecated since v5. Use angular material's [input](https://material.angular.io/components/input) instead. */
 export class TerraInputComponent implements ControlValueAccessor
 {
     /**
