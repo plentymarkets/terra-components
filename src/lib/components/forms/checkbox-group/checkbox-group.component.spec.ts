@@ -55,7 +55,7 @@ describe('Component: CheckboxGroupComponent', () =>
                         useValue: router
                     }]
             }
-        ).compileComponents();
+        );
     });
 
     beforeEach(() =>

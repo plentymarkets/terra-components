@@ -33,7 +33,7 @@ describe('TerraSuggestionBoxComponent', () =>
     };
     const router:MockRouter = new MockRouter();
 
-    beforeEach(async(() =>
+    beforeEach(() =>
     {
         TestBed.configureTestingModule({
             declarations: [TooltipDirective,
@@ -55,8 +55,8 @@ describe('TerraSuggestionBoxComponent', () =>
                     useClass: MockElementRef
                 }
             ]
-        }).compileComponents();
-    }));
+        });
+    });
 
     beforeEach(() =>
     {

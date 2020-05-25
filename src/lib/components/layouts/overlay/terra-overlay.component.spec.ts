@@ -29,7 +29,7 @@ describe('TerraOverlayComponent', () =>
     const overlayTitle:string = 'Test';
     const router:MockRouter = new MockRouter();
 
-    beforeEach(async(() =>
+    beforeEach(() =>
     {
         TestBed.configureTestingModule({
             imports:      [
@@ -44,8 +44,8 @@ describe('TerraOverlayComponent', () =>
                     provide:  Router,
                     useValue: router
                 }]
-        }).compileComponents();
-    }));
+        });
+    });
 
     beforeEach(() =>
     {

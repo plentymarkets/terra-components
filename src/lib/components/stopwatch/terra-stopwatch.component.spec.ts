@@ -24,7 +24,7 @@ describe('Component: TerraStopwatchComponent', () =>
     const ticksInMilliseconds:number = ticks * 1000 + 1;
     const router:MockRouter = new MockRouter();
 
-    beforeEach(async(() =>
+    beforeEach(() =>
     {
         TestBed.configureTestingModule({
             declarations: [
@@ -41,8 +41,8 @@ describe('Component: TerraStopwatchComponent', () =>
                     provide:  Router,
                     useValue: router
                 }]
-        }).compileComponents();
-    }));
+        });
+    });
 
     beforeEach(() =>
     {
