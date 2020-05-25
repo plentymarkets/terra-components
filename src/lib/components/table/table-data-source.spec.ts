@@ -20,7 +20,7 @@ interface FilterParams
     id:number;
 }
 
-fdescribe('TableDataSource', () =>
+describe('TableDataSource', () =>
 {
     let dataSource:TestDataSource;
     let filter:TerraFilter<FilterParams>;
