@@ -57,9 +57,9 @@ fdescribe('TableDataSource', () =>
 
     it('data should be refreshes after a request', () =>
     {
-        dataSource.request({}).subscribe((result:Array<{}>) =>
+        dataSource.connect(undefined).subscribe((result:Array<{}>) =>
         {
-            dataSource.data = result;
+            dataSource.search();
             expect(dataSource.data).toEqual([{}]);
         });
     });
@@ -68,10 +68,10 @@ fdescribe('TableDataSource', () =>
     {
         let spy:Spy = spyOn(dataSource, 'request');
 
-        dataSource.search();
-
-        dataSource.filter.search$.subscribe(() =>
+        dataSource.connect(undefined).subscribe(() =>
         {
+            dataSource.search();
+
             expect(spy).toHaveBeenCalled();
         });
     });
@@ -87,15 +87,17 @@ fdescribe('TableDataSource', () =>
 
     it('should kill the observables on disconnect', () =>
     {
-        dataSource.data = [{id:123}];
+        dataSource.data = [{id: 123}];
 
         let spy:Spy = spyOn(dataSource, 'request');
+
+        dataSource.connect(undefined).subscribe();
 
         dataSource.disconnect(undefined);
 
         dataSource.search();
 
         expect(spy).not.toHaveBeenCalled();
-        expect(dataSource.data).toEqual([{id:123}]);
+        expect(dataSource.data).toEqual([{id: 123}]);
     });
 });
