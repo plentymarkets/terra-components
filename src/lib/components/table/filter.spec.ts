@@ -1,7 +1,4 @@
 import { TerraFilter } from './filter';
-import {
-    fakeAsync
-} from '@angular/core/testing';
 
 interface FilterParams
 {
@@ -29,12 +26,13 @@ describe('Filter', () =>
 
     it('should have a empty filterParameters of generic type', () =>
     {
-        expect(filter.filterParameter).toEqual({ } as FilterParams);
+        expect(filter.filterParameter).toEqual({} as FilterParams);
     });
 
-    it('should emit search$ after search call', () => {
+    it('should emit search$ after search call', () =>
+    {
         let emitted:boolean = false;
-        filter.search$.subscribe(data => emitted = true);
+        filter.search$.subscribe((data:void) => emitted = true);
         filter.search();
 
         expect(emitted).toEqual(true);
