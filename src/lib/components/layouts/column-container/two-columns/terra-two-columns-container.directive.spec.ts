@@ -37,7 +37,7 @@ describe('TerraTwoColumnsContainerDirective', () =>
     let twoColComponent:TerraTwoColumnsContainerComponent;
     const router:MockRouter = new MockRouter();
 
-    beforeEach(async(() =>
+    beforeEach(() =>
     {
         TestBed.configureTestingModule({
             declarations: [
@@ -53,8 +53,8 @@ describe('TerraTwoColumnsContainerDirective', () =>
                     useClass: MockActivatedRoute
                 }
             ]
-        }).compileComponents();
-    }));
+        });
+    });
 
     beforeEach(() =>
     {
