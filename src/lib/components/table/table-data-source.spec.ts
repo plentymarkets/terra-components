@@ -57,23 +57,21 @@ fdescribe('TableDataSource', () =>
 
     it('data should be refreshes after a request', () =>
     {
-        dataSource.connect(undefined).subscribe((result:Array<{}>) =>
-        {
-            dataSource.search();
-            expect(dataSource.data).toEqual([{}]);
-        });
+        dataSource.connect(undefined).subscribe();
+
+        dataSource.search();
+        expect(dataSource.data).toEqual([{}]);
     });
 
     it('request should be triggered after search method has been called', () =>
     {
-        let spy:Spy = spyOn(dataSource, 'request');
+        spyOn(dataSource, 'request').and.callThrough();
 
-        dataSource.connect(undefined).subscribe(() =>
-        {
-            dataSource.search();
+        dataSource.connect(undefined).subscribe();
+        dataSource.search();
 
-            expect(spy).toHaveBeenCalled();
-        });
+        expect(dataSource.request).toHaveBeenCalled();
+
     });
 
     it('should kill the observables on disconnect', () =>
