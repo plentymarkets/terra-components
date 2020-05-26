@@ -33,7 +33,7 @@ class TestDataSource extends TablePagingDataSource<{}>
     }
 }
 
-/* ts-lint:disable-next-line */
+/* tslint:disable-next-line */
 class ChangeDetector extends ChangeDetectorRef
 {
     public markForCheck:() => void = noop;

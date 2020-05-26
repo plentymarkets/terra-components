@@ -1,5 +1,6 @@
 import { RequestParameterInterface } from './request-parameter.interface';
 import {
+    noop,
     Observable,
     of
 } from 'rxjs';
@@ -9,13 +10,41 @@ import {
 } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { TablePagingSortingDataSource } from './table-paging-sorting-data-source';
+import { TerraPagerInterface } from '../pager/data/terra-pager.interface';
+import { ChangeDetectorRef } from '@angular/core';
 
+const totalsCount:number = 2;
+const entries:Array<{}> = [{},
+                           {}];
+/* tslint:disable */
 class TestDataSource extends TablePagingSortingDataSource<{}>
 {
-    public request(requestParams:RequestParameterInterface):Observable<Array<{}>>
+    public request(requestParams:RequestParameterInterface):Observable<TerraPagerInterface<{}>>
     {
-        return of(new Array({}));
+        return of({
+            page:           1,
+            totalsCount:    totalsCount,
+            isLastPage:     true,
+            lastPageNumber: 1,
+            firstOnPage:    1,
+            lastOnPage:     2,
+            itemsPerPage:   2,
+            entries:        entries
+        });
     }
+}
+
+class ChangeDetector extends ChangeDetectorRef
+{
+    public markForCheck:() => void = noop;
+
+    public checkNoChanges:() => void = noop;
+
+    public detach:() => void = noop;
+
+    public detectChanges:() => void = noop;
+
+    public reattach:() => void = noop;
 }
 
 describe('TablePagingSortingDataSource', () =>
@@ -67,5 +96,48 @@ describe('TablePagingSortingDataSource', () =>
         expect(dataSource.sortDirection).toBe('');
         dataSource.sort.direction = 'desc';
         expect(dataSource.sortDirection).toBe('desc');
+    });
+
+    it('should pass on correct parameters to the request', () =>
+    {
+        paginator.pageIndex = 2;
+        paginator.pageSize = 20;
+
+        spyOn(dataSource, 'request').and.callThrough();
+
+        dataSource.connect(undefined).subscribe();
+        dataSource.search();
+
+        expect(dataSource.request).toHaveBeenCalledWith({
+            page:         dataSource.pageIndex,
+            itemsPerPage: dataSource.itemsPerPage
+        });
+    });
+
+    it('should get correct array of entries', () =>
+    {
+        spyOn(dataSource, 'request').and.callThrough();
+
+        dataSource.connect(undefined).subscribe();
+        dataSource.search();
+
+        expect(dataSource.data).toEqual(entries);
+        expect(paginator.length).toBe(totalsCount);
+    });
+
+    it('should pass on correct parameters to the request', () =>
+    {
+        sort.active = 'id';
+        sort.direction = 'desc';
+
+        spyOn(dataSource, 'request').and.callThrough();
+
+        dataSource.connect(undefined).subscribe();
+        dataSource.search();
+
+        expect(dataSource.request).toHaveBeenCalledWith({
+            sortBy:    dataSource.sortBy,
+            sortOrder: dataSource.sortDirection
+        });
     });
 });
