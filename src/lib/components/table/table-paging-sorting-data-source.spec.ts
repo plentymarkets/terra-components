@@ -113,7 +113,7 @@ describe('TablePagingSortingDataSource', () =>
         expect(paginator.length).toBe(totalsCount);
     });
 
-    it('should pass on correct parameters to the request', () =>
+    fit('should pass on correct parameters to the request', () =>
     {
         sort.active = 'id';
         sort.direction = 'desc';
@@ -124,6 +124,8 @@ describe('TablePagingSortingDataSource', () =>
         dataSource.search();
 
         expect(dataSource.request).toHaveBeenCalledWith({
+            page: 1,
+            itemsPerPage: undefined,
             sortBy:    dataSource.sortBy,
             sortOrder: dataSource.sortDirection
         });
