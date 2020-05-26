@@ -64,6 +64,6 @@
 				"util": "util"
 			}
 		},
-		"dest": "../../dist"
+		"dest": "../../dist/lib"
 	}
 }

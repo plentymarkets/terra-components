@@ -12,7 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { l10nConfig } from './translation/l10n.config';
 import { AppComponent } from './app.component';
 import { ShowcaseComponent } from './showcase/showcase.component';
-import { TerraComponentsExamplesModule } from '../lib/terra-components-examples.module';
+import { TerraComponentsExamplesModule } from '@plentymarkets/terra-components';
 import { RouterModule } from '@angular/router';
 
 export function initL10n(l10nLoader:L10nLoader):Function
@@ -26,7 +26,7 @@ export function initL10n(l10nLoader:L10nLoader):Function
  * NOTE: It is not publicly accessible either.
  */
 @NgModule({
-    imports:      [
+    imports: [
         BrowserModule,
         BrowserAnimationsModule,
         RouterModule.forRoot([]),
