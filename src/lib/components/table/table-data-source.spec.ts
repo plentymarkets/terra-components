@@ -20,7 +20,7 @@ interface FilterParams
     id:number;
 }
 
-describe('TableDataSource', () =>
+fdescribe('TableDataSource', () =>
 {
     let dataSource:TestDataSource;
     let filter:TerraFilter<FilterParams>;
@@ -76,15 +76,6 @@ describe('TableDataSource', () =>
         });
     });
 
-    // xit('request should be triggered after filter.search has emitted', () =>
-    // {
-    //    dataSource.data = [{}];
-    //
-    //    dataSource.filter.search();
-    //
-    //    expect(dataSource.request({})).toHaveBeenCalled();
-    // });
-
     it('should kill the observables on disconnect', () =>
     {
         dataSource.data = [{id: 123}];
@@ -101,16 +92,15 @@ describe('TableDataSource', () =>
         expect(dataSource.data).toEqual([{id: 123}]);
     });
 
-    it('should get the correct/filtererd data from request', () =>
+    it('should pass on filterParameters to the request', () =>
     {
         filter.filterParameter = {id: 1};
-        dataSource.filter = filter;
+
+        spyOn(dataSource, 'request').and.callThrough();
 
         dataSource.connect(undefined).subscribe();
+        dataSource.search();
 
-        dataSource.request(undefined).subscribe((result:[{}]) =>
-        {
-            expect(result).toEqual([{}]);
-        });
+        expect(dataSource.request).toHaveBeenCalledWith(filter.filterParameter);
     });
 });
