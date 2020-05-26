@@ -32,7 +32,7 @@ describe('TerraTextAreaInputComponent', () =>
     const testString:string = 'test';
     const router:MockRouter = new MockRouter();
 
-    beforeEach(async(() =>
+    beforeEach(() =>
     {
         TestBed.configureTestingModule({
             declarations: [
@@ -54,8 +54,8 @@ describe('TerraTextAreaInputComponent', () =>
                     useClass: MockElementRef
                 }
             ]
-        }).compileComponents();
-    }));
+        });
+    });
 
     beforeEach(() =>
     {

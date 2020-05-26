@@ -16,14 +16,14 @@ describe('TerraTaglistComponent', () =>
     let component:TerraTaglistComponent;
     let fixture:ComponentFixture<TerraTaglistComponent>;
 
-    beforeEach(async(() =>
+    beforeEach(() =>
     {
         TestBed.configureTestingModule({
             declarations: [TerraTagComponent,
                            TerraTaglistComponent],
             imports:      [MockTranslationModule]
-        }).compileComponents();
-    }));
+        });
+    });
 
     beforeEach(() =>
     {

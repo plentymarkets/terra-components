@@ -20,14 +20,14 @@ describe('TerraTwoColumnsContainerComponent', () =>
     const colMd:string = 'col-md-';
     const colLg:string = 'col-lg-';
 
-    beforeEach(async(() =>
+    beforeEach(() =>
     {
         TestBed.configureTestingModule({
             declarations: [
                 TerraTwoColumnsContainerComponent
             ]
-        }).compileComponents();
-    }));
+        });
+    });
 
     beforeEach(() =>
     {

@@ -50,7 +50,7 @@ describe('TerraFileInputComponent', () =>
     const folderName:string = 'i-amYour_folder/';
     const router:MockRouter = new MockRouter();
 
-    beforeEach(async(() =>
+    beforeEach(() =>
     {
         TestBed.configureTestingModule({
             declarations: [TooltipDirective,
@@ -91,8 +91,8 @@ describe('TerraFileInputComponent', () =>
                 TerraLoadingSpinnerService,
                 TerraFileBrowserService
             ]
-        }).compileComponents();
-    }));
+        });
+    });
 
     beforeEach(() =>
     {
