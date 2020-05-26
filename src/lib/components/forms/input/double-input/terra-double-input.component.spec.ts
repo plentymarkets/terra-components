@@ -31,7 +31,7 @@ describe('TerraDoubleInputComponent', () =>
     const testValue:number = 3.2;
     const router:MockRouter = new MockRouter();
 
-    beforeEach(async(() =>
+    beforeEach(() =>
     {
         TestBed.configureTestingModule({
             declarations: [TooltipDirective,
@@ -48,8 +48,8 @@ describe('TerraDoubleInputComponent', () =>
                     provide:  Router,
                     useValue: router
                 }]
-        }).compileComponents();
-    }));
+        });
+    });
 
     beforeEach(() =>
     {
