@@ -28,7 +28,7 @@ describe('FilterComponent:', () =>
     let buttons:Array<DebugElement>;
     const router:MockRouter = new MockRouter();
 
-    beforeEach(async(() =>
+    beforeEach(() =>
     {
         TestBed.configureTestingModule({
             declarations: [TooltipDirective,
@@ -49,8 +49,8 @@ describe('FilterComponent:', () =>
                     provide:  Router,
                     useValue: router
                 }]
-        }).compileComponents();
-    }));
+        });
+    });
 
     beforeEach(() =>
     {

@@ -39,13 +39,13 @@ describe(`TerraCardComponent:`, () =>
     const expectedImagePath:string = 'app/assets/images/logo_plenty.svg';
     const expectedIcon:string = 'icon-save';
 
-    beforeEach(async(() =>
+    beforeEach(() =>
     {
         TestBed.configureTestingModule({
             declarations: [TerraCardComponent,
                            CardTestComponent]
-        }).compileComponents();
-    }));
+        });
+    });
 
     beforeEach(() =>
     {

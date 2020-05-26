@@ -19,7 +19,7 @@ describe('Component: TerraGroupFunctionComponent', () =>
     let fixture:ComponentFixture<TerraGroupFunctionComponent>;
     const router:MockRouter = new MockRouter();
 
-    beforeEach(async(() =>
+    beforeEach(() =>
     {
         TestBed.configureTestingModule({
             declarations: [TooltipDirective,
@@ -36,8 +36,8 @@ describe('Component: TerraGroupFunctionComponent', () =>
                     provide:  Router,
                     useValue: router
                 }]
-        }).compileComponents();
-    }));
+        });
+    });
 
     beforeEach(() =>
     {
