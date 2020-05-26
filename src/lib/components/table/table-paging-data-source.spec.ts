@@ -103,7 +103,7 @@ describe('TablePagingDataSource', () =>
         dataSource.connect(undefined).subscribe();
         dataSource.search();
 
-        expect(dataSource.data).toBe(entries);
+        expect(dataSource.data).toEqual(entries);
         expect(paginator.length).toBe(totalsCount);
     });
 });
