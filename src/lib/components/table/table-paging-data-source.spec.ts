@@ -21,8 +21,7 @@ class TestDataSource extends TablePagingDataSource<{}>
             lastPageNumber: 1,
             firstOnPage: 1,
             lastOnPage: 10,
-            itemsPerPage: 10,
-            entries: [...]
+            itemsPerPage: 10
         });
     }
 }
