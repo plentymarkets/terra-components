@@ -1,6 +1,5 @@
 import { RequestParameterInterface } from './request-parameter.interface';
 import {
-    noop,
     Observable,
     of
 } from 'rxjs';
@@ -11,12 +10,12 @@ import {
 import { MatSort } from '@angular/material/sort';
 import { TablePagingSortingDataSource } from './table-paging-sorting-data-source';
 import { TerraPagerInterface } from '../pager/data/terra-pager.interface';
-import { ChangeDetectorRef } from '@angular/core';
 import { MockChangeDetectorRef } from '../../testing/mock-change-detector-ref';
 
 const totalsCount:number = 2;
 const entries:Array<{}> = [{},
                            {}];
+
 /* tslint:disable */
 class TestDataSource extends TablePagingSortingDataSource<{}>
 {
@@ -86,22 +85,6 @@ describe('TablePagingSortingDataSource', () =>
         expect(dataSource.sortDirection).toBe('desc');
     });
 
-    it('should pass on correct parameters to the request', () =>
-    {
-        paginator.pageIndex = 2;
-        paginator.pageSize = 20;
-
-        spyOn(dataSource, 'request').and.callThrough();
-
-        dataSource.connect(undefined).subscribe();
-        dataSource.search();
-
-        expect(dataSource.request).toHaveBeenCalledWith({
-            page:         dataSource.pageIndex,
-            itemsPerPage: dataSource.itemsPerPage
-        });
-    });
-
     it('should get correct array of entries', () =>
     {
         spyOn(dataSource, 'request').and.callThrough();
@@ -117,6 +100,8 @@ describe('TablePagingSortingDataSource', () =>
     {
         sort.active = 'id';
         sort.direction = 'desc';
+        paginator.pageIndex = 2;
+        paginator.pageSize = 20;
 
         spyOn(dataSource, 'request').and.callThrough();
 
@@ -124,10 +109,10 @@ describe('TablePagingSortingDataSource', () =>
         dataSource.search();
 
         expect(dataSource.request).toHaveBeenCalledWith({
-            page: 1,
-            itemsPerPage: undefined,
-            sortBy:    dataSource.sortBy,
-            sortOrder: dataSource.sortDirection
+            page:         dataSource.pageIndex,
+            itemsPerPage: dataSource.itemsPerPage,
+            sortBy:       dataSource.sortBy,
+            sortOrder:    dataSource.sortDirection
         });
     });
 });
