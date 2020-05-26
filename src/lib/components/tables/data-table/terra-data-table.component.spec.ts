@@ -46,7 +46,7 @@ describe('TerraDataTableComponent', () =>
     let fixture:ComponentFixture<TerraDataTableComponent<any, any>>;
     let router:MockRouter = new MockRouter();
 
-    beforeEach(async(() =>
+    beforeEach(() =>
     {
         TestBed.configureTestingModule({
             declarations: [
@@ -89,8 +89,8 @@ describe('TerraDataTableComponent', () =>
             set: new Component({
                 changeDetection: ChangeDetectionStrategy.Default
             })
-        }).compileComponents();
-    }));
+        });
+    });
 
     beforeEach(() =>
     {

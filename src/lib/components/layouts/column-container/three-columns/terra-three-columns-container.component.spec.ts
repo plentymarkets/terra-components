@@ -16,14 +16,14 @@ describe('Component: TerraThreeColumnsContainerComponent', () =>
     let centerColumn:HTMLDivElement;
     let rightColumn:HTMLDivElement;
 
-    beforeEach(async(() =>
+    beforeEach(() =>
     {
         TestBed.configureTestingModule({
             declarations: [
                 TerraThreeColumnsContainerComponent,
             ]
-        }).compileComponents();
-    }));
+        });
+    });
 
     beforeEach(() =>
     {
