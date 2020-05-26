@@ -16,6 +16,11 @@
 		"components"
 	],
 	"license": "MIT",
+	"scripts": {
+		"build": "../../node_modules/.bin/tsc -p tsconfig.schematics.json",
+		"copy:collection": "cp schematics/collection.json ../../dist/schematics/collection.json",
+		"postbuild": "npm run copy:collection"
+	},
 	"peerDependencies": {
 		"@angular/animations": "8.x",
 		"@angular/cdk": "8.x",
