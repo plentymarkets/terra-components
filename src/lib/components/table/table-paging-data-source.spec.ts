@@ -33,7 +33,7 @@ class TestDataSource extends TablePagingDataSource<{}>
     }
 }
 
-/* ts-lint:disable-next-line */
+/* tslint:disable-next-line */
 class ChangeDetector extends ChangeDetectorRef
 {
     public markForCheck:() => void = noop;
@@ -103,7 +103,7 @@ describe('TablePagingDataSource', () =>
         dataSource.connect(undefined).subscribe();
         dataSource.search();
 
-        expect(dataSource.data).toBe(entries);
+        expect(dataSource.data).toEqual(entries);
         expect(paginator.length).toBe(totalsCount);
     });
 });
