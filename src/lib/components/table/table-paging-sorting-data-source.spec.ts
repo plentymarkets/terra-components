@@ -12,6 +12,7 @@ import { MatSort } from '@angular/material/sort';
 import { TablePagingSortingDataSource } from './table-paging-sorting-data-source';
 import { TerraPagerInterface } from '../pager/data/terra-pager.interface';
 import { ChangeDetectorRef } from '@angular/core';
+import { MockChangeDetectorRef } from '../../testing/mock-change-detector-ref';
 
 const totalsCount:number = 2;
 const entries:Array<{}> = [{},
@@ -34,19 +35,6 @@ class TestDataSource extends TablePagingSortingDataSource<{}>
     }
 }
 
-class ChangeDetector extends ChangeDetectorRef
-{
-    public markForCheck:() => void = noop;
-
-    public checkNoChanges:() => void = noop;
-
-    public detach:() => void = noop;
-
-    public detectChanges:() => void = noop;
-
-    public reattach:() => void = noop;
-}
-
 describe('TablePagingSortingDataSource', () =>
 {
     let dataSource:TestDataSource;
@@ -56,7 +44,7 @@ describe('TablePagingSortingDataSource', () =>
     beforeEach(() =>
     {
         dataSource = new TestDataSource();
-        paginator = new MatPaginator(new MatPaginatorIntl(), undefined);
+        paginator = new MatPaginator(new MatPaginatorIntl(), new MockChangeDetectorRef());
         sort = new MatSort();
         dataSource.paginator = paginator;
         dataSource.sort = sort;

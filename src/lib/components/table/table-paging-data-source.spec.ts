@@ -1,7 +1,6 @@
 import { TablePagingDataSource } from './table-paging-data-source';
 import { RequestParameterInterface } from './request-parameter.interface';
 import {
-    noop,
     Observable,
     of
 } from 'rxjs';
@@ -10,7 +9,7 @@ import {
     MatPaginatorIntl
 } from '@angular/material/paginator';
 import { TerraPagerInterface } from '../pager/data/terra-pager.interface';
-import { ChangeDetectorRef } from '@angular/core';
+import { MockChangeDetectorRef } from '../../testing/mock-change-detector-ref';
 
 const totalsCount:number = 2;
 const entries:Array<{}> = [{},
@@ -33,20 +32,6 @@ class TestDataSource extends TablePagingDataSource<{}>
     }
 }
 
-/* tslint:disable-next-line */
-class ChangeDetector extends ChangeDetectorRef
-{
-    public markForCheck:() => void = noop;
-
-    public checkNoChanges:() => void = noop;
-
-    public detach:() => void = noop;
-
-    public detectChanges:() => void = noop;
-
-    public reattach:() => void = noop;
-}
-
 describe('TablePagingDataSource', () =>
 {
     let dataSource:TestDataSource;
@@ -55,7 +40,7 @@ describe('TablePagingDataSource', () =>
     beforeEach(() =>
     {
         dataSource = new TestDataSource();
-        paginator = new MatPaginator(new MatPaginatorIntl(), new ChangeDetector());
+        paginator = new MatPaginator(new MatPaginatorIntl(), new MockChangeDetectorRef());
         dataSource.paginator = paginator;
     });
 
