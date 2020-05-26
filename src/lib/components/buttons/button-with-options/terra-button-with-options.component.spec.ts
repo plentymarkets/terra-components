@@ -1,7 +1,6 @@
 import { TerraButtonWithOptionsComponent } from './terra-button-with-options.component';
 import {
     ComponentFixture,
-    async,
     TestBed
 } from '@angular/core/testing';
 import { TerraButtonComponent } from '../button/terra-button.component';
@@ -11,13 +10,13 @@ import { TooltipDirective } from '../../tooltip/tooltip.directive';
 import { MockRouter } from '../../../testing/mock-router';
 import { Router } from '@angular/router';
 
-describe('TerraButtonWithOptionsComponent:', () =>
+fdescribe('TerraButtonWithOptionsComponent:', () =>
 {
     let component:TerraButtonWithOptionsComponent;
     let fixture:ComponentFixture<TerraButtonWithOptionsComponent>;
     const router:MockRouter = new MockRouter();
 
-    beforeEach(async(() =>
+    beforeEach(() =>
     {
         TestBed.configureTestingModule({
             declarations: [TooltipDirective,
@@ -31,8 +30,8 @@ describe('TerraButtonWithOptionsComponent:', () =>
                     provide:  Router,
                     useValue: router
                 }]
-        }).compileComponents();
-    }));
+        });
+    });
 
     beforeEach(() =>
     {
