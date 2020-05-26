@@ -7,7 +7,6 @@ import { LocalizationModule } from 'angular-l10n';
 import { l10nConfig } from '../../../../app/translation/l10n.config';
 import { TerraGroupFunctionComponent } from './terra-group-function.component';
 import { TerraButtonComponent } from '../../buttons/button/terra-button.component';
-import { HttpClientModule } from '@angular/common/http';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TooltipDirective } from '../../tooltip/tooltip.directive';
 import { Router } from '@angular/router';
@@ -19,7 +18,7 @@ describe('Component: TerraGroupFunctionComponent', () =>
     let fixture:ComponentFixture<TerraGroupFunctionComponent>;
     const router:MockRouter = new MockRouter();
 
-    beforeEach(async(() =>
+    beforeEach(() =>
     {
         TestBed.configureTestingModule({
             declarations: [TooltipDirective,
@@ -28,7 +27,6 @@ describe('Component: TerraGroupFunctionComponent', () =>
             ],
             imports:      [
                 NoopAnimationsModule,
-                HttpClientModule,
                 LocalizationModule.forRoot(l10nConfig)
             ],
             providers:    [
@@ -36,8 +34,8 @@ describe('Component: TerraGroupFunctionComponent', () =>
                     provide:  Router,
                     useValue: router
                 }]
-        }).compileComponents();
-    }));
+        });
+    });
 
     beforeEach(() =>
     {

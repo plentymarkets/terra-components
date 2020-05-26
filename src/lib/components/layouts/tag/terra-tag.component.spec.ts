@@ -27,13 +27,13 @@ describe('TerraTagComponent', () =>
     const customClass:string = 'testClass';
     const name:string = 'Test';
 
-    beforeEach(async(() =>
+    beforeEach(() =>
     {
         TestBed.configureTestingModule({
             declarations: [TerraTagComponent],
             imports:      [MockTranslationModule]
-        }).compileComponents();
-    }));
+        });
+    });
 
     beforeEach(() =>
     {

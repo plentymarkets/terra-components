@@ -28,7 +28,7 @@ class RadioGroupTestComponent
 describe(`RadioGroupComponent:`, () =>
 {
     let radioGroupComponent:RadioGroupComponent;
-    beforeEach(async(() =>
+    beforeEach(() =>
     {
         TestBed.configureTestingModule({
             declarations: [
@@ -36,8 +36,8 @@ describe(`RadioGroupComponent:`, () =>
                 RadioGroupComponent,
                 RadioGroupTestComponent
             ]
-        }).compileComponents();
-    }));
+        });
+    });
 
     describe(`itself`, () =>
     {
