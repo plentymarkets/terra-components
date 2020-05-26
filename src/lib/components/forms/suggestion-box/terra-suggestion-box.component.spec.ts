@@ -2,7 +2,6 @@ import {
     DebugElement,
     ElementRef
 } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import {
     async,
@@ -44,7 +43,6 @@ describe('TerraSuggestionBoxComponent', () =>
             ],
             imports:      [
                 FormsModule,
-                HttpClientModule,
                 LocalizationModule.forRoot(l10nConfig)
             ],
             providers:    [
