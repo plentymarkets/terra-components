@@ -8,12 +8,21 @@ import {
     MatPaginator,
     MatPaginatorIntl
 } from '@angular/material/paginator';
+import { TerraPagerInterface } from '../pager/data/terra-pager.interface';
 
 class TestDataSource extends TablePagingDataSource<{}>
 {
-    public request(requestParams:RequestParameterInterface):Observable<Array<{}>>
+    public request(requestParams:RequestParameterInterface):Observable<TerraPagerInterface<{}>>
     {
-        return of(new Array({}));
+        return of({
+            page: 1,
+            totalsCount: 10,
+            isLastPage: true,
+            lastPageNumber: 1,
+            firstOnPage: 1,
+            lastOnPage: 10,
+            itemsPerPage: 10
+        });
     }
 }
 
@@ -26,7 +35,6 @@ describe('TablePagingDataSource', () =>
     {
         dataSource = new TestDataSource();
         paginator = new MatPaginator(new MatPaginatorIntl(), undefined);
-
         dataSource.paginator = paginator;
     });
 

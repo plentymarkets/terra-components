@@ -20,7 +20,7 @@ interface FilterParams
     id:number;
 }
 
-fdescribe('TableDataSource', () =>
+describe('TableDataSource', () =>
 {
     let dataSource:TestDataSource;
     let filter:TerraFilter<FilterParams>;
@@ -48,11 +48,6 @@ fdescribe('TableDataSource', () =>
         dataSource.filter = filter;
 
         expect(dataSource.filter).toEqual(filter);
-    });
-
-    it('should have data after connect', () =>
-    {
-        dataSource.connect(undefined).subscribe((result:Array<{}>) => expect(result).toBe([]));
     });
 
     it('data should be refreshes after a request', () =>
