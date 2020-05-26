@@ -50,4 +50,20 @@ describe('TableSortingDataSource', () =>
         dataSource.sort.direction = 'desc';
         expect(dataSource.sortDirection).toBe('desc');
     });
+
+    it('should pass on correct parameters to the request', () =>
+    {
+        sort.active = 'id';
+        sort.direction = 'desc';
+
+        spyOn(dataSource, 'request').and.callThrough();
+
+        dataSource.connect(undefined).subscribe();
+        dataSource.search();
+
+        expect(dataSource.request).toHaveBeenCalledWith({
+            sortBy:    dataSource.sortBy,
+            sortOrder: dataSource.sortDirection
+        });
+    });
 });
