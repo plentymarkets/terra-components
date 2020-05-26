@@ -44,7 +44,7 @@ export abstract class TableDataSource<T> extends DataSource<T>
      */
     private _disconnect$:Subject<void> = new Subject();
 
-    private _search:Subject<void> = new Subject<void>();
+    private _search:Subject<void> = new Subject();
 
     /**
      * Connects the data table to the api for. It also checks if the api call is filtered, sorted or paginated.
@@ -129,7 +129,7 @@ export abstract class TableDataSource<T> extends DataSource<T>
 
     private _collectRequestParams():RequestParameterInterface
     {
-        let requestParams:RequestParameterInterface = {...this.filter.filterParameter} as {[key:string]:unknown};
+        let requestParams:RequestParameterInterface = this.filter ? {...this.filter.filterParameter} as {[key:string]:unknown} : {};
 
         if(this._hasPaginator(this))
         {
