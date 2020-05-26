@@ -9,7 +9,6 @@ import {
     Subject
 } from 'rxjs';
 import {
-    debounceTime,
     map,
     switchMap,
     takeUntil,
@@ -44,6 +43,8 @@ export abstract class TableDataSource<T> extends DataSource<T>
      * Stream to cancel all subscriptions.
      */
     private _disconnect$:Subject<void> = new Subject();
+
+    private _search:Subject<void> = new Subject<void>();
 
     /**
      * Connects the data table to the api for. It also checks if the api call is filtered, sorted or paginated.
@@ -88,7 +89,7 @@ export abstract class TableDataSource<T> extends DataSource<T>
      */
     public search():void
     {
-        this.filter.search();
+        this.filter ? this.filter.search() : this._search.next();
     }
 
     /**
@@ -123,7 +124,7 @@ export abstract class TableDataSource<T> extends DataSource<T>
      */
     protected _filtering():Observable<unknown>
     {
-        return this.filter ? this.filter.search$ : EMPTY;
+        return this.filter ? this.filter.search$ : this._search.asObservable();
     }
 
     private _collectRequestParams():RequestParameterInterface
