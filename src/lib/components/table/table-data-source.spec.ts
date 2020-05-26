@@ -50,7 +50,7 @@ fdescribe('TableDataSource', () =>
         expect(dataSource.filter).toEqual(filter);
     });
 
-    it('should have data after search', () =>
+    it('should have data after connect', () =>
     {
         dataSource.connect(undefined).subscribe((result:Array<{}>) => expect(result).toBe([]));
     });
