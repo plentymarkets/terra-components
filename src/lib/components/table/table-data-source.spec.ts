@@ -50,7 +50,7 @@ describe('TableDataSource', () =>
         expect(dataSource.filter).toEqual(filter);
     });
 
-    it('data should be refreshes after a request', () =>
+    it('should update #data after a request', () =>
     {
         dataSource.connect(undefined).subscribe();
 
