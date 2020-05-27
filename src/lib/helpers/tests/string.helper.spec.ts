@@ -1,11 +1,9 @@
 import { StringHelper } from '../string.helper';
 
-describe('StringHelper:', () =>
-{
-    it('Method: isNullUndefinedOrEmpty() should validate the variable', () =>
-    {
+describe('StringHelper:', () => {
+    it('Method: isNullUndefinedOrEmpty() should validate the variable', () => {
         // undefined
-        let testVar:string = undefined;
+        let testVar: string = undefined;
         expect(StringHelper.isNullUndefinedOrEmpty(testVar)).toBe(true);
 
         // null
