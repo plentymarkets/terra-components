@@ -14,7 +14,7 @@ function compileGlobalStyles() {
             importer: tildeImporter,
             outputStyle: 'compressed'
         }).on('error', sass.logError))
-        .pipe(dest('dist/styles'))
+        .pipe(dest(config.destinations.styles))
 }
 const compileStyles = compileGlobalStyles;
 exports.compileStyles = compileStyles;
@@ -55,27 +55,27 @@ function copyPlentyIconsScss() {
 
 function copyCustomDataTableScss() {
     return src('src/lib/components/tables/data-table/custom-data-table.scss')
-        .pipe(dest('dist/components/tables/data-table'));
+        .pipe(dest('dist/lib/components/tables/data-table'));
 }
 
 function copyNodeTreeScss() {
     return src('src/lib/components/tree/node-tree/terra-node-tree.component.scss')
-        .pipe(dest('dist/components/tree/node-tree'));
+        .pipe(dest('dist/lib/components/tree/node-tree'));
 }
 
 function copyTagScss() {
     return src('src/lib/components/layouts/tag/terra-tag.component.scss')
-        .pipe(dest('dist/components/layouts/tag'))
+        .pipe(dest('dist/lib/components/layouts/tag'))
 }
 
 function copyTagListScss() {
     return src('src/lib/components/layouts/taglist/terra-taglist.component.scss')
-        .pipe(dest('dist/components/layouts/taglist'))
+        .pipe(dest('dist/lib/components/layouts/taglist'))
 }
 
 function copyButtonScss() {
     return src('src/lib/components/buttons/button/terra-button.component.scss')
-        .pipe(dest('dist/components/buttons/button'))
+        .pipe(dest('dist/lib/components/buttons/button'))
 }
 
 const copySassFiles = parallel(copyIconsScss, copyVariablesScss, copyPlentyIconsScss, copyCustomDataTableScss, copyNodeTreeScss, copyTagScss, copyTagListScss, copyButtonScss);
@@ -117,7 +117,7 @@ exports.copy = copy;
  **/
 function changeVersion(done) {
     const libPath = 'src/lib/package.json';
-    const distPath = 'dist/package.json';
+    const distPath = 'dist/lib/package.json';
     const increment = argv.increment ? argv.increment : 'patch';
     const preid = argv.preid ? argv.preid : '';
     const jsonLib = JSON.parse(fs.readFileSync(libPath));

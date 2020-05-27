@@ -6,7 +6,7 @@ module.exports = function () {
     };
 
     const sources = {
-        dist: 'dist/**/*.*',
+        dist: 'dist/lib/**/*.*',
         scss: [
             'src/lib/styles/styles.scss',
             'src/lib/styles/icons.scss',
@@ -16,10 +16,10 @@ module.exports = function () {
     };
 
     const destinations = {
-        tsOutputPath: './dist/',
-        fontsOutputPath: './dist/assets/fonts/',
-        langOutputPath: './dist/assets/lang/',
-        styles: './dist/styles/',
+        tsOutputPath: './dist/lib/',
+        fontsOutputPath: './dist/lib/assets/fonts/',
+        langOutputPath: './dist/lib/assets/lang/',
+        styles: './dist/lib/styles/',
 
         terra: '../terra/node_modules/@plentymarkets/terra-components/',
     };
