@@ -129,7 +129,7 @@ function changeVersion(done) {
     const version = semver.inc(jsonDist.version, increment, preid);
     if (version == null)
     {
-        console.log('--- Invalid parameter used. Please check command. ---')
+        console.error('! - Invalid parameter used. Changing of version aborted. Please check command - !');
     }
     else
     {
@@ -140,8 +140,6 @@ function changeVersion(done) {
         fs.writeFileSync(libPath, JSON.stringify(jsonLib, null, '\t'));
         fs.writeFileSync(distPath, JSON.stringify(jsonDist, null, '\t'));
     }
-
-
     done();
 }
 exports.changeVersion = changeVersion;
