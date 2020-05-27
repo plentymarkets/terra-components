@@ -24,7 +24,7 @@ describe('Filter', () =>
         expect(filter.search$).toBeTruthy();
     });
 
-    it('should have a empty filterParameters of generic type', () =>
+    it('should have an empty filterParameters of generic type', () =>
     {
         expect(filter.filterParameter).toEqual({} as FilterParams);
     });
