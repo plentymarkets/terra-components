@@ -5,6 +5,7 @@
 * **peerDependencies**
     - removed `jquery` since we no longer depend on it.
     - updated `htmlhint` to ~0.13.0.
+    - removed `path` since we no longer depend on it.
 * **terra-dynamic-component-loader** is deprecated now. Use angular's [NgComponentOutlet](https://angular.io/api/common/NgComponentOutlet) instead.
 * **terra-toggle** is deprecated now. Use angular material's [slide-toggle](https://material.angular.io/components/slide-toggle) instead.
 * **terra-category-picker** removed provider for `TerraNodeTreeConfig` since it was not used anymore.
