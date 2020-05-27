@@ -47,7 +47,7 @@ export abstract class TableDataSource<T> extends DataSource<T>
     private _search:Subject<void> = new Subject();
 
     /**
-     * Connects the data table to the api for. It also checks if the api call is filtered, sorted or paginated.
+     * Connects the data table with the api. It also checks whether the api call is filtered, sorted or paginated.
      * This is called from the data table itself.
      * @param collectionViewer
      * @returns Observable that emits a new value when a search, sorting or pagination is triggered.
