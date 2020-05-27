@@ -1,11 +1,14 @@
-export class TerraDownloadHelper {
-    public static downloadFile(object: any, filename: string): void {
-        let fileURL: string = URL.createObjectURL(object);
+export class TerraDownloadHelper
+{
+    public static downloadFile(object:any, filename:string):void
+    {
+        let fileURL:string = URL.createObjectURL(object);
         this.downloadFileFromUrl(fileURL, filename);
     }
 
-    public static downloadFileFromUrl(url: string, filename: string): void {
-        let link: HTMLAnchorElement = document.createElement('a');
+    public static downloadFileFromUrl(url:string, filename:string):void
+    {
+        let link:HTMLAnchorElement = document.createElement('a');
         link.href = url;
         link.download = filename;
         link.target = '_blank';

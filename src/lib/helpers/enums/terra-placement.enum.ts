@@ -1,4 +1,5 @@
-export enum TerraPlacementEnum {
+export enum TerraPlacementEnum
+{
     TOP = 'top',
     RIGHT = 'right',
     LEFT = 'left',
