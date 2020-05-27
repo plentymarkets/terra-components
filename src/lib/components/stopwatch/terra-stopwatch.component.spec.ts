@@ -1,15 +1,7 @@
 import { TerraStopwatchComponent } from './terra-stopwatch.component';
-import {
-    async,
-    ComponentFixture,
-    discardPeriodicTasks,
-    fakeAsync,
-    TestBed,
-    tick
-} from '@angular/core/testing';
+import { async, ComponentFixture, discardPeriodicTasks, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { TerraButtonComponent } from '../buttons/button/terra-button.component';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 import { LocalizationModule } from 'angular-l10n';
 import { l10nConfig } from '../../../app/translation/l10n.config';
 import { TooltipDirective } from '../tooltip/tooltip.directive';
@@ -17,48 +9,36 @@ import { Router } from '@angular/router';
 import { MockRouter } from '../../testing/mock-router';
 import Spy = jasmine.Spy;
 
-describe('Component: TerraStopwatchComponent', () =>
-{
-    let component:TerraStopwatchComponent;
-    let fixture:ComponentFixture<TerraStopwatchComponent>;
-    const ticks:number = 2;
-    const ticksInMilliseconds:number = ticks * 1000 + 1;
-    const router:MockRouter = new MockRouter();
+describe('Component: TerraStopwatchComponent', () => {
+    let component: TerraStopwatchComponent;
+    let fixture: ComponentFixture<TerraStopwatchComponent>;
+    const ticks: number = 2;
+    const ticksInMilliseconds: number = ticks * 1000 + 1;
+    const router: MockRouter = new MockRouter();
 
-    beforeEach(async(() =>
-    {
+    beforeEach(() => {
         TestBed.configureTestingModule({
-            declarations: [
-                TerraStopwatchComponent,
-                TerraButtonComponent,
-                TooltipDirective
-            ],
-            imports:      [
-                FormsModule,
-                HttpClientModule,
-                LocalizationModule.forRoot(l10nConfig)
-            ],
-            providers:    [
+            declarations: [TerraStopwatchComponent, TerraButtonComponent, TooltipDirective],
+            imports: [FormsModule, LocalizationModule.forRoot(l10nConfig)],
+            providers: [
                 {
-                    provide:  Router,
+                    provide: Router,
                     useValue: router
-                }]
-        }).compileComponents();
-    }));
+                }
+            ]
+        });
+    });
 
-    beforeEach(() =>
-    {
+    beforeEach(() => {
         fixture = TestBed.createComponent(TerraStopwatchComponent);
         component = fixture.componentInstance;
     });
 
-    it('should create', () =>
-    {
+    it('should create', () => {
         expect(component).toBeTruthy();
     });
 
-    it('should initialise its inputs and outputs', () =>
-    {
+    it('should initialise its inputs and outputs', () => {
         expect(component.autoPlay).toBe(false);
         expect(component.isSmall).toBe(false);
         expect(component.controls).toBe(false);
@@ -66,8 +46,7 @@ describe('Component: TerraStopwatchComponent', () =>
         expect(component.seconds).toBe(0);
     });
 
-    it('should update #isRunning when starting, stopping and resetting the watch', () =>
-    {
+    it('should update #isRunning when starting, stopping and resetting the watch', () => {
         component.start();
         expect(component.isRunning).toBe(true);
         component.stop();
@@ -78,23 +57,20 @@ describe('Component: TerraStopwatchComponent', () =>
         expect(component.isRunning).toBe(false);
     });
 
-    it('should reset seconds value when calling the #reset method', () =>
-    {
+    it('should reset seconds value when calling the #reset method', () => {
         component.seconds = 2;
         expect(component.seconds).toBe(2);
         component.reset();
         expect(component.seconds).toBe(0);
     });
 
-    it('should call the #stop method when calling #reset', () =>
-    {
-        let spy:Spy = spyOn(component, 'stop');
+    it('should call the #stop method when calling #reset', () => {
+        let spy: Spy = spyOn(component, 'stop');
         component.reset();
         expect(spy).toHaveBeenCalled();
     });
 
-    it('should start the watch when calling the #start method', fakeAsync(() =>
-    {
+    it('should start the watch when calling the #start method', fakeAsync(() => {
         component.start();
         tick(ticksInMilliseconds);
         expect(component.seconds).toBe(ticks);
@@ -102,9 +78,8 @@ describe('Component: TerraStopwatchComponent', () =>
         discardPeriodicTasks();
     }));
 
-    it('should start automatically if #autoPlay is true', fakeAsync(() =>
-    {
-        let spy:Spy = spyOn(component, 'start').and.callThrough();
+    it('should start automatically if #autoPlay is true', fakeAsync(() => {
+        let spy: Spy = spyOn(component, 'start').and.callThrough();
         component.autoPlay = true;
         component.ngOnInit();
 
@@ -115,9 +90,8 @@ describe('Component: TerraStopwatchComponent', () =>
         discardPeriodicTasks();
     }));
 
-    it('should not start automatically if #autoPlay is false', fakeAsync(() =>
-    {
-        let spy:Spy = spyOn(component, 'start').and.callThrough();
+    it('should not start automatically if #autoPlay is false', fakeAsync(() => {
+        let spy: Spy = spyOn(component, 'start').and.callThrough();
         component.autoPlay = false;
         component.ngOnInit();
 
@@ -126,8 +100,7 @@ describe('Component: TerraStopwatchComponent', () =>
         expect(component.seconds).toBe(0);
     }));
 
-    it('should start and stop', fakeAsync(() =>
-    {
+    it('should start and stop', fakeAsync(() => {
         component.start();
         tick(ticksInMilliseconds);
         expect(component.seconds).toBe(ticks);
@@ -137,8 +110,7 @@ describe('Component: TerraStopwatchComponent', () =>
         expect(component.seconds).toEqual(ticks);
     }));
 
-    it('should not start the timer again, if it is already running', () =>
-    {
+    it('should not start the timer again, if it is already running', () => {
         spyOn(window, 'setInterval').and.callThrough();
         component.start();
         expect(component.isRunning).toBe(true);
@@ -148,8 +120,7 @@ describe('Component: TerraStopwatchComponent', () =>
         expect(window.setInterval).toHaveBeenCalledTimes(1);
     });
 
-    it('should not clear the timer on #stop() if it is not running', () =>
-    {
+    it('should not clear the timer on #stop() if it is not running', () => {
         spyOn(window, 'clearInterval').and.callThrough();
         expect(component.isRunning).toBe(false);
         component.stop();

@@ -1,14 +1,6 @@
-import {
-    DebugElement,
-    ElementRef
-} from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { DebugElement, ElementRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import {
-    async,
-    ComponentFixture,
-    TestBed
-} from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LocalizationModule } from 'angular-l10n';
 import { l10nConfig } from '../../../../app/translation/l10n.config';
@@ -24,44 +16,38 @@ import { Router } from '@angular/router';
 import { MockRouter } from '../../../testing/mock-router';
 import Spy = jasmine.Spy;
 
-describe('TerraSuggestionBoxComponent', () =>
-{
-    let component:TerraSuggestionBoxComponent;
-    let fixture:ComponentFixture<TerraSuggestionBoxComponent>;
-    const suggestion:TerraSuggestionBoxValueInterface = {
+describe('TerraSuggestionBoxComponent', () => {
+    let component: TerraSuggestionBoxComponent;
+    let fixture: ComponentFixture<TerraSuggestionBoxComponent>;
+    const suggestion: TerraSuggestionBoxValueInterface = {
         caption: '1',
-        value:   1
+        value: 1
     };
-    const router:MockRouter = new MockRouter();
+    const router: MockRouter = new MockRouter();
 
-    beforeEach(async(() =>
-    {
+    beforeEach(() => {
         TestBed.configureTestingModule({
-            declarations: [TooltipDirective,
-                           TerraSuggestionBoxComponent,
-                           TerraTextInputComponent,
-                           TerraLabelTooltipDirective
+            declarations: [
+                TooltipDirective,
+                TerraSuggestionBoxComponent,
+                TerraTextInputComponent,
+                TerraLabelTooltipDirective
             ],
-            imports:      [
-                FormsModule,
-                HttpClientModule,
-                LocalizationModule.forRoot(l10nConfig)
-            ],
-            providers:    [
+            imports: [FormsModule, LocalizationModule.forRoot(l10nConfig)],
+            providers: [
                 {
-                    provide:  Router,
+                    provide: Router,
                     useValue: router
                 },
                 {
-                    provide:  ElementRef,
+                    provide: ElementRef,
                     useClass: MockElementRef
                 }
             ]
-        }).compileComponents();
-    }));
+        });
+    });
 
-    beforeEach(() =>
-    {
+    beforeEach(() => {
         fixture = TestBed.createComponent(TerraSuggestionBoxComponent);
         component = fixture.componentInstance;
 
@@ -71,13 +57,11 @@ describe('TerraSuggestionBoxComponent', () =>
         fixture.detectChanges();
     });
 
-    it('should create', () =>
-    {
+    it('should create', () => {
         expect(component).toBeTruthy();
     });
 
-    it('should toggle open', () =>
-    {
+    it('should toggle open', () => {
         component.toggleOpen = true;
 
         expect(component.toggleOpen).toBe(true);
@@ -87,12 +71,11 @@ describe('TerraSuggestionBoxComponent', () =>
         expect(component.toggleOpen).toBe(false);
     });
 
-    it('Clicking on the .select-box-wrapper toggles the dropdown', () =>
-    {
+    it('Clicking on the .select-box-wrapper toggles the dropdown', () => {
         component.toggleOpen = false; // close the dropdown
 
-        let debugElement:DebugElement = fixture.debugElement;
-        let selectBoxWrapperDe:DebugElement = debugElement.query(By.css('.select-box-wrapper'));
+        let debugElement: DebugElement = fixture.debugElement;
+        let selectBoxWrapperDe: DebugElement = debugElement.query(By.css('.select-box-wrapper'));
 
         selectBoxWrapperDe.triggerEventHandler('click', new Event('click'));
 
@@ -103,14 +86,12 @@ describe('TerraSuggestionBoxComponent', () =>
         expect(component.toggleOpen).toEqual(false);
     });
 
-    it('`selectedValue` and `value` to be initialised with `null`', () =>
-    {
+    it('`selectedValue` and `value` to be initialised with `null`', () => {
         expect(component.selectedValue).toEqual(null);
         expect(component.value).toEqual(null);
     });
 
-    it('should update `value` and `selectedValue` if the `value` is set to a value that is included in `inputListBoxValues`', () =>
-    {
+    it('should update `value` and `selectedValue` if the `value` is set to a value that is included in `inputListBoxValues`', () => {
         component.inputListBoxValues = [suggestion];
         component.value = suggestion.value;
 
@@ -119,8 +100,7 @@ describe('TerraSuggestionBoxComponent', () =>
         expect(component.selectedValue).toEqual(suggestion);
     });
 
-    it('should set `selectedValue` to `null` if the `value` is set to a `value` that is not included in `inputListBoxValues`', () =>
-    {
+    it('should set `selectedValue` to `null` if the `value` is set to a `value` that is not included in `inputListBoxValues`', () => {
         component.inputListBoxValues = [suggestion];
         component.value = 2;
 
@@ -129,10 +109,9 @@ describe('TerraSuggestionBoxComponent', () =>
         expect(component.selectedValue).toEqual(null);
     });
 
-    it('set #selectedValue should update #value and the displayed text in the input', () =>
-    {
-        let suggestionBoxElement:HTMLElement = fixture.nativeElement;
-        let inputElement:HTMLInputElement = suggestionBoxElement.querySelector('input');
+    it('set #selectedValue should update #value and the displayed text in the input', () => {
+        let suggestionBoxElement: HTMLElement = fixture.nativeElement;
+        let inputElement: HTMLInputElement = suggestionBoxElement.querySelector('input');
         component.inputListBoxValues = [suggestion];
         component.selectedValue = suggestion;
 
@@ -143,12 +122,10 @@ describe('TerraSuggestionBoxComponent', () =>
         // expect(inputElement.value).toEqual(suggestion.caption); // TODO: The value is not updated..
     });
 
-    it('#_onChange() should open the dropdown (set #_toggleOpen to "true")', () =>
-    {
+    it('#_onChange() should open the dropdown (set #_toggleOpen to "true")', () => {
         component.toggleOpen = true;
         component._onChange();
         expect(component.toggleOpen).toEqual(true);
-
 
         component.toggleOpen = false;
         expect(component.toggleOpen).toEqual(false);
@@ -157,12 +134,12 @@ describe('TerraSuggestionBoxComponent', () =>
         expect(component.toggleOpen).toEqual(true);
     });
 
-    it('Entering text should call #_onChange() and update #selectedValue and #value', () =>
-    {
+    it('Entering text should call #_onChange() and update #selectedValue and #value', () => {
         component.inputListBoxValues = [suggestion];
-        let spy:Spy = spyOn(component, '_onChange').and.callThrough();
+        let spy: Spy = spyOn(component, '_onChange').and.callThrough();
 
-        let terraTextInput:TerraTextInputComponent = fixture.debugElement.query(By.css('terra-text-input')).componentInstance;
+        let terraTextInput: TerraTextInputComponent = fixture.debugElement.query(By.css('terra-text-input'))
+            .componentInstance;
 
         // simulate user entering a new value into the input box
         // a value that is included in the suggestions
@@ -190,12 +167,10 @@ describe('TerraSuggestionBoxComponent', () =>
         expect(spy).toHaveBeenCalledTimes(3);
     });
 
-
-    it('should auto-select a suggestion if the entered text matches the caption of the suggestion', () =>
-    {
+    it('should auto-select a suggestion if the entered text matches the caption of the suggestion', () => {
         component.inputListBoxValues = [suggestion];
-        let suggestionBoxElement:HTMLElement = fixture.nativeElement;
-        let inputElement:HTMLInputElement = suggestionBoxElement.querySelector('input');
+        let suggestionBoxElement: HTMLElement = fixture.nativeElement;
+        let inputElement: HTMLInputElement = suggestionBoxElement.querySelector('input');
 
         expect(component.selectedValue).toBeNull(); // TODO: unify.. selectedValue should be undefined or set to a specific value, not null
 
@@ -208,17 +183,15 @@ describe('TerraSuggestionBoxComponent', () =>
         inputElement.dispatchEvent(new Event('input'));
 
         expect(component.selectedValue).toBeUndefined();
-
     });
 
-    it('#textValueChanged should emit if a text has been entered', () =>
-    {
-        let suggestionBoxElement:HTMLElement = fixture.nativeElement;
-        let inputElement:HTMLInputElement = suggestionBoxElement.querySelector('input');
+    it('#textValueChanged should emit if a text has been entered', () => {
+        let suggestionBoxElement: HTMLElement = fixture.nativeElement;
+        let inputElement: HTMLInputElement = suggestionBoxElement.querySelector('input');
 
-        const enteredText:string = '123';
-        let text:string = '';
-        component.textInputValueChange.subscribe((eventText:string) => text = eventText);
+        const enteredText: string = '123';
+        let text: string = '';
+        component.textInputValueChange.subscribe((eventText: string) => (text = eventText));
 
         inputElement.value = enteredText;
         inputElement.dispatchEvent(new Event('input'));

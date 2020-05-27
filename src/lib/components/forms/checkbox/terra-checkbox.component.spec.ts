@@ -1,8 +1,5 @@
 import { TerraCheckboxComponent } from './terra-checkbox.component';
-import {
-    ComponentFixture,
-    TestBed
-} from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -11,55 +8,47 @@ import { Router } from '@angular/router';
 import { MockRouter } from '../../../testing/mock-router';
 import Spy = jasmine.Spy;
 
-describe('Component: TerraCheckboxComponent', () =>
-{
-    let component:TerraCheckboxComponent;
-    let fixture:ComponentFixture<TerraCheckboxComponent>;
-    const router:MockRouter = new MockRouter();
+describe('Component: TerraCheckboxComponent', () => {
+    let component: TerraCheckboxComponent;
+    let fixture: ComponentFixture<TerraCheckboxComponent>;
+    const router: MockRouter = new MockRouter();
 
-    beforeEach(() =>
-    {
+    beforeEach(() => {
         TestBed.configureTestingModule({
-            declarations: [TooltipDirective,
-                           TerraCheckboxComponent],
+            declarations: [TooltipDirective, TerraCheckboxComponent],
             imports: [FormsModule],
-            providers:    [
+            providers: [
                 {
-                    provide:  Router,
+                    provide: Router,
                     useValue: router
-                }]
-        }).compileComponents();
+                }
+            ]
+        });
     });
 
-    beforeEach(() =>
-    {
+    beforeEach(() => {
         fixture = TestBed.createComponent(TerraCheckboxComponent);
         component = fixture.componentInstance;
     });
 
-    it('should create an instance', () =>
-    {
+    it('should create an instance', () => {
         expect(component).toBeTruthy();
     });
 
-    describe('ControlValueAccessor', () =>
-    {
-        let onChangeSpy:Spy;
-        beforeEach(() =>
-        {
+    describe('ControlValueAccessor', () => {
+        let onChangeSpy: Spy;
+        beforeEach(() => {
             onChangeSpy = jasmine.createSpy('onChange');
             component.registerOnChange(onChangeSpy);
         });
 
-        it('should not call change callback if a new value is set via #writeValue()', () =>
-        {
+        it('should not call change callback if a new value is set via #writeValue()', () => {
             component.writeValue(!component.value); // toggle value
             expect(onChangeSpy).not.toHaveBeenCalled();
         });
 
-        xit('should call change callback if the value changes by clicking the checkbox', () =>
-        {
-            let inputElement:DebugElement = fixture.debugElement.query(By.css('input'));
+        xit('should call change callback if the value changes by clicking the checkbox', () => {
+            let inputElement: DebugElement = fixture.debugElement.query(By.css('input'));
             inputElement.triggerEventHandler('input', true);
             expect(onChangeSpy).toHaveBeenCalledWith(true);
         });
