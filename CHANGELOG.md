@@ -17,7 +17,7 @@
 * **terra-input** is deprecated now. Use angular material's [input](https://material.angular.io/components/input) instead.
 
 ### Bug Fixes
-* **mat-input** add ng-touched if input is invalid.
+* **mat-input** do not color an invalid input's underline red until it has been touched.
 
 # 5.3.0 (24.04.2020)
 
