@@ -2,6 +2,11 @@
 
 ### Features
 * **mat-table** styles for the [angular material table](https://v8.material.angular.io/components/table/overview).
+* **table** introduced several new classes to simplify the creation of an angular material table data source for plentymarkets REST-APIs.
+    - **TableDataSource** adding basic support for filtering.
+    - **TablePagingDataSource** supports filtering and paging.
+    - **TableSortingDataSource** supports filtering and sorting.
+    - **TablePagingSortingDataSource** supports filtering, paging and sorting.
 * **peerDependencies**
     - removed `jquery` since we no longer depend on it.
     - removed `path` since we no longer depend on it.
