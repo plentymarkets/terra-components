@@ -16,6 +16,9 @@
 * **terra-overlay** is deprecated now. Use angular material's [dialog](https://material.angular.io/components/dialog) instead.
 * **terra-input** is deprecated now. Use angular material's [input](https://material.angular.io/components/input) instead.
 
+### Bug Fixes
+* **mat-input** add ng-touched if input is invalid.
+
 # 5.3.0 (24.04.2020)
 
 ### Features
