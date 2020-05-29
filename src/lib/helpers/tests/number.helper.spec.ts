@@ -26,7 +26,6 @@ describe('Helper: NumberHelper', () => {
     it('should round edge cases', () => {
         expect(NumberHelper.round(5, 0)).toEqual(5);
         expect(NumberHelper.round(5, 30)).toEqual(5);
-        expect(NumberHelper.round(5.0, 5)).toEqual(5);
         expect(NumberHelper.round(5 + 1e-30, 0)).toEqual(5);
         expect(NumberHelper.round(5.5, 0)).toEqual(6);
         expect(NumberHelper.round(5.00001, 0)).toEqual(5);
