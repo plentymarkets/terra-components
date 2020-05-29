@@ -14,7 +14,6 @@ import { AppComponent } from './app.component';
 import { ShowcaseComponent } from './showcase/showcase.component';
 import { TerraComponentsExamplesModule } from '../lib/terra-components-examples.module';
 import { RouterModule } from '@angular/router';
-import { MatCheckboxModule } from '@angular/material/checkbox';
 
 export function initL10n(l10nLoader:L10nLoader):Function
 {
@@ -33,8 +32,7 @@ export function initL10n(l10nLoader:L10nLoader):Function
         RouterModule.forRoot([]),
         HttpClientModule,
         LocalizationModule.forRoot(l10nConfig),
-        TerraComponentsExamplesModule,
-        MatCheckboxModule
+        TerraComponentsExamplesModule
     ],
     declarations: [
         AppComponent,
