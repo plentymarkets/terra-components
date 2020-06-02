@@ -9,6 +9,18 @@
 {
     box-shadow: var(--box-shadow);
     
+    .mat-row .mat-cell,
+    .mat-header-row .mat-header-cell
+    {
+        .mat-checkbox
+        {
+            .mat-checkbox-layout
+            {
+                margin-bottom: 0;
+            }
+        }
+    }
+    
     .mat-header-row
     {
         min-height: 0;
@@ -23,7 +35,7 @@
             border: none;
             font-size: var(--font-size-3);
             @include font-rendering;
-            
+    
             .mat-sort-header-container
             {
                 button.mat-sort-header-button
@@ -96,6 +108,22 @@
                     &:hover
                     {
                         color: var(--color-structure-13);
+                    }
+                }
+    
+                .mat-checkbox
+                {
+                    .mat-checkbox-background
+                    {
+                        background-color: var(--color-structure-0);
+                        
+                        .mat-checkbox-checkmark
+                        {
+                            .mat-checkbox-checkmark-path
+                            {
+                                stroke: var(--color-active) !important;
+                            }
+                        }
                     }
                 }
             }
