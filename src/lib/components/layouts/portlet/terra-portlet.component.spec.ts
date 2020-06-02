@@ -32,7 +32,7 @@ describe('TerraPortletComponent', () =>
 
     const portletHeader:string = 'What is my purpose?';
 
-    beforeEach(async(() =>
+    beforeEach(() =>
     {
         TestBed.configureTestingModule({
             declarations: [TooltipDirective,
@@ -51,8 +51,8 @@ describe('TerraPortletComponent', () =>
                     provide:  Router,
                     useValue: router
                 }]
-        }).compileComponents();
-    }));
+        });
+    });
 
     beforeEach(() =>
     {

@@ -1,5 +1,4 @@
 import { DebugElement } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
 import {
     async,
     ComponentFixture,
@@ -28,7 +27,7 @@ describe('FilterComponent:', () =>
     let buttons:Array<DebugElement>;
     const router:MockRouter = new MockRouter();
 
-    beforeEach(async(() =>
+    beforeEach(() =>
     {
         TestBed.configureTestingModule({
             declarations: [TooltipDirective,
@@ -41,7 +40,6 @@ describe('FilterComponent:', () =>
             ],
             imports:      [
                 BrowserAnimationsModule,
-                HttpClientModule,
                 LocalizationModule.forRoot(l10nConfig)
             ],
             providers:    [
@@ -49,8 +47,8 @@ describe('FilterComponent:', () =>
                     provide:  Router,
                     useValue: router
                 }]
-        }).compileComponents();
-    }));
+        });
+    });
 
     beforeEach(() =>
     {

@@ -24,7 +24,7 @@ describe('CkFullDirective', () =>
 
     const ckurl:string = 'https://cdn.ckeditor.com/4.11.4/full-all/ckeditor.js';
 
-    beforeEach(async(() =>
+    beforeEach(() =>
     {
         TestBed.configureTestingModule({
             declarations: [
@@ -32,8 +32,8 @@ describe('CkFullDirective', () =>
                 CkEditorTestHostComponent,
                 CKEditorComponent
             ]
-        }).compileComponents();
-    }));
+        });
+    });
 
     beforeEach(() =>
     {
