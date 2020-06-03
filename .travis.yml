@@ -13,14 +13,13 @@ cache:
   directories:
     - ./node_modules
 
-install:
-  - npm run reinstall
-
 jobs:
   include:
-    - name: 'Test Build'
+    - stage: install
+      script: npm ci
+    - stage: CI
       script: npm run build-test
-    - name: 'Headless Unit Tests'
+    - # stage name not required, will continue to use `CI`
       script: npm run test-headless
-    - name: 'TSlint'
+    - # stage name not required, will continue to use `CI`
       script: npm run lint
