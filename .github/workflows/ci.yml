@@ -25,5 +25,7 @@ jobs:
       run: npm ci
 
     # Runs a set of commands using the runners shell
-    - name: lint
-      run: npm run lint
+    - name: ci
+      run: |
+            npm run lint
+            npm run build-test
