@@ -27,5 +27,6 @@ jobs:
     # Runs a set of commands using the runners shell
     - name: ci
       run: |
-            npm run lint
-            npm run build-test
+            ng lint lib
+            ng build lib
+            ng build dev-app --aot
