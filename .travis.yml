@@ -19,7 +19,9 @@ install:
 jobs:
   include:
     - name: 'Test Build'
-      script: npm run build-test
+      script: |
+        npm run build:lib
+        npm run build:dev-app
     - name: 'Headless Unit Tests'
       script: npm run test-headless
     - name: 'TSlint'
