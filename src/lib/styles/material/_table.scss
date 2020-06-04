@@ -3,25 +3,12 @@
 .mat-table-container
 {
     margin: var(--space-container);
+    overflow-x: auto;
 }
 
 .mat-table
 {
     box-shadow: var(--box-shadow);
-    
-    @media (max-width: 992px)
-    {
-        overflow: auto;
-    }
-    
-    .mat-row,
-    .mat-header-row
-    {
-        @media (max-width: 992px)
-        {
-            min-width: 1200px;
-        }
-    }
     
     .mat-row .mat-cell,
     .mat-header-row .mat-header-cell
