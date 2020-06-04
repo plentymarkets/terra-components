@@ -29,3 +29,4 @@ jobs:
         npm run lint
         npm run build:lib
         npm run build:dev-app
+        npm run test-headless
