@@ -1,12 +1,11 @@
 # This is a basic workflow to help you get started with Actions
-
 name: CI
 
 # Controls when the action will run. Triggers the workflow on pull request
 # events but only for the master branch
 on:
   pull_request:
-    branches: [ master, 5.X.X, 4.X.X, 3.X.X ]
+    branches: [ master, 5.X.X, 4.X.X, 3.X.X, 2.X.X ]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -27,6 +26,6 @@ jobs:
     # Runs a set of commands using the runners shell
     - name: ci
       run: |
-            ng lint lib
-            ng build lib
-            ng build dev-app --aot
+        npm run lint
+        npm run build:lib
+        npm run build:dev-app
