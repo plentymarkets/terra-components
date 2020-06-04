@@ -1,5 +1,6 @@
 {
 	"scripts": {
+		"ng": "ng",
 		"start": "ng serve",
 		"build": "ng build lib && gulp compileStyles && gulp copy",
 		"build-test": "ng build lib && ng build dev-app --aot",
