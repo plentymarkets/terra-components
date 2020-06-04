@@ -23,7 +23,7 @@ jobs:
     - name: Clean install
       run: npm ci
 
-    # Runs the set of integrity checks
+    # Runs the set of integrity checks concurrently
     - name: Run checks
       run: |
         npm run lint
