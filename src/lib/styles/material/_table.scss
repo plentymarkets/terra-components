@@ -3,6 +3,7 @@
 .mat-table-container
 {
     margin: var(--space-container);
+    overflow-x: auto;
 }
 
 .mat-table
@@ -18,6 +19,16 @@
             {
                 margin-bottom: 0;
             }
+        }
+        
+        > span,
+        > div
+        {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-size: inherit;
+            font-weight: inherit;
         }
     }
     
