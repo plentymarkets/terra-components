@@ -145,6 +145,8 @@
     .mat-footer-row
     {
         height: calc(var(--height-lg) - var(--space-sm));
+        border-top: 1px solid var(--border-color);
+        min-height: 0;
         
         .mat-footer-cell
         {
