@@ -12,7 +12,7 @@ import {
 } from '@angular/core';
 
 import tippy, { Placement } from 'tippy.js';
-import { TerraPlacementEnum } from '../../helpers/enums/terra-placement.enum';
+import Popper from 'popper.js';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
@@ -35,25 +35,8 @@ export class TooltipDirective implements OnDestroy, OnChanges
 
     private _isDisabled:boolean;
     private tooltipEl:any;
-    private _placement:string = TerraPlacementEnum.TOP;
+    private _placement:Popper.Placement = 'top';
     private navigationSubscription:Subscription;
-
-    /**
-     * @deprecated since v4. The placement is calculated automatically now.
-     * @param placement
-     */
-    @Input()
-    public set placement(placement:string)
-    {
-        console.warn('`placement` is deprecated since v4. The placement is calculated automatically now.');
-
-        if(!placement)
-        {
-            placement = TerraPlacementEnum.TOP;
-        }
-
-        this._placement = placement;
-    }
 
     /**
      * @param disabled

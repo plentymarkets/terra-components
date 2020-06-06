@@ -63,10 +63,6 @@ export class TerraFileInputComponent extends TerraInputComponent implements OnIn
     @ViewChild('previewOverlay', { static: true })
     public _previewOverlay:TerraOverlayComponent;
 
-    public primaryOverlayButton:TerraOverlayButtonInterface;
-    public secondaryOverlayButton:TerraOverlayButtonInterface;
-
-
     @Language()
     public _lang:string;
 

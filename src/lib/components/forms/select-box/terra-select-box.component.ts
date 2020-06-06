@@ -54,12 +54,6 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges
     @Input()
     public inputTooltipText:string;
 
-    /**
-     * @deprecated since v4. Is replaced by the TooltipDirective and will be removed with the next major version.
-     */
-    @Input()
-    public inputTooltipPlacement:string;
-
     @Input()
     public inputListBoxValues:Array<TerraSelectBoxValueInterface>;
 

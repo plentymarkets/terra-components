@@ -20,7 +20,6 @@ import {
     isNull,
     isNullOrUndefined
 } from 'util';
-import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum';
 import { TerraBaseData } from '../../data/terra-base.data';
 import { noop } from 'rxjs';
 import { Language } from 'angular-l10n';
@@ -50,9 +49,6 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
 
     @Input()
     public inputTooltipText:string;
-
-    @Input()
-    public inputTooltipPlacement:TerraPlacementEnum = TerraPlacementEnum.TOP;
 
     @Input()
     public inputListBoxValues:Array<TerraSuggestionBoxValueInterface> = [];

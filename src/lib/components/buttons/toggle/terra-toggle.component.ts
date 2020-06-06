@@ -8,7 +8,6 @@ import {
     ControlValueAccessor,
     NG_VALUE_ACCESSOR
 } from '@angular/forms';
-import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum';
 import { noop } from 'rxjs';
 
 /** @deprecated since v5. Use angular material's [slide-toggle](https://material.angular.io/components/slide-toggle) instead. */
@@ -47,12 +46,6 @@ export class TerraToggleComponent implements ControlValueAccessor
     @Input()
     public inputTooltipText:string;
 
-    /**
-     * @deprecated since v4. Is replaced by the TooltipDirective and will be removed with the next major version.
-     */
-    @Input()
-    public inputTooltipPlacement:TerraPlacementEnum;
-
     @Output()
     public deactivated:EventEmitter<any> = new EventEmitter<any>();
 
@@ -66,11 +59,6 @@ export class TerraToggleComponent implements ControlValueAccessor
 
     private _onTouchedCallback:() => void = noop;
     private _onChangeCallback:(_:any) => void = noop;
-
-    constructor()
-    {
-        this.inputTooltipPlacement = TerraPlacementEnum.TOP;
-    }
 
     // From ControlValueAccessor interface
     public writeValue(value:boolean):void

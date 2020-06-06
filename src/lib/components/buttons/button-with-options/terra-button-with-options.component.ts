@@ -11,7 +11,6 @@ import { TerraButtonInterface } from '../button/data/terra-button.interface';
 import { isNullOrUndefined } from 'util';
 import { TerraButtonComponent } from '../button/terra-button.component';
 import { TerraTextAlignEnum } from '../../tables/data-table/enums/terra-text-align.enum';
-import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum';
 
 @Component({
     selector:    'terra-button-with-options',
@@ -50,11 +49,6 @@ export class TerraButtonWithOptionsComponent implements OnInit
      */
     @Input()
     public inputTooltipText:string;
-    /**
-     * @description Set the tooltip placement (bottom, top, left, right). Default top.
-     */
-    @Input()
-    public inputTooltipPlacement:TerraPlacementEnum; // top, bottom, left, right
 
     // new inputs
     /**

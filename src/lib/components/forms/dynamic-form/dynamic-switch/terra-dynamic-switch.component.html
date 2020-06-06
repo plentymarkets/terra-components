@@ -21,8 +21,7 @@
                                   [inputIsPassword]="formField.isPassword"
                                   [inputIsIban]="formField.isIBAN"
                                   [inputIsReadonly]="formField.isReadOnly"
-                                  [inputTooltipText]="formField.tooltip"
-                                  [inputTooltipPlacement]="formField.tooltipPlacement">
+                                  [inputTooltipText]="formField.tooltip">
                 </terra-text-input>
                 
                 <terra-file-input *ngSwitchCase="_controlTypeEnum.INPUT_FILE"
@@ -32,8 +31,7 @@
                                   [inputIsRequired]="formField.required"
                                   [inputAllowedExtensions]="formField.inputAllowedExtensions"
                                   [inputIsDisabled]="inputIsDisabled"
-                                  [inputTooltipText]="formField.tooltip"
-                                  [inputTooltipPlacement]="formField.tooltipPlacement">
+                                  [inputTooltipText]="formField.tooltip">
                 </terra-file-input>
                 
                 <terra-text-area-input *ngSwitchCase="_controlTypeEnum.INPUT_TEXT_AREA"
@@ -42,8 +40,7 @@
                                        [inputName]="formField.label  | translate:_lang"
                                        [inputIsRequired]="formField.required"
                                        [inputIsDisabled]="inputIsDisabled"
-                                       [inputTooltipText]="formField.tooltip"
-                                       [inputTooltipPlacement]="formField.tooltipPlacement">
+                                       [inputTooltipText]="formField.tooltip">
                 </terra-text-area-input>
                 
                 <terra-number-input *ngSwitchCase="_controlTypeEnum.INPUT_NUMBER"
@@ -52,8 +49,7 @@
                                     [inputName]="formField.label  | translate:_lang"
                                     [inputIsRequired]="formField.required"
                                     [inputIsDisabled]="inputIsDisabled"
-                                    [inputTooltipText]="formField.tooltip"
-                                    [inputTooltipPlacement]="formField.tooltipPlacement">
+                                    [inputTooltipText]="formField.tooltip">
                 </terra-number-input>
                 
                 <terra-checkbox *ngSwitchCase="_controlTypeEnum.CHECK_BOX"
@@ -71,8 +67,7 @@
                                     [inputIsDisabled]="inputIsDisabled"
                                     [inputIsPriceInput]="formField.isPrice"
                                     [inputDecimalCount]="formField.decimalCount"
-                                    [inputTooltipText]="formField.tooltip"
-                                    [inputTooltipPlacement]="formField.tooltipPlacement">
+                                    [inputTooltipText]="formField.tooltip">
                 </terra-double-input>
                 
                 <terra-category-picker *ngSwitchCase="_controlTypeEnum.CATEGORY_PICKER"
@@ -91,8 +86,7 @@
                                   [inputIsRequired]="formField.required"
                                   [inputIsDisabled]="inputIsDisabled"
                                   [inputListBoxValues]="formField.selectBoxValues"
-                                  [inputTooltipText]="formField.tooltip"
-                                  [inputTooltipPlacement]="formField.tooltipPlacement">
+                                  [inputTooltipText]="formField.tooltip">
                 </terra-select-box>
                 
                 <terra-multi-check-box *ngSwitchCase="_controlTypeEnum.MULTI_CHECK_BOX"

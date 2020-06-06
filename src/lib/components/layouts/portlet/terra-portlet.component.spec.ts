@@ -299,7 +299,6 @@ describe('TerraPortletComponent', () =>
         expect(button.inputCaption).toBe(buttonInterface.caption);
         expect(button.inputIcon).toBe(buttonInterface.icon);
         expect(button.inputTooltipText).toBe(buttonInterface.tooltipText);
-        expect(button.inputTooltipPlacement).toBe(buttonInterface.tooltipPlacement);
         expect(button.inputIsActive).toBe(buttonInterface.isActive);
         expect(button.inputIsDisabled).toBe(buttonInterface.isDisabled);
         expect(button.inputIsHidden).toBe(buttonInterface.isHidden);

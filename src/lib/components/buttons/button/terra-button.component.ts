@@ -5,7 +5,6 @@ import {
     Output
 } from '@angular/core';
 import { isNullOrUndefined } from 'util';
-import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum';
 
 @Component({
     selector:    'terra-button',
@@ -49,13 +48,6 @@ export class TerraButtonComponent
     /** @description Set the tooltip.*/
     @Input()
     public inputTooltipText:string;
-
-    /**
-     * @deprecated since v4. Is replaced by the TooltipDirective and will be removed with the next major version.
-     * @description Set the tooltip placement (bottom, top, left, right). Default top.
-     * */
-    @Input()
-    public inputTooltipPlacement:TerraPlacementEnum;
 
     /**
      * @description If true, the button color changes to blue and indicates its active state. Default false.

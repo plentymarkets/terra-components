@@ -21,8 +21,7 @@
     <terra-button [class.visible]="showCodeView && !_isValidMarkup"
                   class="error-button"
                   inputIcon="icon-warning"
-                  [inputTooltipText]="_invalidMarkupHint"
-                  inputTooltipPlacement="left">
+                  [inputTooltipText]="_invalidMarkupHint">
     </terra-button>
     <terra-overlay #viewConfirmationOverlay
                    [inputOverlayTitle]="'terraCodeEditor.changeViewOverlay.title' | translate:_lang"
