@@ -16,8 +16,18 @@
         {
             .mat-checkbox-layout
             {
-                margin-bottom: 0;
+                margin-bottom: var(--space-xs);
             }
+        }
+        
+        > span,
+        > div
+        {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-size: inherit;
+            font-weight: inherit;
         }
     }
     
@@ -26,14 +36,15 @@
         min-height: 0;
         height: calc(var(--height-lg) - var(--space-sm));
         background: var(--mat-table-head-background-color, var(--color-structure-0));
-        border-bottom: 1px solid var(--color-structure-4);
+        border-bottom: 2px solid var(--color-structure-4);
         
         .mat-header-cell
         {
             color: var(--mat-table-head-color, var(--color-structure-8));
             padding: var(--table-head-th-padding, var(--space-md));
             border: none;
-            font-size: var(--font-size-3);
+            font-size: var(--font-size-4);
+            font-weight: var(--font-weight-2);
             @include font-rendering;
     
             .mat-sort-header-container
@@ -82,8 +93,9 @@
             padding: var(--table-body-td-padding, var(--space-md));
             vertical-align: middle;
             white-space: nowrap;
+            color: var(--color-structure-12);
             font-size: var(--font-size-3);
-            border-bottom-color: var(--color-structure-4);
+            border-bottom-color: var(--color-structure-3);
             @include font-rendering;
         }
         
@@ -133,9 +145,13 @@
     .mat-footer-row
     {
         height: calc(var(--height-lg) - var(--space-sm));
+        border-top: 1px solid var(--border-color);
+        min-height: 0;
         
         .mat-footer-cell
         {
+            font-size: var(--font-size-4);
+            font-weight: var(--font-weight-2);
             padding: var(--table-body-td-padding, var(--space-md));
             color: var(--mat-table-head-color, var(--color-structure-8));
             border-bottom: 0;
@@ -147,7 +163,7 @@
 {
     box-shadow: var(--box-shadow);
     margin-bottom: 0;
-    border-bottom: 1px solid var(--color-structure-4);
+    border-bottom: 1px solid var(--color-structure-3);
     
     .mat-paginator-outer-container
     {
@@ -163,7 +179,9 @@
             
             .mat-paginator-page-size-label, .mat-paginator-range-label
             {
-                font-size: var(--font-size-3);
+                font-size: var(--font-size-4);
+                font-weight: var(--font-weight-2);
+                color: var(--color-structure-8);
                 @include font-rendering;
             }
             
