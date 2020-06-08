@@ -12,13 +12,8 @@ import { TerraOverlayComponent } from '../../layouts/overlay/terra-overlay.compo
 })
 export class TerraNoteComponentExample implements OnInit
 {
-    @ViewChild('overlay', { static: true })
-    public overlay:TerraOverlayComponent;
-
     public _noteTextAndID:string;
     public _noteTextAndSelected:string;
-    public _noteTextDynamicExample:string;
-    public _editorText:string;
 
     public ngOnInit():void
     {
@@ -29,18 +24,5 @@ export class TerraNoteComponentExample implements OnInit
                                  'her starship, custodian of the stolen plans that can save her people and restore freedom to the galaxy...';
         this._noteTextAndID = defaultText;
         this._noteTextAndSelected = defaultText;
-        this._noteTextDynamicExample = defaultText;
-        this._editorText = this._noteTextDynamicExample;
-    }
-
-    public showOverlay():void
-    {
-        this.overlay.showOverlay();
-    }
-
-    public saveText(text:string):void
-    {
-        this._noteTextDynamicExample = text;
-        this.overlay.hideOverlay();
     }
 }
