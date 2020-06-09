@@ -3,7 +3,6 @@
 .mat-table-container
 {
     margin: var(--space-container);
-    overflow-x: auto;
 }
 
 .mat-table
@@ -17,7 +16,7 @@
         {
             .mat-checkbox-layout
             {
-                margin-bottom: 0;
+                margin-bottom: var(--space-xs);
             }
         }
         
@@ -146,6 +145,8 @@
     .mat-footer-row
     {
         height: calc(var(--height-lg) - var(--space-sm));
+        border-top: 1px solid var(--border-color);
+        min-height: 0;
         
         .mat-footer-cell
         {
