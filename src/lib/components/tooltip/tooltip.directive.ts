@@ -45,8 +45,6 @@ export class TooltipDirective implements OnDestroy, OnChanges
     @Input()
     public set placement(placement:string)
     {
-        console.warn('`placement` is deprecated since v4. The placement is calculated automatically now.');
-
         if(!placement)
         {
             placement = TerraPlacementEnum.TOP;
