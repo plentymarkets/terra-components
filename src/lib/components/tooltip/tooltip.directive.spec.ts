@@ -1,5 +1,4 @@
 import {
-    async,
     ComponentFixture,
     TestBed
 } from '@angular/core/testing';
@@ -26,7 +25,6 @@ describe('TooltipDirective', () =>
     let fixture:ComponentFixture<TooltipDirectiveHostComponent>;
     let inputEl:DebugElement;
     let directive:TooltipDirective;
-    const router:MockRouter = new MockRouter();
 
     beforeEach(() =>
     {
@@ -38,7 +36,7 @@ describe('TooltipDirective', () =>
             providers:    [
                 {
                     provide:  Router,
-                    useValue: router
+                    useClass: MockRouter
                 }]
         });
     });

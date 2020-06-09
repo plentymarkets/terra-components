@@ -11,7 +11,10 @@ import {
     ViewContainerRef
 } from '@angular/core';
 
-import tippy, { Placement } from 'tippy.js';
+import tippy, {
+    Instance,
+    Placement
+} from 'tippy.js';
 import { TerraPlacementEnum } from '../../helpers/enums/terra-placement.enum';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -25,7 +28,7 @@ export class TooltipDirective implements OnDestroy, OnChanges
      * @description The tooltip text.
      */
     @Input()
-    public tcTooltip:string | TemplateRef<any>;
+    public tcTooltip:string | TemplateRef<unknown>;
 
     /**
      * @description Show the tooltip only when ellipsis is present. Default false.
@@ -34,7 +37,7 @@ export class TooltipDirective implements OnDestroy, OnChanges
     public onlyEllipsisTooltip:boolean = false;
 
     private _isDisabled:boolean;
-    private tooltipEl:any;
+    private tooltipEl:Instance;
     private _placement:string = TerraPlacementEnum.TOP;
     private navigationSubscription:Subscription;
 
@@ -87,7 +90,7 @@ export class TooltipDirective implements OnDestroy, OnChanges
                 // example found here: https://netbasal.com/create-advanced-components-in-angular-e0655df5dde6
                 if(this.tcTooltip instanceof TemplateRef)
                 {
-                    const viewRef:EmbeddedViewRef<any> = this._containerRef.createEmbeddedView(this.tcTooltip, {});
+                    const viewRef:EmbeddedViewRef<unknown> = this._containerRef.createEmbeddedView(this.tcTooltip, {});
 
                     let div:HTMLElement = document.createElement('div');
 
@@ -216,7 +219,7 @@ export class TooltipDirective implements OnDestroy, OnChanges
     {
         if(!this.tooltipEl)
         {
-            this.tooltipEl = tippy(this._elementRef.nativeElement, {
+            this.tooltipEl = tippy(this._elementRef.nativeElement as Element, {
                 content:     tooltip,
                 trigger:     'manual',
                 arrow:       true,
