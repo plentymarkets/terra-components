@@ -11,7 +11,10 @@ import {
     ViewContainerRef
 } from '@angular/core';
 
-import tippy, { Placement } from 'tippy.js';
+import tippy, {
+    Instance,
+    Placement
+} from 'tippy.js';
 import { TerraPlacementEnum } from '../../helpers/enums/terra-placement.enum';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -34,7 +37,7 @@ export class TooltipDirective implements OnDestroy, OnChanges
     public onlyEllipsisTooltip:boolean = false;
 
     private _isDisabled:boolean;
-    private tooltipEl:any;
+    private tooltipEl:Instance;
     private _placement:string = TerraPlacementEnum.TOP;
     private navigationSubscription:Subscription;
 
@@ -111,7 +114,7 @@ export class TooltipDirective implements OnDestroy, OnChanges
 
                 this.navigationSubscription = this._router.events.subscribe(() =>
                 {
-                    this.tooltipEl.hide(0);
+                    this.tooltipEl.hide();
                 });
 
                 if(tooltipIsEmpty)
@@ -142,7 +145,7 @@ export class TooltipDirective implements OnDestroy, OnChanges
         event.stopPropagation();
         if(this.tooltipEl)
         {
-            this.tooltipEl.hide(0);
+            this.tooltipEl.hide();
         }
     }
 
@@ -157,7 +160,7 @@ export class TooltipDirective implements OnDestroy, OnChanges
                 this._checkIfEllipsis();
             }
 
-            this.tooltipEl.show(0);
+            this.tooltipEl.show();
         }
     }
 
@@ -216,11 +219,10 @@ export class TooltipDirective implements OnDestroy, OnChanges
     {
         if(!this.tooltipEl)
         {
-            this.tooltipEl = tippy(this._elementRef.nativeElement, {
+            this.tooltipEl = tippy(this._elementRef.nativeElement as Element, {
                 content:     tooltip,
                 trigger:     'manual',
                 arrow:       true,
-                boundary:    'window',
                 hideOnClick: false,
                 placement:   this._placement as Placement
             });

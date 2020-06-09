@@ -62,11 +62,13 @@ describe('TooltipDirective', () =>
         fixture.detectChanges();
         inputEl.triggerEventHandler('mouseover', new Event('MouseEvent'));
         fixture.detectChanges();
-        expect(document.body.getElementsByClassName('tippy-popper').length).toEqual(1);
+
+        expect(document.body.lastElementChild).toBeTruthy();
+        expect(document.body.lastElementChild.matches('div[data-tippy-root]')).toBe(true);
 
         inputEl.triggerEventHandler('mouseout', new Event('MouseEvent'));
         fixture.detectChanges();
-        expect(document.body.getElementsByClassName('tippy-popper').length).toEqual(0);
+        expect(document.body.lastElementChild.matches('div[data-tippy-root]')).toBe(false);
     });
 
     it('should not trigger the tooltip when `isDisabled`', () =>
@@ -78,6 +80,6 @@ describe('TooltipDirective', () =>
 
         inputEl.triggerEventHandler('mouseover', new Event('MouseEvent'));
         fixture.detectChanges();
-        expect(document.body.getElementsByClassName('tippy-popper').length).toEqual(0);
+        expect(document.body.lastElementChild.matches('div[data-tippy-root]')).toBe(false);
     });
 });
