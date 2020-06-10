@@ -9,7 +9,8 @@ import {
 } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { TooltipDirective } from './tooltip.directive';
-import { mockRouterProvider } from '../../testing/mock-router';
+import { Router } from '@angular/router';
+import { MockRouter } from '../../testing/mock-router';
 
 @Component({
     template: `<label [tcTooltip]="'Test'">test</label>`
@@ -24,6 +25,7 @@ describe('TooltipDirective', () =>
     let fixture:ComponentFixture<TooltipDirectiveHostComponent>;
     let inputEl:DebugElement;
     let directive:TooltipDirective;
+    const router:MockRouter = new MockRouter();
 
     beforeEach(() =>
     {
@@ -33,8 +35,10 @@ describe('TooltipDirective', () =>
                 TooltipDirectiveHostComponent
             ],
             providers:    [
-                mockRouterProvider
-            ]
+                {
+                    provide:  Router,
+                    useValue: router
+                }]
         });
     });
 
