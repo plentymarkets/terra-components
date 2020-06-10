@@ -1,18 +1,17 @@
 $grid-breakpoints: (
     // Extra small screen / phone
-    xs: 0,
+        xs: 0,
     // Small screen / phone
-    sm: 544px,
+        sm: 544px,
     // Medium screen / tablet
-    md: 768px,
+        md: 768px,
     // Large screen / desktop
-    lg: 992px,
+        lg: 992px,
     // Extra large screen / wide desktop
-    xl: 1200px
+        xl: 1200px
 ) !default;
 
-@mixin font-rendering
-{
+@mixin font-rendering {
     font-weight: var(--font-weight-2);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
