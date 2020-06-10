@@ -11,8 +11,7 @@ import { TerraMultiCheckBoxComponent } from '../multi-check-box/terra-multi-chec
 import { TerraMultiCheckBoxValueInterface } from '../multi-check-box/data/terra-multi-check-box-value.interface';
 import { TerraCheckboxComponent } from '../checkbox/terra-checkbox.component';
 import { TooltipDirective } from '../../tooltip/tooltip.directive';
-import { Router } from '@angular/router';
-import { MockRouter } from '../../../testing/mock-router';
+import { mockRouterProvider } from '../../../testing/mock-router';
 import Spy = jasmine.Spy;
 
 describe('Component: CheckboxGroupComponent', () =>
@@ -35,7 +34,6 @@ describe('Component: CheckboxGroupComponent', () =>
             value:   2
         }
     ];
-    const router:MockRouter = new MockRouter();
 
     beforeEach(() =>
     {
@@ -50,10 +48,8 @@ describe('Component: CheckboxGroupComponent', () =>
                     LocalizationModule.forRoot(l10nConfig)
                 ],
                 providers:    [
-                    {
-                        provide:  Router,
-                        useValue: router
-                    }]
+                    mockRouterProvider
+                ]
             }
         );
     });

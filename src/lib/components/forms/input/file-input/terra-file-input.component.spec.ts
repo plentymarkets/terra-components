@@ -4,7 +4,6 @@ import {
     ReactiveFormsModule
 } from '@angular/forms';
 import {
-    async,
     ComponentFixture,
     TestBed
 } from '@angular/core/testing';
@@ -37,8 +36,7 @@ import { TerraFileBrowserService } from '../../../file-browser/terra-file-browse
 import { TerraStorageObject } from '../../../file-browser/model/terra-storage-object';
 import { TerraInfoComponent } from '../../../info/terra-info.component';
 import { TooltipDirective } from '../../../tooltip/tooltip.directive';
-import { Router } from '@angular/router';
-import { MockRouter } from '../../../../testing/mock-router';
+import { mockRouterProvider } from '../../../../testing/mock-router';
 import Spy = jasmine.Spy;
 
 describe('TerraFileInputComponent', () =>
@@ -48,7 +46,6 @@ describe('TerraFileInputComponent', () =>
 
     const jpgFileName:string = 'a-total-NewFile_name.jpg';
     const folderName:string = 'i-amYour_folder/';
-    const router:MockRouter = new MockRouter();
 
     beforeEach(() =>
     {
@@ -80,10 +77,7 @@ describe('TerraFileInputComponent', () =>
                 LocalizationModule.forRoot(l10nConfig)
             ],
             providers:    [
-                {
-                    provide:  Router,
-                    useValue: router
-                },
+                mockRouterProvider,
                 {
                     provide:  TerraFrontendStorageService,
                     useValue: terraFrontendStorageServiceStub

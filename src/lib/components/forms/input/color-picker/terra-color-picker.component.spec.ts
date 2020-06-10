@@ -11,8 +11,7 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 import { TerraRegex } from '../../../../helpers/regex/terra-regex';
 import { TooltipDirective } from '../../../tooltip/tooltip.directive';
-import { Router } from '@angular/router';
-import { MockRouter } from '../../../../testing/mock-router';
+import { mockRouterProvider } from '../../../../testing/mock-router';
 
 describe('Component: TerraColorPickerComponent', () =>
 {
@@ -21,7 +20,6 @@ describe('Component: TerraColorPickerComponent', () =>
 
     const white:string = '#ffffff';
     const testColor:string = '#123456';
-    const router:MockRouter = new MockRouter();
 
     beforeEach(() =>
     {
@@ -35,10 +33,8 @@ describe('Component: TerraColorPickerComponent', () =>
                     LocalizationModule.forRoot(l10nConfig)
                 ],
                 providers:    [
-                    {
-                        provide:  Router,
-                        useValue: router
-                    }]
+                    mockRouterProvider
+                ]
             }
         );
     });

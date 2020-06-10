@@ -1,6 +1,5 @@
 import { DebugElement } from '@angular/core';
 import {
-    async,
     ComponentFixture,
     TestBed
 } from '@angular/core/testing';
@@ -16,8 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TerraLabelTooltipDirective } from '../../helpers/terra-label-tooltip.directive';
 import { TerraInfoComponent } from '../info/terra-info.component';
 import { TooltipDirective } from '../tooltip/tooltip.directive';
-import { Router } from '@angular/router';
-import { MockRouter } from '../../testing/mock-router';
+import { mockRouterProvider } from '../../testing/mock-router';
 import Spy = jasmine.Spy;
 
 describe('FilterComponent:', () =>
@@ -25,7 +23,6 @@ describe('FilterComponent:', () =>
     let filterComponent:FilterComponent;
     let fixture:ComponentFixture<FilterComponent>;
     let buttons:Array<DebugElement>;
-    const router:MockRouter = new MockRouter();
 
     beforeEach(() =>
     {
@@ -43,10 +40,8 @@ describe('FilterComponent:', () =>
                 LocalizationModule.forRoot(l10nConfig)
             ],
             providers:    [
-                {
-                    provide:  Router,
-                    useValue: router
-                }]
+                mockRouterProvider
+            ]
         });
     });
 

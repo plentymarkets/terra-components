@@ -5,7 +5,6 @@ import {
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {
-    async,
     ComponentFixture,
     fakeAsync,
     flush,
@@ -19,8 +18,7 @@ import { By } from '@angular/platform-browser';
 import { MockElementRef } from '../../../../testing/mock-element-ref';
 import { TerraRegex } from '../../../../helpers/regex/terra-regex';
 import { TooltipDirective } from '../../../tooltip/tooltip.directive';
-import { Router } from '@angular/router';
-import { MockRouter } from '../../../../testing/mock-router';
+import { mockRouterProvider } from '../../../../testing/mock-router';
 import Spy = jasmine.Spy;
 
 describe('TerraTextAreaInputComponent', () =>
@@ -30,7 +28,6 @@ describe('TerraTextAreaInputComponent', () =>
     let debugElement:DebugElement;
     let inputElement:HTMLInputElement;
     const testString:string = 'test';
-    const router:MockRouter = new MockRouter();
 
     beforeEach(() =>
     {
@@ -45,10 +42,7 @@ describe('TerraTextAreaInputComponent', () =>
                 LocalizationModule.forRoot(l10nConfig)
             ],
             providers:    [
-                {
-                    provide:  Router,
-                    useValue: router
-                },
+                mockRouterProvider,
                 {
                     provide:  ElementRef,
                     useClass: MockElementRef

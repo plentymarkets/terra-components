@@ -1,5 +1,4 @@
 import {
-    async,
     ComponentFixture,
     TestBed
 } from '@angular/core/testing';
@@ -9,14 +8,12 @@ import { TerraGroupFunctionComponent } from './terra-group-function.component';
 import { TerraButtonComponent } from '../../buttons/button/terra-button.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TooltipDirective } from '../../tooltip/tooltip.directive';
-import { Router } from '@angular/router';
-import { MockRouter } from '../../../testing/mock-router';
+import { mockRouterProvider } from '../../../testing/mock-router';
 
 describe('Component: TerraGroupFunctionComponent', () =>
 {
     let component:TerraGroupFunctionComponent;
     let fixture:ComponentFixture<TerraGroupFunctionComponent>;
-    const router:MockRouter = new MockRouter();
 
     beforeEach(() =>
     {
@@ -30,10 +27,8 @@ describe('Component: TerraGroupFunctionComponent', () =>
                 LocalizationModule.forRoot(l10nConfig)
             ],
             providers:    [
-                {
-                    provide:  Router,
-                    useValue: router
-                }]
+                mockRouterProvider
+            ]
         });
     });
 

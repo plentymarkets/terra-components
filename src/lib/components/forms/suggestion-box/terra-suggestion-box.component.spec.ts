@@ -4,7 +4,6 @@ import {
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {
-    async,
     ComponentFixture,
     TestBed
 } from '@angular/core/testing';
@@ -19,8 +18,7 @@ import { TerraLabelTooltipDirective } from '../../../helpers/terra-label-tooltip
 import { TerraSuggestionBoxValueInterface } from './data/terra-suggestion-box.interface';
 import { TerraTextInputComponent } from '../input/text-input/terra-text-input.component';
 import { TooltipDirective } from '../../tooltip/tooltip.directive';
-import { Router } from '@angular/router';
-import { MockRouter } from '../../../testing/mock-router';
+import { mockRouterProvider } from '../../../testing/mock-router';
 import Spy = jasmine.Spy;
 
 describe('TerraSuggestionBoxComponent', () =>
@@ -31,7 +29,6 @@ describe('TerraSuggestionBoxComponent', () =>
         caption: '1',
         value:   1
     };
-    const router:MockRouter = new MockRouter();
 
     beforeEach(() =>
     {
@@ -46,10 +43,7 @@ describe('TerraSuggestionBoxComponent', () =>
                 LocalizationModule.forRoot(l10nConfig)
             ],
             providers:    [
-                {
-                    provide:  Router,
-                    useValue: router
-                },
+                mockRouterProvider,
                 {
                     provide:  ElementRef,
                     useClass: MockElementRef

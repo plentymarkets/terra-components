@@ -30,12 +30,9 @@ import {
 import { TerraLabelTooltipDirective } from '../../../helpers/terra-label-tooltip.directive';
 import { By } from '@angular/platform-browser';
 import { TableRowComponent } from './table-row/table-row.component';
-import { MockRouter } from '../../../testing/mock-router';
+import { mockRouterProvider } from '../../../testing/mock-router';
 import { TooltipDirective } from '../../tooltip/tooltip.directive';
-import {
-    ActivatedRoute,
-    Router
-} from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { MockActivatedRoute } from '../../../testing/mock-activated-route';
 import Spy = jasmine.Spy;
 
@@ -43,7 +40,6 @@ describe('TerraDataTableComponent', () =>
 {
     let component:TerraDataTableComponent<any, any>;
     let fixture:ComponentFixture<TerraDataTableComponent<any, any>>;
-    let router:MockRouter = new MockRouter();
 
     beforeEach(() =>
     {
@@ -74,10 +70,7 @@ describe('TerraDataTableComponent', () =>
             providers:    [
                 TerraDataTableServiceExample,
                 TerraLoadingSpinnerService,
-                {
-                    provide:  Router,
-                    useValue: router
-                },
+                mockRouterProvider,
                 {
                     provide:  ActivatedRoute,
                     useClass: MockActivatedRoute
