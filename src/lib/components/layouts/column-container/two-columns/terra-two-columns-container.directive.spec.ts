@@ -1,13 +1,15 @@
 import { TerraTwoColumnsContainerDirective } from './terra-two-columns-container.directive';
 import {
+    async,
     ComponentFixture,
     TestBed
 } from '@angular/core/testing';
 import {
     ActivatedRoute,
-    NavigationEnd
+    NavigationEnd,
+    Router
 } from '@angular/router';
-import { mockRouterProvider } from '../../../../testing/mock-router';
+import { MockRouter } from '../../../../testing/mock-router';
 import { TerraTwoColumnsContainerComponent } from './terra-two-columns-container.component';
 import {
     Component,
@@ -33,6 +35,7 @@ describe('TerraTwoColumnsContainerDirective', () =>
     let component:TwoColumnsContainerDirectiveTestComponent;
     let directive:TerraTwoColumnsContainerDirective;
     let twoColComponent:TerraTwoColumnsContainerComponent;
+    const router:MockRouter = new MockRouter();
 
     beforeEach(() =>
     {
@@ -43,9 +46,10 @@ describe('TerraTwoColumnsContainerDirective', () =>
                 TwoColumnsContainerDirectiveTestComponent
             ],
             providers:    [
-                mockRouterProvider,
-                {
-                    provide:     ActivatedRoute,
+                {provide:     Router,
+                    useValue: router
+                },
+                {provide:     ActivatedRoute,
                     useClass: MockActivatedRoute
                 }
             ]
