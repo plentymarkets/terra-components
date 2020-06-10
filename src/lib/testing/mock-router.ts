@@ -1,8 +1,17 @@
-import { Event } from '@angular/router';
+import {
+    Event,
+    Router
+} from '@angular/router';
 import {
     Observable,
     ReplaySubject
 } from 'rxjs';
+import { Provider } from '@angular/core';
+
+export const mockRouterProvider:Provider = {
+    provide:    Router,
+    useFactory: () => new MockRouter()
+};
 
 export class MockRouter
 {
