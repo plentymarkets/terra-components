@@ -14,7 +14,6 @@ export class TerraMatPaginatorIntl extends MatPaginatorIntl
         {
             this.getAndInitTranslations()
         });
-        this.getAndInitTranslations();
     }
 
     private getAndInitTranslations():void
@@ -38,6 +37,6 @@ export class TerraMatPaginatorIntl extends MatPaginatorIntl
         length = Math.max(length, 0);
         const startIndex:number = page * pageSize;
         const endIndex:number = startIndex < length ? Math.min(startIndex + pageSize, length) : startIndex + pageSize;
-        return startIndex + 1 + ' - ' + endIndex + ' ' + ofLabel + ' ' + length;
+        return `${startIndex + 1} – ${endIndex} ${ofLabel} ${length}`;
     }
 }
