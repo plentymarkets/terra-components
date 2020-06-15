@@ -1,8 +1,6 @@
 import { MatPaginatorIntl } from '@angular/material';
 import { Injectable } from '@angular/core';
-import {
-    TranslationService
-} from 'angular-l10n';
+import { TranslationService } from 'angular-l10n';
 
 @Injectable()
 export class TerraMatPaginatorIntl extends MatPaginatorIntl
