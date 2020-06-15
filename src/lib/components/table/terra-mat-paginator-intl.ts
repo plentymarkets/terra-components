@@ -21,7 +21,7 @@ export class TerraMatPaginatorIntl extends MatPaginatorIntl
 
         if(length === 0 || pageSize === 0)
         {
-            return `0 / ${length}`;
+            return `0 ${ofLabel} ${length}`;
         }
         length = Math.max(length, 0);
         const startIndex:number = page * pageSize;
