@@ -8,11 +8,6 @@ import {
 } from 'rxjs';
 import { FactoryProvider } from '@angular/core';
 
-export const mockRouterProvider:FactoryProvider = {
-    provide: Router,
-    useFactory: () => new MockRouter()
-};
-
 export class MockRouter
 {
     public url:string = 'start/dashboard';
@@ -34,3 +29,8 @@ export class MockRouter
         this.subject.next(event);
     }
 }
+
+export const mockRouterProvider:FactoryProvider = {
+    provide: Router,
+    useFactory: () => new MockRouter()
+};
