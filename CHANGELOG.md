@@ -1,6 +1,7 @@
 # 5.4.0 (XX.XX.2020)
 
 ### Features
+* **tooltip** removed warning and all deprecations for tooltip placement.
 * **mat-table** styles for the [angular material table](https://v8.material.angular.io/components/table/overview).
 * **mat-checkbox** styles for the [angular material checkbox](https://v8.material.angular.io/components/checkbox/overview).
 * **table** introduced several new classes to simplify the creation of an angular material table data source for plentymarkets REST-APIs.
