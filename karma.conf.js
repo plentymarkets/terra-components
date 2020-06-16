@@ -37,6 +37,12 @@ module.exports = function (config) {
     autoWatch: true,
     browsers: ['Chrome', 'Firefox', 'Safari'],
     singleRun: false,
-    restartOnFileChange: true
+    restartOnFileChange: true,
+    files: [
+      { pattern: 'src/assets/lang/**.json', watched: false, included: false, served: true }
+    ],
+    proxies: {
+      '/assets/': '/base/src/assets/'
+    }
   });
 };
