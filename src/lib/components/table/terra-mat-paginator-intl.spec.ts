@@ -60,7 +60,6 @@ fdescribe('TerraMatPaginatorIntl', () =>
 
         it('should translate the strings in german', async(() =>
         {
-            locale.setCurrentLanguage('de');
             paginatorIntl.changes.subscribe(() =>
             {
                 expect(paginatorIntl.itemsPerPageLabel).toEqual('Ergebnisse pro Seite');
@@ -70,13 +69,13 @@ fdescribe('TerraMatPaginatorIntl', () =>
                 expect(paginatorIntl.previousPageLabel).toEqual('Vorherige Seite');
                 let rangedLabel:string = paginatorIntl.getRangeLabel(1, 1, 1);
                 expect(rangedLabel).toEqual('2 – 2 von 1');
-
             });
+
+            locale.setCurrentLanguage('de');
         }));
 
         it('should translate the strings in english', async(() =>
         {
-            locale.setCurrentLanguage('en');
             paginatorIntl.changes.subscribe(() =>
             {
                 expect(paginatorIntl.itemsPerPageLabel).toEqual('Items per page');
@@ -86,8 +85,9 @@ fdescribe('TerraMatPaginatorIntl', () =>
                 expect(paginatorIntl.previousPageLabel).toEqual('Previous page');
                 let rangedLabel:string = paginatorIntl.getRangeLabel(1, 1, 1);
                 expect(rangedLabel).toEqual('2 – 2 of 1');
-
             });
+
+            locale.setCurrentLanguage('en');
         }));
     }
 );
