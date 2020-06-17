@@ -53,10 +53,8 @@ fdescribe('TerraMatPaginatorIntl', () =>
             expect(paginatorIntl).toBeTruthy();
         });
 
-        it('should translate the strings in german', async () =>
+        it('should translate the strings in german', (done:any) =>
         {
-            locale.setCurrentLanguage('de');
-
             paginatorIntl.changes.subscribe(() =>
             {
                 expect(paginatorIntl.itemsPerPageLabel).toEqual('Ergebnisse pro Seite');
@@ -64,10 +62,15 @@ fdescribe('TerraMatPaginatorIntl', () =>
                 expect(paginatorIntl.lastPageLabel).toEqual('Letzte Seite');
                 expect(paginatorIntl.nextPageLabel).toEqual('Nächste Seite');
                 expect(paginatorIntl.previousPageLabel).toEqual('Vorherige Seite');
-            }).unsubscribe();
+                let rangedLabel:string = paginatorIntl.getRangeLabel(1, 1, 1);
+                expect(rangedLabel).toEqual('2 – 2 von 1');
+                done();
+            });
+
+            locale.setCurrentLanguage('de');
         });
 
-        it('should translate the strings in english', async () =>
+        it('should translate the strings in english', (done:any) =>
         {
             paginatorIntl.changes.subscribe(() =>
             {
@@ -76,31 +79,12 @@ fdescribe('TerraMatPaginatorIntl', () =>
                 expect(paginatorIntl.lastPageLabel).toEqual('Last Page');
                 expect(paginatorIntl.nextPageLabel).toEqual('Next page');
                 expect(paginatorIntl.previousPageLabel).toEqual('Previous page');
-            }).unsubscribe();
-
-            locale.setCurrentLanguage('en');
-        });
-
-        it('should return the right string in german', async () =>
-        {
-            locale.setCurrentLanguage('de');
-
-            paginatorIntl.changes.subscribe(() =>
-            {
-                let rangedLabel:string = paginatorIntl.getRangeLabel(1, 1, 1);
-                expect(rangedLabel).toEqual('2 – 2 von 1');
-            }).unsubscribe();
-        });
-
-        it('should return the right string in english', async () =>
-        {
-            locale.setCurrentLanguage('en');
-
-            paginatorIntl.changes.subscribe(() =>
-            {
                 let rangedLabel:string = paginatorIntl.getRangeLabel(1, 1, 1);
                 expect(rangedLabel).toEqual('2 – 2 of 1');
-            }).unsubscribe();
+                done();
+            });
+
+            locale.setCurrentLanguage('en');
         });
     }
 );
