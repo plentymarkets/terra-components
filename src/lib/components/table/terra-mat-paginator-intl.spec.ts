@@ -11,7 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { l10nConfig } from '../../../app/translation/l10n.config';
 
-describe('TerraMatPaginatorIntl', () =>
+fdescribe('TerraMatPaginatorIntl', () =>
     {
         let paginatorIntl:MatPaginatorIntl;
         let translationService:TranslationService;
@@ -79,6 +79,28 @@ describe('TerraMatPaginatorIntl', () =>
             }).unsubscribe();
 
             locale.setCurrentLanguage('en');
+        });
+
+        it('should return the right string in german', async () =>
+        {
+            locale.setCurrentLanguage('de');
+
+            paginatorIntl.changes.subscribe(() =>
+            {
+                let rangedLabel:string = paginatorIntl.getRangeLabel(1, 1, 1);
+                expect(rangedLabel).toEqual('2 – 2 von 1');
+            }).unsubscribe();
+        });
+
+        it('should return the right string in english', async () =>
+        {
+            locale.setCurrentLanguage('en');
+
+            paginatorIntl.changes.subscribe(() =>
+            {
+                let rangedLabel:string = paginatorIntl.getRangeLabel(1, 1, 1);
+                expect(rangedLabel).toEqual('2 – 2 of 1');
+            }).unsubscribe();
         });
     }
 );
