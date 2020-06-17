@@ -133,10 +133,10 @@
 	},
 	"terraMatPaginatorIntl": {
 		"itemsPerPage": "Results per page",
-		"nextPage": "Next page",
-		"previousPage": "Previous page",
-		"firstPage": "First page",
-		"lastPage": "Last Page",
+		"nextPage": "",
+		"previousPage": "",
+		"firstPage": "",
+		"lastPage": "",
 		"ofLabel": "of"
 	}
 }
