@@ -6,7 +6,10 @@ import {
     TranslationModule,
     TranslationService
 } from 'angular-l10n';
-import { TestBed } from '@angular/core/testing';
+import {
+    async,
+    TestBed
+} from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { l10nConfig } from '../../../app/translation/l10n.config';
@@ -40,11 +43,13 @@ fdescribe('TerraMatPaginatorIntl', () =>
             l10nLoader = TestBed.get(L10nLoader);
             locale = TestBed.get(LocaleService);
 
-            l10nLoader.load().then(() => done());
+            l10nLoader.load().then(() =>
+            {
+                translationService = TestBed.get(TranslationService);
 
-            translationService = TestBed.get(TranslationService);
-
-            paginatorIntl = new TerraMatPaginatorIntl(translationService);
+                paginatorIntl = new TerraMatPaginatorIntl(translationService);
+                done();
+            });
         });
 
         it('should initialize the paginator intl', () =>
@@ -53,8 +58,9 @@ fdescribe('TerraMatPaginatorIntl', () =>
             expect(paginatorIntl).toBeTruthy();
         });
 
-        it('should translate the strings in german', (done:any) =>
+        it('should translate the strings in german', async(() =>
         {
+            locale.setCurrentLanguage('de');
             paginatorIntl.changes.subscribe(() =>
             {
                 expect(paginatorIntl.itemsPerPageLabel).toEqual('Ergebnisse pro Seite');
@@ -64,14 +70,13 @@ fdescribe('TerraMatPaginatorIntl', () =>
                 expect(paginatorIntl.previousPageLabel).toEqual('Vorherige Seite');
                 let rangedLabel:string = paginatorIntl.getRangeLabel(1, 1, 1);
                 expect(rangedLabel).toEqual('2 – 2 von 1');
-                done();
+
             });
+        }));
 
-            locale.setCurrentLanguage('de');
-        });
-
-        it('should translate the strings in english', (done:any) =>
+        it('should translate the strings in english', async(() =>
         {
+            locale.setCurrentLanguage('en');
             paginatorIntl.changes.subscribe(() =>
             {
                 expect(paginatorIntl.itemsPerPageLabel).toEqual('Items per page');
@@ -81,10 +86,8 @@ fdescribe('TerraMatPaginatorIntl', () =>
                 expect(paginatorIntl.previousPageLabel).toEqual('Previous page');
                 let rangedLabel:string = paginatorIntl.getRangeLabel(1, 1, 1);
                 expect(rangedLabel).toEqual('2 – 2 of 1');
-                done();
-            });
 
-            locale.setCurrentLanguage('en');
-        });
+            });
+        }));
     }
 );
