@@ -11,7 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { l10nConfig } from '../../../app/translation/l10n.config';
 
-fdescribe('TerraMatPaginatorIntl', () =>
+describe('TerraMatPaginatorIntl', () =>
     {
         let paginatorIntl:MatPaginatorIntl;
         let translationService:TranslationService;
@@ -35,7 +35,7 @@ fdescribe('TerraMatPaginatorIntl', () =>
             });
         });
 
-        beforeEach((done:any) =>
+        beforeEach(async (done:any) =>
         {
             l10nLoader = TestBed.get(L10nLoader);
             locale = TestBed.get(LocaleService);
@@ -43,34 +43,42 @@ fdescribe('TerraMatPaginatorIntl', () =>
             l10nLoader.load().then(() => done());
 
             translationService = TestBed.get(TranslationService);
+
             paginatorIntl = new TerraMatPaginatorIntl(translationService);
         });
 
         it('should initialize the paginator intl', () =>
         {
+            paginatorIntl = new TerraMatPaginatorIntl(translationService);
             expect(paginatorIntl).toBeTruthy();
         });
 
-        it('should translate the strings in german', () =>
+        it('should translate the strings in german', async () =>
         {
             locale.setCurrentLanguage('de');
 
-            expect(paginatorIntl.itemsPerPageLabel).toEqual('Ergebnisse pro Seite');
-            expect(paginatorIntl.firstPageLabel).toEqual('Erste Seite');
-            expect(paginatorIntl.lastPageLabel).toEqual('Letzte Seite');
-            expect(paginatorIntl.nextPageLabel).toEqual('Nächste Seite');
-            expect(paginatorIntl.previousPageLabel).toEqual('Vorherige Seite');
+            paginatorIntl.changes.subscribe(() =>
+            {
+                expect(paginatorIntl.itemsPerPageLabel).toEqual('Ergebnisse pro Seite');
+                expect(paginatorIntl.firstPageLabel).toEqual('Erste Seite');
+                expect(paginatorIntl.lastPageLabel).toEqual('Letzte Seite');
+                expect(paginatorIntl.nextPageLabel).toEqual('Nächste Seite');
+                expect(paginatorIntl.previousPageLabel).toEqual('Vorherige Seite');
+            }).unsubscribe();
         });
 
-        it('should translate the strings in english', () =>
+        it('should translate the strings in english', async () =>
         {
-            locale.setCurrentLanguage('en');
+            paginatorIntl.changes.subscribe(() =>
+            {
+                expect(paginatorIntl.itemsPerPageLabel).toEqual('Items per page');
+                expect(paginatorIntl.firstPageLabel).toEqual('First page');
+                expect(paginatorIntl.lastPageLabel).toEqual('Last Page');
+                expect(paginatorIntl.nextPageLabel).toEqual('Next page');
+                expect(paginatorIntl.previousPageLabel).toEqual('Previous page');
+            }).unsubscribe();
 
-            expect(paginatorIntl.itemsPerPageLabel).toEqual('Items per page');
-            expect(paginatorIntl.firstPageLabel).toEqual('First page');
-            expect(paginatorIntl.lastPageLabel).toEqual('Last Page');
-            expect(paginatorIntl.nextPageLabel).toEqual('Next page');
-            expect(paginatorIntl.previousPageLabel).toEqual('Previous page');
+            locale.setCurrentLanguage('en');
         });
     }
 );
