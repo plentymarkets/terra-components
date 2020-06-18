@@ -205,3 +205,4 @@ export { TooltipDirective } from './components/tooltip/tooltip.directive';
 export { SelectSortPipe } from './pipes';
 export { AllowedColors } from './components/forms/select-box/data/allowed.colors.enum';
 export { TerraStopwatchComponent } from './components/stopwatch/terra-stopwatch.component';
+export { SelectSortDirective } from './components/forms/select-box/directive/select-sort.directive';
