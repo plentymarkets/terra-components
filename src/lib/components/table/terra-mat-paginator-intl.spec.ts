@@ -53,7 +53,7 @@ describe('TerraMatPaginatorIntl', () =>
 
         });
 
-        it('should return `0 terraMatPaginatorIntl.ofLabel 1 if pageSize is 0`', () =>
+        it('should return `0 terraMatPaginatorIntl.ofLabel 1` if pageSize is 0', () =>
         {
             const page:number = 1;
             const pageSize:number = 0;
