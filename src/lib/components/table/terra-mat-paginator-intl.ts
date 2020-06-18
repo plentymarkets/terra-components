@@ -5,6 +5,11 @@ import { TranslationService } from 'angular-l10n';
 @Injectable()
 export class TerraMatPaginatorIntl extends MatPaginatorIntl
 {
+    public nextPageLabel:string = '';
+    public previousPageLabel:string = '';
+    public firstPageLabel:string = '';
+    public lastPageLabel:string = '';
+        
     constructor(private translation:TranslationService)
     {
         super();
