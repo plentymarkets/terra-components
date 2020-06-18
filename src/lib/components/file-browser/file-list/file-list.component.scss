@@ -1,5 +1,3 @@
-@import "../../split-view/multi/terra-multi-split-view.component";
-
 :host
 {
     position: absolute;
@@ -9,6 +7,7 @@
     bottom: 0;
     display: flex;
     flex-direction: column;
+    overflow-y: hidden;
 }
 
 .loading-placeholder
@@ -74,6 +73,10 @@
 
 .file-list-container
 {
+    flex: 1;
+    overflow-y: auto;
+    position: relative;
+    
     .file-drop
     {
         position: absolute;

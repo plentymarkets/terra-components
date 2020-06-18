@@ -2,8 +2,6 @@ import {
     DebugElement,
     ElementRef
 } from '@angular/core';
-import { HttpModule } from '@angular/http';
-import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import {
     async,
@@ -20,10 +18,10 @@ import { By } from '@angular/platform-browser';
 import { TerraLabelTooltipDirective } from '../../../helpers/terra-label-tooltip.directive';
 import { TerraSuggestionBoxValueInterface } from './data/terra-suggestion-box.interface';
 import { TerraTextInputComponent } from '../input/text-input/terra-text-input.component';
-import Spy = jasmine.Spy;
 import { TooltipDirective } from '../../tooltip/tooltip.directive';
 import { Router } from '@angular/router';
 import { MockRouter } from '../../../testing/mock-router';
+import Spy = jasmine.Spy;
 
 describe('TerraSuggestionBoxComponent', () =>
 {
@@ -35,7 +33,7 @@ describe('TerraSuggestionBoxComponent', () =>
     };
     const router:MockRouter = new MockRouter();
 
-    beforeEach(async(() =>
+    beforeEach(() =>
     {
         TestBed.configureTestingModule({
             declarations: [TooltipDirective,
@@ -45,8 +43,6 @@ describe('TerraSuggestionBoxComponent', () =>
             ],
             imports:      [
                 FormsModule,
-                HttpModule,
-                HttpClientModule,
                 LocalizationModule.forRoot(l10nConfig)
             ],
             providers:    [
@@ -59,8 +55,8 @@ describe('TerraSuggestionBoxComponent', () =>
                     useClass: MockElementRef
                 }
             ]
-        }).compileComponents();
-    }));
+        });
+    });
 
     beforeEach(() =>
     {
@@ -145,24 +141,24 @@ describe('TerraSuggestionBoxComponent', () =>
         // expect(inputElement.value).toEqual(suggestion.caption); // TODO: The value is not updated..
     });
 
-    it('#onChange() should open the dropdown (set #toggleOpen to "true")', () =>
+    it('#_onChange() should open the dropdown (set #_toggleOpen to "true")', () =>
     {
         component.toggleOpen = true;
-        component.onChange();
+        component._onChange();
         expect(component.toggleOpen).toEqual(true);
 
 
         component.toggleOpen = false;
         expect(component.toggleOpen).toEqual(false);
-        component.onChange();
+        component._onChange();
 
         expect(component.toggleOpen).toEqual(true);
     });
 
-    it('Entering text should call #onChange() and update #selectedValue and #value', () =>
+    it('Entering text should call #_onChange() and update #selectedValue and #value', () =>
     {
         component.inputListBoxValues = [suggestion];
-        let spy:Spy = spyOn(component, 'onChange').and.callThrough();
+        let spy:Spy = spyOn(component, '_onChange').and.callThrough();
 
         let terraTextInput:TerraTextInputComponent = fixture.debugElement.query(By.css('terra-text-input')).componentInstance;
 
@@ -188,7 +184,7 @@ describe('TerraSuggestionBoxComponent', () =>
         expect(component.selectedValue).toEqual(undefined);
         expect(component.value).toEqual(null);
 
-        // check if the onChange()-Method has been called every time the text has changed
+        // check if the _onChange()-Method has been called every time the text has changed
         expect(spy).toHaveBeenCalledTimes(3);
     });
 

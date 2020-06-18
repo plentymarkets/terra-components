@@ -1,7 +1,10 @@
-<terra-form-container
-    [inputFormFields]="formFields"
-    [inputIsDisabled]="inputIsDisabled"
-    [inputScope]="scope"
-    [inputFormGroup]="formGroup"
-    [inputControlTypeMap]="controlTypeMap">
-</terra-form-container>
+<div class="container-fluid px-0">
+    <terra-form-container
+        [inputFormFields]="_formFields"
+        [inputIsDisabled]="inputIsDisabled"
+        [inputScope]="scope"
+        [inputFormGroup]="formGroup"
+        [inputControlTypeMap]="_controlTypeMap"
+        [width]="_width">
+    </terra-form-container>
+</div>

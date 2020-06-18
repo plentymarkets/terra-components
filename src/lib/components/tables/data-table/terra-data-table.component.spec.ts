@@ -6,7 +6,6 @@ import {
 } from '@angular/core/testing';
 import { LocalizationModule } from 'angular-l10n';
 import { l10nConfig } from '../../../../app/translation/l10n.config';
-import { HttpModule } from '@angular/http';
 import { TerraPagerComponent } from '../../pager/terra-pager.component';
 import { TerraButtonComponent } from '../../buttons/button/terra-button.component';
 import { TerraCheckboxComponent } from '../../forms/checkbox/terra-checkbox.component';
@@ -20,7 +19,6 @@ import { TerraSelectBoxComponent } from '../../forms/select-box/terra-select-box
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { TerraTagComponent } from '../../layouts/tag/terra-tag.component';
-import { HttpClientModule } from '@angular/common/http';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TerraDataTableServiceExample } from './example/terra-data-table.service.example';
 import { TerraLoadingSpinnerService } from '../../loading-spinner/service/terra-loading-spinner.service';
@@ -32,15 +30,14 @@ import {
 import { TerraLabelTooltipDirective } from '../../../helpers/terra-label-tooltip.directive';
 import { By } from '@angular/platform-browser';
 import { TableRowComponent } from './table-row/table-row.component';
-import { FloatTheadDirective } from './float-thead/float-thead.directive';
 import { MockRouter } from '../../../testing/mock-router';
-import Spy = jasmine.Spy;
 import { TooltipDirective } from '../../tooltip/tooltip.directive';
 import {
     ActivatedRoute,
     Router
 } from '@angular/router';
 import { MockActivatedRoute } from '../../../testing/mock-activated-route';
+import Spy = jasmine.Spy;
 
 describe('TerraDataTableComponent', () =>
 {
@@ -48,12 +45,11 @@ describe('TerraDataTableComponent', () =>
     let fixture:ComponentFixture<TerraDataTableComponent<any, any>>;
     let router:MockRouter = new MockRouter();
 
-    beforeEach(async(() =>
+    beforeEach(() =>
     {
         TestBed.configureTestingModule({
             declarations: [
                 TooltipDirective,
-                FloatTheadDirective,
                 TerraDataTableComponent,
                 TerraButtonComponent,
                 TerraPagerComponent,
@@ -72,8 +68,6 @@ describe('TerraDataTableComponent', () =>
             imports:      [
                 CommonModule,
                 FormsModule,
-                HttpModule,
-                HttpClientModule,
                 NoopAnimationsModule,
                 LocalizationModule.forRoot(l10nConfig)
             ],
@@ -93,8 +87,8 @@ describe('TerraDataTableComponent', () =>
             set: new Component({
                 changeDetection: ChangeDetectionStrategy.Default
             })
-        }).compileComponents();
-    }));
+        });
+    });
 
     beforeEach(() =>
     {

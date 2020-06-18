@@ -1,4 +1,5 @@
 import { AllowedColors } from './allowed.colors.enum';
+
 export interface TerraSelectBoxValueInterface
 {
     value:any;

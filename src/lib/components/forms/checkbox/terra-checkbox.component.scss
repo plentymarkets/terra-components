@@ -9,16 +9,6 @@ input[type="checkbox"]
     width: fit-content;
 }
 
-.disabled-chk
-{
-    cursor: not-allowed;
-    
-    .input-control.checkbox .check
-    {
-        cursor: not-allowed;
-    }
-}
-
 .input-control.checkbox .check.invalid
 {
     border-color: var(--color-alert) !important;
@@ -40,26 +30,27 @@ input[type="checkbox"]
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    
+
     cursor: pointer;
     display: inline;
-    
-    &:hover
+
+    &.disabled-chk,
+    &.disabled-chk .check
+    {
+        cursor: not-allowed;
+    }
+
+    &:hover:not(.disabled-chk)
     {
         color: var(--input-control-checkbox-hover-color, (var(--color-active)));
-        
+
         span.check,
         input[type="checkbox"]:checked ~ .check:before
         {
             border-color: var(--color-active);
         }
-        
-        input[type="checkbox"]:indeterminate ~ .check:after
-        {
-            background-color: var(--color-active);
-        }
     }
-    
+
     input[type="checkbox"]
     {
         &:focus
@@ -68,14 +59,14 @@ input[type="checkbox"]
             {
                 color: var(--input-control-checkbox-hover-color, (var(--color-active)));
             }
-            
+
             &:checked ~ .check:before,
             &:indeterminate ~ .check:before,
             + span.check
             {
                 border-color: var(--color-active);
             }
-            
+
             &:indeterminate ~ .check:after
             {
                 background-color: var(--color-active);
@@ -190,6 +181,11 @@ input[type="checkbox"]
     top: 50%;
     margin-left: -0.4375rem;
     margin-top: -0.4375rem;
+}
+
+.input-control.checkbox input[type="checkbox"]:indeterminate:disabled ~ .check:after
+{
+    background-color: var(--color-structure-5);
 }
 
 .input-control.checkbox input[data-show="indeterminate"]:not(:checked) ~ .check:after

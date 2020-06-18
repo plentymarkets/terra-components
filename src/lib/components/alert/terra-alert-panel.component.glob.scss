@@ -2,14 +2,14 @@
 terra-alert-panel
 {
     position: fixed;
-    right: 14px;
-    top: var(--terra-alert-panel-top, (calc(var(--navbar-height) + var(--space-lg))));
+    right: 12px;
+    top: var(--terra-alert-panel-top, (calc(var(--navbar-height) + var(--tabbar-height) * 1.4 )));
     transition: top var(--transition-lg);
     max-height: 500px;
     max-width: 350px;
     min-width: 250px;
     overflow-y: auto;
-    z-index: var(--zIndex-10);
+    z-index: var(--zIndex-9);
     
     .alert
     {

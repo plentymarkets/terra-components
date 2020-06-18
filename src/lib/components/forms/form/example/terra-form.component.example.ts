@@ -6,12 +6,19 @@ import { formFields } from './form-fields';
 
 @Component({
     selector:    'terra-form-example',
-    template: require('./terra-form.component.example.html'),
-    styles:   [require('./terra-form.component.example.scss')]
+    templateUrl: './terra-form.component.example.html',
+    styleUrls: [ './terra-form.component.example.scss']
 })
 export class TerraFormComponentExample
 {
-    protected formFields:TerraKeyValueInterface<TerraFormFieldInterface> = formFields;
-    protected formTypeMap:FormTypeMap = new FormTypeMap();
-    protected formValue:any;
+    public _formFields:TerraKeyValueInterface<TerraFormFieldInterface> = formFields;
+    public _formTypeMap:FormTypeMap = new FormTypeMap();
+    public _formValue:any = {
+        id: 1231,
+        listWithChildren: [
+            {id: 1, childSelect: 'option2', childNumber: 1232131},
+            {childSelect: 'option1', childNumber: 12241},
+            {childSelect: 'option1', id: 121}
+        ]
+    };
 }

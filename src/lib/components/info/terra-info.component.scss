@@ -1,7 +1,8 @@
 .info-handler
 {
-    display: inline-block;
     position: relative;
+    display: inline-flex;
+    align-items: center;
     
     &:hover,
     &:active,
@@ -10,11 +11,10 @@
         color: var(--color-group-active);
     }
     
-    height: var(--height-md);
-    line-height: var(--height-md);
+    height: 100%;
+    line-height: 100%;
     text-align: center;
     white-space: nowrap;
-    vertical-align: middle;
     cursor: pointer;
     user-select: none;
     border: 0;
@@ -22,7 +22,13 @@
     text-decoration: none;
     padding: 0 8px;
     border-radius: var(--border-radius);
-    font-size: var(--font-size-6);
+    font-size: var(--font-size-5);
+    
+    
+    &::before
+    {
+        vertical-align: middle;
+    }
 }
 
 .disabled

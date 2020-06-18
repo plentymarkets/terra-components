@@ -4,11 +4,12 @@
     -moz-border-radius: var(--border-radius);
     -webkit-border-radius: var(--border-radius);
     border-radius: var(--border-radius);
-    padding: var(--space-md);
+    padding: var(--info-box-padding, (2px 2px var(--space-md) 2px));
     min-width: 200px;
-    margin: var(--space-container);
+    margin: var(--info-box-margin, var(--space-container));
     height: var(--input-info-box-height, 150px);
-    box-shadow: var(--box-shadow);
+    box-shadow: var(--info-box-box-shadow, var(--box-shadow));
+    border-bottom: var(--info-box-border-bottom);
 
     &.selected
     {
@@ -18,7 +19,7 @@
         {
             .info-box-text
             {
-                color: var(--color-structure-0);
+                color: var(--color-structure-13);
             }
         }
 
@@ -43,15 +44,16 @@
         display: flex;
         justify-content: space-between;
         max-height: 100%;
-
+        padding: var(--space-md);
+        
         &.has-footer
         {
             height: calc(100% - 26px);
+            background-color: var(--color-structure-0);
         }
 
         .info-box-text
         {
-            padding-bottom: 0.4rem;
             max-width: 100%;
             white-space: nowrap;
             color: var(--color-structure-11);
@@ -76,6 +78,7 @@
     {
         display: flex;
         justify-content: space-between;
+        padding-left: 4px;
 
         .info-box-id
         {

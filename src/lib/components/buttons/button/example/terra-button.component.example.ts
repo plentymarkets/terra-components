@@ -1,17 +1,16 @@
 import { Component } from '@angular/core';
 import { TerraPlacementEnum } from '../../../../helpers/enums/terra-placement.enum';
 
-
 @Component({
-    selector: 'terra-button-example',
-    styles:   [require('./terra-button.component.example.scss')],
-    template: require('./terra-button.component.example.html')
+    selector:    'terra-button-example',
+    styleUrls:   ['./terra-button.component.example.scss'],
+    templateUrl: './terra-button.component.example.html'
 })
 export class TerraButtonComponentExample
 {
-    protected tooltipPlacement:TerraPlacementEnum = TerraPlacementEnum.TOP;
+    public _tooltipPlacement:TerraPlacementEnum = TerraPlacementEnum.TOP;
 
-    private sendMailPopup():void
+    public _sendMailPopup():void
     {
         alert('email has been send to test@plentymarkets.com');
     }

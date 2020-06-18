@@ -34,6 +34,18 @@
 
     &.active
     {
+        &.disabled
+        {
+            .slider
+            {
+                &:before
+                {
+                    background-color: var(--color-add);
+                    opacity: .5;
+                }
+            }
+        }
+        
         .slider
         {
             &:before
@@ -52,7 +64,8 @@
         {
             &:before
             {
-                background-color: var(--color-structure-3);
+                background-color: var(--color-alert);
+                opacity: .25;
             }
         }
     }

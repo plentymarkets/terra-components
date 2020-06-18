@@ -1,6 +1,5 @@
 import {
     Component,
-    forwardRef,
     Input,
     OnChanges,
     OnInit,
@@ -29,12 +28,12 @@ import {
 
 @Component({
     selector:  'terra-form',
-    template:  require('./terra-form.component.html'),
-    styles:    [require('./terra-form.component.scss')],
+    templateUrl:  './terra-form.component.html',
+    styleUrls:    ['./terra-form.component.scss'],
     providers: [
         {
             provide:     NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => TerraFormComponent),
+            useExisting: TerraFormComponent,
             multi:       true
         }
     ]
@@ -42,26 +41,36 @@ import {
 export class TerraFormComponent implements ControlValueAccessor, OnChanges, OnInit
 {
     /**
+     * @description Set width of any form element that doesn't overwrite it.
+     * @default col-12
+     */
+    @Input()
+    public set width(width:string)
+    {
+        this._width = TerraFormHelper.sanitiseWidth(width) || 'col-12';
+    }
+
+    /**
      * @description Set accessor for the form fields. Creates a representative reactive FormGroup instance by parsing the given form fields.
      * @param fields
      */
     @Input()
     public set inputFormFields(fields:{ [key:string]:TerraFormFieldInterface } | Array<TerraFormFieldBase<any>>)
     {
-        if(!isNullOrUndefined(this.valueChangesSubscription))
+        if(!isNullOrUndefined(this._valueChangesSubscription))
         {
-            this.valueChangesSubscription.unsubscribe();
+            this._valueChangesSubscription.unsubscribe();
         }
-        this.formFields = TerraFormFieldHelper.detectLegacyFormFields(fields);
-        this._formGroup = TerraFormHelper.parseReactiveForm(this.formFields, this.values);
-        this.valueChangesSubscription = this._formGroup.valueChanges.subscribe((changes:Data) =>
+        this._formFields = TerraFormFieldHelper.detectLegacyFormFields(fields);
+        this._formGroup = TerraFormHelper.parseReactiveForm(this._formFields, this._values);
+        this._valueChangesSubscription = this._formGroup.valueChanges.subscribe((changes:Data) =>
         {
             Object.keys(changes).forEach((key:string) =>
             {
-                this.values[key] = changes[key];
+                this._values[key] = changes[key];
             });
-            this.scope.data = this.values;
-            this.onChangeCallback(this.values);
+            this.scope.data = this._values;
+            this._onChangeCallback(this._values);
         });
     }
 
@@ -70,11 +79,11 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges, OnIn
      */
     public get inputFormFields():{ [key:string]:TerraFormFieldInterface } | Array<TerraFormFieldBase<any>>
     {
-        if(isNullOrUndefined(this.formFields))
+        if(isNullOrUndefined(this._formFields))
         {
-            this.formFields = TerraFormFieldHelper.extractFormFields(this.values);
+            this._formFields = TerraFormFieldHelper.extractFormFields(this._values);
         }
-        return this.formFields || {};
+        return this._formFields || {};
     }
 
     /**
@@ -97,16 +106,23 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges, OnIn
      */
     public readonly scope:TerraFormScope = new TerraFormScope();
 
-    protected controlTypeMap:FormTypeMapInterface | TerraFormTypeMap | FormTypeMap = {};
+    public _controlTypeMap:FormTypeMapInterface | TerraFormTypeMap | FormTypeMap = {};
 
-    private values:any = {};
+    public _formFields:{ [key:string]:TerraFormFieldInterface };
 
-    private formFields:{ [key:string]:TerraFormFieldInterface };
+    /**
+     * @description the default width applied to any form element
+     * @internal
+     */
+    public _width:string = 'col-12';
+
+    private _values:any = {};
+
     private _formGroup:FormGroup = new FormGroup({});
-    private valueChangesSubscription:Subscription;
+    private _valueChangesSubscription:Subscription;
 
-    private onChangeCallback:(value:any) => void = noop;
-    private onTouchedCallback:() => void = noop;
+    private _onChangeCallback:(value:any) => void = noop;
+    private _onTouchedCallback:() => void = noop;
 
     /**
      * Implementation of the OnInit life cycle hook.
@@ -116,7 +132,7 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges, OnIn
     {
         if(isNullOrUndefined(this.inputControlTypeMap))
         {
-            this.controlTypeMap = new TerraFormTypeMap();
+            this._controlTypeMap = new TerraFormTypeMap();
         }
     }
 
@@ -129,7 +145,7 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges, OnIn
     {
         if(changes.hasOwnProperty('inputControlTypeMap') && !isNullOrUndefined(this.inputControlTypeMap))
         {
-            this.controlTypeMap = this.inputControlTypeMap;
+            this._controlTypeMap = this.inputControlTypeMap;
         }
     }
 
@@ -143,15 +159,15 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges, OnIn
     {
         if(isNullOrUndefined(values))
         {
-            let defaultValues:any = TerraFormFieldHelper.parseDefaultValues(this.formFields);
-            this.values = defaultValues;
+            let defaultValues:any = TerraFormFieldHelper.parseDefaultValues(this._formFields);
+            this._values = defaultValues;
             this.scope.data = defaultValues;
             this.formGroup.reset(defaultValues);
         }
         else if(this.scope.data !== values)
         {
-            values = TerraFormHelper.updateFormArrays(this.formGroup, this.formFields, values);
-            this.values = values;
+            values = TerraFormHelper.updateFormArrays(this.formGroup, this._formFields, values);
+            this._values = values;
             this.scope.data = values;
             this.formGroup.patchValue(values);
         }
@@ -164,7 +180,7 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges, OnIn
      */
     public registerOnChange(callback:(value:any) => void):void
     {
-        this.onChangeCallback = callback;
+        this._onChangeCallback = callback;
     }
 
     /**
@@ -175,7 +191,7 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges, OnIn
      */
     public registerOnTouched(callback:() => void):void
     {
-        this.onTouchedCallback = callback;
+        this._onTouchedCallback = callback;
     }
 
     /**

@@ -17,22 +17,24 @@ body
         --tabs-nav-item: var(--color-structure-0);
         --tabs-nav-item-box-shadow: var(--box-shadow);
         --tabs-nav-item-color: var(--color-structure-11);
+        --tab-disabled-background-color: var(--color-group-disabled);
+        --tab-disabled-color: var(--color-structure-8);
         --terra-breadcrumbs-wrapper-background-color: var(--color-structure-0);
         --terra-breadcrumb-color: var(--color-structure-11);
         --terra-breadcrumb-icon-color: var(--color-structure-6);
-        
+
         // Navbar Global Search
         --navbar-search-background-color: var(--color-structure-2);
         --navbar-search-color: var(--color-structure-7);
         --navbar-search-active-background-color: var(--color-structure-2);
         --navbar-search-active-color: var(--color-structure-11);
-        
+
         // Dropdowns, Context-Menu, Tooltips
         --dropdown-menu-background-color: var(--color-structure-0);
         --dropdown-item-color: var(--color-structure-11);
         --context-menu-background-color: var(--color-structure-0);
         --context-menu-color: var(--color-structure-11) !important;
-        
+
         // Table
         --table-head-background-color: var(--color-structure-0);
         --table-head-color: var(--color-structure-8);

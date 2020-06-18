@@ -8,9 +8,9 @@ import { TerraTagInterface } from '../tag/data/terra-tag.interface';
 import { TerraButtonInterface } from '../../buttons/button/data/terra-button.interface';
 
 @Component({
-    selector: 'terra-info-box',
-    styles:   [require('./terra-info-box.component.scss')],
-    template: require('./terra-info-box.component.html')
+    selector:    'terra-info-box',
+    styleUrls:   ['./terra-info-box.component.scss'],
+    templateUrl: './terra-info-box.component.html'
 })
 export class TerraInfoBoxComponent
 {
@@ -35,11 +35,12 @@ export class TerraInfoBoxComponent
     @Input()
     public inputNoWordBreak:boolean;
 
-    @ViewChild('buttonRef') private buttonRef:any;
+    @ViewChild('buttonRef', { static: true })
+    public _buttonRef:any;
 
     public get hasButtons():boolean
     {
-        return !isNullOrUndefined(this.buttonRef.nativeElement.childNodes) && this.buttonRef.nativeElement.childNodes > 0 ||
+        return !isNullOrUndefined(this._buttonRef.nativeElement.childNodes) && this._buttonRef.nativeElement.childNodes > 0 ||
                !isNullOrUndefined(this.inputButtonList) && this.inputButtonList.length > 0;
     }
 

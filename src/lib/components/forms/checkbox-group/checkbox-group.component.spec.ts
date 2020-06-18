@@ -4,17 +4,16 @@ import {
     TestBed,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { LocalizationModule } from 'angular-l10n';
 import { l10nConfig } from '../../../../app/translation/l10n.config';
 import { TerraMultiCheckBoxComponent } from '../multi-check-box/terra-multi-check-box.component';
 import { TerraMultiCheckBoxValueInterface } from '../multi-check-box/data/terra-multi-check-box-value.interface';
 import { TerraCheckboxComponent } from '../checkbox/terra-checkbox.component';
-import Spy = jasmine.Spy;
 import { TooltipDirective } from '../../tooltip/tooltip.directive';
 import { Router } from '@angular/router';
 import { MockRouter } from '../../../testing/mock-router';
+import Spy = jasmine.Spy;
 
 describe('Component: CheckboxGroupComponent', () =>
 {
@@ -47,7 +46,6 @@ describe('Component: CheckboxGroupComponent', () =>
                                TerraMultiCheckBoxComponent,
                                TerraCheckboxComponent],
                 imports:      [
-                    HttpClientModule,
                     FormsModule,
                     LocalizationModule.forRoot(l10nConfig)
                 ],
@@ -57,7 +55,7 @@ describe('Component: CheckboxGroupComponent', () =>
                         useValue: router
                     }]
             }
-        ).compileComponents();
+        );
     });
 
     beforeEach(() =>
@@ -162,5 +160,25 @@ describe('Component: CheckboxGroupComponent', () =>
             selected: false
         }]);
         expect(onChangeSpy).toHaveBeenCalledWith(null);
+    });
+
+    it('should preserve sorting order when checkboxes are selected/deselected', () =>
+    {
+        // initialization
+        component.checkboxValues = checkboxValues;
+        component.writeValue([checkboxValues[0].value, checkboxValues[2].value]);
+        fixture.detectChanges();
+
+        // register spy
+        let onChangeSpy:Spy = jasmine.createSpy('onChange');
+        component.registerOnChange(onChangeSpy)
+
+        // prepare preselected checkbox object -> update checkbox group values
+        let preselectedCheckbox:TerraMultiCheckBoxValueInterface = checkboxValues[1];
+        preselectedCheckbox.selected = true;
+        component._onMultiCheckboxChanged([preselectedCheckbox]);
+
+        // check order of checkbox group values
+        expect(onChangeSpy).toHaveBeenCalledWith([checkboxValues[0].value, checkboxValues[1].value, checkboxValues[2].value]);
     });
 });

@@ -10,10 +10,10 @@ import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { TerraDataTableRowInterface } from '../interfaces/terra-data-table-row.interface';
 import { DebugElement } from '@angular/core';
-import Spy = jasmine.Spy;
 import { TooltipDirective } from '../../../tooltip/tooltip.directive';
 import { Router } from '@angular/router';
 import { MockRouter } from '../../../../testing/mock-router';
+import Spy = jasmine.Spy;
 
 export const dataTableStub:Partial<TerraDataTableComponent<any, any>> =
     {
@@ -35,7 +35,7 @@ describe('Component: TableRowComponent', () =>
     let fixture:ComponentFixture<TableRowComponent>;
     const router:MockRouter = new MockRouter();
 
-    beforeEach(async(() =>
+    beforeEach(() =>
     {
         TestBed.configureTestingModule({
             declarations: [TooltipDirective,
@@ -55,8 +55,8 @@ describe('Component: TableRowComponent', () =>
                     useValue: dataTableStub
                 }
             ]
-        }).compileComponents();
-    }));
+        });
+    });
 
     beforeEach(() =>
     {
@@ -122,7 +122,7 @@ describe('Component: TableRowComponent', () =>
         expect(fixture.debugElement.query(By.css('terra-checkbox'))).toBeFalsy();
     });
 
-    it('should call #onRowCheckboxChange() when checkbox changes', () =>
+    it('should call #_onRowCheckboxChange() when checkbox changes', () =>
     {
         let rowData:TerraDataTableRowInterface<any> = {
             isActive: false,

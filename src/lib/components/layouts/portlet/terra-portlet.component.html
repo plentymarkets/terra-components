@@ -4,9 +4,9 @@
          [class.unfolded]="!inputCollapsed"
          (click)="toggleCollapse()">
         <span class="header-caption">{{inputPortletHeader}}
-            <terra-info *ngIf="infoText" [text]="infoText" [textPlacement]="infoTextPlacement"></terra-info>
+            <terra-info *ngIf="infoText" [text]="infoText" [textPlacement]="_infoTextPlacement"></terra-info>
         </span>
-        <div>
+        <div class="header-button-container">
             <div class="header-buttons btn-group" (click)="$event.stopPropagation()">
                 <terra-button *ngFor="let button of inputButtonList"
                               [inputIcon]="button.icon"
@@ -25,8 +25,8 @@
             <span [ngClass]="{'icon-collapse_down': inputCollapsed, 'icon-collapse_up': !inputCollapsed}" *ngIf="inputIsCollapsable"></span>
         </div>
     </div>
-    <div class="portlet-body" [@collapsedState]="collapsedState"
-         [ngClass]="{'collapsed': collapsedState === 'collapsed'}">
+    <div class="portlet-body" [@collapsedState]="_collapsedState"
+         [ngClass]="{'collapsed': _collapsedState === 'collapsed'}">
         <ng-content></ng-content>
     </div>
 </div>

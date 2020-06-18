@@ -15,5 +15,5 @@ import { matExamples } from '../../lib/components/material/mat-examples';
 })
 export class ShowcaseComponent
 {
-    protected readonly examples:Array<Type<any>> = examples.concat(matExamples);
+    public readonly examples:Array<Type<any>> = examples;
 }

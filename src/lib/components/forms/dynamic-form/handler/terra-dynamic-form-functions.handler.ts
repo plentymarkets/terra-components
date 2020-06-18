@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { TerraFormFieldControlService } from '../service/terra-form-field-control.service';
 
 /**
- * @author mfrank
+ * @deprecated since v5.0.0. Use terra-form instead.
  */
 export class TerraDynamicFormFunctionsHandler<D>
 {

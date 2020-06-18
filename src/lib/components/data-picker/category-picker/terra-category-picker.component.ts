@@ -1,7 +1,6 @@
 import {
     AfterContentChecked,
     Component,
-    forwardRef,
     Input,
     OnInit
 } from '@angular/core';
@@ -17,21 +16,19 @@ import { TerraNestedDataPickerComponent } from '../nested-data-picker/terra-nest
 import { NestedDataTreeConfig } from '../nested-data-picker/config/nested-data-tree.config';
 import { NestedDataInterface } from '../nested-data-picker/data/nested-data.interface';
 import { TerraPagerInterface } from '../../pager/data/terra-pager.interface';
-import { TerraNodeTreeConfig } from '../../tree/node-tree/data/terra-node-tree.config';
 import { tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 @Component({
-    selector:  'terra-category-picker',
-    template:  require('./terra-category-picker.component.html'),
-    styles:    [require('./terra-category-picker.component.scss')],
-    providers: [
+    selector:    'terra-category-picker',
+    templateUrl: './terra-category-picker.component.html',
+    styleUrls:   ['./terra-category-picker.component.scss'],
+    providers:   [
         {
             provide:     NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => TerraCategoryPickerComponent),
+            useExisting: TerraCategoryPickerComponent,
             multi:       true
         },
-        TerraNodeTreeConfig,
         NestedDataTreeConfig
     ]
 })
@@ -56,18 +53,18 @@ export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent
     @Input()
     public inputPlentyId:number;
 
-    private completeCategory:CategoryValueInterface;
+    public _categoryName:string;
+    public _isContainerCategorySelected:boolean;
 
-    private categoryName:string;
-    private list:Array<TerraNodeInterface<NestedDataInterface<CategoryDataInterface>>>;
-    private isContainerCategorySelected:boolean;
+    private readonly _completeCategory:CategoryValueInterface;
+    private _list:Array<TerraNodeInterface<NestedDataInterface<CategoryDataInterface>>>;
 
-    constructor(public translation:TranslationService,
-                public nestedTreeConfig:NestedDataTreeConfig<CategoryDataInterface>)
+    constructor(translation:TranslationService,
+                public _nestedTreeConfig:NestedDataTreeConfig<CategoryDataInterface>)
     {
-        super(translation, nestedTreeConfig);
+        super(translation, _nestedTreeConfig);
         this.value = 0;
-        this.completeCategory = {
+        this._completeCategory = {
             id:               null,
             isActive:         null,
             isOpen:           null,
@@ -76,22 +73,22 @@ export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent
             tooltip:          '',
             tooltipPlacement: '',
         };
-        this.categoryName = '';
-        this.list = [];
-        this.isContainerCategorySelected = false;
-        this.isNotInitialCall = false;
+        this._categoryName = '';
+        this._list = [];
+        this._isContainerCategorySelected = false;
+        this._isNotInitialCall = false;
     }
 
     public ngAfterContentChecked():void
     {
-        if(this.nestedTreeConfig.list.length === 0)
+        if(this._nestedTreeConfig.list.length === 0)
         {
-            this.nestedTreeConfig.list = this.list;
+            this._nestedTreeConfig.list = this._list;
         }
 
-        if(!isNullOrUndefined(this.nestedTreeConfig.currentSelectedNode) && !isNullOrUndefined(this.nestedTreeConfig.currentSelectedNode.value))
+        if(!isNullOrUndefined(this._nestedTreeConfig.currentSelectedNode) && !isNullOrUndefined(this._nestedTreeConfig.currentSelectedNode.value))
         {
-            this.isContainerCategorySelected = (this.nestedTreeConfig.currentSelectedNode.value.data.type === 'container');
+            this._isContainerCategorySelected = (this._nestedTreeConfig.currentSelectedNode.value.data.type === 'container');
         }
     }
 
@@ -99,15 +96,15 @@ export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent
     {
         if(isNullOrUndefined(this.inputName))
         {
-            this.inputName = this.translation.translate('terraCategoryPicker.category');
+            this.inputName = this._translation.translate('terraCategoryPicker.category');
         }
-        this.nestedTreeConfig.list = this.list;
-        this.getCategoriesByParent();
+        this._nestedTreeConfig.list = this._list;
+        this._getCategoriesByParent();
     }
 
     public getCompleteCategoryObject():CategoryValueInterface
     {
-        return this.completeCategory;
+        return this._completeCategory;
     }
 
     // From ControlValueAccessor interface
@@ -117,33 +114,33 @@ export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent
         {
             this.inputCategoryService.requestCategoryDataById(value).subscribe((data:any) =>
             {
-                if(isNullOrUndefined(this.nestedTreeConfig.findNodeById(value)))
+                if(isNullOrUndefined(this._nestedTreeConfig.findNodeById(value)))
                 {
                     this.addNodes(data, null);
                 }
 
-                let nodeToSelect:TerraNodeInterface<NestedDataInterface<CategoryDataInterface>> = this.nestedTreeConfig.findNodeById(value);
+                let nodeToSelect:TerraNodeInterface<NestedDataInterface<CategoryDataInterface>> = this._nestedTreeConfig.findNodeById(value);
 
                 if(!isNullOrUndefined(nodeToSelect))
                 {
-                    this.nestedTreeConfig.currentSelectedNode = nodeToSelect;
-                    this.categoryName = this.nestedTreeConfig.currentSelectedNode.name;
+                    this._nestedTreeConfig.currentSelectedNode = nodeToSelect;
+                    this._categoryName = this._nestedTreeConfig.currentSelectedNode.name;
                 }
 
                 this.value = value;
 
-                if(this.isNotInitialCall && nodeToSelect)
+                if(this._isNotInitialCall && nodeToSelect)
                 {
-                    this.updateCompleteCategory(nodeToSelect);
-                    this.onTouchedCallback();
-                    this.onChangeCallback(this.value);
+                    this._updateCompleteCategory(nodeToSelect);
+                    this._onTouchedCallback();
+                    this._onChangeCallback(this.value);
                 }
             });
         }
         else
         {
-            this.nestedTreeConfig.currentSelectedNode = null;
-            this.categoryName = '';
+            this._nestedTreeConfig.currentSelectedNode = null;
+            this._categoryName = '';
             this.value = null;
         }
 
@@ -151,24 +148,24 @@ export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent
 
     public onSelectNode():void
     {
-        this.isNotInitialCall = true;
+        this._isNotInitialCall = true;
 
-        if(!isNullOrUndefined(this.nestedTreeConfig.currentSelectedNode))
+        if(!isNullOrUndefined(this._nestedTreeConfig.currentSelectedNode))
         {
-            this.categoryName = this.nestedTreeConfig.currentSelectedNode.name;
-            this.writeValue(this.nestedTreeConfig.currentSelectedNode.id);
+            this._categoryName = this._nestedTreeConfig.currentSelectedNode.name;
+            this.writeValue(this._nestedTreeConfig.currentSelectedNode.id);
         }
         this.toggleTree = !this.toggleTree;
     }
 
     public reset():void
     {
-        this.nestedTreeConfig.currentSelectedNode = null;
-        this.categoryName = '';
+        this._nestedTreeConfig.currentSelectedNode = null;
+        this._categoryName = '';
         this.value = 0;
 
-        this.onTouchedCallback();
-        this.onChangeCallback(this.value);
+        this._onTouchedCallback();
+        this._onChangeCallback(this.value);
     }
 
     public addNodes(data:any, parentNodeId:number | string):void
@@ -177,10 +174,10 @@ export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent
         let entries:Array<{}> = data.entries;
 
         // Necessary for re-initializing of the Node Tree after data was loaded
-        if(this.nestedTreeConfig.list.length === 1 && this.nestedTreeConfig.list[0] === this.nestedTreeConfig.currentSelectedNode)
+        if(this._nestedTreeConfig.list.length === 1 && this._nestedTreeConfig.list[0] === this._nestedTreeConfig.currentSelectedNode)
         {
-            this.nestedTreeConfig.removeNodeById(this.nestedTreeConfig.currentSelectedNode.id);
-            this.nestedTreeConfig.list = [];
+            this._nestedTreeConfig.removeNodeById(this._nestedTreeConfig.currentSelectedNode.id);
+            this._nestedTreeConfig.list = [];
         }
 
         if(!isNullOrUndefined(entries))
@@ -191,11 +188,11 @@ export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent
                 let categoryDetail:CategoryDetailDataInterface = null;
 
                 // If the node hasn't already been added the routine will be started
-                if(isNullOrUndefined(this.nestedTreeConfig.findNodeById(categoryData.id)) && categoryData.details.length > 0)
+                if(isNullOrUndefined(this._nestedTreeConfig.findNodeById(categoryData.id)) && categoryData.details.length > 0)
                 {
                     if(!isNullOrUndefined(this.inputLanguage))
                     {
-                        categoryDetail = this.findCategoryDetails(categoryData);
+                        categoryDetail = this._findCategoryDetails(categoryData);
                     }
                     else if(categoryData.details.length > 0) // Downwardcompatability
                     {
@@ -219,43 +216,43 @@ export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent
                     // If the category has a parent, the parent node is created from the parentId in the category data
                     if(!isNullOrUndefined(categoryData.parentCategoryId))
                     {
-                        parentNode = this.nestedTreeConfig.findNodeById(categoryData.parentCategoryId);
+                        parentNode = this._nestedTreeConfig.findNodeById(categoryData.parentCategoryId);
                     }
 
                     // If the parentNode is still null it is tried to create the parent node out of the given id
                     if(isNullOrUndefined(parentNode))
                     {
-                        parentNode = this.nestedTreeConfig.findNodeById(parentNodeId);
+                        parentNode = this._nestedTreeConfig.findNodeById(parentNodeId);
                     }
 
                     // If the category has children the lazy-loading method will be added to the parent node
                     if(categoryData.hasChildren)
                     {
                         childNode.onLazyLoad = ():Observable<TerraPagerInterface<CategoryDataInterface>> =>
-                            this.getCategoriesByParentId(categoryData.id, categoryData.level + 1);
+                            this._getCategoriesByParentId(categoryData.id, categoryData.level + 1);
                     }
 
                     // The finished node is added to the node tree
-                    this.nestedTreeConfig.addNode(childNode, parentNode);
+                    this._nestedTreeConfig.addNode(childNode, parentNode);
                 }
             });
         }
         // Current List is updated
-        this.list = this.nestedTreeConfig.list;
+        this._list = this._nestedTreeConfig.list;
     }
 
-    private updateCompleteCategory(category:TerraNodeInterface<NestedDataInterface<CategoryDataInterface>>):void
+    private _updateCompleteCategory(category:TerraNodeInterface<NestedDataInterface<CategoryDataInterface>>):void
     {
-        this.completeCategory.id = +category.id;
-        this.completeCategory.isActive = category.isActive;
-        this.completeCategory.isOpen = category.isOpen;
-        this.completeCategory.isVisible = category.isVisible;
-        this.completeCategory.name = category.name;
-        this.completeCategory.tooltip = category.tooltip;
-        this.completeCategory.tooltipPlacement = category.tooltipPlacement;
+        this._completeCategory.id = +category.id;
+        this._completeCategory.isActive = category.isActive;
+        this._completeCategory.isOpen = category.isOpen;
+        this._completeCategory.isVisible = category.isVisible;
+        this._completeCategory.name = category.name;
+        this._completeCategory.tooltip = category.tooltip;
+        this._completeCategory.tooltipPlacement = category.tooltipPlacement;
     }
 
-    private getCategoriesByParentId(parentId:number | string, level:number):Observable<TerraPagerInterface<CategoryDataInterface>>
+    private _getCategoriesByParentId(parentId:number | string, level:number):Observable<TerraPagerInterface<CategoryDataInterface>>
     {
         return this.inputCategoryService.requestCategoryData(parentId, level).pipe(tap((data:TerraPagerInterface<CategoryDataInterface>) =>
         {
@@ -263,7 +260,7 @@ export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent
         }));
     }
 
-    private findCategoryDetails(categoryData:CategoryDataInterface):CategoryDetailDataInterface
+    private _findCategoryDetails(categoryData:CategoryDataInterface):CategoryDetailDataInterface
     {
         let categoryDetail:CategoryDetailDataInterface;
 
@@ -300,8 +297,7 @@ export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent
         return categoryDetail;
     }
 
-
-    private getCategoriesByParent():void
+    private _getCategoriesByParent():void
     {
         this.inputCategoryService.requestCategoryData(null, 1).subscribe((data:TerraPagerInterface<CategoryDataInterface>) =>
         {

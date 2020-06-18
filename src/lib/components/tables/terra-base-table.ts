@@ -14,15 +14,15 @@ export class TerraBaseTable<T>
     @Output()
     public outputRowCheckBoxChanged:EventEmitter<TerraDataTableRowInterface<T>> = new EventEmitter();
 
-    protected readonly rowList:Array<TerraDataTableRowInterface<T>>;
-    protected headerCheckbox:{ checked:boolean, isIndeterminate:boolean };
+    public _headerCheckbox:{ checked:boolean, isIndeterminate:boolean };
+    protected readonly _rowList:Array<TerraDataTableRowInterface<T>>;
 
     /**
      * @description Constructor initializing the table component
      */
     constructor()
     {
-        this.headerCheckbox = {
+        this._headerCheckbox = {
             checked:         false,
             isIndeterminate: false
         };
@@ -30,22 +30,21 @@ export class TerraBaseTable<T>
 
     /**
      * @description Getter for selectedRowList
-     * @returns {Array<TerraDataTableRowInterface<T>>}
      */
     public get selectedRowList():Array<TerraDataTableRowInterface<T>>
     {
-        if(isNullOrUndefined(this.rowList))
+        if(isNullOrUndefined(this._rowList))
         {
             return [];
         }
-        return this.rowList.filter((row:TerraDataTableRowInterface<T>) => row.selected);
+        return this._rowList.filter((row:TerraDataTableRowInterface<T>) => row.selected);
     }
 
     public rowClicked(row:TerraDataTableRowInterface<T>):void
     {
         if(!row.disabled)
         {
-            this.rowList.forEach((r:TerraDataTableRowInterface<T>) =>
+            this._rowList.forEach((r:TerraDataTableRowInterface<T>) =>
             {
                 r.isActive = false;
             });
@@ -68,25 +67,25 @@ export class TerraBaseTable<T>
         row.selected = !row.selected;
 
         // update header checkbox state
-        this.updateHeaderCheckboxState();
+        this._updateHeaderCheckboxState();
     }
 
-    protected onHeaderCheckboxChange():void
+    public _onHeaderCheckboxChange():void
     {
-        if(this.headerCheckbox.checked)
+        if(this._headerCheckbox.checked)
         {
-            this.resetSelectedRows();
+            this._resetSelectedRows();
         }
         else
         {
-            this.selectAllRows();
+            this._selectAllRows();
         }
     }
 
-    protected resetSelectedRows():void
+    protected _resetSelectedRows():void
     {
         // reset selected rows which are not disabled
-        this.rowList.forEach((row:TerraDataTableRowInterface<T>) =>
+        this._rowList.forEach((row:TerraDataTableRowInterface<T>) =>
         {
             if(!row.disabled)
             {
@@ -95,48 +94,48 @@ export class TerraBaseTable<T>
         });
 
         // evaluate new header checkbox state
-        this.updateHeaderCheckboxState();
+        this._updateHeaderCheckboxState();
     }
 
-    private checkHeaderCheckbox():void
+    private _checkHeaderCheckbox():void
     {
-        this.headerCheckbox.checked = true;
-        this.headerCheckbox.isIndeterminate = false;
+        this._headerCheckbox.checked = true;
+        this._headerCheckbox.isIndeterminate = false;
     }
 
-    private uncheckHeaderCheckbox():void
+    private _uncheckHeaderCheckbox():void
     {
-        this.headerCheckbox.checked = false;
-        this.headerCheckbox.isIndeterminate = false;
+        this._headerCheckbox.checked = false;
+        this._headerCheckbox.isIndeterminate = false;
     }
 
-    private setHeaderCheckboxIndeterminate():void
+    private _setHeaderCheckboxIndeterminate():void
     {
-        this.headerCheckbox.checked = false;
-        this.headerCheckbox.isIndeterminate = true;
+        this._headerCheckbox.checked = false;
+        this._headerCheckbox.isIndeterminate = true;
     }
 
-    private updateHeaderCheckboxState():void
+    private _updateHeaderCheckboxState():void
     {
         let selectedRowsCount:number = this.selectedRowList.length;
         if(selectedRowsCount === 0) // anything selected?
         {
-            this.uncheckHeaderCheckbox();
+            this._uncheckHeaderCheckbox();
         }
-        else if(selectedRowsCount > 0 && this.rowList.length === selectedRowsCount) // all selected?
+        else if(selectedRowsCount > 0 && this._rowList.length === selectedRowsCount) // all selected?
         {
-            this.checkHeaderCheckbox();
+            this._checkHeaderCheckbox();
         }
         else // some rows selected -> indeterminate
         {
-            this.setHeaderCheckboxIndeterminate();
+            this._setHeaderCheckboxIndeterminate();
         }
     }
 
-    private selectAllRows():void
+    private _selectAllRows():void
     {
         // select all rows which are not disabled
-        this.rowList.forEach((row:TerraDataTableRowInterface<T>) =>
+        this._rowList.forEach((row:TerraDataTableRowInterface<T>) =>
         {
             if(!row.disabled)
             {
@@ -145,6 +144,6 @@ export class TerraBaseTable<T>
         });
 
         // evaluate new header checkbox state
-        this.updateHeaderCheckboxState();
+        this._updateHeaderCheckboxState();
     }
 }

@@ -3,7 +3,7 @@
     margin-bottom: 12px;
     flex-wrap: initial !important;
     align-items: initial !important;
-    
+
     & > .input-group-text
     {
         width: 100%;
@@ -20,20 +20,20 @@
         background-color: initial;
         border: initial;
         border-radius: initial;
-        
+
         .input-wrapper,
         .select-box-wrapper,
         .btn
         {
             margin-bottom: 0;
         }
-        
+
     }
-    
+
     & > .input-group-btn
     {
         width: auto;
-        
+
         .input-wrapper,
         .select-box-wrapper,
         .btn

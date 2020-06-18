@@ -5,11 +5,11 @@
                           [inputIsDisabled]="inputIsDisabled"
                           inputTooltipText="{{inputTooltipText}}"
                           [inputName]="inputName"
-                          [(ngModel)]="nestedDataName"
+                          [(ngModel)]="_nestedDataName"
                           (click)="showTree()">
         </terra-text-input>
         <terra-button *ngIf="displayResetButton" class="col-md-1"
-                      inputTooltipText="{{'cancel' | translate:lang}}"
+                      inputTooltipText="{{'cancel' | translate:_lang}}"
                       inputTooltipPlacement="top"
                       inputIcon="icon-cancel"
                       (outputClicked)="reset()">
@@ -18,24 +18,23 @@
     <div [hidden]="!toggleTree" class="tree-dropdown">
         <div class="terra-node-tree-wrapper">
             <terra-node-tree [inputShowSearch]="displaySearch"
-                             [inputConfig]="nestedTreeConfig">
+                             [inputConfig]="_nestedTreeConfig">
             </terra-node-tree>
         </div>
         <terra-base-toolbar>
-            <terra-button inputTooltipText="{{'terraNestedDataPicker.select' | translate:lang}}"
+            <terra-button inputTooltipText="{{'terraNestedDataPicker.select' | translate:_lang}}"
                           inputTooltipPlacement="top"
                           inputIcon="icon-success"
                           [inputIsSmall]="true"
-                          [inputIsDisabled]="isContainerDataSelected"
                           (outputClicked)="onSelectNode()">
             </terra-button>
-            <terra-button inputTooltipText="{{'cancel' | translate:lang}}"
+            <terra-button inputTooltipText="{{'cancel' | translate:_lang}}"
                           inputTooltipPlacement="top"
                           inputIcon="icon-cancel"
                           [inputIsSmall]="true"
                           (outputClicked)="showTree()">
             </terra-button>
-            <terra-button inputTooltipText="{{'terraNestedDataPicker.reset' | translate:lang}}"
+            <terra-button inputTooltipText="{{'terraNestedDataPicker.reset' | translate:_lang}}"
                           inputTooltipPlacement="top"
                           inputIcon="icon-reset"
                           [inputIsSmall]="true"

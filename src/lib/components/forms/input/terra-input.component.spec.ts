@@ -4,7 +4,6 @@ import {
     FormControl,
     Validators
 } from '@angular/forms';
-import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum';
 
 describe('TerraInputComponent', () =>
 {

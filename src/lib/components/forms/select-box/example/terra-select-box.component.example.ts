@@ -7,19 +7,19 @@ import { AllowedColors } from '../data/allowed.colors.enum';
 
 @Component({
     selector: 'terra-select-box-example',
-    styles:   [require('./terra-select-box.component.example.scss')],
-    template: require('./terra-select-box.component.example.html'),
+    styleUrls: [ './terra-select-box.component.example.scss'],
+    templateUrl: './terra-select-box.component.example.html',
 })
 export class TerraSelectBoxComponentExample implements OnInit
 {
-    protected selectBoxValueList:Array<TerraSelectBoxValueInterface> = [];
-    protected coloredSelectBoxValueList:Array<TerraSelectBoxValueInterface> = [];
-    protected selectedValue:string;
-    protected selectedWebstore:boolean;
+    public _selectBoxValueList:Array<TerraSelectBoxValueInterface> = [];
+    public _coloredSelectBoxValueList:Array<TerraSelectBoxValueInterface> = [];
+    public _selectedValue:string;
+    public _selectedWebstore:boolean;
 
     public ngOnInit():void
     {
-        this.selectBoxValueList.push(
+        this._selectBoxValueList.push(
             {
                 value:   'en',
                 caption: 'english'
@@ -29,7 +29,7 @@ export class TerraSelectBoxComponentExample implements OnInit
                 caption: 'german'
             }
         );
-        this.coloredSelectBoxValueList.push(
+        this._coloredSelectBoxValueList.push(
             {
                 value: true,
                 caption: 'webshop 1'

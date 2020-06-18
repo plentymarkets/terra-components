@@ -5,22 +5,22 @@ import {
 import { TerraSelectBoxValueInterface } from '../../forms/select-box/data/terra-select-box.interface';
 
 @Component({
-    selector: 'terra-filter-example',
-    styles:   [require('./terra-filter.component.example.scss')],
-    template: require('./terra-filter.component.example.html'),
+    selector:    'terra-filter-example',
+    styleUrls:   ['./terra-filter.component.example.scss'],
+    templateUrl: './terra-filter.component.example.html',
 })
 export class TerraFilterComponentExample implements OnInit
 {
-    protected name:string = '';
+    public _name:string = '';
 
-    protected listBoxValues:Array<TerraSelectBoxValueInterface> = [];
-    protected selectedListBoxValue:number = 1;
+    public _listBoxValues:Array<TerraSelectBoxValueInterface> = [];
+    public _selectedListBoxValue:number = 1;
 
     public ngOnInit():void
     {
         for(let i:number = 1; i < 4; i++)
         {
-            this.listBoxValues.push(
+            this._listBoxValues.push(
                 {
                     value:   'test' + i,
                     caption: 'Test' + i
@@ -29,18 +29,18 @@ export class TerraFilterComponentExample implements OnInit
         }
     }
 
-    protected onResetBtnClicked():void
+    public _onResetBtnClicked():void
     {
         return;
     }
 
-    protected onSubmit():void
+    public _onSubmit():void
     {
-        this.onSearchBtnClicked();
+        this._onSearchBtnClicked();
     }
 
-    private onSearchBtnClicked():void
+    public _onSearchBtnClicked():void
     {
-        alert('filtered for ' + this.selectedListBoxValue);
+        alert('filtered for ' + this._selectedListBoxValue);
     }
 }

@@ -2142,5 +2142,73 @@
   {
     "name": "icon-zoom",
     "description": ""
+  },
+  {
+    "name": "icon-content_my_account",
+    "description": ""
+  },
+  {
+    "name": "icon-content_check_out",
+    "description": ""
+  },
+  {
+    "name": "icon-content_category",
+    "description": ""
+  },
+  {
+    "name": "icon-content_search",
+    "description": ""
+  },
+  {
+    "name": "icon-content_itemset",
+    "description": ""
+  },
+  {
+    "name": "icon-content_item",
+    "description": ""
+  },
+  {
+    "name": "icon-content",
+    "description": ""
+  },
+  {
+    "name": "icon-new_order",
+    "description": ""
+  },
+  {
+    "name": "icon-reply_all",
+    "description": ""
+  },
+  {
+    "name": "icon-reply",
+    "description": ""
+  },
+  {
+    "name": "icon-table_sort_desc",
+    "description": ""
+  },
+  {
+    "name": "icon-table_sort_asc",
+    "description": ""
+  },
+  {
+    "name": "icon-table_sort",
+    "description": ""
+  },
+  {
+    "name": "icon-auslog",
+    "description": ""
+  },
+  {
+    "name": "icon-einlog",
+    "description": ""
+  },
+  {
+    "name": "icon-footer",
+    "description": ""
+  },
+  {
+    "name": "icon-header",
+    "description": ""
   }
 ]

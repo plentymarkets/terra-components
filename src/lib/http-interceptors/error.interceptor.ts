@@ -17,15 +17,18 @@ import {
 } from 'angular-l10n';
 import { Injectable } from '@angular/core';
 import { DispatchHelper } from '../helpers/dispatch.helper';
+import { environment } from '../environments/environment';
 
 /**
- * @description HttpInterceptor that handles some specific errors that may occur when requesting data from a plentymarkets system. It also logs
- *     errors to the console when serving in development mode.
+ * @description HttpInterceptor that handles some specific errors that may occur when requesting data from a plentymarkets system. It also
+ *     logs errors to the console when serving in development mode.
  */
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor
 {
-    constructor(private alertService:AlertService, private translation:TranslationService, private locale:LocaleService)
+    constructor(private _alertService:AlertService,
+                private _translation:TranslationService,
+                private _locale:LocaleService)
     {}
 
     public intercept(req:HttpRequest<any>, next:HttpHandler):Observable<HttpEvent<any>>
@@ -33,7 +36,7 @@ export class ErrorInterceptor implements HttpInterceptor
         return next.handle(req).pipe(
             catchError((error:HttpErrorResponse) =>
             {
-                if(process.env.ENV === 'development')
+                if(!environment.test) // TODO: this may be misinterpreted in Terra
                 {
                     console.error(error);
                 }
@@ -41,7 +44,7 @@ export class ErrorInterceptor implements HttpInterceptor
                 // http status 401 Unauthorized
                 if(error.status === 401)
                 {
-                    this.alertService.error(this.translation.translate('errorInterceptor.unauthorized'));
+                    this._alertService.error(this._translation.translate('errorInterceptor.unauthorized'));
 
                     DispatchHelper.dispatchEvent(new CustomEvent('routeToLogin'));
                 }
@@ -52,16 +55,18 @@ export class ErrorInterceptor implements HttpInterceptor
                     const missingPermissionsKey:string = 'missing_permissions';
                     if(error.error && error.error['error'] && error.error['error'][missingPermissionsKey])
                     {
-                        let errorMessage:string = this.translation.translate('errorInterceptor.missingPermissions');
+                        let errorMessage:string = this._translation.translate('errorInterceptor.missingPermissions');
                         let missingPermissions:{ [key:string]:{ [lang:string]:string } } = error.error['error'][missingPermissionsKey];
-                        let translations:Array<string> = this.getMissingPermissionTranslations(missingPermissions, this.locale.getCurrentLanguage());
+                        let translations:Array<string> =
+                            this._getMissingPermissionTranslations(missingPermissions, this._locale.getCurrentLanguage());
+
                         const separator:string = '<br/> • ';
                         errorMessage += separator + translations.reverse().join('<br/> • ');
-                        this.alertService.error(this.translation.translate(errorMessage));
+                        this._alertService.error(this._translation.translate(errorMessage));
                     }
                     else
                     {
-                        this.alertService.error(this.translation.translate('errorInterceptor.forbidden'));
+                        this._alertService.error(this._translation.translate('errorInterceptor.forbidden'));
                     }
 
                 }
@@ -72,7 +77,7 @@ export class ErrorInterceptor implements HttpInterceptor
         );
     }
 
-    private getMissingPermissionTranslations(missingPermissions:{ [key:string]:{ [lang:string]:string } }, lang:string = 'en'):Array<string>
+    private _getMissingPermissionTranslations(missingPermissions:{ [key:string]:{ [lang:string]:string } }, lang:string = 'en'):Array<string>
     {
         return Object.values(missingPermissions).map((missingPermission:{ lang:string }) => missingPermission[lang]);
     }

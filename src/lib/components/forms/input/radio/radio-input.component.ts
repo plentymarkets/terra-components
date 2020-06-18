@@ -14,8 +14,8 @@ let nextId:number = 0;
  */
 @Component({
     selector: 'tc-radio-input',
-    template: require('./radio-input.component.html'),
-    styles:   [require('./radio-input.component.scss')],
+    templateUrl: './radio-input.component.html',
+    styleUrls: [ './radio-input.component.scss'],
 })
 export class RadioInputComponent
 {
@@ -41,11 +41,11 @@ export class RadioInputComponent
     /**
      * unique identifier of this input instance
      */
-    protected readonly id:string;
+    public readonly _id:string;
 
-    constructor(@Host() protected group:RadioGroupComponent)
+    constructor(@Host() public _group:RadioGroupComponent)
     {
         // generate the id of the input instance
-        this.id = `radio-input#${nextId++}`;
+        this._id = `radio-input#${nextId++}`;
     }
 }

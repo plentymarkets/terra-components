@@ -5,7 +5,7 @@ import {
 import { TerraControlTypeEnum } from '../enum/terra-control-type.enum';
 
 /**
- * @author dtrauf
+ * @deprecated since v5.0.0. Use terra-form instead.
  */
 export interface TerraFormFieldInputDoubleOptions extends TerraFormFieldBaseOptions<number>
 {
@@ -14,6 +14,9 @@ export interface TerraFormFieldInputDoubleOptions extends TerraFormFieldBaseOpti
     decimalCount?:number;
 }
 
+/**
+ * @deprecated since v5.0.0. Use terra-form instead.
+ */
 export class TerraFormFieldInputDouble extends TerraFormFieldBase<number>
 {
     public type:string;

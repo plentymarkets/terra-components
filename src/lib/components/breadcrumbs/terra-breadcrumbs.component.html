@@ -1,6 +1,6 @@
 <div class="terra-breadcrumbs-wrapper main-breadcrumbs">
     <ul class="terra-breadcrumbs breadcrumbs-overflow-auto">
-        <ng-container *ngFor="let container of breadcrumbContainers; let i = index">
+        <ng-container *ngFor="let container of _breadcrumbContainers; let i = index">
             <li class="terra-breadcrumb-container" *ngIf="container.visibleBreadcrumbsCount > 0 && !container.isHidden" #breadcrumbContainer>
                 <div class="terra-breadcrumb-wrapper">
                     <a class="terra-breadcrumb"
@@ -8,27 +8,27 @@
                        [queryParams]="container.currentSelectedBreadcrumb.queryParams"
                        [tcTooltip]="container.currentSelectedBreadcrumb.name"
                        [onlyEllipsisTooltip]="true"
-                       [ngClass]="{'active' : checkActiveRoute(container.currentSelectedBreadcrumb, breadcrumbContainer)}">
+                       [ngClass]="{'active' : _checkActiveRoute(container.currentSelectedBreadcrumb, breadcrumbContainer)}">
                         {{container.currentSelectedBreadcrumb.name}}
                     </a>
                     <a *ngIf="container.visibleBreadcrumbsCount > 1"
                        class="icon-caret"
-                       (mouseenter)="calculatePosition(breadcrumbContainer, contextMenu)">
-                        <ul class="context-menu" [ngStyle]="{'left': mouseLeft}" #contextMenu>
+                       (mouseenter)="_calculatePosition(breadcrumbContainer, contextMenu)">
+                        <ul class="context-menu" [ngStyle]="{'left': _mouseLeft}" #contextMenu>
                             <ng-template ngFor let-breadcrumb [ngForOf]="container.breadcrumbList">
                                 <li *ngIf="!breadcrumb.isHidden">
                                     <a [routerLink]="breadcrumb.routerLink"
                                        [queryParams]="breadcrumb.queryParams">
                                         {{ breadcrumb.name }}
                                     </a>
-                                    <span class="right-icon icon-cancel" (click)="closeBreadcrumb(container, breadcrumb, $event)"></span>
+                                    <span class="right-icon icon-cancel" (click)="_closeBreadcrumb(container, breadcrumb, $event)"></span>
                                 </li>
                             </ng-template>
                         </ul>
                     </a>
                 </div>
             </li>
-            <li class="terra-breadcrumb-container" *ngIf="checkLastBreadcrumbContainer(i) && !container.isHidden">
+            <li class="terra-breadcrumb-container" *ngIf="_checkLastBreadcrumbContainer(i) && !container.isHidden">
                 <a class="terra-breadcrumb icon-next"></a>
             </li>
         </ng-container>

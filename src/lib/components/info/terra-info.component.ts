@@ -5,15 +5,12 @@ import {
 import { TerraPlacementEnum } from '../../helpers/enums/terra-placement.enum';
 
 @Component({
-    selector: 'terra-info',
-    styles:   [require('./terra-info.component.scss')],
-    template: require('./terra-info.component.html')
+    selector:    'terra-info',
+    styleUrls:   ['./terra-info.component.scss'],
+    templateUrl: './terra-info.component.html'
 })
 export class TerraInfoComponent
 {
-    /**
-     * @deprecated since v4. Is replaced by the TooltipDirective and will be removed with the next major version.
-     */
     @Input()
     public textPlacement:TerraPlacementEnum;
 

@@ -1,3 +1,3 @@
-<terra-button [inputCaption]="'Start loading'" (click)="service.start()"></terra-button>
-<terra-button [inputCaption]="'Stop loading'" (click)="service.stop()"></terra-button>
-<terra-loading-spinner *ngIf="service.observable | async"></terra-loading-spinner>
+<terra-button [inputCaption]="'Start loading'" (click)="_service.start()"></terra-button>
+<terra-button [inputCaption]="'Stop loading'" (click)="_service.stop()"></terra-button>
+<terra-loading-spinner *ngIf="_service.observable | async"></terra-loading-spinner>

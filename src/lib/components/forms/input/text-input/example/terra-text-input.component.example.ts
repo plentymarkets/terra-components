@@ -5,21 +5,21 @@ import {
 
 @Component({
     selector: 'terra-text-input-example',
-    styles:   [require('./terra-text-input.component.example.scss')],
-    template: require('./terra-text-input.component.example.html'),
+    styleUrls: [ './terra-text-input.component.example.scss'],
+    templateUrl: './terra-text-input.component.example.html',
 })
 export class TerraTextInputComponentExample implements OnInit
 {
-    public readOnlyFieldText:string;
-    public username:string;
+    public _readOnlyFieldText:string;
+    public _username:string;
 
     public ngOnInit():void
     {
-        this.readOnlyFieldText = 'this text is not editable';
+        this._readOnlyFieldText = 'this text is not editable';
     }
 
     public showUsername():void
     {
-        alert('Username: ' + this.username);
+        alert('Username: ' + this._username);
     }
 }

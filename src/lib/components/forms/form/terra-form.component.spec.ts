@@ -4,12 +4,23 @@ import { TerraFormFieldInterface } from './model/terra-form-field.interface';
 import { TerraFormFieldBase } from '../dynamic-form/data/terra-form-field-base';
 import { TerraFormTypeMap } from './model/terra-form-type-map.enum';
 import { FormTypeMap } from './model/form-type-map';
-import { SimpleChange } from '@angular/core';
+import {
+    DebugElement,
+    NO_ERRORS_SCHEMA,
+    SimpleChange
+} from '@angular/core';
+import {
+    ComponentFixture,
+    TestBed
+} from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import { TerraFormContainerComponent } from './form-container/terra-form-container.component';
 import Spy = jasmine.Spy;
 
 describe(`TerraFormComponent:`, () =>
 {
     let component:TerraFormComponent;
+    let fixture:ComponentFixture<TerraFormComponent>;
     const formFields:{ [key:string]:TerraFormFieldInterface } = {
         control1: {type: 'text', defaultValue: 'one'},
         control2: {type: 'text', defaultValue: 'two'}
@@ -17,7 +28,12 @@ describe(`TerraFormComponent:`, () =>
 
     beforeEach(() =>
     {
-        component = new TerraFormComponent();
+        fixture = TestBed.configureTestingModule({
+            schemas:      [NO_ERRORS_SCHEMA],
+            declarations: [TerraFormComponent, TerraFormContainerComponent]
+        }).createComponent(TerraFormComponent);
+
+        component = fixture.componentInstance;
     });
 
     it('should create', () =>
@@ -37,7 +53,7 @@ describe(`TerraFormComponent:`, () =>
         spyOn(console, 'warn'); // disable console outputs to prevent deprecation warnings to be printed in the terminal
         component.ngOnChanges({});
         component.ngOnInit();
-        expect(component['controlTypeMap']).toEqual(new TerraFormTypeMap());
+        expect(component._controlTypeMap).toEqual(new TerraFormTypeMap());
         expect(console.warn).toHaveBeenCalledTimes(2);
     });
 
@@ -47,20 +63,28 @@ describe(`TerraFormComponent:`, () =>
         component.inputControlTypeMap = typeMap;
         component.ngOnChanges({inputControlTypeMap: new SimpleChange(null, typeMap, false)});
         component.ngOnInit();
-        expect(component['controlTypeMap']).toBe(typeMap);
+        expect(component._controlTypeMap).toBe(typeMap);
     });
 
-    describe('with formFields', () =>
+    it('should wrap the #TerraFormContainerComponent in a div-element with a `container-fluid`-class', () =>
+    {
+        const containerFluid:DebugElement = fixture.debugElement.query(By.css('.container-fluid'));
+        expect(containerFluid).toBeTruthy();
+        const formContainer:TerraFormContainerComponent = containerFluid.query(By.directive(TerraFormContainerComponent)).componentInstance;
+        expect(formContainer).toBeTruthy();
+    });
+
+    describe('with _formFields', () =>
     {
         beforeEach(() => component.inputFormFields = formFields);
 
-        it('setting #inputFormFields creates a reactive #formGroup instance containing all the given form fields', () =>
+        it('setting #inputFormFields creates a reactive #_formGroup instance containing all the given form fields', () =>
         {
             expect(component.formGroup).toBeDefined();
             Object.keys(formFields).forEach((formFieldKey:string) => expect(component.formGroup.contains(formFieldKey)));
         });
 
-        it('writing values to the model via #writeValue should patchValues in #formGroup and change scope-data', () =>
+        it('writing values to the model via #writeValue should patchValues in #_formGroup and change scope-data', () =>
         {
             let mockValues:any = {control1: 'one', control2: 'two'};
             spyOn(component.formGroup, 'patchValue').and.callThrough();
@@ -72,7 +96,7 @@ describe(`TerraFormComponent:`, () =>
             expect(component.formGroup.value).toEqual(mockValues);
         });
 
-        it('writing `null` to the model via #writeValue resets the #formGroup to the default values of the given formFields', () =>
+        it('writing `null` to the model via #writeValue resets the #_formGroup to the default values of the given _formFields', () =>
         {
             const defaultValues:any = {control1: 'one', control2: 'two'};
             spyOn(component.formGroup, 'reset').and.callThrough();

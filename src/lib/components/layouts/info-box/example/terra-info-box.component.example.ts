@@ -4,17 +4,17 @@ import { TerraButtonInterface } from '../../../buttons/button/data/terra-button.
 
 @Component({
     selector: 'terra-info-box-example',
-    styles:   [require('./terra-info-box.component.example.scss')],
-    template: require('./terra-info-box.component.example.html')
+    styleUrls: [ './terra-info-box.component.example.scss'],
+    templateUrl: './terra-info-box.component.example.html'
 })
-export class TerraInfoboxComponentExample
+export class TerraInfoBoxComponentExample
 {
-    public tagList:Array<TerraTagInterface> = [];
-    public buttonList:Array<TerraButtonInterface> = [];
+    public _tagList:Array<TerraTagInterface> = [];
+    public _buttonList:Array<TerraButtonInterface> = [];
 
     constructor()
     {
-        this.tagList.push(
+        this._tagList.push(
             {
                 name:  'Terra',
                 color: 'green'
@@ -23,7 +23,7 @@ export class TerraInfoboxComponentExample
                 name:  'Plenty',
                 color: 'red'
             });
-        this.buttonList.push(
+        this._buttonList.push(
             {
                 caption:       'Terra',
                 icon:          'icon-plugin_not_productive',

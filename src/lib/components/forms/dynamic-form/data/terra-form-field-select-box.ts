@@ -6,14 +6,16 @@ import { TerraSelectBoxValueInterface } from '../../select-box/data/terra-select
 import { TerraControlTypeEnum } from '../enum/terra-control-type.enum';
 
 /**
- * @author mfrank
+ * @deprecated since v5.0.0. Use terra-form instead.
  */
-
 export interface TerraFormFieldSelectBoxOptions extends TerraFormFieldBaseOptions<any>
 {
     selectBoxValues?:Array<TerraSelectBoxValueInterface>;
 }
 
+/**
+ * @deprecated since v5.0.0. Use terra-form instead.
+ */
 export class TerraFormFieldSelectBox extends TerraFormFieldBase<any>
 {
     public selectBoxValues:Array<TerraSelectBoxValueInterface>;

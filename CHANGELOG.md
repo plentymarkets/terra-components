@@ -1,9 +1,186 @@
-<a name="4.4.0"></a>
-# 4.4.0 (XX.XX.2019)
+# 5.4.0 (XX.XX.2020)
 
 ### Features
+* **tooltip** removed warning and all deprecations for tooltip placement.
+* **mat-table** styles for the [angular material table](https://v8.material.angular.io/components/table/overview).
+* **mat-checkbox** styles for the [angular material checkbox](https://v8.material.angular.io/components/checkbox/overview).
+* **table** introduced several new classes to simplify the creation of an angular material table data source for plentymarkets REST-APIs.
+    - **TableDataSource** adding basic support for filtering.
+    - **TablePagingDataSource** supports filtering and paging.
+    - **TableSortingDataSource** supports filtering and sorting.
+    - **TablePagingSortingDataSource** supports filtering, paging and sorting.
+* **peerDependencies**
+    - removed `jquery` since we no longer depend on it.
+    - removed `path` since we no longer depend on it.
+* **terra-dynamic-component-loader** is deprecated now. Use angular's [NgComponentOutlet](https://angular.io/api/common/NgComponentOutlet) instead.
+* **terra-toggle** is deprecated now. Use angular material's [slide-toggle](https://material.angular.io/components/slide-toggle) instead.
+* **terra-category-picker** removed provider for `TerraNodeTreeConfig` since it was not used anymore.
+* **terra-overlay** is deprecated now. Use angular material's [dialog](https://material.angular.io/components/dialog) instead.
+* **terra-input** is deprecated now. Use angular material's [input](https://material.angular.io/components/input) instead.
 * **selectSort** new pipe for sorting lists of available options for a select box.
 * **SortHelper** new class that provides functionality to sort lists of numbers, strings and objects.
+
+### Bug Fixes
+* **mat-input** do not color an invalid input's underline red until it has been touched.
+
+# 5.3.0 (24.04.2020)
+
+### Features
+* **terra-alert-panel** use native [bootstrap](https://getbootstrap.com/) alert instead of the alert component provided by [ngx-bootstrap](https://valor-software.com/ngx-bootstrap).
+
+### Bug Fixes
+* **terra-portlet** remove overflow
+
+# 5.2.0 (20.04.2020)
+
+### Features
+* **terra-loading-spinner** when using the service in a plentymarkets plugin ui, it now automatically notifies the parent application about the loading status.
+* **terraDraggable** deprecate directive.
+* **terraDropzone** deprecate directive.
+* **terraResizable** deprecate directive.
+
+### Bug Fixes
+* **terra-portlet** removed overflow
+* **terra-node-tree** fixed error that was thrown when the user searches for a node and one of the node's name was undefined.
+* **terra-two-columns-container** updated outer paddings
+* **terra-three-columns-container** updated outer paddings
+* **terra-stopwatch**
+    - you are now able to import `TerraStopwatchComponent` from _@plentymarkets/terra-components_.
+    - prevent starting the timer more than once.
+    - does not use `TerraButtonComponent`'s deprecated `inputTooltipPlacement` anymore.
+
+<a name="5.1.0"></a>
+# 5.1.0 (11.03.2020)
+
+### Features
+* **peerDependencies** removed `flatted` since we no longer depend on it.
+* **mat-dialog** styles for the [angular material dialog](https://v8.material.angular.io/components/dialog/overview).
+* **checkbox-group** Checkbox values are no longer appended every time checkboxes are selected. The sorting is preserved instead. 
+
+### Bug Fixes
+* **matInput** fixed placeholder styling.
+* **terra-portlet** using `border-bottom` on `portlet-head` when unfolded instead of `border-top` on `portlet-body`.
+* **security-vulnerability** dependency package `acorn
+
+<a name="5.0.0"></a>
+# 5.0.0 (20.02.2020)
+
+### Breaking Changes
+* **build** Terra-Components is now fully AOT compatible. 
+Terra-Components now complies with the angular package format and code autocompletion should work fine in your angular app.
+* **styles** Style files such as styles/styles.scss, styles/icons.scss and styles/theme-loader.scss are now .css files rather than .scss files.
+* **dependencies** Every dependency of Terra-Components now is a peer dependency. You need to install these dependencies in your project.
+* **terra-data-table** removed deprecated input `isSticky` sticky. No replacement will be provided for now. 
+* **float-thead** removed the directive. No replacement will be provided for now.
+* **terra-date-picker** deprecated. Use [angular material datepicker](https://material.angular.io/components/datepicker/overview) instead.
+* **terra-multi-split-view** removed deprecated terra-multi-split-view. See [SplitView migration guide](https://developers.plentymarkets.com/dev-doc/split-view-migration-guide) for upgrade.
+* **TerraBaseStorageService** removed extension to TerraBaseService. Instead make use of the new HttpClient in all derived classes (e.g. TerraFrontendStorageService). 
+* **http** removed deprecated TerraBaseService and @angular/http dependency. See [TerraBaseService migration guide](https://developers.plentymarkets.com/dev-doc/migration-tbs-to-http-client) for instructions to replace it.
+* **dependencies** Updated [angular](https://github.com/angular/angular) and [angular-l10n](https://github.com/robisim74/angular-l10n) to v8. Please visit https://update.angular.io to figure out how to update your app to angular v8.
+
+### Features
+* **space-variables** Added new space variables that are not affected by compact-mode, like var(--space-md-fix)
+* **mat-date-picker** styles for the [angular material datepicker](https://material.angular.io/components/datepicker/overview).
+* **matInput** updated styles to match `mat-date-picker`, `mat-select` and `matInput` appearance.
+* **mat-slide-toggle** styles for the [angular material slide toggle](https://material.angular.io/components/slide-toggle/overview).
+* **terra-form** Added input `width` that sets the default width of any form element inside the form.
+* **terra-button-with-options** Added output property `optionsToggled` emitting current toggle state after options are toggled.
+* **tippy.js** Updated `tippy.js` to version 5.1.4.
+* **theme-core** Added rgb-variables for function group colors to enable alpha adjustment.
+
+### Fix
+* **terra-base-editor** removed unnecessary quill style import
+* **terra-file-browser** Fixed deleting directories, sent only directories without children.
+* **material-tabs** fixed min-width of tabs
+* **material-forms** removed custom paddings to avoid problems in compact-theme
+* **terra-form**
+    - fixed validation issues caused by invisible form fields.
+    - fixed inconsistency when treating the value of invisible form fields.
+* **terra-file-browser** resolved circular dependency between _terra-file-browser.component.ts_ and _file-list.component.ts_.
+* **material-tabs** fixed hiding the mat-ink-bar in mat-tabs
+* **terra-file-browser** changed parameter of delete method in TerraFrontendStorageService
+* **utils** fixed encoding of http params. Implemented a custom encoder.
+
+<a name="4.9.0"></a>
+# 4.9.0 (29.01.2020)
+
+### Features
+* **terra-syntax-editor** is now deprecated. Use [ckEditor](https://github.com/ckeditor/ckeditor4-angular) instead.
+* **icon** new icon 'content_item'.
+* **icon** new icon 'content_itemset'.
+
+<a name="4.8.2"></a>
+# 4.8.2 (08.01.2020)
+
+### Bug Fixes
+* **http-interceptors** added missing dependencies to their providers. You can now actually use the `httpInterceptorProviders` constant to make use of the `Auth`-, `Error`- and `LoadingInterceptor` in your app.
+
+<a name="4.8.1"></a>
+# 4.8.1 (07.01.2020)
+
+### Bug Fixes
+ * **terra-portlets** removed negative margins from nested containers (portlets, toolbars, tables, infoboxes, pager)
+
+<a name="4.8.0"></a>
+# 4.8.0 (20.12.2019)
+
+### Features
+* **terra-toggle** Added active/inactive color to disabled state.
+* **terra-portlet** Now supports styling of info-boxes and tables inside it.
+* **icon** new icon 'content_search'.
+* **bootstrap** adjusted spacing for the grid classes
+
+### Bug Fixes
+* **terra-portlet**
+    - styling of hover-state and info-handler in portlet header
+    - styling of tables, toolbars and info-boxes inside portlets
+
+<a name="4.7.0"></a>
+# 4.7.0 (14.11.2019)
+
+### Features
+* **file-browser** Allow alternative text for files with .webp extension
+* **terra-portlet** updated header style
+* **terra-data-table** input `isSticky` is now deprecated.
+* **float-thead** the directive is now deprecated.
+* **tabs** new styling of angular material tabs. [See the oficial documentation.](https://v7.material.angular.io/components/tabs/overview)
+
+### Bug Fixes
+* **terra-button-with-options** `isHidden` option is now interpreted correctly.
+* **inputs** Tabindex of labels set to -1 to avoid tab focus in a form.
+* **file-browser** Restrict number of parallel uploads
+* **terra-date-picker** Fixed style of placeholder.
+
+<a name="4.6.0"></a>
+# 4.6.0 (30.10.2019)
+
+### Features
+* **validators** New `uniqueValues` validator which checks if the values of a FormArray are unique.
+* **terra-pager** Using its own SCSS variables now.
+* **utils** provide new `createHttpParams()` method which replaces the deprecated `createUrlSearchParams()` of the `TerraBaseService`
+
+### Bug Fixes
+* **radio-group** Adjusted height of `<legend>` and only is rendered when content is available.
+
+<a name="4.5.0"></a>
+# 4.5.0 (09.10.2019)
+
+### Features
+* **icon** new icon 'content_category'
+* **terra-text-input** set as deprecated. Can be replaced by using the [angular material input](https://material.angular.io/components/input/overview).
+* **terra-info-box** new design to stop overlapping between button-hover-color and card-selected-color
+
+### Bug Fixes
+* **terra-checkbox** fixed indeterminate style and hover style when disabled.
+* **terra-breadcrumbs** extended caret hover to breadcrumbs-wrapper for easier navigation
+
+<a name="4.4.0"></a>
+# 4.4.0 (25.09.2019)
+### Feature
+* **terra-form** Added the possibility to include a suggestion box with the terra form
+
+<a name="4.3.2"></a>
+# 4.3.2 (18.09.2019)
 
 ### Bug Fixes
 * **tcTooltip** hide tooltip when routing
@@ -13,11 +190,14 @@
 
 #Feature
 * **tcTooltip** Support templates as tooltip. Added examples.
+* **base-toolbar** added sticky behaviour
 
 ### Bug Fixes
 
 * **multi-split-view** using styles of terra-breadcrumbs now
 * **toggle-button** fix tooltip
+* **data-table** removed broken mobile breakpoints
+
 
 <a name="4.3.0"></a>
 # 4.3.0 (05.09.2019)
