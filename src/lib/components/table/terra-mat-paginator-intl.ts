@@ -9,7 +9,7 @@ export class TerraMatPaginatorIntl extends MatPaginatorIntl
     public previousPageLabel:string = '';
     public firstPageLabel:string = '';
     public lastPageLabel:string = '';
-        
+
     constructor(private translation:TranslationService)
     {
         super();
