@@ -60,7 +60,7 @@ fdescribe('TerraMatPaginatorIntl', () =>
             const length:number = 1;
 
             let rangedLabel:string = paginatorIntl.getRangeLabel(page, pageSize, length);
-            expect(rangedLabel).toEqual('0 / 1');
+            expect(rangedLabel).toEqual('0 terraMatPaginatorIntl.ofLabel 1');
         });
 
         it('should return 1 – 1 terraMatPaginatorIntl.ofLabel 1', () =>
@@ -80,7 +80,7 @@ fdescribe('TerraMatPaginatorIntl', () =>
             const length:number = 1;
 
             let rangedLabel:string = paginatorIntl.getRangeLabel(page, pageSize, length);
-            expect(rangedLabel).toEqual('0 / 1');
+            expect(rangedLabel).toEqual('0 terraMatPaginatorIntl.ofLabel 1');
         });
 
         it('should return 0 terraMatPaginatorIntl.ofLabel 0 if length is 0', () =>
@@ -90,7 +90,7 @@ fdescribe('TerraMatPaginatorIntl', () =>
             const length:number = 0;
 
             let rangedLabel:string = paginatorIntl.getRangeLabel(page, pageSize, length);
-            expect(rangedLabel).toEqual('0 / 0');
+            expect(rangedLabel).toEqual('0 terraMatPaginatorIntl.ofLabel 0');
         });
     }
 );
