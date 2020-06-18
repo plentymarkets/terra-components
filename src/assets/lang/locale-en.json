@@ -132,11 +132,7 @@
 		"forbidden": "Forbidden"
 	},
 	"terraMatPaginatorIntl": {
-		"itemsPerPage": "Items per page",
-		"nextPage": "Next page",
-		"previousPage": "Previous page",
-		"firstPage": "First page",
-		"lastPage": "Last Page",
+		"itemsPerPage": "Results per page",
 		"ofLabel": "of"
 	}
 }

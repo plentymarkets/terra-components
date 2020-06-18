@@ -1,10 +1,15 @@
-import { MatPaginatorIntl } from '@angular/material';
 import { Injectable } from '@angular/core';
+import { MatPaginatorIntl } from '@angular/material';
 import { TranslationService } from 'angular-l10n';
 
 @Injectable()
 export class TerraMatPaginatorIntl extends MatPaginatorIntl
 {
+    public nextPageLabel:string = '';
+    public previousPageLabel:string = '';
+    public firstPageLabel:string = '';
+    public lastPageLabel:string = '';
+
     constructor(private translation:TranslationService)
     {
         super();
@@ -15,13 +20,21 @@ export class TerraMatPaginatorIntl extends MatPaginatorIntl
         });
     }
 
+    /**
+     * @description Returns the pagination range label
+     *
+     * @param page
+     * @param pageSize
+     * @param length
+     * @returns string
+     */
     public getRangeLabel = (page:number, pageSize:number, length:number):string =>
     {
         let ofLabel:string = this.translation.translate('terraMatPaginatorIntl.ofLabel');
 
         if(length === 0 || pageSize === 0)
         {
-            return `0 / ${length}`;
+            return `0 ${ofLabel} ${length}`;
         }
         length = Math.max(length, 0);
         const startIndex:number = page * pageSize;
@@ -32,9 +45,5 @@ export class TerraMatPaginatorIntl extends MatPaginatorIntl
     private updateLabels():void
     {
         this.itemsPerPageLabel = this.translation.translate('terraMatPaginatorIntl.itemsPerPage');
-        this.nextPageLabel = this.translation.translate('terraMatPaginatorIntl.nextPage');
-        this.previousPageLabel = this.translation.translate('terraMatPaginatorIntl.previousPage');
-        this.firstPageLabel = this.translation.translate('terraMatPaginatorIntl.firstPage');
-        this.lastPageLabel = this.translation.translate('terraMatPaginatorIntl.lastPage');
     }
 }
