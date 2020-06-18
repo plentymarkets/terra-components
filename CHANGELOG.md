@@ -17,6 +17,7 @@
 * **terra-category-picker** removed provider for `TerraNodeTreeConfig` since it was not used anymore.
 * **terra-overlay** is deprecated now. Use angular material's [dialog](https://material.angular.io/components/dialog) instead.
 * **terra-input** is deprecated now. Use angular material's [input](https://material.angular.io/components/input) instead.
+* **terra-mat-paginator-intl** allows for translation of mat paginators
 
 ### Bug Fixes
 * **mat-input** do not color an invalid input's underline red until it has been touched.
