@@ -58,8 +58,20 @@ fdescribe('TerraMatPaginatorIntl', () =>
 
         it('should return the right value', async(() =>
         {
-            let rangedLabel:string = paginatorIntl.getRangeLabel(1, 1, 1);
-            expect(rangedLabel).toEqual('2 – 2 terraMatPaginatorIntl.ofLabel 1');
+            let rangedLabel:string = paginatorIntl.getRangeLabel(1, 0, 1);
+            expect(rangedLabel).toEqual('0 / 1');
+        }));
+
+        it('should return the right value', async(() =>
+        {
+            let rangedLabel:string = paginatorIntl.getRangeLabel(0, 1, 1);
+            expect(rangedLabel).toEqual('1 – 1 terraMatPaginatorIntl.ofLabel 1');
+        }));
+
+        it('should return the right value', async(() =>
+        {
+            let rangedLabel:string = paginatorIntl.getRangeLabel(0, 0, 1);
+            expect(rangedLabel).toEqual('0 / 1');
         }));
     }
 );
