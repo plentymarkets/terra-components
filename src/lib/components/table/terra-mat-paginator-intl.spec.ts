@@ -49,29 +49,35 @@ fdescribe('TerraMatPaginatorIntl', () =>
             expect(paginatorIntl).toBeTruthy();
         });
 
-        it('should return the right value', async(() =>
+        it('should return 2 – 2 terraMatPaginatorIntl.ofLabel 1', async(() =>
         {
             let rangedLabel:string = paginatorIntl.getRangeLabel(1, 1, 1);
             expect(rangedLabel).toEqual('2 – 2 terraMatPaginatorIntl.ofLabel 1');
 
         }));
 
-        it('should return the right value', async(() =>
+        it('should return 0 / 1 because pageSize is 0', async(() =>
         {
             let rangedLabel:string = paginatorIntl.getRangeLabel(1, 0, 1);
             expect(rangedLabel).toEqual('0 / 1');
         }));
 
-        it('should return the right value', async(() =>
+        it('should return 1 – 1 terraMatPaginatorIntl.ofLabel 1', async(() =>
         {
             let rangedLabel:string = paginatorIntl.getRangeLabel(0, 1, 1);
             expect(rangedLabel).toEqual('1 – 1 terraMatPaginatorIntl.ofLabel 1');
         }));
 
-        it('should return the right value', async(() =>
+        it('should return 0 / 1 because pageSize is 0', async(() =>
         {
             let rangedLabel:string = paginatorIntl.getRangeLabel(0, 0, 1);
             expect(rangedLabel).toEqual('0 / 1');
+        }));
+
+        it('should return 0 / 0 because length is 0', async(() =>
+        {
+            let rangedLabel:string = paginatorIntl.getRangeLabel(1, 0, 0);
+            expect(rangedLabel).toEqual('0 / 0');
         }));
     }
 );
