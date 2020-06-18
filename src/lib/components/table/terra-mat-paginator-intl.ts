@@ -32,9 +32,9 @@ export class TerraMatPaginatorIntl extends MatPaginatorIntl
     private updateLabels():void
     {
         this.itemsPerPageLabel = this.translation.translate('terraMatPaginatorIntl.itemsPerPage');
-        this.nextPageLabel = this.translation.translate('terraMatPaginatorIntl.nextPage');
-        this.previousPageLabel = this.translation.translate('terraMatPaginatorIntl.previousPage');
-        this.firstPageLabel = this.translation.translate('terraMatPaginatorIntl.firstPage');
-        this.lastPageLabel = this.translation.translate('terraMatPaginatorIntl.lastPage');
+        this.nextPageLabel = '';
+        this.previousPageLabel = '';
+        this.firstPageLabel = '';
+        this.lastPageLabel = '';
     }
 }
