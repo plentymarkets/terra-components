@@ -17,7 +17,7 @@ import { RouterModule } from '@angular/router';
 import { TerraInteractModule } from './components/interactables/interact.module';
 import { QuillModule } from 'ngx-quill';
 import { CKEditorModule } from 'ckeditor4-angular';
-import { pipes } from './pipes';
+import { pipes } from './components/pipe-collection';
 
 @NgModule({
     imports:         [
