@@ -8,7 +8,7 @@ import {
 import { FormsModule } from '@angular/forms';
 import { MockTranslationModule } from '../../testing/mock-translation-module';
 
-fdescribe('TerraMatPaginatorIntl', () =>
+describe('TerraMatPaginatorIntl', () =>
     {
         let paginatorIntl:MatPaginatorIntl;
         let translationService:TranslationService;
@@ -42,7 +42,7 @@ fdescribe('TerraMatPaginatorIntl', () =>
             expect(paginatorIntl).toBeTruthy();
         });
 
-        it('should return 2 – 2 terraMatPaginatorIntl.ofLabel 1', () =>
+        it('should return `2 – 2 terraMatPaginatorIntl.ofLabel 1`', () =>
         {
             const page:number = 1;
             const pageSize:number = 1;
@@ -53,7 +53,7 @@ fdescribe('TerraMatPaginatorIntl', () =>
 
         });
 
-        it('should return 0 terraMatPaginatorIntl.ofLabel 1 if pageSize is 0', () =>
+        it('should return `0 terraMatPaginatorIntl.ofLabel 1 if pageSize is 0`', () =>
         {
             const page:number = 1;
             const pageSize:number = 0;
@@ -63,7 +63,7 @@ fdescribe('TerraMatPaginatorIntl', () =>
             expect(rangedLabel).toEqual('0 terraMatPaginatorIntl.ofLabel 1');
         });
 
-        it('should return 1 – 1 terraMatPaginatorIntl.ofLabel 1', () =>
+        it('should return `1 – 1 terraMatPaginatorIntl.ofLabel 1`', () =>
         {
             const page:number = 0;
             const pageSize:number = 1;
@@ -73,7 +73,7 @@ fdescribe('TerraMatPaginatorIntl', () =>
             expect(rangedLabel).toEqual('1 – 1 terraMatPaginatorIntl.ofLabel 1');
         });
 
-        it('should return 0 terraMatPaginatorIntl.ofLabel 1 if pageSize is 0', () =>
+        it('should return `0 terraMatPaginatorIntl.ofLabel 1 if pageSize is 0`', () =>
         {
             const page:number = 0;
             const pageSize:number = 0;
@@ -83,7 +83,7 @@ fdescribe('TerraMatPaginatorIntl', () =>
             expect(rangedLabel).toEqual('0 terraMatPaginatorIntl.ofLabel 1');
         });
 
-        it('should return 0 terraMatPaginatorIntl.ofLabel 0 if length is 0', () =>
+        it('should return `0 terraMatPaginatorIntl.ofLabel 0 if length is 0`', () =>
         {
             const page:number = 1;
             const pageSize:number = 0;
