@@ -15,6 +15,14 @@ export class TerraMatPaginatorIntl extends MatPaginatorIntl
         });
     }
 
+    /**
+     * @description Returns the pagination range label
+     *
+     * @param page
+     * @param pageSize
+     * @param length
+     * @returns string
+     */
     public getRangeLabel = (page:number, pageSize:number, length:number):string =>
     {
         let ofLabel:string = this.translation.translate('terraMatPaginatorIntl.ofLabel');
@@ -27,7 +35,7 @@ export class TerraMatPaginatorIntl extends MatPaginatorIntl
         const startIndex:number = page * pageSize;
         const endIndex:number = startIndex < length ? Math.min(startIndex + pageSize, length) : startIndex + pageSize;
         return `${startIndex + 1} – ${endIndex} ${ofLabel} ${length}`;
-    }
+    };
 
     private updateLabels():void
     {
