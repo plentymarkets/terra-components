@@ -14,7 +14,6 @@ import { AppComponent } from './app.component';
 import { ShowcaseComponent } from './showcase/showcase.component';
 import { TerraComponentsExamplesModule } from '../lib/terra-components-examples.module';
 import { RouterModule } from '@angular/router';
-import { MatExamplesModule } from '../lib/components/material/mat-examples.module';
 
 export function initL10n(l10nLoader:L10nLoader):Function
 {
@@ -34,7 +33,6 @@ export function initL10n(l10nLoader:L10nLoader):Function
         HttpClientModule,
         LocalizationModule.forRoot(l10nConfig),
         TerraComponentsExamplesModule,
-        MatExamplesModule
     ],
     declarations: [
         AppComponent,

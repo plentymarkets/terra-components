@@ -3,7 +3,6 @@ import {
     Type
 } from '@angular/core';
 import { examples } from '../../lib/components/example-collection';
-import { matExamples } from '../../lib/components/material/mat-examples';
 
 /**
  * @description This component showcases all the examples provided by the TerraComponents library.
