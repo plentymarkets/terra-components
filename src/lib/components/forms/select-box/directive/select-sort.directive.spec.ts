@@ -6,14 +6,14 @@ import {
 } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { LocalizationModule } from 'angular-l10n';
-import {
-    SortHelper,
-    TerraSelectBoxComponent,
-    TerraSelectBoxValueInterface,
-    TooltipDirective
-} from '@plentymarkets/terra-components';
 import { SelectSortDirective } from './select-sort.directive';
 import { By } from '@angular/platform-browser';
+import { TerraSelectBoxComponent } from '../terra-select-box.component';
+import {
+    SortHelper,
+    TerraSelectBoxValueInterface,
+    TooltipDirective
+} from '../../../..';
 
 /* tslint:disable-next-line:max-function-line-count */
 describe('SelectSortDirective: ', () =>
