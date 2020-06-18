@@ -18,8 +18,6 @@ fdescribe('TerraMatPaginatorIntl', () =>
     {
         let paginatorIntl:MatPaginatorIntl;
         let translationService:TranslationService;
-        let l10nLoader:L10nLoader;
-        let locale:LocaleService;
 
         beforeEach(async () =>
         {
@@ -38,18 +36,11 @@ fdescribe('TerraMatPaginatorIntl', () =>
             });
         });
 
-        beforeEach(async (done:any) =>
+        beforeEach(async () =>
         {
-            l10nLoader = TestBed.get(L10nLoader);
-            locale = TestBed.get(LocaleService);
+            translationService = TestBed.get(TranslationService);
 
-            l10nLoader.load().then(() =>
-            {
-                translationService = TestBed.get(TranslationService);
-
-                paginatorIntl = new TerraMatPaginatorIntl(translationService);
-                done();
-            });
+            paginatorIntl = new TerraMatPaginatorIntl(translationService);
         });
 
         it('should initialize the paginator intl', () =>
@@ -58,36 +49,17 @@ fdescribe('TerraMatPaginatorIntl', () =>
             expect(paginatorIntl).toBeTruthy();
         });
 
-        it('should translate the strings in german', async(() =>
+        it('should return the right value', async(() =>
         {
-            paginatorIntl.changes.subscribe(() =>
-            {
-                expect(paginatorIntl.itemsPerPageLabel).toEqual('Ergebnisse pro Seite');
-                expect(paginatorIntl.firstPageLabel).toEqual('Erste Seite');
-                expect(paginatorIntl.lastPageLabel).toEqual('Letzte Seite');
-                expect(paginatorIntl.nextPageLabel).toEqual('Nächste Seite');
-                expect(paginatorIntl.previousPageLabel).toEqual('Vorherige Seite');
-                let rangedLabel:string = paginatorIntl.getRangeLabel(1, 1, 1);
-                expect(rangedLabel).toEqual('2 – 2 von 1');
-            });
+            let rangedLabel:string = paginatorIntl.getRangeLabel(1, 1, 1);
+            expect(rangedLabel).toEqual('2 – 2 terraMatPaginatorIntl.ofLabel 1');
 
-            locale.setCurrentLanguage('de');
         }));
 
-        it('should translate the strings in english', async(() =>
+        it('should return the right value', async(() =>
         {
-            paginatorIntl.changes.subscribe(() =>
-            {
-                expect(paginatorIntl.itemsPerPageLabel).toEqual('Items per page');
-                expect(paginatorIntl.firstPageLabel).toEqual('First page');
-                expect(paginatorIntl.lastPageLabel).toEqual('Last Page');
-                expect(paginatorIntl.nextPageLabel).toEqual('Next page');
-                expect(paginatorIntl.previousPageLabel).toEqual('Previous page');
-                let rangedLabel:string = paginatorIntl.getRangeLabel(1, 1, 1);
-                expect(rangedLabel).toEqual('2 – 2 of 1');
-            });
-
-            locale.setCurrentLanguage('en');
+            let rangedLabel:string = paginatorIntl.getRangeLabel(1, 1, 1);
+            expect(rangedLabel).toEqual('2 – 2 terraMatPaginatorIntl.ofLabel 1');
         }));
     }
 );
