@@ -54,6 +54,7 @@ import { CkEditorDirectiveExample } from './editors/ck-editor/example/ck-editor-
 import { TerraFileBrowserComponentExample } from './file-browser/example/terra-file-browser.component.example';
 import { TerraLoadingSpinnerComponentExample } from './loading-spinner/example/terra-loading-spinner.component.example';
 import { TooltipDirectiveExample } from './tooltip/example/tooltip-directive.example';
+import { MatSelectComponentExample } from './material/mat-select/mat-select.component.example';
 
 export const examples:Array<Type<any>> = [
     TooltipDirectiveExample,
@@ -110,5 +111,6 @@ export const examples:Array<Type<any>> = [
     TerraFormComponentExample,
     CkEditorDirectiveExample,
     TerraFileBrowserComponentExample,
-    TerraLoadingSpinnerComponentExample
+    TerraLoadingSpinnerComponentExample,
+    MatSelectComponentExample
 ];
