@@ -40,7 +40,7 @@ export class TerraMatPaginatorIntl extends MatPaginatorIntl
         const startIndex:number = page * pageSize;
         const endIndex:number = startIndex < length ? Math.min(startIndex + pageSize, length) : startIndex + pageSize;
         return `${startIndex + 1} – ${endIndex} ${ofLabel} ${length}`;
-    };
+    }
 
     private updateLabels():void
     {
