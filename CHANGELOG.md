@@ -19,6 +19,7 @@
 * **terra-input** is deprecated now. Use angular material's [input](https://material.angular.io/components/input) instead.
 * **selectSort** new pipe for sorting lists of available options for a select box.
 * **SortHelper** new class that provides functionality to sort lists of numbers, strings and objects.
+* **terra-mat-paginator-intl** allows for translation of mat paginators
 
 ### Bug Fixes
 * **mat-input** do not color an invalid input's underline red until it has been touched.
