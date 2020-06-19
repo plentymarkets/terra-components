@@ -28,3 +28,31 @@ describe('TerraRegex: COLOR_HEX', () =>
         expect(regEx.test('FF33CC')).toBe(false);
     });
 });
+
+describe('TerraRegex: NUMERIC', () =>
+{
+    let regEx:RegExp;
+    beforeAll(() =>
+        {
+            regEx = new RegExp(TerraRegex.NUMERIC);
+        }
+    );
+    it('should return true for different numeric values', () =>
+    {
+        expect(regEx.test('0')).toBe(true);
+        expect(regEx.test('-3')).toBe(true);
+        expect(regEx.test('3')).toBe(true);
+        expect(regEx.test('123456')).toBe(true);
+    });
+
+    it('should return false for values with exponent', () =>
+    {
+        expect(regEx.test('3e30')).toBe(false);
+    });
+
+    it('should return false for rational numeric values', () =>
+    {
+        expect(regEx.test('3.4')).toBe(false);
+        expect(regEx.test('3,4')).toBe(false);
+    });
+});
