@@ -65,6 +65,28 @@
         }
     }
     
+    mat-row
+    {
+        &.mat-row:not(:hover):not(.selected):not(.isActive)
+        {
+            &:nth-child(even)
+            {
+                background-color: var(--color-structure-1);
+            }
+        }
+    }
+    
+    tr
+    {
+        &.mat-row:not(:hover):not(.selected):not(.isActive)
+        {
+            &:nth-child(odd)
+            {
+                background-color: var(--color-structure-1);
+            }
+        }
+    }
+    
     .mat-row
     {
         min-height: 0;
@@ -81,11 +103,6 @@
                 opacity: 0.5;
                 pointer-events: none;
             }
-        }
-        
-        &:nth-child(odd)
-        {
-            background-color: var(--color-structure-1);
         }
         
         .mat-cell
