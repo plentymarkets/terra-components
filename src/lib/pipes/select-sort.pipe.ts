@@ -3,9 +3,9 @@ import {
     PipeTransform
 } from '@angular/core';
 import {
-    SortDirectionEnum,
     SortHelper
 } from '../helpers';
+import { SortDirection } from '@angular/material/sort';
 
 /**
  * @description A pipe for sorting arrays in the template.
@@ -22,7 +22,7 @@ export class SelectSortPipe implements PipeTransform
      * @param sortDirection
      * @param sortingKey - a string that identifies the property the list of objects should be sorted by
      */
-    public transform(sortingList:Array<any>, sortDirection?:SortDirectionEnum, sortingKey?:string):Array<any>
+    public transform(sortingList:Array<any>, sortDirection?:SortDirection, sortingKey?:string):Array<any>
     {
         return SortHelper.sortArray(sortingList, sortDirection, sortingKey);
     }

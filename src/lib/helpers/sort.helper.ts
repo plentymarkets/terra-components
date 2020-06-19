@@ -1,5 +1,5 @@
 import { isNullOrUndefined } from 'util';
-import { SortDirectionEnum } from './enums/sort-direction.enum';
+import { SortDirection } from '@angular/material/sort';
 
 /**
  * @description Class that provides functionality to sort lists.
@@ -12,11 +12,16 @@ export class SortHelper
      * @param sortDirection
      * @param sortingKey - a string that identifies the property the list of objects should be sorted by
      */
-    public static sortArray(sortingList:Array<any>, sortDirection:SortDirectionEnum = 'asc', sortingKey?:string):Array<any>
+    public static sortArray(sortingList:Array<any>, sortDirection:SortDirection = 'asc', sortingKey?:string):Array<any>
     {
         if(isNullOrUndefined(sortingList))
         {
             return [];
+        }
+
+        if(sortDirection === '')
+        {
+            return sortingList;
         }
 
         return sortingList.sort((a:any, b:any) =>
@@ -25,7 +30,7 @@ export class SortHelper
         });
     }
 
-    private static internalSort(a:any, b:any, sortDirection:SortDirectionEnum, sortingKey:string):number
+    private static internalSort(a:any, b:any, sortDirection:SortDirection, sortingKey:string):number
     {
         switch(typeof a)
         {
@@ -34,6 +39,10 @@ export class SortHelper
             case 'string':
                 return sortDirection === 'asc' ? a.localeCompare(b) : b.localeCompare(a);
             case 'object':
+                if(sortingKey === undefined && a.hasOwnProperty('caption'))
+                {
+                    sortingKey = 'caption';
+                }
                 return SortHelper.internalSort(a[sortingKey], b[sortingKey], sortDirection, sortingKey);
         }
     }

@@ -5,10 +5,10 @@ import {
     SimpleChanges
 } from '@angular/core';
 import {
-    SortDirectionEnum,
     SortHelper
 } from '../../../../helpers';
 import { TerraSelectBoxValueInterface } from '../../../..';
+import { SortDirection } from '@angular/material/sort';
 
 @Directive({
     selector: 'terra-select-box[inputListBoxValues]'
@@ -22,7 +22,7 @@ export class SelectSortDirective implements OnChanges
     public disableSorting:boolean = false;
 
     @Input()
-    public sortDirection:SortDirectionEnum = 'asc';
+    public sortDirection:SortDirection = 'asc';
 
     public ngOnChanges(changes:SimpleChanges):void
     {
