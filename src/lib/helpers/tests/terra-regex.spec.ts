@@ -56,3 +56,33 @@ describe('TerraRegex: NUMERIC', () =>
         expect(regEx.test('3,4')).toBe(false);
     });
 });
+
+describe('TerraRegex: EMAIL', () =>
+{
+    let regEx:RegExp;
+    beforeAll(() =>
+        {
+            regEx = new RegExp(TerraRegex.EMAIL);
+        }
+    );
+
+    it('should return true for email addresses with or without different valid special characters', () =>
+    {
+        expect(regEx.test('user123@domain.com')).toBe(true);
+        expect(regEx.test('123username@domain.com')).toBe(true);
+        expect(regEx.test('user@domain123.com')).toBe(true);
+        expect(regEx.test('user@domain.co.uk')).toBe(true);
+        expect(regEx.test('user+name@domain.com')).toBe(true);
+        expect(regEx.test('user-name@domain.de')).toBe(true);
+        expect(regEx.test('user=name@domain.de')).toBe(true);
+        expect(regEx.test('user.name@domain.com')).toBe(true);
+        expect(regEx.test('user.name@my-domain.com')).toBe(true);
+        expect(regEx.test('user_name@my-domain.com')).toBe(true);
+    });
+
+    it('should return false for email addresses with different invalid special characters', () =>
+    {
+        expect(regEx.test('user,name@domain.com')).toBe(false);
+        expect(regEx.test('user..name@mydomain.com')).toBe(false);
+    });
+});
