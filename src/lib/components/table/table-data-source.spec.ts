@@ -94,6 +94,6 @@ describe('TableDataSource', () =>
         dataSource.connect(undefined).subscribe();
         dataSource.search();
 
-        expect(dataSource.request).toHaveBeenCalledWith(filter.filterParameter);
+        expect(dataSource.request).toHaveBeenCalledWith({...filter.filterParameter});
     });
 });
