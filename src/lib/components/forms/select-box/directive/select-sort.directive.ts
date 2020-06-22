@@ -7,7 +7,7 @@ import {
 import {
     SortHelper
 } from '../../../../helpers';
-import { TerraSelectBoxValueInterface } from '../../../..';
+import { TerraSelectBoxValueInterface } from '../../../forms/select-box/data/terra-select-box.interface';
 import { SortDirection } from '@angular/material/sort';
 
 @Directive({
