@@ -16,7 +16,6 @@ export { SortHelper } from './sort.helper';
 // enums
 export { TerraButtonColorEnum } from './enums/button-color.enum';
 export { TerraPlacementEnum } from './enums/terra-placement.enum';
-export { SortDirectionEnum } from './enums/sort-direction.enum';
 
 // misc
 export { TerraRegex } from './regex/terra-regex';

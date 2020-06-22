@@ -1,7 +1,6 @@
 import { SelectSortPipe } from './select-sort.pipe';
 import { SortHelper } from '../helpers/sort.helper';
-import Spy = jasmine.Spy;
-import { SortDirectionEnum } from '../helpers/enums/sort-direction.enum';
+import { SortDirection } from '@angular/material/sort';
 
 describe('SelectSortPipe:', () =>
 {
@@ -9,11 +8,11 @@ describe('SelectSortPipe:', () =>
 
     it(`should call the SortHelper's #sortArray method and pass on the given arguments`, () =>
     {
-        const spy:Spy = spyOn(SortHelper, 'sortArray');
+        spyOn(SortHelper, 'sortArray');
         const list:Array<any> = [];
         const key:string = '';
-        const direction:SortDirectionEnum = 'asc';
+        const direction:SortDirection = 'asc';
         pipe.transform(list, direction, key );
-        expect(spy).toHaveBeenCalledWith(list, direction, key);
+        expect(SortHelper.sortArray).toHaveBeenCalledWith(list, direction, key);
     });
 });
