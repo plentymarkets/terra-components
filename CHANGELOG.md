@@ -1,4 +1,4 @@
-# 5.4.0 (XX.XX.2020)
+# 5.4.0 (22.06.2020)
 
 ### Features
 * **tooltip** removed warning and all deprecations for tooltip placement.
