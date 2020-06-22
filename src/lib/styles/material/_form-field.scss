@@ -136,7 +136,7 @@ mat-form-field.mat-form-field
             }
         }
         
-        &.ng-invalid
+        &.ng-invalid.ng-touched
         {
             color: var(--color-alert);
             
