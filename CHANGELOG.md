@@ -1,3 +1,9 @@
+# 5.5.0 (xx.xx.xxxx)
+
+### Features
+* **selectSort** new pipe for sorting lists of available options for a select box.
+* **SortHelper** new class that provides functionality to sort lists of numbers, strings and objects.
+
 # 5.4.0 (22.06.2020)
 
 ### Features
@@ -17,8 +23,6 @@
 * **terra-category-picker** removed provider for `TerraNodeTreeConfig` since it was not used anymore.
 * **terra-overlay** is deprecated now. Use angular material's [dialog](https://material.angular.io/components/dialog) instead.
 * **terra-input** is deprecated now. Use angular material's [input](https://material.angular.io/components/input) instead.
-* **selectSort** new pipe for sorting lists of available options for a select box.
-* **SortHelper** new class that provides functionality to sort lists of numbers, strings and objects.
 * **terra-mat-paginator-intl** allows for translation of mat paginators
 
 ### Bug Fixes
