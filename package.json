@@ -2,7 +2,7 @@
 	"scripts": {
 		"start": "ng serve",
 		"build": "ng build lib && gulp compileStyles && gulp copy && npm run build:schematics",
-		"build-test": "ng build lib && ng build dev-app --aot && npm run build:schematics",
+		"build:ci": "ng build lib && ng build dev-app --aot && npm run build:schematics",
 		"build:schematics": "cd src/lib && npm run build",
 		"test": "ng test lib",
 		"test-once": "ng test lib --watch=false --browsers=Chrome,Firefox,Safari",
