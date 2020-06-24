@@ -61,7 +61,7 @@ function installPackageJsonDependencies():Rule
 }
 
 /** @description schematic for ng add support */
-export function ngAdd():Rule
+export default function():Rule
 {
     return chain([
         addPackageJsonDependencies(),
