@@ -13,7 +13,7 @@ import {
 
 export function getPeerDependencies(tree:Tree):Array<NodeDependency>
 {
-    const pathToPackageJson:string = 'src/lib/package.json';
+    const pathToPackageJson:string = 'src/lib/package.json'; // TODO: This needs to be adjusted to work in other projects
     if(!tree.exists(pathToPackageJson))
     {
         return [];
