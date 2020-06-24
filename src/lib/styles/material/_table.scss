@@ -3,6 +3,14 @@
 .mat-table-container
 {
     margin: var(--space-container);
+    
+    terra-no-result-notice
+    {
+        .no-result
+        {
+            margin: 0;
+        }
+    }
 }
 
 .mat-table
