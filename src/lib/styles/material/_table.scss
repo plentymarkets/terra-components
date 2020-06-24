@@ -70,7 +70,7 @@
         min-height: 0;
         height: calc(var(--height-lg) - var(--space-sm));
         color: var(--color-structure-11);
-        border-bottom: 1px solid var(--border-color);
+        border-bottom-color: var(--color-structure-3);
         
         &.disabled
         {
@@ -83,7 +83,7 @@
             }
         }
         
-        &:nth-child(odd)
+        &:nth-of-type(odd)
         {
             background-color: var(--color-structure-1);
         }
