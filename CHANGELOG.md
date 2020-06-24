@@ -1,3 +1,9 @@
+# 5.5.0 (XX.XX.XXXX)
+
+### Features
+* **peerDependencies**
+    - updated `iban` to ^0.0.14
+
 # 5.4.0 (22.06.2020)
 
 ### Features
@@ -11,7 +17,6 @@
     - **TablePagingSortingDataSource** supports filtering, paging and sorting.
 * **peerDependencies**
     - removed `jquery` since we no longer depend on it.
-    - updated `iban` to ^0.0.14
     - removed `path` since we no longer depend on it.
 * **terra-dynamic-component-loader** is deprecated now. Use angular's [NgComponentOutlet](https://angular.io/api/common/NgComponentOutlet) instead.
 * **terra-toggle** is deprecated now. Use angular material's [slide-toggle](https://material.angular.io/components/slide-toggle) instead.
