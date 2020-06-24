@@ -2,7 +2,7 @@
 
 ### Features
 * **peerDependencies**
-    - updated `iban` to ^0.0.14
+    - updated `iban` to ~0.0.14
 
 # 5.4.0 (22.06.2020)
 
