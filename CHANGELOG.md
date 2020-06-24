@@ -1,7 +1,7 @@
 # 5.5.0 (XX.XX.XXXX)
 
 ### Features
-* *peerDependencies*
+* **peerDependencies**
     - updated `htmlhint` to ~0.13.0.
 
 # 5.4.0 (22.06.2020)
