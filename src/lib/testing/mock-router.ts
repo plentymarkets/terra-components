@@ -32,5 +32,5 @@ export class MockRouter
 
 export const mockRouterProvider:FactoryProvider = {
     provide: Router,
-    useFactory: () => new MockRouter()
+    useFactory: ():MockRouter => new MockRouter()
 };
