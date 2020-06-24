@@ -65,34 +65,12 @@
         }
     }
     
-    mat-row
-    {
-        &.mat-row:not(:hover):not(.selected):not(.isActive)
-        {
-            &:nth-child(even)
-            {
-                background-color: var(--color-structure-1);
-            }
-        }
-    }
-    
-    tr
-    {
-        &.mat-row:not(:hover):not(.selected):not(.isActive)
-        {
-            &:nth-child(odd)
-            {
-                background-color: var(--color-structure-1);
-            }
-        }
-    }
-    
     .mat-row
     {
         min-height: 0;
         height: calc(var(--height-lg) - var(--space-sm));
         color: var(--color-structure-11);
-        border-bottom: 1px solid var(--border-color);
+        border-bottom-color: var(--color-structure-3);
         
         &.disabled
         {
@@ -103,6 +81,11 @@
                 opacity: 0.5;
                 pointer-events: none;
             }
+        }
+        
+        &:nth-of-type(odd)
+        {
+            background-color: var(--color-structure-1);
         }
         
         .mat-cell
