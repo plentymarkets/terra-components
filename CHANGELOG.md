@@ -1,3 +1,8 @@
+# 5.5.0 (XX.XX.XXXX)
+
+### Features
+* **schematics** basic support for `ng add`.
+
 # 5.4.0 (22.06.2020)
 
 ### Features
