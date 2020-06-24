@@ -1,8 +1,9 @@
 # 5.5.0 (xx.xx.xxxx)
 
 ### Features
-* **selectSort** new pipe for sorting lists of available options for a select box.
-* **SortHelper** new class that provides functionality to sort lists of numbers, strings and objects.
+* **select-sort** new pipe for sorting lists of available options for a select box.
+* **select-sort-directive** new directive that automatically sorts all terra-select-boxes.
+* **sort-helper** new class that provides functionality to sort lists of numbers, strings and objects.
 
 # 5.4.0 (22.06.2020)
 
