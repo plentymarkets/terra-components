@@ -1,4 +1,7 @@
-#Unreleased
+# 5.5.0 (XX.XX.XXXX)
+
+### Features
+* **schematics** basic support for `ng add`.
 
 ### Bug Fixes
 * **mat-table** adjust styles for odd and even rows.
