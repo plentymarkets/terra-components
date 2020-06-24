@@ -1,3 +1,9 @@
+#Unreleased
+
+### Bug Fixes
+* **mat-table** adjust styles for odd and even rows.
+* **no-result-notice** adjust margin for no result notice in mat-table.
+
 # 5.4.0 (22.06.2020)
 
 ### Features
