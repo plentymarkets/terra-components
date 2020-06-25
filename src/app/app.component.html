@@ -1,1 +1,15 @@
-<tc-showcase></tc-showcase>
+<!--<tc-showcase></tc-showcase>-->
+
+<terra-checkbox [isIndeterminate]="true"
+                [(ngModel)]="_checkboxValue"
+                [inputIsDisabled]="false"
+                (isIndeterminateChange)="test()"
+                [(value)]="_checkboxValue"
+                [inputCaption]="'TEST'"
+                [inputIcon]="'icon-delete'"
+                [tooltipText]="'a tooltip'"
+                [tooltipPlacement]="'bottom'"></terra-checkbox>
+<mat-checkbox [indeterminate]="true" [(ngModel)]="_checkboxValue" [disabled]="false" (indeterminateChange)="test()" tcTooltip="a tooltip" [placement]="'bottom'">
+    <span class="checkbox-icon icon-delete"></span>
+    <span>Caption goes here</span>
+</mat-checkbox>

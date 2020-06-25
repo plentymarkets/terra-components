@@ -7,3 +7,11 @@ body
 // Those were the previous imports on the angular-cli branch
 //@import "../styles/styles";
 //@import "../styles/icons.glob";
+
+.mat-checkbox .checkbox-icon
+{
+    display: inline-block;
+    vertical-align: middle;
+    margin-bottom: .125rem;
+    font-size: 1rem;
+}
