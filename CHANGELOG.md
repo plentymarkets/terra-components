@@ -1,9 +1,14 @@
-# 5.5.0 (xx.xx.xxxx)
+# 5.5.0 (XX.XX.XXXX)
 
 ### Features
+* **schematics** basic support for `ng add`.
 * **select-sort** new pipe for sorting lists of available options for a select box.
 * **select-sort-directive** new directive that automatically sorts all terra-select-boxes.
 * **sort-helper** new class that provides functionality to sort lists of numbers, strings and objects.
+
+### Bug Fixes
+* **mat-table** adjust styles for odd and even rows.
+* **no-result-notice** adjust margin for no result notice in mat-table.
 
 # 5.4.0 (22.06.2020)
 
