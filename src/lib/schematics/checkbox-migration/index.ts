@@ -7,7 +7,8 @@ import {
 import { from } from 'rxjs';
 import { LoggerApi } from '@angular-devkit/core/src/logger';
 
-const componentPath:string = 'hello.component.ts';
+const componentPath:string = './src/app/app.component.html';
+// const componentPathTest:string = 'test.component.ts';
 
 const queryString:string = 'Foobar!';
 const replaceString:string = 'Foo Bar!!';
@@ -25,7 +26,7 @@ export function checkboxMigration(_options:any):Rule
 async function runMigration(tree:Tree, context:SchematicContext)
 {
     const logger:LoggerApi = context.logger;
-    tree.create(componentPath, 'console.log("Foobar!")');
+    // tree.create(componentPathTest, 'console.log("Foobar!")');
 
     logger.info(` Content before update: ${tree.read(componentPath)} `);
 
