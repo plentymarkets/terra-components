@@ -1,8 +1,9 @@
 {
 	"scripts": {
 		"start": "ng serve",
-		"build": "ng build lib && gulp compileStyles && gulp copy",
-		"build-test": "ng build lib && ng build dev-app --aot",
+		"build": "ng build lib && gulp compileStyles && npm run build:schematics && gulp copy",
+		"build:ci": "ng build lib && ng build dev-app --aot && npm run build:schematics",
+		"build:schematics": "cd src/lib && npm run build",
 		"test": "ng test lib",
 		"test-once": "ng test lib --watch=false --browsers=Chrome,Firefox,Safari",
 		"test-headless": "ng test lib --watch=false --browsers=ChromeHeadless,FirefoxHeadless",
@@ -51,7 +52,7 @@
 		"ckeditor4-angular": "^1.0.1",
 		"codelyzer": "^5.0.1",
 		"gulp": "^4.0.2",
-		"gulp-sass": "^4.0.2",
+		"gulp-sass": "^4.1.0",
 		"jasmine-core": "~3.5.0",
 		"jasmine-spec-reporter": "~5.0.2",
 		"karma": "~5.0.9",
