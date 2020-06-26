@@ -71,14 +71,20 @@ function runCkeckboxMigration(tree:Tree, tsconfigPath:string, basePath:string):v
                 let index:number = buffer.toString().indexOf('terra-checkbox');
                 let update:UpdateRecorder = tree.beginUpdate(templateFileName!);
 
-                while(index)
+
+
+                while(index >= 0)
                 {
                     update.remove(index, 'terra-checkbox'.length);
                     update.insertRight(index, 'mat-checkbox');
+
+                    buffer = tree.read(templateFileName) || 0;
                     index = buffer.toString().indexOf('terra-checkbox');
+                    logger.info(index.toString());
                 }
 
                 tree.commitUpdate(update);
+
             }
         }
     });
