@@ -5,11 +5,12 @@
                 [inputIsDisabled]="false"
                 (isIndeterminateChange)="test()"
                 [(value)]="_checkboxValue"
-                [inputCaption]="'TEST'"
+                inputCaption="{{_checkboxValue.toString()}}"
                 [inputIcon]="'icon-delete'"
                 [tooltipText]="'a tooltip'"
-                [tooltipPlacement]="'bottom'"></terra-checkbox>
+                [tooltipPlacement]="'bottom'">
+</terra-checkbox>
 <mat-checkbox [indeterminate]="true" [(ngModel)]="_checkboxValue" [disabled]="false" (indeterminateChange)="test()" tcTooltip="a tooltip" [placement]="'bottom'">
     <span class="checkbox-icon icon-delete"></span>
-    <span>Caption goes here</span>
+    <span>{{_checkboxValue.toString()}}</span>
 </mat-checkbox>

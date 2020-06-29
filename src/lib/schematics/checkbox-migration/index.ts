@@ -73,6 +73,16 @@ function runCkeckboxMigration(tree:Tree, tsconfigPath:string, basePath:string):v
                 while(index >= 0)
                 {
                     let update:UpdateRecorder = tree.beginUpdate(templateFileName!);
+
+                    let { value, dataBinding }:{ value:string, dataBinding:boolean } = getCaption(buffer.toString());
+
+                    logger.info(`value ${value}; dataBinding ${dataBinding}`);
+
+                    // value === true -> add <span> with dataBinding (or not), otherwise add nothing
+                    let template:string = `<mat-select>${ value ? `<span>${dataBinding ? '{{' + value + '}}' : value}</span>` : '' }</mat-select>`;
+
+                    logger.info(template);
+
                     update.remove(index, 'terra-checkbox'.length);
                     update.insertRight(index, 'mat-checkbox');
                     tree.commitUpdate(update);
@@ -87,4 +97,13 @@ function runCkeckboxMigration(tree:Tree, tsconfigPath:string, basePath:string):v
 function isComponent(fileName:string):boolean
 {
     return fileName.endsWith('component.ts');
+}
+
+function getCaption(bufferString:string):{ value:string, dataBinding:boolean }
+{
+    const regExp:RegExp = new RegExp('\\[?inputCaption\\]?="(.*)"');
+    let caption:string, value:string;
+    [caption, value] = bufferString.match(regExp) || ['', null];
+
+    return { value: value, dataBinding: caption.startsWith('[') };
 }
