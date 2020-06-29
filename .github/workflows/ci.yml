@@ -29,4 +29,5 @@ jobs:
         npm run lint
         npm run build:lib
         npm run build:dev-app
+        npm run build:schematics
         npm run test-headless
