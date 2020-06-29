@@ -74,12 +74,17 @@ function runCkeckboxMigration(tree:Tree, tsconfigPath:string, basePath:string):v
                 {
                     let update:UpdateRecorder = tree.beginUpdate(templateFileName!);
 
-                    let { value, dataBinding }:{ value:string, dataBinding:boolean } = getCaption(buffer.toString());
+                    let { value: valueCaption, dataBinding: dataBindingCaption }:{ value:string, dataBinding:boolean } =
+                        getAttributeValue(buffer.toString(), 'inputCaption');
+                    let { value: valueIcon, dataBinding: dataBindingIcon }:{ value:string, dataBinding:boolean } =
+                        getAttributeValue(buffer.toString(), 'inputIcon');
 
-                    logger.info(`value ${value}; dataBinding ${dataBinding}`);
-
-                    // value === true -> add <span> with dataBinding (or not), otherwise add nothing
-                    let template:string = `<mat-select>${ value ? `<span>${dataBinding ? '{{' + value + '}}' : value}</span>` : '' }</mat-select>`;
+                    // valueCaption === true -> add <span> with dataBinding (or not), otherwise add nothing
+                    let template:string =
+                        `<mat-checkbox>
+                            ${ valueIcon ? `<span class="checkbox-icon ${dataBindingIcon ? '{{' + valueIcon + '}}' : valueIcon} icon-delete"></span>` : '' }
+                            ${ valueCaption ? `<span>${dataBindingCaption ? '{{' + valueCaption + '}}' : valueCaption}</span>` : '' }
+                        </mat-checkbox>`;
 
                     logger.info(template);
 
@@ -99,9 +104,9 @@ function isComponent(fileName:string):boolean
     return fileName.endsWith('component.ts');
 }
 
-function getCaption(bufferString:string):{ value:string, dataBinding:boolean }
+function getAttributeValue(bufferString:string, attribute:string):{ value:string, dataBinding:boolean }
 {
-    const regExp:RegExp = new RegExp('\\[?inputCaption\\]?="(.*)"');
+    const regExp:RegExp = new RegExp(`\\[?${attribute}\\]?="(.*)"`);
     let caption:string, value:string;
     [caption, value] = bufferString.match(regExp) || ['', null];
 
