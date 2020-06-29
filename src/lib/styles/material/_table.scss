@@ -2,6 +2,14 @@
 
 .mat-table-container {
     margin: var(--space-container);
+    
+    terra-no-result-notice
+    {
+        .no-result
+        {
+            margin: 0;
+        }
+    }
 }
 
 .mat-table {
@@ -57,9 +65,10 @@
         min-height: 0;
         height: calc(var(--height-lg) - var(--space-sm));
         color: var(--color-structure-11);
-        border-bottom: 1px solid var(--border-color);
-
-        &.disabled {
+        border-bottom-color: var(--color-structure-3);
+        
+        &.disabled
+        {
             cursor: not-allowed !important;
 
             .mat-cell {
@@ -67,8 +76,9 @@
                 pointer-events: none;
             }
         }
-
-        &:nth-child(odd) {
+        
+        &:nth-of-type(odd)
+        {
             background-color: var(--color-structure-1);
         }
 
