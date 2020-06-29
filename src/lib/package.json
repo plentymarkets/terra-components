@@ -1,7 +1,7 @@
 {
 	"$schema": "../../node_modules/ng-packagr/package.schema.json",
 	"name": "@plentymarkets/terra-components",
-	"version": "5.4.0",
+	"version": "5.5.0-schematics.0",
 	"homepage": "https://github.com/plentymarkets/terra-components#readme",
 	"author": "plentymarkets",
 	"description": "plentymarkets terra components",
@@ -16,6 +16,11 @@
 		"components"
 	],
 	"license": "MIT",
+	"scripts": {
+		"build": "../../node_modules/.bin/tsc -p tsconfig.schematics.json",
+		"copy:collection": "cp schematics/collection.json ../../dist/schematics/collection.json",
+		"postbuild": "npm run copy:collection"
+	},
 	"peerDependencies": {
 		"@angular/animations": "8.x",
 		"@angular/cdk": "8.x",
@@ -65,5 +70,6 @@
 			}
 		},
 		"dest": "../../dist"
-	}
+	},
+	"schematics": "./schematics/collection.json"
 }
