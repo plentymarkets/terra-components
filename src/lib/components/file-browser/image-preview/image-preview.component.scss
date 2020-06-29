@@ -1,5 +1,4 @@
-:host
-{
+:host {
     position: absolute;
     top: 0;
     left: 0;
@@ -8,26 +7,22 @@
     margin-left: 3px;
     overflow-y: auto;
 
-    > div
-    {
+    > div {
         display: flex;
         flex-direction: column;
         height: 100%;
     }
 }
 
-.image-preview
-{
-    .preview-container
-    {
+.image-preview {
+    .preview-container {
         width: 100%;
         padding-top: 100%;
         position: relative;
-        margin-bottom: .5rem;
+        margin-bottom: 0.5rem;
         box-shadow: var(--box-shadow);
 
-        > div
-        {
+        > div {
             position: absolute;
             top: 0;
             left: 0;
@@ -39,16 +34,14 @@
         }
     }
 
-    .preview-size
-    {
+    .preview-size {
         display: block;
-        font-size: .7rem;
+        font-size: 0.7rem;
         color: var(--color-structure-9);
     }
 }
 
-.loader
-{
+.loader {
     position: absolute;
     top: 0;
     left: 0;
@@ -56,8 +49,7 @@
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.4);
 
-    .icon-loading
-    {
+    .icon-loading {
         position: absolute;
         left: 50%;
         top: 50%;
