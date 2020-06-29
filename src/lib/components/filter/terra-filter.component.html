@@ -1,17 +1,21 @@
 <div class="filter-container">
     <terra-base-toolbar>
         <div class="btn-group" role="group">
-            <terra-button class="terra-button"
-                          inputTooltipText="{{inputSearchLabel}}"
-                          inputTooltipPlacement="bottom"
-                          [inputIcon]="'icon-search'"
-                          (outputClicked)="_searchBtnClicked()">
+            <terra-button
+                class="terra-button"
+                inputTooltipText="{{ inputSearchLabel }}"
+                inputTooltipPlacement="bottom"
+                [inputIcon]="'icon-search'"
+                (outputClicked)="_searchBtnClicked()"
+            >
             </terra-button>
-            <terra-button class="terra-button"
-                          inputTooltipText="{{inputResetLabel}}"
-                          inputTooltipPlacement="bottom"
-                          [inputIcon]="'icon-reset'"
-                          (outputClicked)="_resetBtnClicked()">
+            <terra-button
+                class="terra-button"
+                inputTooltipText="{{ inputResetLabel }}"
+                inputTooltipPlacement="bottom"
+                [inputIcon]="'icon-reset'"
+                (outputClicked)="_resetBtnClicked()"
+            >
             </terra-button>
         </div>
     </terra-base-toolbar>
