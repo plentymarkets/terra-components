@@ -10,9 +10,7 @@ import { getProjectTsConfigPaths } from '@angular/core/schematics/utils/project_
 import { createMigrationProgram } from '../utils/compiler-hosts';
 import * as ts from 'typescript';
 import { relative } from 'path';
-import {
-    oneLineTrim
-} from 'common-tags';
+import { oneLine } from 'common-tags';
 
 // const componentPath:string = './src/app/app.component.html';
 //
@@ -27,9 +25,10 @@ export function checkboxMigration(_options:any):Rule
 {
     return (tree:Tree, context:SchematicContext):void =>
     {
-        const { buildPaths, testPaths }:{[key:string]:Array<string>} = getProjectTsConfigPaths(tree);
+        const {buildPaths, testPaths}:{ [key:string]:Array<string> } = getProjectTsConfigPaths(tree);
         const basePath:string = process.cwd();
-        const allPaths:Array<string> = [...buildPaths, ...testPaths];
+        const allPaths:Array<string> = [...buildPaths,
+                                        ...testPaths];
 
         logger = context.logger;
 
@@ -71,50 +70,34 @@ function runCkeckboxMigration(tree:Tree, tsconfigPath:string, basePath:string):v
             if(tree.exists(templateFileName))
             {
                 let buffer:Buffer = tree.read(templateFileName);
-                
-                let { checkboxAsString, start, length } = getBoundings(buffer);
+
+                let {checkboxAsString, start, length} = getBoundings(buffer);
 
                 while(start >= 0)
                 {
                     const valueCaption:string = getAttributeValue(checkboxAsString, 'inputCaption');
                     const valueIcon:string = getAttributeValue(checkboxAsString, 'inputIcon');
 
-                    // logger.info('######  Start  ######');
-                    // logger.info(checkboxAsString);
-                    // logger.info(start.toString());
-                    // logger.info(length.toString());
-                    
+                    checkboxAsString = doDeletions(doReplacements(checkboxAsString));
 
-                    checkboxAsString = checkboxAsString.replace('terra-checkbox', 'mat-checkbox')
-                        .replace('isIndeterminate', 'indeterminate')
-                        .replace('inputIsDisabled', 'disabled')
-                        .replace('\[?\(?value\)?\]?=".*"', '')
-                        .replace('\[?\(?inputCaption\)?\]?=".*"', '')
-                        .replace('\[?\(?inputIcon\)?\]?=".*"', '')
-                        .replace('tooltipText', 'tcTooltip')
-                        .replace('tooltipPlacement', 'placement');
 
-                    // logger.info(checkboxAsString);
-
-                    // logger.info('######  End  ######');
-
-                    // valueCaption === true -> add <span> with dataBinding (or not), otherwise add nothing
                     const template:string =
-                        oneLineTrim`${checkboxAsString}
-                            ${ valueIcon ? `<span class="checkbox-icon ${valueIcon}"></span>` : '' }
-                            ${ valueCaption ? `<span>${valueCaption}</span>` :  '' }
+                        oneLine`${checkboxAsString}
+                            ${valueIcon ? `<span class="checkbox-icon ${valueIcon}"></span>` : ''}
+                            ${valueCaption ? `<span>${valueCaption}</span>` : ''}
                         </mat-checkbox>`;
 
-                    
-                    //logger.info(template);
-                    
                     const update:UpdateRecorder = tree.beginUpdate(templateFileName!);
                     update.remove(start, length);
                     update.insertRight(start, template);
                     tree.commitUpdate(update);
 
-                    buffer = tree.read(templateFileName) ;
-                    ({ checkboxAsString, start, length } = getBoundings(buffer));
+                    buffer = tree.read(templateFileName);
+                    ({
+                        checkboxAsString,
+                        start,
+                        length
+                    } = getBoundings(buffer));
                 }
                 // TODO: add MatCheckboxModule to module imports
             }
@@ -124,7 +107,7 @@ function runCkeckboxMigration(tree:Tree, tsconfigPath:string, basePath:string):v
 
 function isComponent(fileName:string, file:Buffer | null):boolean
 {
-    if (fileName.endsWith('.d.ts') && !fileName.endsWith('.ts'))
+    if(fileName.endsWith('.d.ts') && !fileName.endsWith('.ts'))
     {
         return false;
     }
@@ -153,18 +136,44 @@ function getAttributeValue(bufferString:string, attribute:string):string
 {
     const regExp:RegExp = new RegExp(`\\[?${attribute}\\]?="(.*)"`);
     let caption:string, value:string;
-    [caption, value] = bufferString.match(regExp) || ['', null];
+    [caption,
+     value] = bufferString.match(regExp) || ['',
+                                             null];
 
     return value ? `${caption.startsWith('[') ? '{{' + value + '}}' : value}` : null;
 }
 
-function getBoundings(buffer:Buffer):{checkboxAsString:string, start:number, end:number, length:number}
+function getBoundings(buffer:Buffer):{ checkboxAsString:string, start:number, end:number, length:number }
 {
     const bufferString:string = buffer.toString() || '';
     const regExp:RegExp = new RegExp('<terra-checkbox(\\s|>)');
-    const [start, end]:[number, number] = [bufferString.search(regExp), bufferString.indexOf('</terra-checkbox>')];
+    const [start, end]:[number, number] = [bufferString.search(regExp),
+                                           bufferString.indexOf('</terra-checkbox>')];
     const length:number = (end - start) + '</terra-checkbox>'.length;
     // get only one checkbox, otherwise we could find attributes from another
     const checkboxAsString:string = bufferString.substring(start, end);
-    return { checkboxAsString: checkboxAsString, start: start, end: end, length: length };
+    return {
+        checkboxAsString: checkboxAsString,
+        start:            start,
+        end:              end,
+        length:           length
+    };
+}
+
+function doReplacements(checkboxAsString:string):string
+{
+    return checkboxAsString.replace('terra-checkbox', 'mat-checkbox')
+    .replace('isIndeterminate', 'indeterminate')
+    .replace('isIndeterminateChange', 'indeterminateChange')
+    .replace('inputIsDisabled', 'disabled')
+    .replace('tooltipText', 'tcTooltip')
+    .replace('tooltipPlacement', 'placement');
+}
+
+function doDeletions(checkboxAsString:string):string
+{
+    return checkboxAsString.replace(new RegExp('\\[?\\(?value\\)?\\]?=".*"'), '')
+    .replace(new RegExp('\\[?\\(?notifyOnChanges\\)?\\]?=".*"'), '')
+    .replace(new RegExp('\\[?inputCaption\\]?=".*"'), '')
+    .replace(new RegExp('\\[?inputIcon\\]?=".*"'), '');
 }
