@@ -103,9 +103,8 @@ function isComponent(fileName:string, file:Buffer | null):boolean
     {
         return false;
     }
-    let buffer:Buffer | number = file || 0;
     const componentsRexEx:RegExp = new RegExp('@Component\\(');
-    return buffer.toString().match(componentsRexEx) !== null;
+    return file.toString().match(componentsRexEx) !== null;
 }
 
 // function isReferredModule(tree:Tree, path:string, componentName:string):boolean
