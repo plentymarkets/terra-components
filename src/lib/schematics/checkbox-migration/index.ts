@@ -99,6 +99,11 @@ function runCkeckboxMigration(tree:Tree, tsconfigPath:string, basePath:string):v
                     } = getBounding(tree.read(templateFileName)));
                 }
                 // TODO: add MatCheckboxModule to module imports
+                let refferedModule:string = isReferredModule(tree, fileName, 'AppComponent');
+                if(refferedModule !== null)
+                {
+                    logger.info(refferedModule);
+                }
             }
         }
     });
@@ -106,8 +111,8 @@ function runCkeckboxMigration(tree:Tree, tsconfigPath:string, basePath:string):v
 
 /**
  * Checks whether the file is a component.
- * @param fileName 
- * @param file 
+ * @param fileName
+ * @param file
  */
 function isComponent(fileName:string, file:Buffer | null):boolean
 {
@@ -119,21 +124,28 @@ function isComponent(fileName:string, file:Buffer | null):boolean
     return file.toString().match(componentsRegEx) !== null;
 }
 
-// function isReferredModule(tree:Tree, path:string, componentName:string):boolean
-// {
-//     const moduleFileName:string = path.replace('component.ts', 'module.ts');
-//     if(tree.exists(moduleFileName))
-//     {
-//         let buffer:Buffer | number = tree.read(moduleFileName) || 0;
-//         let content:string = buffer.toString();
-//         let nameMatches:RegExpMatchArray | null = content.match('componentName');
-//         if(nameMatches !== null && nameMatches.length >= 2)
-//         {
-//             return true;
-//         }
-//     }
-//     return false;
-// }
+function isReferredModule(tree:Tree, path:string, componentName:string):string
+{
+    const moduleFileName:string = path.replace('component.ts', 'module.ts');
+    if(tree.exists(moduleFileName))
+    {
+        const buffer:Buffer | number = tree.read(moduleFileName) || 0;
+        const content:string = buffer.toString();
+        const nameMatches:RegExpMatchArray | null = content.match(componentName + ',?');
+        const importRegEx:RegExp = new RegExp('import\\s?\{\\s*' + componentName + `\\s?\}\\s?from\\s?\'`, 'gm');
+        const importMatches:RegExpMatchArray | null = content.match(importRegEx);
+        if(nameMatches !== null && importMatches !== null)
+        {
+            return moduleFileName;
+        }
+        // TODO look through parent directories to find the referred module
+        // else
+        // {
+        //     return isReferredModule(tree, )
+        // }
+    }
+    return null;
+}
 
 /**
  * Get the Value of a given Attribute. The returned value has interpolation braces for usage anywhere in the template.
@@ -152,7 +164,7 @@ function getAttributeValue(bufferString:string, attribute:string):string
 }
 
 /**
- * Get the bounding of the next terra-checkbox within the buffer. 
+ * Get the bounding of the next terra-checkbox within the buffer.
  * @see CheckboxBoundingInterface
  * @param buffer
  */
@@ -176,7 +188,7 @@ function getBounding(buffer:Buffer):CheckboxBoundingInterface
 
 /**
  * Rename attributes to match the mat-checkbox attributes.
- * @param checkboxAsString 
+ * @param checkboxAsString
  */
 function doReplacements(checkboxAsString:string):string
 {
@@ -190,7 +202,7 @@ function doReplacements(checkboxAsString:string):string
 
 /**
  * Removes attributes that are no longer supported.
- * @param checkboxAsString 
+ * @param checkboxAsString
  */
 function doDeletions(checkboxAsString:string):string
 {
