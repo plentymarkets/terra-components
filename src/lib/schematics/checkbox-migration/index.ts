@@ -10,6 +10,9 @@ import { getProjectTsConfigPaths } from '@angular/core/schematics/utils/project_
 import { createMigrationProgram } from '../utils/compiler-hosts';
 import * as ts from 'typescript';
 import { relative } from 'path';
+import {
+    oneLineTrim
+} from 'common-tags';
 
 // const componentPath:string = './src/app/app.component.html';
 //
@@ -74,16 +77,14 @@ function runCkeckboxMigration(tree:Tree, tsconfigPath:string, basePath:string):v
                 {
                     let update:UpdateRecorder = tree.beginUpdate(templateFileName!);
 
-                    let { value: valueCaption, dataBinding: dataBindingCaption }:{ value:string, dataBinding:boolean } =
-                        getAttributeValue(buffer.toString(), 'inputCaption');
-                    let { value: valueIcon, dataBinding: dataBindingIcon }:{ value:string, dataBinding:boolean } =
-                        getAttributeValue(buffer.toString(), 'inputIcon');
+                    const valueCaption:string = getAttributeValue(buffer.toString(), 'inputCaption');
+                    let valueIcon:string = getAttributeValue(buffer.toString(), 'inputIcon');
 
                     // valueCaption === true -> add <span> with dataBinding (or not), otherwise add nothing
                     let template:string =
-                        `<mat-checkbox>
-                            ${ valueIcon ? `<span class="checkbox-icon ${dataBindingIcon ? '{{' + valueIcon + '}}' : valueIcon} icon-delete"></span>` : '' }
-                            ${ valueCaption ? `<span>${dataBindingCaption ? '{{' + valueCaption + '}}' : valueCaption}</span>` : '' }
+                        oneLineTrim`<mat-checkbox>
+                            ${ valueIcon ? `<span class="checkbox-icon ${valueIcon}"></span>` : '' }
+                            ${ valueCaption ? `<span>${valueCaption}</span>` :  '' }
                         </mat-checkbox>`;
 
                     logger.info(template);
@@ -104,11 +105,11 @@ function isComponent(fileName:string):boolean
     return fileName.endsWith('component.ts');
 }
 
-function getAttributeValue(bufferString:string, attribute:string):{ value:string, dataBinding:boolean }
+function getAttributeValue(bufferString:string, attribute:string):string
 {
     const regExp:RegExp = new RegExp(`\\[?${attribute}\\]?="(.*)"`);
     let caption:string, value:string;
     [caption, value] = bufferString.match(regExp) || ['', null];
 
-    return { value: value, dataBinding: caption.startsWith('[') };
+    return value ? `${caption.startsWith('[') ? '{{' + value + '}}' : value}` : null;
 }
