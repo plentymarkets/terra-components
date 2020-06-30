@@ -2,6 +2,9 @@
 
 ### Features
 * **schematics** basic support for `ng add`.
+* **select-sort** new pipe for sorting lists of available options for a select box.
+* **select-sort-directive** new directive that automatically sorts all terra-select-boxes.
+* **sort-helper** new class that provides functionality to sort lists of numbers, strings and objects.
 
 ### Bug Fixes
 * **mat-table** adjust styles for odd and even rows.
