@@ -11,6 +11,7 @@ export { TerraPdfHelper } from './terra-pdf.helper';
 export { TerraDownloadHelper } from './download.helper';
 export { UrlHelper } from './url.helper';
 export { StringHelper } from './string.helper';
+export { SortHelper } from './sort.helper';
 
 // enums
 export { TerraButtonColorEnum } from './enums/button-color.enum';
