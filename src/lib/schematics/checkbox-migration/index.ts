@@ -12,11 +12,18 @@ import * as ts from 'typescript';
 import { relative } from 'path';
 import { oneLine } from 'common-tags';
 
-interface CheckboxBounding
+/**
+ * Interface that represents the bounding of a terra-checkbox.
+ */
+interface CheckboxBoundingInterface
 {
+    /** The terra-checkbox as a plain string for replacing and deletion */
     checkboxAsString:string;
+    /** Index that determines the begin of the checkbox within the file. */
     start:number;
+    /** Index that determines the end of the checkbox within the file. */
     end:number;
+    /** Total length of the Checkbox. Includes the opening and closing tag as well. */
     length:number;
 }
 
@@ -65,7 +72,7 @@ function runCkeckboxMigration(tree:Tree, tsconfigPath:string, basePath:string):v
             const templateFileName:string = fileName.replace('component.ts', 'component.html');
             if(tree.exists(templateFileName))
             {
-                let {checkboxAsString, start, length}:CheckboxBounding = getBounding(tree.read(templateFileName));
+                let {checkboxAsString, start, length}:CheckboxBoundingInterface = getBounding(tree.read(templateFileName));
 
                 while(start >= 0)
                 {
@@ -97,14 +104,19 @@ function runCkeckboxMigration(tree:Tree, tsconfigPath:string, basePath:string):v
     });
 }
 
+/**
+ * Checks whether the file is a component.
+ * @param fileName 
+ * @param file 
+ */
 function isComponent(fileName:string, file:Buffer | null):boolean
 {
     if(fileName.endsWith('.d.ts') && !fileName.endsWith('.ts'))
     {
         return false;
     }
-    const componentsRexEx:RegExp = new RegExp('@Component\\(');
-    return file.toString().match(componentsRexEx) !== null;
+    const componentsRegEx:RegExp = new RegExp('@Component\\(');
+    return file.toString().match(componentsRegEx) !== null;
 }
 
 // function isReferredModule(tree:Tree, path:string, componentName:string):boolean
@@ -123,6 +135,11 @@ function isComponent(fileName:string, file:Buffer | null):boolean
 //     return false;
 // }
 
+/**
+ * Get the Value of a given Attribute. The returned value has interpolation braces for usage anywhere in the template.
+ * @param bufferString
+ * @param attribute
+ */
 function getAttributeValue(bufferString:string, attribute:string):string
 {
     const regExp:RegExp = new RegExp(`\\[?${attribute}\\]?="(.*)"`);
@@ -134,7 +151,12 @@ function getAttributeValue(bufferString:string, attribute:string):string
     return value ? `${caption.startsWith('[') ? '{{' + value + '}}' : value}` : null;
 }
 
-function getBounding(buffer:Buffer):CheckboxBounding
+/**
+ * Get the bounding of the next terra-checkbox within the buffer. 
+ * @see CheckboxBoundingInterface
+ * @param buffer
+ */
+function getBounding(buffer:Buffer):CheckboxBoundingInterface
 {
     const bufferString:string = buffer.toString() || '';
     const checkBoxClosingTag:string = '</terra-checkbox>';
@@ -152,6 +174,10 @@ function getBounding(buffer:Buffer):CheckboxBounding
     };
 }
 
+/**
+ * Rename attributes to match the mat-checkbox attributes.
+ * @param checkboxAsString 
+ */
 function doReplacements(checkboxAsString:string):string
 {
     return checkboxAsString.replace('terra-checkbox', 'mat-checkbox')
@@ -162,6 +188,10 @@ function doReplacements(checkboxAsString:string):string
                            .replace('tooltipPlacement', 'placement');
 }
 
+/**
+ * Removes attributes that are no longer supported.
+ * @param checkboxAsString 
+ */
 function doDeletions(checkboxAsString:string):string
 {
     return checkboxAsString.replace(new RegExp('\\[?\\(?value\\)?\\]?=".*"'), '')
