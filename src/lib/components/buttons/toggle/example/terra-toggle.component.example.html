@@ -43,15 +43,15 @@
 <div class="col-12">
     <p>Toggle Events</p>
     <terra-toggle [inputIcon]="'icon-confirm'"
-                  (toggled)="showMessage('toggled')"
+                  (toggled)="_showMessage('toggled')"
                   [inputTooltipText]="'toggled'">
     </terra-toggle>
     <terra-toggle [inputIcon]="'icon-confirm'"
-                  (activated)="showMessage('activated')"
+                  (activated)="_showMessage('activated')"
                   [inputTooltipText]="'activated'">
     </terra-toggle>
     <terra-toggle [inputIcon]="'icon-confirm'"
-                  (deactivated)="showMessage('deactivated')"
+                  (deactivated)="_showMessage('deactivated')"
                   [inputTooltipText]="'deactivated'">
     </terra-toggle>
 </div>
@@ -59,8 +59,8 @@
     <p>Toggle ngModel</p>
     <terra-toggle [inputIcon]="'icon-confirm'"
                   [inputTooltipText]="'toggled with ngModel'"
-                  [(ngModel)]="isToggled"
+                  [(ngModel)]="_isToggled"
                   [inputTooltipPlacement]="'right'">
     </terra-toggle>
-    <span *ngIf="isToggled">Toggled!</span>
+    <span *ngIf="_isToggled">Toggled!</span>
 </div>

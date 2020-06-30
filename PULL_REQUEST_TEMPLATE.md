@@ -7,15 +7,31 @@
 
 Testing
 - [ ] Person 1 (mandatory)
+
+    Browser-Support (relevant for changes in scss / appearance of components)
+    - [ ] Chrome
+    - [ ] Firefox
+    - [ ] Safari
+    
+    Responsiveness
+    - [ ] Desktop
+    - [ ] Tablet
+    - [ ] Mobile
+    
 - [ ] Person 2 (mandatory)
+
+    Browser-Support
+    - [ ] Chrome
+    - [ ] Firefox
+    - [ ] Safari
+    
+    Responsiveness
+    - [ ] Desktop
+    - [ ] Tablet
+    - [ ] Mobile
 
 Information transfer
 - [ ] Inform Ceres about changes in `TerraFormComponent` (optional: relevant for changes in this component)
-
-Browser-Support (relevant for changes in scss / appearance of components and jQuery)
-- [ ] Chrome
-- [ ] Firefox
-- [ ] Safari
 
 Terra Basic Plugin
 - [ ] Adapt changes (optional: relevant for version updates, global design changes, l10n)
@@ -29,6 +45,7 @@ Documentation
 - [ ] Changelog (optional: relevant for every change which influences the API)
 - [ ] Example (updated or created)
 - [ ] JSDoc (optional: relevant for every change which influences the API)
+- [ ] [Google spreadsheet](https://docs.google.com/spreadsheets/d/1OINnux8TEoitV-qdAxqUQaf9oGI_fqFVwfRWenRFfhI/edit#gid=0) (relevant when deprecating public APIs or features)
 
 Testing
 - [ ] Unit Test (updated or created)

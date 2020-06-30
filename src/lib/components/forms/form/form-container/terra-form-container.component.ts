@@ -1,6 +1,5 @@
 import {
     Component,
-    forwardRef,
     Input,
     OnChanges,
     OnInit,
@@ -13,7 +12,10 @@ import {
     isString
 } from 'util';
 import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
-import { TerraKeyValuePairInterface } from '../../../../models';
+import {
+    TerraKeyValueInterface,
+    TerraKeyValuePairInterface
+} from '../../../../models';
 import {
     AbstractControl,
     ControlValueAccessor,
@@ -22,15 +24,16 @@ import {
 } from '@angular/forms';
 import { noop } from 'rxjs';
 import { TerraFormTypeInterface } from '../model/terra-form-type.interface';
+import { TerraFormHelper } from '../helper/terra-form.helper';
 
 @Component({
     selector:  'terra-form-container',
-    template:  require('./terra-form-container.component.html'),
-    styles:    [require('./terra-form-container.component.scss')],
+    templateUrl: './terra-form-container.component.html',
+    styleUrls: ['./terra-form-container.component.scss'],
     providers: [
         {
             provide:     NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => TerraFormContainerComponent),
+            useExisting: TerraFormContainerComponent,
             multi:       true
         }
     ]
@@ -44,9 +47,9 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
     public inputControlTypeMap:{ [key:string]:Type<any> | TerraFormTypeInterface } = {};
 
     @Input()
-    public set inputFormFields(fields:{ [key:string]:TerraFormFieldInterface })
+    public set inputFormFields(fields:TerraKeyValueInterface<TerraFormFieldInterface>)
     {
-        this.formFields = Object.keys(fields).map((key:string) =>
+        this._formFields = Object.keys(fields).map((key:string) =>
         {
             return {
                 key:   key,
@@ -54,8 +57,12 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
             };
         });
 
-        this.updateFieldVisibility();
+        this._updateFieldVisibility();
     }
+
+    /** @description Set width of terra-form-container. Sets width of all form elements that don't overwrite it. Default col-12. */
+    @Input()
+    public width:string = 'col-12';
 
     /**
      * @description If true, the button will be disabled. Default false.
@@ -66,22 +73,26 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
     @Input()
     public set inputFormGroup(formGroup:FormGroup)
     {
-        this.formGroup = formGroup;
+        this._formGroup = formGroup;
     }
 
-    protected formGroup:FormGroup;
+    /** @description Indicate whether this container should be displayed horizontally. */
+    @Input()
+    public horizontal:boolean = false;
 
-    protected formFields:Array<TerraKeyValuePairInterface<TerraFormFieldInterface>> = [];
-    protected formFieldVisibility:{ [key:string]:boolean } = {};
+    public _formGroup:FormGroup;
 
-    private onChangeCallback:(value:any) => void = noop;
-    private onTouchedCallback:() => void = noop;
+    public _formFields:Array<TerraKeyValuePairInterface<TerraFormFieldInterface>> = [];
+    public _formFieldVisibility:TerraKeyValueInterface<boolean> = {};
+
+    private _onChangeCallback:(value:any) => void = noop;
+    private _onTouchedCallback:() => void = noop;
 
     public ngOnInit():void
     {
         this.inputScope.onDataChanged.subscribe(() =>
         {
-            this.updateFieldVisibility();
+            this._updateFieldVisibility();
         });
     }
 
@@ -89,69 +100,74 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
     {
         if(changes.hasOwnProperty('inputScope'))
         {
-            this.updateFieldVisibility();
+            this._updateFieldVisibility();
         }
     }
 
     public registerOnChange(fn:(value:any) => void):void
     {
-        this.onChangeCallback = fn;
+        this._onChangeCallback = fn;
     }
 
     public registerOnTouched(fn:() => void):void
     {
-        this.onTouchedCallback = fn;
+        this._onTouchedCallback = fn;
     }
 
     public writeValue(value:any):void
     {
         if(isNullOrUndefined(value))
         {
-            this.formGroup.setValue({});
+            this._formGroup.setValue({});
         }
         else
         {
-            this.formGroup.patchValue(value);
+            this._formGroup.patchValue(value);
         }
     }
 
-    private updateFieldVisibility():void
+    private _updateFieldVisibility():void
     {
-        this.formFields.forEach((field:TerraKeyValuePairInterface<TerraFormFieldInterface>) =>
+        this._formFields.forEach((field:TerraKeyValuePairInterface<TerraFormFieldInterface>) =>
         {
             if(isString(field.value.isVisible))
             {
-                this.formFieldVisibility[field.key] = this.inputScope.evaluate(field.value.isVisible);
+                this._formFieldVisibility[field.key] = this.inputScope.evaluate(field.value.isVisible as string);
             }
             else
             {
-                this.formFieldVisibility[field.key] = isNullOrUndefined(field.value.isVisible) || field.value.isVisible;
+                this._formFieldVisibility[field.key] = isNullOrUndefined(field.value.isVisible) || field.value.isVisible;
             }
 
-            if(!isNullOrUndefined(this.formGroup))
+            if(!isNullOrUndefined(this._formGroup))
             {
-                this.updateFormControlVisibility(field.key);
+                this._updateFormControlVisibility(field.key);
             }
         });
     }
 
-    private updateFormControlVisibility(fieldKey:string):void
+    private _updateFormControlVisibility(fieldKey:string):void
     {
-        let control:AbstractControl = this.formGroup.get(fieldKey);
+        let control:AbstractControl = this._formGroup.get(fieldKey);
         if(!isNullOrUndefined(control))
         {
-            if(this.formFieldVisibility[fieldKey])
+            if(this._formFieldVisibility[fieldKey])
             {
-                if(control.disabled)
+                if(!control.validator)
                 {
-                    control.enable({onlySelf:true});
+                    const formField:TerraKeyValuePairInterface<TerraFormFieldInterface> = this._formFields.find(
+                        (field:TerraKeyValuePairInterface<TerraFormFieldInterface>) => field.key === fieldKey
+                    );
+                    control.setValidators(TerraFormHelper.generateValidators(formField.value));
                 }
             }
             else
             {
-                if(control.enabled)
+                if(control.validator)
                 {
-                    control.disable({onlySelf:true});
+                    control.clearValidators();
+                    // update the control's validity when the current change detection cycle is over
+                    setTimeout(() => control.updateValueAndValidity());
                 }
             }
         }

@@ -2,17 +2,17 @@
     <ul>
         <ng-template ngFor let-leaf [ngForOf]="inputLeafList">
             <li class="node leaf" [ngClass]="{'collapsed': !leaf.isOpen, 'active': leaf.isActive, 'disabled': leaf.isDisabled}">
-                <div class="leaf-titel flex-container" (click)="onLeafClick(leaf)">
+                <div class="leaf-titel flex-container" (click)="_onLeafClick(leaf)">
                     <terra-checkbox
                         [inputIsDisabled]="leaf.isDisabled"
                         [inputCaption]="leaf.caption"
-                        (ngModelChange)="onCheckboxValueChange($event, leaf)"
+                        (ngModelChange)="_onCheckboxValueChange($event, leaf)"
                         [(ngModel)]="leaf.checkboxChecked"
                         [notifyOnChanges]="true"
                         [isIndeterminate]="leaf.isIndeterminate">
                     </terra-checkbox>
                 </div>
-                <span class="node-toggle" *ngIf="leaf.subLeafList && leaf.subLeafList.length > 0" (click)="toggleOpen(leaf)"></span>
+                <span class="node-toggle" *ngIf="leaf.subLeafList && leaf.subLeafList.length > 0" (click)="_toggleOpen(leaf)"></span>
                 <terra-checkbox-tree
                     *ngIf="leaf.subLeafList && leaf.subLeafList.length > 0"
                     [inputLeafList]="leaf.subLeafList"

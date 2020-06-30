@@ -5,13 +5,16 @@ import {
 import { TerraControlTypeEnum } from '../enum/terra-control-type.enum';
 
 /**
- * @author mfrank
+ * @deprecated since v5.0.0. Use terra-form instead.
  */
 export interface TerraFormFieldDatePickerOptions extends TerraFormFieldBaseOptions<string>
 {
     openCalenderTop?:boolean;
 }
 
+/**
+ * @deprecated since v5.0.0. Use terra-form instead.
+ */
 export class TerraFormFieldDatePicker extends TerraFormFieldBase<string>
 {
     public openCalenderTop:boolean;

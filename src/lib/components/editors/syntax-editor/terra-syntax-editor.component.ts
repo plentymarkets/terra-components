@@ -24,12 +24,12 @@ import { TerraSyntaxEditorData } from './data/terra-syntax-editor.data';
  * @deprecated Use [ckEditor](https://github.com/ckeditor/ckeditor4-angular) instead.
  */
 @Component({
-    selector: 'terra-syntax-editor',
-    template: require('./terra-syntax-editor.component.html')
+    selector:    'terra-syntax-editor',
+    templateUrl: './terra-syntax-editor.component.html'
 })
 export class TerraSyntaxEditorComponent implements AfterViewInit
 {
-    @ViewChild('aceEditor')
+    @ViewChild('aceEditor', { static: true })
     public editor:AceEditorComponent;
 
     @Input()
@@ -37,6 +37,7 @@ export class TerraSyntaxEditorComponent implements AfterViewInit
 
     @Input()
     public inputOptions:Object;
+
     private _inputEditorMode:string;
     private _inputText:string;
 
@@ -64,6 +65,11 @@ export class TerraSyntaxEditorComponent implements AfterViewInit
     {
         this._inputEditorMode = value;
         this.editor.setMode(value);
+    }
+
+    public get inputEditorMode():string
+    {
+        return this._inputEditorMode;
     }
 
     @Input()

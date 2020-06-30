@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
 
 @Component({
-    selector: 'terra-group-function-example',
-    template: require('./terra-group-function.component.example.html')
+    selector:    'terra-group-function-example',
+    templateUrl: './terra-group-function.component.example.html'
 })
 
 export class TerraGroupFunctionComponentExample
 {
-    protected showGroupFunction:boolean = false;
+    public _showGroupFunction:boolean = false;
 
-    protected doSomething(text:string):void
+    public _doSomething(text:string):void
     {
         console.log(`Group function executed with text "${text ? text : ''}"`);
     }

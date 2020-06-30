@@ -1,6 +1,6 @@
 <terra-portlet inputPortletHeader="input uses ngModel">
     <terra-text-input inputName="username"
-                      [(ngModel)]="username">
+                      [(ngModel)]="_username">
     </terra-text-input>
     <terra-button inputCaption="show username"
                   (outputClicked)="showUsername()">
@@ -14,7 +14,7 @@
 <terra-portlet inputPortletHeader="input is readonly">
     <terra-text-input inputName="readonly"
                       [inputIsReadonly]="true"
-                      [(ngModel)]="readOnlyFieldText">
+                      [(ngModel)]="_readOnlyFieldText">
     </terra-text-input>
 </terra-portlet>
 <terra-portlet inputPortletHeader="input is iban">

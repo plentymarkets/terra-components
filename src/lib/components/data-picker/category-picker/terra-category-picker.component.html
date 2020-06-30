@@ -3,28 +3,28 @@
                       [inputIsDisabled]="inputIsDisabled"
                       inputTooltipText="{{inputTooltipText}}"
                       [inputName]="inputName"
-                      [(ngModel)]="categoryName"
+                      [(ngModel)]="_categoryName"
                       (click)="showTree()">
     </terra-text-input>
     <div *ngIf="toggleTree">
         <terra-node-tree [inputShowSearch]="false"
-                         [inputConfig]="nestedTreeConfig">
+                         [inputConfig]="_nestedTreeConfig">
         </terra-node-tree>
         <terra-base-toolbar>
-            <terra-button inputTooltipText="{{'terraCategoryPicker.select' | translate:lang}}"
+            <terra-button inputTooltipText="{{'terraCategoryPicker.select' | translate:_lang}}"
                           inputTooltipPlacement="top"
                           inputIcon="icon-success"
                           [inputIsSmall]="true"
-                          [inputIsDisabled]="isContainerCategorySelected"
+                          [inputIsDisabled]="_isContainerCategorySelected"
                           (outputClicked)="onSelectNode()">
             </terra-button>
-            <terra-button inputTooltipText="{{'cancel' | translate:lang}}"
+            <terra-button inputTooltipText="{{'cancel' | translate:_lang}}"
                           inputTooltipPlacement="top"
                           inputIcon="icon-cancel"
                           [inputIsSmall]="true"
                           (outputClicked)="showTree()">
             </terra-button>
-            <terra-button inputTooltipText="{{'terraCategoryPicker.reset' | translate:lang}}"
+            <terra-button inputTooltipText="{{'terraCategoryPicker.reset' | translate:_lang}}"
                           inputTooltipPlacement="top"
                           inputIcon="icon-reset"
                           [inputIsSmall]="true"

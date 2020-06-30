@@ -1,8 +1,13 @@
+<b [style.color]="form.formGroup.valid ? 'green' : 'red'">{{form.formGroup.status}}</b>
 <terra-portlet>
     <terra-form
-        [inputControlTypeMap]="formTypeMap"
-        [inputFormFields]="formFields"
-        [(ngModel)]="formValue">
+        #form
+        [inputControlTypeMap]="_formTypeMap"
+        [inputFormFields]="_formFields"
+        [(ngModel)]="_formValue">
     </terra-form>
 </terra-portlet>
-{{ formValue | json }}
+<div>FormGroup: {{ form.formGroup.value | json }}</div>
+<br>
+<div>NgModel: {{ _formValue | json }}</div>
+

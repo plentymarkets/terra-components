@@ -5,13 +5,16 @@ import {
 import { TerraControlTypeEnum } from '../enum/terra-control-type.enum';
 
 /**
- * @author mfrank
+ * @deprecated since v5.0.0. Use terra-form instead.
  */
 export interface TerraFormFieldInputNumberOptions extends TerraFormFieldBaseOptions<number>
 {
     type?:string;
 }
 
+/**
+ * @deprecated since v5.0.0. Use terra-form instead.
+ */
 export class TerraFormFieldInputNumber extends TerraFormFieldBase<number>
 {
     public type:string;

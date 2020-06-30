@@ -5,21 +5,21 @@ import {
 import { TerraSelectBoxValueInterface } from '../../forms/select-box/data/terra-select-box.interface';
 
 @Component({
-    selector: 'tc-filter-example',
-    template: require('./filter.component.example.html'),
+    selector:    'tc-filter-example',
+    templateUrl: './filter.component.example.html',
 })
 export class FilterComponentExample implements OnInit
 {
-    protected name:string = '';
+    public _name:string = '';
 
-    protected listBoxValues:Array<TerraSelectBoxValueInterface> = [];
-    protected selectedListBoxValue:number = 1;
+    public _listBoxValues:Array<TerraSelectBoxValueInterface> = [];
+    public _selectedListBoxValue:number = 1;
 
     public ngOnInit():void
     {
         for(let i:number = 1; i < 4; i++)
         {
-            this.listBoxValues.push(
+            this._listBoxValues.push(
                 {
                     value:   i,
                     caption: 'Test' + i
@@ -28,14 +28,14 @@ export class FilterComponentExample implements OnInit
         }
     }
 
-    protected onSearchBtnClicked():void
+    public _onSearchBtnClicked():void
     {
-        alert('filtered for ' + this.selectedListBoxValue);
+        alert('filtered for ' + this._selectedListBoxValue);
     }
 
-    protected onResetBtnClicked():void
+    public _onResetBtnClicked():void
     {
-        this.name = '';
-        this.selectedListBoxValue = 1;
+        this._name = '';
+        this._selectedListBoxValue = 1;
     }
 }

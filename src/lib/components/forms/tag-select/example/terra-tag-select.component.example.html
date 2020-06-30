@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-8">
-                <terra-tag-select [(ngModel)]="selectedTags" [tags]="tags"></terra-tag-select>
+                <terra-tag-select [(ngModel)]="_selectedTags" [tags]="_tags"></terra-tag-select>
             </div>
         </div>
     </div>
@@ -12,7 +12,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-8">
-                <terra-tag-select [(ngModel)]="selectedTags" [tags]="tags" [isDisabled]="true"></terra-tag-select>
+                <terra-tag-select [(ngModel)]="_selectedTags" [tags]="_tags" [isDisabled]="true"></terra-tag-select>
             </div>
         </div>
     </div>
@@ -22,7 +22,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-8">
-                <terra-tag-select [(ngModel)]="selectedTags" [tags]="tags" [isReadOnly]="true"></terra-tag-select>
+                <terra-tag-select [(ngModel)]="_selectedTags" [tags]="_tags" [isReadOnly]="true"></terra-tag-select>
             </div>
         </div>
     </div>

@@ -14,9 +14,9 @@ import { TerraTagNameInterface } from './data/terra-tag-name.interface';
 import { Language } from 'angular-l10n';
 
 @Component({
-    selector: 'terra-tag',
-    styles:   [require('./terra-tag.component.scss')],
-    template: require('./terra-tag.component.html')
+    selector:    'terra-tag',
+    styleUrls:   ['./terra-tag.component.scss'],
+    templateUrl: './terra-tag.component.html'
 })
 export class TerraTagComponent implements OnInit, OnChanges, OnDestroy
 {
@@ -94,9 +94,9 @@ export class TerraTagComponent implements OnInit, OnChanges, OnDestroy
     public closeTag:EventEmitter<number> = new EventEmitter<number>();
 
     @Language()
-    protected lang:string;
+    public _lang:string;
 
-    protected tagName:string;
+    public _tagName:string;
 
     public ngOnInit():void
     {
@@ -119,45 +119,21 @@ export class TerraTagComponent implements OnInit, OnChanges, OnDestroy
     {
         if(changes.hasOwnProperty('name') || changes.hasOwnProperty('names') || changes.hasOwnProperty('inputBadge'))
         {
-            this.tagName = this.getTagName();
+            this._tagName = this._getTagName();
         }
     }
 
-    protected close():void
+    public _close():void
     {
         this.onCloseTag.emit(this.tagId);
         this.closeTag.emit(this.tagId);
     }
 
-    private getTagName():string
-    {
-        if(this.inputBadge)
-        {
-            return this.inputBadge;
-        }
-
-        if(isNullOrUndefined(this.names))
-        {
-            return this.name;
-        }
-
-        const tagName:TerraTagNameInterface = this.names.find((name:TerraTagNameInterface) => name.language === this.lang);
-        if(isNullOrUndefined(tagName))
-        {
-            return this.name;
-        }
-        else
-        {
-            return tagName.name;
-        }
-    }
-
     /**
      * Get the background color.
-     * @returns {string}
      * @see inputColor
      */
-    protected get bgColor():string
+    public get _bgColor():string
     {
         if(!isNullOrUndefined(this.inputColor))
         {
@@ -169,12 +145,35 @@ export class TerraTagComponent implements OnInit, OnChanges, OnDestroy
     /**
      * Get the text color.
      */
-    protected get color():string
+    public get _color():string
     {
         if(!isNullOrUndefined(this.inputColor))
         {
-            return (new Color(this.inputColor)).isDark() ? '#ffffff' : '#000000';
+            return (new Color(this.inputColor)).isDark() ? '#FFFFFF' : '#000000';
         }
         return null;
+    }
+
+    private _getTagName():string
+    {
+        if(this.inputBadge)
+        {
+            return this.inputBadge;
+        }
+
+        if(isNullOrUndefined(this.names))
+        {
+            return this.name;
+        }
+
+        const tagName:TerraTagNameInterface = this.names.find((name:TerraTagNameInterface) => name.language === this._lang);
+        if(isNullOrUndefined(tagName))
+        {
+            return this.name;
+        }
+        else
+        {
+            return tagName.name;
+        }
     }
 }

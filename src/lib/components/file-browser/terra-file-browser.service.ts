@@ -10,35 +10,35 @@ export class TerraFileBrowserService
 {
     public isDragActive:BehaviorSubject<boolean> = new BehaviorSubject(false);
 
-    private dropzones:Array<HTMLElement> = [];
-    private globalListenersDefined:boolean = false;
-    private dragenterTarget:EventTarget = null;
+    private _dropzones:Array<HTMLElement> = [];
+    private _globalListenersDefined:boolean = false;
+    private _dragenterTarget:EventTarget = null;
 
-    constructor(private zone:NgZone)
+    constructor(private _zone:NgZone)
     {
     }
 
     public addDropzone(dropzone:HTMLElement):void
     {
-        if(!this.globalListenersDefined)
+        if(!this._globalListenersDefined)
         {
-            this.setupGlobalListeners();
+            this._setupGlobalListeners();
         }
-        this.dropzones.push(dropzone);
+        this._dropzones.push(dropzone);
     }
 
     public removeDropzone(dropzone:HTMLElement):void
     {
-        let idx:number = this.dropzones.indexOf(dropzone);
+        let idx:number = this._dropzones.indexOf(dropzone);
         if(idx >= 0)
         {
-            this.dropzones.splice(idx, 1);
+            this._dropzones.splice(idx, 1);
         }
     }
 
-    private isDropzone(element:HTMLElement):boolean
+    private _isDropzone(element:HTMLElement):boolean
     {
-        return this.dropzones.some(
+        return this._dropzones.some(
             (dropzone:HTMLElement) =>
             {
                 return dropzone.contains(element);
@@ -46,13 +46,13 @@ export class TerraFileBrowserService
         );
     }
 
-    private setupGlobalListeners():void
+    private _setupGlobalListeners():void
     {
-        this.zone.runOutsideAngular(() =>
+        this._zone.runOutsideAngular(() =>
         {
             let setEffect:(event:Event) => void = (event:DragEvent):void =>
             {
-                if(this.isDropzone(<HTMLElement> event.target))
+                if(this._isDropzone(<HTMLElement> event.target))
                 {
                     event.dataTransfer.effectAllowed = 'copy';
                     event.dataTransfer.dropEffect = 'copy';
@@ -73,7 +73,7 @@ export class TerraFileBrowserService
             {
                 if(isFileEvent(event))
                 {
-                    this.dragenterTarget = event.target;
+                    this._dragenterTarget = event.target;
                     event.preventDefault();
                     if(!this.isDragActive.value)
                     {
@@ -93,9 +93,9 @@ export class TerraFileBrowserService
 
             window.addEventListener('dragleave', (event:DragEvent) =>
             {
-                if(isFileEvent(event) && event.target === this.dragenterTarget)
+                if(isFileEvent(event) && event.target === this._dragenterTarget)
                 {
-                    this.dragenterTarget = null;
+                    this._dragenterTarget = null;
                     this.isDragActive.next(false);
                 }
             });
@@ -105,7 +105,7 @@ export class TerraFileBrowserService
                 if(isFileEvent(event))
                 {
                     event.preventDefault();
-                    this.dragenterTarget = null;
+                    this._dragenterTarget = null;
                     if(this.isDragActive.value)
                     {
                         this.isDragActive.next(false);
@@ -114,6 +114,6 @@ export class TerraFileBrowserService
             });
 
         });
-        this.globalListenersDefined = true;
+        this._globalListenersDefined = true;
     }
 }

@@ -8,9 +8,9 @@ import { isNullOrUndefined } from 'util';
 import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum';
 
 @Component({
-    selector: 'terra-button',
-    styles:   [require('./terra-button.component.scss')],
-    template: require('./terra-button.component.html')
+    selector:    'terra-button',
+    styleUrls:   ['./terra-button.component.scss'],
+    templateUrl: './terra-button.component.html'
 })
 export class TerraButtonComponent
 {
@@ -51,7 +51,6 @@ export class TerraButtonComponent
     public inputTooltipText:string;
 
     /**
-     * @deprecated since v4. Is replaced by the TooltipDirective and will be removed with the next major version.
      * @description Set the tooltip placement (bottom, top, left, right). Default top.
      * */
     @Input()
@@ -108,7 +107,7 @@ export class TerraButtonComponent
         this.inputIsMajor = false;
     }
 
-    protected click(event:Event):void
+    public _click(event:Event):void
     {
         if(isNullOrUndefined(this.inputIsDisabled) || this.inputIsDisabled === false)
         {

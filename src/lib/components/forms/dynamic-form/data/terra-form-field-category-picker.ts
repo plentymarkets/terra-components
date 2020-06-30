@@ -6,7 +6,7 @@ import { TerraControlTypeEnum } from '../enum/terra-control-type.enum';
 import { TerraCategoryPickerBaseService } from '../../../data-picker/category-picker/service/terra-category-picker-base.service';
 
 /**
- *@author Ziyad.Hajj-Hassan
+ * @deprecated since v5.0.0. Use terra-form instead.
  */
 export interface TerraFormFieldCategoryPickerOptions extends TerraFormFieldBaseOptions<number>
 {
@@ -14,6 +14,9 @@ export interface TerraFormFieldCategoryPickerOptions extends TerraFormFieldBaseO
     categoryService?:TerraCategoryPickerBaseService;
 }
 
+/**
+ * @deprecated since v5.0.0. Use terra-form instead.
+ */
 export class TerraFormFieldCategoryPicker extends TerraFormFieldBase<number>
 {
     public type:string;

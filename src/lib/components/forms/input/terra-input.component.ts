@@ -8,6 +8,7 @@ import { isNullOrUndefined } from 'util';
 import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum';
 import { noop } from 'rxjs';
 
+/** @deprecated since v5. Use angular material's [input](https://material.angular.io/components/input) instead. */
 export class TerraInputComponent implements ControlValueAccessor
 {
     /**
@@ -41,7 +42,6 @@ export class TerraInputComponent implements ControlValueAccessor
     public inputIsDisabled:boolean;
 
     /**
-     * @deprecated since v4. Is replaced by the TooltipDirective and will be removed with the next major version.
      * @description Set the tooltip placement (bottom, top, left, right). Default top.
      */
     @Input()
@@ -81,18 +81,18 @@ export class TerraInputComponent implements ControlValueAccessor
     public regex:string;
 
     // The internal data model
-    protected innerValue:any;
+    public _innerValue:any;
 
-    private alert:TerraAlertComponent = TerraAlertComponent.getInstance();
+    private _alert:TerraAlertComponent = TerraAlertComponent.getInstance();
 
     // Placeholders for the callbacks which are later provided
     // by the Control Value Accessor
-    private onTouchedCallback:() => void = noop;
-    private onChangeCallback:(_:any) => void = noop;
+    private _onTouchedCallback:() => void = noop;
+    private _onChangeCallback:(_:any) => void = noop;
 
-    constructor(private inputRegex:string)
+    constructor(private _inputRegex:string)
     {
-        this.regex = inputRegex;
+        this.regex = _inputRegex;
         this.isValid = true;
         this.inputIsSmall = false;
     }
@@ -110,44 +110,44 @@ export class TerraInputComponent implements ControlValueAccessor
     // get accessor
     public get value():any
     {
-        return this.innerValue;
+        return this._innerValue;
     }
 
     // set accessor including call the onchange callback
     public set value(v:any)
     {
-        if(v !== this.innerValue)
+        if(v !== this._innerValue)
         {
-            this.innerValue = v;
-            this.onChangeCallback(this.innerValue);
+            this._innerValue = v;
+            this._onChangeCallback(this._innerValue);
         }
     }
 
     // Set touched on blur
     public onBlur():void
     {
-        this.onTouchedCallback();
+        this._onTouchedCallback();
     }
 
     // From ControlValueAccessor interface
     public writeValue(value:any):void
     {
-        if(value !== this.innerValue)
+        if(value !== this._innerValue)
         {
-            this.innerValue = value;
+            this._innerValue = value;
         }
     }
 
     // From ControlValueAccessor interface
     public registerOnChange(fn:any):void
     {
-        this.onChangeCallback = fn;
+        this._onChangeCallback = fn;
     }
 
     // From ControlValueAccessor interface
     public registerOnTouched(fn:any):void
     {
-        this.onTouchedCallback = fn;
+        this._onTouchedCallback = fn;
     }
 
     public validate(formControl:FormControl):void
@@ -176,7 +176,7 @@ export class TerraInputComponent implements ControlValueAccessor
                     {
                         emptyMessage = this.inputEmptyMessage;
 
-                        this.alert.addAlert({
+                        this._alert.addAlert({
                             msg:              emptyMessage,
                             type:             'danger',
                             dismissOnTimeout: 0
@@ -196,7 +196,7 @@ export class TerraInputComponent implements ControlValueAccessor
                     {
                         invalidMessage = this.inputInvalidMessage;
 
-                        this.alert.addAlert({
+                        this._alert.addAlert({
                             msg:              invalidMessage,
                             type:             'danger',
                             dismissOnTimeout: 0

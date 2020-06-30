@@ -16,8 +16,7 @@ import { TerraFormFieldNoteEditor } from '../data/terra-form-field-note-editor';
 import { TerraFormFieldCodeEditor } from '../data/terra-form-field-code-editor';
 
 /**
- * @author mfrank
- *
+ * @deprecated since v5.0.0. Use terra-form instead.
  */
 export class TerraJsonToFormFieldService
 {

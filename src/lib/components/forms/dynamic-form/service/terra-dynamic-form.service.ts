@@ -1,30 +1,21 @@
 import { Injectable } from '@angular/core';
-import { TerraBaseService } from '../../../../service/terra-base.service';
-import { TerraLoadingSpinnerService } from '../../../loading-spinner/service/terra-loading-spinner.service';
-import { Http } from '@angular/http';
 import {
     Observable,
     of
 } from 'rxjs';
 
 /**
- * @author mfrank
+ * @deprecated since v5.0.0. Use terra-form instead.
  */
 @Injectable({
     providedIn: 'root'
 })
-export class TerraDynamicFormService extends TerraBaseService
+export class TerraDynamicFormService
 {
-    constructor(private spinnerService:TerraLoadingSpinnerService,
-                private baseHttp:Http)
-    {
-        super(spinnerService, baseHttp, '', false);
-    }
-
     /**
      * @param data
      * @param url
-     * @return {any}
+     * @param params
      */
     public create(data:any, url:string, params:any):Observable<any>
     {
@@ -34,7 +25,7 @@ export class TerraDynamicFormService extends TerraBaseService
     /**
      * @param data
      * @param url
-     * @return {any}
+     * @param params
      */
     public update(data:any, url:string, params:any):Observable<any>
     {
@@ -44,7 +35,6 @@ export class TerraDynamicFormService extends TerraBaseService
     /**
      * @param data
      * @param url
-     * @return {any}
      */
     public delete(data:any, url:string):Observable<any>
     {

@@ -158,21 +158,21 @@ describe(`TerraFormHelper:`, () =>
 
     describe(`parseReactiveForm() `, () =>
     {
-        it('should return an empty FormGroup instance when formFields is undefined', () =>
+        it('should return an empty FormGroup instance when _formFields is undefined', () =>
         {
             let form:any = TerraFormHelper.parseReactiveForm(undefined);
 
             expect(form instanceof FormGroup).toBeTruthy();
         });
 
-        it('should return an empty FormGroup instance when formFields is an empty Object', () =>
+        it('should return an empty FormGroup instance when _formFields is an empty Object', () =>
         {
             let form:any = TerraFormHelper.parseReactiveForm({});
 
             expect(form instanceof FormGroup).toBeTruthy();
         });
 
-        it('should return a FormGroup instance with n FormControls when n primitive type formFields are given', () =>
+        it('should return a FormGroup instance with n FormControls when n primitive type _formFields are given', () =>
         {
             const formFields:{ [key:string]:TerraFormFieldInterface } = {
                 formField1: control1,
@@ -259,19 +259,19 @@ describe(`TerraFormHelper:`, () =>
             });
         });
 
-        describe(`fitControlsToRange()`, () =>
+        describe(`_fitControlsToRange()`, () =>
         {
             it(`should add controls to the given list of #controls until the minimum of the range is reached`, () =>
             {
                 const controls:Array<AbstractControl> = [];
-                TerraFormHelper['fitControlsToRange'](controlListWithRange, controls);
+                TerraFormHelper['_fitControlsToRange'](controlListWithRange, controls);
                 expect(controls.length).toBe(min);
             });
 
             it(`should remove controls to the given list of #controls if it exceeds the maximum of the range`, () =>
             {
                 const controls:Array<AbstractControl> = Array(max + 1).fill(new FormControl());
-                TerraFormHelper['fitControlsToRange'](controlListWithRange, controls);
+                TerraFormHelper['_fitControlsToRange'](controlListWithRange, controls);
                 expect(controls.length).toBe(max);
             });
 
@@ -280,9 +280,24 @@ describe(`TerraFormHelper:`, () =>
                 const count:number = min + 1;
                 const controls:Array<AbstractControl> = Array(count).fill(new FormControl());
                 const controlsCopy:Array<AbstractControl> = controls.slice();
-                TerraFormHelper['fitControlsToRange'](controlListWithRange, controls);
+                TerraFormHelper['_fitControlsToRange'](controlListWithRange, controls);
                 expect(controls.length).toBe(count);
                 expect(controls).toEqual(controlsCopy);
+            });
+        });
+
+        describe('sanitiseWidth()', () =>
+        {
+            it(`should remove illegal classes from width parameter`, () =>
+            {
+                expect(TerraFormHelper.sanitiseWidth(undefined)).toBe(undefined);
+                expect(TerraFormHelper.sanitiseWidth('col-lg-12')).toBe('col-lg-12');
+                expect(TerraFormHelper.sanitiseWidth('coeeeel-lg-12')).toBe('');
+                expect(TerraFormHelper.sanitiseWidth('col-lg-H')).toBe('');
+                expect(TerraFormHelper.sanitiseWidth('col-lg')).toBe('');
+                expect(TerraFormHelper.sanitiseWidth('col-lg-13')).toBe('');
+                expect(TerraFormHelper.sanitiseWidth('col-lg-2 col-xs-12')).toBe('col-lg-2 col-xs-12');
+                expect(TerraFormHelper.sanitiseWidth('col-lg-2 col-xs-1300')).toBe('col-lg-2');
             });
         });
 

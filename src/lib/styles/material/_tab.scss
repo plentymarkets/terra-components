@@ -1,5 +1,7 @@
 nav.mat-tab-nav-bar
 {
+    border-bottom: none;
+    
     .mat-tab-links
     {
         background-color: var(--tabs-background-color);
@@ -17,7 +19,7 @@ nav.mat-tab-nav-bar
             line-height: var(--tabs-nav-item-height, (calc(var(--tabbar-height) - var(--space-sm) - var(--tabs-border-bottom-width))));
             margin: var(--tabs-nav-item-margin, var(--space-sm) var(--space-xs) 0 var(--space-xs));
             opacity: 1;
-            min-width: initial;
+            min-width: var(--height-md-fix);
             padding: 0 8px 0 8px;
             user-select: none;
             @include font-rendering();
@@ -99,11 +101,11 @@ nav.mat-tab-nav-bar
                 
             }
         }
-        
-        mat-ink-bar.mat-ink-bar
-        {
-            height: 0;
-        }
+    }
+    
+    mat-ink-bar.mat-ink-bar
+    {
+        height: 0;
     }
 }
 

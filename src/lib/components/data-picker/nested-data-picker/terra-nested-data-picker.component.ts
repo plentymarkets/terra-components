@@ -1,7 +1,6 @@
 import {
     AfterContentChecked,
     Component,
-    forwardRef,
     Input,
     OnDestroy,
     OnInit
@@ -26,13 +25,13 @@ import {
 } from 'rxjs';
 
 @Component({
-    selector:  'terra-nested-data-picker',
-    template:  require('./terra-nested-data-picker.component.html'),
-    styles:    [require('./terra-nested-data-picker.component.scss')],
-    providers: [
+    selector:    'terra-nested-data-picker',
+    templateUrl: './terra-nested-data-picker.component.html',
+    styleUrls:   ['./terra-nested-data-picker.component.scss'],
+    providers:   [
         {
             provide:     NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => TerraNestedDataPickerComponent),
+            useExisting: TerraNestedDataPickerComponent,
             multi:       true
         },
         NestedDataTreeConfig,
@@ -68,24 +67,26 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
     public showFullSelectionPath:boolean = false;
 
     public toggleTree:boolean = false;
-    public isNotInitialCall:boolean;
-    public value:number | string;
-
-    public onTouchedCallback:() => void = noop;
-    public onChangeCallback:(_:any) => void = noop;
 
     @Language()
-    protected lang:string;
+    public _lang:string;
 
-    private completeNestedData:NestedValueInterface;
-    private nestedDataName:string;
-    private nestedList:Array<TerraNodeInterface<NestedDataInterface<{}>>>;
+    public _nestedDataName:string;
 
-    constructor(public translation:TranslationService,
-                public nestedTreeConfig:TerraNodeTreeConfig<{}>)
+    public value:number | string;
+    protected _isNotInitialCall:boolean;
+
+    protected _onTouchedCallback:() => void = noop;
+    protected _onChangeCallback:(_:any) => void = noop;
+
+    private _completeNestedData:NestedValueInterface;
+    private _nestedList:Array<TerraNodeInterface<NestedDataInterface<{}>>>;
+
+    constructor(protected _translation:TranslationService,
+                public _nestedTreeConfig:TerraNodeTreeConfig<{}>)
     {
         this.value = null;
-        this.completeNestedData = {
+        this._completeNestedData = {
             id:               null,
             isActive:         null,
             isOpen:           null,
@@ -94,16 +95,16 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
             tooltip:          '',
             tooltipPlacement: '',
         };
-        this.nestedList = [];
-        this.nestedDataName = '';
-        this.isNotInitialCall = false;
+        this._nestedList = [];
+        this._nestedDataName = '';
+        this._isNotInitialCall = false;
     }
 
     public ngAfterContentChecked():void
     {
-        if(this.nestedTreeConfig.list.length === 0)
+        if(this._nestedTreeConfig.list.length === 0)
         {
-            this.nestedTreeConfig.list = this.nestedList;
+            this._nestedTreeConfig.list = this._nestedList;
         }
     }
 
@@ -111,9 +112,9 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
     {
         if(isNullOrUndefined(this.inputName))
         {
-            this.inputName = this.translation.translate('terraNestedDataPicker.nested');
+            this.inputName = this._translation.translate('terraNestedDataPicker.nested');
         }
-        this.nestedTreeConfig.list = this.nestedList;
+        this._nestedTreeConfig.list = this._nestedList;
         this.getNestedDataByParent(null);
     }
 
@@ -129,34 +130,34 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
         {
             this.inputNestedService.requestNestedDataById(value).subscribe((data:any) =>
             {
-                if(isNullOrUndefined(this.nestedTreeConfig.findNodeById(value)))
+                if(isNullOrUndefined(this._nestedTreeConfig.findNodeById(value)))
                 {
                     this.addNodes(data, null);
                 }
 
-                let nodeToSelect:TerraNodeInterface<NestedDataInterface<{}>> = this.nestedTreeConfig.findNodeById(value);
+                let nodeToSelect:TerraNodeInterface<NestedDataInterface<{}>> = this._nestedTreeConfig.findNodeById(value);
 
                 if(!isNullOrUndefined(nodeToSelect))
                 {
-                    this.nestedTreeConfig.currentSelectedNode = nodeToSelect;
-                    if(this.showFullSelectionPath && !isNullOrUndefined(this.nestedTreeConfig.currentSelectedNode.parent))
+                    this._nestedTreeConfig.currentSelectedNode = nodeToSelect;
+                    if(this.showFullSelectionPath && !isNullOrUndefined(this._nestedTreeConfig.currentSelectedNode.parent))
                     {
-                        this.nestedDataName = this.nestedTreeConfig.currentSelectedNode.parent.name + ' / '
-                                              + this.nestedTreeConfig.currentSelectedNode.name;
+                        this._nestedDataName = this._nestedTreeConfig.currentSelectedNode.parent.name + ' / '
+                                               + this._nestedTreeConfig.currentSelectedNode.name;
                     }
                     else
                     {
-                        this.nestedDataName = this.nestedTreeConfig.currentSelectedNode.name;
+                        this._nestedDataName = this._nestedTreeConfig.currentSelectedNode.name;
                     }
                 }
 
                 this.value = value;
 
-                if(this.isNotInitialCall)
+                if(this._isNotInitialCall)
                 {
                     this.updateCompleteNestedData(nodeToSelect);
-                    this.onTouchedCallback();
-                    this.onChangeCallback(this.value);
+                    this._onTouchedCallback();
+                    this._onChangeCallback(this.value);
                 }
             });
         }
@@ -164,49 +165,49 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
 
     public onSelectNode():void
     {
-        this.isNotInitialCall = true;
-        if(!isNullOrUndefined(this.nestedTreeConfig.currentSelectedNode))
+        this._isNotInitialCall = true;
+        if(!isNullOrUndefined(this._nestedTreeConfig.currentSelectedNode))
         {
-            if(this.showFullSelectionPath && !isNullOrUndefined(this.nestedTreeConfig.currentSelectedNode.parent))
+            if(this.showFullSelectionPath && !isNullOrUndefined(this._nestedTreeConfig.currentSelectedNode.parent))
             {
-                this.nestedDataName = this.nestedTreeConfig.currentSelectedNode.parent.name + ' / '
-                                      + this.nestedTreeConfig.currentSelectedNode.name;
+                this._nestedDataName = this._nestedTreeConfig.currentSelectedNode.parent.name + ' / '
+                                       + this._nestedTreeConfig.currentSelectedNode.name;
             }
             else
             {
-                this.nestedDataName = this.nestedTreeConfig.currentSelectedNode.name;
+                this._nestedDataName = this._nestedTreeConfig.currentSelectedNode.name;
             }
-            this.writeValue(this.nestedTreeConfig.currentSelectedNode.id);
+            this.writeValue(this._nestedTreeConfig.currentSelectedNode.id);
         }
         this.toggleTree = !this.toggleTree;
     }
 
     public reset():void
     {
-        this.nestedTreeConfig.currentSelectedNode = null;
-        this.nestedDataName = '';
+        this._nestedTreeConfig.currentSelectedNode = null;
+        this._nestedDataName = '';
         this.value = 0;
 
-        this.onTouchedCallback();
-        this.onChangeCallback(this.value);
+        this._onTouchedCallback();
+        this._onChangeCallback(this.value);
     }
 
     // Set touched on blur
     public onBlur():void
     {
-        this.onTouchedCallback();
+        this._onTouchedCallback();
     }
 
     // From ControlValueAccessor interface
     public registerOnChange(fn:any):void
     {
-        this.onChangeCallback = fn;
+        this._onChangeCallback = fn;
     }
 
     // From ControlValueAccessor interface
     public registerOnTouched(fn:any):void
     {
-        this.onTouchedCallback = fn;
+        this._onTouchedCallback = fn;
     }
 
     public showTree():void
@@ -221,10 +222,10 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
         let entries:Array<{}> = nestedData.entries;
 
         // Necessary for re-initializing of the Node Tree after data was loaded
-        if(this.nestedTreeConfig.list.length === 1 && this.nestedTreeConfig.list[0] === this.nestedTreeConfig.currentSelectedNode)
+        if(this._nestedTreeConfig.list.length === 1 && this._nestedTreeConfig.list[0] === this._nestedTreeConfig.currentSelectedNode)
         {
-            this.nestedTreeConfig.removeNodeById(this.nestedTreeConfig.currentSelectedNode.id);
-            this.nestedTreeConfig.list = [];
+            this._nestedTreeConfig.removeNodeById(this._nestedTreeConfig.currentSelectedNode.id);
+            this._nestedTreeConfig.list = [];
         }
 
         if(!isNullOrUndefined(entries))
@@ -235,7 +236,7 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
                 let nestedDetail:NestedDetailDataInterface = null;
 
                 // If the node hasn't already been added the routine will be started
-                if(isNullOrUndefined(this.nestedTreeConfig.findNodeById(nestData.id)) && nestData.details.length > 0)
+                if(isNullOrUndefined(this._nestedTreeConfig.findNodeById(nestData.id)) && nestData.details.length > 0)
                 {
                     nestedDetail = nestData.details[0];
 
@@ -256,13 +257,13 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
                     // If the category has a parent, the parent node is created from the parentId in the category data
                     if(!isNullOrUndefined(nestData.parentId))
                     {
-                        parentNode = this.nestedTreeConfig.findNodeById(nestData.parentId);
+                        parentNode = this._nestedTreeConfig.findNodeById(nestData.parentId);
                     }
 
                     // If the parentNode is still null it is tried to create the parent node out of the given id
                     if(isNullOrUndefined(parentNode))
                     {
-                        parentNode = this.nestedTreeConfig.findNodeById(parentId);
+                        parentNode = this._nestedTreeConfig.findNodeById(parentId);
                     }
                     // If the category has children the lazy-loading method will be added to the parent node
                     if(nestData.hasChildren)
@@ -271,23 +272,23 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
                     }
 
                     // The finished node is added to the node tree
-                    this.nestedTreeConfig.addNode(childNode, parentNode);
+                    this._nestedTreeConfig.addNode(childNode, parentNode);
                 }
             });
         }
         // Current List is updated
-        this.nestedList = this.nestedTreeConfig.list;
+        this._nestedList = this._nestedTreeConfig.list;
     }
 
     private updateCompleteNestedData(nested:TerraNodeInterface<NestedDataInterface<{}>>):void
     {
-        this.completeNestedData.id = +nested.id;
-        this.completeNestedData.isActive = nested.isActive;
-        this.completeNestedData.isOpen = nested.isOpen;
-        this.completeNestedData.isVisible = nested.isVisible;
-        this.completeNestedData.name = nested.name;
-        this.completeNestedData.tooltip = nested.tooltip;
-        this.completeNestedData.tooltipPlacement = nested.tooltipPlacement;
+        this._completeNestedData.id = +nested.id;
+        this._completeNestedData.isActive = nested.isActive;
+        this._completeNestedData.isOpen = nested.isOpen;
+        this._completeNestedData.isVisible = nested.isVisible;
+        this._completeNestedData.name = nested.name;
+        this._completeNestedData.tooltip = nested.tooltip;
+        this._completeNestedData.tooltipPlacement = nested.tooltipPlacement;
     }
 
     private getNestedData(parentId:number | string):Observable<TerraPagerInterface<{}>>

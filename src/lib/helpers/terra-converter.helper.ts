@@ -4,9 +4,8 @@ export class TerraConverterHelper
 {
     /**
      * Automatically change the byte size to the corresponding range with the appropriate unit
-     * @param {number} byteSize
+     * @param byteSize
      * @param localeService
-     * @returns {string}
      */
     public static convertAndFormatSize(byteSize:number, localeService:LocaleService):string
     {
@@ -33,9 +32,8 @@ export class TerraConverterHelper
     }
 
     /**
-     * @param {number} value
+     * @param value
      * @param localeService
-     * @returns {string}
      */
     public static getLocaleDecimalValue(value:number, localeService:LocaleService):string
     {

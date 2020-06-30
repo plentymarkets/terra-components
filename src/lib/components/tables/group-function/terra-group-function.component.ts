@@ -16,10 +16,10 @@ import {
 import { Language } from 'angular-l10n';
 
 @Component({
-    selector:   'terra-group-function',
-    template:   require('./terra-group-function.component.html'),
-    styles:     [require('./terra-group-function.component.scss')],
-    animations: [
+    selector:    'terra-group-function',
+    templateUrl: './terra-group-function.component.html',
+    styleUrls:   ['./terra-group-function.component.scss'],
+    animations:  [
         trigger('collapsedState', [
             state('hidden', style({
                 height:          '0',
@@ -62,7 +62,7 @@ export class TerraGroupFunctionComponent implements OnInit, OnDestroy
      * @description currently selected language
      */
     @Language()
-    protected lang:string;
+    public _lang:string;
 
     public ngOnInit():void
     {
@@ -74,7 +74,7 @@ export class TerraGroupFunctionComponent implements OnInit, OnDestroy
         // implementation is required by angular-l10n. See https://robisim74.github.io/angular-l10n/spec/getting-the-translation/#messages
     }
 
-    protected get collapsedState():string
+    public get _collapsedState():string
     {
         return this.show ? 'collapsed' : 'hidden';
     }

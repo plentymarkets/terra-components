@@ -2,9 +2,8 @@ import { TerraStorageObjectList } from './model/terra-storage-object-list';
 import { Observable } from 'rxjs';
 import { TerraUploadItem } from './model/terra-upload-item';
 import { TerraUploadQueue } from './model/terra-upload-queue';
-import { TerraBaseService } from '../../service/terra-base.service';
 
-export abstract class TerraBaseStorageService extends TerraBaseService
+export abstract class TerraBaseStorageService
 {
     public abstract name:string;
 

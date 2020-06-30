@@ -10,12 +10,12 @@ import { TerraControlTypeEnum } from '../enum/terra-control-type.enum';
 import { Language } from 'angular-l10n';
 
 /**
- * @author mfrank
+ * @deprecated since v5.0.0. Use terra-form instead.
  */
 @Component({
-    selector: 'terra-dynamic-switch',
-    template: require('./terra-dynamic-switch.component.html'),
-    styles:   [require('./terra-dynamic-switch.component.scss')]
+    selector:    'terra-dynamic-switch',
+    templateUrl: './terra-dynamic-switch.component.html',
+    styleUrls:   ['./terra-dynamic-switch.component.scss']
 })
 export class TerraDynamicSwitchComponent implements OnInit, OnDestroy
 {
@@ -41,13 +41,13 @@ export class TerraDynamicSwitchComponent implements OnInit, OnDestroy
     public inputUsePortlet:boolean;
 
     @Language()
-    protected lang:string;
+    public _lang:string;
 
     // Necessary for using enum in html
-    protected controlTypeEnum:any = TerraControlTypeEnum;
+    public _controlTypeEnum:any = TerraControlTypeEnum;
 
     @Input()
-    private inputShowDeprecatedConfig:boolean;
+    public inputShowDeprecatedConfig:boolean;
 
     constructor()
     {

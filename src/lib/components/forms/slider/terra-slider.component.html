@@ -9,21 +9,21 @@
             <div>
                 <div #sliderBar
                      class="slider-bar"
-                     (click)="onBarClicked($event)"></div>
+                     (click)="_onBarClicked($event)"></div>
                 
                 <div class="slider-handle"
-                     [style.left.px]="handlePosition"
+                     [style.left.px]="_handlePosition"
                      terraDraggable
                      tabindex="0"
-                     (keydown)="onKeyDown($event)"
+                     (keydown)="_onKeyDown($event)"
                      [restrict]="'self'"
-                     [grid]="grid"
-                     (move)="onDrag( $event )">
-                    {{ value?.toFixed(inputPrecision) }}
+                     [grid]="_grid"
+                     (move)="_onDrag( $event )">
+                    {{ _value?.toFixed(inputPrecision) }}
                 </div>
                 
                 <div *ngIf="inputShowTicks" class="slider-ticks">
-                    <span *ngFor="let tick of getTicks()" [style.left.%]="tick.position">{{ tick.caption.toFixed(inputPrecision) }}</span>
+                    <span *ngFor="let tick of _getTicks()" [style.left.%]="tick.position">{{ tick.caption.toFixed(inputPrecision) }}</span>
                 </div>
             </div>
         </div>

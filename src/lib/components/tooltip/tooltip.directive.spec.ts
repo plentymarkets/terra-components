@@ -28,7 +28,7 @@ describe('TooltipDirective', () =>
     let directive:TooltipDirective;
     const router:MockRouter = new MockRouter();
 
-    beforeEach(async(() =>
+    beforeEach(() =>
     {
         TestBed.configureTestingModule({
             declarations: [
@@ -40,8 +40,8 @@ describe('TooltipDirective', () =>
                     provide:  Router,
                     useValue: router
                 }]
-        }).compileComponents();
-    }));
+        });
+    });
 
     beforeEach(() =>
     {

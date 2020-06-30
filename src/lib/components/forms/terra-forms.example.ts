@@ -3,14 +3,15 @@ import { TerraSelectBoxValueInterface } from './select-box/data/terra-select-box
 import { TerraMultiCheckBoxValueInterface } from './multi-check-box/data/terra-multi-check-box-value.interface';
 
 @Component({
-    selector: 'terra-forms-example',
-    template: require('./terra-forms.example.html')
+    selector:    'terra-forms-example',
+    templateUrl: './terra-forms.example.html'
 })
 
 export class TerraFormsExampleComponent
 {
-    protected radioValue:number = 1;
-    protected readonly listBoxValues:Array<TerraSelectBoxValueInterface> = [
+    public _radioValue:number = 1;
+
+    public readonly _listBoxValues:Array<TerraSelectBoxValueInterface> = [
         {
             caption: '',
             value:   null
@@ -25,7 +26,7 @@ export class TerraFormsExampleComponent
         }
     ];
 
-    protected readonly multiCheckboxValues:Array<TerraMultiCheckBoxValueInterface> =
+    public _multiCheckboxValues:Array<TerraMultiCheckBoxValueInterface> =
         [
             {
                 value:    '1',
@@ -54,7 +55,7 @@ export class TerraFormsExampleComponent
             }
         ];
 
-    protected submit():void
+    public _submit():void
     {
         // implement submit routine here
     }

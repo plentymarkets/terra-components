@@ -31,7 +31,7 @@ export class TerraFormScope
             }
             else
             {
-                let data:TerraKeyValueInterface<any> = this.getEvaluationData();
+                let data:TerraKeyValueInterface<any> = this._getEvaluationData();
                 let keys:Array<string> = Object.keys(data);
                 let values:Array<any> = keys.map((key:string) => data[key] || null);
 
@@ -54,13 +54,13 @@ export class TerraFormScope
         return scope;
     }
 
-    protected getEvaluationData():TerraKeyValueInterface<any>
+    protected _getEvaluationData():TerraKeyValueInterface<any>
     {
         let result:TerraKeyValueInterface<any> = {};
 
         if(!isNullOrUndefined(this.parent))
         {
-            result = this.parent.getEvaluationData();
+            result = this.parent._getEvaluationData();
         }
 
         Object.keys(this._data).forEach((key:string) =>

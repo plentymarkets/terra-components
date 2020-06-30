@@ -61,7 +61,7 @@ describe('TerraSelectBoxComponent:', () =>
                         useValue: router
                     }]
             }
-        ).compileComponents();
+        );
     });
 
     beforeEach(() =>

@@ -6,19 +6,19 @@ import {
 import { TerraOverlayComponent } from '../../layouts/overlay/terra-overlay.component';
 
 @Component({
-    selector: 'terra-note-example',
-    styles:   [require('./terra-note.component.example.scss')],
-    template: require('./terra-note.component.example.html')
+    selector:    'terra-note-example',
+    styleUrls:   ['./terra-note.component.example.scss'],
+    templateUrl: './terra-note.component.example.html'
 })
 export class TerraNoteComponentExample implements OnInit
 {
-    @ViewChild('overlay')
+    @ViewChild('overlay', { static: true })
     public overlay:TerraOverlayComponent;
 
-    protected noteTextAndID:string;
-    protected noteTextAndSelected:string;
-    protected noteTextDynamicExample:string;
-    protected editorText:string;
+    public _noteTextAndID:string;
+    public _noteTextAndSelected:string;
+    public _noteTextDynamicExample:string;
+    public _editorText:string;
 
     public ngOnInit():void
     {
@@ -27,10 +27,10 @@ export class TerraNoteComponentExample implements OnInit
                                  'plans to the Empire\'s ultimate weapon, the Death Star, an armoured space station with enough power ' +
                                  'to destroy an entire planet. Pursued by the Empire\'s sinister agents, Princess Leia races home aboard ' +
                                  'her starship, custodian of the stolen plans that can save her people and restore freedom to the galaxy...';
-        this.noteTextAndID = defaultText;
-        this.noteTextAndSelected = defaultText;
-        this.noteTextDynamicExample = defaultText;
-        this.editorText = this.noteTextDynamicExample;
+        this._noteTextAndID = defaultText;
+        this._noteTextAndSelected = defaultText;
+        this._noteTextDynamicExample = defaultText;
+        this._editorText = this._noteTextDynamicExample;
     }
 
     public showOverlay():void
@@ -40,7 +40,7 @@ export class TerraNoteComponentExample implements OnInit
 
     public saveText(text:string):void
     {
-        this.noteTextDynamicExample = text;
+        this._noteTextDynamicExample = text;
         this.overlay.hideOverlay();
     }
 }

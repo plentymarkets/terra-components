@@ -130,5 +130,9 @@
 		"unauthorized": "Unauthorized",
 		"missingPermission": "Missing permissions for:",
 		"forbidden": "Forbidden"
+	},
+	"terraMatPaginatorIntl": {
+		"itemsPerPage": "Results per page",
+		"ofLabel": "of"
 	}
 }

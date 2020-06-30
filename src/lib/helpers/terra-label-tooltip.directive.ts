@@ -76,7 +76,7 @@ export class TerraLabelTooltipDirective implements OnInit
         this.tooltipTextChange.emit(value);
     }
 
-    constructor(private elementRef:ElementRef)
+    constructor(private _elementRef:ElementRef)
     {
     }
 
@@ -88,19 +88,19 @@ export class TerraLabelTooltipDirective implements OnInit
     @HostListener('mouseover')
     public onMouseOver():void
     {
-        let curOverflow:string = this.elementRef.nativeElement.style.overflow;
+        let curOverflow:string = this._elementRef.nativeElement.style.overflow;
 
         // 'hide' overflow to get correct scrollWidth
         if(!curOverflow || curOverflow === 'visible')
         {
-            this.elementRef.nativeElement.style.overflow = 'hidden';
+            this._elementRef.nativeElement.style.overflow = 'hidden';
         }
 
         // check if is overflowing
-        let isOverflowing:boolean = this.elementRef.nativeElement.clientWidth < this.elementRef.nativeElement.scrollWidth;
+        let isOverflowing:boolean = this._elementRef.nativeElement.clientWidth < this._elementRef.nativeElement.scrollWidth;
 
         // 'reset' overflow to initial state
-        this.elementRef.nativeElement.style.overflow = curOverflow;
+        this._elementRef.nativeElement.style.overflow = curOverflow;
 
         this.tooltipText = this.nameOfInput;
 

@@ -5,7 +5,7 @@
                         [tooltipText]="'This is a tooltip'"
                         #viewChildTestCb>
         </terra-checkbox>
-        <terra-button (outputClicked)="setCheckboxValue()"
+        <terra-button (outputClicked)="_setCheckboxValue()"
                       inputCaption="change value">
         </terra-button>
     </div>
@@ -18,10 +18,10 @@
         <terra-checkbox #viewChildIndeterminateCb
                         inputCaption="Indeterminate">
         </terra-checkbox>
-        <terra-button (outputClicked)="getCheckboxIndeterminateState()"
+        <terra-button (outputClicked)="_getCheckboxIndeterminateState()"
                       inputCaption="get indeterminate">
         </terra-button>
-        <terra-button (outputClicked)="setCheckboxIndeterminateState()"
+        <terra-button (outputClicked)="_setCheckboxIndeterminateState()"
                       inputCaption="set indeterminate">
         </terra-button>
     </div>

@@ -9,14 +9,12 @@ import {
 } from '@angular/core/testing';
 import { TerraButtonComponent } from '../buttons/button/terra-button.component';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
-import { HttpClientModule } from '@angular/common/http';
 import { LocalizationModule } from 'angular-l10n';
 import { l10nConfig } from '../../../app/translation/l10n.config';
-import Spy = jasmine.Spy;
 import { TooltipDirective } from '../tooltip/tooltip.directive';
 import { Router } from '@angular/router';
 import { MockRouter } from '../../testing/mock-router';
+import Spy = jasmine.Spy;
 
 describe('Component: TerraStopwatchComponent', () =>
 {
@@ -26,7 +24,7 @@ describe('Component: TerraStopwatchComponent', () =>
     const ticksInMilliseconds:number = ticks * 1000 + 1;
     const router:MockRouter = new MockRouter();
 
-    beforeEach(async(() =>
+    beforeEach(() =>
     {
         TestBed.configureTestingModule({
             declarations: [
@@ -36,8 +34,6 @@ describe('Component: TerraStopwatchComponent', () =>
             ],
             imports:      [
                 FormsModule,
-                HttpModule,
-                HttpClientModule,
                 LocalizationModule.forRoot(l10nConfig)
             ],
             providers:    [
@@ -45,8 +41,8 @@ describe('Component: TerraStopwatchComponent', () =>
                     provide:  Router,
                     useValue: router
                 }]
-        }).compileComponents();
-    }));
+        });
+    });
 
     beforeEach(() =>
     {
@@ -138,4 +134,28 @@ describe('Component: TerraStopwatchComponent', () =>
         tick(ticksInMilliseconds);
         expect(component.seconds).toEqual(ticks);
     }));
+
+    it('should not start the timer again, if it is already running', () =>
+    {
+        spyOn(window, 'setInterval').and.callThrough();
+        component.start();
+        expect(component.isRunning).toBe(true);
+
+        component.start();
+        expect(component.isRunning).toBe(true);
+        expect(window.setInterval).toHaveBeenCalledTimes(1);
+    });
+
+    it('should not clear the timer on #stop() if it is not running', () =>
+    {
+        spyOn(window, 'clearInterval').and.callThrough();
+        expect(component.isRunning).toBe(false);
+        component.stop();
+        expect(window.clearInterval).not.toHaveBeenCalled();
+
+        component.start();
+        expect(component.isRunning).toBe(true);
+        component.stop();
+        expect(window.clearInterval).toHaveBeenCalled();
+    });
 });

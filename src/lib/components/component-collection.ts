@@ -24,14 +24,12 @@ import { TerraPortletComponent } from './layouts/portlet/terra-portlet.component
 import { TerraFilterComponent } from './filter/terra-filter.component';
 import { TerraMultiCheckBoxComponent } from './forms/multi-check-box/terra-multi-check-box.component';
 import { TerraDynamicComponentLoaderComponent } from './dynamic-component-loader/terra-dynamic-component-loader.component';
-import { TerraDynamicModuleLoaderComponent } from './dynamic-module-loader/terra-dynamic-module-loader.component';
 import { TerraSuggestionBoxComponent } from './forms/suggestion-box/terra-suggestion-box.component';
 import { TerraDatePickerComponent } from './forms/input/date-picker/terra-date-picker.component';
 import { TerraTextAreaInputComponent } from './forms/input/text-area-input/terra-text-area-input.component';
 import { TerraCardComponent } from './layouts/card/terra-card.component';
 import { TerraToggleComponent } from './buttons/toggle/terra-toggle.component';
 import { TerraSyntaxEditorComponent } from './editors/syntax-editor/terra-syntax-editor.component';
-import { TerraMultiSplitViewComponent } from './split-view/multi/terra-multi-split-view.component';
 import { TerraSliderComponent } from './forms/slider/terra-slider.component';
 import { TerraFileBrowserComponent } from './file-browser/terra-file-browser.component';
 import { TerraFileInputComponent } from './forms/input/file-input/terra-file-input.component';
@@ -66,6 +64,7 @@ import { RadioGroupComponent } from './forms/input/radio/radio-group.component';
 import { TableRowComponent } from './tables/data-table/table-row/table-row.component';
 import { FilterComponent } from './filter/filter.component';
 import { CheckboxGroupComponent } from './forms/checkbox-group/checkbox-group.component';
+import { TerraBaseEditorComponent } from './editors/base-editor/terra-base-editor.component';
 import { TerraFormContainerWrapperComponent } from './forms/form/form-container/container-wrapper/terra-form-container-wrapper.component';
 
 export const exportedComponents:Array<Type<any>> = [
@@ -95,14 +94,12 @@ export const exportedComponents:Array<Type<any>> = [
     TerraFilterComponent,
     TerraMultiCheckBoxComponent,
     TerraDynamicComponentLoaderComponent,
-    TerraDynamicModuleLoaderComponent,
     TerraSuggestionBoxComponent,
     TerraDatePickerComponent,
     TerraTextAreaInputComponent,
     TerraCardComponent,
     TerraToggleComponent,
     TerraSyntaxEditorComponent,
-    TerraMultiSplitViewComponent,
     TerraSliderComponent,
     TerraFileBrowserComponent,
     TerraFileInputComponent,
@@ -140,5 +137,6 @@ export const exportedComponents:Array<Type<any>> = [
 export const components:Array<Type<any>> = [
     ...exportedComponents,
     TerraFileListComponent,
-    TerraImagePreviewComponent
+    TerraImagePreviewComponent,
+    TerraBaseEditorComponent
 ];

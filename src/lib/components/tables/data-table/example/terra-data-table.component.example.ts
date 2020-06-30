@@ -11,83 +11,83 @@ import { TerraDataTableRowInterface } from '../interfaces/terra-data-table-row.i
 import { TerraDataTableContextMenuEntryInterface } from '../context-menu/data/terra-data-table-context-menu-entry.interface';
 
 @Component({
-    selector:  'terra-data-table-example',
-    template:  require('./terra-data-table.component.example.html'),
-    styles:    [require('./terra-data-table.component.example.scss')],
-    providers: [TerraDataTableServiceExample]
+    selector:    'terra-data-table-example',
+    templateUrl: './terra-data-table.component.example.html',
+    styleUrls:   ['./terra-data-table.component.example.scss'],
+    providers:   [TerraDataTableServiceExample]
 })
 export class TerraDataTableComponentExample implements OnInit
 {
-    protected readonly headerList:Array<TerraDataTableHeaderCellInterface>;
-    protected readonly contextMenu:Array<TerraDataTableContextMenuEntryInterface<TerraDataTableExampleInterface>>;
+    public readonly _headerList:Array<TerraDataTableHeaderCellInterface>;
+    public readonly _contextMenu:Array<TerraDataTableContextMenuEntryInterface<TerraDataTableExampleInterface>>;
 
-    protected noResultButtons:Array<TerraButtonInterface> = [];
-    protected noResultTextPrimary:string;
-    protected noResultTextSecondary:string;
+    public _noResultButtons:Array<TerraButtonInterface> = [];
+    public _noResultTextPrimary:string;
+    public _noResultTextSecondary:string;
 
-    protected showGroupFunction:boolean = false;
+    public showGroupFunction:boolean = false;
 
-    constructor(protected service:TerraDataTableServiceExample)
+    constructor(public _service:TerraDataTableServiceExample)
     {
-        this.headerList = this.createHeaderList();
-        this.contextMenu = this.createContextMenu();
+        this._headerList = this._createHeaderList();
+        this._contextMenu = this._createContextMenu();
     }
 
     public ngOnInit():void
     {
-        this.noResultButtons = [{
+        this._noResultButtons = [{
             caption:       'Search',
             isHighlighted: true,
             icon:          'icon-search',
-            clickFunction: ():void => this.onSearchBtnClicked()
+            clickFunction: ():void => this._onSearchBtnClicked()
         }];
 
-        this.noResultTextPrimary = 'No results available';
-        this.noResultTextSecondary = 'Search to refresh';
+        this._noResultTextPrimary = 'No results available';
+        this._noResultTextSecondary = 'Search to refresh';
     }
 
-    public onSearchBtnClicked():void
+    public _addEntry():void
     {
-        this.service.getResults(true);
-
-        this.noResultButtons = [{
-            caption:       'Add',
-            isHighlighted: false,
-            icon:          'icon-add',
-            clickFunction: ():void => this.addEntries()
-        }];
-
-        this.noResultTextPrimary = 'No entries found';
-        this.noResultTextSecondary = 'Add a new entry';
+        this._service.addEntry();
+        this._service.getResults();
     }
 
-    protected addEntry():void
-    {
-        this.service.addEntry();
-        this.service.getResults();
-    }
-
-    protected addEntries():void
+    public _addEntries():void
     {
         for(let i:number = 0; i < 500; i++)
         {
-            this.service.addEntry();
+            this._service.addEntry();
         }
-        this.service.getResults();
+        this._service.getResults();
     }
 
-    protected resetSorting():void
+    public _resetSorting():void
     {
-        this.service.resetSortParams();
-        this.service.getResults(true);
+        this._service.resetSortParams();
+        this._service.getResults(true);
     }
 
-    protected executeGroupFunction(selectedRows:Array<TerraDataTableRowInterface<TerraDataTableExampleInterface>>):void
+    public _executeGroupFunction(selectedRows:Array<TerraDataTableRowInterface<TerraDataTableExampleInterface>>):void
     {
         console.log(selectedRows);
     }
 
-    private createHeaderList():Array<TerraDataTableHeaderCellInterface>
+    private _onSearchBtnClicked():void
+    {
+        this._service.getResults(true);
+
+        this._noResultButtons = [{
+            caption:       'Add',
+            isHighlighted: false,
+            icon:          'icon-add',
+            clickFunction: ():void => this._addEntries()
+        }];
+
+        this._noResultTextPrimary = 'No entries found';
+        this._noResultTextSecondary = 'Add a new entry';
+    }
+
+    private _createHeaderList():Array<TerraDataTableHeaderCellInterface>
     {
         return [
             {
@@ -112,7 +112,7 @@ export class TerraDataTableComponentExample implements OnInit
         ];
     }
 
-    private createContextMenu():Array<TerraDataTableContextMenuEntryInterface<TerraDataTableExampleInterface>>
+    private _createContextMenu():Array<TerraDataTableContextMenuEntryInterface<TerraDataTableExampleInterface>>
     {
         return [{
             title:         'Show alert',

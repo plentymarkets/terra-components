@@ -18,8 +18,8 @@ import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum'
 
 @Component({
     selector:   'terra-portlet',
-    styles:     [require('./terra-portlet.component.scss')],
-    template:   require('./terra-portlet.component.html'),
+    styleUrls: ['./terra-portlet.component.scss'],
+    templateUrl: './terra-portlet.component.html',
     animations: [
         trigger('collapsedState', [
             state('collapsed', style({
@@ -79,9 +79,9 @@ export class TerraPortletComponent implements OnChanges
     @Output()
     public inputCollapsedChange:EventEmitter<boolean> = new EventEmitter<boolean>();
 
-    protected readonly infoTextPlacement:TerraPlacementEnum = TerraPlacementEnum.RIGHT;
+    public readonly _infoTextPlacement:TerraPlacementEnum = TerraPlacementEnum.RIGHT;
 
-    private get collapsedState():string
+    public get _collapsedState():string
     {
         if(!this.inputIsCollapsable)
         {

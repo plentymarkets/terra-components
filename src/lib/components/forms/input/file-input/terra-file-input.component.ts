@@ -1,6 +1,5 @@
 import {
     Component,
-    forwardRef,
     Input,
     OnDestroy,
     OnInit,
@@ -23,12 +22,12 @@ let nextId:number = 0;
 
 @Component({
     selector:  'terra-file-input',
-    template:  require('./terra-file-input.component.html'),
-    styles:    [require('./terra-file-input.component.scss')],
+    templateUrl: './terra-file-input.component.html',
+    styleUrls: ['./terra-file-input.component.scss'],
     providers: [
         {
             provide:     NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => TerraFileInputComponent),
+            useExisting: TerraFileInputComponent,
             multi:       true
         }
     ]
@@ -47,40 +46,41 @@ export class TerraFileInputComponent extends TerraInputComponent implements OnIn
     @Input()
     public set inputStorageServices(services:Array<TerraBaseStorageService>)
     {
-        this.storageServices = services;
+        this._storageServices = services;
     }
 
     public get inputStorageServices():Array<TerraBaseStorageService>
     {
-        return this.storageServices;
+        return this._storageServices;
     }
 
     /**
      * @Deprecated ViewChild overlay does not exist in the template
      */
-    @ViewChild('overlay')
-    public overlay:TerraOverlayComponent;
+    @ViewChild('overlay', { static: false })
+    public _overlay:TerraOverlayComponent;
 
-    @ViewChild('previewOverlay')
-    public previewOverlay:TerraOverlayComponent;
+    @ViewChild('previewOverlay', { static: true })
+    public _previewOverlay:TerraOverlayComponent;
 
     public primaryOverlayButton:TerraOverlayButtonInterface;
     public secondaryOverlayButton:TerraOverlayButtonInterface;
 
+
     @Language()
-    protected lang:string;
+    public _lang:string;
 
-    protected id:string;
-    protected translationPrefix:string = 'terraFileInput';
+    public _id:string;
+    public _translationPrefix:string = 'terraFileInput';
 
-    private storageServices:Array<TerraBaseStorageService>;
+    private _storageServices:Array<TerraBaseStorageService>;
 
     constructor()
     {
         super(TerraRegex.MIXED);
 
         // generate the id of the input instance
-        this.id = `file-input_#${nextId++}`;
+        this._id = `file-input_#${nextId++}`;
     }
 
     public ngOnInit():void
@@ -102,7 +102,7 @@ export class TerraFileInputComponent extends TerraInputComponent implements OnIn
     {
         if(this.isWebImage(this.value))
         {
-            this.previewOverlay.showOverlay();
+            this._previewOverlay.showOverlay();
         }
     }
 
@@ -112,9 +112,9 @@ export class TerraFileInputComponent extends TerraInputComponent implements OnIn
     public showFileBrowser():void
     {
         console.warn('Function showFileBrowser() is deprecated and should not called.');
-        if(!isNullOrUndefined(this.overlay))
+        if(!isNullOrUndefined(this._overlay))
         {
-            this.overlay.showOverlay();
+            this._overlay.showOverlay();
         }
     }
 

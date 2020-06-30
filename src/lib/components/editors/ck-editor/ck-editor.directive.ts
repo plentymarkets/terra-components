@@ -6,8 +6,8 @@ import { CKEditorComponent } from 'ckeditor4-angular';
 })
 export class CKEditorDirective
 {
-    constructor(private ckEditor:CKEditorComponent)
+    constructor(private _ckEditor:CKEditorComponent)
     {
-        ckEditor.editorUrl = 'https://cdn.ckeditor.com/4.11.4/full-all/ckeditor.js';
+        _ckEditor.editorUrl = 'https://cdn.ckeditor.com/4.11.4/full-all/ckeditor.js';
     }
 }

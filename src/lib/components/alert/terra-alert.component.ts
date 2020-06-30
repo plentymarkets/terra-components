@@ -10,14 +10,14 @@ import {
  */
 export class TerraAlertComponent
 {
-    private static instance:TerraAlertComponent = null;
-    private static isCreating:boolean = false;
+    private static _instance:TerraAlertComponent = null;
+    private static _isCreating:boolean = false;
 
     public alerts:Array<TerraAlertInterface> = [];
 
     constructor()
     {
-        if(!TerraAlertComponent.isCreating)
+        if(!TerraAlertComponent._isCreating)
         {
             throw new Error('You can\'t call new in Singleton instances! Call TerraAlertComponent.getInstance() instead.');
         }
@@ -25,19 +25,22 @@ export class TerraAlertComponent
 
     public static getInstance():TerraAlertComponent
     {
-        if(isNull(TerraAlertComponent.instance))
+        if(isNull(TerraAlertComponent._instance))
         {
-            TerraAlertComponent.isCreating = true;
-            TerraAlertComponent.instance = new TerraAlertComponent();
-            TerraAlertComponent.isCreating = false;
+            TerraAlertComponent._isCreating = true;
+            TerraAlertComponent._instance = new TerraAlertComponent();
+            TerraAlertComponent._isCreating = false;
         }
 
-        return TerraAlertComponent.instance;
+        return TerraAlertComponent._instance;
     }
 
+    /**
+     * @description Closes an alert by its index.
+     * @deprecated use closeAlertByIndex instead. */
     public closeAlert(i:number):void
     {
-        this.alerts.splice(i, 1);
+        this.closeAlertByIndex(i);
     }
 
     public addAlertForPlugin(alert:TerraAlertInterface):void
@@ -67,14 +70,30 @@ export class TerraAlertComponent
             alert.dismissOnTimeout = 5000;
         }
 
-        this.alerts.unshift({
-            msg:              alert.msg,
-            type:             alert.type,
-            dismissOnTimeout: alert.dismissOnTimeout,
-            identifier:       alert.identifier
-        });
+        this.alerts.unshift(alert);
+
+        if(alert.dismissOnTimeout > 0)
+        {
+            setTimeout(() => this.closeAlertByRef(alert), alert.dismissOnTimeout);
+        }
     }
 
+    /** @description Closes an alert by its index. */
+    public closeAlertByIndex(index:number):void
+    {
+        this.alerts.splice(index, 1);
+    }
+
+    /** @description Closes an alert by reference. */
+    public closeAlertByRef(alert:TerraAlertInterface):void
+    {
+        if(this.alerts.includes(alert))
+        {
+            this.closeAlertByIndex(this.alerts.indexOf(alert));
+        }
+    }
+
+    /** @description Closes an alert by its identifier. */
     public closeAlertByIdentifier(identifier:string):void
     {
         for(let alert of this.alerts)
@@ -83,7 +102,7 @@ export class TerraAlertComponent
             {
                 let index:number = this.alerts.indexOf(alert);
 
-                this.closeAlert(index);
+                this.closeAlertByIndex(index);
             }
         }
     }

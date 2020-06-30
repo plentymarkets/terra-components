@@ -1,3 +1,4 @@
+// @dynamic
 export class UrlHelper
 {
     public static removeLeadingSlash(url:string):string

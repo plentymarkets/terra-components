@@ -16,12 +16,12 @@ import {
     debounceTime,
     distinctUntilChanged
 } from 'rxjs/operators';
-import { StringHelper } from '../../../helpers/string.helper';
+import { StringHelper } from '../../../helpers';
 
 @Component({
-    selector: 'terra-node-tree',
-    styles:   [require('./terra-node-tree.component.scss')],
-    template: require('./terra-node-tree.component.html')
+    selector:    'terra-node-tree',
+    styleUrls:   ['./terra-node-tree.component.scss'],
+    templateUrl: './terra-node-tree.component.html'
 })
 export class TerraNodeTreeComponent<D> implements OnDestroy, OnInit
 {
@@ -44,18 +44,18 @@ export class TerraNodeTreeComponent<D> implements OnDestroy, OnInit
     public isTreeDisabled:boolean;
 
     @Language()
-    protected lang:string;
+    public _lang:string;
 
-    protected formControl:FormControl = new FormControl();
+    public _formControl:FormControl = new FormControl();
 
-    constructor(private translation:TranslationService)
+    constructor(private _translation:TranslationService)
     {
     }
 
     public ngOnInit():void
     {
         this.inputConfig.checkVisibilityAndAssignDefault(this.inputConfig.list);
-        this.formControl.valueChanges.pipe(
+        this._formControl.valueChanges.pipe(
             debounceTime(400),
             distinctUntilChanged()
         ).subscribe((searchValue:string) =>
@@ -72,7 +72,7 @@ export class TerraNodeTreeComponent<D> implements OnDestroy, OnInit
             }
             else
             {
-                this.doSearch(searchValue);
+                this._doSearch(searchValue);
             }
         });
     }
@@ -82,15 +82,15 @@ export class TerraNodeTreeComponent<D> implements OnDestroy, OnInit
         this.inputConfig.reset();
     }
 
-    private doSearch(searchValue:string):void
+    private _doSearch(searchValue:string):void
     {
         this.inputConfig.list.forEach((node:TerraNodeInterface<D>) =>
         {
-            this.search(node, false, searchValue);
+            this._search(node, false, searchValue);
         });
     }
 
-    private search(node:TerraNodeInterface<D>, isParentVisible:boolean, searchValue:string):boolean
+    private _search(node:TerraNodeInterface<D>, isParentVisible:boolean, searchValue:string):boolean
     {
         // ignore non visible nodes
         if(!node.defaultVisibility)
@@ -98,7 +98,7 @@ export class TerraNodeTreeComponent<D> implements OnDestroy, OnInit
             return;
         }
 
-        let isVisible:boolean = isParentVisible || this.checkVisibility(node, searchValue);
+        let isVisible:boolean = isParentVisible || this._matchesSearchString(node, searchValue);
         let isEmptySearchString:boolean = isNullOrUndefined(searchValue) || searchValue.length === 0;
 
         let hasVisibleChild:boolean = false;
@@ -109,7 +109,7 @@ export class TerraNodeTreeComponent<D> implements OnDestroy, OnInit
             node.children.forEach((childNode:TerraNodeInterface<D>) =>
             {
                 hasChildren = true;
-                hasVisibleChild = this.search(childNode, isVisible, searchValue) || hasVisibleChild;
+                hasVisibleChild = this._search(childNode, isVisible, searchValue) || hasVisibleChild;
             });
         }
 
@@ -131,39 +131,36 @@ export class TerraNodeTreeComponent<D> implements OnDestroy, OnInit
         return isVisible || hasVisibleChild;
     }
 
-    private checkVisibility(node:TerraNodeInterface<D>, searchValue:string):boolean
+    /** @description Checks whether a node matches a given search string */
+    private _matchesSearchString(node:TerraNodeInterface<D>, searchValue:string):boolean
     {
-        let hasValidCaptionOrTag:boolean = false;
+        return this._matchesName(node.name, searchValue) || this._matchesTags(node.tags, searchValue);
+    }
 
-        let tags:Array<string> = node.tags;
-
-        // search for tags first
-        if(!isNullOrUndefined(tags))
+    /** @description Checks whether a given search string matches some of the node's tags. */
+    private _matchesTags(nodeTags:Array<string>, searchValue:string):boolean
+    {
+        const tags:Array<string> = nodeTags || [];
+        return tags.some((tag:string) =>
         {
-            tags.forEach((tag:string) =>
-            {
-                if(tag.toUpperCase().includes(searchValue.toUpperCase()))
-                {
-                    hasValidCaptionOrTag = true;
-                    return;
-                }
-            });
-        }
+            return tag.toUpperCase().includes(searchValue.toUpperCase());
+        });
+    }
 
-        // search node names if no tags found
-        if(!hasValidCaptionOrTag)
+    /** @description Checks whether a given search string matches the name of a node. */
+    private _matchesName(nodeName:string, searchValue:string):boolean
+    {
+        if(!isNullOrUndefined(nodeName))
         {
-            let name:string = this.translation.translate(node.name);
+            // TODO do not translate name here, should be translated from outside
+            let name:string = this._translation.translate(nodeName);
 
             let suggestion:string = name.toUpperCase();
 
             // check if search string is included in the given suggestion
-            if(suggestion.includes(searchValue.toUpperCase()))
-            {
-                hasValidCaptionOrTag = true;
-            }
+            return suggestion.includes(searchValue.toUpperCase());
         }
 
-        return hasValidCaptionOrTag;
+        return false;
     }
 }

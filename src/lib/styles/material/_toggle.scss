@@ -1,0 +1,54 @@
+mat-slide-toggle.mat-slide-toggle
+{
+    &.mat-disabled
+    {
+        .mat-slide-toggle-label,
+        .mat-slide-toggle-thumb-container
+        {
+            cursor: not-allowed;
+        }
+    }
+    
+    .mat-slide-toggle-label
+    {
+        .mat-slide-toggle-bar
+        {
+            background-color: var(--color-structure-6);
+            
+            .mat-slide-toggle-thumb-container
+            {
+                .mat-slide-toggle-thumb
+                {
+                    background-color: var(--color-structure-10);
+                }
+            }
+        }
+    }
+    
+    &.mat-checked
+    {
+        .mat-slide-toggle-label
+        {
+            .mat-slide-toggle-bar
+            {
+                background-color: rgba(var(--color-group-active-rgb), .54);
+            
+                .mat-slide-toggle-thumb-container
+                {
+                    .mat-slide-toggle-thumb
+                    {
+                        background-color: var(--color-group-active);
+                    }
+                    
+                    .mat-slide-toggle-ripple
+                    {
+                        .mat-ripple-element
+                        {
+                            background-color: var(--color-group-active);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

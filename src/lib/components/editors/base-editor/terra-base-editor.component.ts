@@ -14,9 +14,9 @@ import { isNullOrUndefined } from 'util';
 import { noop } from 'rxjs';
 
 @Component({
-    selector:  'terra-base-editor',
-    template:  require('./terra-base-editor.component.html'),
-    providers: [{
+    selector:    'terra-base-editor',
+    templateUrl: './terra-base-editor.component.html',
+    providers:   [{
         provide:     NG_VALUE_ACCESSOR,
         useExisting: TerraBaseEditorComponent,
         multi:       true
@@ -45,25 +45,24 @@ export class TerraBaseEditorComponent implements OnInit, ControlValueAccessor
     public tooltipText:string;
 
     /**
-     * @deprecated since v4. Is replaced by the TooltipDirective and will be removed with the next major version.
      * @description Set the tooltip placement (bottom, top, left, right). Default top.
      * */
     @Input()
     public tooltipPlacement:TerraPlacementEnum;
 
-    protected placeholder:string;
-    protected value:string;
-    protected modules:{ [index:string]:Object };
+    public _placeholder:string;
+    public _value:string;
+    public _modules:{ [index:string]:Object };
 
-    protected onChangeCallback:(_:any) => void = noop;
-    protected onTouchedCallback:(_:any) => void = noop;
+    public _onChangeCallback:(_:any) => void = noop;
+    public _onTouchedCallback:(_:any) => void = noop;
 
-    constructor(protected translation:TranslationService,
-                protected myElement:ElementRef)
+    constructor(protected _translation:TranslationService,
+                protected _myElement:ElementRef)
     {
         // initialize placeholder
-        this.placeholder = this.translation.translate('terraNoteEditor.insertText');
-        this.modules = {
+        this._placeholder = this._translation.translate('terraNoteEditor.insertText');
+        this._modules = {
             toolbar: [
                 ['bold',
                  'italic',
@@ -79,27 +78,27 @@ export class TerraBaseEditorComponent implements OnInit, ControlValueAccessor
         // overwrite default placeholder if input is defined
         if(this.inputPlaceholder)
         {
-            this.placeholder = this.inputPlaceholder;
+            this._placeholder = this.inputPlaceholder;
         }
     }
 
     public writeValue(value:string):void
     {
-        this.value = value;
+        this._value = value;
     }
 
     public registerOnChange(fn:(_:any) => void):void
     {
-        this.onChangeCallback = fn;
+        this._onChangeCallback = fn;
     }
 
     public registerOnTouched(fn:() => void):void
     {
-        this.onTouchedCallback = fn;
+        this._onTouchedCallback = fn;
     }
 
     public focus():void
     {
-        this.myElement.nativeElement.querySelector('.ql-editor').focus();
+        this._myElement.nativeElement.querySelector('.ql-editor').focus();
     }
 }

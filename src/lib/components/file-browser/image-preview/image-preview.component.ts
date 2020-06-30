@@ -16,9 +16,9 @@ import {
 } from 'angular-l10n';
 
 @Component({
-    selector: 'terra-image-preview',
-    template: require('./image-preview.component.html'),
-    styles:   [require('./image-preview.component.scss')]
+    selector:    'terra-image-preview',
+    templateUrl: './image-preview.component.html',
+    styleUrls:   ['./image-preview.component.scss']
 })
 export class TerraImagePreviewComponent implements OnInit, OnDestroy
 {
@@ -26,34 +26,31 @@ export class TerraImagePreviewComponent implements OnInit, OnDestroy
     public inputStorageService:TerraBaseStorageService;
 
     @Language()
-    protected lang:string;
+    public _lang:string;
 
-    protected translationPrefix:string = 'terraFileBrowser';
-
-    protected metadata:TerraImageMetadata = {};
-
-    protected isLoading:boolean = true;
-
+    public _translationPrefix:string = 'terraFileBrowser';
+    public _metadata:TerraImageMetadata = {};
+    public _isLoading:boolean = true;
     private _inputStorageObject:TerraStorageObject;
 
     @Input()
     public set inputStorageObject(object:TerraStorageObject)
     {
         this._inputStorageObject = object;
-        this.metadata = {};
-        this.isLoading = true;
+        this._metadata = {};
+        this._isLoading = true;
         if(!isNullOrUndefined(object) && this.inputStorageService && this.inputStorageService instanceof TerraBaseMetadataStorageService)
         {
             this.inputStorageService.getMetadata(object.key).subscribe((data:TerraImageMetadata) =>
             {
-                this.metadata = data;
-                this.isLoading = false;
-                this.changeDetector.detectChanges();
+                this._metadata = data;
+                this._isLoading = false;
+                this._changeDetector.detectChanges();
             });
         }
         else
         {
-            this.isLoading = false;
+            this._isLoading = false;
         }
     }
 
@@ -62,13 +59,13 @@ export class TerraImagePreviewComponent implements OnInit, OnDestroy
         return this._inputStorageObject;
     }
 
-    protected get _canHandleMetadata():boolean
+    public get _canHandleMetadata():boolean
     {
         return this.inputStorageService instanceof TerraBaseMetadataStorageService;
     }
 
-    constructor(private changeDetector:ChangeDetectorRef,
-                private translation:TranslationService)
+    constructor(private _changeDetector:ChangeDetectorRef,
+                private _translation:TranslationService)
     {
     }
 
@@ -82,15 +79,15 @@ export class TerraImagePreviewComponent implements OnInit, OnDestroy
         // implementation is required by angular-l10n. See https://robisim74.github.io/angular-l10n/spec/getting-the-translation/#messages
     }
 
-    protected updateMetadata():void
+    public _updateMetadata():void
     {
         if(this.inputStorageService instanceof TerraBaseMetadataStorageService)
         {
             this.inputStorageService
-                .updateMetadata(this.inputStorageObject.key, this.metadata)
+                .updateMetadata(this.inputStorageObject.key, this._metadata)
                 .subscribe(() =>
                 {
-                    this.translation.translate(this.translationPrefix + '.metadataUpdated');
+                    this._translation.translate(this._translationPrefix + '.metadataUpdated');
                 });
         }
     }

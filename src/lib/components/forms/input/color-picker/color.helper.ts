@@ -67,7 +67,6 @@ export class Color
 
     /**
      * Converts this color to a hexadecimal string.
-     * @returns string
      */
     public toHEX():string
     {
@@ -79,7 +78,6 @@ export class Color
 
     /**
      * Converts this color to a RGB formatted representation.
-     * @returns ColorRGB
      */
     public toRGB():ColorRGB
     {
@@ -92,7 +90,6 @@ export class Color
 
     /**
      * Converts this color to a HSL formatted representation.
-     * @returns ColorHSL
      */
     public toHSL():ColorHSL
     {
@@ -150,7 +147,6 @@ export class Color
 
     /**
      * Calculate the grayscale of this color.
-     * @returns number
      */
     public getGrayscale():number
     {
@@ -159,7 +155,6 @@ export class Color
 
     /**
      * Decide if this color is dark enough so white text could be read.
-     * @returns boolean
      */
     public isDark():boolean
     {
@@ -168,7 +163,6 @@ export class Color
 
     /**
      * Decide if this color is light enough so black text could be read.
-     * @returns boolean
      */
     public isLight():boolean
     {
@@ -179,7 +173,6 @@ export class Color
      * Checks if a given color is formatted as a string containing a hexadecimal
      * representation of a color
      * @param color string|ColorRGB|ColorHSL The color
-     * @returns boolean
      */
     private isHEX(color:string | ColorRGB | ColorHSL):boolean
     {
@@ -190,7 +183,6 @@ export class Color
     /**
      * Checks if a given color is given in a RGB-representation.
      * @param color string|ColorRGB|ColorHSL The color
-     * @returns boolean
      */
     private isRGB(color:string | ColorRGB | ColorHSL):boolean
     {
@@ -200,7 +192,6 @@ export class Color
     /**
      * Checks if a given color is given in a HSL-representation.
      * @param color string|ColorRGB|ColorHSL The color
-     * @returns boolean
      */
     private isHSL(color:string | ColorRGB | ColorHSL):boolean
     {

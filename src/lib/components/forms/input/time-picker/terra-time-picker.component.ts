@@ -3,7 +3,6 @@
  */
 import {
     Component,
-    forwardRef,
     Input,
     OnDestroy,
     OnInit,
@@ -18,15 +17,13 @@ import { noop } from 'rxjs';
 import { Language } from 'angular-l10n';
 
 @Component({
-    selector:  'terra-time-picker',
-    styles:    [
-        require('./terra-time-picker.component.scss'),
-    ],
-    template:  require('./terra-time-picker.component.html'),
-    providers: [
+    selector:    'terra-time-picker',
+    styleUrls:   ['./terra-time-picker.component.scss'],
+    templateUrl: './terra-time-picker.component.html',
+    providers:   [
         {
             provide:     NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => TerraTimePickerComponent),
+            useExisting: TerraTimePickerComponent,
             multi:       true
         }
     ]
@@ -42,18 +39,18 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor, O
     public valuesMinutes:Array<TerraSelectBoxValueInterface>;
 
     @Language()
-    protected lang:string;
+    public _lang:string;
 
-    private value:Date;
+    private _value:Date;
 
-    private onTouchedCallback:() => void = noop;
-    private onChangeCallback:(_:any) => void = noop;
+    private _onTouchedCallback:() => void = noop;
+    private _onChangeCallback:(_:any) => void = noop;
 
     constructor()
     {
         this.valuesHours = [];
         this.valuesMinutes = [];
-        this.value = new Date();
+        this._value = new Date();
         this.inputIsDisabled = false;
     }
 
@@ -96,56 +93,56 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor, O
 
     public registerOnChange(fn:any):void
     {
-        this.onChangeCallback = fn;
+        this._onChangeCallback = fn;
     }
 
     public registerOnTouched(fn:any):void
     {
-        this.onTouchedCallback = fn;
+        this._onTouchedCallback = fn;
     }
 
     public writeValue(value:Date):void
     {
-        this.value = value;
+        this._value = value;
     }
 
-    protected get minutes():number
+    public get _minutes():number
     {
-        if(!isNullOrUndefined(this.value))
+        if(!isNullOrUndefined(this._value))
         {
-            return this.value.getMinutes();
+            return this._value.getMinutes();
         }
         return 0;
     }
 
-    protected set minutes(minutes:number)
+    public set _minutes(minutes:number)
     {
-        if(!isNullOrUndefined(this.value))
+        if(!isNullOrUndefined(this._value))
         {
-            this.value.setMinutes(minutes);
+            this._value.setMinutes(minutes);
         }
 
-        this.onChangeCallback(this.value);
-        this.onTouchedCallback();
+        this._onChangeCallback(this._value);
+        this._onTouchedCallback();
     }
 
-    protected get hours():number
+    public get _hours():number
     {
-        if(!isNullOrUndefined(this.value))
+        if(!isNullOrUndefined(this._value))
         {
-            return this.value.getHours();
+            return this._value.getHours();
         }
         return 0;
     }
 
-    protected set hours(minutes:number)
+    public set _hours(minutes:number)
     {
-        if(!isNullOrUndefined(this.value))
+        if(!isNullOrUndefined(this._value))
         {
-            this.value.setHours(minutes);
+            this._value.setHours(minutes);
         }
 
-        this.onChangeCallback(this.value);
-        this.onTouchedCallback();
+        this._onChangeCallback(this._value);
+        this._onTouchedCallback();
     }
 }

@@ -11,7 +11,7 @@ import { isNullOrUndefined } from 'util';
 import { TerraFormFieldBaseContainer } from '../data/terra-form-field-base-container';
 
 /**
- * @author mfrank
+ * @deprecated since v5.0.0. Use terra-form instead.
  */
 @Injectable()
 export class TerraFormFieldControlService

@@ -40,7 +40,7 @@ describe('Component: TerraColorPickerComponent', () =>
                         useValue: router
                     }]
             }
-        ).compileComponents();
+        );
     });
 
     beforeEach(() =>

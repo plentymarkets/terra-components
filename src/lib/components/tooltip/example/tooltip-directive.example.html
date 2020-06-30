@@ -23,12 +23,12 @@
 <br>
 
 <ng-template #template3>
-    {{tooltip}}
+    {{_tooltip}}
 </ng-template>
 
 <span [tcTooltip]="template3">Template 3 is shown</span>
 <br>
 
-<terra-toggle (activated)="tooltip = tooltipText1"
-              (deactivated)="tooltip = tooltipText2"
-              [inputTooltipText]="tooltip"></terra-toggle>
+<terra-toggle (activated)="_tooltip = _tooltipText1"
+              (deactivated)="_tooltip = _tooltipText2"
+              [inputTooltipText]="_tooltip"></terra-toggle>

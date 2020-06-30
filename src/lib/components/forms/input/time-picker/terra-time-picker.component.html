@@ -2,13 +2,13 @@
      [class.disabled]="inputIsDisabled">
     <terra-select-box
         class="time"
-        [(ngModel)]="hours"
+        [(ngModel)]="_hours"
         [inputListBoxValues]="valuesHours"
-        [inputName]="'timepicker.hours' |  translate:lang">
+        [inputName]="'timepicker.hours' |  translate:_lang">
     </terra-select-box>
     <terra-select-box class="time"
-                      [(ngModel)]="minutes"
+                      [(ngModel)]="_minutes"
                       [inputListBoxValues]="valuesMinutes"
-                      [inputName]="'timepicker.minutes' |  translate:lang">
+                      [inputName]="'timepicker.minutes' |  translate:_lang">
     </terra-select-box>
 </div>

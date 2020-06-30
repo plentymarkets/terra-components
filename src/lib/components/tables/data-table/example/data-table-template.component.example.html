@@ -2,7 +2,7 @@
     <div class="btn-group" role="group">
         <terra-button [inputIcon]="'icon-add'"
                       [inputTooltipText]="'New entry'"
-                      (outputClicked)="addEntry()">
+                      (outputClicked)="_addEntry()">
         </terra-button>
         <terra-button [inputIcon]="'icon-settings_transfer'"
                       [inputTooltipText]="'Group function'"
@@ -10,41 +10,41 @@
         </terra-button>
         <terra-button [inputIcon]="'icon-reset'"
                       [inputTooltipText]="'Reset sorting'"
-                      (outputClicked)="resetSorting()">
+                      (outputClicked)="_resetSorting()">
         </terra-button>
     </div>
 </terra-base-toolbar>
 
 <terra-data-table
-    [inputService]="service"
+    [inputService]="_service"
     [inputHasCheckboxes]="true"
-    [inputHeaderList]="headerList"
-    [inputContextMenu]="contextMenu"
+    [inputHeaderList]="_headerList"
+    [inputContextMenu]="_contextMenu"
     [useContentBody]="true"
     #table>
     
     <terra-group-function [show]="showGroupFunction"
                           [disableExecution]="false"
-                          (executeGroupFunction)="executeGroupFunction(table.selectedRowList)">
+                          (executeGroupFunction)="_executeGroupFunction(table.selectedRowList)">
         <terra-text-input [inputName]="'Text'"></terra-text-input>
     </terra-group-function>
     
     <terra-no-result-notice
-        [inputButtons]="noResultButtons"
-        [inputTextPrimary]="noResultTextPrimary"
-        [inputTextSecondary]="noResultTextSecondary">
+        [inputButtons]="_noResultButtons"
+        [inputTextPrimary]="_noResultTextPrimary"
+        [inputTextSecondary]="_noResultTextSecondary">
     </terra-no-result-notice>
     
     <tbody>
-    <tr [tcTableRow]="row" hasContextMenu [rowData]="row.data" *ngFor="let row of service.rowList; let index = index">
+    <tr [tcTableRow]="row" hasContextMenu [rowData]="row.data" *ngFor="let row of _service.rowList; let index = index">
         <td>{{ row.data.id }}</td>
         <td>
-            <form (submit)="saveData(row.data)" (focusout)="saveData($event)">
+            <form (submit)="_saveData(row.data)" (focusout)="_saveData($event)">
                 <terra-text-input name="value" inputName="Edit value" [(ngModel)]="row.data.value"></terra-text-input>
             </form>
         </td>
         <td>
-            <form (submit)="saveData(row.data)" (focusout)="saveData($event)">
+            <form (submit)="_saveData(row.data)" (focusout)="_saveData($event)">
                 <terra-text-input name="email" inputName="Edit mail" [(ngModel)]="row.data.mail"></terra-text-input>
             </form>
         </td>

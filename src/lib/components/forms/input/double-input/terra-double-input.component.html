@@ -3,7 +3,7 @@
      [placement]="inputTooltipPlacement"
      [ngClass]="{'error': !isValid, 'disabled': inputIsDisabled, 'isSmall': inputIsSmall}">
 
-    <input id="{{id}}"
+    <input id="{{_id}}"
            type="number"
            [(ngModel)]="value"
            name="{{inputName}}"
@@ -11,14 +11,14 @@
            autocomplete="off"
            [disabled]="inputIsDisabled"
            pattern="{{regex}}"
-           step="{{step}}"
-           [lang]="locale"
+           step="{{_step}}"
+           [lang]="_locale"
            placeholder="{{inputIsRequired ? inputName + '*' : inputName}}"
-           [ngClass]="{'isSmall' : inputIsSmall, 'isEmpty' : !innerValue && innerValue !== 0, 'price-input': inputIsPriceInput}">
+           [ngClass]="{'isSmall' : inputIsSmall, 'isEmpty' : !_innerValue && _innerValue !== 0, 'price-input': inputIsPriceInput}">
     <label [tcTooltip]="inputName"
            tabindex="-1"
            [onlyEllipsisTooltip]="true"
-           *ngIf="innerValue || innerValue === 0" htmlFor="{{id}}">{{inputName}}
+           *ngIf="_innerValue || _innerValue === 0" htmlFor="{{_id}}">{{inputName}}
         <span *ngIf="inputIsRequired">*</span>
     </label>
 </div>

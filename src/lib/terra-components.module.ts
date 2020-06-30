@@ -4,10 +4,7 @@ import {
     exportedComponents
 } from './components/component-collection';
 import { directives } from './components/directive-collection';
-import {
-    AlertModule,
-    ModalModule
-} from 'ngx-bootstrap';
+import { ModalModule } from 'ngx-bootstrap';
 import { CommonModule } from '@angular/common';
 import {
     FormsModule,
@@ -20,17 +17,15 @@ import { RouterModule } from '@angular/router';
 import { TerraInteractModule } from './components/interactables/interact.module';
 import { QuillModule } from 'ngx-quill';
 import { CKEditorModule } from 'ckeditor4-angular';
-import { HttpModule } from '@angular/http';
+import { pipes } from './pipes/pipe-collection';
 
 @NgModule({
-    imports: [
+    imports:         [
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
         RouterModule,
-        HttpModule,
         LocalizationModule,
-        AlertModule.forRoot(),
         ModalModule.forRoot(),
         MyDatePickerModule,
         AceEditorModule,
@@ -40,14 +35,16 @@ import { HttpModule } from '@angular/http';
     ],
     declarations:    [
         ...components,
-        ...directives
+        ...directives,
+        ...pipes
     ],
     entryComponents: [
         ...exportedComponents
     ],
     exports:         [
         ...exportedComponents,
-        ...directives
+        ...directives,
+        ...pipes
     ]
 })
 export class TerraComponentsModule

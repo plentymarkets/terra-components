@@ -16,9 +16,9 @@ import { isNullOrUndefined } from 'util';
  */
 @Component({
     // tslint:disable-next-line
-    selector: 'context-menu', // it still exists a terra-context-menu in terra, need to refactored first
-    styles:   [require('./terra-data-table-context-menu.component.scss')],
-    template: require('./terra-data-table-context-menu.component.html')
+    selector:    'context-menu', // it still exists a terra-context-menu in terra, need to refactored first
+    styleUrls:   ['./terra-data-table-context-menu.component.scss'],
+    templateUrl: './terra-data-table-context-menu.component.html'
 })
 export class TerraDataTableContextMenuComponent<D extends TerraBaseData> implements OnInit, OnDestroy
 {
@@ -28,27 +28,25 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData> impleme
     @Input()
     public links:Array<TerraDataTableContextMenuEntryInterface<D>> = [];
 
-    protected top:number = 0;
-    protected left:number = 0;
+    public _eventData:{ event:MouseEvent, data:D };
 
-    @ViewChild('list')
+    protected _top:number = 0;
+    protected _left:number = 0;
+
+    // tslint:disable-next-line:variable-name
+    private __isShown:boolean = false;
+
+    @ViewChild('list', { static: false })
     private list:ElementRef;
 
-    private _isShown:boolean = false;
     private readonly clickListener:(event:Event) => void;
-    private eventData:{ event:MouseEvent, data:D };
 
-    /**
-     * @description constructor
-     * @param contextMenuService
-     * @param elementRef
-     */
-    constructor(private contextMenuService:TerraDataTableContextMenuService<D>,
-                private elementRef:ElementRef)
+    constructor(private _contextMenuService:TerraDataTableContextMenuService<D>,
+                private _elementRef:ElementRef)
     {
         this.clickListener = (event:Event):void =>
         {
-            this.clickedOutside(event);
+            this._clickedOutside(event);
         };
     }
 
@@ -57,46 +55,46 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData> impleme
      */
     public ngOnInit():void
     {
-        this.contextMenuService.show.subscribe((eventData:{ event:MouseEvent, data:D }):void =>
+        this._contextMenuService.show.subscribe((eventData:{ event:MouseEvent, data:D }):void =>
         {
-            this.eventData = eventData;
-            this.isShown = !this.isShown;
+            this._eventData = eventData;
+            this._isShown = !this._isShown;
         });
     }
 
     public ngOnDestroy():void
     {
-        if(this._isShown)
+        if(this.__isShown)
         {
-            window.document.body.removeChild(this.elementRef.nativeElement);
+            window.document.body.removeChild(this._elementRef.nativeElement);
         }
     }
 
-    private clickedOutside(event:Event):void
+    private _clickedOutside(event:Event):void
     {
-        if(this.eventData.event.target !== event.target)
+        if(this._eventData.event.target !== event.target)
         {
-            this.isShown = false;
+            this._isShown = false;
         }
     }
 
-    private set isShown(value:boolean)
+    public set _isShown(value:boolean)
     {
-        if(this._isShown !== value && value)
+        if(this.__isShown !== value && value)
         {
-            window.document.body.appendChild(this.elementRef.nativeElement);
+            window.document.body.appendChild(this._elementRef.nativeElement);
             document.addEventListener('click', this.clickListener, true);
         }
-        else if(this._isShown !== value && !value)
+        else if(this.__isShown !== value && !value)
         {
-            window.document.body.removeChild(this.elementRef.nativeElement);
+            window.document.body.removeChild(this._elementRef.nativeElement);
             document.removeEventListener('click', this.clickListener);
         }
-        this._isShown = value;
+        this.__isShown = value;
         if(value)
         {
-            let mousePosX:number = this.eventData.event.clientX; // left
-            let mousePosY:number = this.eventData.event.clientY; // top
+            let mousePosX:number = this._eventData.event.clientX; // left
+            let mousePosY:number = this._eventData.event.clientY; // top
 
             let contextMenuHeight:number = this.list.nativeElement.offsetHeight;
             let contextMenuWidth:number = this.list.nativeElement.offsetWidth;
@@ -110,40 +108,45 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData> impleme
 
             if(isOutsideRightAndBottom)
             {
-                this.top = mousePosY - contextMenuHeight;
-                this.left = mousePosX - contextMenuWidth;
+                this._top = mousePosY - contextMenuHeight;
+                this._left = mousePosX - contextMenuWidth;
             }
             else if(isOutsideBottom)
             {
-                this.top = mousePosY - contextMenuHeight;
-                this.left = mousePosX;
+                this._top = mousePosY - contextMenuHeight;
+                this._left = mousePosX;
             }
             else if(isOutsideRight)
             {
-                this.top = mousePosY;
-                this.left = mousePosX - contextMenuWidth;
+                this._top = mousePosY;
+                this._left = mousePosX - contextMenuWidth;
             }
             else
             {
-                this.top = mousePosY;
-                this.left = mousePosX;
+                this._top = mousePosY;
+                this._left = mousePosX;
             }
 
-            this.eventData.event.stopPropagation();
+            this._eventData.event.stopPropagation();
         }
     }
 
-    protected get topAsString():string
+    public get _isShown():boolean
     {
-        return this.top + 'px';
+        return this.__isShown;
     }
 
-    protected get leftAsString():string
+    public get _topAsString():string
     {
-        return this.left + 'px';
+        return this._top + 'px';
     }
 
-    protected get linksAreSet():boolean
+    public get _leftAsString():string
+    {
+        return this._left + 'px';
+    }
+
+    public get _linksAreSet():boolean
     {
         return !isNullOrUndefined(this.links) && this.links.length > 0;
     }

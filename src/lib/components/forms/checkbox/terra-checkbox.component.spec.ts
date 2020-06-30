@@ -28,7 +28,7 @@ describe('Component: TerraCheckboxComponent', () =>
                     provide:  Router,
                     useValue: router
                 }]
-        }).compileComponents();
+        });
     });
 
     beforeEach(() =>
