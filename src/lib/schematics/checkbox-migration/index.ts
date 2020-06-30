@@ -35,7 +35,6 @@ export function checkboxMigration(_options:any):Rule
 
         logger = context.logger;
 
-
         if(!allPaths.length)
         {
             throw new SchematicsException(
@@ -58,12 +57,6 @@ function runCkeckboxMigration(tree:Tree, tsconfigPath:string, basePath:string):v
         (f:ts.SourceFile) => !f.isDeclarationFile && !program.isSourceFileFromExternalLibrary(f));
     // const printer = ts.createPrinter();
 
-    // program.getSourceFiles().forEach((sourceFile:ts.SourceFile) => {
-    //     logger.info(sourceFile.fileName);
-    // });
-
-    // logger.info(` Content before update: ${tree.read(relative(basePath, sourceFiles[4].referencedFiles.toString()))} `);
-
     sourceFiles.forEach((sourceFile:ts.SourceFile) =>
     {
         const fileName:string = relative(basePath, sourceFile.fileName);
@@ -72,9 +65,7 @@ function runCkeckboxMigration(tree:Tree, tsconfigPath:string, basePath:string):v
             const templateFileName:string = fileName.replace('component.ts', 'component.html');
             if(tree.exists(templateFileName))
             {
-                let buffer:Buffer = tree.read(templateFileName);
-
-                let { checkboxAsString, start, length }:CheckboxBounding = getBounding(buffer);
+                let {checkboxAsString, start, length}:CheckboxBounding = getBounding(tree.read(templateFileName));
 
                 while(start >= 0)
                 {
@@ -94,12 +85,11 @@ function runCkeckboxMigration(tree:Tree, tsconfigPath:string, basePath:string):v
                     update.insertRight(start, template);
                     tree.commitUpdate(update);
 
-                    buffer = tree.read(templateFileName);
                     ({
                         checkboxAsString,
                         start,
                         length
-                    } = getBounding(buffer));
+                    } = getBounding(tree.read(templateFileName)));
                 }
                 // TODO: add MatCheckboxModule to module imports
             }
@@ -148,10 +138,11 @@ function getAttributeValue(bufferString:string, attribute:string):string
 function getBounding(buffer:Buffer):CheckboxBounding
 {
     const bufferString:string = buffer.toString() || '';
+    const checkBoxClosingTag:string = '</terra-checkbox>';
     const regExp:RegExp = new RegExp('<terra-checkbox(\\s|>)');
     const [start, end]:[number, number] = [bufferString.search(regExp),
-                                           bufferString.indexOf('</terra-checkbox>')];
-    const length:number = (end - start) + '</terra-checkbox>'.length;
+                                           bufferString.indexOf(checkBoxClosingTag)];
+    const length:number = (end - start) + checkBoxClosingTag.length;
     // get only one checkbox, otherwise we could find attributes from another
     const checkboxAsString:string = bufferString.substring(start, end);
     return {
