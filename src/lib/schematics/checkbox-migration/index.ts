@@ -74,7 +74,7 @@ function runCkeckboxMigration(tree:Tree, tsconfigPath:string, basePath:string):v
             if(tree.exists(templateFileName))
             {
                 let {checkboxAsString, start, length}:CheckboxBoundingInterface = getBounding(tree.read(templateFileName));
-
+                const fileContainsTerraCheckBox:boolean = !!checkboxAsString;
                 while(start >= 0)
                 {
                     const valueCaption:string = getAttributeValue(checkboxAsString, 'inputCaption');
@@ -100,10 +100,14 @@ function runCkeckboxMigration(tree:Tree, tsconfigPath:string, basePath:string):v
                     } = getBounding(tree.read(templateFileName)));
                 }
                 // add MatCheckboxModule to referred module
-                let referredModule:string = getReferredModule(tree, fileName, 'AppComponent');
-                if(referredModule !== null)
+                if(fileContainsTerraCheckBox)
                 {
-                    addModuleImportToModule(tree, referredModule, 'MatCheckboxModule', '@angular/material/checkbox');
+                    let componentClassName:string = getComponentClassName(tree, fileName);
+                    let referredModule:string = getReferredModule(tree, fileName, componentClassName);
+                    if(referredModule !== null)
+                    {
+                        addModuleImportToModule(tree, referredModule, 'MatCheckboxModule', '@angular/material/checkbox');
+                    }
                 }
             }
         }
@@ -125,6 +129,29 @@ function isComponent(fileName:string, file:Buffer | null):boolean
     return file.toString().match(componentsRegEx) !== null;
 }
 
+/**
+ * Gets the component's class name from the component.ts file.
+ * @param tree
+ * @param fileName
+ */
+function getComponentClassName(tree:Tree, fileName:string):string
+{
+    const buffer:Buffer | number = tree.read(fileName) || 0;
+    const content:string = buffer.toString();
+    const componentNameMatches:RegExpMatchArray | null = content.match(new RegExp('export class \\w*'));
+    if(componentNameMatches !== null)
+    {
+        return componentNameMatches[0].substring('export class '.length);
+    }
+    return null;
+}
+
+/**
+ * Gets the module path referred to its component.
+ * @param tree
+ * @param path
+ * @param componentName
+ */
 function getReferredModule(tree:Tree, path:string, componentName:string):string
 {
     const moduleFileName:string = path.replace('component.ts', 'module.ts');
