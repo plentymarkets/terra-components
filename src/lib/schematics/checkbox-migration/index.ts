@@ -70,30 +70,51 @@ function runCkeckboxMigration(tree:Tree, tsconfigPath:string, basePath:string):v
             const templateFileName:string = fileName.replace('component.ts', 'component.html');
             if(tree.exists(templateFileName))
             {
-                let buffer:Buffer | number = tree.read(templateFileName) || 0;
-                let index:number = buffer.toString().indexOf('terra-checkbox');
+                let buffer:Buffer = tree.read(templateFileName);
+                
+                let { checkboxAsString, start, length } = getBoundings(buffer);
 
-                while(index >= 0)
+                while(start >= 0)
                 {
-                    let update:UpdateRecorder = tree.beginUpdate(templateFileName!);
+                    const valueCaption:string = getAttributeValue(checkboxAsString, 'inputCaption');
+                    const valueIcon:string = getAttributeValue(checkboxAsString, 'inputIcon');
 
-                    const valueCaption:string = getAttributeValue(buffer.toString(), 'inputCaption');
-                    let valueIcon:string = getAttributeValue(buffer.toString(), 'inputIcon');
+                    // logger.info('######  Start  ######');
+                    // logger.info(checkboxAsString);
+                    // logger.info(start.toString());
+                    // logger.info(length.toString());
+                    
+
+                    checkboxAsString = checkboxAsString.replace('terra-checkbox', 'mat-checkbox')
+                        .replace('isIndeterminate', 'indeterminate')
+                        .replace('inputIsDisabled', 'disabled')
+                        .replace('\[?\(?value\)?\]?=".*"', '')
+                        .replace('\[?\(?inputCaption\)?\]?=".*"', '')
+                        .replace('\[?\(?inputIcon\)?\]?=".*"', '')
+                        .replace('tooltipText', 'tcTooltip')
+                        .replace('tooltipPlacement', 'placement');
+
+                    // logger.info(checkboxAsString);
+
+                    // logger.info('######  End  ######');
 
                     // valueCaption === true -> add <span> with dataBinding (or not), otherwise add nothing
-                    let template:string =
-                        oneLineTrim`<mat-checkbox>
+                    const template:string =
+                        oneLineTrim`${checkboxAsString}
                             ${ valueIcon ? `<span class="checkbox-icon ${valueIcon}"></span>` : '' }
                             ${ valueCaption ? `<span>${valueCaption}</span>` :  '' }
                         </mat-checkbox>`;
 
-                    logger.info(template);
-
-                    update.remove(index, 'terra-checkbox'.length);
-                    update.insertRight(index, 'mat-checkbox');
+                    
+                    //logger.info(template);
+                    
+                    const update:UpdateRecorder = tree.beginUpdate(templateFileName!);
+                    update.remove(start, length);
+                    update.insertRight(start, template);
                     tree.commitUpdate(update);
-                    buffer = tree.read(templateFileName) || 0;
-                    index = buffer.toString().indexOf('terra-checkbox');
+
+                    buffer = tree.read(templateFileName) ;
+                    ({ checkboxAsString, start, length } = getBoundings(buffer));
                 }
             }
         }
@@ -118,4 +139,15 @@ function getAttributeValue(bufferString:string, attribute:string):string
     [caption, value] = bufferString.match(regExp) || ['', null];
 
     return value ? `${caption.startsWith('[') ? '{{' + value + '}}' : value}` : null;
+}
+
+function getBoundings(buffer:Buffer):{checkboxAsString:string, start:number, end:number, length:number}
+{
+    const bufferString:string = buffer.toString() || '';
+    const regExp:RegExp = new RegExp('<terra-checkbox(\\s|>)');
+    const [start, end]:[number, number] = [bufferString.search(regExp), bufferString.indexOf('</terra-checkbox>')];
+    const length:number = (end - start) + '</terra-checkbox>'.length;
+    // get only one checkbox, otherwise we could find attributes from another
+    const checkboxAsString:string = bufferString.substring(start, end);
+    return { checkboxAsString: checkboxAsString, start: start, end: end, length: length };
 }
