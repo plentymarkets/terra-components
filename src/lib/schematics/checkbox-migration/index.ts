@@ -116,6 +116,7 @@ function runCkeckboxMigration(tree:Tree, tsconfigPath:string, basePath:string):v
                     buffer = tree.read(templateFileName) ;
                     ({ checkboxAsString, start, length } = getBoundings(buffer));
                 }
+                // TODO: add MatCheckboxModule to module imports
             }
         }
     });
@@ -131,6 +132,22 @@ function isComponent(fileName:string, file:Buffer | null):boolean
     const componentsRexEx:RegExp = new RegExp('@Component\\(');
     return buffer.toString().match(componentsRexEx) !== null;
 }
+
+// function isReferredModule(tree:Tree, path:string, componentName:string):boolean
+// {
+//     const moduleFileName:string = path.replace('component.ts', 'module.ts');
+//     if(tree.exists(moduleFileName))
+//     {
+//         let buffer:Buffer | number = tree.read(moduleFileName) || 0;
+//         let content:string = buffer.toString();
+//         let nameMatches:RegExpMatchArray | null = content.match('componentName');
+//         if(nameMatches !== null && nameMatches.length >= 2)
+//         {
+//             return true;
+//         }
+//     }
+//     return false;
+// }
 
 function getAttributeValue(bufferString:string, attribute:string):string
 {
