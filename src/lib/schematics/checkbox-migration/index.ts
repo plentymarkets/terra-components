@@ -11,6 +11,7 @@ import { createMigrationProgram } from '../utils/compiler-hosts';
 import * as ts from 'typescript';
 import { relative } from 'path';
 import { oneLine } from 'common-tags';
+import { addModuleImportToModule } from '@angular/cdk/schematics';
 
 /**
  * Interface that represents the bounding of a terra-checkbox.
@@ -98,11 +99,11 @@ function runCkeckboxMigration(tree:Tree, tsconfigPath:string, basePath:string):v
                         length
                     } = getBounding(tree.read(templateFileName)));
                 }
-                // TODO: add MatCheckboxModule to module imports
-                let refferedModule:string = isReferredModule(tree, fileName, 'AppComponent');
-                if(refferedModule !== null)
+                // add MatCheckboxModule to referred module
+                let referredModule:string = getReferredModule(tree, fileName, 'AppComponent');
+                if(referredModule !== null)
                 {
-                    logger.info(refferedModule);
+                    addModuleImportToModule(tree, referredModule, 'MatCheckboxModule', '@angular/material/checkbox');
                 }
             }
         }
@@ -124,7 +125,7 @@ function isComponent(fileName:string, file:Buffer | null):boolean
     return file.toString().match(componentsRegEx) !== null;
 }
 
-function isReferredModule(tree:Tree, path:string, componentName:string):string
+function getReferredModule(tree:Tree, path:string, componentName:string):string
 {
     const moduleFileName:string = path.replace('component.ts', 'module.ts');
     if(tree.exists(moduleFileName))
@@ -132,7 +133,7 @@ function isReferredModule(tree:Tree, path:string, componentName:string):string
         const buffer:Buffer | number = tree.read(moduleFileName) || 0;
         const content:string = buffer.toString();
         const nameMatches:RegExpMatchArray | null = content.match(componentName + ',?');
-        const importRegEx:RegExp = new RegExp('import\\s?\{\\s*' + componentName + `\\s?\}\\s?from\\s?\'`, 'gm');
+        const importRegEx:RegExp = new RegExp(`import\\s?\{\\s*${componentName}\\s?\}\\s?from\\s?\'`, 'gm');
         const importMatches:RegExpMatchArray | null = content.match(importRegEx);
         if(nameMatches !== null && importMatches !== null)
         {
