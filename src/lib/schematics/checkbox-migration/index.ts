@@ -65,7 +65,7 @@ function runCkeckboxMigration(tree:Tree, tsconfigPath:string, basePath:string):v
     sourceFiles.forEach((sourceFile:ts.SourceFile) =>
     {
         const fileName:string = relative(basePath, sourceFile.fileName);
-        if(isComponent(fileName))
+        if(isComponent(fileName, tree.read(fileName)))
         {
             const templateFileName:string = fileName.replace('component.ts', 'component.html');
             if(tree.exists(templateFileName))
@@ -100,9 +100,15 @@ function runCkeckboxMigration(tree:Tree, tsconfigPath:string, basePath:string):v
     });
 }
 
-function isComponent(fileName:string):boolean
+function isComponent(fileName:string, file:Buffer | null):boolean
 {
-    return fileName.endsWith('component.ts');
+    if (fileName.endsWith('.d.ts') && !fileName.endsWith('.ts'))
+    {
+        return false;
+    }
+    let buffer:Buffer | number = file || 0;
+    const componentsRexEx:RegExp = new RegExp('@Component\\(');
+    return buffer.toString().match(componentsRexEx) !== null;
 }
 
 function getAttributeValue(bufferString:string, attribute:string):string
