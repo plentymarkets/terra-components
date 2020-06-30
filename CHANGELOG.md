@@ -6,6 +6,8 @@
 * **select-sort**
     - new pipe for sorting lists of available options for a select box
     - new directive that automatically sorts all `terra-select-box`es.
+* **peerDependencies**
+    - updated `iban` to ~0.0.14
 
 ### Bug Fixes
 * **mat-table** adjust styles for odd and even rows.
