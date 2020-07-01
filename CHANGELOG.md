@@ -1,7 +1,9 @@
 # 5.5.0 (XX.XX.XXXX)
 
 ### Features
-* **schematics** basic support for `ng add`.
+* **schematics** 
+    - basic support for `ng add`.
+    - migration from `terra-checkbox` to `mat-checkbox` (no support for `ViewChild` and `ViewChildren` Decorators and custom styling)
 
 ### Bug Fixes
 * **mat-table** adjust styles for odd and even rows.
