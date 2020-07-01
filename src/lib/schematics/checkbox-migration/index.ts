@@ -80,7 +80,7 @@ function runCkeckboxMigration(tree:Tree, tsconfigPath:string, basePath:string):v
                     const valueCaption:string = getAttributeValue(checkboxAsString, 'inputCaption');
                     const valueIcon:string = getAttributeValue(checkboxAsString, 'inputIcon');
 
-                    checkboxAsString = doDeletions(doReplacements(checkboxAsString));
+                    checkboxAsString = doDeletions(doReplacements(handleValue(checkboxAsString)));
 
                     const template:string =
                         oneLine`${checkboxAsString}
@@ -220,24 +220,12 @@ function getBounding(buffer:Buffer):CheckboxBoundingInterface
  */
 function doReplacements(checkboxAsString:string):string
 {
-    let newCheckbox:string;
-
-    // check if ngModel doesn't exists and replace value with ngModel, if already exists just delete value
-    if(checkboxAsString.indexOf('ngModel') === -1)
-    {
-        newCheckbox = checkboxAsString.replace('value', 'ngModel');
-    }
-    else
-    {
-        newCheckbox = checkboxAsString.replace(new RegExp('\\[?\\(?value\\)?\\]?=".*"'), '');
-    }
-
-    return newCheckbox.replace('terra-checkbox', 'mat-checkbox')
-                      .replace('isIndeterminate', 'indeterminate')
-                      .replace('isIndeterminateChange', 'indeterminateChange')
-                      .replace('inputIsDisabled', 'disabled')
-                      .replace('tooltipText', 'tcTooltip')
-                      .replace('tooltipPlacement', 'placement');
+    return checkboxAsString.replace('terra-checkbox', 'mat-checkbox')
+                           .replace('isIndeterminate', 'indeterminate')
+                           .replace('isIndeterminateChange', 'indeterminateChange')
+                           .replace('inputIsDisabled', 'disabled')
+                           .replace('tooltipText', 'tcTooltip')
+                           .replace('tooltipPlacement', 'placement');
 }
 
 /**
@@ -249,4 +237,16 @@ function doDeletions(checkboxAsString:string):string
     return checkboxAsString.replace(new RegExp('\\[?\\(?notifyOnChanges\\)?\\]?=".*"'), '')
                            .replace(new RegExp('\\[?inputCaption\\]?=".*"'), '')
                            .replace(new RegExp('\\[?inputIcon\\]?=".*"'), '');
+}
+
+/**
+ * Remove or replace value.
+ * @param checkboxAsString 
+ */
+function handleValue(checkboxAsString:string):string
+{
+    // If ngModel already exists just delete value, otherwise replace value with ngModel.
+    return checkboxAsString.indexOf('ngModel') >= 0 ?
+        checkboxAsString.replace(new RegExp('\\[?\\(?value\\)?\\]?=".*"'), '') :
+        checkboxAsString.replace('value', 'ngModel');
 }
