@@ -100,15 +100,7 @@ function runCkeckboxMigration(tree:Tree, tsconfigPath:string, basePath:string):v
                     } = getBounding(tree.read(templateFileName)));
                 }
                 // add MatCheckboxModule to referred module
-                if(fileContainsTerraCheckBox)
-                {
-                    let componentClassName:string = getComponentClassName(tree, fileName);
-                    let referredModule:string = getReferredModule(tree, fileName, componentClassName);
-                    if(referredModule !== null)
-                    {
-                        addModuleImportToModule(tree, referredModule, 'MatCheckboxModule', '@angular/material/checkbox');
-                    }
-                }
+                addModuleToImports(fileContainsTerraCheckBox, tree, fileName);
             }
         }
     });
@@ -173,6 +165,25 @@ function getReferredModule(tree:Tree, path:string, componentName:string):string
         // }
     }
     return null;
+}
+
+/**
+ *
+ * @param fileContainsTerraCheckBox
+ * @param tree
+ * @param fileName
+ */
+function addModuleToImports(fileContainsTerraCheckBox:boolean, tree:Tree, fileName:string):void
+{
+    if(fileContainsTerraCheckBox)
+    {
+        let componentClassName:string = getComponentClassName(tree, fileName);
+        let referredModule:string = getReferredModule(tree, fileName, componentClassName);
+        if(referredModule !== null)
+        {
+            addModuleImportToModule(tree, referredModule, 'MatCheckboxModule', '@angular/material/checkbox');
+        }
+    }
 }
 
 /**
@@ -241,7 +252,7 @@ function doDeletions(checkboxAsString:string):string
 
 /**
  * Remove or replace value.
- * @param checkboxAsString 
+ * @param checkboxAsString
  */
 function handleValue(checkboxAsString:string):string
 {
