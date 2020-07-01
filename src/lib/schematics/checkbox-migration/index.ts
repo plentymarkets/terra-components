@@ -220,13 +220,24 @@ function getBounding(buffer:Buffer):CheckboxBoundingInterface
  */
 function doReplacements(checkboxAsString:string):string
 {
-    return checkboxAsString.replace('terra-checkbox', 'mat-checkbox')
-                           .replace('isIndeterminate', 'indeterminate')
-                           .replace('isIndeterminateChange', 'indeterminateChange')
-                           .replace('inputIsDisabled', 'disabled')
-                           .replace('tooltipText', 'tcTooltip')
-                           .replace('tooltipPlacement', 'placement')
-                           .replace('value', 'ngModel');
+    let newCheckbox:string;
+
+    // check if ngModel doesn't exists and replace value with ngModel, if already exists just delete value
+    if(checkboxAsString.indexOf('ngModel') === -1)
+    {
+        newCheckbox = checkboxAsString.replace('value', 'ngModel');
+    }
+    else
+    {
+        newCheckbox = checkboxAsString.replace(new RegExp('\\[?\\(?value\\)?\\]?=".*"'), '');
+    }
+
+    return newCheckbox.replace('terra-checkbox', 'mat-checkbox')
+                      .replace('isIndeterminate', 'indeterminate')
+                      .replace('isIndeterminateChange', 'indeterminateChange')
+                      .replace('inputIsDisabled', 'disabled')
+                      .replace('tooltipText', 'tcTooltip')
+                      .replace('tooltipPlacement', 'placement');
 }
 
 /**
