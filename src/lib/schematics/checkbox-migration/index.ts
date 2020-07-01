@@ -225,7 +225,8 @@ function doReplacements(checkboxAsString:string):string
                            .replace('isIndeterminateChange', 'indeterminateChange')
                            .replace('inputIsDisabled', 'disabled')
                            .replace('tooltipText', 'tcTooltip')
-                           .replace('tooltipPlacement', 'placement');
+                           .replace('tooltipPlacement', 'placement')
+                           .replace('value', 'ngModel');
 }
 
 /**
@@ -234,8 +235,7 @@ function doReplacements(checkboxAsString:string):string
  */
 function doDeletions(checkboxAsString:string):string
 {
-    return checkboxAsString.replace(new RegExp('\\[?\\(?value\\)?\\]?=".*"'), '')
-                           .replace(new RegExp('\\[?\\(?notifyOnChanges\\)?\\]?=".*"'), '')
+    return checkboxAsString.replace(new RegExp('\\[?\\(?notifyOnChanges\\)?\\]?=".*"'), '')
                            .replace(new RegExp('\\[?inputCaption\\]?=".*"'), '')
                            .replace(new RegExp('\\[?inputIcon\\]?=".*"'), '');
 }
