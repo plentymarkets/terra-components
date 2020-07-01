@@ -64,6 +64,8 @@ function runCkeckboxMigration(tree:Tree, tsconfigPath:string, basePath:string):v
     const sourceFiles:Array<ts.SourceFile> = program.getSourceFiles().filter(
         (f:ts.SourceFile) => !f.isDeclarationFile && !program.isSourceFileFromExternalLibrary(f));
     // const printer = ts.createPrinter();
+    let fileNamesOfMigratedTemplates:Array<string> = [];
+    let moduleFileNames:Array<string> = [];
 
     sourceFiles.forEach((sourceFile:ts.SourceFile) =>
     {
@@ -99,10 +101,21 @@ function runCkeckboxMigration(tree:Tree, tsconfigPath:string, basePath:string):v
                         length
                     } = getBounding(tree.read(templateFileName)));
                 }
-                // add MatCheckboxModule to referred module
-                addModuleToImports(fileContainsTerraCheckBox, tree, fileName);
+                if(fileContainsTerraCheckBox)
+                {
+                    fileNamesOfMigratedTemplates.push(fileName);
+                }
             }
         }
+        if(isModule(fileName, tree.read(fileName)))
+        {
+            moduleFileNames.push(fileName);
+        }
+    });
+    fileNamesOfMigratedTemplates.forEach((fileName:string) =>
+    {
+        // add MatCheckboxModule to referred module
+        addModuleToImports(tree, fileName, moduleFileNames);
     });
 }
 
@@ -117,8 +130,21 @@ function isComponent(fileName:string, file:Buffer | null):boolean
     {
         return false;
     }
-    const componentsRegEx:RegExp = new RegExp('@Component\\(');
-    return file.toString().match(componentsRegEx) !== null;
+    return file.toString().match(new RegExp('@Component\\(')) !== null;
+}
+
+/**
+ * Checks whether the file is a module.
+ * @param fileName
+ * @param file
+ */
+function isModule(fileName:string, file:Buffer | null):boolean
+{
+    if(fileName.endsWith('.d.ts') && !fileName.endsWith('.ts'))
+    {
+        return false;
+    }
+    return file.toString().match(new RegExp('@NgModule\\(')) !== null;
 }
 
 /**
@@ -141,13 +167,12 @@ function getComponentClassName(tree:Tree, fileName:string):string
 /**
  * Gets the module path referred to its component.
  * @param tree
- * @param path
  * @param componentName
+ * @param moduleFileNames
  */
-function getReferredModule(tree:Tree, path:string, componentName:string):string
+function getReferredModule(tree:Tree, componentName:string, moduleFileNames:Array<string>):string
 {
-    const moduleFileName:string = path.replace('component.ts', 'module.ts');
-    if(tree.exists(moduleFileName))
+    return moduleFileNames.find((moduleFileName:string) =>
     {
         const buffer:Buffer | number = tree.read(moduleFileName) || 0;
         const content:string = buffer.toString();
@@ -158,31 +183,22 @@ function getReferredModule(tree:Tree, path:string, componentName:string):string
         {
             return moduleFileName;
         }
-        // TODO look through parent directories to find the referred module
-        // else
-        // {
-        //     return isReferredModule(tree, )
-        // }
-    }
-    return null;
+    });
 }
 
 /**
  *
- * @param fileContainsTerraCheckBox
  * @param tree
  * @param fileName
+ * @param moduleFileNames
  */
-function addModuleToImports(fileContainsTerraCheckBox:boolean, tree:Tree, fileName:string):void
+function addModuleToImports(tree:Tree, fileName:string, moduleFileNames:Array<string>):void
 {
-    if(fileContainsTerraCheckBox)
+    let componentClassName:string = getComponentClassName(tree, fileName);
+    let referredModule:string = getReferredModule(tree, componentClassName, moduleFileNames);
+    if(referredModule !== undefined)
     {
-        let componentClassName:string = getComponentClassName(tree, fileName);
-        let referredModule:string = getReferredModule(tree, fileName, componentClassName);
-        if(referredModule !== null)
-        {
-            addModuleImportToModule(tree, referredModule, 'MatCheckboxModule', '@angular/material/checkbox');
-        }
+        addModuleImportToModule(tree, referredModule, 'MatCheckboxModule', '@angular/material/checkbox');
     }
 }
 
