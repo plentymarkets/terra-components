@@ -10,6 +10,7 @@ import * as ts from 'typescript';
 
 export type FakeReadFileFn = (fileName:string) => string | null;
 
+/* tslint:disable */
 /**
  * Creates a TypeScript program instance for a TypeScript project within
  * the virtual file system tree.
