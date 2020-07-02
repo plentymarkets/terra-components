@@ -209,7 +209,7 @@ function addModuleToImports(tree:Tree, fileName:string, moduleFileNames:Array<st
  */
 function getAttributeValue(bufferString:string, attribute:string):string
 {
-    const regExp:RegExp = new RegExp(`\\[?${attribute}\\]?="(.*)"`);
+    const regExp:RegExp = new RegExp(`\\[?${attribute}\\]?="(.*?)"`);
     let caption:string, value:string;
     [caption,
      value] = bufferString.match(regExp) || ['',
@@ -261,9 +261,9 @@ function doReplacements(checkboxAsString:string):string
  */
 function doDeletions(checkboxAsString:string):string
 {
-    return checkboxAsString.replace(new RegExp('\\[?\\(?notifyOnChanges\\)?\\]?=".*"'), '')
-                           .replace(new RegExp('\\[?inputCaption\\]?=".*"'), '')
-                           .replace(new RegExp('\\[?inputIcon\\]?=".*"'), '');
+    return checkboxAsString.replace(new RegExp('\\[?\\(?notifyOnChanges\\)?\\]?=".*?"'), '')
+                           .replace(new RegExp('\\[?inputCaption\\]?=".*?"'), '')
+                           .replace(new RegExp('\\[?inputIcon\\]?=".*?"'), '');
 }
 
 /**
@@ -274,6 +274,6 @@ function handleValue(checkboxAsString:string):string
 {
     // If ngModel already exists just delete value, otherwise replace value with ngModel.
     return checkboxAsString.indexOf('ngModel') >= 0 ?
-        checkboxAsString.replace(new RegExp('\\[?\\(?value\\)?\\]?=".*"'), '') :
+        checkboxAsString.replace(new RegExp('\\[?\\(?value\\)?\\]?=".*?"'), '') :
         checkboxAsString.replace('value', 'ngModel');
 }
