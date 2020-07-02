@@ -12,6 +12,7 @@
 ### Bug Fixes
 * **mat-table** adjust styles for odd and even rows.
 * **no-result-notice** adjust margin for no result notice in mat-table.
+* **terra-taglist** add flex-wrap
 
 # 5.4.0 (22.06.2020)
 
