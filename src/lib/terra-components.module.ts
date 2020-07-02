@@ -17,6 +17,7 @@ import { RouterModule } from '@angular/router';
 import { TerraInteractModule } from './components/interactables/interact.module';
 import { QuillModule } from 'ngx-quill';
 import { CKEditorModule } from 'ckeditor4-angular';
+import { pipes } from './pipes/pipe-collection';
 
 @NgModule({
     imports:         [
@@ -34,14 +35,16 @@ import { CKEditorModule } from 'ckeditor4-angular';
     ],
     declarations:    [
         ...components,
-        ...directives
+        ...directives,
+        ...pipes
     ],
     entryComponents: [
         ...exportedComponents
     ],
     exports:         [
         ...exportedComponents,
-        ...directives
+        ...directives,
+        ...pipes
     ]
 })
 export class TerraComponentsModule
