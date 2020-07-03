@@ -1,4 +1,19 @@
-# 5.4.0 (XX.XX.2020)
+# 5.5.0 (XX.XX.XXXX)
+
+### Features
+* **schematics** basic support for `ng add`.
+* **sort-helper** new class that provides functionality to sort lists of numbers, strings and objects.
+* **select-sort**
+    - new pipe for sorting lists of available options for a select box
+    - new directive that automatically sorts all `terra-select-box`es.
+* **peerDependencies**
+    - updated `iban` to ~0.0.14
+
+### Bug Fixes
+* **mat-table** adjust styles for odd and even rows.
+* **no-result-notice** adjust margin for no result notice in mat-table.
+
+# 5.4.0 (22.06.2020)
 
 ### Features
 * **tooltip** removed warning and all deprecations for tooltip placement.
@@ -17,6 +32,7 @@
 * **terra-category-picker** removed provider for `TerraNodeTreeConfig` since it was not used anymore.
 * **terra-overlay** is deprecated now. Use angular material's [dialog](https://material.angular.io/components/dialog) instead.
 * **terra-input** is deprecated now. Use angular material's [input](https://material.angular.io/components/input) instead.
+* **terra-mat-paginator-intl** allows for translation of mat paginators
 
 ### Bug Fixes
 * **mat-input** do not color an invalid input's underline red until it has been touched.
