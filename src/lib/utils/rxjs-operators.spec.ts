@@ -23,7 +23,7 @@ class TestComponent implements OnDestroy
     }
 }
 
-xdescribe('', () =>
+describe('', () =>
 {
     const component:TestComponent = new TestComponent();
     it('', () =>
