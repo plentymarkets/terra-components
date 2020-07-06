@@ -1,7 +1,9 @@
 import { CKEditorDirective } from './ck-editor.directive';
-import { CKEditorComponent } from 'ckeditor4-angular';
 import {
-    async,
+    CKEditor4,
+    CKEditorComponent
+} from 'ckeditor4-angular';
+import {
     ComponentFixture,
     TestBed
 } from '@angular/core/testing';
@@ -15,7 +17,7 @@ class CkEditorTestHostComponent
 {
 }
 
-describe('CkFullDirective', () =>
+describe('CkEditorDirective', () =>
 {
     let component:CkEditorTestHostComponent;
     let fixture:ComponentFixture<CkEditorTestHostComponent>;
@@ -54,5 +56,10 @@ describe('CkFullDirective', () =>
     it('should set ckeditor url to https://cdn.ckeditor.com/4.11.4/full-all/ckeditor.js', () =>
     {
         expect(ckComponent.editorUrl).toBe(ckurl);
+    });
+
+    it('should set the editor type to "divarea" by default', () =>
+    {
+        expect(ckComponent.type).toBe(CKEditor4.EditorType.DIVAREA);
     });
 });
