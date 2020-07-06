@@ -8,7 +8,7 @@ import { OnDestroy } from '@angular/core';
 
 export function takeUntilDestroyed<T>(target:any):MonoTypeOperatorFunction<T>
 {
-    const destroy:Subject<void> = new Subject();
+    const destroy$:Subject<void> = new Subject();
     if(!implementsOnDestroy(target))
     {
         target.ngOnDestroy = noop;
@@ -16,15 +16,15 @@ export function takeUntilDestroyed<T>(target:any):MonoTypeOperatorFunction<T>
 
     function ngOnDestroy(this:any):void
     {
-        destroy.next();
-        destroy.complete();
+        destroy$.next();
+        destroy$.complete();
 
         target.ngOnDestroy.apply(this);
     }
 
     target.ngOnDestroy = ngOnDestroy;
 
-    return takeUntil<T>(destroy);
+    return takeUntil<T>(destroy$);
 }
 
 function implementsOnDestroy(object:any):object is OnDestroy
