@@ -1,30 +1,33 @@
 import {
     MonoTypeOperatorFunction,
+    noop,
     Subject
 } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { OnDestroy } from '@angular/core';
 
-export function takeUntilDestroyed(target:any):MonoTypeOperatorFunction<any>
+export function takeUntilDestroyed<T>(target:any):MonoTypeOperatorFunction<T>
 {
-    const destroy:Subject<boolean> = new Subject<boolean>();
-    const targetNgOnDestroy:Function = target.ngOnDestroy;
-    if(typeof targetNgOnDestroy === 'undefined')
+    const destroy:Subject<void> = new Subject();
+    if(!implementsOnDestroy(target))
     {
-        console.log(target.constructor ? target.constructor.name : 'takeUntilDestroyed', 'missingOnDestroy');
+        target.ngOnDestroy = noop;
     }
 
     function ngOnDestroy(this:any):void
     {
-        destroy.next(true);
+        destroy.next();
         destroy.complete();
 
-        if(targetNgOnDestroy)
-        {
-            targetNgOnDestroy.apply(this);
-        }
+        target.ngOnDestroy.apply(this);
     }
 
     target.ngOnDestroy = ngOnDestroy;
 
-    return takeUntil(destroy);
+    return takeUntil<T>(destroy);
+}
+
+function implementsOnDestroy(object:any):object is OnDestroy
+{
+    return object.hasOwnProperty('ngOnDestroy') && typeof object.ngOnDestroy !== 'undefined';
 }
