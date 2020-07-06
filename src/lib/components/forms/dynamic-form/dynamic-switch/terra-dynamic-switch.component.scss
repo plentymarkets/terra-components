@@ -1,66 +1,53 @@
-:host-context(div.horizontalGroup terra-portlet)
-{
-    form.horizontalGroupForm
-    {
+:host-context(div.horizontalGroup terra-portlet) {
+    form.horizontalGroupForm {
         display: flex;
 
-        > *
-        {
+        > * {
             flex-grow: 1;
             flex-basis: 0;
             align-self: center;
         }
 
-        > :not(:last-child)
-        {
+        > :not(:last-child) {
             margin-right: 5px;
         }
     }
 }
 
-.horizontalGroup
-{
+.horizontalGroup {
     padding: var(--space-sm) 0;
 
-    .horizontalGroupLabel
-    {
+    .horizontalGroupLabel {
         display: block;
         font-weight: bold;
     }
 
-    .horizontalGroupEntry
-    {
+    .horizontalGroupEntry {
         width: 100%;
     }
 }
 
-.verticalGroup
-{
+.verticalGroup {
     padding: var(--space-sm) 0;
     width: 100%;
 
-    .subSwitch
-    {
+    .subSwitch {
         width: 100%;
     }
 
-    .verticalGroupLabel
-    {
+    .verticalGroupLabel {
         font-weight: bold;
     }
 
-    .verticalGroupEntry
-    {
+    .verticalGroupEntry {
         width: 100%;
     }
 
-    &:not(:last-child)
-    {
+    &:not(:last-child) {
         margin-right: 0;
     }
 }
 
-.conditionalSwitch
-{
+.conditionalSwitch {
     margin-top: 5px;
 }
