@@ -1,3 +1,11 @@
+# 6.0.0 (XX.XX.XXXX)
+
+### Breaking Changes
+* **CkEditorDirective**
+    - now also sets the editor type to "divarea" by default.
+    - added `@Host()` decorator to the `CKEditorComponent` dependency to limit DI lookup to its host.
+    - updated selector to `ckeditor[tcCkEditor]` in order to clarify that this directive is only applicable to the `CKEditorComponent`.
+
 # 5.5.0 (XX.XX.XXXX)
 
 ### Features
@@ -8,10 +16,6 @@
     - new directive that automatically sorts all `terra-select-box`es.
 * **peerDependencies**
     - updated `iban` to ~0.0.14
-* **CkEditorDirective**
-    - now also sets the editor type to "divarea" by default.
-    - added `@Host()` decorator to the `CKEditorComponent` dependency to limit DI lookup to its host.
-    - updated selector to `ckeditor[tcCkEditor]` in order to clarify that this directive is only applicable to the `CKEditorComponent`.
 
 ### Bug Fixes
 * **mat-table** adjust styles for odd and even rows.
