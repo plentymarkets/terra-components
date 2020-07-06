@@ -187,7 +187,7 @@ function getReferredModule(tree:Tree, componentName:string, moduleFileNames:Arra
 }
 
 /**
- *
+ * Gets the tree, a file name and all file names of modules and adds 'MatCheckboxModule' to a referred module
  * @param tree
  * @param fileName
  * @param moduleFileNames
