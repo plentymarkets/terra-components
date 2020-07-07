@@ -36,7 +36,7 @@ export class TooltipDirective implements OnDestroy, OnChanges
     private _isDisabled:boolean;
     private tooltipEl:any;
     private _placement:string = TerraPlacementEnum.TOP;
-    private navigationSubscription:Subscription;
+    private navigationSubscription:Subscription = Subscription.EMPTY;
 
     /**
      * Set the placement of the tooltip.
@@ -109,6 +109,7 @@ export class TooltipDirective implements OnDestroy, OnChanges
 
                 this._initTooltip(tooltip);
 
+                this.navigationSubscription.unsubscribe();
                 this.navigationSubscription = this._router.events.subscribe(() =>
                 {
                     this.tooltipEl.hide(0);
@@ -168,10 +169,7 @@ export class TooltipDirective implements OnDestroy, OnChanges
             this.tooltipEl.destroy();
         }
 
-        if(this.navigationSubscription)
-        {
-            this.navigationSubscription.unsubscribe();
-        }
+        this.navigationSubscription.unsubscribe();
     }
 
     private _handleTooltipState():void
