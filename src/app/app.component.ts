@@ -19,8 +19,6 @@ export class AppComponent
 {
     public _checkboxValue:boolean = false;
 
-    public _checkboxCaption:string = 'Foobar';
-
     public test():void
     {
         console.log('asd');
