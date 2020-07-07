@@ -137,7 +137,8 @@
 	},
 	"columnSettings": {
 		"overlayTitle": "Spalten individualisieren",
-		"Confirm": "Bestätigen",
-		"Cancel": "Abbrechen"
+		"confirm": "Bestätigen",
+		"cancel": "Abbrechen",
+		"tooltip": "Spalten konfigurieren"
 	}
 }

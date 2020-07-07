@@ -137,7 +137,8 @@
 	},
 	"columnSettings": {
 		"overlayTitle": "Customize Columns",
-		"Confirm": "Confirm",
-		"Cancel": "Cancel"
+		"confirm": "Confirm",
+		"cancel": "Cancel",
+		"tooltip": "Configure columns"
 	}
 }

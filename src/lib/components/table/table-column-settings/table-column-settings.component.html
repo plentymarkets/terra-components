@@ -1,40 +1,7 @@
 <button mat-button
         class="icon-edit"
-        [tcTooltip]="'Column config'"
-        (click)="_dialog.open()">
+        [tcTooltip]="'columnSettings.tooltip' | translate:_lang"
+        (click)="_openSettings()">
 </button>
 
-<!--<mat-menu #columnMenu="matMenu">-->
-<!--        <ng-container *ngFor="let column of columns; let i = index">-->
-<!--            <div [hidden]="column.hideInColumnConfig"-->
-<!--                 class="dragable-row">-->
-<!--                <terra-checkbox-->
-<!--                    [value]="!column.hidden"-->
-<!--                    (click)="$event.stopPropagation();"-->
-<!--                    (valueChange)="toggleSelectedColumn(column.key)"-->
-<!--                    [inputCaption]="column.caption">-->
-<!--                </terra-checkbox>-->
-<!--            </div>-->
-<!--        </ng-container>-->
-<!--</mat-menu>-->
 
-<h2 mat-dialog-title>{{ 'columnSettings.overlayTitle' | translate:_lang}}</h2>
-<mat-dialog-content>
-    <terra-checkbox
-        *ngFor="let column of columns"
-        [inputCaption]="column.caption"
-        [(ngModel)]="_selectedColumns">
-    </terra-checkbox>
-    <tc-checkbox-group>
-        [(ngModel)]="_selectedColumns
-    </tc-checkbox-group>
-</mat-dialog-content>
-<mat-dialog-actions>
-    <terra-button [mat-dialog-close]="true"
-                  [inputCaption]="'columnSettings.Confirm' | translate:_lang"
-                  [outputClicked]="customize()">
-    </terra-button>
-    <terra-button [mat-dialog-close]="true"
-                  [inputCaption]="'columnSettings.Cancel' | translate:_lang">
-    </terra-button>
-</mat-dialog-actions>
