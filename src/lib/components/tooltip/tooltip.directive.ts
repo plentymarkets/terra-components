@@ -6,6 +6,7 @@ import {
     Input,
     OnChanges,
     OnDestroy,
+    OnInit,
     SimpleChanges,
     TemplateRef,
     ViewContainerRef
@@ -15,11 +16,12 @@ import tippy, { Placement } from 'tippy.js';
 import { TerraPlacementEnum } from '../../helpers/enums/terra-placement.enum';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { filter } from 'rxjs/operators';
 
 @Directive({
     selector: '[tcTooltip]'
 })
-export class TooltipDirective implements OnDestroy, OnChanges
+export class TooltipDirective implements OnDestroy, OnChanges, OnInit
 {
     /**
      * @description The tooltip text.
@@ -70,6 +72,16 @@ export class TooltipDirective implements OnDestroy, OnChanges
     {
     }
 
+    public ngOnInit():void
+    {
+        this.navigationSubscription = this._router.events.pipe(
+            filter(() => this.tooltipEl && this.tooltipEl.state && this.tooltipEl.state.isShown),
+        ).subscribe(() =>
+        {
+            this.tooltipEl.hide(0);
+        });
+    }
+
     public ngOnChanges(changes:SimpleChanges):void
     {
         if(changes.hasOwnProperty('isDisabled'))
@@ -108,12 +120,6 @@ export class TooltipDirective implements OnDestroy, OnChanges
                 }
 
                 this._initTooltip(tooltip);
-
-                this.navigationSubscription.unsubscribe();
-                this.navigationSubscription = this._router.events.subscribe(() =>
-                {
-                    this.tooltipEl.hide(0);
-                });
 
                 if(tooltipIsEmpty)
                 {
