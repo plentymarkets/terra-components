@@ -8,8 +8,8 @@ import { MatDialog } from '@angular/material/dialog';
 
 @Component({
     selector:    'terra-column-settings',
-    templateUrl: './terra-column-settings.component.html',
-    styleUrls:   ['./terra-column-settings.component.scss']
+    templateUrl: './table-column-settings.component.html',
+    styleUrls:   ['./table-column-settings.component.scss']
 })
 export class TableColumnSettingsComponent implements OnInit
 {
