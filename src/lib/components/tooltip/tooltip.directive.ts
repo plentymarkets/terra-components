@@ -13,8 +13,16 @@ import {
 
 import tippy, { Placement } from 'tippy.js';
 import { TerraPlacementEnum } from '../../helpers/enums/terra-placement.enum';
-import { Router } from '@angular/router';
+import {
+    NavigationStart,
+    Router,
+    RouterEvent
+} from '@angular/router';
 import { Subscription } from 'rxjs';
+import {
+    filter,
+    tap
+} from 'rxjs/operators';
 
 @Directive({
     selector: '[tcTooltip]'
@@ -109,10 +117,10 @@ export class TooltipDirective implements OnDestroy, OnChanges
 
                 this._initTooltip(tooltip);
 
-                this.navigationSubscription = this._router.events.subscribe(() =>
-                {
-                    this.tooltipEl.hide(0);
-                });
+                this.navigationSubscription = this._router.events.pipe(
+                    filter((event:RouterEvent) => event instanceof NavigationStart),
+                    tap(() => this.tooltipEl.hide(0))
+                ).subscribe();
 
                 if(tooltipIsEmpty)
                 {
