@@ -1,7 +1,7 @@
 <button mat-button
         class="icon-edit"
-        [matMenuTriggerFor]="columnMenu"
-        [tcTooltip]="'Column config'">
+        [tcTooltip]="'Column config'"
+        (click)="">
 </button>
 
 <!--<mat-menu #columnMenu="matMenu">-->
@@ -18,7 +18,14 @@
 <!--        </ng-container>-->
 <!--</mat-menu>-->
 
-<terra-overlay  inputOverlayTitle=""
-                [inputPrimaryButtonInterface]="">
-    
-</terra-overlay>
+<h2 mat-dialog-title>{{ 'columnSettings.overlayTitle' | translate:_lang}}</h2>
+<mat-dialog-content>logic here</mat-dialog-content>
+<mat-dialog-actions>
+    <terra-button [mat-dialog-close]="true"
+                  [inputCaption]="'columnSettings.Confirm' | translate:_lang"
+                  [outputClicked]="customize()">
+    </terra-button>
+    <terra-button [mat-dialog-close]="true"
+                  [inputCaption]="'columnSettings.Cancel' | translate:_lang">
+    </terra-button>
+</mat-dialog-actions>

@@ -4,35 +4,30 @@ import {
 } from '@angular/core';
 import { ColumnInterface } from './column.interface';
 import { TerraOverlayButtonInterface } from '../../..';
+import { Language } from 'angular-l10n';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
-    selector:    'terra-data-table-example',
-    templateUrl: './terra-data-table.component.example.html',
-    styleUrls:   ['./terra-data-table.component.example.scss']
+    selector:    'terra-column-settings',
+    templateUrl: './terra-column-settings.component.html',
+    styleUrls:   ['./terra-column-settings.component.scss']
 })
 export class TableColumnSettingsComponent implements OnInit
 {
     public _columns:Array<ColumnInterface> = [];
     public _selectedColumns:Array<ColumnInterface> = [];
-    public primaryButtonInterface:TerraOverlayButtonInterface;
+    public _primaryButtonInterface:TerraOverlayButtonInterface;
+    public _secondaryButtonInterface:TerraOverlayButtonInterface;
 
-    constructor()
+    @Language()
+    public _lang:string;
+
+    constructor(private _dialog:MatDialog)
     {
-        this.initOverlay();
     }
 
     public ngOnInit():void
     {
-    }
-
-    private initOverlay():void
-    {
-        this.primaryButtonInterface = {
-            icon:          'icon-confirm',
-            caption:       'do stuff',
-            isDisabled:    false,
-            clickFunction: ():void => this.customize()
-        };
     }
 
     private customize()

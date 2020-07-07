@@ -134,5 +134,10 @@
 	"terraMatPaginatorIntl": {
 		"itemsPerPage": "Results per page",
 		"ofLabel": "of"
+	},
+	"columnSettings": {
+		"overlayTitle": "Customize Columns",
+		"Confirm": "Confirm",
+		"Cancel": "Cancel"
 	}
 }
