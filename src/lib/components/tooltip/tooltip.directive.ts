@@ -28,7 +28,7 @@ export class TooltipDirective implements OnDestroy, OnChanges
      * @description The tooltip text.
      */
     @Input()
-    public tcTooltip:string | TemplateRef<unknown>;
+    public tcTooltip:string | TemplateRef<any>;
 
     /**
      * @description Show the tooltip only when ellipsis is present. Default false.
@@ -90,7 +90,7 @@ export class TooltipDirective implements OnDestroy, OnChanges
                 // example found here: https://netbasal.com/create-advanced-components-in-angular-e0655df5dde6
                 if(this.tcTooltip instanceof TemplateRef)
                 {
-                    const viewRef:EmbeddedViewRef<unknown> = this._containerRef.createEmbeddedView(this.tcTooltip, {});
+                    const viewRef:EmbeddedViewRef<any> = this._containerRef.createEmbeddedView(this.tcTooltip, {});
 
                     let div:HTMLElement = document.createElement('div');
 
