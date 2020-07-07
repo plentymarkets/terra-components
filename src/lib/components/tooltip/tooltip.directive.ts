@@ -11,12 +11,11 @@ import {
     TemplateRef,
     ViewContainerRef
 } from '@angular/core';
-
-import tippy, { Placement } from 'tippy.js';
-import { TerraPlacementEnum } from '../../helpers/enums/terra-placement.enum';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
+import tippy, { Placement } from 'tippy.js';
+import { TerraPlacementEnum } from '../../helpers/enums/terra-placement.enum';
 
 @Directive({
     selector: '[tcTooltip]'
