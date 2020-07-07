@@ -13,7 +13,7 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class TableColumnSettingsComponent implements OnInit
 {
-    public _columns:Array<ColumnInterface> = [];
+    public columns:Array<ColumnInterface> = [];
     public _selectedColumns:Array<ColumnInterface> = [];
 
     @Language()
