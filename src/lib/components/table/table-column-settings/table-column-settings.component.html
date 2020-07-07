@@ -1,0 +1,24 @@
+<button mat-button
+        class="icon-edit"
+        [matMenuTriggerFor]="columnMenu"
+        [tcTooltip]="'Column config'">
+</button>
+
+<!--<mat-menu #columnMenu="matMenu">-->
+<!--        <ng-container *ngFor="let column of columns; let i = index">-->
+<!--            <div [hidden]="column.hideInColumnConfig"-->
+<!--                 class="dragable-row">-->
+<!--                <terra-checkbox-->
+<!--                    [value]="!column.hidden"-->
+<!--                    (click)="$event.stopPropagation();"-->
+<!--                    (valueChange)="toggleSelectedColumn(column.key)"-->
+<!--                    [inputCaption]="column.caption">-->
+<!--                </terra-checkbox>-->
+<!--            </div>-->
+<!--        </ng-container>-->
+<!--</mat-menu>-->
+
+<terra-overlay  inputOverlayTitle=""
+                [inputPrimaryButtonInterface]="">
+    
+</terra-overlay>
