@@ -8,6 +8,8 @@
     - new directive that automatically sorts all `terra-select-box`es.
 * **peerDependencies**
     - updated `iban` to ~0.0.14
+* **mat-checkbox**
+    - add CSS styles for icons as a `<span>` or `<mat-icon>`.
 
 ### Bug Fixes
 * **mat-table** adjust styles for odd and even rows.
