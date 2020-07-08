@@ -4,11 +4,10 @@ import {
     Input,
     Output
 } from '@angular/core';
-import { ColumnInterface } from './interface/column.interface';
 import { Language } from 'angular-l10n';
 import { MatDialog } from '@angular/material/dialog';
-import { TerraDataTableRowInterface } from '../../..';
 import { TableColumnSettingsDialogComponent } from './dialog/table-column-settings-dialog.component';
+import { MatColumnDef } from '@angular/material/table';
 
 @Component({
     selector:    'terra-column-settings',
@@ -21,7 +20,7 @@ export class TableColumnSettingsComponent
      * @description The array of columns to be configured.
      */
     @Input()
-    public columns:Array<ColumnInterface> = [];
+    public columns:Array<MatColumnDef> = [];
     /**
      * @description The array of columns that were selected.
      */

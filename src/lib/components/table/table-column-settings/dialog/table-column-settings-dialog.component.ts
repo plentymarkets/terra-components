@@ -3,12 +3,12 @@ import {
     Inject
 } from '@angular/core';
 import { Language } from 'angular-l10n';
-import { ColumnInterface } from '../interface/column.interface';
 import {
     MAT_DIALOG_DATA,
     MatDialogRef
 } from '@angular/material/dialog';
 import { TableColumnSettingsDialogData } from '../interface/table-column-settings-dialog-data.interface';
+import { MatColumnDef } from '@angular/material/table';
 
 @Component({
     selector:    'tc-table-column-settings-dialog',
@@ -16,7 +16,7 @@ import { TableColumnSettingsDialogData } from '../interface/table-column-setting
 })
 export class TableColumnSettingsDialogComponent
 {
-    public _columns:Array<ColumnInterface> = [];
+    public _columns:Array<MatColumnDef> = [];
     public _selectedColumns:Array<string> = [];
     @Language()
     public _lang:string;
