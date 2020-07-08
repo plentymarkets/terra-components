@@ -1,6 +1,7 @@
 import {
     Component,
     EventEmitter,
+    Input,
     Output
 } from '@angular/core';
 import { ColumnInterface } from './interface/column.interface';
@@ -19,10 +20,12 @@ export class TableColumnSettingsComponent
     /**
      * @description The array of columns to be configured.
      */
+    @Input()
     public columns:Array<ColumnInterface> = [];
     /**
      * @description The array of columns that were selected.
      */
+    @Input()
     public selectedColumns:Array<string> = [];
     /**
      * @description Emits the array of selected columns.
