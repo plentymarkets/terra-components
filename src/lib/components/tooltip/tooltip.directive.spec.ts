@@ -1,5 +1,4 @@
 import {
-    async,
     ComponentFixture,
     TestBed
 } from '@angular/core/testing';
@@ -10,15 +9,23 @@ import {
 } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { TooltipDirective } from './tooltip.directive';
-import { Router } from '@angular/router';
-import { MockRouter } from '../../testing/mock-router';
+import {
+    Router,
+    RouterEvent
+} from '@angular/router';
+import { Subject } from 'rxjs';
+
+
+const routerEvents$:Subject<RouterEvent> = new Subject();
+const routerStub:Partial<Router> = {
+    events: routerEvents$.asObservable()
+};
 
 @Component({
     template: `<label [tcTooltip]="'Test'">test</label>`
 })
 class TooltipDirectiveHostComponent
-{
-}
+{}
 
 describe('TooltipDirective', () =>
 {
@@ -26,7 +33,6 @@ describe('TooltipDirective', () =>
     let fixture:ComponentFixture<TooltipDirectiveHostComponent>;
     let inputEl:DebugElement;
     let directive:TooltipDirective;
-    const router:MockRouter = new MockRouter();
 
     beforeEach(() =>
     {
@@ -38,7 +44,7 @@ describe('TooltipDirective', () =>
             providers:    [
                 {
                     provide:  Router,
-                    useValue: router
+                    useValue: routerStub
                 }]
         });
     });
@@ -81,5 +87,18 @@ describe('TooltipDirective', () =>
         inputEl.triggerEventHandler('mouseover', new Event('MouseEvent'));
         fixture.detectChanges();
         expect(document.body.lastElementChild.matches('div[data-tippy-root]')).toBe(false);
+    });
+
+    it('should subscribe to router events on initialization', () =>
+    {
+        directive.ngOnInit();
+        expect(routerEvents$.observers.length).toBe(1);
+    });
+
+    it('should unsubscribe to router events when destroyed', () =>
+    {
+       directive.ngOnInit();
+       directive.ngOnDestroy();
+       expect(routerEvents$.observers.length).toBe(0);
     });
 });
