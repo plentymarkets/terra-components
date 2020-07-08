@@ -108,7 +108,7 @@ describe('TooltipDirective', () =>
        directive.ngOnDestroy();
        expect(routerEvents$.observers.length).toBe(0);
     });
-  
+
     it('should be able to display a tooltip provided as TemplateRef', () =>
     {
         component.tooltip = component.templateTooltip;
