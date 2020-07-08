@@ -10,10 +10,19 @@ import {
     NodeDependency,
     NodeDependencyType
 } from '@schematics/angular/utility/dependencies';
+import {
+    Dependency,
+    JsonSchemaForNpmPackageJsonFiles
+} from '@schematics/update/update/package-json';
 
-function getPackageJsonContent(tree:Tree):any
+function getTCPackageJsonPath():string
 {
-    const pathToPackageJson:string = 'src/lib/package.json'; // TODO: This needs to be adjusted to work in other projects
+    return 'src/lib/package.json'; // TODO: This needs to be adjusted to work in other projects
+}
+
+function getPackageJsonContent(tree:Tree):JsonSchemaForNpmPackageJsonFiles
+{
+    const pathToPackageJson:string = getTCPackageJsonPath();
     if(!tree.exists(pathToPackageJson))
     {
         return [];
@@ -24,21 +33,17 @@ function getPackageJsonContent(tree:Tree):any
 
 function getTCPeerDependencies(tree:Tree):Array<NodeDependency>
 {
-    const packageJson:any = getPackageJsonContent(tree);
+    const packageJson:JsonSchemaForNpmPackageJsonFiles = getPackageJsonContent(tree);
+    const peerDependencies:Dependency = packageJson.peerDependencies || {};
 
-    if(packageJson.peerDependencies)
+    return Object.keys(peerDependencies).map((dep:string) =>
     {
-        return Object.keys(packageJson.peerDependencies).map((dep:string) =>
-        {
-            return {
-                type: NodeDependencyType.Default,
-                name: dep,
-                version: packageJson.peerDependencies[dep]
-            };
-        });
-    }
-
-    return [];
+        return {
+            type:    NodeDependencyType.Default,
+            name:    dep,
+            version: peerDependencies[dep]
+        };
+    });
 }
 
 function addPackageJsonDependencies():Rule
