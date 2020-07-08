@@ -9,7 +9,7 @@
 <mat-dialog-actions>
     <terra-button [mat-dialog-close]="true"
                   [inputCaption]="'columnSettings.confirm' | translate:_lang"
-                  [outputClicked]="_customize()">
+                  (click)="_customize()">
     </terra-button>
     <terra-button [inputCaption]="'columnSettings.cancel' | translate:_lang"
                   (click)="onCancel()">
