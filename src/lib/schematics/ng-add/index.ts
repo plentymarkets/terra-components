@@ -11,7 +11,7 @@ import {
     NodeDependencyType
 } from '@schematics/angular/utility/dependencies';
 
-export function getPeerDependencies(tree:Tree):Array<NodeDependency>
+export function getTCPeerDependencies(tree:Tree):Array<NodeDependency>
 {
     const pathToPackageJson:string = 'src/lib/package.json'; // TODO: This needs to be adjusted to work in other projects
     if(!tree.exists(pathToPackageJson))
@@ -40,8 +40,8 @@ function addPackageJsonDependencies():Rule
 {
     return (host:Tree, context:SchematicContext):Tree =>
     {
-        const dependencies:Array<NodeDependency> = getPeerDependencies(host);
-        dependencies.forEach((dependency:NodeDependency) =>
+        const tcPeerDependencies:Array<NodeDependency> = getTCPeerDependencies(host);
+        tcPeerDependencies.forEach((dependency:NodeDependency) =>
         {
             addPackageJsonDependency(host, dependency);
             context.logger.log('info', `✅️ Added "${dependency.name}" into ${dependency.type}`);
