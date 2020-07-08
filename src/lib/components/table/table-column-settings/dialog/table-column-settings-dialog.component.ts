@@ -18,25 +18,27 @@ export class TableColumnSettingsDialogComponent
 {
     public _columns:Array<ColumnInterface> = [];
     public _selectedColumns:Array<string> = [];
-    public dialogRef:MatDialogRef<TableColumnSettingsDialogComponent>;
     @Language()
     public _lang:string;
 
-    constructor(@Inject(MAT_DIALOG_DATA) public data:TableColumnSettingsDialogData)
+    constructor(public dialogRef:MatDialogRef<TableColumnSettingsDialogComponent>,
+                @Inject(MAT_DIALOG_DATA) public data:TableColumnSettingsDialogData)
     {
     }
 
+    /**
+     * @description Assign the injected data to the component properties.
+     */
     ngOnInit()
     {
         this._columns = this.data.columns;
         this._selectedColumns = this.data.selectedColumns;
     }
 
-    public _customize()
-    {
-        //do stuff
-    }
-
+    /**
+     * @description Closes the dialog/overlay.
+     * @returns void
+     */
     onCancel():void
     {
         this.dialogRef.close();
