@@ -69,12 +69,13 @@ describe('TooltipDirective', () =>
         inputEl.triggerEventHandler('mouseover', new Event('MouseEvent'));
         fixture.detectChanges();
 
-        expect(document.body.lastElementChild).toBeTruthy();
-        expect(document.body.lastElementChild.matches('div[data-tippy-root]')).toBe(true);
+        expect(getTippyElement()).toBeTruthy();
+        expect(isTooltipVisible()).toBe(true);
 
         inputEl.triggerEventHandler('mouseout', new Event('MouseEvent'));
         fixture.detectChanges();
-        expect(document.body.lastElementChild.matches('div[data-tippy-root]')).toBe(false);
+
+        expect(isTooltipVisible()).toBe(false);
     });
 
     it('should not trigger the tooltip when `isDisabled`', () =>
@@ -86,7 +87,7 @@ describe('TooltipDirective', () =>
 
         inputEl.triggerEventHandler('mouseover', new Event('MouseEvent'));
         fixture.detectChanges();
-        expect(document.body.lastElementChild.matches('div[data-tippy-root]')).toBe(false);
+        expect(isTooltipVisible()).toBe(false);
     });
 
     it('should subscribe to router events on initialization', () =>
@@ -102,3 +103,21 @@ describe('TooltipDirective', () =>
        expect(routerEvents$.observers.length).toBe(0);
     });
 });
+
+function isTooltipVisible():boolean
+{
+    return !!getTippyElement();
+}
+
+function getTippyElement():Element
+{
+    // OPTION #1
+    // const id:string = inputEl.nativeElement.getAttribute('aria-describedBy');
+    // return document.getElementById(id);
+
+    // OPTION #2
+    return document.body.lastElementChild.hasAttribute('data-tippy-root')
+        ? document.body.lastElementChild
+        : null;
+}
+
