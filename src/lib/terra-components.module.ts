@@ -18,6 +18,8 @@ import { TerraInteractModule } from './components/interactables/interact.module'
 import { QuillModule } from 'ngx-quill';
 import { CKEditorModule } from 'ckeditor4-angular';
 import { pipes } from './pipes/pipe-collection';
+import { MatListModule } from '@angular/material/list';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
     imports:         [
@@ -31,7 +33,9 @@ import { pipes } from './pipes/pipe-collection';
         AceEditorModule,
         QuillModule,
         CKEditorModule,
-        TerraInteractModule
+        TerraInteractModule,
+        MatListModule,
+        MatDialogModule
     ],
     declarations:    [
         ...components,
