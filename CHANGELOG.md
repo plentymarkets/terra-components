@@ -12,6 +12,7 @@
 ### Bug Fixes
 * **mat-table** adjust styles for odd and even rows.
 * **no-result-notice** adjust margin for no result notice in mat-table.
+* **tooltip** now subscribes to router events in ngOnInit, not ngOnChanges and makes sure to only call `hide()` when the tooltip is shown.
 
 # 5.4.0 (22.06.2020)
 
