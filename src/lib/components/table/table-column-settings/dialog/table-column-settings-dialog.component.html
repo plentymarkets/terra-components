@@ -1,7 +1,7 @@
 <h2 mat-dialog-title>{{ 'columnSettings.overlayTitle' | translate:_lang}}</h2>
 <mat-dialog-content>
     <mat-selection-list [(ngModel)]="_selectedColumns">
-        <mat-list-option *ngFor="let column of _columns" [value]="column">
+        <mat-list-option *ngFor="let column of _columns" [value]="column.value">
             {{column.caption}}
         </mat-list-option>
     </mat-selection-list>

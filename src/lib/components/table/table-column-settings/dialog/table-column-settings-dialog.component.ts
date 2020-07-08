@@ -17,7 +17,7 @@ import { TableColumnSettingsDialogData } from '../interface/table-column-setting
 export class TableColumnSettingsDialogComponent
 {
     public _columns:Array<ColumnInterface> = [];
-    public _selectedColumns:Array<ColumnInterface> = [];
+    public _selectedColumns:Array<string> = [];
     public dialogRef:MatDialogRef<TableColumnSettingsDialogComponent>;
     @Language()
     public _lang:string;

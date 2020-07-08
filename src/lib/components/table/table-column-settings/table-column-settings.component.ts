@@ -1,9 +1,12 @@
 import {
-    Component
+    Component,
+    EventEmitter,
+    Output
 } from '@angular/core';
 import { ColumnInterface } from './interface/column.interface';
 import { Language } from 'angular-l10n';
 import { MatDialog } from '@angular/material/dialog';
+import { TerraDataTableRowInterface } from '../../..';
 
 @Component({
     selector:    'terra-column-settings',
@@ -13,7 +16,10 @@ import { MatDialog } from '@angular/material/dialog';
 export class TableColumnSettingsComponent
 {
     public columns:Array<ColumnInterface> = [];
-    public selectedColumns:Array<ColumnInterface> = [];
+    public selectedColumns:Array<string> = [];
+
+    @Output()
+    public selectedColumnsChanged:EventEmitter<Array<string>> = new EventEmitter<Array<string>>();
 
     @Language()
     public _lang:string;
@@ -37,6 +43,7 @@ export class TableColumnSettingsComponent
         dialogRef.afterClosed().subscribe(result =>
         {
             this.selectedColumns = result;
+            this.selectedColumnsChanged.emit(this.selectedColumns);
         });
     }
 }
