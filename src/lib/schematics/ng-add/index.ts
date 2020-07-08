@@ -9,7 +9,7 @@ import {
     addPackageJsonDependency,
     NodeDependency,
     NodeDependencyType
-} from 'schematics-utilities';
+} from '@schematics/angular/utility/dependencies';
 
 export function getPeerDependencies(tree:Tree):Array<NodeDependency>
 {
