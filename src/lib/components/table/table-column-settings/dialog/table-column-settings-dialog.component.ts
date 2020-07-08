@@ -11,7 +11,7 @@ import {
 import { TableColumnSettingsDialogData } from '../interface/table-column-settings-dialog-data.interface';
 
 @Component({
-    selector:    'table-column-settings-dialog',
+    selector:    'tc-table-column-settings-dialog',
     templateUrl: './table-column-settings-dialog.component.html'
 })
 export class TableColumnSettingsDialogComponent
