@@ -11,7 +11,7 @@ import {
     NodeDependencyType
 } from '@schematics/angular/utility/dependencies';
 
-export function getTCPeerDependencies(tree:Tree):Array<NodeDependency>
+function getPackageJsonContent(tree:Tree):any
 {
     const pathToPackageJson:string = 'src/lib/package.json'; // TODO: This needs to be adjusted to work in other projects
     if(!tree.exists(pathToPackageJson))
@@ -19,9 +19,14 @@ export function getTCPeerDependencies(tree:Tree):Array<NodeDependency>
         return [];
     }
 
-    const packageJson:any = JSON.parse(tree.read(pathToPackageJson)!.toString('utf8'));
+    return JSON.parse(tree.read(pathToPackageJson)!.toString('utf8'));
+}
 
-    if(packageJson.peerDependencies )
+function getTCPeerDependencies(tree:Tree):Array<NodeDependency>
+{
+    const packageJson:any = getPackageJsonContent(tree);
+
+    if(packageJson.peerDependencies)
     {
         return Object.keys(packageJson.peerDependencies).map((dep:string) =>
         {
