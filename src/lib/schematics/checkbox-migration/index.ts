@@ -80,14 +80,14 @@ function runCkeckboxMigration(tree:Tree, tsconfigPath:string, basePath:string):v
                 while(start >= 0)
                 {
                     const valueCaption:string = getAttributeValue(checkboxAsString, 'inputCaption');
-                    const valueIcon:string = getAttributeValue(checkboxAsString, 'inputIcon');
+                    const valueIcon:string = getAttributeValue(checkboxAsString, 'inputIcon', true);
 
                     checkboxAsString = doDeletions(doReplacements(handleValue(checkboxAsString)));
 
                     const template:string =
                         oneLine`${checkboxAsString}
-                            ${valueIcon ? `<span class="checkbox-icon ${valueIcon}"></span>` : ''}
-                            ${valueCaption ? `<span>${valueCaption}</span>` : ''}
+                            ${valueIcon ? `<mat-icon [fontIcon]="${valueIcon}"></mat-icon>` : ''}
+                            ${valueCaption ? `${valueCaption}` : ''}
                         </mat-checkbox>`;
 
                     const update:UpdateRecorder = tree.beginUpdate(templateFileName!);
@@ -199,6 +199,7 @@ function addModuleToImports(tree:Tree, fileName:string, moduleFileNames:Array<st
     if(referredModule !== undefined)
     {
         addModuleImportToModule(tree, referredModule, 'MatCheckboxModule', '@angular/material/checkbox');
+        addModuleImportToModule(tree, referredModule, 'MatIconModule', '@angular/material/icon');
     }
 }
 
@@ -206,14 +207,20 @@ function addModuleToImports(tree:Tree, fileName:string, moduleFileNames:Array<st
  * Get the Value of a given Attribute. The returned value has interpolation braces for usage anywhere in the template.
  * @param bufferString
  * @param attribute
+ * @param ignoreInterpolation
  */
-function getAttributeValue(bufferString:string, attribute:string):string
+function getAttributeValue(bufferString:string, attribute:string, ignoreInterpolation:boolean = false):string
 {
     const regExp:RegExp = new RegExp(`\\[?${attribute}\\]?="(.*?)"`);
     let caption:string, value:string;
     [caption,
      value] = bufferString.match(regExp) || ['',
                                              null];
+
+    if(ignoreInterpolation)
+    {
+        return value;
+    }
 
     return value ? `${caption.startsWith('[') ? '{{' + value + '}}' : value}` : null;
 }
