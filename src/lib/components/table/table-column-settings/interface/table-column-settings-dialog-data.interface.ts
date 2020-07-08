@@ -1,4 +1,3 @@
-import { ColumnInterface } from './column.interface';
 import { MatColumnDef } from '@angular/material/table';
 
 export interface TableColumnSettingsDialogData {
