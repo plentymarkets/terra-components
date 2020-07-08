@@ -34,13 +34,4 @@ export class TableColumnSettingsDialogComponent
         this._columns = this.data.columns;
         this._selectedColumns = this.data.selectedColumns;
     }
-
-    /**
-     * @description Closes the dialog/overlay.
-     * @returns void
-     */
-    public _onCancel():void
-    {
-        this.dialogRef.close();
-    }
 }

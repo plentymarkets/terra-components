@@ -57,8 +57,11 @@ export class TableColumnSettingsComponent
 
         dialogRef.afterClosed().subscribe(result =>
         {
-            this.selectedColumns = result;
-            this.selectedColumnsChanged.emit(this.selectedColumns);
+            if(result)
+            {
+                this.selectedColumns = result;
+                this.selectedColumnsChanged.emit(this.selectedColumns);
+            }
         });
     }
 }

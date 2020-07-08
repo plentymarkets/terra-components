@@ -11,6 +11,6 @@
                   [inputCaption]="'columnSettings.confirm' | translate:_lang">
     </terra-button>
     <terra-button [inputCaption]="'columnSettings.cancel' | translate:_lang"
-                  (click)="_onCancel()">
+                  [mat-dialog-close]="false">
     </terra-button>
 </mat-dialog-actions>
