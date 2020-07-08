@@ -39,7 +39,7 @@ export class TableColumnSettingsDialogComponent
      * @description Closes the dialog/overlay.
      * @returns void
      */
-    onCancel():void
+    public _onCancel():void
     {
         this.dialogRef.close();
     }
