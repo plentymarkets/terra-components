@@ -11,8 +11,17 @@ import {
 } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { TooltipDirective } from './tooltip.directive';
-import { Router } from '@angular/router';
-import { MockRouter } from '../../testing/mock-router';
+import {
+    Router,
+    RouterEvent
+} from '@angular/router';
+import { Subject } from 'rxjs';
+
+
+const routerEvents$:Subject<RouterEvent> = new Subject();
+const routerStub:Partial<Router> = {
+    events: routerEvents$.asObservable()
+};
 
 @Component({
     template: '<ng-template #template><span>{{templateTooltipText}}</span></ng-template>' +
@@ -33,7 +42,6 @@ describe('TooltipDirective', () =>
     let fixture:ComponentFixture<TooltipDirectiveHostComponent>;
     let labelDebugEl:DebugElement;
     let directive:TooltipDirective;
-    const router:MockRouter = new MockRouter();
 
     beforeEach(() =>
     {
@@ -45,7 +53,7 @@ describe('TooltipDirective', () =>
             providers:    [
                 {
                     provide:  Router,
-                    useValue: router
+                    useValue: routerStub
                 }]
         });
     });
@@ -88,6 +96,19 @@ describe('TooltipDirective', () =>
         expect(document.body.getElementsByClassName('tippy-popper').length).toEqual(0);
     });
 
+    it('should subscribe to router events on initialization', () =>
+    {
+        directive.ngOnInit();
+        expect(routerEvents$.observers.length).toBe(1);
+    });
+
+    it('should unsubscribe to router events when destroyed', () =>
+    {
+       directive.ngOnInit();
+       directive.ngOnDestroy();
+       expect(routerEvents$.observers.length).toBe(0);
+    });
+  
     it('should be able to display a tooltip provided as TemplateRef', () =>
     {
         component.tooltip = component.templateTooltip;
