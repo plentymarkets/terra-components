@@ -16,9 +16,17 @@ import { TableColumnSettingsDialogComponent } from './dialog/table-column-settin
 })
 export class TableColumnSettingsComponent
 {
+    /**
+     * @description The array of columns to be configured.
+     */
     public columns:Array<ColumnInterface> = [];
+    /**
+     * @description The array of columns that were selected.
+     */
     public selectedColumns:Array<string> = [];
-
+    /**
+     * @description Emits the array of selected columns.
+     */
     @Output()
     public selectedColumnsChanged:EventEmitter<Array<string>> = new EventEmitter<Array<string>>();
 
@@ -29,7 +37,11 @@ export class TableColumnSettingsComponent
     {
     }
 
-    public _openSettings()
+    /**
+     * @description Open the setting dialog/overlay.
+     * @returns void
+     */
+    public _openSettings():void
     {
         const dialogRef = this._dialog.open(TableColumnSettingsDialogComponent,
             {

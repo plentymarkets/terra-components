@@ -8,10 +8,12 @@
     - new directive that automatically sorts all `terra-select-box`es.
 * **peerDependencies**
     - updated `iban` to ~0.0.14
+* **table-column-settings** new component that provides a settings overlay for mat table columns.
 
 ### Bug Fixes
 * **mat-table** adjust styles for odd and even rows.
 * **no-result-notice** adjust margin for no result notice in mat-table.
+* **tooltip** now subscribes to router events in ngOnInit, not ngOnChanges and makes sure to only call `hide()` when the tooltip is shown.
 
 # 5.4.0 (22.06.2020)
 
