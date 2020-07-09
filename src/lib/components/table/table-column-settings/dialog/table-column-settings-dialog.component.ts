@@ -29,7 +29,7 @@ export class TableColumnSettingsDialogComponent
     /**
      * @description Assign the injected data to the component properties.
      */
-    ngOnInit()
+    public ngOnInit():void
     {
         this._columns = this.data.columns;
         this._selectedColumns = this.data.selectedColumns;
