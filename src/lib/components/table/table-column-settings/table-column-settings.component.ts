@@ -2,7 +2,8 @@ import {
     Component,
     EventEmitter,
     Input,
-    Output
+    Output,
+    QueryList
 } from '@angular/core';
 import { Language } from 'angular-l10n';
 import { MatDialog } from '@angular/material/dialog';
@@ -20,7 +21,7 @@ export class TableColumnSettingsComponent
      * @description The array of columns to be configured.
      */
     @Input()
-    public columns:Array<MatColumnDef> = [];
+    public columns:QueryList<MatColumnDef>;
     /**
      * @description The array of columns that were selected.
      */
