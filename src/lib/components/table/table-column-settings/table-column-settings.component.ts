@@ -5,10 +5,9 @@ import {
     Output
 } from '@angular/core';
 import { Language } from 'angular-l10n';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { TableColumnSettingsDialogComponent } from './dialog/table-column-settings-dialog.component';
 import { MatColumnDef } from '@angular/material/table';
-import { MatDialogRef } from '@angular/material/dialog/typings/dialog-ref';
 
 @Component({
     selector:    'terra-column-settings',
