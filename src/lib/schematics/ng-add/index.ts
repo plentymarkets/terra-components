@@ -29,7 +29,8 @@ function getPackageJsonContent(tree:Tree):JsonSchemaForNpmPackageJsonFiles
         return [];
     }
 
-    return JSON.parse(tree.read(pathToPackageJson)!.toString('utf8'));
+    const fileContent:string = tree.read(pathToPackageJson)!.toString('utf8');
+    return JSON.parse(fileContent);
 }
 
 function getTCPeerDependencies(tree:Tree):Array<NodeDependency>
