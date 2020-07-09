@@ -7,10 +7,10 @@
     </mat-selection-list>
 </mat-dialog-content>
 <mat-dialog-actions>
-    <button mat-button [mat-dialog-close]="this._selectedColumns">
-        {{'columnSettings.confirm' | translate:_lang}}
-    </button>
-    <button mat-button [mat-dialog-close]="null">
-        {{'columnSettings.cancel' | translate:_lang}}
-    </button>
+    <terra-button [inputCaption]="'columnSettings.confirm' | translate:_lang"
+                  [mat-dialog-close]="this._selectedColumns">
+    </terra-button>
+    <terra-button [inputCaption]="'columnSettings.cancel' | translate:_lang"
+                  [mat-dialog-close]="null">
+    </terra-button>
 </mat-dialog-actions>
