@@ -20,6 +20,7 @@ import { CKEditorModule } from 'ckeditor4-angular';
 import { pipes } from './pipes/pipe-collection';
 import { MatListModule } from '@angular/material/list';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
     imports:         [
@@ -35,7 +36,8 @@ import { MatDialogModule } from '@angular/material/dialog';
         CKEditorModule,
         TerraInteractModule,
         MatListModule,
-        MatDialogModule
+        MatDialogModule,
+        MatButtonModule
     ],
     declarations:    [
         ...components,

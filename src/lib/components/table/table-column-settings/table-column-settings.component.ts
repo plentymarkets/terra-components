@@ -8,6 +8,7 @@ import { Language } from 'angular-l10n';
 import { MatDialog } from '@angular/material/dialog';
 import { TableColumnSettingsDialogComponent } from './dialog/table-column-settings-dialog.component';
 import { MatColumnDef } from '@angular/material/table';
+import { MatDialogRef } from '@angular/material/dialog/typings/dialog-ref';
 
 @Component({
     selector:    'terra-column-settings',
@@ -45,7 +46,7 @@ export class TableColumnSettingsComponent
      */
     public _openSettings():void
     {
-        const dialogRef = this._dialog.open(TableColumnSettingsDialogComponent,
+        const dialogRef:MatDialogRef<TableColumnSettingsDialogComponent> = this._dialog.open(TableColumnSettingsDialogComponent,
             {
                 width:        'auto',
                 disableClose: true,
