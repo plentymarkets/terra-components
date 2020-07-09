@@ -18,7 +18,7 @@ import { MatDialogRef } from '@angular/material/dialog/typings/dialog-ref';
 export class TableColumnSettingsComponent
 {
     /**
-     * @description The array of columns to be configured.
+     * @description A list of all available columns.
      */
     @Input()
     public columns:Array<MatColumnDef> = [];
