@@ -56,7 +56,7 @@ export class TableColumnSettingsComponent
                 }
             });
 
-        dialogRef.afterClosed().subscribe(result =>
+        dialogRef.afterClosed().subscribe((result:any) =>
         {
             if(result)
             {
