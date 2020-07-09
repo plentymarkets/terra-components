@@ -21,8 +21,7 @@ export class TableColumnSettingsDialogComponent
     @Language()
     public _lang:string;
 
-    constructor(public dialogRef:MatDialogRef<TableColumnSettingsDialogComponent>,
-                @Inject(MAT_DIALOG_DATA) public data:TableColumnSettingsDialogData)
+    constructor(@Inject(MAT_DIALOG_DATA) public data:TableColumnSettingsDialogData)
     {
     }
 
