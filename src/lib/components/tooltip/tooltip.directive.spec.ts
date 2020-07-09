@@ -40,7 +40,7 @@ describe('TooltipDirective', () =>
 {
     let component:TooltipDirectiveHostComponent;
     let fixture:ComponentFixture<TooltipDirectiveHostComponent>;
-    let labelDebugEl:DebugElement;
+    let hostDebugEl:DebugElement;
     let directive:TooltipDirective;
 
     beforeEach(() =>
@@ -64,7 +64,7 @@ describe('TooltipDirective', () =>
         component = fixture.componentInstance;
         directive = fixture.debugElement.query(By.directive(TooltipDirective)).injector.get(TooltipDirective);
 
-        labelDebugEl = fixture.debugElement.query(By.css('label'));
+        hostDebugEl = fixture.debugElement.query(By.css('label'));
     });
 
     it('should create an instance', () =>
@@ -75,11 +75,11 @@ describe('TooltipDirective', () =>
     it('should trigger the tooltip on `mouseover` and hide it on `mouseout`', () =>
     {
         fixture.detectChanges();
-        labelDebugEl.triggerEventHandler('mouseover', new Event('MouseEvent'));
+        hostDebugEl.triggerEventHandler('mouseover', new Event('MouseEvent'));
         fixture.detectChanges();
         expect(document.body.getElementsByClassName('tippy-popper').length).toEqual(1);
 
-        labelDebugEl.triggerEventHandler('mouseout', new Event('MouseEvent'));
+        hostDebugEl.triggerEventHandler('mouseout', new Event('MouseEvent'));
         fixture.detectChanges();
         expect(document.body.getElementsByClassName('tippy-popper').length).toEqual(0);
     });
@@ -91,7 +91,7 @@ describe('TooltipDirective', () =>
             isDisabled: new SimpleChange(null, true, true)
         });
 
-        labelDebugEl.triggerEventHandler('mouseover', new Event('MouseEvent'));
+        hostDebugEl.triggerEventHandler('mouseover', new Event('MouseEvent'));
         fixture.detectChanges();
         expect(document.body.getElementsByClassName('tippy-popper').length).toEqual(0);
     });
@@ -113,7 +113,7 @@ describe('TooltipDirective', () =>
     {
         component.tooltip = component.templateTooltip;
         fixture.detectChanges();
-        labelDebugEl.triggerEventHandler('mouseover', new MouseEvent('mouseover'));
+        hostDebugEl.triggerEventHandler('mouseover', new MouseEvent('mouseover'));
 
         const content:Element = document.getElementsByClassName('tippy-content')[0];
         expect(content.textContent).toBe(component.templateTooltipText);
