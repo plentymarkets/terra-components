@@ -16,26 +16,30 @@ import {
     JsonSchemaForNpmPackageJsonFiles
 } from '@schematics/update/update/package-json';
 
-function getTCPackageJsonPath():string
+function getTCPackageJsonPath(debug:boolean):string
 {
-    return 'src/lib/package.json'; // TODO: This needs to be adjusted to work in other projects
+    const nodeModulesPath:string = './node_modules/@plentymarkets/terra-components/package.json';
+    const localPath:string = 'src/lib/package.json';
+    return debug ? localPath : nodeModulesPath;
 }
 
-function getPackageJsonContent(tree:Tree):JsonSchemaForNpmPackageJsonFiles
+function getPackageJsonContent(tree:Tree, context:SchematicContext):JsonSchemaForNpmPackageJsonFiles
 {
-    const pathToPackageJson:string = getTCPackageJsonPath();
+    const pathToPackageJson:string = getTCPackageJsonPath(context.debug);
+    context.logger.debug(pathToPackageJson);
     if(!tree.exists(pathToPackageJson))
     {
-        return [];
+        context.logger.error('package.json not found');
+        return {};
     }
 
     const fileContent:string = tree.read(pathToPackageJson)!.toString('utf8');
     return JSON.parse(fileContent);
 }
 
-function getTCPeerDependencies(tree:Tree):Array<NodeDependency>
+function getTCPeerDependencies(tree:Tree, context:SchematicContext):Array<NodeDependency>
 {
-    const packageJson:JsonSchemaForNpmPackageJsonFiles = getPackageJsonContent(tree);
+    const packageJson:JsonSchemaForNpmPackageJsonFiles = getPackageJsonContent(tree, context);
     const peerDependencies:Dependency = packageJson.peerDependencies || {};
 
     return Object.keys(peerDependencies).map((dep:string) =>
@@ -52,8 +56,8 @@ function addPackageJsonDependencies():Rule
 {
     return (host:Tree, context:SchematicContext):Tree =>
     {
-        const tcPeerDependencies:Array<NodeDependency> = getTCPeerDependencies(host);
         context.logger.info(`Installing peer dependencies...`);
+        const tcPeerDependencies:Array<NodeDependency> = getTCPeerDependencies(host, context);
         tcPeerDependencies.forEach((dependency:NodeDependency) =>
         {
             if(getPackageJsonDependency(host, dependency.name))
