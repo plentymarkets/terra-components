@@ -7,6 +7,7 @@ import {
 import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
 import {
     addPackageJsonDependency,
+    getPackageJsonDependency,
     NodeDependency,
     NodeDependencyType
 } from '@schematics/angular/utility/dependencies';
@@ -51,10 +52,18 @@ function addPackageJsonDependencies():Rule
     return (host:Tree, context:SchematicContext):Tree =>
     {
         const tcPeerDependencies:Array<NodeDependency> = getTCPeerDependencies(host);
+        context.logger.info(`Installing peer dependencies...`);
         tcPeerDependencies.forEach((dependency:NodeDependency) =>
         {
-            addPackageJsonDependency(host, dependency);
-            context.logger.log('info', `✅️ Added "${dependency.name}" into ${dependency.type}`);
+            if(getPackageJsonDependency(host, dependency.name))
+            {
+                context.logger.debug(`❌ Skipped "${dependency.name}"`);
+            }
+            else
+            {
+                addPackageJsonDependency(host, dependency);
+                context.logger.info(`✅️ Added "${dependency.name}".`);
+            }
         });
 
         return host;
