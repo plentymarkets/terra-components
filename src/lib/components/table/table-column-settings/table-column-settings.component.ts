@@ -6,7 +6,7 @@ import {
     QueryList
 } from '@angular/core';
 import { Language } from 'angular-l10n';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { TableColumnSettingsDialogComponent } from './dialog/table-column-settings-dialog.component';
 import { MatColumnDef } from '@angular/material/table';
 
@@ -18,7 +18,7 @@ import { MatColumnDef } from '@angular/material/table';
 export class TableColumnSettingsComponent
 {
     /**
-     * @description The array of columns to be configured.
+     * @description A list of all available columns.
      */
     @Input()
     public columns:QueryList<MatColumnDef>;
@@ -46,7 +46,7 @@ export class TableColumnSettingsComponent
      */
     public _openSettings():void
     {
-        const dialogRef = this._dialog.open(TableColumnSettingsDialogComponent,
+        const dialogRef:MatDialogRef<TableColumnSettingsDialogComponent> = this._dialog.open(TableColumnSettingsDialogComponent,
             {
                 width:        'auto',
                 disableClose: true,
@@ -56,9 +56,9 @@ export class TableColumnSettingsComponent
                 }
             });
 
-        dialogRef.afterClosed().subscribe(result =>
+        dialogRef.afterClosed().subscribe((result:Array<string>) =>
         {
-            if(result)
+            if(result !== null)
             {
                 this.selectedColumns = result;
                 this.selectedColumnsChanged.emit(this.selectedColumns);
