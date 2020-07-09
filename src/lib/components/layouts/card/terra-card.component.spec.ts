@@ -36,7 +36,7 @@ describe(`TerraCardComponent:`, () =>
     let fixture:ComponentFixture<CardTestComponent>;
     let debugElement:DebugElement;
 
-    const expectedImagePath:string = 'app/assets/images/logo_plenty.svg';
+    const expectedImagePath:string = 'assets/images/logo_plenty.svg';
     const expectedIcon:string = 'icon-save';
 
     beforeEach(() =>
