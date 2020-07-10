@@ -18,6 +18,7 @@ describe('QueryParamHelper', () =>
        const queryParamString:string = QueryParamHelper.getQueryParamString(paramMap);
        expect(queryParamString.split('&').length).toBe(paramMap.keys.length);
     });
+
     it('should properly encode special characters', () =>
     {
         specialChars.forEach((char:string) =>
