@@ -24,6 +24,8 @@ describe('UrlHelper', () =>
     {
         url = 'http://domain.com/page';
         expect(UrlHelper.removeQueryParams(url)).toBe(url);
+        url = 'http://domain.com/page?name=first&chapter=intro#fragment';
+        expect(UrlHelper.removeQueryParams(url)).toBe('http://domain.com/page#fragment');
         url = 'http://domain.com/page?name=first&chapter=intro';
         expect(UrlHelper.removeQueryParams(url)).toBe('http://domain.com/page');
     });
