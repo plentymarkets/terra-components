@@ -1,14 +1,25 @@
-# 5.5.0 (XX.XX.XXXX)
+# 5.6.0 (XX.XX.XXXX)
+
+### Features
+* **mat-checkbox**
+    - add CSS styles for icons as a `<span>` or `<mat-icon>`.
+
+# 5.5.0 (09.07.2020)
 
 ### Features
 * **schematics** basic support for `ng add`.
-* **select-sort** new pipe for sorting lists of available options for a select box.
-* **select-sort-directive** new directive that automatically sorts all terra-select-boxes.
 * **sort-helper** new class that provides functionality to sort lists of numbers, strings and objects.
+* **select-sort**
+    - new pipe for sorting lists of available options for a select box
+    - new directive that automatically sorts all `terra-select-box`es.
+* **peerDependencies**
+    - updated `iban` to ~0.0.14
 
 ### Bug Fixes
 * **mat-table** adjust styles for odd and even rows.
 * **no-result-notice** adjust margin for no result notice in mat-table.
+* **terra-taglist** add flex-wrap
+* **tooltip** now subscribes to router events in ngOnInit, not ngOnChanges and makes sure to only call `hide()` when the tooltip is shown.
 
 # 5.4.0 (22.06.2020)
 
