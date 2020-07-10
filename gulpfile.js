@@ -17,7 +17,12 @@ function generateBadgeUrl() {
 
 function coverageBadge(done) {
     const badgeUrl = generateBadgeUrl();
-    console.log(badgeUrl);
+    const badgeTemplate = `![code coverage](${badgeUrl})`;
+    const readme = fs.readFileSync('README.md');
+    const eol = readme.indexOf('\n');
+    const readmeString = readme.toString();
+    const newReadmeString = badgeTemplate + readmeString.slice(eol);
+    fs.writeFileSync('README.md', newReadmeString);
     done();
 }
 exports.coverageBadge = coverageBadge;
