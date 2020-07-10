@@ -68,7 +68,7 @@ describe('TerraNoResultNoticeComponent', () =>
         fixture.detectChanges();
         const primaryDiv:HTMLDivElement = fixture.debugElement.query(By.css('div.text-prime')).nativeElement as HTMLDivElement;
         const secondaryDiv:HTMLDivElement = fixture.debugElement.query(By.css('div.text-second')).nativeElement as HTMLDivElement;
-        expect(primaryDiv).toBeTruthy();
-        expect(secondaryDiv).toBeTruthy();
+        expect(primaryDiv.textContent).toBe('primary text');
+        expect(secondaryDiv.textContent).toBe('secondary text');
     });
 });
