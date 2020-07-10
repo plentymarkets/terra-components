@@ -18,7 +18,7 @@ import {
 class TerraButtonMockComponent extends TerraButtonComponent
 {}
 
-fdescribe('TerraNorResultNoticeComponent', () =>
+describe('TerraNoResultNoticeComponent', () =>
 {
     let fixture:ComponentFixture<TerraNoResultNoticeComponent>;
     let component:TerraNoResultNoticeComponent;
