@@ -3,35 +3,32 @@ import {
     TestBed
 } from '@angular/core/testing';
 import { TerraNoResultNoticeComponent } from './terra-no-result-notice.component';
-import {
-    TerraButtonComponent,
-    TooltipDirective
-} from '../..';
+import { TerraButtonComponent } from '../..';
 import { By } from '@angular/platform-browser';
 import { noResultsNoticeMockButtons } from '../../testing/mock-buttons';
 import {
+    Component,
     DebugElement,
 } from '@angular/core';
-import { Router } from '@angular/router';
-import { MockRouter } from '../../testing/mock-router';
 
-describe('TerraNorResultNoticeComponent', () =>
+@Component({
+    selector: 'terra-button',
+    template: ''
+})
+class TerraButtonMockComponent extends TerraButtonComponent
+{}
+
+fdescribe('TerraNorResultNoticeComponent', () =>
 {
     let fixture:ComponentFixture<TerraNoResultNoticeComponent>;
     let component:TerraNoResultNoticeComponent;
-    const router:MockRouter = new MockRouter();
 
     beforeEach(() =>
     {
         fixture = TestBed.configureTestingModule({
-                declarations: [TooltipDirective,
-                               TerraButtonComponent,
-                               TerraNoResultNoticeComponent],
-                providers:    [
-                    {
-                        provide:  Router,
-                        useValue: router
-                    }]
+                declarations: [
+                    TerraButtonMockComponent,
+                    TerraNoResultNoticeComponent]
             }
         ).createComponent(TerraNoResultNoticeComponent);
         component = fixture.componentInstance;
