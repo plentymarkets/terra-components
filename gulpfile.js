@@ -7,6 +7,21 @@ const sass = require('gulp-sass');
 const tildeImporter = require('node-sass-tilde-importer');
 
 
+function generateBadgeUrl() {
+    const coverageSummary = fs.readFileSync('./coverage/coverage-summary.json', { encoding: 'utf8'});
+    const coverageJSON = JSON.parse(coverageSummary);
+    const coveragePct = coverageJSON.total.lines.pct;
+    const color = coveragePct > 80 ? 'brightgreen' : coveragePct > 50 ? 'yellow' : 'red';
+    return 'https://img.shields.io/badge/coverage-' + encodeURIComponent(`${coveragePct}%-${color}`);
+}
+
+function coverageBadge(done) {
+    const badgeUrl = generateBadgeUrl();
+    console.log(badgeUrl);
+    done();
+}
+exports.coverageBadge = coverageBadge;
+
 // convert global scss styles to css files
 function compileGlobalStyles() {
     return src(config.sources.scss)
