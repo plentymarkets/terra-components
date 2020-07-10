@@ -35,10 +35,7 @@ export function initL10n(l10nLoader:L10nLoader):Function
         RouterModule.forRoot([]),
         HttpClientModule,
         LocalizationModule.forRoot(l10nConfig),
-        TerraComponentsExamplesModule,
-        MatCheckboxModule,
-        MatIconModule,
-        TerraComponentsModule
+        TerraComponentsExamplesModule
     ],
     declarations: [
         AppComponent,
