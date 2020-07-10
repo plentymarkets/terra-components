@@ -1,6 +1,7 @@
 import { ParamMap } from '@angular/router';
 import { StringHelper } from './string.helper';
 
+// @dynamic
 export class QueryParamHelper
 {
     public static getQueryParamString(paramMap:ParamMap):string
