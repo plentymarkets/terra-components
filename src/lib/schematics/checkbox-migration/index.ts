@@ -80,14 +80,16 @@ function runCkeckboxMigration(tree:Tree, tsconfigPath:string, basePath:string):v
                 while(start >= 0)
                 {
                     const valueCaption:string = getAttributeValue(checkboxAsString, 'inputCaption');
-                    const valueIcon:string = getAttributeValue(checkboxAsString, 'inputIcon');
+                    const inputIcon:string = getAttributeWithoutValue(checkboxAsString, 'inputIcon');
+
+                    const fontIcon:string = inputIcon ? inputIcon.replace('inputIcon', 'fontIcon') : null;
 
                     checkboxAsString = doDeletions(doReplacements(handleValue(checkboxAsString)));
 
                     const template:string =
                         oneLine`${checkboxAsString}
-                            ${valueIcon ? `<span class="checkbox-icon ${valueIcon}"></span>` : ''}
-                            ${valueCaption ? `<span>${valueCaption}</span>` : ''}
+                            ${fontIcon ? `<mat-icon ${fontIcon}></mat-icon>` : ''}
+                            ${valueCaption ? `${valueCaption}` : ''}
                         </mat-checkbox>`;
 
                     const update:UpdateRecorder = tree.beginUpdate(templateFileName!);
@@ -199,6 +201,7 @@ function addModuleToImports(tree:Tree, fileName:string, moduleFileNames:Array<st
     if(referredModule !== undefined)
     {
         addModuleImportToModule(tree, referredModule, 'MatCheckboxModule', '@angular/material/checkbox');
+        addModuleImportToModule(tree, referredModule, 'MatIconModule', '@angular/material/icon');
     }
 }
 
@@ -209,13 +212,36 @@ function addModuleToImports(tree:Tree, fileName:string, moduleFileNames:Array<st
  */
 function getAttributeValue(bufferString:string, attribute:string):string
 {
+    const [completeAttribute, value]:[string, string] = getAttributeWithValue(bufferString, attribute);
+
+    return value ? `${completeAttribute.startsWith('[') ? '{{' + value + '}}' : value}` : null;
+}
+
+/**
+ * Get the complete attribute of a given attribute.
+ * @param bufferString
+ * @param attribute
+ */
+function getAttributeWithValue(bufferString:string, attribute:string):[string, string]
+{
     const regExp:RegExp = new RegExp(`\\[?${attribute}\\]?="(.*?)"`);
-    let caption:string, value:string;
-    [caption,
+    let completeAttribute:string, value:string;
+    [completeAttribute,
      value] = bufferString.match(regExp) || ['',
                                              null];
 
-    return value ? `${caption.startsWith('[') ? '{{' + value + '}}' : value}` : null;
+    return [completeAttribute,
+            value];
+}
+
+/**
+ * Get the complete attribute of a given attribute.
+ * @param bufferString
+ * @param attribute
+ */
+function getAttributeWithoutValue(bufferString:string, attribute:string):string
+{
+    return getAttributeWithValue(bufferString, attribute)[0];
 }
 
 /**
