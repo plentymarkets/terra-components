@@ -5,6 +5,7 @@ export class QueryParamHelper
 {
     public static getQueryParamString(paramMap:ParamMap):string
     {
+        // TODO: we also need to encode the param's key!
         return paramMap.keys.map((param:string) => param + '=' + encodeURIComponent(paramMap.get(param))).join('&');
     }
 
