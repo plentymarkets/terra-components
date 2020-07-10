@@ -14,9 +14,6 @@ import { AppComponent } from './app.component';
 import { ShowcaseComponent } from './showcase/showcase.component';
 import { TerraComponentsExamplesModule } from '../lib/terra-components-examples.module';
 import { RouterModule } from '@angular/router';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatIconModule } from '@angular/material/icon';
-import { TerraComponentsModule } from '../lib/terra-components.module';
 
 export function initL10n(l10nLoader:L10nLoader):Function
 {
