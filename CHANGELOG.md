@@ -1,3 +1,9 @@
+# 5.6.0 (XX.XX.XXXX)
+
+### Features
+* **mat-checkbox**
+    - add CSS styles for icons as a `<span>` or `<mat-icon>`.
+
 # 5.5.0 (09.07.2020)
 
 ### Features
@@ -8,8 +14,6 @@
     - new directive that automatically sorts all `terra-select-box`es.
 * **peerDependencies**
     - updated `iban` to ~0.0.14
-* **mat-checkbox**
-    - add CSS styles for icons as a `<span>` or `<mat-icon>`.
 
 ### Bug Fixes
 * **mat-table** adjust styles for odd and even rows.
