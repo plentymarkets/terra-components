@@ -60,4 +60,15 @@ describe('TerraNoResultNoticeComponent', () =>
         fixture.detectChanges();
         expect(buttonComponent.inputIsSmall).toBe(false);
     });
+
+    it('should set a primary and a secondary text between their own `div` element', () =>
+    {
+        component.inputTextPrimary = 'primary text';
+        component.inputTextSecondary = 'secondary text';
+        fixture.detectChanges();
+        const primaryDiv:HTMLDivElement = fixture.debugElement.query(By.css('div.text-prime')).nativeElement as HTMLDivElement;
+        const secondaryDiv:HTMLDivElement = fixture.debugElement.query(By.css('div.text-second')).nativeElement as HTMLDivElement;
+        expect(primaryDiv).toBeTruthy();
+        expect(secondaryDiv).toBeTruthy();
+    });
 });
