@@ -15,7 +15,7 @@ import {
 import { Router } from '@angular/router';
 import { MockRouter } from '../../testing/mock-router';
 
-fdescribe('TerraNorResultNoticeComponent', () =>
+describe('TerraNorResultNoticeComponent', () =>
 {
     let fixture:ComponentFixture<TerraNoResultNoticeComponent>;
     let component:TerraNoResultNoticeComponent;
