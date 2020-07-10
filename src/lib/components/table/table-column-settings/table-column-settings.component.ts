@@ -9,6 +9,11 @@ import { Language } from 'angular-l10n';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { TableColumnSettingsDialogComponent } from './dialog/table-column-settings-dialog.component';
 import { MatColumnDef } from '@angular/material/table';
+import {
+    ControlValueAccessor,
+    NG_VALUE_ACCESSOR
+} from '@angular/forms';
+import { noop } from 'rxjs';
 
 @Component({
     selector:    'terra-column-settings',
@@ -21,7 +26,7 @@ export class TableColumnSettingsComponent
      * @description A list of all available columns.
      */
     @Input()
-    public columns:QueryList<MatColumnDef>;
+    public columns:QueryList<MatColumnDef> = new QueryList<MatColumnDef>();
     /**
      * @description The array of columns that were selected.
      */
@@ -35,6 +40,9 @@ export class TableColumnSettingsComponent
 
     @Language()
     public _lang:string;
+
+    private _onTouchedCallback:() => void = noop;
+    private _onChangeCallback:(value:Array<string>) => void = noop;
 
     constructor(private _dialog:MatDialog)
     {
@@ -62,7 +70,24 @@ export class TableColumnSettingsComponent
             {
                 this.selectedColumns = result;
                 this.selectedColumnsChanged.emit(this.selectedColumns);
+                // this._onChangeCallback(result);
+                // this._onTouchedCallback();
             }
         });
     }
+
+    // public registerOnChange(fn:(value:Array<string>) => void):void
+    // {
+    //     this._onChangeCallback = fn;
+    // }
+    //
+    // public registerOnTouched(fn:() => void):void
+    // {
+    //     this._onTouchedCallback = fn;
+    // }
+    //
+    // public writeValue(obj:Array<string>):void
+    // {
+    //     this.selectedColumns = obj;
+    // }
 }

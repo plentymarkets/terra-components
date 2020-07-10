@@ -18,7 +18,7 @@ import { MatColumnDef } from '@angular/material/table';
 })
 export class TableColumnSettingsDialogComponent implements OnInit
 {
-    public _columns:QueryList<MatColumnDef>;
+    public _columns:QueryList<MatColumnDef> = new QueryList<MatColumnDef>();
     public _selectedColumns:Array<string> = [];
     @Language()
     public _lang:string;
