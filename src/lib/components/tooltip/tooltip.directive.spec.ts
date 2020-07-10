@@ -5,7 +5,9 @@ import {
 import {
     Component,
     DebugElement,
-    SimpleChange
+    SimpleChange,
+    TemplateRef,
+    ViewChild
 } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { TooltipDirective } from './tooltip.directive';
@@ -22,16 +24,23 @@ const routerStub:Partial<Router> = {
 };
 
 @Component({
-    template: `<label [tcTooltip]="'Test'">test</label>`
+    template: '<ng-template #template><span>{{templateTooltipText}}</span></ng-template>' +
+              '<label [tcTooltip]="tooltip">test</label>'
 })
 class TooltipDirectiveHostComponent
-{}
+{
+    public tooltip:string | TemplateRef<any> = 'Test';
+    public readonly templateTooltipText:string = 'Template tooltip';
+
+    @ViewChild('template', {static: true, read: TemplateRef})
+    public templateTooltip:TemplateRef<any>;
+}
 
 describe('TooltipDirective', () =>
 {
     let component:TooltipDirectiveHostComponent;
     let fixture:ComponentFixture<TooltipDirectiveHostComponent>;
-    let inputEl:DebugElement;
+    let hostDebugEl:DebugElement;
     let directive:TooltipDirective;
 
     beforeEach(() =>
@@ -55,7 +64,7 @@ describe('TooltipDirective', () =>
         component = fixture.componentInstance;
         directive = fixture.debugElement.query(By.directive(TooltipDirective)).injector.get(TooltipDirective);
 
-        inputEl = fixture.debugElement.query(By.css('label'));
+        hostDebugEl = fixture.debugElement.query(By.css('label'));
     });
 
     it('should create an instance', () =>
@@ -66,11 +75,11 @@ describe('TooltipDirective', () =>
     it('should trigger the tooltip on `mouseover` and hide it on `mouseout`', () =>
     {
         fixture.detectChanges();
-        inputEl.triggerEventHandler('mouseover', new Event('MouseEvent'));
+        hostDebugEl.triggerEventHandler('mouseover', new Event('MouseEvent'));
         fixture.detectChanges();
         expect(document.body.getElementsByClassName('tippy-popper').length).toEqual(1);
 
-        inputEl.triggerEventHandler('mouseout', new Event('MouseEvent'));
+        hostDebugEl.triggerEventHandler('mouseout', new Event('MouseEvent'));
         fixture.detectChanges();
         expect(document.body.getElementsByClassName('tippy-popper').length).toEqual(0);
     });
@@ -82,7 +91,7 @@ describe('TooltipDirective', () =>
             isDisabled: new SimpleChange(null, true, true)
         });
 
-        inputEl.triggerEventHandler('mouseover', new Event('MouseEvent'));
+        hostDebugEl.triggerEventHandler('mouseover', new Event('MouseEvent'));
         fixture.detectChanges();
         expect(document.body.getElementsByClassName('tippy-popper').length).toEqual(0);
     });
@@ -98,5 +107,15 @@ describe('TooltipDirective', () =>
        directive.ngOnInit();
        directive.ngOnDestroy();
        expect(routerEvents$.observers.length).toBe(0);
+    });
+
+    it('should be able to display a tooltip provided as TemplateRef', () =>
+    {
+        component.tooltip = component.templateTooltip;
+        fixture.detectChanges();
+        hostDebugEl.triggerEventHandler('mouseover', new MouseEvent('mouseover'));
+
+        const content:Element = document.getElementsByClassName('tippy-content')[0];
+        expect(content.textContent).toBe(component.templateTooltipText);
     });
 });
