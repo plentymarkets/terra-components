@@ -2,20 +2,20 @@ import { SortHelper } from '../sort.helper';
 
 describe('SortHelper: ', () =>
 {
-    it('returns empty array when input list is undefined', () =>
+    it('returns an empty array when input list is undefined', () =>
     {
         const sorted:Array<any> = SortHelper.sortArray(undefined);
         expect(sorted).toEqual([]);
     });
 
-    it('returns empty array when input list is an empty array', () =>
+    it('returns an empty array when input list is an empty array', () =>
     {
         const array:Array<any> = [];
         const sorted:Array<any> = SortHelper.sortArray(array);
         expect(sorted).toBe(array);
     });
 
-    it('returns sorted array when input list are numbers', () =>
+    it('returns a sorted array when input list are numbers', () =>
     {
         const array:Array<any> = [2, 5, 27, 1, 9];
         const sorted:Array<any> = SortHelper.sortArray(array);
@@ -24,7 +24,7 @@ describe('SortHelper: ', () =>
         expect(sorted1).toEqual([27, 9, 5, 2, 1]);
     });
 
-    it('returns sorted array when input list are strings', () =>
+    it('returns a sorted array when input list are strings', () =>
     {
         const array:Array<any> = ['a', 'z', 'b', 'j', 'y'];
         const sorted:Array<any> = SortHelper.sortArray(array);
@@ -39,7 +39,7 @@ describe('SortHelper: ', () =>
         const object2:{ property:string } = {property: 'Hallo'};
         const object3:{ property:string } = {property: 'Zone'};
 
-        it('returns sorted array when input list contains objects', () =>
+        it('returns a sorted array when input list contains objects', () =>
         {
             const list:Array<any> = [object2, object1, object3];
             const sorted:Array<any> = SortHelper.sortArray(list, 'asc', 'property');
