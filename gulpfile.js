@@ -21,7 +21,7 @@ function generateBadgeUrl(coverage) {
     return badgeUrlPrefix + encodeURIComponent(`${'coverage'}-${coverage}%-${color}`);
 }
 
-function coverageBadge(done) {
+function updateCoverageBadge(done) {
     const coverage = getCoverage();
     const badgeUrl = generateBadgeUrl(coverage);
     const badge = `![code coverage](${badgeUrl})`;
@@ -41,7 +41,7 @@ function coverageBadge(done) {
     fs.writeFileSync('README.md', newReadmeString);
     done();
 }
-exports.coverageBadge = coverageBadge;
+exports.updateCoverageBadge = updateCoverageBadge;
 
 // convert global scss styles to css files
 function compileGlobalStyles() {
