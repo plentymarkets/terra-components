@@ -7,7 +7,7 @@ import {
     NG_VALUE_ACCESSOR
 } from '@angular/forms';
 import { TerraMultiCheckBoxValueInterface } from '../multi-check-box/data/terra-multi-check-box-value.interface';
-import { isNullOrUndefined } from 'util';
+import { isNullOrUndefined, isArray } from 'util';
 import { noop } from 'rxjs';
 
 @Component({
@@ -68,6 +68,10 @@ export class CheckboxGroupComponent implements ControlValueAccessor
 
     public writeValue(values:Array<any>):void
     {
+        if(!isArray(values))
+        {
+            throw 'Value must be an array';
+        }
         this._values = values;
         this._updateMultiCheckboxValues();
     }
