@@ -32,7 +32,7 @@ export class TableColumnSettingsComponent
      */
     @Input()
     public selectedColumns:Array<string> = [];
-    
+
     /**
      * @description Emits the array of selected columns.
      */
