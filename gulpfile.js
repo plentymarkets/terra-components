@@ -6,21 +6,29 @@ const argv = require('yargs').argv;
 const sass = require('gulp-sass');
 const tildeImporter = require('node-sass-tilde-importer');
 
-
-function generateBadgeUrl() {
+function getCoverage() {
     const coverageSummary = fs.readFileSync('./coverage/coverage-summary.json', { encoding: 'utf8'});
     const coverageJSON = JSON.parse(coverageSummary);
-    const coveragePct = coverageJSON.total.lines.pct;
-    const color = coveragePct > 80 ? 'brightgreen' : coveragePct > 50 ? 'yellow' : 'red';
-    return 'https://img.shields.io/badge/coverage-' + encodeURIComponent(`${coveragePct}%-${color}`);
+    return coverageJSON.total.lines.pct;
+}
+
+function generateBadgeUrl(coverage) {
+
+    const color = coverage > 80 ? 'brightgreen' : coverage > 50 ? 'yellow' : 'red';
+    return 'https://img.shields.io/badge/coverage-' + encodeURIComponent(`${coverage}%-${color}`);
 }
 
 function coverageBadge(done) {
-    const badgeUrl = generateBadgeUrl();
+    const coverage = getCoverage();
+    const badgeUrl = generateBadgeUrl(coverage);
     const badgeTemplate = `![code coverage](${badgeUrl})`;
     const readme = fs.readFileSync('README.md');
     const eol = readme.indexOf('\n');
     const readmeString = readme.toString();
+    if(!readmeString.slice(0, eol).startsWith('![code coverage]'))
+    {
+        throw 'Failed to update badge. No coverage badge available in line 1 of the README.md';
+    }
     const newReadmeString = badgeTemplate + readmeString.slice(eol);
     fs.writeFileSync('README.md', newReadmeString);
     done();
