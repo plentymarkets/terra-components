@@ -44,7 +44,7 @@ export class TableColumnSettingsComponent
     private _onTouchedCallback:() => void = noop;
     private _onChangeCallback:(value:Array<string>) => void = noop;
 
-    constructor(private _dialog:MatDialog)
+    constructor(public _dialog:MatDialog)
     {
     }
 
