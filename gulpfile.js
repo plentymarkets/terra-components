@@ -28,7 +28,7 @@ function coverageBadge(done) {
     const readme = fs.readFileSync('README.md');
     const eol = readme.indexOf('\n');
     const readmeString = readme.toString();
-    const currentBadge = readmeString.slice(0, eol - 1).replace('![code coverage](', '');
+    const currentBadge = readmeString.slice(0, eol);
     if(!badgeUrlTemplate.test(currentBadge))
     {
         throw 'Failed to update badge. No coverage badge available in line 1 of the README.md';
