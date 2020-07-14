@@ -33,7 +33,7 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor, O
     /**
      * @description If true, the input will be disabled. Default false.
      * */
-    @Input() public inputIsDisabled:boolean = false;
+    @Input() public inputIsDisabled:boolean = false; // TODO: This has no effect!!
 
     public valuesHours:Array<TerraSelectBoxValueInterface> = [];
     public valuesMinutes:Array<TerraSelectBoxValueInterface> = [];
