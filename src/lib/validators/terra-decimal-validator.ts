@@ -1,5 +1,6 @@
 import {
     AbstractControl,
+    ValidationErrors,
     ValidatorFn
 } from '@angular/forms';
 import { isNullOrUndefined } from 'util';
@@ -14,7 +15,7 @@ const afterSeparator:number = 1;
 
 export function terraDecimalValidator(maxLength:number, decimals:number):ValidatorFn
 {
-    return (control:AbstractControl):{ [key:string]:any } | null =>
+    return (control:AbstractControl):ValidationErrors | null =>
     {
         const value:number = control.value as number;
         if(!isNullOrUndefined(value))
