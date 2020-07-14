@@ -57,7 +57,9 @@ describe('TerraTimePickerComponent:', () =>
         expect(component.valuesMinutes).toEqual([]);
         component.ngOnInit();
         expect(component.valuesHours.length).toBe(24);
+        expect(component.valuesHours.every((val:TerraSelectBoxValueInterface, index:number) => val.value === index)).toBe(true);
         expect(component.valuesMinutes.length).toBe(60);
+        expect(component.valuesMinutes.every((val:TerraSelectBoxValueInterface, index:number) => val.value === index)).toBe(true);
     });
 
     it('should pass possible values to the select boxes', () =>
