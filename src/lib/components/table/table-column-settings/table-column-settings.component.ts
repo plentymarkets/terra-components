@@ -11,8 +11,11 @@ import {
 } from '@angular/material/dialog';
 import { TableColumnSettingsDialogComponent } from './dialog/table-column-settings-dialog.component';
 import { MatTable } from '@angular/material/table';
-import { noop } from 'rxjs';
 
+/**
+ * Component that displays the settings for a MatTable
+ * @experimental
+ */
 @Component({
     selector:    'terra-column-settings',
     templateUrl: './table-column-settings.component.html',
@@ -41,9 +44,6 @@ export class TableColumnSettingsComponent
     @Language()
     public _lang:string;
 
-    private _onTouchedCallback:() => void = noop;
-    private _onChangeCallback:(value:Array<string>) => void = noop;
-
     constructor(private _dialog:MatDialog)
     {
     }
@@ -70,24 +70,7 @@ export class TableColumnSettingsComponent
             {
                 this.selectedColumns = result;
                 this.selectedColumnsChange.emit(this.selectedColumns);
-                this._onChangeCallback(result);
-                this._onTouchedCallback();
             }
         });
-    }
-
-    public registerOnChange(fn:(value:Array<string>) => void):void
-    {
-        this._onChangeCallback = fn;
-    }
-
-    public registerOnTouched(fn:() => void):void
-    {
-        this._onTouchedCallback = fn;
-    }
-
-    public writeValue(obj:Array<string>):void
-    {
-        this.selectedColumns = obj;
     }
 }
