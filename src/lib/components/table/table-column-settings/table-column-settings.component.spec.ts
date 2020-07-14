@@ -3,7 +3,6 @@ import {
     TestBed
 } from '@angular/core/testing';
 import { LocalizationModule } from 'angular-l10n';
-import { TableColumnSettingsComponent } from './table-column-settings.component';
 import Spy = jasmine.Spy;
 import {
     TerraButtonComponent,
@@ -15,7 +14,6 @@ import {
 } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { MockRouter } from '../../../testing/mock-router';
-import { TableColumnSettingsDialogComponent } from './dialog/table-column-settings-dialog.component';
 import { MatListModule } from '@angular/material/list';
 import { FormsModule } from '@angular/forms';
 import {
@@ -27,17 +25,19 @@ import {
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSelectModule } from '@angular/material/select';
 import { BrowserModule } from '@angular/platform-browser';
+import { TableSettingsComponent } from './table-settings.component';
+import { TableSettingsDialogComponent } from './dialog/table-settings-dialog.component';
 
-describe('TableColumnSettingsComponent', () =>
+describe('TableSettingsComponent', () =>
 {
-    let component:TableColumnSettingsComponent;
-    let fixture:ComponentFixture<TableColumnSettingsComponent>;
+    let component:TableSettingsComponent;
+    let fixture:ComponentFixture<TableSettingsComponent>;
 
     beforeEach(() =>
     {
         TestBed.configureTestingModule(
             {
-                declarations: [TableColumnSettingsComponent],
+                declarations: [TableSettingsComponent],
                 imports:      [
                     LocalizationModule.forRoot({}),
                     FormsModule,
@@ -50,7 +50,7 @@ describe('TableColumnSettingsComponent', () =>
 
     beforeEach(() =>
     {
-        fixture = TestBed.createComponent(TableColumnSettingsComponent);
+        fixture = TestBed.createComponent(TableSettingsComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });
@@ -65,10 +65,10 @@ describe('TableColumnSettingsComponent', () =>
 });
 
 @NgModule({
-    declarations:    [TableColumnSettingsDialogComponent,
+    declarations:    [TableSettingsDialogComponent,
                       TerraButtonComponent,
                       TooltipDirective],
-    entryComponents: [TableColumnSettingsDialogComponent],
+    entryComponents: [TableSettingsDialogComponent],
     imports:         [MatDialogModule,
                       MatSelectModule,
                       FormsModule,

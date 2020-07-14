@@ -9,21 +9,21 @@ import {
     MAT_DIALOG_DATA,
     MatDialogRef
 } from '@angular/material/dialog';
-import { TableColumnSettingsDialogData } from '../interface/table-column-settings-dialog-data.interface';
 import { MatColumnDef } from '@angular/material/table';
+import { TableSettingsDialogData } from '../interface/table-settings-dialog-data.interface';
 
 @Component({
-    selector:    'tc-table-column-settings-dialog',
-    templateUrl: './table-column-settings-dialog.component.html'
+    selector:    'tc-table-settings-dialog',
+    templateUrl: './table-settings-dialog.component.html'
 })
-export class TableColumnSettingsDialogComponent implements OnInit
+export class TableSettingsDialogComponent implements OnInit
 {
     public _columns:QueryList<MatColumnDef> = new QueryList<MatColumnDef>();
     public _selectedColumns:Array<string> = [];
     @Language()
     public _lang:string;
 
-    constructor(@Inject(MAT_DIALOG_DATA) public data:TableColumnSettingsDialogData)
+    constructor(@Inject(MAT_DIALOG_DATA) public data:TableSettingsDialogData)
     {
     }
 
