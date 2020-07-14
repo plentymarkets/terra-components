@@ -3,7 +3,6 @@ import {
     TestBed
 } from '@angular/core/testing';
 import { LocalizationModule } from 'angular-l10n';
-import { l10nConfig } from '../../../../app/translation/l10n.config';
 import { TableColumnSettingsComponent } from './table-column-settings.component';
 import Spy = jasmine.Spy;
 import {
@@ -11,10 +10,8 @@ import {
     TooltipDirective
 } from '../../..';
 import {
-    MatDialog,
     MatDialogModule
 } from '@angular/material/dialog';
-import { Overlay } from '@angular/cdk/overlay';
 import { Router } from '@angular/router';
 import { MockRouter } from '../../../testing/mock-router';
 import { TableColumnSettingsDialogComponent } from './dialog/table-column-settings-dialog.component';
