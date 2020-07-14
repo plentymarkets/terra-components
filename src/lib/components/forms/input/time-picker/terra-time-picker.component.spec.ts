@@ -1,4 +1,5 @@
 import {
+    DebugElement,
     Directive,
     Input
 } from '@angular/core';
@@ -57,6 +58,16 @@ describe('TerraTimePickerComponent:', () =>
         component.ngOnInit();
         expect(component.valuesHours.length).toBe(24);
         expect(component.valuesMinutes.length).toBe(60);
+    });
+
+    it('should pass possible values to the select boxes', () =>
+    {
+        fixture.detectChanges();
+        const selectDEs:Array<DebugElement> = fixture.debugElement.queryAll(By.directive(TerraSelectBoxComponent));
+        const hourSelect:TerraSelectBoxComponent = selectDEs[0].componentInstance;
+        const minutesSelect:TerraSelectBoxComponent = selectDEs[1].componentInstance;
+        expect(hourSelect.inputListBoxValues).toBe(component.valuesHours);
+        expect(minutesSelect.inputListBoxValues).toBe(component.valuesMinutes);
     });
 
     it('should initialize its value with the current time', () =>
