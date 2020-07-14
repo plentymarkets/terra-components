@@ -25,10 +25,9 @@ function updateCoverageBadge(done) {
     const coverage = getCoverage();
     const badgeUrl = generateBadgeUrl(coverage);
     const badge = `![code coverage](${badgeUrl})`;
-    const readme = fs.readFileSync('README.md');
+    const readme = fs.readFileSync('README.md', { encoding: 'utf8'});
     const eol = readme.indexOf('\n');
-    const readmeString = readme.toString();
-    const currentBadge = readmeString.slice(0, eol);
+    const currentBadge = readme.slice(0, eol);
     if(!badgeUrlTemplate.test(currentBadge))
     {
         throw 'Failed to update badge. No coverage badge available in line 1 of the README.md';
@@ -37,7 +36,7 @@ function updateCoverageBadge(done) {
     {
         throw `Failed to update badge. New badge doesn't comply to the badge template`;
     }
-    const newReadmeString = badge + readmeString.slice(eol);
+    const newReadmeString = badge + readme.slice(eol);
     fs.writeFileSync('README.md', newReadmeString);
     done();
 }
