@@ -34,7 +34,7 @@ describe('TableColumnSettingsComponent', () =>
                                TooltipDirective,
                                TerraButtonComponent],
                 imports:      [
-                    LocalizationModule.forRoot(l10nConfig),
+                    LocalizationModule.forRoot({}),
                     MatDialogModule,
                     MatListModule,
                     FormsModule
