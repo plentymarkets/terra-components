@@ -10,6 +10,7 @@ import {
     TooltipDirective
 } from '../../..';
 import {
+    MatDialog,
     MatDialogModule
 } from '@angular/material/dialog';
 import { Router } from '@angular/router';
