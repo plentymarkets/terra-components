@@ -7,7 +7,7 @@
 		"test": "ng test lib",
 		"test-once": "ng test lib --watch=false --browsers=Chrome,Firefox,Safari",
 		"test-headless": "ng test lib --watch=false --browsers=ChromeHeadless,FirefoxHeadless",
-		"test:coverage": "ng test lib --watch=false --browsers=ChromeHeadless --codeCoverage",
+		"badge:coverage": "ng test lib --watch=false --browsers=ChromeHeadless --codeCoverage && gulp updateCoverageBadge",
 		"lint": "ng lint lib",
 		"reinstall": "npm ci",
 		"prepare-release": "npm run reinstall && npm run build && npm run test-once && npm start"
