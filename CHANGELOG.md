@@ -3,6 +3,8 @@
 ### Features
 * **mat-checkbox**
     - add CSS styles for icons as a `<span>` or `<mat-icon>`.
+* **peerDependencies**
+    - updated `htmlhint` to ~0.13.0.
 
 # 5.5.0 (09.07.2020)
 
