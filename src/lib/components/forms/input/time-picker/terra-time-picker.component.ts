@@ -33,26 +33,18 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor, O
     /**
      * @description If true, the input will be disabled. Default false.
      * */
-    @Input() public inputIsDisabled:boolean;
+    @Input() public inputIsDisabled:boolean = false;
 
-    public valuesHours:Array<TerraSelectBoxValueInterface>;
-    public valuesMinutes:Array<TerraSelectBoxValueInterface>;
+    public valuesHours:Array<TerraSelectBoxValueInterface> = [];
+    public valuesMinutes:Array<TerraSelectBoxValueInterface> = [];
 
     @Language()
     public _lang:string;
 
-    private _value:Date;
+    private _value:Date = new Date();
 
     private _onTouchedCallback:() => void = noop;
     private _onChangeCallback:(_:any) => void = noop;
-
-    constructor()
-    {
-        this.valuesHours = [];
-        this.valuesMinutes = [];
-        this._value = new Date();
-        this.inputIsDisabled = false;
-    }
 
     public ngOnInit():void
     {
@@ -135,11 +127,11 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor, O
         return 0;
     }
 
-    public set _hours(minutes:number)
+    public set _hours(hours:number)
     {
         if(!isNullOrUndefined(this._value))
         {
-            this._value.setHours(minutes);
+            this._value.setHours(hours);
         }
 
         this._onChangeCallback(this._value);
