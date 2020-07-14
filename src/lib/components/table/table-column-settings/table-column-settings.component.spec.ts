@@ -56,7 +56,8 @@ describe('TableColumnSettingsComponent', () =>
 
     it('should open settings dialog', () =>
     {
-        const spyOpen:Spy = spyOn(component._dialog, 'open')
+        const dialog:MatDialog = TestBed.get(MatDialog);
+        const spyOpen:Spy = spyOn(dialog, 'open')
         component._openSettings();
         expect(spyOpen).toHaveBeenCalled();
     });
