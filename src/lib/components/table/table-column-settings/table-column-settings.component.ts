@@ -2,7 +2,8 @@ import {
     Component,
     EventEmitter,
     Input,
-    Output
+    Output,
+    QueryList
 } from '@angular/core';
 import { Language } from 'angular-l10n';
 import {
@@ -10,7 +11,10 @@ import {
     MatDialogRef
 } from '@angular/material/dialog';
 import { TableColumnSettingsDialogComponent } from './dialog/table-column-settings-dialog.component';
-import { MatTable } from '@angular/material/table';
+import {
+    MatColumnDef,
+    MatTable
+} from '@angular/material/table';
 import { noop } from 'rxjs';
 
 @Component({
@@ -59,7 +63,7 @@ export class TableColumnSettingsComponent
                 width:        'auto',
                 disableClose: true,
                 data:         {
-                    columns:         this.table._contentColumnDefs,
+                    columns:         this.table ? this.table._contentColumnDefs : new QueryList<MatColumnDef>(),
                     selectedColumns: this.selectedColumns
                 }
             });

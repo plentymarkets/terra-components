@@ -18,32 +18,32 @@ import { MockRouter } from '../../../testing/mock-router';
 import { TableColumnSettingsDialogComponent } from './dialog/table-column-settings-dialog.component';
 import { MatListModule } from '@angular/material/list';
 import { FormsModule } from '@angular/forms';
+import {
+    MatTableModule
+} from '@angular/material/table';
+import {
+    NgModule
+} from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSelectModule } from '@angular/material/select';
+import { BrowserModule } from '@angular/platform-browser';
 
 describe('TableColumnSettingsComponent', () =>
 {
     let component:TableColumnSettingsComponent;
     let fixture:ComponentFixture<TableColumnSettingsComponent>;
 
-    const router:MockRouter = new MockRouter();
-
     beforeEach(() =>
     {
         TestBed.configureTestingModule(
             {
-                declarations: [TableColumnSettingsComponent,
-                                TableColumnSettingsDialogComponent,
-                               TooltipDirective,
-                               TerraButtonComponent],
+                declarations: [TableColumnSettingsComponent],
                 imports:      [
                     LocalizationModule.forRoot({}),
-                    MatDialogModule,
-                    MatListModule,
-                    FormsModule
-                ],
-                providers: [{
-                    provide: Router,
-                    useValue:router
-                },]
+                    FormsModule,
+                    BrowserAnimationsModule,
+                    MatTableModule,
+                    TestModule]
             }
         );
     });
@@ -58,8 +58,30 @@ describe('TableColumnSettingsComponent', () =>
     it('should open settings dialog', () =>
     {
         const dialog:MatDialog = TestBed.get(MatDialog);
-        const spyOpen:Spy = spyOn(dialog, 'open')
+        const spyOpen:Spy = spyOn(dialog, 'open').and.callThrough();
         component._openSettings();
         expect(spyOpen).toHaveBeenCalled();
     });
 });
+
+@NgModule({
+    declarations:    [TableColumnSettingsDialogComponent,
+                      TerraButtonComponent,
+                      TooltipDirective],
+    entryComponents: [TableColumnSettingsDialogComponent],
+    imports:         [MatDialogModule,
+                      MatSelectModule,
+                      FormsModule,
+                      MatListModule,
+                      BrowserModule,
+                      LocalizationModule.forRoot({})],
+    providers:       [
+        {
+            provide:  Router,
+            useValue: new MockRouter()
+        }],
+    exports:         [TooltipDirective]
+})
+class TestModule
+{
+}
