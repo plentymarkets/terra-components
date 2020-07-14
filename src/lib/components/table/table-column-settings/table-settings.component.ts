@@ -9,19 +9,19 @@ import {
     MatDialog,
     MatDialogRef
 } from '@angular/material/dialog';
-import { TableColumnSettingsDialogComponent } from './dialog/table-column-settings-dialog.component';
 import { MatTable } from '@angular/material/table';
+import { TableSettingsDialogComponent } from './dialog/table-settings-dialog.component';
 
 /**
  * Component that displays the settings for a MatTable
  * @experimental
  */
 @Component({
-    selector:    'terra-column-settings',
-    templateUrl: './table-column-settings.component.html',
-    styleUrls:   ['./table-column-settings.component.scss']
+    selector:    'tc-table-settings',
+    templateUrl: './table-settings.component.html',
+    styleUrls:   ['./table-settings.component.scss']
 })
-export class TableColumnSettingsComponent
+export class TableSettingsComponent
 {
     /**
      * @description The table itself.
@@ -54,7 +54,7 @@ export class TableColumnSettingsComponent
      */
     public _openSettings():void
     {
-        const dialogRef:MatDialogRef<TableColumnSettingsDialogComponent> = this._dialog.open(TableColumnSettingsDialogComponent,
+        const dialogRef:MatDialogRef<TableSettingsDialogComponent> = this._dialog.open(TableSettingsDialogComponent,
             {
                 width:        'auto',
                 disableClose: true,
