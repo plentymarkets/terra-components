@@ -16,7 +16,6 @@
     - new directive that automatically sorts all `terra-select-box`es.
 * **peerDependencies**
     - updated `iban` to ~0.0.14
-    - updated `htmlhint` to ~0.13.0.
 
 ### Bug Fixes
 * **mat-table** adjust styles for odd and even rows.
