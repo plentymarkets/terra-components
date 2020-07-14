@@ -2,17 +2,15 @@ import {
     Component,
     EventEmitter,
     Input,
-    Output,
-    QueryList
+    Output
 } from '@angular/core';
 import { Language } from 'angular-l10n';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { TableColumnSettingsDialogComponent } from './dialog/table-column-settings-dialog.component';
-import { MatColumnDef } from '@angular/material/table';
 import {
-    ControlValueAccessor,
-    NG_VALUE_ACCESSOR
-} from '@angular/forms';
+    MatDialog,
+    MatDialogRef
+} from '@angular/material/dialog';
+import { TableColumnSettingsDialogComponent } from './dialog/table-column-settings-dialog.component';
+import { MatTable } from '@angular/material/table';
 import { noop } from 'rxjs';
 
 @Component({
@@ -23,20 +21,22 @@ import { noop } from 'rxjs';
 export class TableColumnSettingsComponent
 {
     /**
-     * @description A list of all available columns.
+     * @description The table itself.
      */
     @Input()
-    public columns:QueryList<MatColumnDef> = new QueryList<MatColumnDef>();
+    public table:MatTable<any>;
+
     /**
      * @description The array of columns that were selected.
      */
     @Input()
     public selectedColumns:Array<string> = [];
+
     /**
      * @description Emits the array of selected columns.
      */
     @Output()
-    public selectedColumnsChanged:EventEmitter<Array<string>> = new EventEmitter<Array<string>>();
+    public selectedColumnsChange:EventEmitter<Array<string>> = new EventEmitter<Array<string>>();
 
     @Language()
     public _lang:string;
@@ -59,7 +59,7 @@ export class TableColumnSettingsComponent
                 width:        'auto',
                 disableClose: true,
                 data:         {
-                    columns:         this.columns,
+                    columns:         this.table._contentColumnDefs,
                     selectedColumns: this.selectedColumns
                 }
             });
@@ -69,25 +69,25 @@ export class TableColumnSettingsComponent
             if(result !== null)
             {
                 this.selectedColumns = result;
-                this.selectedColumnsChanged.emit(this.selectedColumns);
-                // this._onChangeCallback(result);
-                // this._onTouchedCallback();
+                this.selectedColumnsChange.emit(this.selectedColumns);
+                this._onChangeCallback(result);
+                this._onTouchedCallback();
             }
         });
     }
 
-    // public registerOnChange(fn:(value:Array<string>) => void):void
-    // {
-    //     this._onChangeCallback = fn;
-    // }
-    //
-    // public registerOnTouched(fn:() => void):void
-    // {
-    //     this._onTouchedCallback = fn;
-    // }
-    //
-    // public writeValue(obj:Array<string>):void
-    // {
-    //     this.selectedColumns = obj;
-    // }
+    public registerOnChange(fn:(value:Array<string>) => void):void
+    {
+        this._onChangeCallback = fn;
+    }
+
+    public registerOnTouched(fn:() => void):void
+    {
+        this._onTouchedCallback = fn;
+    }
+
+    public writeValue(obj:Array<string>):void
+    {
+        this.selectedColumns = obj;
+    }
 }

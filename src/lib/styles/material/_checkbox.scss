@@ -21,3 +21,12 @@
         }
     }
 }
+
+.mat-pseudo-checkbox
+{
+    &.mat-pseudo-checkbox-checked,
+    &.mat-pseudo-checkbox-indeterminate
+    {
+        background-color: var(--color-active);
+    }
+}
