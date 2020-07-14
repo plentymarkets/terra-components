@@ -66,6 +66,16 @@ describe('TerraTimePickerComponent:', () =>
         expect(component._minutes).toBe(now.getMinutes());
     });
 
+    it('should set "disabled" class depending on #inputIsDisabled', () =>
+    {
+        const div:HTMLDivElement = fixture.debugElement.query(By.css('div')).nativeElement;
+        expect(div.classList).not.toContain('disabled');
+
+        component.inputIsDisabled = true;
+        fixture.detectChanges();
+        expect(div.classList).toContain('disabled');
+    });
+
     it('should update the value on #writeValue', () =>
     {
         const newValue:Date = new Date();
