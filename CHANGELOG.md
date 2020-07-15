@@ -1,3 +1,9 @@
+# 5.6.0 (XX.XX.XXXX)
+
+### Features
+* **mat-checkbox**
+    - add CSS styles for icons as a `<span>` or `<mat-icon>`.
+
 # 5.5.0 (09.07.2020)
 
 ### Features
