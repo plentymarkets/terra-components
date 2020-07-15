@@ -9,6 +9,8 @@ import { MatColumnDef } from '@angular/material/table';
 import { TableSettingsDialogData } from '../interface/table-settings-dialog-data.interface';
 import {
     CdkDragDrop,
+    CdkDragMove,
+    CdkDragSortEvent,
     moveItemInArray
 } from '@angular/cdk/drag-drop';
 
@@ -32,19 +34,22 @@ export class TableSettingsDialogComponent implements OnInit
      */
     public ngOnInit():void
     {
-        this._columns = this.data.columns;
         this._selectedColumns = this.data.selectedColumns;
+        this._columns = this.sort();
     }
+
 
     public _onDrop(event:CdkDragDrop<Array<MatColumnDef>>):void
     {
         moveItemInArray(this._columns, event.previousIndex, event.currentIndex);
-        let index:number = this._selectedColumns.indexOf(event.item.data);
+        // let index:number = this._selectedColumns.indexOf(event.item.data);
+        //
+        // if(index > -1)
+        // {
+        //     // moveItemInArray(this._selectedColumns, )
+        // }
 
-        if(index > -1)
-        {
-            // moveItemInArray(this._selectedColumns, )
-        }
+        console.log(event.item.data);
     }
 
     public _updateSelectedList():Array<string>
@@ -62,5 +67,27 @@ export class TableSettingsDialogComponent implements OnInit
         });
 
         return sortedList;
+    }
+
+    private sort():Array<MatColumnDef>
+    {
+        let selectedList:Array<MatColumnDef> = [];
+        let unselectedList:Array<MatColumnDef> = [];
+
+        this.data.columns.forEach((col:MatColumnDef) =>
+        {
+            let index:number = this._selectedColumns.indexOf(col.name);
+
+            if(index > -1)
+            {
+                selectedList.push(col);
+            }
+            else
+            {
+                unselectedList.push(col);
+            }
+        });
+
+        return selectedList.concat(unselectedList);
     }
 }
