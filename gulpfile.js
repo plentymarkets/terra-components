@@ -13,7 +13,7 @@ const badgeUrlTemplate = new RegExp(badgeUrlPrefix + '\\w+-[0-9.%]+-\\w+');
 function getCoverage() {
     const coverageSummary = fs.readFileSync('./coverage/coverage-summary.json', { encoding: 'utf8'});
     const coverageJSON = JSON.parse(coverageSummary);
-    return coverageJSON.total.lines.pct;
+    return coverageJSON.total.statements.pct;
 }
 
 function generateBadgeUrl(coverage) {
