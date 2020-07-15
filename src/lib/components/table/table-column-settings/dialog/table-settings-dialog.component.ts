@@ -73,9 +73,7 @@ export class TableSettingsDialogComponent implements OnInit
 
         cols.forEach((col:MatColumnDef) =>
         {
-            let index:number = this._selectedColumns.indexOf(col.name);
-
-            if(index > -1)
+            if(this._selectedColumns.includes(col.name))
             {
                 selectedList.push(col);
             }
