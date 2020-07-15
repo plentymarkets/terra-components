@@ -22,7 +22,7 @@ class MockTooltipDirective
     public tooltip:string;
 }
 
-fdescribe('TableSettingsComponent', () =>
+describe('TableSettingsComponent', () =>
 {
     let component:TableSettingsComponent;
     let fixture:ComponentFixture<TableSettingsComponent>;

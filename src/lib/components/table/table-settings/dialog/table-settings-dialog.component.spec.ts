@@ -36,7 +36,7 @@ let mockDialogData:TableSettingsDialogData = {
     selectedColumns: []
 };
 
-fdescribe('TableSettingsDialogComponent', () =>
+describe('TableSettingsDialogComponent', () =>
 {
     let fixture:ComponentFixture<TableSettingsDialogComponent>;
     let component:TableSettingsDialogComponent;
