@@ -1,7 +1,7 @@
 <h2 mat-dialog-title>{{ 'columnSettings.overlayTitle' | translate:_lang}}</h2>
 <mat-dialog-content>
     <mat-selection-list (selectionChange)="_sort(_columns)" [(ngModel)]="_selectedColumns" cdkDropList (cdkDropListDropped)="_onDrop($event)" cdkDropListOrientation="vertical" cdkDropListLockAxis="y">
-        <mat-list-option #option *ngFor="let column of _columns" [value]="column.name" checkboxPosition="before" cdkDrag [cdkDragDisabled]="!option.selected" cdk>
+        <mat-list-option #option *ngFor="let column of _columns" [value]="column.name" checkboxPosition="before" cdkDrag [cdkDragDisabled]="!option.selected">
             <span>{{column.name}}</span>
             <span *ngIf="option.selected" class="icon-drag_sort_handle" cdkDragHandle [cdkDragHandleDisabled]="!option.selected"></span>
         </mat-list-option>
