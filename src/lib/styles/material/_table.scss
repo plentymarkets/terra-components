@@ -112,6 +112,11 @@
             background: var(--color-structure-2);
         }
         
+        [routerLink]
+        {
+            cursor: pointer;
+        }
+        
         &.selected, &.isActive
         {
             background-color: var(--color-active);
