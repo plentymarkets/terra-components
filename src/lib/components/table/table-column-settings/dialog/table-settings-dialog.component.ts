@@ -35,7 +35,7 @@ export class TableSettingsDialogComponent implements OnInit
     public ngOnInit():void
     {
         this._selectedColumns = this.data.selectedColumns;
-        this._columns = this.sort();
+        this._columns = this._sort();
     }
 
 
@@ -52,7 +52,7 @@ export class TableSettingsDialogComponent implements OnInit
         console.log(event.item.data);
     }
 
-    public _updateSelectedList():Array<string>
+    public _updateSelectedList():{sortedList:Array<string>, columns:Array<MatColumnDef>}
     {
         let sortedList:Array<string> = [];
 
@@ -66,10 +66,10 @@ export class TableSettingsDialogComponent implements OnInit
             }
         });
 
-        return sortedList;
+        return {sortedList: sortedList, columns: this._columns};
     }
 
-    private sort():Array<MatColumnDef>
+    public _sort():Array<MatColumnDef>
     {
         let selectedList:Array<MatColumnDef> = [];
         let unselectedList:Array<MatColumnDef> = [];

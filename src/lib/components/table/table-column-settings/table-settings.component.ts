@@ -9,7 +9,10 @@ import {
     MatDialog,
     MatDialogRef
 } from '@angular/material/dialog';
-import { MatTable } from '@angular/material/table';
+import {
+    MatColumnDef,
+    MatTable
+} from '@angular/material/table';
 import { TableSettingsDialogComponent } from './dialog/table-settings-dialog.component';
 
 /**
@@ -44,6 +47,8 @@ export class TableSettingsComponent
     @Language()
     public _lang:string;
 
+    private internalColumns:Array<MatColumnDef>;
+
     constructor(private _dialog:MatDialog)
     {
     }
@@ -59,16 +64,17 @@ export class TableSettingsComponent
                 width:        'auto',
                 disableClose: true,
                 data:         {
-                    columns:         this.table._contentColumnDefs.toArray(),
+                    columns:         this.internalColumns ? this.internalColumns : this.table._contentColumnDefs.toArray(),
                     selectedColumns: this.selectedColumns
                 }
             });
 
-        dialogRef.afterClosed().subscribe((result:Array<string>) =>
+        dialogRef.afterClosed().subscribe((result:{ sortedList:Array<string>, columns:Array<MatColumnDef> }) =>
         {
             if(result !== null)
             {
-                this.selectedColumns = result;
+                this.selectedColumns = result.sortedList;
+                this.internalColumns = result.columns;
                 this.selectedColumnsChange.emit(this.selectedColumns);
             }
         });
