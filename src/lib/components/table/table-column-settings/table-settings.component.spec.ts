@@ -40,7 +40,8 @@ describe('TableSettingsComponent', () =>
             {
                 declarations: [
                     TableSettingsComponent,
-                    MockTooltipDirective],
+                    MockTooltipDirective
+                ],
                 imports:      [
                     TranslationModule.forRoot({}),
                     MatButtonModule
