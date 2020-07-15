@@ -63,7 +63,7 @@ export class TableSettingsComponent
                 width:        'auto',
                 disableClose: true,
                 data:         {
-                    columns:         this.table ? this.table._contentColumnDefs : new QueryList<MatColumnDef>(),
+                    columns:         this.table ? this.table._contentColumnDefs.toArray() : [],
                     selectedColumns: this.selectedColumns
                 }
             });

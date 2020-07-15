@@ -18,7 +18,7 @@ import { TableSettingsDialogData } from '../interface/table-settings-dialog-data
 })
 export class TableSettingsDialogComponent implements OnInit
 {
-    public _columns:QueryList<MatColumnDef> = new QueryList<MatColumnDef>();
+    public _columns:Array<MatColumnDef> = [];
     public _selectedColumns:Array<string> = [];
     @Language()
     public _lang:string;
