@@ -1,6 +1,14 @@
 /* Checkbox and text inline and vertically centered */
 .mat-list-option
 {
+    .mat-list-item-content
+    {
+        .mat-list-text
+        {
+            user-select: none;
+        }
+    }
+    
     &.cdk-drag-placeholder
     {
         border: 1px dashed;

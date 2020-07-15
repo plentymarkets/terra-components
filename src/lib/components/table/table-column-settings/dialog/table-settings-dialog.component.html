@@ -1,6 +1,6 @@
 <h2 mat-dialog-title>{{ 'columnSettings.overlayTitle' | translate:_lang}}</h2>
 <mat-dialog-content>
-    <mat-selection-list (selectionChange)="_sort(_columns)" [(ngModel)]="_selectedColumns" cdkDropList (cdkDropListDropped)="_onDrop($event)" cdkDropListOrientation="vertical" cdkDropListLockAxis="y">
+    <mat-selection-list (selectionChange)="_columns = _sort(_columns)" [(ngModel)]="_selectedColumns" cdkDropList (cdkDropListDropped)="_onDrop($event)" cdkDropListOrientation="vertical" cdkDropListLockAxis="y">
         <mat-list-option #option *ngFor="let column of _columns" [value]="column.name" checkboxPosition="before" cdkDrag [cdkDragDisabled]="!option.selected">
             <span>{{column.name}}</span>
             <span *ngIf="option.selected" class="icon-drag_sort_handle" cdkDragHandle></span>
@@ -9,7 +9,7 @@
 </mat-dialog-content>
 <mat-dialog-actions>
     <terra-button [inputCaption]="'columnSettings.confirm' | translate:_lang"
-                  [mat-dialog-close]="_updateSelectedList()">
+                  [mat-dialog-close]="this._selectedColumns">
     </terra-button>
     <terra-button [inputCaption]="'columnSettings.cancel' | translate:_lang"
                   [mat-dialog-close]="null">

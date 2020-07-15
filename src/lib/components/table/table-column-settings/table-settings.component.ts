@@ -47,8 +47,6 @@ export class TableSettingsComponent
     @Language()
     public _lang:string;
 
-    private internalColumns:Array<MatColumnDef>;
-
     constructor(private _dialog:MatDialog)
     {
     }
@@ -64,17 +62,16 @@ export class TableSettingsComponent
                 width:        'auto',
                 disableClose: true,
                 data:         {
-                    columns:         this.internalColumns ? this.internalColumns : this.table._contentColumnDefs.toArray(),
+                    columns:         this.table ? this.table._contentColumnDefs.toArray() : [],
                     selectedColumns: this.selectedColumns
                 }
             });
 
-        dialogRef.afterClosed().subscribe((result:{ sortedList:Array<string>, columns:Array<MatColumnDef> }) =>
+        dialogRef.afterClosed().subscribe((result:Array<string>) =>
         {
             if(result !== null)
             {
-                this.selectedColumns = result.sortedList;
-                this.internalColumns = result.columns;
+                this.selectedColumns = result;
                 this.selectedColumnsChange.emit(this.selectedColumns);
             }
         });
