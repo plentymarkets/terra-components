@@ -51,14 +51,9 @@ export class TableSettingsDialogComponent implements OnInit
             return cols.find((col:MatColumnDef) => col.name === key);
         });
 
-        let unselectedList:Array<MatColumnDef> = [];
-
-        cols.forEach((col:MatColumnDef) =>
+        let unselectedList:Array<MatColumnDef> = cols.filter((col:MatColumnDef) =>
         {
-            if(!this._selectedColumns.includes(col.name))
-            {
-                unselectedList.push(col);
-            }
+            return !this._selectedColumns.includes(col.name));
         });
 
         return selectedList.concat(unselectedList);
