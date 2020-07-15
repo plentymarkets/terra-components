@@ -1,4 +1,7 @@
-import { TableSettingsDialogComponent } from './table-settings-dialog.component';
+import {
+    Component,
+    Input
+} from '@angular/core';
 import {
     ComponentFixture,
     TestBed
@@ -8,13 +11,9 @@ import {
     MAT_DIALOG_DATA,
     MatDialogModule
 } from '@angular/material/dialog';
-import {
-    Component,
-    Input
-} from '@angular/core';
 import { TranslationModule } from 'angular-l10n';
-import Table = WebAssembly.Table;
 import { FormsModule } from '@angular/forms';
+import { TableSettingsDialogComponent } from './table-settings-dialog.component';
 import { TableSettingsDialogData } from '../interface/table-settings-dialog-data.interface';
 
 @Component({
@@ -24,34 +23,44 @@ import { TableSettingsDialogData } from '../interface/table-settings-dialog-data
 class MockButtonComponent
 {
     @Input()
-    inputCaption:string;
+    public inputCaption:string;
 }
 
 let mockDialogData:TableSettingsDialogData = {
-    columns:[],
+    columns: [],
     selectedColumns: []
 };
 
-describe('TableSettingsDialogComponent', () => {
+describe('TableSettingsDialogComponent', () =>
+{
     let fixture:ComponentFixture<TableSettingsDialogComponent>;
     let component:TableSettingsDialogComponent;
 
-    beforeEach(() => {
+    beforeEach(() =>
+    {
         TestBed.configureTestingModule({
-            declarations: [TableSettingsDialogComponent,
-                           MockButtonComponent],
-            imports: [MatListModule,
-                      MatDialogModule,
-                      TranslationModule.forRoot({}),
-                      FormsModule],
-            providers: [{provide: MAT_DIALOG_DATA, useValue:mockDialogData}]
+            declarations: [
+                TableSettingsDialogComponent,
+                MockButtonComponent
+            ],
+            imports:      [
+                MatListModule,
+                MatDialogModule,
+                TranslationModule.forRoot({}),
+                FormsModule
+            ],
+            providers:    [{
+                provide:  MAT_DIALOG_DATA,
+                useValue: mockDialogData
+            }]
         });
 
         fixture = TestBed.createComponent(TableSettingsDialogComponent);
         component = fixture.componentInstance;
     });
 
-    it('should create', () => {
+    it('should create', () =>
+    {
         expect(component).toBeTruthy();
-    })
+    });
 });

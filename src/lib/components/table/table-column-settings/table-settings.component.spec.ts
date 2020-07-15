@@ -1,4 +1,8 @@
 import {
+    Directive,
+    Input
+} from '@angular/core';
+import {
     ComponentFixture,
     TestBed
 } from '@angular/core/testing';
@@ -7,20 +11,15 @@ import {
     MatDialog,
     MatDialogRef
 } from '@angular/material/dialog';
-import {
-    Directive,
-    Input
-} from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 import { TableSettingsComponent } from './table-settings.component';
 import { of } from 'rxjs';
-import { MatButtonModule } from '@angular/material/button';
-import Spy = jasmine.Spy;
 
-@Directive({selector:'[tcTooltip]'})
+@Directive({selector: '[tcTooltip]'})
 class MockTooltipDirective
 {
     @Input('tcTooltip')
-    tooltip:string
+    public tooltip:string;
 }
 
 describe('TableSettingsComponent', () =>
@@ -39,14 +38,16 @@ describe('TableSettingsComponent', () =>
     {
         TestBed.configureTestingModule(
             {
-                declarations: [TableSettingsComponent,
-                               MockTooltipDirective],
+                declarations: [
+                    TableSettingsComponent,
+                    MockTooltipDirective],
                 imports:      [
                     TranslationModule.forRoot({}),
-                    MatButtonModule],
-                providers: [
+                    MatButtonModule
+                ],
+                providers:    [
                     {
-                        provide: MatDialog,
+                        provide:  MatDialog,
                         useValue: mockDialog
                     }
                 ]
@@ -64,30 +65,8 @@ describe('TableSettingsComponent', () =>
     it('should open settings dialog', () =>
     {
         const dialog:MatDialog = TestBed.get(MatDialog);
-        const spyOpen:Spy = spyOn(dialog, 'open').and.callThrough();
+        spyOn(dialog, 'open').and.callThrough();
         component._openSettings();
-        expect(spyOpen).toHaveBeenCalled();
+        expect(dialog.open).toHaveBeenCalled();
     });
 });
-
-// @NgModule({
-//     declarations:    [TableSettingsDialogComponent,
-//                       TerraButtonComponent,
-//                       TooltipDirective],
-//     entryComponents: [TableSettingsDialogComponent],
-//     imports:         [MatDialogModule,
-//                       MatSelectModule,
-//                       FormsModule,
-//                       MatListModule,
-//                       BrowserModule,
-//                       LocalizationModule.forRoot({})],
-//     providers:       [
-//         {
-//             provide:  Router,
-//             useValue: new MockRouter()
-//         }],
-//     exports:         [TooltipDirective]
-// })
-// class TestModule
-// {
-// }
