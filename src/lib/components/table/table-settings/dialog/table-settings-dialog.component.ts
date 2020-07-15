@@ -1,13 +1,11 @@
 import {
     Component,
     Inject,
-    OnInit,
-    QueryList
+    OnInit
 } from '@angular/core';
 import { Language } from 'angular-l10n';
 import {
-    MAT_DIALOG_DATA,
-    MatDialogRef
+    MAT_DIALOG_DATA
 } from '@angular/material/dialog';
 import { MatColumnDef } from '@angular/material/table';
 import { TableSettingsDialogData } from '../interface/table-settings-dialog-data.interface';

@@ -22,13 +22,13 @@ class MockTooltipDirective
     public tooltip:string;
 }
 
-describe('TableSettingsComponent', () =>
+fdescribe('TableSettingsComponent', () =>
 {
     let component:TableSettingsComponent;
     let fixture:ComponentFixture<TableSettingsComponent>;
 
     let mockDialogRef:Partial<MatDialogRef<any>> = {
-        afterClosed: () => of([])
+        afterClosed: () => of(['four', 'five'])
     };
     let mockDialog:Partial<MatDialog> = {
         open: () => mockDialogRef as MatDialogRef<any>,
@@ -50,6 +50,10 @@ describe('TableSettingsComponent', () =>
                     {
                         provide:  MatDialog,
                         useValue: mockDialog
+                    },
+                    {
+                        provide: MatDialogRef,
+                        useValue: mockDialogRef
                     }
                 ]
             }
@@ -69,5 +73,18 @@ describe('TableSettingsComponent', () =>
         spyOn(dialog, 'open').and.callThrough();
         component._openSettings();
         expect(dialog.open).toHaveBeenCalled();
+    });
+
+    it('should update selected columns', () =>
+    {
+        const dialogRef:MatDialogRef<any> = TestBed.get(MatDialogRef);
+        const dialog:MatDialog = TestBed.get(MatDialog);
+        component.selectedColumns = ['one', 'two', 'three'];
+
+        mockDialog.open = () => mockDialogRef as MatDialogRef<any>;
+        spyOn(dialog, 'open').and.returnValue(dialogRef);
+        component._openSettings();
+
+        expect(component.selectedColumns).toEqual(['four', 'five']);
     });
 });
