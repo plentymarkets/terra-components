@@ -7,6 +7,41 @@ const sass = require('gulp-sass');
 const tildeImporter = require('node-sass-tilde-importer');
 
 
+const badgeUrlPrefix = 'https://img.shields.io/badge/';
+const badgeUrlTemplate = new RegExp(badgeUrlPrefix + '\\w+-[0-9.%]+-\\w+');
+
+function getCoverage() {
+    const coverageSummary = fs.readFileSync('./coverage/coverage-summary.json', { encoding: 'utf8'});
+    const coverageJSON = JSON.parse(coverageSummary);
+    return coverageJSON.total.lines.pct;
+}
+
+function generateBadgeUrl(coverage) {
+    const color = coverage > 80 ? 'brightgreen' : coverage > 50 ? 'yellow' : 'red';
+    return badgeUrlPrefix + encodeURIComponent(`${'coverage'}-${coverage}%-${color}`);
+}
+
+function updateCoverageBadge(done) {
+    const coverage = getCoverage();
+    const badgeUrl = generateBadgeUrl(coverage);
+    const badge = `![code coverage](${badgeUrl})`;
+    const readme = fs.readFileSync('README.md', { encoding: 'utf8'});
+    const eol = readme.indexOf('\n');
+    const currentBadge = readme.slice(0, eol);
+    if(!badgeUrlTemplate.test(currentBadge))
+    {
+        throw 'Failed to update badge. No coverage badge available in line 1 of the README.md';
+    }
+    if(!badgeUrlTemplate.test(badge))
+    {
+        throw `Failed to update badge. New badge doesn't comply to the badge template`;
+    }
+    const newReadmeString = badge + readme.slice(eol);
+    fs.writeFileSync('README.md', newReadmeString);
+    done();
+}
+exports.updateCoverageBadge = updateCoverageBadge;
+
 // convert global scss styles to css files
 function compileGlobalStyles() {
     return src(config.sources.scss)
