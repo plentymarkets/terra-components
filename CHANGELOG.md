@@ -3,6 +3,9 @@
 ### Features
 * **mat-checkbox**
     - add CSS styles for icons as a `<span>` or `<mat-icon>`.
+    
+### Bug Fixes
+* **mat-table** remove cursor pointer from table row
 
 # 5.5.0 (09.07.2020)
 
@@ -20,7 +23,6 @@
 * **no-result-notice** adjust margin for no result notice in mat-table.
 * **terra-taglist** add flex-wrap
 * **tooltip** now subscribes to router events in ngOnInit, not ngOnChanges and makes sure to only call `hide()` when the tooltip is shown.
-* **mat-table** remove cursor pointer from table row
 
 # 5.4.0 (22.06.2020)
 
