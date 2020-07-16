@@ -68,7 +68,15 @@ describe('TableSettingsComponent', () =>
         const dialog:MatDialog = TestBed.get(MatDialog);
         spyOn(dialog, 'open').and.callThrough();
         component._openSettings();
-        expect(dialog.open).toHaveBeenCalled();
+        expect(dialog.open).toHaveBeenCalledWith(TableSettingsDialogComponent,
+            {
+                width:        'auto',
+                disableClose: true,
+                data:         {
+                    columns:         [],
+                    selectedColumns: []
+                }
+            });
     });
 
     it('should update selected columns', () =>
