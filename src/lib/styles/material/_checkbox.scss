@@ -20,6 +20,22 @@
             background: var(--color-active);
         }
     }
+    
+    span,
+    mat-icon
+    {
+        &[class^="icon-"], &[class*=" icon-"]
+        {
+            font-size: inherit;
+            height: inherit;
+            line-height: inherit;
+            width: inherit;
+            background-repeat: no-repeat;
+            display: inline-block;
+            fill: currentColor;
+            margin-right: 6px;
+        }
+    }
 }
 
 .mat-pseudo-checkbox

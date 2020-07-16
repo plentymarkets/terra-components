@@ -69,7 +69,7 @@ export class TableSettingsComponent
 
         dialogRef.afterClosed().subscribe((result:Array<string>) =>
         {
-            if(result !== null)
+            if(result)
             {
                 this.selectedColumns = result;
                 this.selectedColumnsChange.emit(this.selectedColumns);
