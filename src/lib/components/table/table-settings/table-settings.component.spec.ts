@@ -14,6 +14,7 @@ import {
 import { MatButtonModule } from '@angular/material/button';
 import { TableSettingsComponent } from './table-settings.component';
 import { of } from 'rxjs';
+import { TableSettingsDialogComponent } from './dialog/table-settings-dialog.component';
 
 @Directive({selector: '[tcTooltip]'})
 class MockTooltipDirective
