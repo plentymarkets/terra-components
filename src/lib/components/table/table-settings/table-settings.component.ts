@@ -2,8 +2,7 @@ import {
     Component,
     EventEmitter,
     Input,
-    Output,
-    QueryList
+    Output
 } from '@angular/core';
 import { Language } from 'angular-l10n';
 import {
@@ -11,7 +10,6 @@ import {
     MatDialogRef
 } from '@angular/material/dialog';
 import {
-    MatColumnDef,
     MatTable
 } from '@angular/material/table';
 import { TableSettingsDialogComponent } from './dialog/table-settings-dialog.component';

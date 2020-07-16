@@ -50,10 +50,6 @@ describe('TableSettingsComponent', () =>
                     {
                         provide:  MatDialog,
                         useValue: mockDialog
-                    },
-                    {
-                        provide: MatDialogRef,
-                        useValue: mockDialogRef
                     }
                 ]
             }
@@ -77,12 +73,9 @@ describe('TableSettingsComponent', () =>
 
     it('should update selected columns', () =>
     {
-        const dialogRef:MatDialogRef<any> = TestBed.get(MatDialogRef);
         const dialog:MatDialog = TestBed.get(MatDialog);
         component.selectedColumns = ['one', 'two', 'three'];
-
-        mockDialog.open = () => mockDialogRef as MatDialogRef<any>;
-        spyOn(dialog, 'open').and.returnValue(dialogRef);
+        spyOn(dialog, 'open').and.callThrough();
         component._openSettings();
 
         expect(component.selectedColumns).toEqual(['four', 'five']);
