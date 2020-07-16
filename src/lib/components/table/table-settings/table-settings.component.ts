@@ -59,7 +59,7 @@ export class TableSettingsComponent
                 width:        'auto',
                 disableClose: true,
                 data:         {
-                    columns:         this.table._contentColumnDefs,
+                    columns:         this.table ? this.table._contentColumnDefs.toArray() : [],
                     selectedColumns: this.selectedColumns
                 }
             });
