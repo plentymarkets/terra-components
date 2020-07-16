@@ -82,9 +82,7 @@ describe('TableSettingsComponent', () =>
 
     it('should update selected columns', () =>
     {
-        const dialog:MatDialog = TestBed.get(MatDialog);
         component.selectedColumns = ['one', 'two', 'three'];
-        spyOn(dialog, 'open').and.callThrough();
         component._openSettings();
 
         expect(component.selectedColumns).toEqual(['four', 'five']);

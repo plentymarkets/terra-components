@@ -9,9 +9,7 @@ import {
     MatDialog,
     MatDialogRef
 } from '@angular/material/dialog';
-import {
-    MatTable
-} from '@angular/material/table';
+import { MatTable } from '@angular/material/table';
 import { TableSettingsDialogComponent } from './dialog/table-settings-dialog.component';
 
 /**
