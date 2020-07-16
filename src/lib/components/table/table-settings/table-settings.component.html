@@ -1,7 +1,1 @@
-<button mat-button
-        class="icon-edit"
-        [tcTooltip]="'columnSettings.tooltip' | translate:_lang"
-        (click)="_openSettings()">
-</button>
-
-
+<terra-button inputIcon="icon-settings" [tcTooltip]="'columnSettings.tooltip' | translate:_lang" (outputClicked)="_openSettings()"></terra-button>
