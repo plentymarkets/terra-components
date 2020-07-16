@@ -89,8 +89,7 @@ describe('TableSettingsComponent', () =>
         const dialog:MatDialog = TestBed.get(MatDialog);
         component.selectedColumns = ['one', 'two', 'three'];
 
-        mockDialog.open = () => mockDialogRef as MatDialogRef<any>;
-        spyOn(dialog, 'open').and.returnValue(dialogRef);
+        spyOn(dialog, 'open').and.callTrough();
         component._openSettings();
 
         expect(component.selectedColumns).toEqual(['four', 'five']);
