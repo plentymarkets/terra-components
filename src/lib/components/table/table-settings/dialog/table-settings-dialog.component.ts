@@ -1,13 +1,11 @@
 import {
     Component,
     Inject,
-    OnInit,
-    QueryList
+    OnInit
 } from '@angular/core';
 import { Language } from 'angular-l10n';
 import {
-    MAT_DIALOG_DATA,
-    MatDialogRef
+    MAT_DIALOG_DATA
 } from '@angular/material/dialog';
 import { MatColumnDef } from '@angular/material/table';
 import { TableSettingsDialogData } from '../interface/table-settings-dialog-data.interface';
@@ -18,7 +16,7 @@ import { TableSettingsDialogData } from '../interface/table-settings-dialog-data
 })
 export class TableSettingsDialogComponent implements OnInit
 {
-    public _columns:QueryList<MatColumnDef> = new QueryList<MatColumnDef>();
+    public _columns:Array<MatColumnDef> = [];
     public _selectedColumns:Array<string> = [];
     @Language()
     public _lang:string;
