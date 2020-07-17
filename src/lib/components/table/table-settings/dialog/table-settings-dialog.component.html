@@ -1,0 +1,16 @@
+<h2 mat-dialog-title>{{ 'columnSettings.overlayTitle' | translate:_lang}}</h2>
+<mat-dialog-content>
+    <mat-selection-list [(ngModel)]="_selectedColumns">
+        <mat-list-option *ngFor="let column of _columns" [value]="column.name" checkboxPosition="before">
+            {{column.name}}
+        </mat-list-option>
+    </mat-selection-list>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <terra-button [inputCaption]="'columnSettings.confirm' | translate:_lang"
+                  [mat-dialog-close]="this._selectedColumns">
+    </terra-button>
+    <terra-button [inputCaption]="'columnSettings.cancel' | translate:_lang"
+                  mat-dialog-close>
+    </terra-button>
+</mat-dialog-actions>
