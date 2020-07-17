@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input } from '@angular/core';
 import { TerraButtonComponent } from '../components/buttons/button/terra-button.component';
 
 @Component({
