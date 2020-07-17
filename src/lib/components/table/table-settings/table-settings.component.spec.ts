@@ -14,17 +14,8 @@ import {
 import { TableSettingsComponent } from './table-settings.component';
 import { of } from 'rxjs';
 import { TableSettingsDialogComponent } from './dialog/table-settings-dialog.component';
-import { TerraButtonComponent } from '../../buttons/button/terra-button.component';
-import { TooltipDirective } from '../../tooltip/tooltip.directive';
-import { Router } from '@angular/router';
-import { MockRouter } from '../../../testing/mock-router';
+import { MockButtonComponent } from '../../../testing/mock-button';
 
-@Directive({selector: '[tcTooltip]'})
-class MockTooltipDirective
-{
-    @Input('tcTooltip')
-    public tooltip:string;
-}
 
 describe('TableSettingsComponent', () =>
 {
@@ -37,7 +28,6 @@ describe('TableSettingsComponent', () =>
     let mockDialog:Partial<MatDialog> = {
         open: () => mockDialogRef as MatDialogRef<any>,
     };
-    let mockRouter:MockRouter = new MockRouter();
 
     beforeEach(() =>
     {
@@ -45,23 +35,15 @@ describe('TableSettingsComponent', () =>
             {
                 declarations: [
                     TableSettingsComponent,
-                    MockTooltipDirective,
-                    TerraButtonComponent,
-                    TooltipDirective
+                    MockButtonComponent
                 ],
                 imports:      [
                     TranslationModule.forRoot({}),
                 ],
-                providers:    [
-                    {
+                providers:    [{
                         provide:  MatDialog,
                         useValue: mockDialog
-                    },
-                    {
-                        provide:  Router,
-                        useValue: mockRouter
-                    }
-                ]
+                }]
             }
         );
     });

@@ -18,16 +18,8 @@ import { TableSettingsDialogComponent } from './table-settings-dialog.component'
 import { TableSettingsDialogData } from '../interface/table-settings-dialog-data.interface';
 import { By } from '@angular/platform-browser';
 import { MatColumnDef } from '@angular/material/table';
+import { MockButtonComponent } from '../../../../testing/mock-button';
 
-@Component({
-    selector: 'terra-button',
-    template: ''
-})
-class MockButtonComponent
-{
-    @Input()
-    public inputCaption:string;
-}
 
 const column = new MatColumnDef();
 column.name = 'TestName';
