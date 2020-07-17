@@ -105,7 +105,7 @@ describe('TerraTimePickerComponent:', () =>
         expect(spy).toHaveBeenCalled();
     });
 
-    it('should call registerd onTouchedCallback when the value has changed', () =>
+    it('should call registered onTouchedCallback when the value has changed', () =>
     {
         const spy:jasmine.Spy = jasmine.createSpy('onTouchedCallback');
         component.registerOnTouched(spy);
