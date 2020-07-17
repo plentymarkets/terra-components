@@ -9,12 +9,15 @@ import {
 } from '@angular/core';
 import {
     ControlValueAccessor,
-    NG_VALUE_ACCESSOR
+    NG_VALUE_ACCESSOR,
+    FormGroup,
+    FormControl
 } from '@angular/forms';
 import { TerraSelectBoxValueInterface } from '../../select-box/data/terra-select-box.interface';
-import { isNullOrUndefined } from 'util';
-import { noop } from 'rxjs';
+import { isDate } from 'util';
+import { noop, Subject } from 'rxjs';
 import { Language } from 'angular-l10n';
+import { takeUntil, tap } from 'rxjs/operators';
 
 @Component({
     selector:    'terra-time-picker',
@@ -41,19 +44,29 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor, O
     @Language()
     public _lang:string;
 
-    private _value:Date = new Date();
+    public _form:FormGroup = new FormGroup({
+        hours: new FormControl(),
+        minutes: new FormControl()
+    });
 
     private _onTouchedCallback:() => void = noop;
-    private _onChangeCallback:(_:any) => void = noop;
+    private _onChangeCallback:(_:Date) => void = noop;
+
+    private readonly destroy$:Subject<void> = new Subject();
 
     public ngOnInit():void
     {
         this.createTimeValues();
+        this._form.valueChanges.pipe(
+            takeUntil(this.destroy$),
+            tap(() => this._onChange())
+        ).subscribe()
     }
 
     public ngOnDestroy():void
     {
-        // implementation is required by angular-l10n. See https://robisim74.github.io/angular-l10n/spec/getting-the-translation/#messages
+        this.destroy$.next();
+        this.destroy$.complete();
     }
 
     public createTimeValues():void
@@ -83,60 +96,41 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor, O
 
     }
 
-    public registerOnChange(fn:any):void
+    public registerOnChange(fn:(date:Date) => void):void
     {
         this._onChangeCallback = fn;
     }
 
-    public registerOnTouched(fn:any):void
+    public registerOnTouched(fn:() => void):void
     {
         this._onTouchedCallback = fn;
     }
 
-    public writeValue(value:Date):void
+    public writeValue(date:Date):void
     {
-        this._value = value;
+        if(!isDate(date))
+        {
+            console.log('Not a date');
+            return;
+        }
+        
+        this._form.setValue(
+            {
+            hours: date.getHours(),
+            minutes: date.getMinutes()
+            },
+            {
+                emitEvent: false
+            }
+        );
     }
 
-    public get _minutes():number
+    public _onChange():void
     {
-        if(!isNullOrUndefined(this._value))
-        {
-            return this._value.getMinutes();
-        }
-        return 0;
-    }
-
-    public set _minutes(minutes:number)
-    {
-        // TODO: if value is null or undefined it is impossible for the user to change the minutes
-        if(!isNullOrUndefined(this._value))
-        {
-            this._value.setMinutes(minutes);
-        }
-
-        this._onChangeCallback(this._value);
-        this._onTouchedCallback();
-    }
-
-    public get _hours():number
-    {
-        if(!isNullOrUndefined(this._value))
-        {
-            return this._value.getHours();
-        }
-        return 0;
-    }
-
-    public set _hours(hours:number)
-    {
-        // TODO: if value is null or undefined it is impossible for the user to change the hours
-        if(!isNullOrUndefined(this._value))
-        {
-            this._value.setHours(hours);
-        }
-
-        this._onChangeCallback(this._value);
-        this._onTouchedCallback();
+        const date:Date = new Date();
+        date.setHours(this._form.value.hours);
+        date.setMinutes(this._form.value.minutes);
+        this._onChangeCallback(date);
+        this._onTouchedCallback(); // TODO: This should be called whenever the blur event of any of the two selects occurs
     }
 }
