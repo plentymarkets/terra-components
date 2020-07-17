@@ -1,8 +1,4 @@
 import {
-    Directive,
-    Input
-} from '@angular/core';
-import {
     ComponentFixture,
     TestBed
 } from '@angular/core/testing';
@@ -12,10 +8,12 @@ import {
     MatDialogRef
 } from '@angular/material/dialog';
 import { TableSettingsComponent } from './table-settings.component';
-import { of } from 'rxjs';
+import {
+    Observable,
+    of
+} from 'rxjs';
 import { TableSettingsDialogComponent } from './dialog/table-settings-dialog.component';
 import { MockButtonComponent } from '../../../testing/mock-button';
-
 
 describe('TableSettingsComponent', () =>
 {
@@ -23,10 +21,10 @@ describe('TableSettingsComponent', () =>
     let fixture:ComponentFixture<TableSettingsComponent>;
 
     let mockDialogRef:Partial<MatDialogRef<any>> = {
-        afterClosed: () => of(['four', 'five'])
+        afterClosed: ():Observable<Array<string>> => of(['four', 'five'])
     };
     let mockDialog:Partial<MatDialog> = {
-        open: () => mockDialogRef as MatDialogRef<any>,
+        open: ():MatDialogRef<any> => mockDialogRef as MatDialogRef<any>
     };
 
     beforeEach(() =>
