@@ -134,5 +134,11 @@
 	"terraMatPaginatorIntl": {
 		"itemsPerPage": "Ergebnisse pro Seite",
 		"ofLabel": "von"
+	},
+	"columnSettings": {
+		"overlayTitle": "Spalten individualisieren",
+		"confirm": "Bestätigen",
+		"cancel": "Abbrechen",
+		"tooltip": "Spalten konfigurieren"
 	}
 }

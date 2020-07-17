@@ -1,4 +1,14 @@
-# 5.5.0 (XX.XX.XXXX)
+# 5.6.0 (XX.XX.XXXX)
+
+### Features
+* **mat-checkbox**
+    - add CSS styles for icons as a `<span>` or `<mat-icon>`.
+* **table-column-settings** new component that provides a settings overlay for mat table columns.
+
+### Bug Fixes
+* **mat-table** remove cursor pointer from table row unless the row has the routerLink directive
+
+# 5.5.0 (09.07.2020)
 
 ### Features
 * **schematics** basic support for `ng add`.
@@ -12,6 +22,7 @@
 ### Bug Fixes
 * **mat-table** adjust styles for odd and even rows.
 * **no-result-notice** adjust margin for no result notice in mat-table.
+* **terra-taglist** add flex-wrap
 * **tooltip** now subscribes to router events in ngOnInit, not ngOnChanges and makes sure to only call `hide()` when the tooltip is shown.
 
 # 5.4.0 (22.06.2020)
