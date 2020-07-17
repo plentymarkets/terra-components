@@ -109,6 +109,7 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor, O
 
     public set _minutes(minutes:number)
     {
+        // TODO: if value is null or undefined it would be impossible for the user to change the minutes 
         if(!isNullOrUndefined(this._value))
         {
             this._value.setMinutes(minutes);
@@ -129,6 +130,7 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor, O
 
     public set _hours(hours:number)
     {
+        // TODO: if value is null or undefined it would be impossible for the user to change the hours 
         if(!isNullOrUndefined(this._value))
         {
             this._value.setHours(hours);

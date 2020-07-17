@@ -147,20 +147,4 @@ describe('TerraTimePickerComponent:', () =>
         expect(component._hours).toBe(0);
     });
 
-    it('should not update the hours if value is null or undefined', () =>
-    {
-        component.writeValue(null);
-        expect(component._hours).toBe(0);
-        component._hours = 2;
-        expect(component._hours).toBe(0);
-    });
-
-    it('should not update the minutes if value is null or undefined', () =>
-    {
-        component.writeValue(undefined);
-        expect(component._minutes).toBe(0);
-        component._minutes = 10;
-        expect(component._minutes).toBe(0);
-    });
-
 });
