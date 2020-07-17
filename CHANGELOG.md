@@ -1,3 +1,13 @@
+# 5.6.0 (XX.XX.XXXX)
+
+### Features
+* **mat-checkbox**
+    - add CSS styles for icons as a `<span>` or `<mat-icon>`.
+* **table-column-settings** new component that provides a settings overlay for mat table columns.
+
+### Bug Fixes
+* **mat-table** remove cursor pointer from table row unless the row has the routerLink directive
+
 # 5.5.0 (09.07.2020)
 
 ### Features
