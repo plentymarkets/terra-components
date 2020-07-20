@@ -8,7 +8,7 @@ import {
     TestBed
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { TranslationModule } from 'angular-l10n';
 import { TerraTimePickerComponent } from './terra-time-picker.component';
 import { TerraSelectBoxComponent } from '../../select-box/terra-select-box.component';
@@ -33,7 +33,7 @@ describe('TerraTimePickerComponent:', () =>
     {
         TestBed.configureTestingModule({
             imports: [
-                FormsModule,
+                ReactiveFormsModule,
                 TranslationModule.forRoot({})
             ],
             declarations: [
@@ -44,6 +44,8 @@ describe('TerraTimePickerComponent:', () =>
         });
         fixture = TestBed.createComponent(TerraTimePickerComponent);
         component = fixture.componentInstance;
+
+        fixture.detectChanges();
     });
 
     it('should create', () =>
@@ -51,11 +53,8 @@ describe('TerraTimePickerComponent:', () =>
         expect(component).toBeTruthy();
     });
 
-    it('should initialize possible values on init', () =>
+    it('should initialize possible values during construction', () =>
     {
-        expect(component.valuesHours).toEqual([]);
-        expect(component.valuesMinutes).toEqual([]);
-        component.ngOnInit();
         expect(component.valuesHours.length).toBe(24);
         expect(component.valuesHours.every((val:TerraSelectBoxValueInterface, index:number) => val.value === index)).toBe(true);
         expect(component.valuesMinutes.length).toBe(60);
@@ -64,7 +63,6 @@ describe('TerraTimePickerComponent:', () =>
 
     it('should pass possible values to the select boxes', () =>
     {
-        fixture.detectChanges();
         const selectDEs:Array<DebugElement> = fixture.debugElement.queryAll(By.directive(TerraSelectBoxComponent));
         const hourSelect:TerraSelectBoxComponent = selectDEs[0].componentInstance;
         const minutesSelect:TerraSelectBoxComponent = selectDEs[1].componentInstance;
@@ -105,7 +103,6 @@ describe('TerraTimePickerComponent:', () =>
 
     it('should set the hours when the user selects a different hours', () =>
     {
-        fixture.detectChanges();
         const hourSelect:TerraSelectBoxComponent = fixture.debugElement.queryAll(By.directive(TerraSelectBoxComponent))[0].componentInstance;
         const selectedHour:TerraSelectBoxValueInterface = component.valuesHours[1];
         hourSelect._select(selectedHour);
@@ -114,7 +111,6 @@ describe('TerraTimePickerComponent:', () =>
 
     it('should set the minutes when the user selects a different minute', () =>
     {
-        fixture.detectChanges();
         const minuteSelect:TerraSelectBoxComponent = fixture.debugElement.queryAll(By.directive(TerraSelectBoxComponent))[1].componentInstance;
         const selectedMinute:TerraSelectBoxValueInterface = component.valuesMinutes[1];
         minuteSelect._select(selectedMinute);

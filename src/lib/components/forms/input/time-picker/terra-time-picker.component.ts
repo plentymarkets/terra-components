@@ -73,6 +73,12 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor, O
             takeUntil(this._destroy$),
             tap(() => this._onChange())
         ).subscribe();
+
+        const now:Date = new Date();
+        this._form.setValue({
+            hours: now.getHours(),
+            minutes: now.getMinutes()
+        });
     }
 
     public ngOnDestroy():void
@@ -125,6 +131,7 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor, O
         if(!isDate(date))
         {
             console.log('Not a date');
+            this._form.reset();
             return;
         }
 
@@ -151,5 +158,25 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor, O
         date.setMinutes(this._form.value.minutes);
         this._onChangeCallback(date);
         this._onTouchedCallback(); // TODO: This should be called whenever the blur event of any of the two selects occurs
+    }
+
+    public set _hours(hours:number)
+    {
+        this._form.patchValue({ hours: hours });
+    }
+
+    public get _hours():number
+    {
+        return this._form.value.hours;
+    }
+
+    public set _minutes(minutes:number)
+    {
+        this._form.patchValue({ minutes: minutes });
+    }
+
+    public get _minutes():number
+    {
+        return this._form.value.minutes;
     }
 }
