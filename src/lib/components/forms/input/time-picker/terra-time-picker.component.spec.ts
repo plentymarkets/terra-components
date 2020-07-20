@@ -53,13 +53,13 @@ describe('TerraTimePickerComponent:', () =>
 
     it('should initialize possible values on init', () =>
     {
-        expect(component.valuesHours).toEqual([]);
-        expect(component.valuesMinutes).toEqual([]);
+        expect(component._valuesHours).toEqual([]);
+        expect(component._valuesMinutes).toEqual([]);
         component.ngOnInit();
-        expect(component.valuesHours.length).toBe(24);
-        expect(component.valuesHours.every((val:TerraSelectBoxValueInterface, index:number) => val.value === index)).toBe(true);
-        expect(component.valuesMinutes.length).toBe(60);
-        expect(component.valuesMinutes.every((val:TerraSelectBoxValueInterface, index:number) => val.value === index)).toBe(true);
+        expect(component._valuesHours.length).toBe(24);
+        expect(component._valuesHours.every((val:TerraSelectBoxValueInterface, index:number) => val.value === index)).toBe(true);
+        expect(component._valuesMinutes.length).toBe(60);
+        expect(component._valuesMinutes.every((val:TerraSelectBoxValueInterface, index:number) => val.value === index)).toBe(true);
     });
 
     it('should pass possible values to the select boxes', () =>
@@ -68,8 +68,8 @@ describe('TerraTimePickerComponent:', () =>
         const selectDEs:Array<DebugElement> = fixture.debugElement.queryAll(By.directive(TerraSelectBoxComponent));
         const hourSelect:TerraSelectBoxComponent = selectDEs[0].componentInstance;
         const minutesSelect:TerraSelectBoxComponent = selectDEs[1].componentInstance;
-        expect(hourSelect.inputListBoxValues).toBe(component.valuesHours);
-        expect(minutesSelect.inputListBoxValues).toBe(component.valuesMinutes);
+        expect(hourSelect.inputListBoxValues).toBe(component._valuesHours);
+        expect(minutesSelect.inputListBoxValues).toBe(component._valuesMinutes);
     });
 
     it('should initialize its value with the current time', () =>
@@ -107,7 +107,7 @@ describe('TerraTimePickerComponent:', () =>
     {
         fixture.detectChanges();
         const hourSelect:TerraSelectBoxComponent = fixture.debugElement.queryAll(By.directive(TerraSelectBoxComponent))[0].componentInstance;
-        const selectedHour:TerraSelectBoxValueInterface = component.valuesHours[1];
+        const selectedHour:TerraSelectBoxValueInterface = component._valuesHours[1];
         hourSelect._select(selectedHour);
         expect(component._hours).toEqual(selectedHour.value);
     });
@@ -116,7 +116,7 @@ describe('TerraTimePickerComponent:', () =>
     {
         fixture.detectChanges();
         const minuteSelect:TerraSelectBoxComponent = fixture.debugElement.queryAll(By.directive(TerraSelectBoxComponent))[1].componentInstance;
-        const selectedMinute:TerraSelectBoxValueInterface = component.valuesMinutes[1];
+        const selectedMinute:TerraSelectBoxValueInterface = component._valuesMinutes[1];
         minuteSelect._select(selectedMinute);
         expect(component._minutes).toEqual(selectedMinute.value);
     });

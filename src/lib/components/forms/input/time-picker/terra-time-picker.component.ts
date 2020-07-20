@@ -33,67 +33,44 @@ import { takeUntil, tap } from 'rxjs/operators';
 })
 export class TerraTimePickerComponent implements OnInit, ControlValueAccessor, OnDestroy
 {
-    /**
-     * @description If true, the input will be disabled. Default false.
-     * */
-    @Input() public inputIsDisabled:boolean = false; // TODO: This input has no effect on the control!!
-
-    public valuesHours:Array<TerraSelectBoxValueInterface> = [];
-    public valuesMinutes:Array<TerraSelectBoxValueInterface> = [];
-
-    @Language()
-    public _lang:string;
+    /** @description If true, the input will be disabled. Default false.*/
+    @Input()
+    public inputIsDisabled:boolean = false; // TODO: This input has no effect on the control!!
 
     public _form:FormGroup = new FormGroup({
         hours: new FormControl(),
         minutes: new FormControl()
     });
 
+    public readonly _valuesHours:Array<TerraSelectBoxValueInterface> = [];
+    public readonly _valuesMinutes:Array<TerraSelectBoxValueInterface> = [];
+
+    @Language()
+    public _lang:string;
+
     private _onTouchedCallback:() => void = noop;
     private _onChangeCallback:(_:Date) => void = noop;
 
-    private readonly destroy$:Subject<void> = new Subject();
+    private readonly _destroy$:Subject<void> = new Subject();
+
+    constructor()
+    {
+        // initialize the options
+        this._createTimeValues();
+    }
 
     public ngOnInit():void
     {
-        this.createTimeValues();
         this._form.valueChanges.pipe(
-            takeUntil(this.destroy$),
+            takeUntil(this._destroy$),
             tap(() => this._onChange())
-        ).subscribe()
+        ).subscribe();
     }
 
     public ngOnDestroy():void
     {
-        this.destroy$.next();
-        this.destroy$.complete();
-    }
-
-    public createTimeValues():void
-    {
-        let hours:number;
-        let minutes:number;
-
-        for(hours = 0; hours <= 23; hours++)
-        {
-            this.valuesHours.push(
-                {
-                    value:   hours,
-                    caption: hours
-                }
-            );
-        }
-
-        for(minutes = 0; minutes <= 59; minutes++)
-        {
-            this.valuesMinutes.push(
-                {
-                    value:   minutes,
-                    caption: minutes
-                }
-            );
-        }
-
+        this._destroy$.next();
+        this._destroy$.complete();
     }
 
     public registerOnChange(fn:(date:Date) => void):void
@@ -113,7 +90,7 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor, O
             console.log('Not a date');
             return;
         }
-        
+
         this._form.setValue(
             {
             hours: date.getHours(),
@@ -132,5 +109,28 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor, O
         date.setMinutes(this._form.value.minutes);
         this._onChangeCallback(date);
         this._onTouchedCallback(); // TODO: This should be called whenever the blur event of any of the two selects occurs
+    }
+
+    private _createTimeValues():void
+    {
+        for(let hours:number = 0; hours <= 23; hours++)
+        {
+            this._valuesHours.push(
+                {
+                    value:   hours,
+                    caption: hours
+                }
+            );
+        }
+
+        for(let minutes:number = 0; minutes <= 59; minutes++)
+        {
+            this._valuesMinutes.push(
+                {
+                    value:   minutes,
+                    caption: minutes
+                }
+            );
+        }
     }
 }
