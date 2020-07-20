@@ -6,15 +6,21 @@ import {
 } from '@angular/core';
 import {
     ControlValueAccessor,
-    NG_VALUE_ACCESSOR,
+    FormControl,
     FormGroup,
-    FormControl
+    NG_VALUE_ACCESSOR
 } from '@angular/forms';
 import { TerraSelectBoxValueInterface } from '../../select-box/data/terra-select-box.interface';
 import { isDate } from 'util';
-import { noop, Subject } from 'rxjs';
+import {
+    noop,
+    Subject
+} from 'rxjs';
 import { Language } from 'angular-l10n';
-import { takeUntil, tap } from 'rxjs/operators';
+import {
+    takeUntil,
+    tap
+} from 'rxjs/operators';
 
 /**
  * @author twieder
@@ -46,7 +52,7 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor, O
      * @internal
      */
     public _form:FormGroup = new FormGroup({
-        hours: new FormControl(),
+        hours:   new FormControl(),
         minutes: new FormControl()
     });
 
@@ -100,13 +106,33 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor, O
 
         this._form.setValue(
             {
-            hours: date.getHours(),
-            minutes: date.getMinutes()
+                hours:   date.getHours(),
+                minutes: date.getMinutes()
             },
             {
                 emitEvent: false
             }
         );
+    }
+
+    public get _minutes():number
+    {
+        return this._form.value.minutes;
+    }
+
+    public set _minutes(minutes:number)
+    {
+        this._form.patchValue({minutes: minutes});
+    }
+
+    public get _hours():number
+    {
+        return this._form.value.hours;
+    }
+
+    public set _hours(hours:number)
+    {
+        this._form.patchValue({hours: hours});
     }
 
     /**
@@ -121,26 +147,6 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor, O
         date.setMinutes(this._form.value.minutes);
         this._onChangeCallback(date);
         this._onTouchedCallback(); // TODO: This should be called whenever the blur event of any of the two selects occurs
-    }
-
-    public set _hours(hours:number)
-    {
-        this._form.patchValue({ hours: hours });
-    }
-
-    public get _hours():number
-    {
-        return this._form.value.hours;
-    }
-
-    public set _minutes(minutes:number)
-    {
-        this._form.patchValue({ minutes: minutes });
-    }
-
-    public get _minutes():number
-    {
-        return this._form.value.minutes;
     }
 
     private _createTimeValues():void
