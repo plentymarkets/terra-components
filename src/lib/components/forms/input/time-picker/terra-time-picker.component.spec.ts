@@ -70,13 +70,6 @@ describe('TerraTimePickerComponent:', () =>
         expect(minutesSelect.inputListBoxValues).toBe(component.valuesMinutes);
     });
 
-    it('should initialize its value with the current time', () =>
-    {
-        const now:Date = new Date();
-        expect(component._hours).toBe(now.getHours());
-        expect(component._minutes).toBe(now.getMinutes());
-    });
-
     it('should update the value on #writeValue', () =>
     {
         const newValue:Date = new Date();

@@ -73,12 +73,6 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor, O
             takeUntil(this._destroy$),
             tap(() => this._onChange())
         ).subscribe();
-
-        const now:Date = new Date();
-        this._form.setValue({
-            hours: now.getHours(),
-            minutes: now.getMinutes()
-        });
     }
 
     public ngOnDestroy():void
