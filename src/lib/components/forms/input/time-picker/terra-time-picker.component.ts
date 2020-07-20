@@ -1,6 +1,3 @@
-/**
- * @author twieder
- */
 import {
     Component,
     Input,
@@ -19,6 +16,10 @@ import { noop, Subject } from 'rxjs';
 import { Language } from 'angular-l10n';
 import { takeUntil, tap } from 'rxjs/operators';
 
+/**
+ * @author twieder
+ * @description A component providing two selects to enable the user to pick a certain point of time of a day.
+ */
 @Component({
     selector:    'terra-time-picker',
     styleUrls:   ['./terra-time-picker.component.scss'],
@@ -36,14 +37,19 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor, O
     /**
      * @description If true, the input will be disabled. Default false.
      * */
-    @Input() public inputIsDisabled:boolean = false; // TODO: This input has no effect on the control!!
-
-    public valuesHours:Array<TerraSelectBoxValueInterface> = [];
-    public valuesMinutes:Array<TerraSelectBoxValueInterface> = [];
+    @Input()
+    public inputIsDisabled:boolean = false; // TODO: This input has no effect on the control!!
 
     @Language()
     public _lang:string;
 
+    public valuesHours:Array<TerraSelectBoxValueInterface> = [];
+    public valuesMinutes:Array<TerraSelectBoxValueInterface> = [];
+
+    /**
+     * @description The form instance managing the value of the hours and minutes select.
+     * @private
+     */
     public _form:FormGroup = new FormGroup({
         hours: new FormControl(),
         minutes: new FormControl()
@@ -52,23 +58,31 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor, O
     private _onTouchedCallback:() => void = noop;
     private _onChangeCallback:(_:Date) => void = noop;
 
-    private readonly destroy$:Subject<void> = new Subject();
+    /** @description Stream that emits and completes when the component is destroyed. */
+    private readonly _destroy$:Subject<void> = new Subject();
+
+    constructor()
+    {
+        // initialize select options
+        this.createTimeValues();
+    }
 
     public ngOnInit():void
     {
-        this.createTimeValues();
         this._form.valueChanges.pipe(
-            takeUntil(this.destroy$),
+            takeUntil(this._destroy$),
             tap(() => this._onChange())
-        ).subscribe()
+        ).subscribe();
     }
 
     public ngOnDestroy():void
     {
-        this.destroy$.next();
-        this.destroy$.complete();
+        this._destroy$.next();
+        this._destroy$.complete();
     }
 
+    /* TODO: This should be private */
+    /** @deprecated */
     public createTimeValues():void
     {
         let hours:number;
@@ -113,7 +127,7 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor, O
             console.log('Not a date');
             return;
         }
-        
+
         this._form.setValue(
             {
             hours: date.getHours(),
@@ -125,6 +139,11 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor, O
         );
     }
 
+    /**
+     * @description Called whenever the user changes the time - either the hours or the minutes.
+     * Notifies the bound form control about the change by passing a new date object.
+     * @private
+     */
     public _onChange():void
     {
         const date:Date = new Date();
