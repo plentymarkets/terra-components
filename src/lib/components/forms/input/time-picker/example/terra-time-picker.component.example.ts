@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
 })
 export class TerraTimePickerComponentExample
 {
-    public _date:Date = null;
+    public _date:Date = new Date();
 }
