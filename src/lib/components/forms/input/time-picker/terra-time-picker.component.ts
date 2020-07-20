@@ -4,14 +4,13 @@ import {
     OnDestroy,
     OnInit,
 } from '@angular/core';
+import { Time } from '@angular/common';
 import {
     ControlValueAccessor,
     FormControl,
     FormGroup,
     NG_VALUE_ACCESSOR
 } from '@angular/forms';
-import { TerraSelectBoxValueInterface } from '../../select-box/data/terra-select-box.interface';
-import { isDate } from 'util';
 import {
     noop,
     Subject
@@ -21,6 +20,8 @@ import {
     takeUntil,
     tap
 } from 'rxjs/operators';
+import { TerraSelectBoxValueInterface } from '../../select-box/data/terra-select-box.interface';
+
 
 /**
  * @author twieder
@@ -60,7 +61,7 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor, O
     public readonly _valuesMinutes:Array<TerraSelectBoxValueInterface> = [];
 
     private _onTouchedCallback:() => void = noop;
-    private _onChangeCallback:(_:Date) => void = noop;
+    private _onChangeCallback:(_:Time) => void = noop;
 
     /** @description Stream that emits and completes when the component is destroyed. */
     private readonly _destroy$:Subject<void> = new Subject();
@@ -85,7 +86,7 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor, O
         this._destroy$.complete();
     }
 
-    public registerOnChange(fn:(date:Date) => void):void
+    public registerOnChange(fn:(time:Time) => void):void
     {
         this._onChangeCallback = fn;
     }
@@ -95,24 +96,13 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor, O
         this._onTouchedCallback = fn;
     }
 
-    public writeValue(date:Date):void
+    public writeValue(time:Time):void
     {
-        if(!isDate(date))
+        if(!time)
         {
-            console.log('Not a date');
-            this._form.reset();
-            return;
+            return this._form.reset();
         }
-
-        this._form.setValue(
-            {
-                hours:   date.getHours(),
-                minutes: date.getMinutes()
-            },
-            {
-                emitEvent: false
-            }
-        );
+        this._form.patchValue(time, {emitEvent: false});
     }
 
     public get _minutes():number
@@ -120,32 +110,19 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor, O
         return this._form.value.minutes;
     }
 
-    public set _minutes(minutes:number)
-    {
-        this._form.patchValue({minutes: minutes});
-    }
-
     public get _hours():number
     {
         return this._form.value.hours;
     }
 
-    public set _hours(hours:number)
-    {
-        this._form.patchValue({hours: hours});
-    }
-
     /**
      * @description Called whenever the user changes the time - either the hours or the minutes.
-     * Notifies the bound form control about the change by passing a new date object.
+     * Notifies the bound form control about the change by passing a new time object.
      * @internal
      */
     public _onChange():void
     {
-        const date:Date = new Date();
-        date.setHours(this._form.value.hours);
-        date.setMinutes(this._form.value.minutes);
-        this._onChangeCallback(date);
+        this._onChangeCallback(this._form.value);
         this._onTouchedCallback(); // TODO: This should be called whenever the blur event of any of the two selects occurs
     }
 

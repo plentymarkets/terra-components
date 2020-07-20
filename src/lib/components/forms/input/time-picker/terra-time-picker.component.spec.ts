@@ -3,6 +3,7 @@ import {
     Directive,
     Input
 } from '@angular/core';
+import { Time } from '@angular/common';
 import {
     ComponentFixture,
     TestBed
@@ -72,25 +73,28 @@ describe('TerraTimePickerComponent:', () =>
 
     it('should update the value on #writeValue', () =>
     {
-        const newValue:Date = new Date();
-        component.writeValue(newValue);
-        expect(component._hours).toBe(newValue.getHours());
-        expect(component._minutes).toBe(newValue.getMinutes());
+        const now:Date = new Date();
+        const hours:number = now.getHours();
+        const minutes:number = now.getMinutes();
+        component.writeValue({ hours: hours, minutes: minutes });
+        expect(component._hours).toBe(hours);
+        expect(component._minutes).toBe(minutes);
     });
 
     it('should call registered onChangeCallback when the value has changed', () =>
     {
         const spy:jasmine.Spy = jasmine.createSpy('onChangeCallback');
         component.registerOnChange(spy);
-        component._hours = 2;
-        expect(spy).toHaveBeenCalled();
+        const newTime:Time = { hours: 2, minutes: 15 };
+        component._form.patchValue(newTime);
+        expect(spy).toHaveBeenCalledWith(newTime);
     });
 
     it('should call registered onTouchedCallback when the value has changed', () =>
     {
         const spy:jasmine.Spy = jasmine.createSpy('onTouchedCallback');
         component.registerOnTouched(spy);
-        component._minutes = 15;
+        component._form.patchValue({ minutes:15 });
         expect(spy).toHaveBeenCalled();
     });
 
