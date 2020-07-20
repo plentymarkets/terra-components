@@ -48,7 +48,7 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor, O
 
     /**
      * @description The form instance managing the value of the hours and minutes select.
-     * @private
+     * @internal
      */
     public _form:FormGroup = new FormGroup({
         hours: new FormControl(),
@@ -143,7 +143,7 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor, O
     /**
      * @description Called whenever the user changes the time - either the hours or the minutes.
      * Notifies the bound form control about the change by passing a new date object.
-     * @private
+     * @internal
      */
     public _onChange():void
     {
