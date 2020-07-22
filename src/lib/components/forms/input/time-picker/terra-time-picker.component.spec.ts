@@ -1,29 +1,19 @@
-import {
-    DebugElement,
-    Directive,
-    Input
-} from '@angular/core';
+import { DebugElement } from '@angular/core';
 import { Time } from '@angular/common';
 import {
     ComponentFixture,
     TestBed
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatOption } from '@angular/material/core';
+import {
+    MatSelect,
+    MatSelectModule
+} from '@angular/material/select';
 import { TranslationModule } from 'angular-l10n';
 import { TerraTimePickerComponent } from './terra-time-picker.component';
-import { TerraSelectBoxComponent } from '../../select-box/terra-select-box.component';
-import { TerraSelectBoxValueInterface } from '../../select-box/data/terra-select-box.interface';
-
-@Directive({
-    selector: '[tcTooltip]'
-})
-class MockTooltipDirective
-{
-    @Input('tcTooltip') public tooltip:string;
-    @Input() public placement:string;
-    @Input() public onlyEllipsisTooltip:boolean;
-}
 
 describe('TerraTimePickerComponent:', () =>
 {
@@ -34,13 +24,13 @@ describe('TerraTimePickerComponent:', () =>
     {
         TestBed.configureTestingModule({
             imports: [
+                MatSelectModule,
+                NoopAnimationsModule,
                 ReactiveFormsModule,
                 TranslationModule.forRoot({})
             ],
             declarations: [
-                TerraTimePickerComponent,
-                TerraSelectBoxComponent,
-                MockTooltipDirective
+                TerraTimePickerComponent
             ]
         });
         fixture = TestBed.createComponent(TerraTimePickerComponent);
@@ -56,19 +46,19 @@ describe('TerraTimePickerComponent:', () =>
 
     it('should initialize possible values during construction', () =>
     {
-        expect(component._valuesHours.length).toBe(24);
-        expect(component._valuesHours.every((val:TerraSelectBoxValueInterface, index:number) => val.value === index)).toBe(true);
-        expect(component._valuesMinutes.length).toBe(60);
-        expect(component._valuesMinutes.every((val:TerraSelectBoxValueInterface, index:number) => val.value === index)).toBe(true);
+        expect(component._hours.length).toBe(24);
+        expect(component._hours.every((val:number, index:number) => val === index)).toBe(true);
+        expect(component._minutes.length).toBe(60);
+        expect(component._minutes.every((val:number, index:number) => val === index)).toBe(true);
     });
 
     it('should pass possible values to the select boxes', () =>
     {
-        const selectDEs:Array<DebugElement> = fixture.debugElement.queryAll(By.directive(TerraSelectBoxComponent));
-        const hourSelect:TerraSelectBoxComponent = selectDEs[0].componentInstance;
-        const minutesSelect:TerraSelectBoxComponent = selectDEs[1].componentInstance;
-        expect(hourSelect.inputListBoxValues).toBe(component._valuesHours);
-        expect(minutesSelect.inputListBoxValues).toBe(component._valuesMinutes);
+        const selectDEs:Array<DebugElement> = fixture.debugElement.queryAll(By.directive(MatSelect));
+        const hourSelect:MatSelect = selectDEs[0].componentInstance;
+        const minutesSelect:MatSelect = selectDEs[1].componentInstance;
+        expect(hourSelect.options.length).toBe(component._hours.length);
+        expect(minutesSelect.options.length).toBe(component._minutes.length);
     });
 
     it('should update the value on #writeValue', () =>
@@ -77,8 +67,8 @@ describe('TerraTimePickerComponent:', () =>
         const hours:number = now.getHours();
         const minutes:number = now.getMinutes();
         component.writeValue({ hours: hours, minutes: minutes });
-        expect(component._hours).toBe(hours);
-        expect(component._minutes).toBe(minutes);
+        expect(component._form.value.hours).toBe(hours);
+        expect(component._form.value.minutes).toBe(minutes);
     });
 
     it('should call registered onChangeCallback when the value has changed', () =>
@@ -90,44 +80,41 @@ describe('TerraTimePickerComponent:', () =>
         expect(spy).toHaveBeenCalledWith(newTime);
     });
 
-    it('should call registered onTouchedCallback when the value has changed', () =>
+    it('should call registered onTouchedCallback when one of the selects blurs', () =>
     {
-        const spy:jasmine.Spy = jasmine.createSpy('onTouchedCallback');
-        component.registerOnTouched(spy);
-        component._form.patchValue({ minutes:15 });
-        expect(spy).toHaveBeenCalled();
+        pending();
     });
 
-    it('should set the hours when the user selects a different hours', () =>
+    it('should update value when the user selects a different hour', () =>
     {
-        const hourSelect:TerraSelectBoxComponent = fixture.debugElement.queryAll(By.directive(TerraSelectBoxComponent))[0].componentInstance;
-        const selectedHour:TerraSelectBoxValueInterface = component._valuesHours[1];
-        hourSelect._select(selectedHour);
-        expect(component._hours).toEqual(selectedHour.value);
+        const hourSelect:MatSelect = fixture.debugElement.queryAll(By.directive(MatSelect))[0].componentInstance;
+        const option:MatOption = hourSelect.options.last;
+        option.select();
+        expect(component._form.value.hours).toEqual(option.value);
     });
 
-    it('should set the minutes when the user selects a different minute', () =>
+    it('should update value when the user selects a different minute', () =>
     {
-        const minuteSelect:TerraSelectBoxComponent = fixture.debugElement.queryAll(By.directive(TerraSelectBoxComponent))[1].componentInstance;
-        const selectedMinute:TerraSelectBoxValueInterface = component._valuesMinutes[1];
-        minuteSelect._select(selectedMinute);
-        expect(component._minutes).toEqual(selectedMinute.value);
+        const minuteSelect:MatSelect = fixture.debugElement.queryAll(By.directive(MatSelect))[1].componentInstance;
+        const option:MatOption = minuteSelect.options.last;
+        option.select();
+        expect(component._form.value.minutes).toEqual(option.value);
     });
 
     it('should return 0 hours when the value is null or undefined', () =>
     {
         component.writeValue(null);
-        expect(component._hours).toBe(0);
+        expect(component._form.value.hours).toBe(null);
         component.writeValue(undefined);
-        expect(component._hours).toBe(0);
+        expect(component._form.value.hours).toBe(null);
     });
 
     it('should return 0 minutes when the value is null or undefined', () =>
     {
         component.writeValue(null);
-        expect(component._minutes).toBe(0);
+        expect(component._form.value.minutes).toBe(null);
         component.writeValue(undefined);
-        expect(component._hours).toBe(0);
+        expect(component._form.value.minutes).toBe(null);
     });
 
 });
