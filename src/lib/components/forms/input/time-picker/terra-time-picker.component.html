@@ -1,16 +1,16 @@
 <form class="d-flex" [formGroup]="_form">
     <mat-form-field class="time">
         <mat-label>{{'timepicker.hours' | translate:_lang}}</mat-label>
-        <mat-select formControlName="hours">
-            <mat-option *ngFor="let hour of _valuesHours" [value]="hour">
+        <mat-select formControlName="hours" (blur)="_onTouch()">
+            <mat-option *ngFor="let hour of _hours" [value]="hour">
                 {{hour}}
             </mat-option>
         </mat-select>
     </mat-form-field>
     <mat-form-field class="time ml-1">
         <mat-label>{{'timepicker.minutes' | translate:_lang}}</mat-label>
-        <mat-select formControlName="minutes">
-            <mat-option *ngFor="let minute of _valuesMinutes" [value]="minute">
+        <mat-select formControlName="minutes" (blur)="_onTouch()">
+            <mat-option *ngFor="let minute of _minutes" [value]="minute">
                 {{minute}}
             </mat-option>
         </mat-select>

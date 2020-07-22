@@ -59,8 +59,8 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor, O
         minutes: new FormControl()
     });
 
-    public readonly _valuesHours:Array<number> = [];
-    public readonly _valuesMinutes:Array<number> = [];
+    public readonly _hours:Array<number> = [];
+    public readonly _minutes:Array<number> = [];
 
     private _onTouchedCallback:() => void = noop;
     private _onChangeCallback:(_:Time) => void = noop;
@@ -114,14 +114,14 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor, O
             : this._form.enable();
     }
 
-    public get _minutes():number
+    /**
+     * @description Called whenever one of the selects have been touched.
+     * Notifies the bound form control that it has been touched.
+     * @internal
+     */
+    public _onTouch():void
     {
-        return this._form.value.minutes;
-    }
-
-    public get _hours():number
-    {
-        return this._form.value.hours;
+        this._onTouchedCallback();
     }
 
     /**
@@ -132,19 +132,18 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor, O
     public _onChange():void
     {
         this._onChangeCallback(this._form.value);
-        this._onTouchedCallback(); // TODO: This should be called whenever the blur event of any of the two selects occurs
     }
 
     private _createTimeValues():void
     {
         for(let hour:number = 0; hour <= 23; hour++)
         {
-            this._valuesHours.push(hour);
+            this._hours.push(hour);
         }
 
         for(let minute:number = 0; minute <= 59; minute++)
         {
-            this._valuesMinutes.push(minute);
+            this._minutes.push(minute);
         }
     }
 }
