@@ -65,12 +65,13 @@ describe('TableSettingsDialogComponent', () =>
         expect(component).toBeTruthy();
     });
 
-    xit('should assign the array of selected columns and columns by `OnInit` life cycle hook', () =>
+    it('should assign the array of selected columns and columns by `OnInit` life cycle hook', () =>
     {
-        spyOn(component, 'ngOnInit').and.callThrough();
-        let spy:Spy = spyOn(component, '_sort');
+        spyOn(component, '_sort').and.returnValue([]);
+        component.ngOnInit();
         expect(component._selectedColumns).toEqual(component.data.selectedColumns);
-        expect(spy).toHaveBeenCalledWith(component.data.columns);
+        expect(component._sort).toHaveBeenCalledWith(component.data.columns);
+        expect(component._columns).toEqual([]);
     });
 
     it('should render list options', () =>
