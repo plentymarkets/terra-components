@@ -16,7 +16,6 @@ import { By } from '@angular/platform-browser';
 import { MatColumnDef } from '@angular/material/table';
 import { MockButtonComponent } from '../../../../testing/mock-button';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import Spy = jasmine.Spy;
 
 
 const column1:MatColumnDef = new MatColumnDef();
