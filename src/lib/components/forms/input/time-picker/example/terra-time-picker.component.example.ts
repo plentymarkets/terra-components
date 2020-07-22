@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Time } from '@angular/common';
 
 @Component({
     selector: 'terra-time-picker-example',
@@ -7,5 +8,14 @@ import { Component } from '@angular/core';
 })
 export class TerraTimePickerComponentExample
 {
-    public _date:Date = new Date();
+    public _time:Time = undefined;
+    public _timeAsDate:Date;
+
+    public convertTimeToDate(time:Time):Date
+    {
+        const date:Date = new Date();
+        date.setHours(time.hours);
+        date.setMinutes(time.minutes);
+        return date;
+    }
 }

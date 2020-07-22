@@ -1,5 +1,8 @@
 <terra-portlet>
-    <terra-time-picker [(ngModel)]="_date">
+    <terra-time-picker
+        [(ngModel)]="_time"
+        (ngModelChange)="_timeAsDate = convertTimeToDate(_time)">
     </terra-time-picker>
-    {{ _date }}
+    <div>{{ _time | json }}</div>
+    <div>{{ _timeAsDate | date:'shortTime'}}</div>
 </terra-portlet>
