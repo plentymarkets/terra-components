@@ -89,9 +89,4 @@ describe('TableSettingsDialogComponent', () =>
     {
         expect(component._columns[2]).toEqual(column1);
     });
-
-    it('should call `moveItemInArray` to change position of column and call `_sort` with changed column list', () =>
-    {
-        pending();
-    });
 });
