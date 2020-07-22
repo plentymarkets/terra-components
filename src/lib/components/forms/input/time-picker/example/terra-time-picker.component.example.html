@@ -1,4 +1,5 @@
 <terra-portlet>
+    <terra-time-picker [disabled]="true"></terra-time-picker>
     <terra-time-picker
         [(ngModel)]="_time"
         (ngModelChange)="_timeAsDate = convertTimeToDate(_time)">

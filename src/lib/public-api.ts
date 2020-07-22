@@ -147,7 +147,7 @@ export { TerraNodeTreeComponent } from './components/tree/node-tree/terra-node-t
 export { TerraNodeTreeConfig } from './components/tree/node-tree/data/terra-node-tree.config';
 export { TerraNodeInterface } from './components/tree/node-tree/data/terra-node.interface';
 export { TerraNodeComponent } from './components/tree/node-tree/node/terra-node.component';
-export { TerraTimePickerComponent } from './components/forms/input/time-picker/terra-time-picker.component';
+export { TerraTimePickerComponent, TerraTimePickerModule } from './components/forms/input/time-picker';
 export { TerraTextAlignEnum } from './components/tables/data-table/enums/terra-text-align.enum';
 export { TerraBaseParameterInterface } from './components/data/terra-base-parameter.interface';
 export { TerraInfoComponent } from './components/info/terra-info.component';

@@ -15,12 +15,11 @@ import {
     noop,
     Subject
 } from 'rxjs';
-import { Language } from 'angular-l10n';
 import {
     takeUntil,
     tap
 } from 'rxjs/operators';
-import { TerraSelectBoxValueInterface } from '../../select-box/data/terra-select-box.interface';
+import { Language } from 'angular-l10n';
 
 
 /**
@@ -43,7 +42,10 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor, O
 {
     /** @description If true, the input will be disabled. Default false.*/
     @Input()
-    public inputIsDisabled:boolean = false; // TODO: This input has no effect on the control!!
+    public set disabled(disabled:boolean)
+    {
+        this.setDisabledState(disabled);
+    }
 
     @Language()
     public _lang:string;
@@ -57,8 +59,8 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor, O
         minutes: new FormControl()
     });
 
-    public readonly _valuesHours:Array<TerraSelectBoxValueInterface> = [];
-    public readonly _valuesMinutes:Array<TerraSelectBoxValueInterface> = [];
+    public readonly _valuesHours:Array<number> = [];
+    public readonly _valuesMinutes:Array<number> = [];
 
     private _onTouchedCallback:() => void = noop;
     private _onChangeCallback:(_:Time) => void = noop;
@@ -105,6 +107,13 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor, O
         this._form.patchValue(time, {emitEvent: false});
     }
 
+    public setDisabledState(isDisabled:boolean):void
+    {
+        isDisabled
+            ? this._form.disable()
+            : this._form.enable();
+    }
+
     public get _minutes():number
     {
         return this._form.value.minutes;
@@ -128,24 +137,14 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor, O
 
     private _createTimeValues():void
     {
-        for(let hours:number = 0; hours <= 23; hours++)
+        for(let hour:number = 0; hour <= 23; hour++)
         {
-            this._valuesHours.push(
-                {
-                    value:   hours,
-                    caption: hours
-                }
-            );
+            this._valuesHours.push(hour);
         }
 
-        for(let minutes:number = 0; minutes <= 59; minutes++)
+        for(let minute:number = 0; minute <= 59; minute++)
         {
-            this._valuesMinutes.push(
-                {
-                    value:   minutes,
-                    caption: minutes
-                }
-            );
+            this._valuesMinutes.push(minute);
         }
     }
 }

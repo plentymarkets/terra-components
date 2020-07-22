@@ -38,7 +38,6 @@ import { TerraNoResultNoticeComponent } from './no-result/terra-no-result-notice
 import { TerraButtonWithOptionsComponent } from './buttons/button-with-options/terra-button-with-options.component';
 import { TerraNoteEditorComponent } from './editors/note-editor/terra-note-editor.component';
 import { TerraCodeEditorComponent } from './editors/code-editor/terra-code-editor.component';
-import { TerraTimePickerComponent } from './forms/input/time-picker/terra-time-picker.component';
 import { TerraNoteComponent } from './note/terra-note.component';
 import { TerraNodeTreeComponent } from './tree/node-tree/terra-node-tree.component';
 import { TerraNodeComponent } from './tree/node-tree/node/terra-node.component';
@@ -110,7 +109,6 @@ export const exportedComponents:Array<Type<any>> = [
     TerraButtonWithOptionsComponent,
     TerraNoteEditorComponent,
     TerraCodeEditorComponent,
-    TerraTimePickerComponent,
     TerraNoteComponent,
     TerraNodeTreeComponent,
     TerraNodeComponent,

@@ -1,16 +1,18 @@
-<div class="input-unit-v1 timeFormatGroup"
-     [formGroup]="_form"
-     [class.disabled]="inputIsDisabled">
-    <terra-select-box
-        class="time"
-        formControlName="hours"
-        [inputListBoxValues]="_valuesHours"
-        [inputName]="'timepicker.hours' |  translate:_lang">
-    </terra-select-box>
-    <terra-select-box
-        class="time"
-        formControlName="minutes"
-        [inputListBoxValues]="_valuesMinutes"
-        [inputName]="'timepicker.minutes' |  translate:_lang">
-    </terra-select-box>
-</div>
+<form class="d-flex" [formGroup]="_form">
+    <mat-form-field class="time">
+        <mat-label>{{'timepicker.hours' | translate:_lang}}</mat-label>
+        <mat-select formControlName="hours">
+            <mat-option *ngFor="let hour of _valuesHours" [value]="hour">
+                {{hour}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field class="time ml-1">
+        <mat-label>{{'timepicker.minutes' | translate:_lang}}</mat-label>
+        <mat-select formControlName="minutes">
+            <mat-option *ngFor="let minute of _valuesMinutes" [value]="minute">
+                {{minute}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+</form>

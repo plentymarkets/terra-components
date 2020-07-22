@@ -2,8 +2,7 @@ import { Component } from '@angular/core';
 import { Time } from '@angular/common';
 
 @Component({
-    selector: 'terra-time-picker-example',
-    styleUrls: [ './terra-time-picker.component.example.scss'],
+    selector:    'terra-time-picker-example',
     templateUrl: './terra-time-picker.component.example.html',
 })
 export class TerraTimePickerComponentExample
