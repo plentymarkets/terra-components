@@ -15,6 +15,7 @@ import { TableSettingsDialogData } from '../interface/table-settings-dialog-data
 import { By } from '@angular/platform-browser';
 import { MatColumnDef } from '@angular/material/table';
 import { MockButtonComponent } from '../../../../testing/mock-button';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 
 const column:MatColumnDef = new MatColumnDef();
@@ -40,7 +41,8 @@ describe('TableSettingsDialogComponent', () =>
                 MatListModule,
                 MatDialogModule,
                 TranslationModule.forRoot({}),
-                FormsModule
+                FormsModule,
+                DragDropModule
             ],
             providers:    [{
                 provide:  MAT_DIALOG_DATA,
