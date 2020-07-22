@@ -1,8 +1,4 @@
-import {
-    Component,
-    DebugElement,
-    Input
-} from '@angular/core';
+import { DebugElement } from '@angular/core';
 import {
     ComponentFixture,
     TestBed
@@ -18,21 +14,13 @@ import { TableSettingsDialogComponent } from './table-settings-dialog.component'
 import { TableSettingsDialogData } from '../interface/table-settings-dialog-data.interface';
 import { By } from '@angular/platform-browser';
 import { MatColumnDef } from '@angular/material/table';
+import { MockButtonComponent } from '../../../../testing/mock-button';
 
-@Component({
-    selector: 'terra-button',
-    template: ''
-})
-class MockButtonComponent
-{
-    @Input()
-    public inputCaption:string;
-}
 
-const column = new MatColumnDef();
+const column:MatColumnDef = new MatColumnDef();
 column.name = 'TestName';
 let mockDialogData:TableSettingsDialogData = {
-    columns: [column],
+    columns:         [column],
     selectedColumns: []
 };
 
@@ -70,13 +58,15 @@ describe('TableSettingsDialogComponent', () =>
         expect(component).toBeTruthy();
     });
 
-    it('should render list options', () => {
-        const options:DebugElement[] = fixture.debugElement.queryAll(By.css('mat-list-option'));
+    it('should render list options', () =>
+    {
+        const options:Array<DebugElement> = fixture.debugElement.queryAll(By.css('mat-list-option'));
         expect(options.length).toBe(1);
     });
 
-    it('should render column name in option', () => {
-        const option = fixture.debugElement.query(By.css('mat-list-option')).nativeElement;
+    it('should render column name in option', () =>
+    {
+        const option:any = fixture.debugElement.query(By.css('mat-list-option')).nativeElement;
         expect(option.textContent).toBe(' TestName ');
     });
 });

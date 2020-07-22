@@ -1,8 +1,4 @@
 import {
-    Directive,
-    Input
-} from '@angular/core';
-import {
     ComponentFixture,
     TestBed
 } from '@angular/core/testing';
@@ -12,19 +8,12 @@ import {
     MatDialogRef
 } from '@angular/material/dialog';
 import { TableSettingsComponent } from './table-settings.component';
-import { of } from 'rxjs';
+import {
+    Observable,
+    of
+} from 'rxjs';
 import { TableSettingsDialogComponent } from './dialog/table-settings-dialog.component';
-import { TerraButtonComponent } from '../../buttons/button/terra-button.component';
-import { TooltipDirective } from '../../tooltip/tooltip.directive';
-import { Router } from '@angular/router';
-import { MockRouter } from '../../../testing/mock-router';
-
-@Directive({selector: '[tcTooltip]'})
-class MockTooltipDirective
-{
-    @Input('tcTooltip')
-    public tooltip:string;
-}
+import { MockButtonComponent } from '../../../testing/mock-button';
 
 describe('TableSettingsComponent', () =>
 {
@@ -32,12 +21,11 @@ describe('TableSettingsComponent', () =>
     let fixture:ComponentFixture<TableSettingsComponent>;
 
     let mockDialogRef:Partial<MatDialogRef<any>> = {
-        afterClosed: () => of(['four', 'five'])
+        afterClosed: ():Observable<Array<string>> => of(['four', 'five'])
     };
     let mockDialog:Partial<MatDialog> = {
-        open: () => mockDialogRef as MatDialogRef<any>,
+        open: ():MatDialogRef<any> => mockDialogRef as MatDialogRef<any>
     };
-    let mockRouter:MockRouter = new MockRouter();
 
     beforeEach(() =>
     {
@@ -45,23 +33,15 @@ describe('TableSettingsComponent', () =>
             {
                 declarations: [
                     TableSettingsComponent,
-                    MockTooltipDirective,
-                    TerraButtonComponent,
-                    TooltipDirective
+                    MockButtonComponent
                 ],
                 imports:      [
                     TranslationModule.forRoot({}),
                 ],
-                providers:    [
-                    {
+                providers:    [{
                         provide:  MatDialog,
                         useValue: mockDialog
-                    },
-                    {
-                        provide:  Router,
-                        useValue: mockRouter
-                    }
-                ]
+                }]
             }
         );
     });
