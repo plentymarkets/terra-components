@@ -5,16 +5,22 @@ import {
     Input,
     OnChanges,
     OnDestroy,
+    Optional,
+    Self,
     SimpleChanges
 } from '@angular/core';
 import { MatFormFieldControl } from '@angular/material/form-field';
 import { Time } from '@angular/common';
 import {
+    ControlValueAccessor,
     FormControl,
     FormGroup,
     NgControl
 } from '@angular/forms';
-import { Subject } from 'rxjs';
+import {
+    noop,
+    Subject
+} from 'rxjs';
 import {
     FocusMonitor,
     FocusOrigin
@@ -31,9 +37,11 @@ import { isNullOrUndefined } from 'util';
         useExisting: TimePickerComponent
     }]
 })
-export class TimePickerComponent implements MatFormFieldControl<Time>, OnDestroy, OnChanges
+export class TimePickerComponent implements MatFormFieldControl<Time>, OnDestroy, OnChanges, ControlValueAccessor
 {
     public static nextId:number = 0;
+    private _onChangeCallback:(time:Time) => void = noop;
+    private _onTouchedCallback:() => void = noop;
 
     @Input()
     public get value():Time | null
@@ -46,9 +54,9 @@ export class TimePickerComponent implements MatFormFieldControl<Time>, OnDestroy
         if(!value)
         {
             this._form.reset();
+            return;
         }
-        this._form.setValue(value);
-        this.stateChanges.next();
+        this._form.setValue(value, {emitEvent: false});
     }
 
     public readonly autofilled:boolean;
@@ -79,8 +87,6 @@ export class TimePickerComponent implements MatFormFieldControl<Time>, OnDestroy
     @HostBinding()
     public readonly id:string = `time-picker-${TimePickerComponent.nextId++}`;
 
-    public readonly ngControl:NgControl | null = null;
-
     @Input()
     public placeholder:string;
     @Input()
@@ -96,18 +102,40 @@ export class TimePickerComponent implements MatFormFieldControl<Time>, OnDestroy
 
     public readonly stateChanges:Subject<void> = new Subject();
     public _form:FormGroup = new FormGroup({
-        hours:   new FormControl(),
-        minutes: new FormControl()
+        hours:   new FormControl(null),
+        minutes: new FormControl(null)
     });
     public hours = new Array(24);
     public minutes = new Array(60);
 
-    constructor(private fm:FocusMonitor, private elRef:ElementRef<HTMLElement>)
+    constructor(
+        private fm:FocusMonitor,
+        private elRef:ElementRef<HTMLElement>,
+        @Optional() @Self() public ngControl:NgControl
+    )
     {
+        // Replace the provider from above with this.
+        if (this.ngControl !== null)
+        {
+            // Setting the value accessor directly (instead of using
+            // the providers) to avoid running into a circular import.
+            this.ngControl.valueAccessor = this;
+        }
+
         fm.monitor(elRef.nativeElement, true).subscribe((origin:FocusOrigin) =>
         {
+            if(this.focused && !origin)
+            {
+                this._onTouchedCallback();
+            }
             this.focused = !!origin;
             this.stateChanges.next();
+        });
+
+        this._form.valueChanges.subscribe((value:Time) =>
+        {
+            this.stateChanges.next();
+            this._onChangeCallback(value);
         });
     }
 
@@ -153,6 +181,26 @@ export class TimePickerComponent implements MatFormFieldControl<Time>, OnDestroy
         return value.toString().length === 1
             ? '0' + value
             : value.toString();
+    }
+
+    public registerOnChange(fn:(time:Time) => void):void
+    {
+        this._onChangeCallback = fn;
+    }
+
+    public registerOnTouched(fn:() => void):void
+    {
+        this._onTouchedCallback = fn;
+    }
+
+    public setDisabledState(isDisabled:boolean):void
+    {
+        this.disabled = isDisabled;
+    }
+
+    public writeValue(value:Time):void
+    {
+        this.value = value;
     }
 
 }

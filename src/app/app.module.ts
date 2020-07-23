@@ -15,7 +15,10 @@ import { ShowcaseComponent } from './showcase/showcase.component';
 import { TerraComponentsExamplesModule } from '../lib/terra-components-examples.module';
 import { RouterModule } from '@angular/router';
 import { TimePickerComponent } from './time-picker/time-picker.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import {
+    FormsModule,
+    ReactiveFormsModule
+} from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
@@ -41,7 +44,8 @@ export function initL10n(l10nLoader:L10nLoader):Function
         ReactiveFormsModule,
         MatFormFieldModule,
         MatSelectModule,
-        MatIconModule
+        MatIconModule,
+        FormsModule
     ],
     declarations: [
         AppComponent,
