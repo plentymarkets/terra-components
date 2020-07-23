@@ -6,7 +6,7 @@ import {
 import { TimePickerComponent } from './time-picker.component';
 import { TimePickerModule } from './time-picker.module';
 
-fdescribe('TimePickerComponent', () =>
+describe('TimePickerComponent', () =>
 {
     let component:TimePickerComponent;
     let fixture:ComponentFixture<TimePickerComponent>;
