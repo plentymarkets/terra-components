@@ -136,7 +136,7 @@
 		"ofLabel": "of"
 	},
 	"columnSettings": {
-		"overlayTitle": "Customize Columns",
+		"overlayTitle": "Customize columns",
 		"confirm": "Confirm",
 		"cancel": "Cancel",
 		"tooltip": "Configure columns"
