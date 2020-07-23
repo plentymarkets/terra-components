@@ -1,60 +1,59 @@
-/* Checkbox and text inline and vertically centered */
-.mat-list-option
+mat-dialog-content
 {
-    .mat-list-item-content
+    &.customMinWidth
     {
-        .mat-list-text
-        {
-            user-select: none;
-        }
+        min-width: 220px;
     }
     
-    &.cdk-drag-placeholder
+    /* Checkbox and text inline and vertically centered */
+    .mat-list-option
     {
-        border: 1px dashed;
-        background-color: var(--color-structure-0);
-    }
-    
-    .cdk-drag-handle
-    {
-        position: absolute;
-        right: 10px;
-        top: 15px;
-        cursor: move;
-    }
-    
-    &.cdk-drag-preview
-    {
-        z-index: 1060 !important; // get the preview over the overlay
-        background-color: var(--color-structure-5);;
-        
         .mat-list-item-content
         {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            box-sizing: border-box;
-            padding: 0 16px;
-            position: relative;
-            height: inherit;
-            font-size: 16px;
-            
             .mat-list-text
             {
-                display: flex;
-                flex-direction: column;
-                width: 100%;
-                box-sizing: border-box;
-                overflow: hidden;
-                padding: 0 0 0 16px;
                 user-select: none;
+            }
+        }
+        
+        .cdk-drag-handle
+        {
+            cursor: move;
+            padding: 17px;
+        }
+        
+        &.cdk-drag-preview
+        {
+            z-index: 1060 !important; // get the preview over the overlay
+    
+            .mat-list-item-content
+            {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                box-sizing: border-box;
+                //padding: 0 16px;
+                position: relative;
+                height: inherit;
+                font-size: 16px;
                 
-                > *
+                .mat-list-text
                 {
-                    margin: 0;
-                    padding: 0;
-                    font-weight: 400;
-                    font-size: inherit;
+                    display: flex;
+                    flex-direction: column;
+                    width: 100%;
+                    box-sizing: border-box;
+                    overflow: hidden;
+                    padding: 0 0 0 16px;
+                    user-select: none;
+                    
+                    > *
+                    {
+                        margin: 0;
+                        padding: 0;
+                        font-weight: 400;
+                        font-size: inherit;
+                    }
                 }
             }
         }
