@@ -40,8 +40,11 @@ import { isNullOrUndefined } from 'util';
 export class TimePickerComponent implements MatFormFieldControl<Time>, OnDestroy, OnChanges, ControlValueAccessor
 {
     public static nextId:number = 0;
-    private _onChangeCallback:(time:Time) => void = noop;
-    private _onTouchedCallback:() => void = noop;
+
+    @Input()
+    public placeholder:string;
+    @Input()
+    public required:boolean;
 
     @Input()
     public get value():Time | null
@@ -59,15 +62,11 @@ export class TimePickerComponent implements MatFormFieldControl<Time>, OnDestroy
         this._form.setValue(value, {emitEvent: false});
     }
 
-    public readonly autofilled:boolean;
-    public readonly controlType:string = 'time-picker';
-
     @Input()
     public get disabled():boolean
     {
         return this._form.disabled;
     }
-
     public set disabled(value:boolean)
     {
         const disabled:boolean = coerceBooleanProperty(value);
@@ -81,16 +80,11 @@ export class TimePickerComponent implements MatFormFieldControl<Time>, OnDestroy
         return !v || (isNullOrUndefined(v.hours) && isNullOrUndefined(v.minutes));
     }
 
-    public readonly errorState:boolean = false;
-    public focused:boolean = false;
-
     @HostBinding()
     public readonly id:string = `time-picker-${TimePickerComponent.nextId++}`;
 
-    @Input()
-    public placeholder:string;
-    @Input()
-    public required:boolean;
+    @HostBinding('attr.aria-describedby')
+    public describedBy:string = '';
 
     @HostBinding('class.floating')
     public get shouldLabelFloat():boolean
@@ -98,15 +92,20 @@ export class TimePickerComponent implements MatFormFieldControl<Time>, OnDestroy
         return this.focused || !this.empty;
     }
 
-    @HostBinding('attr.aria-describedby') public describedBy:string = '';
-
+    public focused:boolean = false;
+    public readonly autofilled:boolean;
+    public readonly controlType:string = 'time-picker';
+    public readonly errorState:boolean = false;
     public readonly stateChanges:Subject<void> = new Subject();
     public _form:FormGroup = new FormGroup({
         hours:   new FormControl(null),
         minutes: new FormControl(null)
     });
-    public hours = new Array(24);
-    public minutes = new Array(60);
+    public _hours:Array<undefined> = new Array(24);
+    public _minutes:Array<undefined> = new Array(60);
+
+    private _onChangeCallback:(time:Time) => void = noop;
+    private _onTouchedCallback:() => void = noop;
 
     constructor(
         private fm:FocusMonitor,

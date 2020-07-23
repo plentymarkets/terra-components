@@ -4,7 +4,7 @@
         <mat-select-trigger>
             {{ displayValue(_form.get('hours').value) }}
         </mat-select-trigger>
-        <mat-option *ngFor="let hour of hours; index as index" [value]="index">{{index}}</mat-option>
+        <mat-option *ngFor="let hour of _hours; index as index" [value]="index">{{index}}</mat-option>
     </mat-select>
     <span>:</span>
     <!-- minutes -->
@@ -12,6 +12,6 @@
         <mat-select-trigger>
             {{ displayValue(_form.get('minutes').value) }}
         </mat-select-trigger>
-        <mat-option *ngFor="let minute of minutes; index as index" [value]="index">{{index}}</mat-option>
+        <mat-option *ngFor="let minute of _minutes; index as index" [value]="index">{{index}}</mat-option>
     </mat-select>
 </div>
