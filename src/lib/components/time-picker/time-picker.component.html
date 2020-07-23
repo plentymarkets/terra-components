@@ -14,4 +14,5 @@
         </mat-select-trigger>
         <mat-option *ngFor="let minute of _minutes; index as index" [value]="index">{{index}}</mat-option>
     </mat-select>
+    <span class="icon-close" (click)="_form.reset()"></span>
 </div>

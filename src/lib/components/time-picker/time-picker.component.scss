@@ -16,3 +16,8 @@ mat-select-trigger
 {
     visibility: hidden;
 }
+
+.icon-close:hover
+{
+    color: var(--color-group-alert);
+}
