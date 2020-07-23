@@ -54,7 +54,7 @@ import { CkEditorDirectiveExample } from './editors/ck-editor/example/ck-editor-
 import { TerraFileBrowserComponentExample } from './file-browser/example/terra-file-browser.component.example';
 import { TerraLoadingSpinnerComponentExample } from './loading-spinner/example/terra-loading-spinner.component.example';
 import { TooltipDirectiveExample } from './tooltip/example/tooltip-directive.example';
-import { TimePickerExampleComponent } from './time-picker/time-picker.component.example';
+import { TimePickerExampleComponent } from './time-picker';
 
 export const examples:Array<Type<any>> = [
     TooltipDirectiveExample,
