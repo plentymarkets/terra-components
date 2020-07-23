@@ -1,0 +1,18 @@
+mat-select {
+    border: none;
+    background: none;
+    padding: 0;
+    outline: none;
+    font: inherit;
+    text-align: center;
+}
+
+mat-select-trigger
+{
+    font-weight: 500;
+}
+
+:host::ng-deep .mat-select-arrow
+{
+    visibility: hidden;
+}

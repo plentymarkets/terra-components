@@ -2,6 +2,7 @@ import {
     Component,
     ViewEncapsulation
 } from '@angular/core';
+import { Time } from '@angular/common';
 
 /**
  * @description This is a sandbox app which can be used to test out functionality from the TerraComponents library.
@@ -17,4 +18,14 @@ import {
 })
 export class AppComponent
 {
+    public time:Time;
+
+    constructor()
+    {
+        const now:Date = new Date();
+        this.time = {
+            hours: now.getHours(),
+            minutes: now.getMinutes()
+        };
+    }
 }
