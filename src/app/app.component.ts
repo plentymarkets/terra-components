@@ -17,15 +17,4 @@ import { Time } from '@angular/common';
     encapsulation: ViewEncapsulation.None
 })
 export class AppComponent
-{
-    public time:Time;
-
-    constructor()
-    {
-        const now:Date = new Date();
-        this.time = {
-            hours: now.getHours(),
-            minutes: now.getMinutes()
-        };
-    }
-}
+{}
