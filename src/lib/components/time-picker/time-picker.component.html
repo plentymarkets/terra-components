@@ -6,7 +6,7 @@
         </mat-select-trigger>
         <mat-option *ngFor="let hour of _hours; index as index" [value]="index">{{index}}</mat-option>
     </mat-select>
-    <span>:</span>
+    <span *ngIf="!empty">:</span>
     <!-- minutes -->
     <mat-select class="w-50" formControlName="minutes">
         <mat-select-trigger>
