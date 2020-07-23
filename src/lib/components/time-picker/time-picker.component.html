@@ -2,7 +2,7 @@
     <!-- hours -->
     <mat-select class="w-50" formControlName="hours">
         <mat-select-trigger>
-            {{ displayValue(_form.get('hours').value) }}
+            {{ _form.get('hours').value | timeDigit }}
         </mat-select-trigger>
         <mat-option *ngFor="let hour of _hours; index as index" [value]="index">{{index}}</mat-option>
     </mat-select>
@@ -10,7 +10,7 @@
     <!-- minutes -->
     <mat-select class="w-50" formControlName="minutes">
         <mat-select-trigger>
-            {{ displayValue(_form.get('minutes').value) }}
+            {{ _form.get('minutes').value | timeDigit }}
         </mat-select-trigger>
         <mat-option *ngFor="let minute of _minutes; index as index" [value]="index">{{index}}</mat-option>
     </mat-select>

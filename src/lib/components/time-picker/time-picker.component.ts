@@ -171,17 +171,6 @@ export class TimePickerComponent implements MatFormFieldControl<Time>, OnDestroy
         this.describedBy = ids.join(' ');
     }
 
-    public displayValue(value:number):string
-    {
-        if(isNullOrUndefined(value))
-        {
-            return '';
-        }
-        return value.toString().length === 1
-            ? '0' + value
-            : value.toString();
-    }
-
     public registerOnChange(fn:(time:Time) => void):void
     {
         this._onChangeCallback = fn;
