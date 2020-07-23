@@ -2,7 +2,6 @@ import {
     Component,
     ViewEncapsulation
 } from '@angular/core';
-import { Time } from '@angular/common';
 
 /**
  * @description This is a sandbox app which can be used to test out functionality from the TerraComponents library.
