@@ -21,6 +21,7 @@ import { pipes } from './pipes/pipe-collection';
 import { MatListModule } from '@angular/material/list';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
+import { TimePickerModule } from './components/time-picker';
 
 @NgModule({
     imports:         [
@@ -37,7 +38,8 @@ import { MatButtonModule } from '@angular/material/button';
         TerraInteractModule,
         MatListModule,
         MatDialogModule,
-        MatButtonModule
+        MatButtonModule,
+        TimePickerModule
     ],
     declarations:    [
         ...components,
@@ -50,7 +52,8 @@ import { MatButtonModule } from '@angular/material/button';
     exports:         [
         ...exportedComponents,
         ...directives,
-        ...pipes
+        ...pipes,
+        TimePickerModule
     ]
 })
 export class TerraComponentsModule
