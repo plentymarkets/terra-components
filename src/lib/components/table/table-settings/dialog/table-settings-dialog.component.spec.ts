@@ -76,7 +76,7 @@ describe('TableSettingsDialogComponent', () =>
     it('should render list options', () =>
     {
         const options:Array<DebugElement> = fixture.debugElement.queryAll(By.css('mat-list-option'));
-        expect(options.length).toBe(3);
+        expect(options.length).toBe(component.data.columns.length);
     });
 
     it('should render column names in options', () =>
