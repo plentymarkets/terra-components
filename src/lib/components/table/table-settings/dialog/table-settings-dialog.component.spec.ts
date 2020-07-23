@@ -82,7 +82,8 @@ describe('TableSettingsDialogComponent', () =>
     it('should render column names in options', () =>
     {
         const options:Array<DebugElement> = fixture.debugElement.queryAll(By.css('mat-list-option'));
-        expect(options[0].nativeElement.textContent).toContain('TestName');
+        const optionTexts:Array<string> = options.map((option:DebugElement) => option.nativeElement.textContent);
+        component.data.columns.forEach((column:MatColumnDef) => expect(optionTexts).toContain(column.name));
     });
 
     it('should sort the list of column names by selection and append unselected after selected', () =>
