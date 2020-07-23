@@ -88,6 +88,6 @@ describe('TableSettingsDialogComponent', () =>
 
     it('should sort the list of column names by selection and append unselected after selected', () =>
     {
-        expect(component._columns[2]).toEqual(column1);
+        expect(component._columns).toEqual([column2, column3, column1]);
     });
 });
