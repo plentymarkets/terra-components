@@ -3,7 +3,7 @@
 ### Features
 * **mat-checkbox**
     - add CSS styles for icons as a `<span>` or `<mat-icon>`.
-* **table-column-settings** new component that provides a settings overlay for mat table columns.
+* **table-column-settings** new settings overlay component for sorting and hiding columns (`matColumnDef`) in `mat-table`.
 
 ### Bug Fixes
 * **mat-table** remove cursor pointer from table row unless the row has the routerLink directive
