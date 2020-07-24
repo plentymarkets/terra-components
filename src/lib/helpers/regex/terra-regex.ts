@@ -3,7 +3,13 @@
  */
 export class TerraRegex
 {
+    /**
+     * regular expression for hexadecimal color values
+     */
     public static COLOR_HEX:string = '^#[0-9a-fA-F]{3}(?:[0-9a-fA-F]{3})?$';
+    /**
+     * regular expression for integral numbers
+     */
     public static NUMERIC:string = '^[-+]?\\d+$';
     public static ONLY_STRING_WITH_SLASH_AND_UNDERSCORE:string = '^([a-zA-Z0-9]+)((\\/|_)([a-zA-Z0-9]+))*$';
     public static START_WITH_CAPITAL:string = '^[A-Z][A-Za-z]*';
@@ -14,6 +20,9 @@ export class TerraRegex
     public static ISBN:string = '^(97(8|9))?\\d{9}(\\d|X)$';
     public static UPC:string = '\"^[0-9]{0,12}$\"';
     public static HEX_COLOR_SHORT:string = '^#?([0-9a-f]{3}){1,2}$';
+    /**
+     * regular expression for e-mail addresses
+     */
     public static EMAIL:string = '^[a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@' +
                                    '(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$';
     public static EMAIL_LOCAL_PART:string = '^[a-zA-Z0-9_\\-\\.]*$';

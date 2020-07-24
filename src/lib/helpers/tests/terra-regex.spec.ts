@@ -2,26 +2,22 @@ import { TerraRegex } from '..';
 
 describe('TerraRegex: COLOR_HEX', () =>
 {
-    let regEx:RegExp;
-    beforeAll(() =>
-        {
-            regEx = new RegExp(TerraRegex.COLOR_HEX);
-        }
-    );
-    it('should check an uppercase and lowercase hexadecimal pattern', () =>
+    const regEx:RegExp = new RegExp(TerraRegex.COLOR_HEX);
+
+    it('should match uppercase and lowercase hexadecimal patterns', () =>
     {
         expect(regEx.test('#FF33CC')).toBe(true);
         expect(regEx.test('#ff33cc')).toBe(true);
         expect(regEx.test('#123456')).toBe(true);
     });
 
-    it('should check a pattern with 3 tokens', () =>
+    it('should match a pattern with 3 tokens', () =>
     {
         expect(regEx.test('#F3C')).toBe(true);
         expect(regEx.test('#123')).toBe(true);
     });
 
-    it('should return false when pattern is no valid hexadecimal color', () =>
+    it('must not match patterns with invalid hexadecimal color', () =>
     {
         expect(regEx.test('#FG33CC')).toBe(false);
         expect(regEx.test('#F33CC')).toBe(false);
@@ -31,13 +27,9 @@ describe('TerraRegex: COLOR_HEX', () =>
 
 describe('TerraRegex: NUMERIC', () =>
 {
-    let regEx:RegExp;
-    beforeAll(() =>
-        {
-            regEx = new RegExp(TerraRegex.NUMERIC);
-        }
-    );
-    it('should return true for different numeric values', () =>
+    const regEx:RegExp = new RegExp(TerraRegex.NUMERIC);
+
+    it('should match different numeric values', () =>
     {
         expect(regEx.test('0')).toBe(true);
         expect(regEx.test('-3')).toBe(true);
@@ -45,12 +37,12 @@ describe('TerraRegex: NUMERIC', () =>
         expect(regEx.test('123456')).toBe(true);
     });
 
-    it('should return false for values with exponent', () =>
+    it('should match values with exponent', () =>
     {
         expect(regEx.test('3e30')).toBe(false);
     });
 
-    it('should return false for rational numeric values', () =>
+    it('must not match rational numeric values', () =>
     {
         expect(regEx.test('3.4')).toBe(false);
         expect(regEx.test('3,4')).toBe(false);
@@ -59,14 +51,9 @@ describe('TerraRegex: NUMERIC', () =>
 
 describe('TerraRegex: EMAIL', () =>
 {
-    let regEx:RegExp;
-    beforeAll(() =>
-        {
-            regEx = new RegExp(TerraRegex.EMAIL);
-        }
-    );
+    const regEx:RegExp = new RegExp(TerraRegex.EMAIL);
 
-    it('should return true for email addresses with or without different valid special characters', () =>
+    it('should match email addresses with or without different valid special characters', () =>
     {
         expect(regEx.test('user123@domain.com')).toBe(true);
         expect(regEx.test('123username@domain.com')).toBe(true);
@@ -80,9 +67,16 @@ describe('TerraRegex: EMAIL', () =>
         expect(regEx.test('user_name@my-domain.com')).toBe(true);
     });
 
-    it('should return false for email addresses with different invalid special characters', () =>
+    it('must not match e-mail addresses with different invalid special characters', () =>
     {
         expect(regEx.test('user,name@domain.com')).toBe(false);
         expect(regEx.test('user..name@mydomain.com')).toBe(false);
     });
+});
+
+describe('TerraRegex: URL', () =>
+{
+    const regEx:RegExp = new RegExp(TerraRegex.URL);
+
+    pending();
 });
