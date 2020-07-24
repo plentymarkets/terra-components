@@ -36,8 +36,10 @@ export class TerraRegex
     public static SIGNED_PERCENTAGE:string = '^[+-]?((100[\\.,][0]*)|100|[0-9]{0,2}|[0-9]{1,2}[\\.,][0-9]{0,3})$';
     public static IP_V4:string = '^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$';
     public static INT_PHONE:string = '^\\+?(?:[0-9 \\.-/] ?){5,14}[0-9]$';
-    public static URL:string = '^(http|https|ftp)\\://[a-zA-Z0-9\\-\\.]+\\.[a-zA-Z]{2,3}' +
-                                 '(:[a-zA-Z0-9]*)?/?([a-zA-Z0-9\\-\\._\\?\\,\\]\\,\\[\\,\\\'/\\\\\\+&amp;%\\$#\\=~])*$';
+    /**
+     * regular expression for full urls with given protocol
+     */
+    public static URL:string = '^(http|https|ftp):\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]+)$';
     public static CANONICAL:string = '^(http:\\/\\/|https:\\/\\/)[a-zA-Z0-9]';
     public static COMMA_DEVIDED:string = '^\\d+[\\, 0-9]*$';
     public static UMLAUTS:string = '[öäüÖÄÜ]';

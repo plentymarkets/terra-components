@@ -78,5 +78,21 @@ describe('TerraRegex: URL', () =>
 {
     const regEx:RegExp = new RegExp(TerraRegex.URL);
 
-    pending();
+    it('should match regular urls', () =>
+    {
+        expect(regEx.test('http://domain.com')).toBe(true);
+        expect(regEx.test('http://www.domain.com')).toBe(true);
+        expect(regEx.test('http://www.domain.co.uk')).toBe(true);
+        expect(regEx.test('https://www.test-domain.com')).toBe(true);
+        expect(regEx.test('https://www.test-domain.com/subpage')).toBe(true);
+        expect(regEx.test('https://www.test-domain.com/subpage/test.html')).toBe(true);
+        expect(regEx.test('ftp://www.test-ftp-server.com')).toBe(true);
+    });
+
+    it('must not match invalid urls', () =>
+    {
+        expect(regEx.test('http:/domain.com')).toBe(false);
+        expect(regEx.test('https//www.domain.com')).toBe(false);
+        expect(regEx.test('https://www.domaincom')).toBe(false);
+    });
 });
