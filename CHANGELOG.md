@@ -4,6 +4,7 @@
 * **mat-checkbox**
     - add CSS styles for icons as a `<span>` or `<mat-icon>`.
 * **table-column-settings** new component that provides a settings overlay for mat table columns.
+* **checkbox-group** & **multi-check-box** are deprecated now. Use [angular material's select](https://material.angular.io/components/select/overview#multiple-selection) instead.
 
 ### Bug Fixes
 * **mat-table** remove cursor pointer from table row unless the row has the routerLink directive
