@@ -136,7 +136,7 @@
 		"ofLabel": "von"
 	},
 	"tableSettings": {
-		"overlayTitle": "Spalten individualisieren",
+		"overlayTitle": "Tabelle individualisieren",
 		"confirm": "Bestätigen",
 		"cancel": "Abbrechen",
 		"tooltip": "Spalten konfigurieren"
