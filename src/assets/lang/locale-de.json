@@ -135,7 +135,7 @@
 		"itemsPerPage": "Ergebnisse pro Seite",
 		"ofLabel": "von"
 	},
-	"columnSettings": {
+	"tableSettings": {
 		"overlayTitle": "Spalten individualisieren",
 		"confirm": "Bestätigen",
 		"cancel": "Abbrechen",

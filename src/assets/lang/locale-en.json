@@ -135,8 +135,8 @@
 		"itemsPerPage": "Results per page",
 		"ofLabel": "of"
 	},
-	"columnSettings": {
-		"overlayTitle": "Customise columns",
+	"tableSettings": {
+		"overlayTitle": "Customise table",
 		"confirm": "Confirm",
 		"cancel": "Cancel",
 		"tooltip": "Configure columns"
