@@ -65,7 +65,8 @@ describe('TableSettingsComponent', () =>
                 data:         {
                     columns:         [],
                     selectedColumns: []
-                }
+                },
+                minWidth: 220
             });
     });
 
