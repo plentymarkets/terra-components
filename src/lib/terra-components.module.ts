@@ -21,9 +21,10 @@ import { pipes } from './pipes/pipe-collection';
 import { MatListModule } from '@angular/material/list';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
-    imports:         [
+    imports: [
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
@@ -37,7 +38,8 @@ import { MatButtonModule } from '@angular/material/button';
         TerraInteractModule,
         MatListModule,
         MatDialogModule,
-        MatButtonModule
+        MatButtonModule,
+        DragDropModule
     ],
     declarations:    [
         ...components,
