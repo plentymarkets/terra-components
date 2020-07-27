@@ -1,6 +1,4 @@
 /**
  * @author mfrank
  */
-export interface TerraBaseParameterInterface
-{
-}
+export interface TerraBaseParameterInterface {}
