@@ -89,10 +89,9 @@ describe('TerraRegex: URL', () =>
         expect(regEx.test('ftp://www.test-ftp-server.com')).toBe(true);
     });
 
-    it('must not match invalid urls', () =>
+    it('must not match urls with invalid protocol pattern', () =>
     {
         expect(regEx.test('http:/domain.com')).toBe(false);
         expect(regEx.test('https//www.domain.com')).toBe(false);
-        expect(regEx.test('https://www.domaincom')).toBe(false);
     });
 });

@@ -39,7 +39,7 @@ export class TerraRegex
     /**
      * regular expression for full urls with given protocol
      */
-    public static URL:string = '^(http|https|ftp):\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]+)$';
+    public static URL:string = '(http|https|ftp)\\://[a-zA-Z0-9\\-\\.]+\\.[a-zA-Z]{2,3}(:[a-zA-Z0-9]*)?/?([a-zA-Z0-9\\-\\._\\?\\,\\]\\,\\[\\,\\\'/\\\\\\+&amp;%\\$#\\=~])*$';
     public static CANONICAL:string = '^(http:\\/\\/|https:\\/\\/)[a-zA-Z0-9]';
     public static COMMA_DEVIDED:string = '^\\d+[\\, 0-9]*$';
     public static UMLAUTS:string = '[öäüÖÄÜ]';
