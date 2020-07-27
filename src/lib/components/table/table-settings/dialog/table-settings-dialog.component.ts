@@ -1,7 +1,11 @@
 import {
+    AfterViewInit,
     Component,
     Inject,
-    OnInit
+    OnInit,
+    QueryList,
+    ViewChildren,
+    ViewContainerRef
 } from '@angular/core';
 import { Language } from 'angular-l10n';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -16,12 +20,15 @@ import {
     selector:    'tc-table-settings-dialog',
     templateUrl: './table-settings-dialog.component.html'
 })
-export class TableSettingsDialogComponent implements OnInit
+export class TableSettingsDialogComponent implements OnInit, AfterViewInit
 {
     public _columns:Array<MatColumnDef>;
     public _selectedColumns:Array<string>;
     @Language()
     public _lang:string;
+
+    @ViewChildren('listOption', {read:ViewContainerRef})
+    public listOptions:QueryList<ViewContainerRef>;
 
     constructor(@Inject(MAT_DIALOG_DATA) public data:TableSettingsDialogData)
     {
@@ -57,5 +64,13 @@ export class TableSettingsDialogComponent implements OnInit
         });
 
         return selectedList.concat(unselectedList);
+    }
+
+    public ngAfterViewInit():void
+    {
+        this.listOptions.toArray().forEach((option:ViewContainerRef, index:number) =>
+        {
+            option.createEmbeddedView(this._columns[index].headerCell.template);
+        });
     }
 }
