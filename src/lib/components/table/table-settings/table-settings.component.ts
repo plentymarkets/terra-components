@@ -11,6 +11,7 @@ import {
 } from '@angular/material/dialog';
 import { MatTable } from '@angular/material/table';
 import { TableSettingsDialogComponent } from './dialog/table-settings-dialog.component';
+import { AlternateTextInterface } from './interface/alternate-text.interface';
 
 /**
  * Component that displays the settings for a MatTable
@@ -33,13 +34,13 @@ export class TableSettingsComponent
      * @description The array of columns that were selected.
      */
     @Input()
-    public selectedColumns:Array<string> = [];
+    public selectedColumns:Array<AlternateTextInterface> = [];
 
     /**
      * @description Emits the array of selected columns.
      */
     @Output()
-    public selectedColumnsChange:EventEmitter<Array<string>> = new EventEmitter<Array<string>>();
+    public selectedColumnsChange:EventEmitter<Array<AlternateTextInterface>> = new EventEmitter<Array<AlternateTextInterface>>();
 
     @Language()
     public _lang:string;
@@ -65,7 +66,7 @@ export class TableSettingsComponent
                 minWidth: 220
             });
 
-        dialogRef.afterClosed().subscribe((result:Array<string>) =>
+        dialogRef.afterClosed().subscribe((result:Array<AlternateTextInterface>) =>
         {
             if(result)
             {
