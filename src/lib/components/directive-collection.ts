@@ -7,7 +7,6 @@ import { FormEntryContainerDirective } from './forms/form/form-entry/form-entry-
 import { CKEditorDirective } from './editors/ck-editor/ck-editor.directive';
 import { TooltipDirective } from './tooltip/tooltip.directive';
 import { SelectSortDirective } from './forms/select-box/directive/select-sort.directive';
-import { TerraAlternateTextDirective } from './table/directives/terra-alternate-text.directive';
 
 export const directives:Array<Type<any>> = [
     TerraDataTableContextMenuDirective,
@@ -17,6 +16,5 @@ export const directives:Array<Type<any>> = [
     FormEntryContainerDirective,
     CKEditorDirective,
     TooltipDirective,
-    SelectSortDirective,
-    TerraAlternateTextDirective
+    SelectSortDirective
 ];
