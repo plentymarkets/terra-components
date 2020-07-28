@@ -61,7 +61,8 @@ export class TableSettingsComponent
                 data:         {
                     columns:         this.table ? this.table._contentColumnDefs.toArray() : [],
                     selectedColumns: this.selectedColumns
-                }
+                },
+                minWidth: 220
             });
 
         dialogRef.afterClosed().subscribe((result:Array<string>) =>
