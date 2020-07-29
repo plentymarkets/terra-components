@@ -119,7 +119,7 @@ function runCkeckboxMigration(tree:Tree, tsconfigPath:string, basePath:string):v
         addModuleToImports(tree, fileName, moduleFileNames);
     });
 
-    logger.info( fileNamesOfMigratedTemplates.length + ' entities have been migrated.');
+    logger.info( fileNamesOfMigratedTemplates.length + ' entities based on config ' + tsconfigPath + ' have been migrated.');
 }
 
 /**
@@ -206,7 +206,7 @@ function addModuleToImports(tree:Tree, fileName:string, moduleFileNames:Array<st
     }
     else
     {
-        logger.info('No referred module for ' + fileName + ' found. Import  `MatCheckboxModule` and `MatIconModule` manually if needed.');
+        logger.warn('No referred module for ' + fileName + ' found. Import  MatCheckboxModule and MatIconModule manually if needed.');
     }
 }
 
