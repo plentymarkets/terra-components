@@ -12,6 +12,7 @@ import * as ts from 'typescript';
 import { relative } from 'path';
 import { oneLine } from 'common-tags';
 import { addModuleImportToModule } from '@angular/cdk/schematics';
+import { Schema as MigrateCheckboxSchema } from './schema';
 
 /**
  * Interface that represents the bounding of a terra-checkbox.
@@ -32,7 +33,7 @@ let logger:LoggerApi;
 
 // You don't have to export the function as default. You can also have more than one rule factory
 // per file.
-export function checkboxMigration(_options:any):Rule
+export function checkboxMigration(_options:MigrateCheckboxSchema):Rule
 {
     return (tree:Tree, context:SchematicContext):void =>
     {
@@ -40,6 +41,7 @@ export function checkboxMigration(_options:any):Rule
         const basePath:string = process.cwd();
         const allPaths:Array<string> = [...buildPaths,
                                         ...testPaths];
+        const pathToMigrate:string = _options.path as string;
 
         logger = context.logger;
 
@@ -49,9 +51,26 @@ export function checkboxMigration(_options:any):Rule
                 'Could not find any tsconfig file. Cannot migrate any checkbox entities.');
         }
 
-        for(const tsconfigPath of allPaths)
+        if(pathToMigrate)
         {
-            runCkeckboxMigration(tree, tsconfigPath, basePath);
+            if(tree.getDir(pathToMigrate))
+            {
+                for(const tsconfigPath of allPaths)
+                {
+                    runCkeckboxMigration(tree, tsconfigPath, basePath);
+                }
+            }
+            else
+            {
+                throw new SchematicsException('Could not find path. Please try again.');
+            }
+        }
+        else
+        {
+            for(const tsconfigPath of allPaths)
+            {
+                runCkeckboxMigration(tree, tsconfigPath, basePath);
+            }
         }
     };
 }
@@ -121,7 +140,7 @@ function runCkeckboxMigration(tree:Tree, tsconfigPath:string, basePath:string):v
 
     if(fileNamesOfMigratedTemplates.length > 0)
     {
-        logger.info( fileNamesOfMigratedTemplates.length + ' entities based on config ' + tsconfigPath + ' have been migrated.');
+        logger.info(fileNamesOfMigratedTemplates.length + ' entities based on config ' + tsconfigPath + ' have been migrated.');
     }
 }
 

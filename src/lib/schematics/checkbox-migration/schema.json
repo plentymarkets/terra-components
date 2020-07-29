@@ -1,0 +1,12 @@
+{
+	"$schema": "http://json-schema.org/schema",
+	"id": "MigrateCheckboxSchematic",
+	"title": "Migration Schematic for TerraCheckbox to MatCheckbox",
+	"type": "object",
+	"properties": {
+		"path": {
+			"type": "string",
+			"description": "The path to migrate all entities in the directory and subdirectories."
+		}
+	}
+}
