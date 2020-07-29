@@ -41,7 +41,7 @@ export function checkboxMigration(_options:MigrateCheckboxSchema):Rule
         const basePath:string = process.cwd();
         const allPaths:Array<string> = [...buildPaths,
                                         ...testPaths];
-        const pathToMigrate:string = _options.path as string;
+        const pathToMigrate:string = _options.modulePath as string;
 
         logger = context.logger;
 
@@ -53,11 +53,11 @@ export function checkboxMigration(_options:MigrateCheckboxSchema):Rule
 
         if(pathToMigrate)
         {
-            if(tree.getDir(pathToMigrate))
+            if(tree.exists(pathToMigrate))
             {
                 for(const tsconfigPath of allPaths)
                 {
-                    runCkeckboxMigration(tree, tsconfigPath, basePath);
+                    runCkeckboxMigration(tree, tsconfigPath, basePath, pathToMigrate.slice(0, pathToMigrate.lastIndexOf('/')));
                 }
             }
             else
@@ -75,12 +75,16 @@ export function checkboxMigration(_options:MigrateCheckboxSchema):Rule
     };
 }
 
-function runCkeckboxMigration(tree:Tree, tsconfigPath:string, basePath:string):void
+function runCkeckboxMigration(tree:Tree, tsconfigPath:string, basePath:string, pathToMigrate?:string):void
 {
     const program:ts.Program = createMigrationProgram(tree, tsconfigPath, basePath).program;
     // const typeChecker:ts.TypeChecker = program.getTypeChecker();
-    const sourceFiles:Array<ts.SourceFile> = program.getSourceFiles().filter(
+    let sourceFiles:Array<ts.SourceFile> = program.getSourceFiles().filter(
         (f:ts.SourceFile) => !f.isDeclarationFile && !program.isSourceFileFromExternalLibrary(f));
+    if(pathToMigrate)
+    {
+        sourceFiles = sourceFiles.filter((f:ts.SourceFile) => relative(basePath, f.fileName).startsWith(pathToMigrate));
+    }
     // const printer = ts.createPrinter();
     let fileNamesOfMigratedTemplates:Array<string> = [];
     let moduleFileNames:Array<string> = [];

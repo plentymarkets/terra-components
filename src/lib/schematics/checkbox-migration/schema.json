@@ -4,9 +4,10 @@
 	"title": "Migration Schematic for TerraCheckbox to MatCheckbox",
 	"type": "object",
 	"properties": {
-		"path": {
+		"modulePath": {
 			"type": "string",
-			"description": "The path to migrate all entities in the directory and subdirectories."
+			"format": "path",
+			"description": "The module's path to migrate all entities in the directory and subdirectories."
 		}
 	}
 }
