@@ -46,12 +46,11 @@ export function checkboxMigration(_options:any):Rule
         if(!allPaths.length)
         {
             throw new SchematicsException(
-                'Could not find any tsconfig file. Cannot migrate dynamic queries.');
+                'Could not find any tsconfig file. Cannot migrate any checkbox entities.');
         }
 
         for(const tsconfigPath of allPaths)
         {
-            logger.info(tsconfigPath);
             runCkeckboxMigration(tree, tsconfigPath, basePath);
         }
     };
@@ -119,6 +118,8 @@ function runCkeckboxMigration(tree:Tree, tsconfigPath:string, basePath:string):v
         // add MatCheckboxModule to referred module
         addModuleToImports(tree, fileName, moduleFileNames);
     });
+
+    logger.info( fileNamesOfMigratedTemplates.length + ' entities have been migrated.');
 }
 
 /**
@@ -202,6 +203,10 @@ function addModuleToImports(tree:Tree, fileName:string, moduleFileNames:Array<st
     {
         addModuleImportToModule(tree, referredModule, 'MatCheckboxModule', '@angular/material/checkbox');
         addModuleImportToModule(tree, referredModule, 'MatIconModule', '@angular/material/icon');
+    }
+    else
+    {
+        logger.info('No referred module for ' + fileName + ' found. Import  `MatCheckboxModule` and `MatIconModule` manually if needed.');
     }
 }
 
