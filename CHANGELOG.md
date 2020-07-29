@@ -15,7 +15,7 @@
 ### Features
 * **schematics** 
     - basic support for `ng add`.
-    - migration from `terra-checkbox` to `mat-checkbox` (no support for `ViewChild` and `ViewChildren` Decorators and custom styling)
+    - migration from `terra-checkbox` to `mat-checkbox`. Use parameter `--modulePath` to migrate entities only for the dedicated module (no support for `ViewChild` and `ViewChildren` Decorators and custom styling)
 * **sort-helper** new class that provides functionality to sort lists of numbers, strings and objects.
 * **select-sort**
     - new pipe for sorting lists of available options for a select box
