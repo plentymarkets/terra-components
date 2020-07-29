@@ -18,9 +18,13 @@ import { TerraInteractModule } from './components/interactables/interact.module'
 import { QuillModule } from 'ngx-quill';
 import { CKEditorModule } from 'ckeditor4-angular';
 import { pipes } from './pipes/pipe-collection';
+import { MatListModule } from '@angular/material/list';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
-    imports:         [
+    imports: [
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
@@ -31,7 +35,11 @@ import { pipes } from './pipes/pipe-collection';
         AceEditorModule,
         QuillModule,
         CKEditorModule,
-        TerraInteractModule
+        TerraInteractModule,
+        MatListModule,
+        MatDialogModule,
+        MatButtonModule,
+        DragDropModule
     ],
     declarations:    [
         ...components,

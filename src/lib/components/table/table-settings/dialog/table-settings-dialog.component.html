@@ -1,0 +1,19 @@
+<h2 mat-dialog-title>{{ 'tableSettings.overlayTitle' | translate:_lang}}</h2>
+<mat-dialog-content class="table-settings-dialog-content">
+    <mat-selection-list (selectionChange)="_columns = _sort(_columns)" [(ngModel)]="_selectedColumns" cdkDropList (cdkDropListDropped)="_onDrop($event)" cdkDropListOrientation="vertical" cdkDropListLockAxis="y">
+        <mat-list-option #option *ngFor="let column of _columns" [value]="column.name" checkboxPosition="before" cdkDrag [cdkDragDisabled]="!option.selected">
+            <div class="d-flex align-items-center justify-content-between">
+                <span>{{column.name}}</span>
+                <span *ngIf="option.selected" class="icon-drag_sort_handle" cdkDragHandle></span>
+            </div>
+        </mat-list-option>
+    </mat-selection-list>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <terra-button [inputCaption]="'tableSettings.cancel' | translate:_lang"
+                  mat-dialog-close>
+    </terra-button>
+    <terra-button [inputCaption]="'tableSettings.confirm' | translate:_lang"
+                  [mat-dialog-close]="this._selectedColumns">
+    </terra-button>
+</mat-dialog-actions>
