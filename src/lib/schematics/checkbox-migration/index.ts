@@ -119,7 +119,10 @@ function runCkeckboxMigration(tree:Tree, tsconfigPath:string, basePath:string):v
         addModuleToImports(tree, fileName, moduleFileNames);
     });
 
-    logger.info( fileNamesOfMigratedTemplates.length + ' entities based on config ' + tsconfigPath + ' have been migrated.');
+    if(fileNamesOfMigratedTemplates.length > 0)
+    {
+        logger.info( fileNamesOfMigratedTemplates.length + ' entities based on config ' + tsconfigPath + ' have been migrated.');
+    }
 }
 
 /**
