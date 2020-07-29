@@ -1,7 +1,7 @@
-import { AlternateTextInterface } from './alternate-text.interface';
+import { ColumnInterface } from './column.interface';
 
 export interface TableSettingsDialogData
 {
-    columns:Array<AlternateTextInterface>;
+    columns:Array<ColumnInterface>;
     selectedColumns:Array<string>;
 }
