@@ -28,19 +28,19 @@ export class TableSettingsComponent
      * @description The table itself.
      */
     @Input()
-    public table:MatTable<any>;
+    public table:Array<AlternateTextInterface>;
 
     /**
      * @description The array of columns that were selected.
      */
     @Input()
-    public selectedColumns:Array<AlternateTextInterface> = [];
+    public selectedColumns:Array<string> = [];
 
     /**
      * @description Emits the array of selected columns.
      */
     @Output()
-    public selectedColumnsChange:EventEmitter<Array<AlternateTextInterface>> = new EventEmitter<Array<AlternateTextInterface>>();
+    public selectedColumnsChange:EventEmitter<Array<string>> = new EventEmitter<Array<string>>();
 
     @Language()
     public _lang:string;
@@ -60,13 +60,13 @@ export class TableSettingsComponent
                 width:        'auto',
                 disableClose: true,
                 data:         {
-                    columns:         this.table ? this.table._contentColumnDefs.toArray() : [],
+                    columns:         this.table || [],
                     selectedColumns: this.selectedColumns
                 },
                 minWidth: 220
             });
 
-        dialogRef.afterClosed().subscribe((result:Array<AlternateTextInterface>) =>
+        dialogRef.afterClosed().subscribe((result:Array<string>) =>
         {
             if(result)
             {

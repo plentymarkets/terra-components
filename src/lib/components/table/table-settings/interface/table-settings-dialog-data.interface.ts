@@ -1,7 +1,7 @@
-import { MatColumnDef } from '@angular/material/table';
+import { AlternateTextInterface } from './alternate-text.interface';
 
 export interface TableSettingsDialogData
 {
-    columns:Array<MatColumnDef>;
+    columns:Array<AlternateTextInterface>;
     selectedColumns:Array<string>;
 }
