@@ -11,6 +11,7 @@ import {
     CdkDragDrop,
     moveItemInArray
 } from '@angular/cdk/drag-drop';
+import { ColumnInterface } from '../interface/column.interface';
 
 @Component({
     selector:    'tc-table-settings-dialog',
@@ -18,8 +19,9 @@ import {
 })
 export class TableSettingsDialogComponent implements OnInit
 {
-    public _columns:Array<MatColumnDef>;
+    public _columns:Array<ColumnInterface>;
     public _selectedColumns:Array<string>;
+
     @Language()
     public _lang:string;
 
@@ -36,7 +38,6 @@ export class TableSettingsDialogComponent implements OnInit
         this._columns = this._sort(this.data.columns);
     }
 
-
     public _onDrop(event:CdkDragDrop<Array<MatColumnDef>>):void
     {
         moveItemInArray(this._selectedColumns, event.previousIndex, Math.min(event.currentIndex, this._selectedColumns.length));
@@ -44,18 +45,18 @@ export class TableSettingsDialogComponent implements OnInit
         this._columns = this._sort(this._columns);
     }
 
-    public _sort(cols:Array<MatColumnDef>):Array<MatColumnDef>
+    public _sort(cols:Array<ColumnInterface>):Array<ColumnInterface>
     {
-        let selectedList:Array<MatColumnDef> = this._selectedColumns.map((key:string) =>
-        {
-            return cols.find((col:MatColumnDef) => col.name === key);
-        });
+       let selectedList:Array<ColumnInterface> = this._selectedColumns.map((key:string) =>
+       {
+           return cols.find((col:ColumnInterface) => col.key === key);
+       });
 
-        let unselectedList:Array<MatColumnDef> = cols.filter((col:MatColumnDef) =>
-        {
-            return !this._selectedColumns.includes(col.name);
-        });
+       let unselectedList:Array<ColumnInterface> = cols.filter((col:ColumnInterface) =>
+       {
+           return !this._selectedColumns.includes(col.key);
+       });
 
-        return selectedList.concat(unselectedList);
+       return selectedList.concat(unselectedList);
     }
 }
