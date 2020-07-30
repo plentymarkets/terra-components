@@ -16,6 +16,7 @@ import { TerraMultiCheckBoxValueInterface } from './data/terra-multi-check-box-v
 import { throttleTime } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
+/** @deprecated since v5. Use angular material's [select](https://material.angular.io/components/select/overview#multiple-selection) instead. */
 @Component({
     selector:  'terra-multi-check-box',
     styleUrls: ['./terra-multi-check-box.component.scss'],
