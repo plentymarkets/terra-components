@@ -40,8 +40,6 @@ export class TableSettingsDialogComponent implements OnInit
     {
         this._selectedColumns = this.data.selectedColumns.slice();
         this._columns = this._sort(this.data.columns);
-
-        console.log(this._columns);
     }
 
     public _onDrop(event:CdkDragDrop<Array<MatColumnDef>>):void
