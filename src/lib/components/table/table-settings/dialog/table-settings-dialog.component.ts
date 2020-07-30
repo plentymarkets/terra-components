@@ -1,11 +1,7 @@
 import {
-    AfterViewInit,
     Component,
     Inject,
-    OnInit,
-    QueryList,
-    ViewChildren,
-    ViewContainerRef
+    OnInit
 } from '@angular/core';
 import { Language } from 'angular-l10n';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
