@@ -6,6 +6,7 @@
 * **table-column-settings** new component that provides a settings overlay for mat table columns.
 * **tc-table-settings-dialog** new settings overlay component for sorting and hiding columns (`matColumnDef`) in `mat-table`.
 * **checkbox-group** & **multi-check-box** are deprecated now. Use [angular material's select](https://material.angular.io/components/select/overview#multiple-selection) instead.
+* **schematics** migration from `terra-checkbox` to `mat-checkbox`. Use parameter `--modulePath` to migrate entities only for the dedicated module (no support for `ViewChild` and `ViewChildren` Decorators and custom styling)
 
 ### Bug Fixes
 * **mat-table** remove cursor pointer from table row unless the row has the routerLink directive
@@ -13,9 +14,7 @@
 # 5.5.0 (09.07.2020)
 
 ### Features
-* **schematics** 
-    - basic support for `ng add`.
-    - migration from `terra-checkbox` to `mat-checkbox`. Use parameter `--modulePath` to migrate entities only for the dedicated module (no support for `ViewChild` and `ViewChildren` Decorators and custom styling)
+* **schematics** basic support for `ng add`.
 * **sort-helper** new class that provides functionality to sort lists of numbers, strings and objects.
 * **select-sort**
     - new pipe for sorting lists of available options for a select box
