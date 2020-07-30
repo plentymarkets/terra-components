@@ -7,7 +7,8 @@
     },
     "checkbox-migration": {
       "description": "A blank schematic.",
-      "factory": "./checkbox-migration/index#checkboxMigration"
+      "factory": "./checkbox-migration/index#checkboxMigration",
+      "schema": "./checkbox-migration/schema.json"
     }
   }
 }

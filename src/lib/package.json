@@ -19,7 +19,8 @@
 	"scripts": {
 		"build": "../../node_modules/.bin/tsc -p tsconfig.schematics.json",
 		"copy:collection": "cp schematics/collection.json ../../dist/schematics/collection.json",
-		"postbuild": "npm run copy:collection"
+		"copy:schema": "cp schematics/checkbox-migration/schema.json ../../dist/schematics/checkbox-migration/schema.json",
+		"postbuild": "npm run copy:collection && npm run copy:schema"
 	},
 	"peerDependencies": {
 		"@angular/animations": "8.x",
