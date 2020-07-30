@@ -38,7 +38,7 @@ export class TerraCodeEditorComponent extends TerraBaseEditorComponent implement
     @Language()
     public _lang: string;
 
-    public _viewConfirmation: { primaryButton: TerraButtonInterface; secondaryButton: TerraButtonInterface };
+    public _viewConfirmation: { primaryButton: TerraButtonInterface; secondaryButton: TerraButtonInterface; };
 
     public _isValidMarkup: boolean = true;
 
