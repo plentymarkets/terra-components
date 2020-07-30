@@ -1,6 +1,7 @@
 # 5.6.0 (XX.XX.XXXX)
 
 ### Features
+* **test** delete this line before merge
 * **mat-checkbox**
     - add CSS styles for icons as a `<span>` or `<mat-icon>`.
 * **table-column-settings** new component that provides a settings overlay for mat table columns as well as a possibility to add a text that differs from the header element/text.
