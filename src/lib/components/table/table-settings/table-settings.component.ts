@@ -9,8 +9,8 @@ import {
     MatDialog,
     MatDialogRef
 } from '@angular/material/dialog';
-import { MatTable } from '@angular/material/table';
 import { TableSettingsDialogComponent } from './dialog/table-settings-dialog.component';
+import { ColumnInterface } from './interface/column.interface';
 
 /**
  * Component that displays the settings for a MatTable
@@ -27,7 +27,7 @@ export class TableSettingsComponent
      * @description The table itself.
      */
     @Input()
-    public table:MatTable<any>;
+    public columns:Array<ColumnInterface>;
 
     /**
      * @description The array of columns that were selected.
@@ -59,7 +59,7 @@ export class TableSettingsComponent
                 width:        'auto',
                 disableClose: true,
                 data:         {
-                    columns:         this.table ? this.table._contentColumnDefs.toArray() : [],
+                    columns:         this.columns || [],
                     selectedColumns: this.selectedColumns
                 },
                 minWidth: 220

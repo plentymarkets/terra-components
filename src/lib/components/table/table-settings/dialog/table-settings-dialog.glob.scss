@@ -3,6 +3,19 @@
     /* Checkbox and text inline and vertically centered */
     .mat-list-option
     {
+        .mat-header-cell
+        {
+            border-bottom: none;
+            font-size: var(--font-size-4);
+            
+                pointer-events: none;
+        }
+    
+        .mat-sort-header-arrow
+        {
+            display: none;
+        }
+        
         .mat-list-item-content
         {
             .mat-list-text
