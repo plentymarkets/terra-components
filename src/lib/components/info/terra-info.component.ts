@@ -1,27 +1,22 @@
-import {
-    Component,
-    Input
-} from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { TerraPlacementEnum } from '../../helpers/enums/terra-placement.enum';
 
 @Component({
-    selector:    'terra-info',
-    styleUrls:   ['./terra-info.component.scss'],
+    selector: 'terra-info',
+    styleUrls: ['./terra-info.component.scss'],
     templateUrl: './terra-info.component.html'
 })
-export class TerraInfoComponent
-{
+export class TerraInfoComponent {
     @Input()
-    public textPlacement:TerraPlacementEnum;
+    public textPlacement: TerraPlacementEnum;
 
     @Input()
-    public isDisabled:boolean;
+    public isDisabled: boolean;
 
     @Input()
-    public text:string;
+    public text: string;
 
-    constructor()
-    {
+    constructor() {
         this.textPlacement = TerraPlacementEnum.TOP;
     }
 }
