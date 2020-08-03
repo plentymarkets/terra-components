@@ -1,9 +1,4 @@
-import {
-    AfterViewInit,
-    Component,
-    Input,
-    ViewChild
-} from '@angular/core';
+import { AfterViewInit, Component, Input, ViewChild } from '@angular/core';
 import { AceEditorComponent } from 'ng2-ace-editor';
 import 'brace';
 import 'brace/theme/chrome';
@@ -24,63 +19,55 @@ import { TerraSyntaxEditorData } from './data/terra-syntax-editor.data';
  * @deprecated Use [ckEditor](https://github.com/ckeditor/ckeditor4-angular) instead.
  */
 @Component({
-    selector:    'terra-syntax-editor',
+    selector: 'terra-syntax-editor',
     templateUrl: './terra-syntax-editor.component.html'
 })
-export class TerraSyntaxEditorComponent implements AfterViewInit
-{
+export class TerraSyntaxEditorComponent implements AfterViewInit {
     @ViewChild('aceEditor', { static: true })
-    public editor:AceEditorComponent;
+    public editor: AceEditorComponent;
 
     @Input()
-    public inputReadOnly:boolean;
+    public inputReadOnly: boolean;
 
     @Input()
-    public inputOptions:Object;
+    public inputOptions: Object;
 
-    private _inputEditorMode:string;
-    private _inputText:string;
+    private _inputEditorMode: string;
+    private _inputText: string;
 
-    constructor()
-    {
+    constructor() {
         this.inputOptions = {
             maxLines: 10000
         };
     }
 
-    public ngAfterViewInit():void
-    {
+    public ngAfterViewInit(): void {
         this.editor.getEditor().clearSelection();
         this.editor.getEditor().$blockScrolling = Infinity;
         this.editor.getEditor().setShowPrintMargin(false);
     }
 
-    public setAnnotationList(list:Array<TerraSyntaxEditorData>):void
-    {
+    public setAnnotationList(list: Array<TerraSyntaxEditorData>): void {
         this.editor.getEditor().getSession().setAnnotations(list);
     }
 
     @Input()
-    public set inputEditorMode(value:string)
-    {
+    public set inputEditorMode(value: string) {
         this._inputEditorMode = value;
         this.editor.setMode(value);
     }
 
-    public get inputEditorMode():string
-    {
+    public get inputEditorMode(): string {
         return this._inputEditorMode;
     }
 
     @Input()
-    public set inputText(value:string)
-    {
+    public set inputText(value: string) {
         this._inputText = value;
         this.editor.setText(value);
     }
 
-    public get inputText():string
-    {
+    public get inputText(): string {
         return this._inputText;
     }
 }
