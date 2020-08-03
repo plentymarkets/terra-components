@@ -3,32 +3,30 @@ import { TerraInputComponent } from '../terra-input.component';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TerraRegex } from '../../../../helpers/regex/terra-regex';
 
-let nextId:number = 0;
+let nextId: number = 0;
 
 @Component({
-    selector:  'terra-number-input',
+    selector: 'terra-number-input',
     styleUrls: ['./terra-number-input.component.scss'],
     templateUrl: './terra-number-input.component.html',
     providers: [
         {
-            provide:     NG_VALUE_ACCESSOR,
+            provide: NG_VALUE_ACCESSOR,
             useExisting: TerraNumberInputComponent,
-            multi:       true
+            multi: true
         }
     ]
 })
 /**
  * @deprecated since v4. Use '<mat-input>' instead. See {@link https://material.angular.io/components/input/overview}
  */
-export class TerraNumberInputComponent extends TerraInputComponent
-{
+export class TerraNumberInputComponent extends TerraInputComponent {
     /**
      * @description a unique string identifier for the specific input instance.
      */
-    public _id:string;
+    public _id: string;
 
-    constructor()
-    {
+    constructor() {
         super(TerraRegex.NUMERIC);
 
         // generate the id of the input instance
@@ -38,11 +36,9 @@ export class TerraNumberInputComponent extends TerraInputComponent
     /**
      * Set the focus on the native input element.
      */
-    public focusNativeInput():void
-    {
-        setTimeout(() =>
-        {
-            let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this._id);
+    public focusNativeInput(): void {
+        setTimeout(() => {
+            let input: HTMLInputElement = <HTMLInputElement>document.getElementById(this._id);
             input.focus();
         });
     }
@@ -50,11 +46,9 @@ export class TerraNumberInputComponent extends TerraInputComponent
     /**
      * Select the content of the native input element.
      */
-    public selectNativeInput():void
-    {
-        setTimeout(() =>
-        {
-            let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this._id);
+    public selectNativeInput(): void {
+        setTimeout(() => {
+            let input: HTMLInputElement = <HTMLInputElement>document.getElementById(this._id);
             input.select();
         });
     }
