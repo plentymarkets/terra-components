@@ -10,6 +10,7 @@ import { TerraMultiCheckBoxValueInterface } from '../multi-check-box/data/terra-
 import { isNullOrUndefined } from 'util';
 import { noop } from 'rxjs';
 
+/** @deprecated since v5. Use angular material's [select](https://material.angular.io/components/select/overview#multiple-selection) instead. */
 @Component({
     selector:    'tc-checkbox-group',
     templateUrl: './checkbox-group.component.html',

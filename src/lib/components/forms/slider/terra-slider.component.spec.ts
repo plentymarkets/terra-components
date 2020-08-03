@@ -1,5 +1,5 @@
 import { TerraSliderComponent } from './terra-slider.component';
-import { async, ComponentFixture, fakeAsync, flush, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, flush, TestBed } from '@angular/core/testing';
 import { TerraDraggableDirective } from '../../interactables/draggable.directive';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
