@@ -5,8 +5,8 @@
       "description": "Add this library to the project.",
       "factory": "./ng-add/index#ngAdd"
     },
-    "checkbox-migration": {
-      "description": "A blank schematic.",
+    "ng-update": {
+      "description": "Migrates TerraCheckbox to MatCheckbox.",
       "factory": "./ng-update/checkbox-migration/index#checkboxMigration",
       "schema": "./ng-update/checkbox-migration/schema.json"
     }
