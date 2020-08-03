@@ -1,54 +1,41 @@
-import {
-    Component,
-    DebugElement
-} from '@angular/core';
-import {
-    async,
-    ComponentFixture,
-    TestBed
-} from '@angular/core/testing';
+import { Component, DebugElement } from '@angular/core';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { TerraCardComponent } from './terra-card.component';
 import { By } from '@angular/platform-browser';
 
 @Component({
     template: `
-                  <terra-card>
-                      <div terra-card-header>
-                          <p>card header</p>
-                      </div>
-                      <div terra-card-content>
-                          <p>card content</p>
-                      </div>
-                      <div terra-card-footer>
-                          <p>card footer</p>
-                      </div>
-                  </terra-card>
-              `
+        <terra-card>
+            <div terra-card-header>
+                <p>card header</p>
+            </div>
+            <div terra-card-content>
+                <p>card content</p>
+            </div>
+            <div terra-card-footer>
+                <p>card footer</p>
+            </div>
+        </terra-card>
+    `
 })
-class CardTestComponent
-{
-}
+class CardTestComponent {}
 
-describe(`TerraCardComponent:`, () =>
-{
-    let component:CardTestComponent;
-    let cardComponent:TerraCardComponent;
-    let fixture:ComponentFixture<CardTestComponent>;
-    let debugElement:DebugElement;
+describe(`TerraCardComponent:`, () => {
+    let component: CardTestComponent;
+    let cardComponent: TerraCardComponent;
+    let fixture: ComponentFixture<CardTestComponent>;
+    let debugElement: DebugElement;
 
-    const expectedImagePath:string = 'app/assets/images/logo_plenty.svg';
-    const expectedIcon:string = 'icon-save';
+    const expectedImagePath: string = 'app/assets/images/logo_plenty.svg';
+    const expectedIcon: string = 'icon-save';
 
-    beforeEach(() =>
-    {
+    beforeEach(() => {
         TestBed.configureTestingModule({
-            declarations: [TerraCardComponent,
-                           CardTestComponent]
+            declarations: [TerraCardComponent, CardTestComponent]
         });
     });
 
-    beforeEach(() =>
-    {
+    beforeEach(() => {
         fixture = TestBed.createComponent(CardTestComponent);
         component = fixture.componentInstance;
         cardComponent = fixture.debugElement.query(By.css('terra-card')).componentInstance;
@@ -56,32 +43,26 @@ describe(`TerraCardComponent:`, () =>
         debugElement = fixture.debugElement;
     });
 
-    it('should create', () =>
-    {
+    it('should create', () => {
         expect(component).toBeTruthy();
     });
 
-    it('should initialize its inputs', () =>
-    {
+    it('should initialize its inputs', () => {
         expect(cardComponent.inputIsSelected).toBe(false);
         expect(cardComponent.inputImagePath).toBeUndefined();
         expect(cardComponent.inputPlaceholderIcon).toBeUndefined();
     });
 
-    describe('in footer content section', () =>
-    {
-        let footerElement:DebugElement;
+    describe('in footer content section', () => {
+        let footerElement: DebugElement;
 
-        beforeEach(() =>
-            {
-                footerElement = debugElement.query(By.css('div.card-footer'));
-            }
-        );
+        beforeEach(() => {
+            footerElement = debugElement.query(By.css('div.card-footer'));
+        });
 
-        it(`should <div> for footer be shown if content is given`, () =>
-        {
-            let ngContentElement:DebugElement = footerElement.query(By.css('p'));
-            let footerContentElement:HTMLElement = ngContentElement.nativeElement;
+        it(`should <div> for footer be shown if content is given`, () => {
+            let ngContentElement: DebugElement = footerElement.query(By.css('p'));
+            let footerContentElement: HTMLElement = ngContentElement.nativeElement;
             expect(footerElement).toBeTruthy();
             expect(cardComponent._viewChildFooter).toBeTruthy();
             expect(cardComponent._viewChildFooter.nativeElement.children.length).toBeGreaterThan(0);
@@ -89,9 +70,8 @@ describe(`TerraCardComponent:`, () =>
             expect(footerElement.nativeElement.hidden).toBe(false);
         });
 
-        it('should set class selected depending on #inputIsSelected', () =>
-        {
-            let terraCardElement:DebugElement = debugElement.query(By.css('div.terra-card'));
+        it('should set class selected depending on #inputIsSelected', () => {
+            let terraCardElement: DebugElement = debugElement.query(By.css('div.terra-card'));
             expect(footerElement.classes['selected']).toBeFalsy();
             expect(terraCardElement.classes['selected']).toBeFalsy();
 
@@ -102,13 +82,11 @@ describe(`TerraCardComponent:`, () =>
         });
     });
 
-    describe('in header content section', () =>
-    {
-        it(`should show <div> for header if content is given`, () =>
-        {
-            let headerElement:DebugElement = debugElement.query(By.css('div.card-header'));
-            let ngContentElement:DebugElement = headerElement.query(By.css('p'));
-            let headerContentElement:HTMLElement = ngContentElement.nativeElement;
+    describe('in header content section', () => {
+        it(`should show <div> for header if content is given`, () => {
+            let headerElement: DebugElement = debugElement.query(By.css('div.card-header'));
+            let ngContentElement: DebugElement = headerElement.query(By.css('p'));
+            let headerContentElement: HTMLElement = ngContentElement.nativeElement;
             expect(headerElement).toBeTruthy();
             expect(cardComponent._viewChildHeader).toBeTruthy();
             expect(cardComponent._viewChildHeader.nativeElement.children.length).toBeGreaterThan(0);
@@ -117,13 +95,11 @@ describe(`TerraCardComponent:`, () =>
         });
     });
 
-    describe('in body content section', () =>
-    {
-        it(`should show <div> for body if content is given`, () =>
-        {
-            let bodyElement:DebugElement = debugElement.query(By.css('div.card-block'));
-            let ngContentElement:DebugElement = bodyElement.query(By.css('p'));
-            let bodyContentElement:HTMLElement = ngContentElement.nativeElement;
+    describe('in body content section', () => {
+        it(`should show <div> for body if content is given`, () => {
+            let bodyElement: DebugElement = debugElement.query(By.css('div.card-block'));
+            let ngContentElement: DebugElement = bodyElement.query(By.css('p'));
+            let bodyContentElement: HTMLElement = ngContentElement.nativeElement;
             expect(bodyElement).toBeTruthy();
             expect(cardComponent._viewChildHeader).toBeTruthy();
             expect(cardComponent._viewChildHeader.nativeElement.children.length).toBeGreaterThan(0);
@@ -132,13 +108,11 @@ describe(`TerraCardComponent:`, () =>
         });
     });
 
-    describe('in image section', () =>
-    {
-        let imageElement:DebugElement;
-        let iconElement:DebugElement;
+    describe('in image section', () => {
+        let imageElement: DebugElement;
+        let iconElement: DebugElement;
 
-        it('should show image if #inputImagePath is set', () =>
-        {
+        it('should show image if #inputImagePath is set', () => {
             cardComponent.inputImagePath = '';
             fixture.detectChanges();
             imageElement = debugElement.query(By.css('div.terra-card-image'));
@@ -151,8 +125,7 @@ describe(`TerraCardComponent:`, () =>
             expect(imageElement).toBeTruthy();
         });
 
-        it('should show icon if #inputPlaceholderIcon is set', () =>
-        {
+        it('should show icon if #inputPlaceholderIcon is set', () => {
             cardComponent.inputPlaceholderIcon = expectedIcon;
             fixture.detectChanges();
             iconElement = debugElement.query(By.css('div.terra-card-placeholder'));
@@ -161,8 +134,7 @@ describe(`TerraCardComponent:`, () =>
             expect(iconElement.classes[expectedIcon]).toBe(true);
         });
 
-        it('should show no image and no icon if #inputPlaceholderIcon and #inputPlaceholderIcon are not set', () =>
-        {
+        it('should show no image and no icon if #inputPlaceholderIcon and #inputPlaceholderIcon are not set', () => {
             fixture.detectChanges();
             iconElement = debugElement.query(By.css('div.terra-card-placeholder'));
             imageElement = debugElement.query(By.css('div.terra-card-image'));
@@ -170,8 +142,7 @@ describe(`TerraCardComponent:`, () =>
             expect(imageElement).toBeFalsy();
         });
 
-        it('should show only the image if both #inputPlaceholderIcon and #inputPlaceholderIcon are set', () =>
-        {
+        it('should show only the image if both #inputPlaceholderIcon and #inputPlaceholderIcon are set', () => {
             cardComponent.inputPlaceholderIcon = expectedIcon;
             cardComponent.inputImagePath = expectedImagePath;
             fixture.detectChanges();
@@ -181,9 +152,8 @@ describe(`TerraCardComponent:`, () =>
             expect(iconElement).toBeFalsy();
         });
 
-        it('should set style.background-image if an image is given', () =>
-        {
-            let backgroundImageElement:DebugElement;
+        it('should set style.background-image if an image is given', () => {
+            let backgroundImageElement: DebugElement;
             cardComponent.inputImagePath = expectedImagePath;
             fixture.detectChanges();
             backgroundImageElement = fixture.debugElement.query(By.css('div.terra-card-image'));
