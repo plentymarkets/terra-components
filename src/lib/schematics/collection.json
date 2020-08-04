@@ -9,6 +9,11 @@
       "description": "Migrates TerraCheckbox to MatCheckbox.",
       "factory": "./ng-update/checkbox-migration/index#checkboxMigration",
       "schema": "./ng-update/checkbox-migration/schema.json"
+    },
+    "migration-v5_6_1": {
+      "description": "Migrates TerraCheckbox to MatCheckbox.",
+      "factory": "./ng-update/checkbox-migration/index#checkboxMigration",
+      "schema": "./ng-update/checkbox-migration/schema.json"
     }
   }
 }
