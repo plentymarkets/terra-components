@@ -30,3 +30,12 @@ jobs:
         npm run build:dev-app
         npm run build:schematics
         npm run test-headless
+
+  update-badge:
+    runs-on: ubunut-latest
+    name: Update coverage badge
+    needs: [check-integrity]
+    steps:
+      -uses: actions/checkout@v2
+      -name: Update coverage badge
+       run: npm run badge:coverage
