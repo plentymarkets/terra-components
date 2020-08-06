@@ -1,4 +1,4 @@
-# 5.6.1 (XX.08.2020)
+# 5.6.1 (06.08.2020)
 
 ### Bug Fixes
 * **schematics** declare checkbox migration as update schematic
