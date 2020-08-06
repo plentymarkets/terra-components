@@ -20,7 +20,17 @@ module.exports = function (config) {
     coverageIstanbulReporter: {
       dir: require('path').join(__dirname, './coverage'),
       reports: ['html', 'json-summary'],
-      fixWebpackSourcePaths: true
+      fixWebpackSourcePaths: true,
+      thresholds: {
+        emitWarning: false, // set to `true` to not fail the test command when thresholds are not met
+        // thresholds for all files
+        global: {
+          statements: 51,
+          lines: 47,
+          branches: 33,
+          functions: 41
+        }
+      }
     },
     customLaunchers: {
       FirefoxHeadless: {
