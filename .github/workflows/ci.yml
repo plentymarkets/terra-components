@@ -36,5 +36,8 @@ jobs:
     needs: [check-integrity]
     steps:
     - uses: actions/checkout@v2
+    # Clean install of the node dependencies
+    - name: Clean install
+      run: npm ci
     - name: Update coverage badge
       run: npm run badge:coverage
