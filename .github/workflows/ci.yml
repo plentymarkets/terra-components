@@ -36,8 +36,12 @@ jobs:
     needs: [check-integrity]
     steps:
     - uses: actions/checkout@v2
+    - uses: actions/github-script@v2
     # Clean install of the node dependencies
     - name: Clean install
       run: npm ci
     - name: Update coverage badge
-      run: npm run badge:coverage
+      with:
+        script: |
+          const gulpfile = require(`${process.env.GITHUB_WORKSPACE}/gulpfile.js`)
+          gulfile.updateCoverageBadge
