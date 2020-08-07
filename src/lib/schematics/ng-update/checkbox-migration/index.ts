@@ -7,10 +7,9 @@ import {
 } from '@angular-devkit/schematics';
 import { LoggerApi } from '@angular-devkit/core/src/logger';
 import { getProjectTsConfigPaths } from '@angular/core/schematics/utils/project_tsconfig_paths';
-import { createMigrationProgram } from '../utils/compiler-hosts';
+import { createMigrationProgram } from '../../utils/compiler-hosts';
 import * as ts from 'typescript';
 import { relative } from 'path';
-import { oneLine } from 'common-tags';
 import { addModuleImportToModule } from '@angular/cdk/schematics';
 import { Schema as MigrateCheckboxSchema } from './schema';
 
@@ -109,8 +108,7 @@ function runCkeckboxMigration(tree:Tree, tsconfigPath:string, basePath:string, p
                     checkboxAsString = doDeletions(doReplacements(handleValue(checkboxAsString)));
 
                     const template:string =
-                        oneLine`${checkboxAsString}
-                            ${fontIcon ? `<mat-icon ${fontIcon}></mat-icon>` : ''}
+                        `${checkboxAsString}${fontIcon ? `<mat-icon ${fontIcon}></mat-icon>` : ''}
                             ${valueCaption ? `${valueCaption}` : ''}
                         </mat-checkbox>`;
 
