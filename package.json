@@ -15,7 +15,6 @@
 	},
 	"dependencies": {
 		"bootstrap": "^4.4.1",
-		"common-tags": "^1.8.0",
 		"htmlhint": "~0.10.3",
 		"iban": "~0.0.14",
 		"interactjs": "1.3.4",
@@ -47,7 +46,6 @@
 		"@angular/platform-browser-dynamic": "~8.2.14",
 		"@angular/router": "~8.2.14",
 		"@plentymarkets/terra-lint-rules": "~0.0.5",
-		"@types/common-tags": "^1.8.0",
 		"@types/htmlhint": "^0.9.1",
 		"@types/jasmine": "^3.5.11",
 		"@types/jasminewd2": "~2.0.8",
