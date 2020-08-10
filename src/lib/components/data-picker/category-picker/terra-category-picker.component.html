@@ -7,7 +7,7 @@
                       (click)="showTree()">
     </terra-text-input>
     <div *ngIf="toggleTree">
-        <terra-node-tree [inputShowSearch]="false"
+        <terra-node-tree [inputShowSearch]="true"
                          [inputConfig]="_nestedTreeConfig">
         </terra-node-tree>
         <terra-base-toolbar>
