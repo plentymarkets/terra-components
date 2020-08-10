@@ -19,7 +19,7 @@
         {
             display: flex;
             align-self: center;
-            color: var(--color-structure-10);
+            color: var(--color-structure-8);
             font-size: var(--font-size-4);
             font-weight: var(--font-weight-2);
         }
@@ -47,7 +47,6 @@
         padding: var(--portlet-body-padding, var(--space-lg));
         transition: padding var(--transition-lg);
         border-radius: var(--border-radius);
-        overflow-x: hidden;
     
         --portlet-box-shadow: none;
         --info-box-box-shadow: none;

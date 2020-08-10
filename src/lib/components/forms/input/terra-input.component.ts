@@ -8,6 +8,7 @@ import { isNullOrUndefined } from 'util';
 import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum';
 import { noop } from 'rxjs';
 
+/** @deprecated since v5. Use angular material's [input](https://material.angular.io/components/input) instead. */
 export class TerraInputComponent implements ControlValueAccessor
 {
     /**
@@ -41,7 +42,6 @@ export class TerraInputComponent implements ControlValueAccessor
     public inputIsDisabled:boolean;
 
     /**
-     * @deprecated since v4. Is replaced by the TooltipDirective and will be removed with the next major version.
      * @description Set the tooltip placement (bottom, top, left, right). Default top.
      */
     @Input()

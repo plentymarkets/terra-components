@@ -9,7 +9,6 @@ import {
 } from '@angular/core/testing';
 import { TerraButtonComponent } from '../buttons/button/terra-button.component';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 import { LocalizationModule } from 'angular-l10n';
 import { l10nConfig } from '../../../app/translation/l10n.config';
 import { TooltipDirective } from '../tooltip/tooltip.directive';
@@ -25,7 +24,7 @@ describe('Component: TerraStopwatchComponent', () =>
     const ticksInMilliseconds:number = ticks * 1000 + 1;
     const router:MockRouter = new MockRouter();
 
-    beforeEach(async(() =>
+    beforeEach(() =>
     {
         TestBed.configureTestingModule({
             declarations: [
@@ -35,7 +34,6 @@ describe('Component: TerraStopwatchComponent', () =>
             ],
             imports:      [
                 FormsModule,
-                HttpClientModule,
                 LocalizationModule.forRoot(l10nConfig)
             ],
             providers:    [
@@ -43,8 +41,8 @@ describe('Component: TerraStopwatchComponent', () =>
                     provide:  Router,
                     useValue: router
                 }]
-        }).compileComponents();
-    }));
+        });
+    });
 
     beforeEach(() =>
     {

@@ -11,6 +11,7 @@ import {
 import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum';
 import { noop } from 'rxjs';
 
+/** @deprecated since v5. Use angular material's [slide-toggle](https://material.angular.io/components/slide-toggle) instead. */
 @Component({
     selector:    'terra-toggle',
     styleUrls:   ['./terra-toggle.component.scss'],
@@ -46,9 +47,6 @@ export class TerraToggleComponent implements ControlValueAccessor
     @Input()
     public inputTooltipText:string;
 
-    /**
-     * @deprecated since v4. Is replaced by the TooltipDirective and will be removed with the next major version.
-     */
     @Input()
     public inputTooltipPlacement:TerraPlacementEnum;
 

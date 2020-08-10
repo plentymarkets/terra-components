@@ -1,3 +1,69 @@
+# 5.6.1 (06.08.2020)
+
+### Bug Fixes
+* **schematics** declare checkbox migration as update schematic
+
+# 5.6.0 (03.08.2020)
+
+### Features
+* **mat-checkbox** add CSS styles for icons as a `<span>` or `<mat-icon>`.
+* **table-column-settings** new component that provides a settings overlay for mat table columns as well as a possibility to add a text that differs from the header element/text.
+* **tc-table-settings-dialog** new settings overlay component for sorting and hiding columns (`matColumnDef`) in `mat-table`.
+* **checkbox-group** & **multi-check-box** are deprecated now. Use [angular material's select](https://material.angular.io/components/select/overview#multiple-selection) instead.
+* **schematics** migration from `terra-checkbox` to `mat-checkbox`. Use parameter `--modulePath` to migrate entities only for the dedicated module (no support for `ViewChild` and `ViewChildren` Decorators and custom styling).
+
+### Bug Fixes
+* **mat-table** remove cursor pointer from table row unless the row has the routerLink directive
+
+# 5.5.0 (09.07.2020)
+
+### Features
+* **schematics** basic support for `ng add`.
+* **sort-helper** new class that provides functionality to sort lists of numbers, strings and objects.
+* **select-sort**
+    - new pipe for sorting lists of available options for a select box
+    - new directive that automatically sorts all `terra-select-box`es.
+* **peerDependencies**
+    - updated `iban` to ~0.0.14
+
+### Bug Fixes
+* **mat-table** adjust styles for odd and even rows.
+* **no-result-notice** adjust margin for no result notice in mat-table.
+* **terra-taglist** add flex-wrap
+* **tooltip** now subscribes to router events in ngOnInit, not ngOnChanges and makes sure to only call `hide()` when the tooltip is shown.
+
+# 5.4.0 (22.06.2020)
+
+### Features
+* **tooltip** removed warning and all deprecations for tooltip placement.
+* **mat-table** styles for the [angular material table](https://v8.material.angular.io/components/table/overview).
+* **mat-checkbox** styles for the [angular material checkbox](https://v8.material.angular.io/components/checkbox/overview).
+* **table** introduced several new classes to simplify the creation of an angular material table data source for plentymarkets REST-APIs.
+    - **TableDataSource** adding basic support for filtering.
+    - **TablePagingDataSource** supports filtering and paging.
+    - **TableSortingDataSource** supports filtering and sorting.
+    - **TablePagingSortingDataSource** supports filtering, paging and sorting.
+* **peerDependencies**
+    - removed `jquery` since we no longer depend on it.
+    - removed `path` since we no longer depend on it.
+* **terra-dynamic-component-loader** is deprecated now. Use angular's [NgComponentOutlet](https://angular.io/api/common/NgComponentOutlet) instead.
+* **terra-toggle** is deprecated now. Use angular material's [slide-toggle](https://material.angular.io/components/slide-toggle) instead.
+* **terra-category-picker** removed provider for `TerraNodeTreeConfig` since it was not used anymore.
+* **terra-overlay** is deprecated now. Use angular material's [dialog](https://material.angular.io/components/dialog) instead.
+* **terra-input** is deprecated now. Use angular material's [input](https://material.angular.io/components/input) instead.
+* **terra-mat-paginator-intl** allows for translation of mat paginators
+
+### Bug Fixes
+* **mat-input** do not color an invalid input's underline red until it has been touched.
+
+# 5.3.0 (24.04.2020)
+
+### Features
+* **terra-alert-panel** use native [bootstrap](https://getbootstrap.com/) alert instead of the alert component provided by [ngx-bootstrap](https://valor-software.com/ngx-bootstrap).
+
+### Bug Fixes
+* **terra-portlet** remove overflow
+
 # 5.2.0 (20.04.2020)
 
 ### Features

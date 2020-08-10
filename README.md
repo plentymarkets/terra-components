@@ -1,10 +1,11 @@
+![code coverage](https://img.shields.io/badge/coverage-49.48%25-red)
 [![npm version](https://badge.fury.io/js/%40plentymarkets%2Fterra-components.svg)](https://badge.fury.io/js/%40plentymarkets%2Fterra-components)
 
 ![plentymarkets Logo](http://www.plentymarkets.eu/layout/pm/images/logo/plentymarkets-logo.jpg)
 
-# Components for back end plugins
+# Components for plentymarkets plugins
 
-These are the official plugin components developed by plentymarkets. This repository provides components to build plugins for the [plentymarkets 7](https://www.plentymarkets.eu/tour/) back end.
+These are the official plugin components developed by plentymarkets. This repository provides components to build plugins for the [plentymarkets](https://www.plentymarkets.eu/tour/) ERP.
 
 ## Plugin documentation
 - Learn how to create your [first plentymarkets angular plugin](https://developers.plentymarkets.com/tutorials/angular-plugin)
@@ -25,7 +26,7 @@ Sign up today and become a member of our [forum](https://forum.plentymarkets.com
 
 ## Versioning
 
-Visit our forum and find the latest news and updates in our [Changelog](https://github.com/plentymarkets/terra-components/blob/master/CHANGELOG.md).
+Visit our forum and find the latest news and updates in our [Changelog](https://github.com/plentymarkets/terra-components/blob/5.X.X/CHANGELOG.md).
 
 ## License
 

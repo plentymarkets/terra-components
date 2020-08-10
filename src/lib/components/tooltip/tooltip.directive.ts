@@ -6,11 +6,11 @@ import {
     Input,
     OnChanges,
     OnDestroy,
+    OnInit,
     SimpleChanges,
     TemplateRef,
     ViewContainerRef
 } from '@angular/core';
-
 import tippy, {
     Instance,
     Placement
@@ -18,11 +18,17 @@ import tippy, {
 import { TerraPlacementEnum } from '../../helpers/enums/terra-placement.enum';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { filter } from 'rxjs/operators';
+import tippy, {
+    Instance,
+    Placement
+} from 'tippy.js';
+import { TerraPlacementEnum } from '../../helpers/enums/terra-placement.enum';
 
 @Directive({
     selector: '[tcTooltip]'
 })
-export class TooltipDirective implements OnDestroy, OnChanges
+export class TooltipDirective implements OnDestroy, OnChanges, OnInit
 {
     /**
      * @description The tooltip text.
@@ -37,19 +43,17 @@ export class TooltipDirective implements OnDestroy, OnChanges
     public onlyEllipsisTooltip:boolean = false;
 
     private _isDisabled:boolean;
-    private tooltipEl:Instance;
+    private _tippyInstance:Instance;
     private _placement:string = TerraPlacementEnum.TOP;
-    private navigationSubscription:Subscription;
+    private navigationSubscription:Subscription = Subscription.EMPTY;
 
     /**
-     * @deprecated since v4. The placement is calculated automatically now.
+     * Set the placement of the tooltip.
      * @param placement
      */
     @Input()
     public set placement(placement:string)
     {
-        console.warn('`placement` is deprecated since v4. The placement is calculated automatically now.');
-
         if(!placement)
         {
             placement = TerraPlacementEnum.TOP;
@@ -73,6 +77,16 @@ export class TooltipDirective implements OnDestroy, OnChanges
                 private _containerRef:ViewContainerRef,
                 private _router:Router)
     {
+    }
+
+    public ngOnInit():void
+    {
+        this.navigationSubscription = this._router.events.pipe(
+            filter(() => this._tippyInstance && this._tippyInstance.state && this._tippyInstance.state.isShown),
+        ).subscribe(() =>
+        {
+            this._tippyInstance.hide(0);
+        });
     }
 
     public ngOnChanges(changes:SimpleChanges):void
@@ -114,11 +128,6 @@ export class TooltipDirective implements OnDestroy, OnChanges
 
                 this._initTooltip(tooltip);
 
-                this.navigationSubscription = this._router.events.subscribe(() =>
-                {
-                    this.tooltipEl.hide(0);
-                });
-
                 if(tooltipIsEmpty)
                 {
                     this.isDisabled = true;
@@ -132,9 +141,9 @@ export class TooltipDirective implements OnDestroy, OnChanges
 
         if(changes.hasOwnProperty('placement'))
         {
-            if(this.tooltipEl)
+            if(this._tippyInstance)
             {
-                this.tooltipEl.setProps({
+                this._tippyInstance.setProps({
                     placement: this._placement as Placement
                 });
             }
@@ -145,9 +154,9 @@ export class TooltipDirective implements OnDestroy, OnChanges
     public onMouseOut(event:MouseEvent):void
     {
         event.stopPropagation();
-        if(this.tooltipEl)
+        if(this._tippyInstance)
         {
-            this.tooltipEl.hide(0);
+            this._tippyInstance.hide(0);
         }
     }
 
@@ -155,41 +164,38 @@ export class TooltipDirective implements OnDestroy, OnChanges
     public onMouseOver(event:MouseEvent):void
     {
         event.stopPropagation();
-        if(this.tooltipEl)
+        if(this._tippyInstance)
         {
             if(this.onlyEllipsisTooltip)
             {
                 this._checkIfEllipsis();
             }
 
-            this.tooltipEl.show(0);
+            this._tippyInstance.show(0);
         }
     }
 
     public ngOnDestroy():void
     {
-        if(this.tooltipEl)
+        if(this._tippyInstance)
         {
-            this.tooltipEl.destroy();
+            this._tippyInstance.destroy();
         }
 
-        if(this.navigationSubscription)
-        {
-            this.navigationSubscription.unsubscribe();
-        }
+        this.navigationSubscription.unsubscribe();
     }
 
     private _handleTooltipState():void
     {
-        if(this.tooltipEl)
+        if(this._tippyInstance)
         {
             if(this._isDisabled)
             {
-                this.tooltipEl.disable();
+                this._tippyInstance.disable();
             }
             else
             {
-                this.tooltipEl.enable();
+                this._tippyInstance.enable();
             }
         }
     }
@@ -219,9 +225,9 @@ export class TooltipDirective implements OnDestroy, OnChanges
      */
     private _initTooltip(tooltip:string | Element):void
     {
-        if(!this.tooltipEl)
+        if(!this._tippyInstance)
         {
-            this.tooltipEl = (tippy(this._elementRef.nativeElement, {
+            this._tippyInstance = tippy(this._elementRef.nativeElement as Element, {
                 content:     tooltip,
                 trigger:     'manual',
                 arrow:       true,
@@ -232,7 +238,7 @@ export class TooltipDirective implements OnDestroy, OnChanges
         }
         else
         {
-            this.tooltipEl.setContent(tooltip);
+            this._tippyInstance.setContent(tooltip);
         }
     }
 }

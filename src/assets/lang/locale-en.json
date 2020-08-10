@@ -130,5 +130,15 @@
 		"unauthorized": "Unauthorized",
 		"missingPermission": "Missing permissions for:",
 		"forbidden": "Forbidden"
+	},
+	"terraMatPaginatorIntl": {
+		"itemsPerPage": "Results per page",
+		"ofLabel": "of"
+	},
+	"tableSettings": {
+		"overlayTitle": "Customise table",
+		"confirm": "Confirm",
+		"cancel": "Cancel",
+		"tooltip": "Configure columns"
 	}
 }

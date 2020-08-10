@@ -51,7 +51,6 @@ export class TerraButtonComponent
     public inputTooltipText:string;
 
     /**
-     * @deprecated since v4. Is replaced by the TooltipDirective and will be removed with the next major version.
      * @description Set the tooltip placement (bottom, top, left, right). Default top.
      * */
     @Input()

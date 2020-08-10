@@ -3,14 +3,16 @@
 @import 'material/form-field';
 @import 'material/dialog';
 @import 'material/tab';
+@import 'material/table';
 @import 'material/toggle';
+@import 'material/checkbox';
 @import '../components/alert/terra-alert-panel.component.glob';
 @import '../components/editors/base-editor/terra-base-editor.component.glob';
 @import '../components/toolbar/base-toolbar/terra-base-toolbar.component.glob';
 @import '../components/forms/input/date-picker/terra-date-picker.component.glob';
 @import '../components/file-browser/terra-file-browser.component.glob';
 @import '../components/forms/input/terra-input.component.glob';
-
+@import '../components/table/table-settings/dialog/table-settings-dialog.glob';
 *
 {
     &:focus

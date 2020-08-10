@@ -4,6 +4,7 @@ export * from './helpers';
 export * from './models';
 export * from './components/editors/ck-editor/presets';
 export * from './utils';
+export * from './components/table';
 
 export { TerraComponentsModule } from './terra-components.module';
 export { TerraComponentsExamplesModule } from './terra-components-examples.module';
@@ -199,6 +200,7 @@ export { TableRowComponent } from './components/tables/data-table/table-row/tabl
 export { AlertService } from './components/alert/alert.service';
 export { CKEditorDirective } from './components/editors/ck-editor/ck-editor.directive';
 export { TooltipDirective } from './components/tooltip/tooltip.directive';
+export { SelectSortPipe } from './pipes/select-sort.pipe';
 export { AllowedColors } from './components/forms/select-box/data/allowed.colors.enum';
-
 export { TerraStopwatchComponent } from './components/stopwatch/terra-stopwatch.component';
+export { SelectSortDirective } from './components/forms/select-box/directive/select-sort.directive';

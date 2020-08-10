@@ -1,6 +1,5 @@
 import { TerraSliderComponent } from './terra-slider.component';
 import {
-    async,
     ComponentFixture,
     fakeAsync,
     flush,
@@ -16,15 +15,15 @@ describe(`TerraSliderComponent:`, () =>
     let component:TerraSliderComponent;
     let fixture:ComponentFixture<TerraSliderComponent>;
 
-    beforeEach(async(() =>
+    beforeEach(() =>
     {
         TestBed.configureTestingModule({
             declarations: [
                 TerraDraggableDirective,
                 TerraSliderComponent
             ]
-        }).compileComponents();
-    }));
+        });
+    });
 
     beforeEach(() =>
     {

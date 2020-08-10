@@ -130,5 +130,15 @@
 		"unauthorized": "Nicht autorisiert",
 		"missingPermissions": "Fehlende Berechtigungen für:",
 		"forbidden": "Keine Berechtigung"
+	},
+	"terraMatPaginatorIntl": {
+		"itemsPerPage": "Ergebnisse pro Seite",
+		"ofLabel": "von"
+	},
+	"tableSettings": {
+		"overlayTitle": "Tabelle individualisieren",
+		"confirm": "Bestätigen",
+		"cancel": "Abbrechen",
+		"tooltip": "Spalten konfigurieren"
 	}
 }
