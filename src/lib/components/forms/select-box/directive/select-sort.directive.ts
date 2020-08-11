@@ -4,9 +4,7 @@ import {
     OnChanges,
     SimpleChanges
 } from '@angular/core';
-import {
-    SortHelper
-} from '../../../../helpers';
+import { SortHelper } from '../../../../helpers';
 import { TerraSelectBoxValueInterface } from '../../../forms/select-box/data/terra-select-box.interface';
 import { SortDirection } from '@angular/material/sort';
 

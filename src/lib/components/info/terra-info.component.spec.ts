@@ -1,6 +1,5 @@
 import { TerraInfoComponent } from './terra-info.component';
 import {
-    async,
     ComponentFixture,
     TestBed
 } from '@angular/core/testing';
