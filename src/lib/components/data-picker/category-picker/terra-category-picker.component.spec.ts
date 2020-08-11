@@ -6,7 +6,7 @@ import {
 import { LocalizationModule } from 'angular-l10n';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
-fdescribe('TerraCategoryPickerComponent', () =>
+describe('TerraCategoryPickerComponent', () =>
 {
     let component:TerraCategoryPickerComponent;
     let fixture:ComponentFixture<TerraCategoryPickerComponent>;
