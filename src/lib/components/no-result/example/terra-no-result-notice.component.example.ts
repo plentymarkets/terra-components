@@ -3,7 +3,6 @@ import { TerraButtonInterface } from '../../buttons/button/data/terra-button.int
 
 @Component({
     selector: 'terra-no-result-notice-example',
-    styleUrls: ['./terra-no-result-notice.component.example.scss'],
     templateUrl: './terra-no-result-notice.component.example.html'
 })
 export class TerraNoResultNoticeComponentExample implements OnInit {
