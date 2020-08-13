@@ -101,4 +101,9 @@ export interface TerraNodeInterface<D>
      * @description  set a tooltip placement for the node. default will be 'right'. Other values: 'left', 'top', 'bottom'
      */
     tooltipPlacement?:string;
+
+    /**
+     * @description show tooltip only on ellipsis. Default true
+     */
+    tooltipOnlyEllipsis?:boolean;
 }
