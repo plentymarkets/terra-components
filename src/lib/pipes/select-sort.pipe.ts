@@ -2,9 +2,7 @@ import {
     Pipe,
     PipeTransform
 } from '@angular/core';
-import {
-    SortHelper
-} from '../helpers';
+import { SortHelper } from '../helpers';
 import { SortDirection } from '@angular/material/sort';
 
 /**

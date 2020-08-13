@@ -1,11 +1,16 @@
-# 5.6.0 (XX.XX.XXXX)
+# 5.6.1 (06.08.2020)
+
+### Bug Fixes
+* **schematics** declare checkbox migration as update schematic
+
+# 5.6.0 (03.08.2020)
 
 ### Features
-* **mat-checkbox**
-    - add CSS styles for icons as a `<span>` or `<mat-icon>`.
-* **table-column-settings** new component that provides a settings overlay for mat table columns.
+* **mat-checkbox** add CSS styles for icons as a `<span>` or `<mat-icon>`.
+* **table-column-settings** new component that provides a settings overlay for mat table columns as well as a possibility to add a text that differs from the header element/text.
 * **tc-table-settings-dialog** new settings overlay component for sorting and hiding columns (`matColumnDef`) in `mat-table`.
 * **checkbox-group** & **multi-check-box** are deprecated now. Use [angular material's select](https://material.angular.io/components/select/overview#multiple-selection) instead.
+* **schematics** migration from `terra-checkbox` to `mat-checkbox`. Use parameter `--modulePath` to migrate entities only for the dedicated module (no support for `ViewChild` and `ViewChildren` Decorators and custom styling).
 
 ### Bug Fixes
 * **mat-table** remove cursor pointer from table row unless the row has the routerLink directive
