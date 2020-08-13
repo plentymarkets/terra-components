@@ -1,6 +1,5 @@
 import { TerraThreeColumnsContainerComponent } from './terra-three-columns-container.component';
 import {
-    async,
     ComponentFixture,
     TestBed
 } from '@angular/core/testing';
