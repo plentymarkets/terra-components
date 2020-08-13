@@ -4,7 +4,6 @@ import {
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {
-    async,
     ComponentFixture,
     TestBed
 } from '@angular/core/testing';

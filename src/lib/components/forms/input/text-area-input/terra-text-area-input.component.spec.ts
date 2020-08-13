@@ -5,7 +5,6 @@ import {
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {
-    async,
     ComponentFixture,
     fakeAsync,
     flush,
