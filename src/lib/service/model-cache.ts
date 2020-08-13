@@ -17,7 +17,8 @@ export class ModelCache
     protected dataModel:TerraKeyValueInterface<any> = {};
 
     /**
-     * @description Handles the retrieval of a list. When the list has already been loaded from the server, it will be retrieved from the cache.
+     * @description Handles the retrieval of a list. When the list has already been loaded from the server, it will be retrieved from the
+     *     cache.
      * @param getRequest$
      * @param params
      */
@@ -39,7 +40,8 @@ export class ModelCache
     }
 
     /**
-     * @description Handles the retrieval of a single entity. If it has been loaded from the server before, it will be retrieved from the cache.
+     * @description Handles the retrieval of a single entity. If it has been loaded from the server before, it will be retrieved from the
+     *     cache.
      * @param getRequest$
      * @param dataId
      */
@@ -75,7 +77,8 @@ export class ModelCache
     }
 
     /**
-     * @description Handles the modification of a single entity. If it has been updated successfully, the cache is updated with the response object.
+     * @description Handles the modification of a single entity. If it has been updated successfully, the cache is updated with the
+     *     response object.
      * @param putRequest$
      * @param dataId
      */

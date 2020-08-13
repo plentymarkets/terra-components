@@ -1,7 +1,7 @@
 {
 	"$schema": "../../node_modules/ng-packagr/package.schema.json",
 	"name": "@plentymarkets/terra-components",
-	"version": "5.6.0",
+	"version": "5.6.1",
 	"homepage": "https://github.com/plentymarkets/terra-components#readme",
 	"author": "plentymarkets",
 	"description": "plentymarkets terra components",
@@ -19,8 +19,9 @@
 	"scripts": {
 		"build": "../../node_modules/.bin/tsc -p tsconfig.schematics.json",
 		"copy:collection": "cp schematics/collection.json ../../dist/schematics/collection.json",
-		"copy:schema": "cp schematics/checkbox-migration/schema.json ../../dist/schematics/checkbox-migration/schema.json",
-		"postbuild": "npm run copy:collection && npm run copy:schema"
+		"copy:migrations": "cp schematics/migration.json ../../dist/schematics/migration.json",
+		"copy:schema": "cp schematics/ng-update/checkbox-migration/schema.json ../../dist/schematics/ng-update/checkbox-migration/schema.json",
+		"postbuild": "npm run copy:collection && npm run copy:migrations && npm run copy:schema"
 	},
 	"peerDependencies": {
 		"@angular/animations": "8.x",
@@ -72,5 +73,8 @@
 		},
 		"dest": "../../dist"
 	},
-	"schematics": "./schematics/collection.json"
+	"schematics": "./schematics/collection.json",
+	"ng-update": {
+		"migrations": "./schematics/migration.json"
+	}
 }
