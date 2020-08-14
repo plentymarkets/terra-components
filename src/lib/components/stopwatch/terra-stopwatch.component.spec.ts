@@ -1,6 +1,5 @@
 import { TerraStopwatchComponent } from './terra-stopwatch.component';
 import {
-    async,
     ComponentFixture,
     discardPeriodicTasks,
     fakeAsync,
