@@ -4,7 +4,7 @@
              [ngClass]="{'activated' : inputNode.isActive, 'isLoading' : inputNode.isLoading && inputNode.onLazyLoad}"
              (click)="_onNodeClick($event)"
              [tcTooltip]="_tooltip | translate:_lang"
-             [onlyEllipsisTooltip]="true"
+             [onlyEllipsisTooltip]="_onlyEllipsisTooltip"
              [placement]="_tooltipPlacement">
             <span *ngIf="!inputNode.icon" class="icon_dist_top icon-placeholder"></span>
             <span *ngIf="inputNode.icon" class="icon_dist_top" [ngClass]="inputNode.icon"></span>
