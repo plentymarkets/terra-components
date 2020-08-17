@@ -1,5 +1,4 @@
-export enum TerraHrefTypeEnum
-{
+export enum TerraHrefTypeEnum {
     email = 'mailto',
     phone = 'tel',
     url = 'url',
