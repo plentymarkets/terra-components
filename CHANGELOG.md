@@ -1,4 +1,4 @@
-### Unreleased
+# 5.7.0 (17.08.2020)
 
 ### Features
 * **tree-node** does now provide an option to configure whether tooltips are only shown on text ellipsis. Default true.
