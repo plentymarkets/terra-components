@@ -1,5 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TerraTagComponent } from './terra-tag.component';
 import { tagOne, tagTwo } from '../../../testing/mock-tags';
 import { DebugElement, SimpleChange } from '@angular/core';

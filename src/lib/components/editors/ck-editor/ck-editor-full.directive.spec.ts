@@ -1,6 +1,6 @@
 import { CKEditorDirective } from './ck-editor.directive';
 import { CKEditorComponent } from 'ckeditor4-angular';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
 

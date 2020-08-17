@@ -1,6 +1,6 @@
 import { TerraTaglistComponent } from './terra-taglist.component';
 import { tagList } from '../../../testing/mock-tags';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TerraTagComponent } from '../tag/terra-tag.component';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
