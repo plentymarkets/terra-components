@@ -1,5 +1,5 @@
 import { TerraTwoColumnsContainerDirective } from './terra-two-columns-container.directive';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { MockRouter } from '../../../../testing/mock-router';
 import { TerraTwoColumnsContainerComponent } from './terra-two-columns-container.component';

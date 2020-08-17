@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RadioInputComponent } from './radio-input.component';
 import { RadioGroupComponent } from './radio-group.component';
 import { By } from '@angular/platform-browser';

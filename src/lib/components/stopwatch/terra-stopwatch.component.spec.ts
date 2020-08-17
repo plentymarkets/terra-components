@@ -1,5 +1,5 @@
 import { TerraStopwatchComponent } from './terra-stopwatch.component';
-import { async, ComponentFixture, discardPeriodicTasks, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { ComponentFixture, discardPeriodicTasks, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { TerraButtonComponent } from '../buttons/button/terra-button.component';
 import { FormsModule } from '@angular/forms';
 import { LocalizationModule } from 'angular-l10n';

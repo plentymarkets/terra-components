@@ -188,6 +188,7 @@ export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent
                         isVisible: true,
                         tooltip: 'ID: ' + categoryData.id,
                         tooltipPlacement: 'top',
+                        tooltipOnlyEllipsis: false,
                         value: {
                             data: categoryData
                         }

@@ -14,6 +14,7 @@ import { TerraFormFieldInputText } from '../../dynamic-form/data/terra-form-fiel
 import { TerraFormFieldSelectBox } from '../../dynamic-form/data/terra-form-field-select-box';
 import { TerraKeyValueInterface } from '../../../../models';
 import * as cloneDeep_ from 'lodash.clonedeep';
+
 const cloneDeep: (val: Object) => Object = cloneDeep_;
 
 export class TerraFormFieldHelper {
@@ -231,7 +232,8 @@ export class TerraFormFieldHelper {
     }
 
     /**
-     * @description Determines the default value of a single #formField. Also considers children of a #formField if no defaultValue is given.
+     * @description Determines the default value of a single #formField. Also considers children of a #formField if no defaultValue is
+     *     given.
      * @param formField
      * @param skipList - optional parameter that skips the list check and returns the defaultValue of the single entry, not a list.
      */
