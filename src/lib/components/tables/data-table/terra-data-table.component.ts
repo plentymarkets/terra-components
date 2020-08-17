@@ -190,9 +190,8 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
         return typeof data;
     }
 
-    public getTextAlign(
-        item: TerraDataTableHeaderCellInterface
-    ): TerraTextAlignEnum { // TODO: Pipe?
+    public getTextAlign(item: TerraDataTableHeaderCellInterface): TerraTextAlignEnum {
+        // TODO: Pipe?
         if (!isNullOrUndefined(item) && !isNullOrUndefined(item.textAlign)) {
             return item.textAlign;
         } else {

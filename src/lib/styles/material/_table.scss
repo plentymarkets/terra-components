@@ -91,9 +91,8 @@
         &:hover {
             background: var(--color-structure-2);
         }
-        
-        &[routerLink]
-        {
+
+        &[routerLink] {
             cursor: pointer;
         }
 

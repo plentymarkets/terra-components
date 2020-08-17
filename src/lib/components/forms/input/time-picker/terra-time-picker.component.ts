@@ -37,8 +37,7 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor, O
     private _onTouchedCallback: () => void = noop;
     private _onChangeCallback: (_: any) => void = noop;
 
-    public ngOnInit():void
-    {
+    public ngOnInit(): void {
         this.createTimeValues();
     }
 

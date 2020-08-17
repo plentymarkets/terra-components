@@ -1,15 +1,9 @@
 import { NgModule } from '@angular/core';
-import {
-    components,
-    exportedComponents
-} from './components/component-collection';
+import { components, exportedComponents } from './components/component-collection';
 import { directives } from './components/directive-collection';
 import { ModalModule } from 'ngx-bootstrap';
 import { CommonModule } from '@angular/common';
-import {
-    FormsModule,
-    ReactiveFormsModule
-} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LocalizationModule } from 'angular-l10n';
 import { MyDatePickerModule } from 'mydatepicker';
 import { AceEditorModule } from 'ng2-ace-editor';
@@ -41,19 +35,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
         MatButtonModule,
         DragDropModule
     ],
-    declarations:    [
-        ...components,
-        ...directives,
-        ...pipes
-    ],
-    entryComponents: [
-        ...exportedComponents
-    ],
-    exports:         [
-        ...exportedComponents,
-        ...directives,
-        ...pipes
-    ]
+    declarations: [...components, ...directives, ...pipes],
+    entryComponents: [...exportedComponents],
+    exports: [...exportedComponents, ...directives, ...pipes]
 })
-export class TerraComponentsModule
-{}
+export class TerraComponentsModule {}

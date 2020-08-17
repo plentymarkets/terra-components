@@ -1,13 +1,13 @@
 {
-	"$schema": "http://json-schema.org/schema",
-	"id": "MigrateCheckboxSchematic",
-	"title": "Migration Schematic for TerraCheckbox to MatCheckbox",
-	"type": "object",
-	"properties": {
-		"modulePath": {
-			"type": "string",
-			"format": "path",
-			"description": "The module's path to migrate all entities in the directory and subdirectories."
-		}
-	}
+    "$schema": "http://json-schema.org/schema",
+    "id": "MigrateCheckboxSchematic",
+    "title": "Migration Schematic for TerraCheckbox to MatCheckbox",
+    "type": "object",
+    "properties": {
+        "modulePath": {
+            "type": "string",
+            "format": "path",
+            "description": "The module's path to migrate all entities in the directory and subdirectories."
+        }
+    }
 }
