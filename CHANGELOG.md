@@ -1,3 +1,8 @@
+# 5.x.x (xx.xx.2020)
+
+### Features
+* **prettier** We now use prettier to format the code. Additionally, there is a pre-commit hook that formats every file that is pushed into the repository.
+
 # 5.7.0 (17.08.2020)
 
 ### Features
