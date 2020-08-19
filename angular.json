@@ -69,6 +69,10 @@
 								"replace": "src/lib/environments/environment.ts",
 								"with": "src/lib/environments/environment.test.ts"
 							}
+						],
+						"codeCoverageExclude": [
+							"**/example/**",
+							"**/testing/**"
 						]
 					}
 				},
