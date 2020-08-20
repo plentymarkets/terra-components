@@ -76,6 +76,7 @@ export class TooltipDirective implements OnDestroy, OnChanges, OnInit
 
     public ngOnInit():void
     {
+        // TODO: check if this is still needed
         this.navigationSubscription = this._router.events.pipe(
             filter(() => this._tippyInstance && this._tippyInstance.state && this._tippyInstance.state.isShown),
         ).subscribe(() =>
@@ -145,28 +146,12 @@ export class TooltipDirective implements OnDestroy, OnChanges, OnInit
         }
     }
 
-    @HostListener('mouseout', ['$event'])
-    public onMouseOut(event:MouseEvent):void
+    @HostListener('mouseover')
+    public onMouseOver():void
     {
-        event.stopPropagation();
-        if(this._tippyInstance)
+        if(this._tippyInstance && this.onlyEllipsisTooltip)
         {
-            this._tippyInstance.hide(0);
-        }
-    }
-
-    @HostListener('mouseover', ['$event'])
-    public onMouseOver(event:MouseEvent):void
-    {
-        event.stopPropagation();
-        if(this._tippyInstance)
-        {
-            if(this.onlyEllipsisTooltip)
-            {
-                this._checkIfEllipsis();
-            }
-
-            this._tippyInstance.show(0);
+            this._checkIfEllipsis();
         }
     }
 
@@ -223,12 +208,11 @@ export class TooltipDirective implements OnDestroy, OnChanges, OnInit
         if(!this._tippyInstance)
         {
             this._tippyInstance = tippy(this._elementRef.nativeElement as Element, {
-                content:     tooltip,
-                trigger:     'manual',
-                arrow:       true,
-                boundary:    'window',
-                hideOnClick: false,
-                placement:   this._placement as Placement
+                content:   tooltip,
+                arrow:     true,
+                boundary:  'window',
+                placement: this._placement as Placement,
+                duration:  0
             });
         }
         else
