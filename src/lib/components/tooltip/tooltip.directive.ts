@@ -80,7 +80,7 @@ export class TooltipDirective implements OnDestroy, OnChanges, OnInit
             filter(() => this._tippyInstance && this._tippyInstance.state && this._tippyInstance.state.isShown),
         ).subscribe(() =>
         {
-            this._tippyInstance.hide(0);
+            this._tippyInstance.hide();
         });
     }
 
@@ -151,7 +151,7 @@ export class TooltipDirective implements OnDestroy, OnChanges, OnInit
         event.stopPropagation();
         if(this._tippyInstance)
         {
-            this._tippyInstance.hide(0);
+            this._tippyInstance.hide();
         }
     }
 
@@ -166,7 +166,7 @@ export class TooltipDirective implements OnDestroy, OnChanges, OnInit
                 this._checkIfEllipsis();
             }
 
-            this._tippyInstance.show(0);
+            this._tippyInstance.show();
         }
     }
 
@@ -226,8 +226,8 @@ export class TooltipDirective implements OnDestroy, OnChanges, OnInit
                 content:     tooltip,
                 trigger:     'manual',
                 arrow:       true,
-                boundary:    'window',
                 hideOnClick: false,
+                allowHTML:   true,
                 placement:   this._placement as Placement
             });
         }
