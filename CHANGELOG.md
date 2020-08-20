@@ -31,6 +31,7 @@
     - new directive that automatically sorts all `terra-select-box`es.
 * **peerDependencies**
     - updated `iban` to ~0.0.14
+    - updated `ckeditor4-angular` to ^1.2.0.
 
 ### Bug Fixes
 * **mat-table** adjust styles for odd and even rows.
