@@ -1,6 +1,5 @@
 import { TerraSliderComponent } from './terra-slider.component';
 import {
-    async,
     ComponentFixture,
     fakeAsync,
     flush,

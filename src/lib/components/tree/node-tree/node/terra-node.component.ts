@@ -34,6 +34,7 @@ export class TerraNodeComponent<D> implements OnInit, OnDestroy
 
     public _tooltip:string;
     public _tooltipPlacement:string = TerraPlacementEnum.RIGHT;
+    public _onlyEllipsisTooltip:boolean = true;
 
     public ngOnInit():void
     {
@@ -45,6 +46,11 @@ export class TerraNodeComponent<D> implements OnInit, OnDestroy
         {
             this._tooltip = this.inputNode.tooltip;
         }
+
+       if(!isNullOrUndefined(this.inputNode.tooltipOnlyEllipsis))
+       {
+           this._onlyEllipsisTooltip = this.inputNode.tooltipOnlyEllipsis;
+       }
 
         if(!isNullOrUndefined(this.inputNode.tooltipPlacement))
         {
