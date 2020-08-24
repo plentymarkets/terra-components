@@ -1,7 +1,6 @@
 /** @deprecated since v5. */
-export interface TerraMultiCheckBoxValueInterface
-{
-    value:any;
-    caption:string;
-    selected?:boolean;
+export interface TerraMultiCheckBoxValueInterface {
+    value: any;
+    caption: string;
+    selected?: boolean;
 }

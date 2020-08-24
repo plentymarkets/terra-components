@@ -1,53 +1,46 @@
-import {
-    Component,
-    Input,
-    OnChanges,
-    SimpleChanges
-} from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { TerraInputComponent } from '../terra-input.component';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TerraRegex } from '../../../../helpers/regex/terra-regex';
 import { isNullOrUndefined } from 'util';
 
-let nextId:number = 0;
+let nextId: number = 0;
 
 @Component({
-    selector:  'terra-text-area-input',
+    selector: 'terra-text-area-input',
     styleUrls: ['./terra-text-area-input.component.scss'],
     templateUrl: './terra-text-area-input.component.html',
     providers: [
         {
-            provide:     NG_VALUE_ACCESSOR,
+            provide: NG_VALUE_ACCESSOR,
             useExisting: TerraTextAreaInputComponent,
-            multi:       true
+            multi: true
         }
     ]
 })
 /**
  * @deprecated since v4. Use '<mat-input>' instead. See {@link https://material.angular.io/components/input/overview}
  */
-export class TerraTextAreaInputComponent extends TerraInputComponent implements OnChanges
-{
+export class TerraTextAreaInputComponent extends TerraInputComponent implements OnChanges {
     /**
      * @description If true, the textarea is not resizeable. Default false.
      */
     @Input()
-    public inputHasFixedHeight:boolean = false;
+    public inputHasFixedHeight: boolean = false;
 
     /**
      * @description Sets the initial number of rows. Minimum is four.
      */
     @Input()
-    public inputMaxRows:number;
+    public inputMaxRows: number;
 
     /**
      * @description a unique string identifier for the specific input instance.
      */
-    public _id:string;
-    private readonly _defaultMaxRows:number = 4;
+    public _id: string;
+    private readonly _defaultMaxRows: number = 4;
 
-    constructor()
-    {
+    constructor() {
         super(TerraRegex.MIXED);
 
         // generate the id of the input instance
@@ -55,15 +48,12 @@ export class TerraTextAreaInputComponent extends TerraInputComponent implements 
         this.inputMaxRows = this._defaultMaxRows;
     }
 
-    public ngOnChanges(changes:SimpleChanges):void
-    {
-        if(changes.hasOwnProperty('inputMaxRows') && !isNullOrUndefined(changes.inputMaxRows))
-        {
+    public ngOnChanges(changes: SimpleChanges): void {
+        if (changes.hasOwnProperty('inputMaxRows') && !isNullOrUndefined(changes.inputMaxRows)) {
             this.inputMaxRows = Math.max(this._defaultMaxRows, changes.inputMaxRows.currentValue);
         }
 
-        if(changes.hasOwnProperty('inputHasFixedHeight'))
-        {
+        if (changes.hasOwnProperty('inputHasFixedHeight')) {
             this.inputHasFixedHeight = !!changes.inputHasFixedHeight.currentValue;
         }
     }
@@ -71,11 +61,9 @@ export class TerraTextAreaInputComponent extends TerraInputComponent implements 
     /**
      * Set the focus on the native input element.
      */
-    public focusNativeInput():void
-    {
-        setTimeout(():void =>
-        {
-            let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this._id);
+    public focusNativeInput(): void {
+        setTimeout((): void => {
+            let input: HTMLInputElement = <HTMLInputElement>document.getElementById(this._id);
             input.focus();
         });
     }
@@ -83,11 +71,9 @@ export class TerraTextAreaInputComponent extends TerraInputComponent implements 
     /**
      * Select the content of the native input element.
      */
-    public selectNativeInput():void
-    {
-        setTimeout(():void =>
-        {
-            let input:HTMLInputElement = <HTMLInputElement> document.getElementById(this._id);
+    public selectNativeInput(): void {
+        setTimeout((): void => {
+            let input: HTMLInputElement = <HTMLInputElement>document.getElementById(this._id);
             input.select();
         });
     }

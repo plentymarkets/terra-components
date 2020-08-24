@@ -6,15 +6,9 @@ import { FormsModule } from '@angular/forms';
 import { CKEditorModule } from 'ckeditor4-angular';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        FormsModule,
-        CKEditorModule,
-        TerraComponentsModule
-    ],
-    declarations:    [...examples],
+    imports: [CommonModule, FormsModule, CKEditorModule, TerraComponentsModule],
+    declarations: [...examples],
     entryComponents: [...examples],
-    exports:         [...examples]
+    exports: [...examples]
 })
-export class TerraComponentsExamplesModule
-{}
+export class TerraComponentsExamplesModule {}

@@ -1,66 +1,52 @@
-import {
-    Component,
-    HostListener,
-    Input
-} from '@angular/core';
-import {
-    ControlValueAccessor,
-    NG_VALUE_ACCESSOR
-} from '@angular/forms';
+import { Component, HostListener, Input } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 /**
  * @author mfrank
  * @deprecated use <tc-radio-input> and <tc-radio-group> instead
  */
 @Component({
-    selector:  'terra-radio-button',
-    templateUrl:  './terra-radio-button.component.html',
+    selector: 'terra-radio-button',
+    templateUrl: './terra-radio-button.component.html',
     styleUrls: ['./terra-radio-button.component.scss'],
     providers: [
         {
-            provide:     NG_VALUE_ACCESSOR,
+            provide: NG_VALUE_ACCESSOR,
             useExisting: TerraRadioButtonComponent,
-            multi:       true
+            multi: true
         }
     ]
 })
-export class TerraRadioButtonComponent implements ControlValueAccessor
-{
+export class TerraRadioButtonComponent implements ControlValueAccessor {
     @Input()
-    public inputCaption:string;
-
-    @Input()
-    public inputValue:string | number | boolean;
+    public inputCaption: string;
 
     @Input()
-    public inputIsDisabled:boolean;
+    public inputValue: string | number | boolean;
 
     @Input()
-    public inputIsUncheckable:boolean;
+    public inputIsDisabled: boolean;
 
-    public _value:any;
+    @Input()
+    public inputIsUncheckable: boolean;
 
-    constructor()
-    {
+    public _value: any;
+
+    constructor() {
         console.warn(`This component is deprecated. Please use <tc-radio-input> and <tc-radio-group> instead.`);
         this.inputIsUncheckable = false;
         this.inputIsDisabled = false;
     }
 
     @HostListener('click')
-    public onClick():void
-    {
-        if(this.inputIsDisabled)
-        {
+    public onClick(): void {
+        if (this.inputIsDisabled) {
             return;
         }
 
-        if(this.inputIsUncheckable && this.inputValue === this._value)
-        {
+        if (this.inputIsUncheckable && this.inputValue === this._value) {
             this._value = undefined;
-        }
-        else
-        {
+        } else {
             this._value = this.inputValue;
         }
 
@@ -68,22 +54,19 @@ export class TerraRadioButtonComponent implements ControlValueAccessor
         this.onChangeCallback(this._value);
     }
 
-    public writeValue(value:any):void
-    {
+    public writeValue(value: any): void {
         this._value = value;
     }
 
-    public registerOnChange(fn:(_:any) => void):void
-    {
+    public registerOnChange(fn: (_: any) => void): void {
         this.onChangeCallback = fn;
     }
 
-    public registerOnTouched(fn:() => void):void
-    {
+    public registerOnTouched(fn: () => void): void {
         this.onTouchedCallback = fn;
     }
 
-    private onTouchedCallback:() => void = ():void => undefined;
+    private onTouchedCallback: () => void = (): void => undefined;
 
-    private onChangeCallback:(_:any) => void = (_:any):void => undefined;
+    private onChangeCallback: (_: any) => void = (_: any): void => undefined;
 }
