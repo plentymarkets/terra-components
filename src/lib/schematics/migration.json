@@ -1,11 +1,11 @@
 {
-	"$schema": "../../../node_modules/@angular-devkit/schematics/collection-schema.json",
-	"schematics": {
-		"migration-v5_6_1": {
-			"version": "5.6.1",
-			"description": "Migrate TerraCheckbox to MatCheckbox.",
-			"factory": "./ng-update/checkbox-migration/index#checkboxMigration",
-			"schema": "./ng-update/checkbox-migration/schema.json"
-		}
-	}
+    "$schema": "../../../node_modules/@angular-devkit/schematics/collection-schema.json",
+    "schematics": {
+        "migration-v5_6_1": {
+            "version": "5.6.1",
+            "description": "Migrate TerraCheckbox to MatCheckbox.",
+            "factory": "./ng-update/checkbox-migration/index#checkboxMigration",
+            "schema": "./ng-update/checkbox-migration/schema.json"
+        }
+    }
 }

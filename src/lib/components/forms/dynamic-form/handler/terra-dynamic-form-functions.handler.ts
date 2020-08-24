@@ -5,21 +5,20 @@ import { TerraFormFieldControlService } from '../service/terra-form-field-contro
 /**
  * @deprecated since v5.0.0. Use terra-form instead.
  */
-export class TerraDynamicFormFunctionsHandler<D>
-{
+export class TerraDynamicFormFunctionsHandler<D> {
     /**
      * Called after valid form validation.
      *
      * @param formData
      */
-    public saveCallback:(formData:D) => void;
+    public saveCallback: (formData: D) => void;
 
     /**
      * Called after valid form validation and when a REST URL is set.
      *
      * @param observable
      */
-    public savedCallback:(observable:Observable<D>) => void;
+    public savedCallback: (observable: Observable<D>) => void;
 
     /**
      * Called after invalid form validation.
@@ -27,23 +26,24 @@ export class TerraDynamicFormFunctionsHandler<D>
      * @param formGroup
      * @param translationMapping
      */
-    public errorCallback:(formGroup:FormGroup, translationMapping:{ [key:string]:string }) => void;
+    public errorCallback: (formGroup: FormGroup, translationMapping: { [key: string]: string }) => void;
 
     /**
      * Called after a form value has changed
      */
-    public onValueChangedCallback:(value:any) => void;
+    public onValueChangedCallback: (value: any) => void;
 
-    public valueChangeDebounce:number;
+    public valueChangeDebounce: number;
 
-    private _formFieldControlService?:TerraFormFieldControlService;
+    private _formFieldControlService?: TerraFormFieldControlService;
 
-    constructor(saveCallback:(formData:D) => void,
-                savedCallback:(observable:Observable<D>) => void,
-                errorCallback:(formGroup:FormGroup, translationMapping:{ [key:string]:string }) => void,
-                onValueChangedCallback:(value:any) => void,
-                valueChangeDebounce:number = 1000)
-    {
+    constructor(
+        saveCallback: (formData: D) => void,
+        savedCallback: (observable: Observable<D>) => void,
+        errorCallback: (formGroup: FormGroup, translationMapping: { [key: string]: string }) => void,
+        onValueChangedCallback: (value: any) => void,
+        valueChangeDebounce: number = 1000
+    ) {
         this.saveCallback = saveCallback;
         this.savedCallback = savedCallback;
         this.errorCallback = errorCallback;
@@ -51,13 +51,11 @@ export class TerraDynamicFormFunctionsHandler<D>
         this.valueChangeDebounce = valueChangeDebounce;
     }
 
-    public update(formValues:D):void
-    {
+    public update(formValues: D): void {
         this._formFieldControlService.updateDefaultValues(formValues);
     }
 
-    public set formFieldControlService(formFieldControlService:TerraFormFieldControlService)
-    {
+    public set formFieldControlService(formFieldControlService: TerraFormFieldControlService) {
         this._formFieldControlService = formFieldControlService;
     }
 }

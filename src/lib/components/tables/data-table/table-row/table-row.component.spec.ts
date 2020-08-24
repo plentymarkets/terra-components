@@ -1,7 +1,4 @@
-import {
-    ComponentFixture,
-    TestBed
-} from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TableRowComponent } from './table-row.component';
 import { TerraDataTableComponent } from '../terra-data-table.component';
 import { TerraCheckboxComponent } from '../../../forms/checkbox/terra-checkbox.component';
@@ -14,74 +11,60 @@ import { Router } from '@angular/router';
 import { MockRouter } from '../../../../testing/mock-router';
 import Spy = jasmine.Spy;
 
-export const dataTableStub:Partial<TerraDataTableComponent<any, any>> =
-    {
-        rowClicked:          ():void =>
-                             {
-                                 return;
-                             },
-        onRowCheckboxChange: ():void =>
-                             {
-                                 return;
-                             },
-        inputHasCheckboxes:  true
-    };
+export const dataTableStub: Partial<TerraDataTableComponent<any, any>> = {
+    rowClicked: (): void => {
+        return;
+    },
+    onRowCheckboxChange: (): void => {
+        return;
+    },
+    inputHasCheckboxes: true
+};
 
-describe('Component: TableRowComponent', () =>
-{
-    let component:TableRowComponent;
-    let dataTable:TerraDataTableComponent<any, any>;
-    let fixture:ComponentFixture<TableRowComponent>;
-    const router:MockRouter = new MockRouter();
+describe('Component: TableRowComponent', () => {
+    let component: TableRowComponent;
+    let dataTable: TerraDataTableComponent<any, any>;
+    let fixture: ComponentFixture<TableRowComponent>;
+    const router: MockRouter = new MockRouter();
 
-    beforeEach(() =>
-    {
+    beforeEach(() => {
         TestBed.configureTestingModule({
-            declarations: [TooltipDirective,
-                           TableRowComponent,
-                           TerraCheckboxComponent,
-            ],
-            imports:      [
-                FormsModule
-            ],
-            providers:    [
+            declarations: [TooltipDirective, TableRowComponent, TerraCheckboxComponent],
+            imports: [FormsModule],
+            providers: [
                 {
-                    provide:  Router,
+                    provide: Router,
                     useValue: router
                 },
                 {
-                    provide:  TerraDataTableComponent,
+                    provide: TerraDataTableComponent,
                     useValue: dataTableStub
                 }
             ]
         });
     });
 
-    beforeEach(() =>
-    {
+    beforeEach(() => {
         fixture = TestBed.createComponent(TableRowComponent);
         component = fixture.componentInstance;
         dataTable = TestBed.get(TerraDataTableComponent);
         fixture.detectChanges();
     });
 
-    it('should create', () =>
-    {
+    it('should create', () => {
         expect(component).toBeTruthy();
     });
 
-    it('should call data table #rowClicked() on click', () =>
-    {
-        const rowClicked:Spy = spyOn(dataTable, 'rowClicked');
+    it('should call data table #rowClicked() on click', () => {
+        const rowClicked: Spy = spyOn(dataTable, 'rowClicked');
 
         fixture.debugElement.triggerEventHandler('click', {});
 
         expect(rowClicked).toHaveBeenCalled();
     });
 
-    it('should set classes according to rowData', () =>
-    {
-        let rowData:TerraDataTableRowInterface<any> = {
+    it('should set classes according to rowData', () => {
+        let rowData: TerraDataTableRowInterface<any> = {
             isActive: false,
             selected: false,
             disabled: false
@@ -110,8 +93,7 @@ describe('Component: TableRowComponent', () =>
         expect(fixture.debugElement.classes['disabled']).toBe(true);
     });
 
-    it('should toggle checkbox visibility', () =>
-    {
+    it('should toggle checkbox visibility', () => {
         expect(fixture.debugElement.query(By.css('terra-checkbox'))).toBeTruthy();
 
         dataTable.inputHasCheckboxes = false;
@@ -121,21 +103,20 @@ describe('Component: TableRowComponent', () =>
         expect(fixture.debugElement.query(By.css('terra-checkbox'))).toBeFalsy();
     });
 
-    it('should call #_onRowCheckboxChange() when checkbox changes', () =>
-    {
-        let rowData:TerraDataTableRowInterface<any> = {
+    it('should call #_onRowCheckboxChange() when checkbox changes', () => {
+        let rowData: TerraDataTableRowInterface<any> = {
             isActive: false,
             selected: false,
             disabled: false
         };
 
-        const onRowCheckboxChange:Spy = spyOn(dataTable, 'onRowCheckboxChange');
+        const onRowCheckboxChange: Spy = spyOn(dataTable, 'onRowCheckboxChange');
 
         component.row = rowData;
 
         fixture.detectChanges();
 
-        let checkbox:DebugElement = fixture.debugElement.query(By.css('terra-checkbox'));
+        let checkbox: DebugElement = fixture.debugElement.query(By.css('terra-checkbox'));
 
         checkbox.triggerEventHandler('change', {});
 

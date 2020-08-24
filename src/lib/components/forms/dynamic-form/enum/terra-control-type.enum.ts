@@ -1,8 +1,7 @@
 /**
  * @deprecated since v5.0.0. Use terra-form instead.
  */
-export enum TerraControlTypeEnum
-{
+export enum TerraControlTypeEnum {
     CHECK_BOX = 'checkBox',
     CONDITIONAL_CONTAINER = 'conditionalContainer',
     DATE_PICKER = 'datePicker',

@@ -1,63 +1,50 @@
 @import '../../../styles/variables';
 
-:host
-{
+:host {
     display: block;
     margin: var(--terra-data-table-margin);
 }
 
-.table-responsive
-{
+.table-responsive {
     margin: var(--table-responsive-margin, var(--space-container));
     box-shadow: var(--table-responsive-box-shadow, var(--box-shadow));
     border-radius: var(--border-radius);
     width: auto;
     --no-result-margin: 0; //in case of a no-result page placed in a table to avoid doubled margins
 
-    table
-    {
+    table {
         margin: 0;
 
-        &.data-table
-        {
-            tr.disabled
-            {
+        &.data-table {
+            tr.disabled {
                 opacity: 0.5;
 
-                td
-                {
+                td {
                     cursor: not-allowed;
                 }
             }
         }
 
-        &.table
-        {
-            &[tabindex]
-            {
+        &.table {
+            &[tabindex] {
                 outline: none;
             }
 
-            thead
-            {
+            thead {
                 background: var(--table-head-background-color, var(--color-structure-9));
                 color: var(--table-head-color, var(--color-structure-0));
 
-                tr
-                {
-                    th
-                    {
+                tr {
+                    th {
                         padding: var(--table-head-th-padding, var(--space-md));
                         transition: padding var(--transition-lg);
                         border: none;
 
-                        &.sortable
-                        {
+                        &.sortable {
                             cursor: pointer;
                         }
 
-                        span
-                        {
+                        span {
                             font-size: var(--font-size-3);
                             @include font-rendering;
                         }
@@ -65,21 +52,17 @@
                 }
             }
 
-            tbody
-            {
+            tbody {
                 background-color: var(--color-structure-0);
 
-                tr
-                {
+                tr {
                     color: var(--color-structure-11);
 
-                    &:nth-child(odd)
-                    {
+                    &:nth-child(odd) {
                         background-color: var(--color-structure-1);
                     }
 
-                    td
-                    {
+                    td {
                         padding: var(--table-body-td-padding, var(--space-md));
                         transition: padding var(--transition-lg);
                         vertical-align: middle;
@@ -87,24 +70,19 @@
                         border-top: 1px solid var(--border-color);
                         white-space: nowrap;
 
-                        span
-                        {
+                        span {
                             font-size: var(--font-size-3);
                             @include font-rendering;
                         }
                     }
 
-                    &:last-child
-                    {
-                        td
-                        {
-                            &:first-child
-                            {
+                    &:last-child {
+                        td {
+                            &:first-child {
                                 border-radius: 0 0 0 var(--border-radius);
                             }
 
-                            &:last-child
-                            {
+                            &:last-child {
                                 border-radius: 0 0 var(--border-radius) 0;
                             }
                         }
@@ -112,8 +90,7 @@
                 }
             }
 
-            span
-            {
+            span {
                 display: inline-block;
                 overflow: hidden;
                 text-overflow: ellipsis;
@@ -121,27 +98,22 @@
                 vertical-align: middle;
             }
 
-            > tbody tr:hover
-            {
+            > tbody tr:hover {
                 background: var(--color-structure-2);
                 cursor: pointer;
             }
 
-            tbody
-            {
-                tr
-                {
-                    &.selected, &.isActive
-                    {
+            tbody {
+                tr {
+                    &.selected,
+                    &.isActive {
                         background-color: var(--color-active);
                         color: var(--color-structure-0);
 
-                        td a[href]
-                        {
+                        td a[href] {
                             color: var(--color-structure-0);
 
-                            &:hover
-                            {
+                            &:hover {
                                 color: var(--color-structure-13);
                             }
                         }
@@ -151,4 +123,3 @@
         }
     }
 }
-

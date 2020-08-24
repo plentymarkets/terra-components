@@ -1,5 +1,4 @@
-export enum AllowedColors
-{
+export enum AllowedColors {
     add = 'var(--color-group-add)',
     active = 'var(--color-group-active)',
     alert = 'var(--color-group-alert)',
