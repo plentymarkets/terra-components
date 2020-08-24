@@ -1,7 +1,4 @@
-import {
-    Directive,
-    ViewContainerRef
-} from '@angular/core';
+import { Directive, ViewContainerRef } from '@angular/core';
 
 /**
  * @description This directive is used to access the viewContainerRef of its host element before the initialization of the host
@@ -11,8 +8,6 @@ import {
 @Directive({
     selector: '[tcFormEntryContainer]'
 })
-export class FormEntryContainerDirective
-{
-    constructor(public viewContainerRef:ViewContainerRef)
-    {}
+export class FormEntryContainerDirective {
+    constructor(public viewContainerRef: ViewContainerRef) {}
 }

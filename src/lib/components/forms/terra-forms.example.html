@@ -11,8 +11,11 @@
         </tc-radio-group>
         <terra-select-box [inputName]="'select'" [inputListBoxValues]="_listBoxValues"></terra-select-box>
         <terra-suggestion-box [inputName]="'suggestion'" [inputListBoxValues]="_listBoxValues"></terra-suggestion-box>
-        <terra-multi-check-box [(ngModel)]="_multiCheckboxValues" [inputName]="'multiCheckbox'"
-                               name="'multiCheckbox'"></terra-multi-check-box>
+        <terra-multi-check-box
+            [(ngModel)]="_multiCheckboxValues"
+            [inputName]="'multiCheckbox'"
+            name="'multiCheckbox'"
+        ></terra-multi-check-box>
         <terra-date-picker [inputName]="'date'"></terra-date-picker>
         <button type="submit" [hidden]="true">
             Submit

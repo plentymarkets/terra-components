@@ -5,41 +5,33 @@ import { MockElementRef } from '../../../testing/mock-element-ref';
 import { MockTranslationService } from '../../../testing/mock-translation-service';
 import { TerraCodeEditorComponent } from './terra-code-editor.component';
 
-describe(`TerraCodeEditorComponent:`, () =>
-{
-    let component:TerraCodeEditorComponent;
+describe(`TerraCodeEditorComponent:`, () => {
+    let component: TerraCodeEditorComponent;
 
-    beforeEach(() =>
-    {
+    beforeEach(() => {
         TestBed.configureTestingModule({
             providers: [
                 {
-                    provide:  TranslationService,
+                    provide: TranslationService,
                     useClass: MockTranslationService
                 },
                 {
-                    provide:  ElementRef,
+                    provide: ElementRef,
                     useClass: MockElementRef
                 }
             ]
         });
     });
 
-    beforeEach(() =>
-    {
-        component = new TerraCodeEditorComponent(
-            TestBed.get(TranslationService),
-            TestBed.get(ElementRef)
-        );
+    beforeEach(() => {
+        component = new TerraCodeEditorComponent(TestBed.get(TranslationService), TestBed.get(ElementRef));
     });
 
-    it(`should create`, () =>
-    {
+    it(`should create`, () => {
         expect(component).toBeTruthy();
     });
 
-    it(`should initialize its inputs`, () =>
-    {
+    it(`should initialize its inputs`, () => {
         expect(component.switchFromCode).toBe(true);
     });
 });

@@ -1,5 +1,4 @@
-.info-box
-{
+.info-box {
     background-color: var(--color-structure-0);
     -moz-border-radius: var(--border-radius);
     -webkit-border-radius: var(--border-radius);
@@ -11,49 +10,40 @@
     box-shadow: var(--info-box-box-shadow, var(--box-shadow));
     border-bottom: var(--info-box-border-bottom);
 
-    &.selected
-    {
+    &.selected {
         background-color: var(--color-active);
 
-        .info-box-inner
-        {
-            .info-box-text
-            {
+        .info-box-inner {
+            .info-box-text {
                 color: var(--color-structure-13);
             }
         }
 
-        .info-box-footer
-        {
-            .info-box-id
-            {
+        .info-box-footer {
+            .info-box-id {
                 color: var(--color-structure-0);
             }
         }
     }
 
-    &.empty
-    {
+    &.empty {
         background: var(--color-structure-4);
         justify-content: center;
         line-height: 8rem;
     }
 
-    .info-box-inner
-    {
+    .info-box-inner {
         display: flex;
         justify-content: space-between;
         max-height: 100%;
         padding: var(--space-md);
-        
-        &.has-footer
-        {
+
+        &.has-footer {
             height: calc(100% - 26px);
             background-color: var(--color-structure-0);
         }
 
-        .info-box-text
-        {
+        .info-box-text {
             max-width: 100%;
             white-space: nowrap;
             color: var(--color-structure-11);
@@ -62,26 +52,22 @@
             overflow-y: auto;
         }
 
-        .has-buttons
-        {
+        .has-buttons {
             max-width: 85%;
             padding-right: 0.8rem;
         }
 
-        .no-word-break
-        {
+        .no-word-break {
             white-space: normal;
         }
     }
 
-    .info-box-footer
-    {
+    .info-box-footer {
         display: flex;
         justify-content: space-between;
         padding-left: 4px;
 
-        .info-box-id
-        {
+        .info-box-id {
             margin: 7px 4px 0 0;
             color: var(--color-structure-8);
         }

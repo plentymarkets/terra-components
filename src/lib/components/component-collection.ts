@@ -69,7 +69,7 @@ import { TerraFormContainerWrapperComponent } from './forms/form/form-container/
 import { TableSettingsComponent } from './table/table-settings/table-settings.component';
 import { TableSettingsDialogComponent } from './table/table-settings/dialog/table-settings-dialog.component';
 
-export const exportedComponents:Array<Type<any>> = [
+export const exportedComponents: Array<Type<any>> = [
     TerraAlertPanelComponent,
     TerraTextInputComponent,
     TerraColorPickerComponent,
@@ -138,7 +138,7 @@ export const exportedComponents:Array<Type<any>> = [
     TableSettingsDialogComponent
 ];
 
-export const components:Array<Type<any>> = [
+export const components: Array<Type<any>> = [
     ...exportedComponents,
     TerraFileListComponent,
     TerraImagePreviewComponent,

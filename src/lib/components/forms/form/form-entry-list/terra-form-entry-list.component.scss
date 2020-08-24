@@ -1,33 +1,26 @@
-.form-list
-{
-    > terra-button
-    {
+.form-list {
+    > terra-button {
         float: right;
     }
 
     margin-bottom: var(--space-sm);
 }
 
-.form-list-entry
-{
+.form-list-entry {
     display: flex;
-    
+
     > terra-form-container,
-    > terra-form-entry
-    {
+    > terra-form-entry {
         flex: 1;
         padding: 0 var(--space-md);
     }
-    
 }
 
-.form-list-sort
-{
+.form-list-sort {
     position: relative;
     width: 17px;
-    
-    > terra-button
-    {
+
+    > terra-button {
         --btn-height: 17px;
         --btn-line-height: 18px;
         --button-border-bottom-group-navigation: none;
@@ -35,32 +28,25 @@
         --button-text-color-group-navigation: var(--color-structure-0);
         --button-background-color-group-navigation: var(--color-structure-9);
         --btn-padding: 0;
-    
+
         position: absolute;
         display: block;
         left: 0;
         top: 0;
-        
-        &:last-child
-        {
+
+        &:last-child {
             top: 17px;
         }
     }
 }
 
-:host-context(.theme-compact)
-{
-    .form-list-sort
-    {
+:host-context(.theme-compact) {
+    .form-list-sort {
         width: 42px;
-        
-        > terra-button:last-child
-        {
+
+        > terra-button:last-child {
             top: 0;
             left: 21px;
         }
     }
 }
-
-
-

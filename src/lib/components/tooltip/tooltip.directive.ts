@@ -14,43 +14,37 @@ import {
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
-import tippy, {
-    Instance,
-    Placement
-} from 'tippy.js';
+import tippy, { Instance, Placement } from 'tippy.js';
 import { TerraPlacementEnum } from '../../helpers/enums/terra-placement.enum';
 
 @Directive({
     selector: '[tcTooltip]'
 })
-export class TooltipDirective implements OnDestroy, OnChanges, OnInit
-{
+export class TooltipDirective implements OnDestroy, OnChanges, OnInit {
     /**
      * @description The tooltip text.
      */
     @Input()
-    public tcTooltip:string | TemplateRef<any>;
+    public tcTooltip: string | TemplateRef<any>;
 
     /**
      * @description Show the tooltip only when ellipsis is present. Default false.
      */
     @Input()
-    public onlyEllipsisTooltip:boolean = false;
+    public onlyEllipsisTooltip: boolean = false;
 
-    private _isDisabled:boolean;
-    private _tippyInstance:Instance;
-    private _placement:string = TerraPlacementEnum.TOP;
-    private navigationSubscription:Subscription = Subscription.EMPTY;
+    private _isDisabled: boolean;
+    private _tippyInstance: Instance;
+    private _placement: string = TerraPlacementEnum.TOP;
+    private navigationSubscription: Subscription = Subscription.EMPTY;
 
     /**
      * Set the placement of the tooltip.
      * @param placement
      */
     @Input()
-    public set placement(placement:string)
-    {
-        if(!placement)
-        {
+    public set placement(placement: string) {
+        if (!placement) {
             placement = TerraPlacementEnum.TOP;
         }
 
@@ -61,61 +55,46 @@ export class TooltipDirective implements OnDestroy, OnChanges, OnInit
      * @param disabled
      */
     @Input()
-    public set isDisabled(disabled:boolean)
-    {
+    public set isDisabled(disabled: boolean) {
         this._isDisabled = disabled;
 
         this._handleTooltipState();
     }
 
-    constructor(private _elementRef:ElementRef,
-                private _containerRef:ViewContainerRef,
-                private _router:Router)
-    {
+    constructor(private _elementRef: ElementRef, private _containerRef: ViewContainerRef, private _router: Router) {}
+
+    public ngOnInit(): void {
+        this.navigationSubscription = this._router.events
+            .pipe(filter(() => this._tippyInstance && this._tippyInstance.state && this._tippyInstance.state.isShown))
+            .subscribe(() => {
+                this._tippyInstance.hide(0);
+            });
     }
 
-    public ngOnInit():void
-    {
-        this.navigationSubscription = this._router.events.pipe(
-            filter(() => this._tippyInstance && this._tippyInstance.state && this._tippyInstance.state.isShown),
-        ).subscribe(() =>
-        {
-            this._tippyInstance.hide(0);
-        });
-    }
-
-    public ngOnChanges(changes:SimpleChanges):void
-    {
-        if(changes.hasOwnProperty('isDisabled'))
-        {
+    public ngOnChanges(changes: SimpleChanges): void {
+        if (changes.hasOwnProperty('isDisabled')) {
             this._handleTooltipState();
         }
 
-        if(changes.hasOwnProperty('tcTooltip'))
-        {
-            if(changes['tcTooltip'].currentValue)
-            {
-                let tooltip:string | Element;
-                let tooltipIsEmpty:boolean = true;
+        if (changes.hasOwnProperty('tcTooltip')) {
+            if (changes['tcTooltip'].currentValue) {
+                let tooltip: string | Element;
+                let tooltipIsEmpty: boolean = true;
 
                 // example found here: https://netbasal.com/create-advanced-components-in-angular-e0655df5dde6
-                if(this.tcTooltip instanceof TemplateRef)
-                {
-                    const viewRef:EmbeddedViewRef<any> = this._containerRef.createEmbeddedView(this.tcTooltip, {});
+                if (this.tcTooltip instanceof TemplateRef) {
+                    const viewRef: EmbeddedViewRef<any> = this._containerRef.createEmbeddedView(this.tcTooltip, {});
 
-                    let div:HTMLElement = document.createElement('div');
+                    let div: HTMLElement = document.createElement('div');
 
-                    viewRef.rootNodes.forEach((node:HTMLElement) =>
-                    {
+                    viewRef.rootNodes.forEach((node: HTMLElement) => {
                         div.append(node);
                     });
 
                     tooltip = div;
 
                     tooltipIsEmpty = div.innerHTML.length === 0;
-                }
-                else if(typeof this.tcTooltip === 'string')
-                {
+                } else if (typeof this.tcTooltip === 'string') {
                     tooltip = this.tcTooltip;
 
                     tooltipIsEmpty = tooltip.length === 0;
@@ -123,21 +102,16 @@ export class TooltipDirective implements OnDestroy, OnChanges, OnInit
 
                 this._initTooltip(tooltip);
 
-                if(tooltipIsEmpty)
-                {
+                if (tooltipIsEmpty) {
                     this.isDisabled = true;
                 }
-            }
-            else
-            {
+            } else {
                 this.isDisabled = true;
             }
         }
 
-        if(changes.hasOwnProperty('placement'))
-        {
-            if(this._tippyInstance)
-            {
+        if (changes.hasOwnProperty('placement')) {
+            if (this._tippyInstance) {
                 this._tippyInstance.setProps({
                     placement: this._placement as Placement
                 });
@@ -146,23 +120,18 @@ export class TooltipDirective implements OnDestroy, OnChanges, OnInit
     }
 
     @HostListener('mouseout', ['$event'])
-    public onMouseOut(event:MouseEvent):void
-    {
+    public onMouseOut(event: MouseEvent): void {
         event.stopPropagation();
-        if(this._tippyInstance)
-        {
+        if (this._tippyInstance) {
             this._tippyInstance.hide(0);
         }
     }
 
     @HostListener('mouseover', ['$event'])
-    public onMouseOver(event:MouseEvent):void
-    {
+    public onMouseOver(event: MouseEvent): void {
         event.stopPropagation();
-        if(this._tippyInstance)
-        {
-            if(this.onlyEllipsisTooltip)
-            {
+        if (this._tippyInstance) {
+            if (this.onlyEllipsisTooltip) {
                 this._checkIfEllipsis();
             }
 
@@ -170,43 +139,35 @@ export class TooltipDirective implements OnDestroy, OnChanges, OnInit
         }
     }
 
-    public ngOnDestroy():void
-    {
-        if(this._tippyInstance)
-        {
+    public ngOnDestroy(): void {
+        if (this._tippyInstance) {
             this._tippyInstance.destroy();
         }
 
         this.navigationSubscription.unsubscribe();
     }
 
-    private _handleTooltipState():void
-    {
-        if(this._tippyInstance)
-        {
-            if(this._isDisabled)
-            {
+    private _handleTooltipState(): void {
+        if (this._tippyInstance) {
+            if (this._isDisabled) {
                 this._tippyInstance.disable();
-            }
-            else
-            {
+            } else {
                 this._tippyInstance.enable();
             }
         }
     }
 
-    private _checkIfEllipsis():void
-    {
-        let curOverflow:string = this._elementRef.nativeElement.style.overflow;
+    private _checkIfEllipsis(): void {
+        let curOverflow: string = this._elementRef.nativeElement.style.overflow;
 
         // 'hide' overflow to get correct scrollWidth
-        if(!curOverflow || curOverflow === 'visible')
-        {
+        if (!curOverflow || curOverflow === 'visible') {
             this._elementRef.nativeElement.style.overflow = 'hidden';
         }
 
         // check if is overflowing
-        let isOverflowing:boolean = this._elementRef.nativeElement.clientWidth < this._elementRef.nativeElement.scrollWidth;
+        let isOverflowing: boolean =
+            this._elementRef.nativeElement.clientWidth < this._elementRef.nativeElement.scrollWidth;
 
         // 'reset' overflow to initial state
         this._elementRef.nativeElement.style.overflow = curOverflow;
@@ -218,21 +179,17 @@ export class TooltipDirective implements OnDestroy, OnChanges, OnInit
      * initialize the tippy element
      * @param tooltip
      */
-    private _initTooltip(tooltip:string | Element):void
-    {
-        if(!this._tippyInstance)
-        {
+    private _initTooltip(tooltip: string | Element): void {
+        if (!this._tippyInstance) {
             this._tippyInstance = tippy(this._elementRef.nativeElement as Element, {
-                content:     tooltip,
-                trigger:     'manual',
-                arrow:       true,
-                boundary:    'window',
+                content: tooltip,
+                trigger: 'manual',
+                arrow: true,
+                boundary: 'window',
                 hideOnClick: false,
-                placement:   this._placement as Placement
+                placement: this._placement as Placement
             });
-        }
-        else
-        {
+        } else {
             this._tippyInstance.setContent(tooltip);
         }
     }
