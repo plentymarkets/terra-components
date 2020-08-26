@@ -1,7 +1,4 @@
-**/*.jpg
-**/*.png
-**/*.eot
-**/*.svg
-**/*.ttf
-**/*.woff
-**/*.woff2
+# ignore generated folders
+dist
+coverage
+node_modules
