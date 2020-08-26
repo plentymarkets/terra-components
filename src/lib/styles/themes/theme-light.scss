@@ -1,7 +1,5 @@
-body
-{
-    &.theme-light
-    {
+body {
+    &.theme-light {
         // Navbar, Tabbar, Breadcrumbs
         --nav-background-color: var(--color-structure-0);
         --nav-link-color: var(--color-structure-11);

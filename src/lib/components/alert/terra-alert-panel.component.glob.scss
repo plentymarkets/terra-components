@@ -1,28 +1,25 @@
 .alert-wrapper,
-terra-alert-panel
-{
+terra-alert-panel {
     position: fixed;
     right: 12px;
-    top: var(--terra-alert-panel-top, (calc(var(--navbar-height) + var(--tabbar-height) * 1.4 )));
+    top: var(--terra-alert-panel-top, (calc(var(--navbar-height) + var(--tabbar-height) * 1.4)));
     transition: top var(--transition-lg);
     max-height: 500px;
     max-width: 350px;
     min-width: 250px;
     overflow-y: auto;
     z-index: var(--zIndex-9);
-    
-    .alert
-    {
+
+    .alert {
         position: relative;
         padding: 4px 36px;
-        margin-bottom: .2rem;
+        margin-bottom: 0.2rem;
         word-wrap: break-word;
         box-shadow: var(--box-shadow);
         background-color: var(--color-structure-0);
         font-weight: var(--font-weight-1);
-        
-        &:before
-        {
+
+        &:before {
             font-family: var(--font-family-icons) !important;
             speak: none;
             font-style: normal;
@@ -32,69 +29,59 @@ terra-alert-panel
             line-height: 1;
             font-size: 1.1em;
             position: absolute;
-            top: .4em;
-            left: .7em;
+            top: 0.4em;
+            left: 0.7em;
         }
-        
-        &.alert-danger
-        {
+
+        &.alert-danger {
             border: 2px solid var(--color-alert);
             color: var(--color-alert-dark);
-            
-            &:before
-            {
-                content: "\ea1e";
+
+            &:before {
+                content: '\ea1e';
                 color: var(--color-alert-dark);
             }
         }
-        
-        &.alert-success
-        {
+
+        &.alert-success {
             border: 2px solid var(--color-add);
             color: var(--color-add-dark);
-            
-            &:before
-            {
-                content: "\e915";
+
+            &:before {
+                content: '\e915';
                 color: var(--color-add-dark);
             }
         }
-        
-        &.alert-warning
-        {
+
+        &.alert-warning {
             border: 2px solid var(--color-accent);
             color: var(--color-accent-dark);
-            
-            &:before
-            {
-                content: "\e9b9";
+
+            &:before {
+                content: '\e9b9';
                 color: var(--color-accent-dark);
             }
         }
-        
-        &.alert-info
-        {
+
+        &.alert-info {
             border: 2px solid var(--color-active);
             color: var(--color-active-dark);
-            
-            &:before
-            {
-                content: "\e9bc";
+
+            &:before {
+                content: '\e9bc';
                 color: var(--color-active-dark);
             }
         }
-        
-        button.close
-        {
+
+        button.close {
             padding: 0;
             top: -5px;
             right: -25px;
             opacity: 1;
             outline: none;
             position: relative;
-            
-            span
-            {
+
+            span {
                 font-size: var(--font-size-5);
             }
         }

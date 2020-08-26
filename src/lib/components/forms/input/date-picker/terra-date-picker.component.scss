@@ -1,11 +1,9 @@
-@import "../terra-input.component";
+@import '../terra-input.component';
 
-.input-wrapper
-{
+.input-wrapper {
     overflow: inherit;
 
-    label &.disabled
-    {
+    label &.disabled {
         cursor: not-allowed;
     }
 }

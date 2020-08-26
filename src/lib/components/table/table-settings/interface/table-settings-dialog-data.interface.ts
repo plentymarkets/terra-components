@@ -1,7 +1,6 @@
-import { MatColumnDef } from '@angular/material/table';
-import { QueryList } from '@angular/core';
+import { ColumnInterface } from './column.interface';
 
 export interface TableSettingsDialogData {
-    columns:Array<MatColumnDef>;
-    selectedColumns:Array<string>;
+    columns: Array<ColumnInterface>;
+    selectedColumns: Array<string>;
 }
