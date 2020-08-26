@@ -27,7 +27,8 @@ import { Observable } from 'rxjs';
         NestedDataTreeConfig
     ]
 })
-export class TerraCategoryPickerComponent extends TerraNestedDataPickerComponent
+export class TerraCategoryPickerComponent
+    extends TerraNestedDataPickerComponent
     implements OnInit, AfterContentChecked {
     /**
      * @description Service, that is used to request the category data from the server
