@@ -66,12 +66,12 @@
         "karma-jasmine": "~3.3.1",
         "karma-jasmine-html-reporter": "~1.5.4",
         "karma-safari-launcher": "^1.0.0",
-        "lint-staged": "^10.2.11",
+        "lint-staged": "^10.2.13",
         "ng-packagr": "^5.4.0",
         "node-sass-tilde-importer": "^1.0.2",
         "parse5": "^6.0.0",
         "path": "^0.12.7",
-        "prettier": "2.0.5",
+        "prettier": "2.1.1",
         "rxjs": "~6.5.4",
         "semver": "^7.3.2",
         "ts-node": "~7.0.0",
@@ -89,6 +89,6 @@
         }
     },
     "lint-staged": {
-        "*": "prettier --write"
+        "**/*": "prettier --write --ignore-unknown"
     }
 }
