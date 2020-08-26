@@ -26,9 +26,9 @@ module.exports = function (config) {
                 // thresholds for all files
                 global: {
                     statements: 50,
-                    lines: 48,
-                    branches: 33,
-                    functions: 45
+                    lines: 0,
+                    branches: 0,
+                    functions: 0
                 }
             }
         },
