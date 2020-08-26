@@ -1,4 +1,5 @@
 module.exports = function () {
+
     const fileSelectors = {
         allFonts: './src/assets/fonts/**/*',
         allLang: './src/assets/lang/**/*'
@@ -6,7 +7,11 @@ module.exports = function () {
 
     const sources = {
         dist: 'dist/**/*.*',
-        scss: ['src/lib/styles/styles.scss', 'src/lib/styles/icons.scss', 'src/lib/styles/themes/theme-loader.scss'],
+        scss: [
+            'src/lib/styles/styles.scss',
+            'src/lib/styles/icons.scss',
+            'src/lib/styles/themes/theme-loader.scss'
+        ],
         readme: 'README.md'
     };
 
@@ -16,7 +21,7 @@ module.exports = function () {
         langOutputPath: './dist/assets/lang/',
         styles: './dist/styles/',
 
-        terra: '../terra/node_modules/@plentymarkets/terra-components/'
+        terra: '../terra/node_modules/@plentymarkets/terra-components/',
     };
 
     return {
