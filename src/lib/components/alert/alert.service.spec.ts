@@ -1,45 +1,41 @@
 import { TestBed } from '@angular/core/testing';
 
-import { AlertService, } from './alert.service';
+import { AlertService } from './alert.service';
 import { TerraAlertInterface } from './data/terra-alert.interface';
 import { Subscription } from 'rxjs';
 import { AlertType } from './alert-type.enum';
 import { IS_ROOT_WINDOW } from '../../utils/window';
 
-describe('AlertService', () =>
-{
-    let service:AlertService;
-    beforeEach(() => TestBed.configureTestingModule({
-        providers: [AlertService, {provide: IS_ROOT_WINDOW, useValue: true}]
-    }));
-
+describe('AlertService', () => {
+    let service: AlertService;
     beforeEach(() =>
-    {
+        TestBed.configureTestingModule({
+            providers: [AlertService, { provide: IS_ROOT_WINDOW, useValue: true }]
+        })
+    );
+
+    beforeEach(() => {
         service = TestBed.get(AlertService);
     });
 
-    it('should be created', () =>
-    {
+    it('should be created', () => {
         expect(service).toBeTruthy();
     });
 
-    describe('addAlert', () =>
-    {
-        let latest:TerraAlertInterface;
-        let defaultTimeout:number;
-        let subscription:Subscription;
+    describe('addAlert', () => {
+        let latest: TerraAlertInterface;
+        let defaultTimeout: number;
+        let subscription: Subscription;
 
-        const text:string = 'warning';
-        const identifier:string = 'identifier';
-        beforeEach(() =>
-        {
+        const text: string = 'warning';
+        const identifier: string = 'identifier';
+        beforeEach(() => {
             defaultTimeout = service['defaultTimeout']; // access private property
-            subscription = service.addAlert.subscribe((alert:TerraAlertInterface) => latest = alert);
+            subscription = service.addAlert.subscribe((alert: TerraAlertInterface) => (latest = alert));
             expect(latest).toBeUndefined();
         });
 
-        it('Type: Info', () =>
-        {
+        it('Type: Info', () => {
             service.info(text);
             expect(latest).toBeDefined();
             expect(latest.msg).toBe(text);
@@ -51,8 +47,7 @@ describe('AlertService', () =>
             expect(latest.identifier).toEqual(identifier);
         });
 
-        it('Type: Warning', () =>
-        {
+        it('Type: Warning', () => {
             service.warning(text);
             expect(latest).toBeDefined();
             expect(latest.msg).toBe(text);
@@ -64,8 +59,7 @@ describe('AlertService', () =>
             expect(latest.identifier).toEqual(identifier);
         });
 
-        it('Type: Success', () =>
-        {
+        it('Type: Success', () => {
             service.success(text);
             expect(latest).toBeDefined();
             expect(latest.msg).toBe(text);
@@ -77,8 +71,7 @@ describe('AlertService', () =>
             expect(latest.identifier).toEqual(identifier);
         });
 
-        it('Type: Error', () =>
-        {
+        it('Type: Error', () => {
             service.error(text);
             expect(latest).toBeDefined();
             expect(latest.msg).toBe(text);
@@ -90,34 +83,29 @@ describe('AlertService', () =>
             expect(latest.identifier).toEqual(identifier);
         });
 
-        afterEach(() =>
-        {
+        afterEach(() => {
             subscription.unsubscribe();
             latest = undefined;
         });
     });
 
-    describe('closing an alert', () =>
-    {
-        let latest:string;
-        let subscription:Subscription;
+    describe('closing an alert', () => {
+        let latest: string;
+        let subscription: Subscription;
 
-        const identifier:string = 'identifier';
+        const identifier: string = 'identifier';
 
-        beforeEach(() =>
-        {
-            subscription = service.closeAlert.subscribe((ident:string) => latest = ident);
+        beforeEach(() => {
+            subscription = service.closeAlert.subscribe((ident: string) => (latest = ident));
             expect(latest).toBeUndefined();
         });
 
-        it('should emit on closeAlert', () =>
-        {
+        it('should emit on closeAlert', () => {
             service.close(identifier);
             expect(latest).toEqual(identifier);
         });
 
-        afterEach(() =>
-        {
+        afterEach(() => {
             subscription.unsubscribe();
             latest = undefined;
         });

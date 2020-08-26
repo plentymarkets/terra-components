@@ -1,13 +1,5 @@
-<tc-filter (search)="_onSearchBtnClicked()"
-           (reset)="_onResetBtnClicked()">
-    <terra-text-input
-        [inputName]="'Name'"
-        [(ngModel)]="_name">
-    </terra-text-input>
-    <terra-select-box
-        [inputName]="'Select'"
-        [inputListBoxValues]="_listBoxValues"
-        [(ngModel)]="_selectedListBoxValue">
+<tc-filter (search)="_onSearchBtnClicked()" (reset)="_onResetBtnClicked()">
+    <terra-text-input [inputName]="'Name'" [(ngModel)]="_name"> </terra-text-input>
+    <terra-select-box [inputName]="'Select'" [inputListBoxValues]="_listBoxValues" [(ngModel)]="_selectedListBoxValue">
     </terra-select-box>
 </tc-filter>
-

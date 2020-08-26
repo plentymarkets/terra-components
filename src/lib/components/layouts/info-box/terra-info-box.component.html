@@ -1,31 +1,31 @@
-<div class="info-box"
-     [ngClass]="{'add': inputAddBox,
-                 'empty': inputIsEmpty,
-                 'selected': inputIsSelected}">
-    <div class="info-box-inner"
-         [ngClass]="{'add': inputAddBox,
-                    'empty': inputIsEmpty,
-                    'has-footer': hasFooter}">
-        <div class="info-box-text float-sm-left"
-             [ngClass]="{'add': inputAddBox,
-                        'empty': inputIsEmpty,
-                        'no-word-break':inputNoWordBreak,
-                        'has-buttons':hasButtons}">
+<div class="info-box" [ngClass]="{ add: inputAddBox, empty: inputIsEmpty, selected: inputIsSelected }">
+    <div class="info-box-inner" [ngClass]="{ add: inputAddBox, empty: inputIsEmpty, 'has-footer': hasFooter }">
+        <div
+            class="info-box-text float-sm-left"
+            [ngClass]="{
+                add: inputAddBox,
+                empty: inputIsEmpty,
+                'no-word-break': inputNoWordBreak,
+                'has-buttons': hasButtons
+            }"
+        >
             <ng-content select="[body]"></ng-content>
         </div>
         <div #buttonRef class="btn-group-vertical" role="group">
             <ng-content select="[buttons]"></ng-content>
-            <terra-button *ngFor="let button of inputButtonList"
-                          [inputIcon]="button.icon"
-                          [inputCaption]="button.caption"
-                          [inputTooltipText]="button.tooltipText"
-                          (outputClicked)="button.clickFunction()"
-                          [inputTooltipPlacement]="button.tooltipPlacement"
-                          [inputIsActive]="button.isActive"
-                          [inputIsDisabled]="button.isDisabled"
-                          [inputIsHidden]="button.isHidden"
-                          [inputIsDivider]="button.isDivider"
-                          [inputIsHighlighted]="button.isHighlighted">
+            <terra-button
+                *ngFor="let button of inputButtonList"
+                [inputIcon]="button.icon"
+                [inputCaption]="button.caption"
+                [inputTooltipText]="button.tooltipText"
+                (outputClicked)="button.clickFunction()"
+                [inputTooltipPlacement]="button.tooltipPlacement"
+                [inputIsActive]="button.isActive"
+                [inputIsDisabled]="button.isDisabled"
+                [inputIsHidden]="button.isHidden"
+                [inputIsDivider]="button.isDivider"
+                [inputIsHighlighted]="button.isHighlighted"
+            >
             </terra-button>
         </div>
     </div>

@@ -4,22 +4,21 @@ import { TerraTagNameInterface } from './terra-tag-name.interface';
  * @author dtrauf
  *
  */
-export interface TerraTagInterface
-{
+export interface TerraTagInterface {
     /** The ID of the tag */
-    id?:number;
+    id?: number;
     /** The base name of the tag.*/
-    name:string;
-    tagName?:string;
+    name: string;
+    tagName?: string;
 
     /** A list with translation of the base name. */
-    names?:Array<TerraTagNameInterface>;
+    names?: Array<TerraTagNameInterface>;
 
     /** The color of the tag. */
-    color?:string;
+    color?: string;
 
-    isTagged?:boolean;
-    isTaggable?:boolean;
-    isClosable?:boolean;
-    customClass?:string;
+    isTagged?: boolean;
+    isTaggable?: boolean;
+    isClosable?: boolean;
+    customClass?: string;
 }

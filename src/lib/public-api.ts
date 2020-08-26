@@ -21,7 +21,7 @@ export { TerraFileChooserComponent } from './components/buttons/file-chooser/ter
 
 export { TerraBaseData } from './components/data/terra-base.data';
 export { TerraFilterComponent } from './components/filter/terra-filter.component';
-export { FilterComponent } from  './components/filter/filter.component';
+export { FilterComponent } from './components/filter/filter.component';
 
 // FORM ELEMENTS
 export { TerraCheckboxComponent } from './components/forms/checkbox/terra-checkbox.component';
@@ -90,7 +90,7 @@ export { TerraDataTableTextInterface } from './components/tables/data-table/inte
 export { TerraDataTableHeaderCellInterface } from './components/tables/data-table/interfaces/terra-data-table-header-cell.interface';
 export { TerraDataTableRowInterface } from './components/tables/data-table/interfaces/terra-data-table-row.interface';
 export { TerraDataTableContextMenuDirective } from './components/tables/data-table/context-menu/terra-data-table-context-menu.directive';
-export { TerraDataTableContextMenuEntryInterface }from './components/tables/data-table/context-menu/data/terra-data-table-context-menu-entry.interface';
+export { TerraDataTableContextMenuEntryInterface } from './components/tables/data-table/context-menu/data/terra-data-table-context-menu-entry.interface';
 export { TerraDataTableContextMenuService } from './components/tables/data-table/context-menu/terra-data-table-context-menu.service';
 export { TerraDataTableContextMenuComponent } from './components/tables/data-table/context-menu/terra-data-table-context-menu.component';
 export { TerraDataTableComponent } from './components/tables/data-table/terra-data-table.component';
@@ -123,20 +123,13 @@ export {
 export { TerraImageMetadata } from './components/file-browser/model/terra-image-metadata.interface';
 export { TerraStorageObject } from './components/file-browser/model/terra-storage-object';
 export { TerraStorageObjectList } from './components/file-browser/model/terra-storage-object-list';
-export {
-    TerraUploadItem,
-    UploadCallback
-} from './components/file-browser/model/terra-upload-item';
-export {
-    TerraUploadQueue,
-    UploadQueueUrlFactory
-}from './components/file-browser/model/terra-upload-queue';
+export { TerraUploadItem, UploadCallback } from './components/file-browser/model/terra-upload-item';
+export { TerraUploadQueue, UploadQueueUrlFactory } from './components/file-browser/model/terra-upload-queue';
 export { TerraBaseStorageService } from './components/file-browser/terra-base-storage.interface';
 export { TerraFrontendStorageService } from './components/file-browser/terra-frontend-storage.service';
 export { TerraFileBrowserService } from './components/file-browser/terra-file-browser.service';
 export { TerraFileBrowserComponent } from './components/file-browser/terra-file-browser.component';
 export { TerraBasePrivateStorageService } from './components/file-browser/terra-base-private-storage.interface';
-
 
 export { TerraNoResultNoticeComponent } from './components/no-result/terra-no-result-notice.component';
 export { TerraNoteEditorComponent } from './components/editors/note-editor/terra-note-editor.component';
@@ -177,7 +170,6 @@ export { NestedDataInterface } from './components/data-picker/nested-data-picker
 export { NestedValueInterface } from './components/data-picker/nested-data-picker/data/nested-value.interface';
 
 export { TerraValidators } from './validators/validators';
-
 
 export { TerraFormComponent } from './components/forms/form/terra-form.component';
 export { TerraFormContainerComponent } from './components/forms/form/form-container/terra-form-container.component';

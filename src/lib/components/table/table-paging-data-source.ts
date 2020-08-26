@@ -1,12 +1,6 @@
 import { TableDataSource } from './table-data-source';
-import {
-    EMPTY,
-    Observable
-} from 'rxjs';
-import {
-    MatPaginator,
-    PageEvent
-} from '@angular/material/paginator';
+import { EMPTY, Observable } from 'rxjs';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { EventEmitter } from '@angular/core';
 import { HasPaginatorInterface } from './has-paginator.interface';
 import { debounceTime } from 'rxjs/operators';
@@ -15,19 +9,17 @@ import { debounceTime } from 'rxjs/operators';
  * Data Source base class for a data table with pagination.
  * @experimental
  */
-export abstract class TablePagingDataSource<T> extends TableDataSource<T> implements HasPaginatorInterface
-{
+export abstract class TablePagingDataSource<T> extends TableDataSource<T> implements HasPaginatorInterface {
     /**
      * @description The paginator instance of the material table.
      */
-    public paginator:MatPaginator;
+    public paginator: MatPaginator;
 
     /**
      * @description Get the current page index or undefined if no paginator is specified.
      * @returns number
      */
-    public get pageIndex():number
-    {
+    public get pageIndex(): number {
         return this.paginator ? this.paginator.pageIndex + 1 : undefined;
     }
 
@@ -35,8 +27,7 @@ export abstract class TablePagingDataSource<T> extends TableDataSource<T> implem
      * @description Get the current items pet page or undefined if no paginator is specified.
      * @returns number
      */
-    public get itemsPerPage():number
-    {
+    public get itemsPerPage(): number {
         return this.paginator ? this.paginator.pageSize : undefined;
     }
 
@@ -45,8 +36,7 @@ export abstract class TablePagingDataSource<T> extends TableDataSource<T> implem
      * @override
      * @returns EventEmitter<PageEvent> or Observable<never>
      */
-    protected _paging():Observable<PageEvent> | Observable<never>
-    {
+    protected _paging(): Observable<PageEvent> | Observable<never> {
         return this.paginator ? this.paginator.page.pipe(debounceTime(400)) : EMPTY;
     }
 }

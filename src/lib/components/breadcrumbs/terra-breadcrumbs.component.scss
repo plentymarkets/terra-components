@@ -1,5 +1,4 @@
-.terra-breadcrumbs-wrapper
-{
+.terra-breadcrumbs-wrapper {
     background-color: var(--terra-breadcrumbs-wrapper-background-color, var(--color-structure-9));
     margin: var(--terra-breadcrumbs-wrapper-margin, 0);
     border-radius: var(--terra-breadcrumbs-wrapper-border-radius, 0 0 var(--border-radius) var(--border-radius));
@@ -9,27 +8,23 @@
     box-shadow: var(--box-shadow);
 }
 
-.terra-breadcrumbs
-{
+.terra-breadcrumbs {
     list-style: none;
     padding: 0;
     margin: 0;
     height: var(--terra-breadcrumbs-height, var(--breadcrumbs-height));
     transition: height var(--transition-lg);
     display: flex;
-    
-    &.breadcrumbs-overflow-auto
-    {
+
+    &.breadcrumbs-overflow-auto {
         overflow-x: auto;
         overflow-y: hidden;
     }
-    
-    .terra-breadcrumb-container
-    {
+
+    .terra-breadcrumb-container {
         cursor: pointer;
-        
-        .terra-breadcrumb-wrapper
-        {
+
+        .terra-breadcrumb-wrapper {
             text-decoration: none;
             padding: var(--terra-breadcrumbs-li-padding, (0 var(--space-md)));
             line-height: var(--terra-breadcrumbs-line-height, var(--breadcrumbs-height));
@@ -40,9 +35,8 @@
             color: var(--terra-breadcrumb-color, var(--color-structure-0));
             white-space: nowrap;
             height: var(--breadcrumbs-height);
-            
-            .terra-breadcrumb
-            {
+
+            .terra-breadcrumb {
                 font-weight: var(--font-weight-2);
                 font-size: var(--font-size-2);
                 color: inherit;
@@ -52,59 +46,49 @@
                 text-decoration: none;
                 -webkit-font-smoothing: antialiased;
                 -moz-osx-font-smoothing: grayscale;
-                
-                &.active
-                {
+
+                &.active {
                     color: var(--color-active);
                     cursor: default;
                 }
-                
-                &:not(.active):hover
-                {
+
+                &:not(.active):hover {
                     color: var(--color-active);
                 }
             }
-            
-            &:hover
-            {
+
+            &:hover {
                 color: var(--color-active);
             }
-            
-            .icon-caret
-            {
+
+            .icon-caret {
                 overflow: hidden;
                 font-size: var(--font-size-6);
                 line-height: var(--terra-breadcrumbs-icon-caret-line-height, var(--breadcrumbs-height));
                 padding-left: 8px;
-                
-                .context-menu
-                {
+
+                .context-menu {
                     position: fixed;
                     width: 150px;
                     transition: all var(--transition-0);
                     transition-delay: var(--transition-delay-0);
-                    
-                    li
-                    {
+
+                    li {
                         float: none;
                         display: flex;
                         align-items: center;
                         height: var(--height-sm);
-                        
-                        span
-                        {
+
+                        span {
                             margin-right: 5px;
                         }
                     }
                 }
             }
-            
-            &:hover
-            {
-                .icon-caret
-                {
-                    .context-menu
-                    {
+
+            &:hover {
+                .icon-caret {
+                    .context-menu {
                         display: block;
                         visibility: visible;
                         opacity: 1;
@@ -114,11 +98,9 @@
                 }
             }
         }
-        
-        .icon-next
-        {
-            &::before
-            {
+
+        .icon-next {
+            &::before {
                 display: inline-block;
                 line-height: var(--terra-breadcrumbs-icon-next-line-height, var(--breadcrumbs-height));
                 font-size: var(--font-size-6);
@@ -128,8 +110,7 @@
     }
 }
 
-.main-breadcrumbs
-{
+.main-breadcrumbs {
     --terra-breadcrumbs-wrapper-z-index: var(--zIndex-2);
     --terra-breadcrumbs-wrapper-border-radius: none;
 }
