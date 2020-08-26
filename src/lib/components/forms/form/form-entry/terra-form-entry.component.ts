@@ -16,7 +16,8 @@ import { TerraFormEntryBase } from './terra-form-entry.base';
         }
     ]
 })
-export class TerraFormEntryComponent extends TerraFormEntryBase
+export class TerraFormEntryComponent
+    extends TerraFormEntryBase
     implements OnInit, OnChanges, OnDestroy, ControlValueAccessor {
     /**
      * @description FormControl instance corresponding to the given formField.
