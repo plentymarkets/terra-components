@@ -8,7 +8,7 @@ import { CKEditorDirective } from './editors/ck-editor/ck-editor.directive';
 import { TooltipDirective } from './tooltip/tooltip.directive';
 import { SelectSortDirective } from './forms/select-box/directive/select-sort.directive';
 
-export const directives:Array<Type<any>> = [
+export const directives: Array<Type<any>> = [
     TerraDataTableContextMenuDirective,
     TerraTwoColumnsContainerDirective,
     FixedHeaderDirective,

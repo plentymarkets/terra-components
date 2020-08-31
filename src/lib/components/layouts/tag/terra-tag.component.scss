@@ -1,5 +1,4 @@
-.tag
-{
+.tag {
     background-color: var(--tag-background-color, var(--color-structure-9));
     padding: var(--tag-padding, var(--space-sm));
     margin-top: var(--tag-margin-top, 7px);
@@ -16,46 +15,38 @@
     line-height: 1;
     color: var(--color-structure-0);
 
-    span
-    {
+    span {
         font-size: var(--font-size-1);
         font-weight: var(--font-weight-1);
         color: var(--tag-span-color, var(--color-structure-0));
 
-        &.tag-icon
-        {
+        &.tag-icon {
             margin-right: -4px;
         }
 
-        &.tag-text
-        {
+        &.tag-text {
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
         }
 
-        &.icon-close
-        {
+        &.icon-close {
             cursor: pointer;
         }
     }
 }
 
-:host-context(terra-tag:not(:last-child))
-{
-    .tag
-    {
+:host-context(terra-tag:not(:last-child)) {
+    .tag {
         margin-right: 2px;
     }
 }
 
-:host-context(terra-tag:not(:only-child))
-{
+:host-context(terra-tag:not(:only-child)) {
     max-width: 50%;
 }
 
 // TODO @pweyrich & @zakpur: move to terra-data-table.component.scss
-:host-context(terra-data-table)
-{
+:host-context(terra-data-table) {
     --tag-top-margin: 0;
 }
