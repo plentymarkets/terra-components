@@ -29,4 +29,4 @@ jobs:
                   npm run build:lib
                   npm run build:dev-app
                   npm run build:schematics
-                  npm run test-headless
+                  npm run test-headless-coverage
