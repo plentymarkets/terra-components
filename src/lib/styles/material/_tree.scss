@@ -15,6 +15,15 @@
             &.mat-tree-node-level-5 {
                 display: none;
             }
+
+            &.mat-tree-node-level-1 + .mat-tree-node-level-0,
+            &.mat-tree-node-level-0 + .mat-tree-node-level-1 {
+                margin-top: 0;
+            }
+
+            &.mat-tree-node-level-0 {
+                border-top: none;
+            }
         }
     }
 
@@ -30,6 +39,7 @@
             border-top: 1px solid var(--color-structure-3);
             padding-left: var(--space-xl) !important;
         }
+
         &.mat-tree-node-level-0 + .mat-tree-node-level-0,
         &:first-child {
             border-top: none;
@@ -63,6 +73,7 @@
         .node-icon {
             padding-right: var(--space-xl);
         }
+
         a.drawer-link {
             color: inherit;
             cursor: pointer;
@@ -73,25 +84,31 @@
             &.active {
                 color: var(--color-active);
             }
+
             .node-icon {
                 font-size: 18px;
             }
+
             .node-label {
                 font-size: var(--font-size-2);
             }
         }
+
         .mat-icon-button.btn-close {
             opacity: 0;
             transition: opacity 0.2s ease;
+
             .icon-close {
                 transform: rotate(90deg);
                 transition: transform 0.2s ease;
             }
         }
+
         &:hover {
             .mat-icon-button.btn-close {
                 opacity: 1;
                 transition: opacity 0.2s ease;
+
                 .icon-close {
                     transform: rotate(0deg);
                     transition: transform 0.2s ease;
