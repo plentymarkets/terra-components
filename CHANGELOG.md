@@ -7,6 +7,7 @@
 
 ### Bug Fixes
 
+-   **table-settings** Fixed caption for column config overlay.
 -   **mat-table** Adjust left padding for first column.
 
 # 5.7.0 (17.08.2020)
