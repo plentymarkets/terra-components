@@ -11,6 +11,7 @@
         "test-headless-coverage": "ng test lib --watch=false --codeCoverage --browsers=ChromeHeadless",
         "badge:coverage": "npm run test-headless-coverage && gulp updateCoverageBadge",
         "lint": "ng lint lib",
+        "prettier": "prettier --check .",
         "reinstall": "npm ci",
         "prepare-release": "npm run reinstall && npm run build && npm run test-once && npm start"
     },
