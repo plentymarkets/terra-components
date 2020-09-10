@@ -1,0 +1,39 @@
+.mat-checkbox {
+    &.mat-checkbox-checked,
+    &.mat-checkbox-indeterminate {
+        &.mat-accent {
+            .mat-checkbox-background {
+                background-color: var(--color-active);
+            }
+        }
+    }
+
+    &.mat-checkbox:active:not(.mat-checkbox-disabled).mat-accent,
+    &.mat-checkbox-checked:not(.mat-checkbox-disabled).mat-accent {
+        .mat-ripple-element {
+            background: var(--color-active);
+        }
+    }
+
+    span,
+    mat-icon {
+        &[class^='icon-'],
+        &[class*=' icon-'] {
+            font-size: inherit;
+            height: inherit;
+            line-height: inherit;
+            width: inherit;
+            background-repeat: no-repeat;
+            display: inline-block;
+            fill: currentColor;
+            margin-right: 6px;
+        }
+    }
+}
+
+.mat-pseudo-checkbox {
+    &.mat-pseudo-checkbox-checked,
+    &.mat-pseudo-checkbox-indeterminate {
+        background-color: var(--color-active);
+    }
+}

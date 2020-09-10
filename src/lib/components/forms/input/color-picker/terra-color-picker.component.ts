@@ -5,36 +5,31 @@ import { Color } from './color.helper';
 import { TerraRegex } from '../../../../helpers/regex/terra-regex';
 
 @Component({
-    selector:  'terra-color-picker',
+    selector: 'terra-color-picker',
     styleUrls: ['./terra-color-picker.component.scss'],
     templateUrl: './terra-color-picker.component.html',
     providers: [
         {
-            provide:     NG_VALUE_ACCESSOR,
+            provide: NG_VALUE_ACCESSOR,
             useExisting: TerraColorPickerComponent,
-            multi:       true
+            multi: true
         }
     ]
 })
-export class TerraColorPickerComponent extends TerraInputComponent
-{
-    constructor()
-    {
+export class TerraColorPickerComponent extends TerraInputComponent {
+    constructor() {
         super(TerraRegex.COLOR_HEX);
     }
 
-    public get color():string
-    {
+    public get color(): string {
         return this.value || '#ffffff';
     }
 
-    public set color(c:string)
-    {
+    public set color(c: string) {
         this.value = c;
     }
 
-    public isDark():boolean
-    {
+    public isDark(): boolean {
         return new Color(this.color).isDark();
     }
 }

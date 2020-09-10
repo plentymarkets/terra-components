@@ -1,46 +1,40 @@
-import {
-    L10nConfig,
-    LogLevel,
-    ProviderType,
-    StorageStrategy
-} from 'angular-l10n';
+import { L10nConfig, LogLevel, ProviderType, StorageStrategy } from 'angular-l10n';
 import { environment } from 'src/lib/environments/environment';
 
-
-const logLevel:LogLevel = environment.test ? LogLevel.Off : LogLevel.Warn;
-export const l10nConfig:L10nConfig = {
-    logger:      {
+const logLevel: LogLevel = environment.test ? LogLevel.Off : LogLevel.Warn;
+export const l10nConfig: L10nConfig = {
+    logger: {
         level: logLevel
     },
-    locale:      {
-        languages:     [
+    locale: {
+        languages: [
             {
                 code: 'en',
-                dir:  'ltr'
+                dir: 'ltr'
             },
             {
                 code: 'de',
-                dir:  'ltr'
+                dir: 'ltr'
             }
         ],
-        language:      'en',
+        language: 'en',
         defaultLocale: {
             languageCode: 'de',
-            countryCode:  'DE'
+            countryCode: 'DE'
         },
-        currency:      'EUR',
-        storage:       StorageStrategy.Local,
-        storageNames:  {defaultLocale: 'plentymarkets_lang_'}
+        currency: 'EUR',
+        storage: StorageStrategy.Local,
+        storageNames: { defaultLocale: 'plentymarkets_lang_' }
     },
     translation: {
-        providers:            [
+        providers: [
             {
-                type:   ProviderType.Static,
+                type: ProviderType.Static,
                 prefix: 'assets/lang/locale-'
             }
         ],
-        caching:              true,
+        caching: true,
         composedKeySeparator: '.',
-        i18nPlural:           false
+        i18nPlural: false
     }
 };

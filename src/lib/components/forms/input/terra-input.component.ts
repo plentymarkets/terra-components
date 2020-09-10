@@ -1,205 +1,174 @@
 import { Input } from '@angular/core';
-import {
-    ControlValueAccessor,
-    FormControl
-} from '@angular/forms';
+import { ControlValueAccessor, FormControl } from '@angular/forms';
 import { TerraAlertComponent } from '../../alert/terra-alert.component';
 import { isNullOrUndefined } from 'util';
 import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum';
 import { noop } from 'rxjs';
 
 /** @deprecated since v5. Use angular material's [input](https://material.angular.io/components/input) instead. */
-export class TerraInputComponent implements ControlValueAccessor
-{
+export class TerraInputComponent implements ControlValueAccessor {
     /**
      * @description Set the label.
      */
     @Input()
-    public inputName:string;
+    public inputName: string;
 
     /**
      * @description If true, a * indicates that the value is required. Default false.
      */
     @Input()
-    public inputIsRequired:boolean;
+    public inputIsRequired: boolean;
 
     @Input()
-    public inputEmptyMessage:string;
+    public inputEmptyMessage: string;
 
     @Input()
-    public inputInvalidMessage:string;
+    public inputInvalidMessage: string;
 
     /**
      * @description Set the tooltip.
      */
     @Input()
-    public inputTooltipText:string;
+    public inputTooltipText: string;
 
     /**
      * @description If true, the button will be disabled. Default false.
      */
     @Input()
-    public inputIsDisabled:boolean;
+    public inputIsDisabled: boolean;
 
     /**
-     * @deprecated since v4. Is replaced by the TooltipDirective and will be removed with the next major version.
      * @description Set the tooltip placement (bottom, top, left, right). Default top.
      */
     @Input()
-    public inputTooltipPlacement:TerraPlacementEnum;
+    public inputTooltipPlacement: TerraPlacementEnum;
 
     /**
      * @description Set a maximum number of characters allowed.
      */
     @Input()
-    public inputMaxLength:number;
+    public inputMaxLength: number;
 
     /**
      * @description Set the maximum number value allowed.
      */
     @Input()
-    public inputMaxValue:number;
+    public inputMaxValue: number;
 
     /**
      * @description Set a minimum number of characters allowed.
      */
     @Input()
-    public inputMinLength:number;
+    public inputMinLength: number;
 
     /**
      * @description Set the minimum number value allowed.
      */
     @Input()
-    public inputMinValue:number;
+    public inputMinValue: number;
 
     /**
      * @description If true, the button will be small. Default false.
      */
     @Input()
-    public inputIsSmall:boolean;
+    public inputIsSmall: boolean;
 
-    public isValid:boolean;
-    public regex:string;
+    public isValid: boolean;
+    public regex: string;
 
     // The internal data model
-    public _innerValue:any;
+    public _innerValue: any;
 
-    private _alert:TerraAlertComponent = TerraAlertComponent.getInstance();
+    private _alert: TerraAlertComponent = TerraAlertComponent.getInstance();
 
     // Placeholders for the callbacks which are later provided
     // by the Control Value Accessor
-    private _onTouchedCallback:() => void = noop;
-    private _onChangeCallback:(_:any) => void = noop;
+    private _onTouchedCallback: () => void = noop;
+    private _onChangeCallback: (_: any) => void = noop;
 
-    constructor(private _inputRegex:string)
-    {
+    constructor(private _inputRegex: string) {
         this.regex = _inputRegex;
         this.isValid = true;
         this.inputIsSmall = false;
     }
 
-    public get isDisabled():boolean
-    {
+    public get isDisabled(): boolean {
         return this.inputIsDisabled;
     }
 
-    public set isDisabled(value:boolean)
-    {
+    public set isDisabled(value: boolean) {
         this.inputIsDisabled = value;
     }
 
     // get accessor
-    public get value():any
-    {
+    public get value(): any {
         return this._innerValue;
     }
 
     // set accessor including call the onchange callback
-    public set value(v:any)
-    {
-        if(v !== this._innerValue)
-        {
+    public set value(v: any) {
+        if (v !== this._innerValue) {
             this._innerValue = v;
             this._onChangeCallback(this._innerValue);
         }
     }
 
     // Set touched on blur
-    public onBlur():void
-    {
+    public onBlur(): void {
         this._onTouchedCallback();
     }
 
     // From ControlValueAccessor interface
-    public writeValue(value:any):void
-    {
-        if(value !== this._innerValue)
-        {
+    public writeValue(value: any): void {
+        if (value !== this._innerValue) {
             this._innerValue = value;
         }
     }
 
     // From ControlValueAccessor interface
-    public registerOnChange(fn:any):void
-    {
+    public registerOnChange(fn: any): void {
         this._onChangeCallback = fn;
     }
 
     // From ControlValueAccessor interface
-    public registerOnTouched(fn:any):void
-    {
+    public registerOnTouched(fn: any): void {
         this._onTouchedCallback = fn;
     }
 
-    public validate(formControl:FormControl):void
-    {
-        if(formControl.valid)
-        {
+    public validate(formControl: FormControl): void {
+        if (formControl.valid) {
             this.isValid = true;
-        }
-        else
-        {
-            if(!this.isDisabled)
-            {
+        } else {
+            if (!this.isDisabled) {
                 this.isValid = false;
 
-                if(this.inputIsRequired && (isNullOrUndefined(this.value) || this.value.length === 0))
-                {
-                    let emptyMessage:string;
+                if (this.inputIsRequired && (isNullOrUndefined(this.value) || this.value.length === 0)) {
+                    let emptyMessage: string;
 
-                    if(!this.inputEmptyMessage || this.inputEmptyMessage.length === 0)
-                    {
+                    if (!this.inputEmptyMessage || this.inputEmptyMessage.length === 0) {
                         // TODO i18n
                         // emptyMessage = 'Mach eine Eingabe!';
-
-                    }
-                    else
-                    {
+                    } else {
                         emptyMessage = this.inputEmptyMessage;
 
                         this._alert.addAlert({
-                            msg:              emptyMessage,
-                            type:             'danger',
+                            msg: emptyMessage,
+                            type: 'danger',
                             dismissOnTimeout: 0
                         });
                     }
-                }
-                else if(!isNullOrUndefined(this.value) && this.value.length > 0)
-                {
-                    let invalidMessage:string;
+                } else if (!isNullOrUndefined(this.value) && this.value.length > 0) {
+                    let invalidMessage: string;
 
-                    if(!this.inputInvalidMessage || this.inputInvalidMessage.length === 0)
-                    {
+                    if (!this.inputInvalidMessage || this.inputInvalidMessage.length === 0) {
                         // TODO i18n
                         // invalidMessage = 'Eingabe ungültig!';
-                    }
-                    else
-                    {
+                    } else {
                         invalidMessage = this.inputInvalidMessage;
 
                         this._alert.addAlert({
-                            msg:              invalidMessage,
-                            type:             'danger',
+                            msg: invalidMessage,
+                            type: 'danger',
                             dismissOnTimeout: 0
                         });
                     }

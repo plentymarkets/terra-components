@@ -1,6 +1,8 @@
-<div *ngFor="let alert of _alerts; let i = index"
-     class="alert alert-{{alert.type}} alert-dismissible fade show"
-     role="alert">
+<div
+    *ngFor="let alert of _alerts; let i = index"
+    class="alert alert-{{ alert.type }} alert-dismissible fade show"
+    role="alert"
+>
     <button type="button" class="close" aria-label="Close" (click)="_closeAlertByIndex(i)">
         <span aria-hidden="true">&times;</span>
     </button>

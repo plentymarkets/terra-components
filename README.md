@@ -1,3 +1,4 @@
+![code coverage](https://img.shields.io/badge/coverage-50.5%25-yellow)
 [![npm version](https://badge.fury.io/js/%40plentymarkets%2Fterra-components.svg)](https://badge.fury.io/js/%40plentymarkets%2Fterra-components)
 
 ![plentymarkets Logo](http://www.plentymarkets.eu/layout/pm/images/logo/plentymarkets-logo.jpg)
@@ -7,17 +8,17 @@
 These are the official plugin components developed by plentymarkets. This repository provides components to build plugins for the [plentymarkets](https://www.plentymarkets.eu/tour/) ERP.
 
 ## Plugin documentation
-- Learn how to create your [first plentymarkets angular plugin](https://developers.plentymarkets.com/tutorials/angular-plugin)
-- Terra Components [API documentation](https://developers.plentymarkets.com/terra-doc/components)
-- Overview of plentymarkets [plugin interfaces](https://developers.plentymarkets.com/dev-doc/basics#guide-interface)
-- The plentymarkets [REST API](https://developers.plentymarkets.com/rest-doc/introduction)
+
+-   Learn how to create your [first plentymarkets angular plugin](https://developers.plentymarkets.com/tutorials/angular-plugin)
+-   Terra Components [API documentation](https://developers.plentymarkets.com/terra-doc/components)
+-   Overview of plentymarkets [plugin interfaces](https://developers.plentymarkets.com/dev-doc/basics#guide-interface)
+-   The plentymarkets [REST API](https://developers.plentymarkets.com/rest-doc/introduction)
 
 ## Browser Compatibility
 
-| ![Chrome](https://raw.github.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png) | ![Firefox](https://raw.github.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png) | 
-| ---------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | 
-| Latest ✔                                                                                 | Latest ✔                                                                                    | 
-
+| ![Chrome](https://raw.github.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png) | ![Firefox](https://raw.github.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png) |
+| ---------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| Latest ✔                                                                                 | Latest ✔                                                                                    |
 
 ## Join our community
 
