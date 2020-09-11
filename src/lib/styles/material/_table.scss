@@ -45,6 +45,10 @@
             font-weight: var(--font-weight-2);
             @include font-rendering;
 
+            &:first-of-type {
+                padding-left: 12px;
+            }
+
             .mat-sort-header-container {
                 button.mat-sort-header-button {
                     &:focus {
@@ -86,6 +90,10 @@
             font-size: var(--font-size-3);
             border-bottom-color: var(--color-structure-3);
             @include font-rendering;
+
+            &:first-of-type {
+                padding-left: 12px;
+            }
         }
 
         &:hover {

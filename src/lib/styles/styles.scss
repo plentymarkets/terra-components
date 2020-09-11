@@ -5,6 +5,7 @@
 @import 'material/tab';
 @import 'material/table';
 @import 'material/toggle';
+@import 'material/tree';
 @import 'material/checkbox';
 @import '../components/alert/terra-alert-panel.component.glob';
 @import '../components/editors/base-editor/terra-base-editor.component.glob';
@@ -228,7 +229,15 @@ terra-alert-panel,
     .alert {
         border-radius: var(--border-radius);
         box-shadow: var(--box-shadow);
-
+        a,
+        a:hover,
+        a:focus {
+            color: var(--color-structure-0);
+            text-decoration: underline;
+        }
+        a:hover {
+            text-decoration: none;
+        }
         &.alert-danger {
             background-color: var(--color-alert);
             border: 2px solid var(--color-alert);
@@ -252,7 +261,12 @@ terra-alert-panel,
         &.alert-warning {
             background-color: var(--color-accent);
             border: 2px solid var(--color-accent);
-            color: var(--color-structure-11);
+            &,
+            a,
+            a:hover,
+            a:focus {
+                color: var(--color-structure-11);
+            }
             &::before {
                 color: var(--color-structure-11);
                 -webkit-font-smoothing: antialiased;
