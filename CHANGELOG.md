@@ -8,6 +8,7 @@
 ### Bug Fixes
 
 -   **mat-table** Adjust left padding for first column.
+-   **tcTooltip** Fixed `isDisabled` input when its `true` at start.
 
 # 5.7.0 (17.08.2020)
 
