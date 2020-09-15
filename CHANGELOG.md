@@ -7,6 +7,7 @@
 
 ### Bug Fixes
 
+-   **table-settings** Fixed caption for column config overlay.
 -   **mat-table** Adjust left padding for first column.
 -   **tcTooltip** Fixed `isDisabled` input when its `true` at start.
 
