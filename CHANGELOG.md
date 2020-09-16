@@ -9,7 +9,7 @@
 
 -   **table-settings** Fixed caption for column config overlay.
 -   **mat-table** Adjust left padding for first column.
--   **tcTooltip** Fixed `isDisabled` input when its `true` at start.
+-   **tcTooltip** Fixed `isDisabled` input when it's `true` in the beginning.
 
 # 5.7.0 (17.08.2020)
 
