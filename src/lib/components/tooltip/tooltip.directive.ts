@@ -72,10 +72,6 @@ export class TooltipDirective implements OnDestroy, OnChanges, OnInit {
     }
 
     public ngOnChanges(changes: SimpleChanges): void {
-        if (changes.hasOwnProperty('isDisabled')) {
-            this._handleTooltipState();
-        }
-
         if (changes.hasOwnProperty('tcTooltip')) {
             if (changes['tcTooltip'].currentValue) {
                 let tooltip: string | Element;
@@ -116,6 +112,10 @@ export class TooltipDirective implements OnDestroy, OnChanges, OnInit {
                     placement: this._placement as Placement
                 });
             }
+        }
+
+        if (changes.hasOwnProperty('isDisabled')) {
+            this._handleTooltipState();
         }
     }
 
