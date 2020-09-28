@@ -4,6 +4,7 @@
 
 -   **prettier** We now use prettier to format the code. Additionally, there is a pre-commit hook that formats every file that is pushed into the repository.
 -   **mat-tree** Added styles for the [angular material tree](https://v8.material.angular.io/components/tree).
+-   **terra-checkbox** is deprecated now. Use angular material's [checkbox](https://material.angular.io/components/checkbox/overview) instead.
 
 ### Bug Fixes
 
