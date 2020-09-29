@@ -2,6 +2,7 @@
 
 ### Features
 
+-   **helpers** introduced new public utility class `Color` to simplify work with colors.
 -   **terra-tag & terra-tag-list** are deprecated now. Use angular material's [chips](https://material.angular.io/components/chips/overview) instead.
 
 # 5.8.0 (16.09.2020)
