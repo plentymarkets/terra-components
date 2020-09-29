@@ -1,3 +1,9 @@
+# 5.9.0 (Unreleased)
+
+### Features
+
+-   **helpers** introduced new public utility class `Color` to simplify work with colors.
+
 # 5.8.0 (16.09.2020)
 
 ### Features
