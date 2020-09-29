@@ -4,6 +4,10 @@
 
 -   **helpers** introduced new public utility class `Color` to simplify work with colors.
 
+### Bug Fixes
+
+-   **mat-checkbox** Fixed styles for disabled checkbox when checked and indeterminate.
+
 # 5.8.0 (16.09.2020)
 
 ### Features

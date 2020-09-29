@@ -1,6 +1,6 @@
 .mat-checkbox {
-    &.mat-checkbox-checked,
-    &.mat-checkbox-indeterminate {
+    &.mat-checkbox-checked:not(.mat-checkbox-disabled),
+    &.mat-checkbox-indeterminate:not(.mat-checkbox-disabled) {
         &.mat-accent {
             .mat-checkbox-background {
                 background-color: var(--color-active);
