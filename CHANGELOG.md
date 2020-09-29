@@ -2,7 +2,7 @@
 
 ### Features
 
--   **color** new public utility class to work with colors.
+-   **helpers** introduced new public utility class `Color` to simplify work with colors.
 
 # 5.8.0 (16.09.2020)
 
