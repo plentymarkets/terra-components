@@ -2,6 +2,7 @@
 
 ### Features
 
+-   **color** new public utility class to work with colors.
 -   **terra-checkbox** is deprecated now. Use angular material's [checkbox](https://material.angular.io/components/checkbox/overview) instead.
 
 # 5.8.0 (16.09.2020)
