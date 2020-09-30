@@ -22,6 +22,7 @@ jobs:
     # check code styles
     codestyle:
         needs: setup
+        runs-on: ubuntu-latest
         steps:
             - name: Lint
               run: npm run lint
@@ -32,6 +33,7 @@ jobs:
     # build stage
     build:
         needs: setup
+        runs-on: ubuntu-latest
         steps:
             - run: |
                   npm run build:lib
