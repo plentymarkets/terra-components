@@ -9,11 +9,8 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-    check-integrity:
-        # The type of runner that the job will run on
+    setup:
         runs-on: ubuntu-latest
-
-        # Steps represent a sequence of tasks that will be executed as part of the job
         steps:
             # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
             - uses: actions/checkout@v2
@@ -22,12 +19,28 @@ jobs:
             - name: Clean install
               run: npm ci
 
-            # Runs the set of integrity checks concurrently
-            - name: Run checks
-              run: |
-                  npm run lint
-                  npm run prettier
+    # check code styles
+    codestyle:
+        needs: setup
+        steps:
+            - name: Lint
+              run: npm run lint
+
+            - name: Prettier
+              run: npm run prettier
+
+    # build stage
+    build:
+        needs: setup
+        steps:
+            - run: |
                   npm run build:lib
                   npm run build:dev-app
                   npm run build:schematics
-                  npm run test-headless-coverage
+
+    # test stage
+    test:
+        needs: setup
+        runs-on: ubuntu-latest
+        steps:
+            - run: npm run test-headless-coverage
