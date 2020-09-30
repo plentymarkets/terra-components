@@ -6,18 +6,20 @@
         {{ inputTextSecondary }}
     </div>
     <div class="no-result-buttons">
-        <terra-button *ngFor='let button of inputButtons;'
-                      [inputIcon]="button.icon"
-                      [inputCaption]="button.caption"
-                      [inputTooltipText]="button.tooltipText"
-                      (outputClicked)="button.clickFunction()"
-                      [inputTooltipPlacement]="button.tooltipPlacement"
-                      [inputIsActive]="button.isActive"
-                      [inputIsDisabled]="button.isDisabled"
-                      [inputIsHidden]="button.isHidden"
-                      [inputIsDivider]="button.isDivider"
-                      [inputIsSmall]="false"
-                      [inputIsHighlighted]="true">
+        <terra-button
+            *ngFor="let button of inputButtons"
+            [inputIcon]="button.icon"
+            [inputCaption]="button.caption"
+            [inputTooltipText]="button.tooltipText"
+            (outputClicked)="button.clickFunction()"
+            [inputTooltipPlacement]="button.tooltipPlacement"
+            [inputIsActive]="button.isActive"
+            [inputIsDisabled]="button.isDisabled"
+            [inputIsHidden]="button.isHidden"
+            [inputIsDivider]="button.isDivider"
+            [inputIsSmall]="false"
+            [inputIsHighlighted]="true"
+        >
         </terra-button>
     </div>
 </div>

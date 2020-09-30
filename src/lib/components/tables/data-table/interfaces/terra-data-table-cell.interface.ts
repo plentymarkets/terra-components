@@ -6,10 +6,15 @@ import { TerraHrefTypeInterface } from './terra-href-type.interface';
 /**
  * @author mkunze
  */
-export interface TerraDataTableCellInterface
-{
-    data:string | number | TerraDataTableTextInterface | TerraHrefTypeInterface | Array<TerraButtonInterface> | Array<TerraTagInterface>;
-    isHidden?:boolean;
-    tooltipText?:string;
-    tooltipPlacement?:string;
+export interface TerraDataTableCellInterface {
+    data:
+        | string
+        | number
+        | TerraDataTableTextInterface
+        | TerraHrefTypeInterface
+        | Array<TerraButtonInterface>
+        | Array<TerraTagInterface>;
+    isHidden?: boolean;
+    tooltipText?: string;
+    tooltipPlacement?: string;
 }

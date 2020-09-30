@@ -1,16 +1,13 @@
-:host
-{
-    &.terra-sticky-toolbar
-    {
+:host {
+    &.terra-sticky-toolbar {
         display: block;
         position: -webkit-sticky;
         position: sticky;
         top: 0;
         z-index: 1;
     }
-    
-    .btn-toolbar
-    {
+
+    .btn-toolbar {
         display: block;
         flex-wrap: initial;
         justify-content: initial;

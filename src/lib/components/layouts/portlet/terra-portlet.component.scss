@@ -1,11 +1,9 @@
-.portlet
-{
+.portlet {
     border-radius: var(--border-radius);
     margin: var(--space-container);
     box-shadow: var(--portlet-box-shadow, var(--box-shadow));
 
-    .portlet-head
-    {
+    .portlet-head {
         padding: var(--space-md) var(--space-lg);
         background: var(--color-structure-0);
         overflow-x: hidden;
@@ -15,39 +13,34 @@
         display: flex;
         justify-content: space-between;
 
-        .header-caption
-        {
+        .header-caption {
             display: flex;
             align-self: center;
             color: var(--color-structure-8);
             font-size: var(--font-size-4);
             font-weight: var(--font-weight-2);
         }
-        
-        .header-button-container
-        {
+
+        .header-button-container {
             display: flex;
             align-items: center;
-            
-            >span
-            {
+
+            > span {
                 margin-left: var(--space-xl);
             }
         }
-        
-        &.unfolded
-        {
+
+        &.unfolded {
             border-bottom: 1px solid var(--color-structure-2);
         }
     }
 
-    .portlet-body
-    {
+    .portlet-body {
         background-color: var(--portlet-body-background-color, var(--color-structure-0));
         padding: var(--portlet-body-padding, var(--space-lg));
         transition: padding var(--transition-lg);
         border-radius: var(--border-radius);
-    
+
         --portlet-box-shadow: none;
         --info-box-box-shadow: none;
         --pager-box-shadow: none;
@@ -55,44 +48,34 @@
         --toolbar-box-shadow: none;
     }
 
-    &.collapsable
-    {
-        .portlet-head
-        {
+    &.collapsable {
+        .portlet-head {
             cursor: pointer;
         }
-        
-        .collapsed
-        {
+
+        .collapsed {
             overflow: hidden;
-    
-            &.portlet-body
-            {
+
+            &.portlet-body {
                 border: none;
             }
         }
-        
-        &.disabled
-        {
+
+        &.disabled {
             opacity: 0.7;
-            .portlet-head
-            {
+            .portlet-head {
                 cursor: not-allowed;
-    
-                .header-caption
-                {
+
+                .header-caption {
                     color: var(--color-structure-9);
                 }
             }
         }
     }
 
-    &.highlight
-    {
-        &:hover
-        {
+    &.highlight {
+        &:hover {
             outline: 2px solid var(--color-active);
         }
     }
 }
-

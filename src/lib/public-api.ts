@@ -21,7 +21,7 @@ export { TerraFileChooserComponent } from './components/buttons/file-chooser/ter
 
 export { TerraBaseData } from './components/data/terra-base.data';
 export { TerraFilterComponent } from './components/filter/terra-filter.component';
-export { FilterComponent } from  './components/filter/filter.component';
+export { FilterComponent } from './components/filter/filter.component';
 
 // FORM ELEMENTS
 export { TerraCheckboxComponent } from './components/forms/checkbox/terra-checkbox.component';
@@ -123,14 +123,8 @@ export {
 export { TerraImageMetadata } from './components/file-browser/model/terra-image-metadata.interface';
 export { TerraStorageObject } from './components/file-browser/model/terra-storage-object';
 export { TerraStorageObjectList } from './components/file-browser/model/terra-storage-object-list';
-export {
-    TerraUploadItem,
-    UploadCallback
-} from './components/file-browser/model/terra-upload-item';
-export {
-    TerraUploadQueue,
-    UploadQueueUrlFactory
-}from './components/file-browser/model/terra-upload-queue';
+export { TerraUploadItem, UploadCallback } from './components/file-browser/model/terra-upload-item';
+export { TerraUploadQueue, UploadQueueUrlFactory } from './components/file-browser/model/terra-upload-queue';
 export { TerraBaseStorageService } from './components/file-browser/terra-base-storage.interface';
 export { TerraFrontendStorageService } from './components/file-browser/terra-frontend-storage.service';
 export { TerraFileBrowserService } from './components/file-browser/terra-file-browser.service';

@@ -1,49 +1,35 @@
-import {
-    Component,
-    ComponentFactoryResolver,
-    Input,
-    OnChanges,
-    OnDestroy,
-    OnInit
-} from '@angular/core';
-import {
-    isFunction,
-    isNullOrUndefined
-} from 'util';
-import {
-    ControlValueAccessor,
-    FormControl,
-    NG_VALUE_ACCESSOR
-} from '@angular/forms';
+import { Component, ComponentFactoryResolver, Input, OnChanges, OnDestroy, OnInit } from '@angular/core';
+import { isFunction, isNullOrUndefined } from 'util';
+import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { noop } from 'rxjs';
 import { TerraFormEntryBase } from './terra-form-entry.base';
 import { TerraFormTypeGuardsHelper } from '../helper/terra-form-type-guards.helper';
 
 @Component({
-    selector:  'terra-form-entry',
-    templateUrl:  './terra-form-entry.component.html',
-    styleUrls:    ['./terra-form-entry.component.scss'],
+    selector: 'terra-form-entry',
+    templateUrl: './terra-form-entry.component.html',
+    styleUrls: ['./terra-form-entry.component.scss'],
     providers: [
         {
-            provide:     NG_VALUE_ACCESSOR,
+            provide: NG_VALUE_ACCESSOR,
             useExisting: TerraFormEntryComponent,
-            multi:       true
+            multi: true
         }
     ]
 })
-export class TerraFormEntryComponent extends TerraFormEntryBase implements OnInit, OnChanges, OnDestroy, ControlValueAccessor
-{
+export class TerraFormEntryComponent
+    extends TerraFormEntryBase
+    implements OnInit, OnChanges, OnDestroy, ControlValueAccessor {
     /**
      * @description FormControl instance corresponding to the given formField.
      */
     @Input()
-    public inputFormControl:FormControl;
+    public inputFormControl: FormControl;
 
-    private _onChangeCallback:(_:unknown) => void = noop;
-    private _onTouchedCallback:() => void = noop;
+    private _onChangeCallback: (_: unknown) => void = noop;
+    private _onTouchedCallback: () => void = noop;
 
-    constructor(componentFactoryResolver:ComponentFactoryResolver)
-    {
+    constructor(componentFactoryResolver: ComponentFactoryResolver) {
         super(componentFactoryResolver);
     }
 
@@ -53,32 +39,32 @@ export class TerraFormEntryComponent extends TerraFormEntryBase implements OnIni
      *     `inputFormField`. Also starts listening to status changes of the FormControl instance to highlight the formField if it is
      *     invalid.
      */
-    public ngOnInit():void
-    {
-        if(!this._hasChildren)
-        {
+    public ngOnInit(): void {
+        if (!this._hasChildren) {
             this._initComponent();
 
-            if(TerraFormTypeGuardsHelper.isControlValueAccessor(this._componentInstance) &&
-               isFunction(this._componentInstance.registerOnChange) &&
-               isFunction(this._componentInstance.registerOnTouched))
-            {
-                this._componentInstance.registerOnChange((value:unknown):void => this._onChangeCallback(value));
-                this._componentInstance.registerOnTouched(():void => this._onTouchedCallback());
-            }
-            else
-            {
+            if (
+                TerraFormTypeGuardsHelper.isControlValueAccessor(this._componentInstance) &&
+                isFunction(this._componentInstance.registerOnChange) &&
+                isFunction(this._componentInstance.registerOnTouched)
+            ) {
+                this._componentInstance.registerOnChange((value: unknown): void => this._onChangeCallback(value));
+                this._componentInstance.registerOnTouched((): void => this._onTouchedCallback());
+            } else {
                 console.error(
-                    'Cannot bind component ' + this._getControlType().name + ' to dynamic form. ' +
-                    'Bound components needs to implement the ControlValueAccessor interface.'
+                    'Cannot bind component ' +
+                        this._getControlType().name +
+                        ' to dynamic form. ' +
+                        'Bound components needs to implement the ControlValueAccessor interface.'
                 );
             }
         }
 
-        this.inputFormControl.statusChanges.subscribe((status:string) =>
-        {
-            if(!isNullOrUndefined(this._componentInstance) && TerraFormTypeGuardsHelper.hasIsValid(this._componentInstance))
-            {
+        this.inputFormControl.statusChanges.subscribe((status: string) => {
+            if (
+                !isNullOrUndefined(this._componentInstance) &&
+                TerraFormTypeGuardsHelper.hasIsValid(this._componentInstance)
+            ) {
                 this._componentInstance.isValid = status === 'VALID';
             }
         });
@@ -90,8 +76,7 @@ export class TerraFormEntryComponent extends TerraFormEntryBase implements OnIni
      *     component changes its value.
      * @param changeCallback
      */
-    public registerOnChange(changeCallback:(value:unknown) => void):void
-    {
+    public registerOnChange(changeCallback: (value: unknown) => void): void {
         this._onChangeCallback = changeCallback;
     }
 
@@ -101,8 +86,7 @@ export class TerraFormEntryComponent extends TerraFormEntryBase implements OnIni
      *     component has been touched.
      * @param touchedCallback
      */
-    public registerOnTouched(touchedCallback:() => void):void
-    {
+    public registerOnTouched(touchedCallback: () => void): void {
         this._onTouchedCallback = touchedCallback;
     }
 
@@ -111,18 +95,17 @@ export class TerraFormEntryComponent extends TerraFormEntryBase implements OnIni
      * @description Writes a given value to the form field using the writeValue method of the dynamically created component instance.
      * @param value
      */
-    public writeValue(value:unknown):void
-    {
-        if(this._componentInstance &&
-           TerraFormTypeGuardsHelper.isControlValueAccessor(this._componentInstance) &&
-           isFunction(this._componentInstance.writeValue))
-        {
+    public writeValue(value: unknown): void {
+        if (
+            this._componentInstance &&
+            TerraFormTypeGuardsHelper.isControlValueAccessor(this._componentInstance) &&
+            isFunction(this._componentInstance.writeValue)
+        ) {
             this._componentInstance.writeValue(value);
         }
     }
 
-    protected get _hasChildren():boolean
-    {
+    protected get _hasChildren(): boolean {
         return !isNullOrUndefined(this.inputFormField.children);
     }
 }

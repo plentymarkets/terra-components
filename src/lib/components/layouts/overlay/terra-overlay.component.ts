@@ -1,11 +1,4 @@
-import {
-    AfterViewInit,
-    Component,
-    EventEmitter,
-    Input,
-    Output,
-    ViewChild
-} from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { ModalDirective } from 'ngx-bootstrap';
 import { TerraOverlayButtonInterface } from './data/terra-overlay-button.interface';
 import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum';
@@ -17,76 +10,68 @@ import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum'
 @Component({
     selector: 'terra-overlay',
     templateUrl: './terra-overlay.component.html',
-    styleUrls: [ './terra-overlay.component.scss']
+    styleUrls: ['./terra-overlay.component.scss']
 })
-export class TerraOverlayComponent implements AfterViewInit
-{
+export class TerraOverlayComponent implements AfterViewInit {
     @Input()
-    public inputOverlayTitle:string;
+    public inputOverlayTitle: string;
 
     @Input()
-    public inputPrimaryButtonInterface:TerraOverlayButtonInterface;
+    public inputPrimaryButtonInterface: TerraOverlayButtonInterface;
 
     @Input()
-    public inputSecondaryButtonInterface:TerraOverlayButtonInterface;
+    public inputSecondaryButtonInterface: TerraOverlayButtonInterface;
 
     @Input()
-    public inputIsStatic:boolean = false;
+    public inputIsStatic: boolean = false;
 
     @Input()
-    public inputIsCloseable:boolean = true;
+    public inputIsCloseable: boolean = true;
 
     @Input()
-    public inputIsLarge:boolean = true;
+    public inputIsLarge: boolean = true;
 
     @Input()
-    public inputIsSmall:boolean = false;
+    public inputIsSmall: boolean = false;
 
     @Input()
-    public inputIsExtraLarge:boolean = false;
+    public inputIsExtraLarge: boolean = false;
 
     @Output()
-    public readonly outputOnHide:EventEmitter<ModalDirective> = new EventEmitter<ModalDirective>();
+    public readonly outputOnHide: EventEmitter<ModalDirective> = new EventEmitter<ModalDirective>();
 
     @Output()
-    public readonly outputOnShow:EventEmitter<ModalDirective> = new EventEmitter<ModalDirective>();
+    public readonly outputOnShow: EventEmitter<ModalDirective> = new EventEmitter<ModalDirective>();
 
-    public readonly _tooltipPlacement:TerraPlacementEnum.BOTTOM;
+    public readonly _tooltipPlacement: TerraPlacementEnum.BOTTOM;
 
     @ViewChild('viewChildOverlay', { static: true })
-    public _viewChildOverlay:ModalDirective;
+    public _viewChildOverlay: ModalDirective;
 
-    public ngAfterViewInit():void
-    {
-        if(!this.inputIsCloseable)
-        {
+    public ngAfterViewInit(): void {
+        if (!this.inputIsCloseable) {
             this.inputIsStatic = true;
         }
 
-        if(this.inputIsStatic)
-        {
+        if (this.inputIsStatic) {
             this._viewChildOverlay.config.backdrop = 'static';
             this._viewChildOverlay.config.keyboard = false;
         }
     }
 
-    public showOverlay():void
-    {
+    public showOverlay(): void {
         this._viewChildOverlay.show();
     }
 
-    public hideOverlay():void
-    {
+    public hideOverlay(): void {
         this._viewChildOverlay.hide();
     }
 
-    public emitOutputOnShow():void
-    {
+    public emitOutputOnShow(): void {
         this.outputOnShow.emit(this._viewChildOverlay);
     }
 
-    public emitOutputOnHide():void
-    {
+    public emitOutputOnHide(): void {
         this.outputOnHide.emit(this._viewChildOverlay);
     }
 }

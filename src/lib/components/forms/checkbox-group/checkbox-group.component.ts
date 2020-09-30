@@ -1,117 +1,94 @@
-import {
-    Component,
-    Input
-} from '@angular/core';
-import {
-    ControlValueAccessor,
-    NG_VALUE_ACCESSOR
-} from '@angular/forms';
+import { Component, Input } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TerraMultiCheckBoxValueInterface } from '../multi-check-box/data/terra-multi-check-box-value.interface';
 import { isNullOrUndefined } from 'util';
 import { noop } from 'rxjs';
 
 /** @deprecated since v5. Use angular material's [select](https://material.angular.io/components/select/overview#multiple-selection) instead. */
 @Component({
-    selector:    'tc-checkbox-group',
+    selector: 'tc-checkbox-group',
     templateUrl: './checkbox-group.component.html',
-    styleUrls:   ['./checkbox-group.component.scss'],
-    providers:   [
+    styleUrls: ['./checkbox-group.component.scss'],
+    providers: [
         {
-            provide:     NG_VALUE_ACCESSOR,
+            provide: NG_VALUE_ACCESSOR,
             useExisting: CheckboxGroupComponent,
-            multi:       true
+            multi: true
         }
     ]
 })
-export class CheckboxGroupComponent implements ControlValueAccessor
-{
+export class CheckboxGroupComponent implements ControlValueAccessor {
     /**
      * @description If true, the checkbox group will be disabled. Default false.
      **/
     @Input()
-    public isDisabled:boolean = false;
+    public isDisabled: boolean = false;
 
     /**
      * @description The caption of the checkbox group
      **/
     @Input()
-    public name:string;
+    public name: string;
 
     /**
      * @description List of available checkboxes of the group
      */
     @Input()
-    public checkboxValues:Array<{ caption:string, value:unknown }> = [];
+    public checkboxValues: Array<{ caption: string; value: unknown }> = [];
 
     /**
      * @description set the initial collapsed state.
      * @default false
      */
     @Input()
-    public collapsed:boolean = false;
+    public collapsed: boolean = false;
 
-    public _multiCheckboxValues:Array<TerraMultiCheckBoxValueInterface> = [];
+    public _multiCheckboxValues: Array<TerraMultiCheckBoxValueInterface> = [];
 
-    private _values:Array<unknown>;
-    private _onTouchedCallback:() => void = noop;
-    private _onChangeCallback:(_:Array<unknown>) => void = noop;
+    private _values: Array<unknown>;
+    private _onTouchedCallback: () => void = noop;
+    private _onChangeCallback: (_: Array<unknown>) => void = noop;
 
-    public registerOnChange(fn:(_:Array<unknown>) => void):void
-    {
+    public registerOnChange(fn: (_: Array<unknown>) => void): void {
         this._onChangeCallback = fn;
     }
 
-    public registerOnTouched(fn:() => void):void
-    {
+    public registerOnTouched(fn: () => void): void {
         this._onTouchedCallback = fn;
     }
 
-    public writeValue(values:Array<unknown>):void
-    {
+    public writeValue(values: Array<unknown>): void {
         this._values = values;
         this._updateMultiCheckboxValues();
     }
 
-    public _onMultiCheckboxChanged(checkboxValues:Array<TerraMultiCheckBoxValueInterface>):void
-    {
+    public _onMultiCheckboxChanged(checkboxValues: Array<TerraMultiCheckBoxValueInterface>): void {
         // if the value is null or undefined, initialize the array to be able to add selected values
-        if(isNullOrUndefined(this._values))
-        {
+        if (isNullOrUndefined(this._values)) {
             this._values = [];
         }
 
         // go through the changed checkboxes
-        (checkboxValues || []).forEach((changedValue:TerraMultiCheckBoxValueInterface) =>
-        {
-            if(changedValue.selected)
-            {
+        (checkboxValues || []).forEach((changedValue: TerraMultiCheckBoxValueInterface) => {
+            if (changedValue.selected) {
                 this._values.push(changedValue.value);
-            }
-            else
-            {
-                let idx:number = this._values.indexOf(changedValue.value);
-                if(idx >= 0)
-                {
+            } else {
+                let idx: number = this._values.indexOf(changedValue.value);
+                if (idx >= 0) {
                     this._values.splice(idx, 1);
                 }
             }
         });
 
         // if nothing is selected, the value should be null
-        if(this._values.length === 0)
-        {
+        if (this._values.length === 0) {
             this._values = null;
-        }
-        else
-        {
-            this._values.sort((a:any, b:any):number =>
-            {
-                let apos:number = this._multiCheckboxValues.findIndex((checkbox:TerraMultiCheckBoxValueInterface) =>
-                {
-                     return checkbox.value === a;
+        } else {
+            this._values.sort((a: any, b: any): number => {
+                let apos: number = this._multiCheckboxValues.findIndex((checkbox: TerraMultiCheckBoxValueInterface) => {
+                    return checkbox.value === a;
                 });
-                let bpos:number = this._multiCheckboxValues.findIndex((checkbox:TerraMultiCheckBoxValueInterface) =>
-                {
+                let bpos: number = this._multiCheckboxValues.findIndex((checkbox: TerraMultiCheckBoxValueInterface) => {
                     return checkbox.value === b;
                 });
 
@@ -123,13 +100,11 @@ export class CheckboxGroupComponent implements ControlValueAccessor
         this._updateMultiCheckboxValues();
     }
 
-    private _updateMultiCheckboxValues():void
-    {
-        this._multiCheckboxValues = this.checkboxValues.map((checkbox:{ caption:string, value:unknown }) =>
-        {
+    private _updateMultiCheckboxValues(): void {
+        this._multiCheckboxValues = this.checkboxValues.map((checkbox: { caption: string; value: unknown }) => {
             return {
-                caption:  checkbox.caption,
-                value:    checkbox.value,
+                caption: checkbox.caption,
+                value: checkbox.value,
                 selected: (this._values || []).indexOf(checkbox.value) >= 0
             };
         });

@@ -15,101 +15,92 @@ import { TerraDataTableRowInterface } from './interfaces/terra-data-table-row.in
 import { TerraDataTableSortOrderEnum } from './enums/terra-data-table-sort-order.enum';
 import { TerraButtonInterface } from '../../buttons/button/data/terra-button.interface';
 import { TerraHrefTypeInterface } from './interfaces/terra-href-type.interface';
-import {
-    isArray,
-    isNullOrUndefined
-} from 'util';
+import { isArray, isNullOrUndefined } from 'util';
 import { TerraTextAlignEnum } from './enums/terra-text-align.enum';
 import { TerraHrefTypeEnum } from './enums/terra-href-type.enum';
-import {
-    debounceTime,
-    filter,
-    tap
-} from 'rxjs/operators';
+import { debounceTime, filter, tap } from 'rxjs/operators';
 import { TerraBaseTable } from '../terra-base-table';
 import { TerraDataTableTextInterface } from './interfaces/terra-data-table-text.interface';
 import { TerraTagInterface } from '../../layouts/tag/data/terra-tag.interface';
 import { TerraDataTableContextMenuEntryInterface } from './context-menu/data/terra-data-table-context-menu-entry.interface';
 
 @Component({
-    selector:        'terra-data-table',
-    templateUrl:     './terra-data-table.component.html',
-    styleUrls:       ['./terra-data-table.component.scss'],
-    providers:       [TerraDataTableContextMenuService],
+    selector: 'terra-data-table',
+    templateUrl: './terra-data-table.component.html',
+    styleUrls: ['./terra-data-table.component.scss'],
+    providers: [TerraDataTableContextMenuService],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements OnInit, OnChanges
-{
+export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements OnInit, OnChanges {
     /**
      * @description Mandatory service that is used to request the table data from the server
      */
     @Input()
-    public inputService:TerraDataTableBaseService<T, P>;
+    public inputService: TerraDataTableBaseService<T, P>;
     /**
      * @description List of header cell elements
      */
     @Input()
-    public inputHeaderList:Array<TerraDataTableHeaderCellInterface> = [];
+    public inputHeaderList: Array<TerraDataTableHeaderCellInterface> = [];
 
     /**
      * @description shows checkboxes in the table, to be able to select any row
      * @default true
      */
     @Input()
-    public inputHasCheckboxes:boolean = true;
+    public inputHasCheckboxes: boolean = true;
     /**
      * @description show/hides the pager above the table
      * @default true
      */
     @Input()
-    public inputHasPager:boolean = true;
+    public inputHasPager: boolean = true;
     /**
      * @description differentiates whether auto rendering of rows/cells or content projection is used
      */
     @Input()
-    public useContentBody:boolean = false;
+    public useContentBody: boolean = false;
 
     /**
      * @description context menu for rows
      */
     @Input()
-    public inputContextMenu:Array<TerraDataTableContextMenuEntryInterface<T>> = [];
+    public inputContextMenu: Array<TerraDataTableContextMenuEntryInterface<T>> = [];
 
-    public _columnHeaderClicked:EventEmitter<TerraDataTableHeaderCellInterface> = new EventEmitter<TerraDataTableHeaderCellInterface>();
+    public _columnHeaderClicked: EventEmitter<TerraDataTableHeaderCellInterface> = new EventEmitter<
+        TerraDataTableHeaderCellInterface
+    >();
 
-    public readonly _refType:(typeof TerraHrefTypeEnum) = TerraHrefTypeEnum;
-    public readonly _checkboxColumnWidth:number = 25;
+    public readonly _refType: typeof TerraHrefTypeEnum = TerraHrefTypeEnum;
+    public readonly _checkboxColumnWidth: number = 25;
 
-    constructor(private _cdr:ChangeDetectorRef)
-    {
+    constructor(private _cdr: ChangeDetectorRef) {
         super();
     }
 
-    public get _rowList():Array<TerraDataTableRowInterface<T>>
-    {
+    public get _rowList(): Array<TerraDataTableRowInterface<T>> {
         return !isNullOrUndefined(this.inputService) ? this.inputService.rowList : [];
     }
 
     /**
      * @description Initialization routine. It sets up the pager.
      */
-    public ngOnInit():void
-    {
-        if(isNullOrUndefined(this.inputService))
-        {
+    public ngOnInit(): void {
+        if (isNullOrUndefined(this.inputService)) {
             console.error(`No 'inputService' given. This service is mandatory to display data in the table`);
             return;
         }
 
-        this._columnHeaderClicked.pipe(
-            filter((header:TerraDataTableHeaderCellInterface) =>
-            {
-                // change sorting column and order only if no request is pending and sortBy attribute is given
-                return !this.inputService.requestPending && !isNullOrUndefined(header.sortBy);
-            }),
-            tap((header:TerraDataTableHeaderCellInterface) => this._changeSortingColumn(header)),
-            debounceTime(400)
-        ).subscribe(() => this._getResults());
+        this._columnHeaderClicked
+            .pipe(
+                filter((header: TerraDataTableHeaderCellInterface) => {
+                    // change sorting column and order only if no request is pending and sortBy attribute is given
+                    return !this.inputService.requestPending && !isNullOrUndefined(header.sortBy);
+                }),
+                tap((header: TerraDataTableHeaderCellInterface) => this._changeSortingColumn(header)),
+                debounceTime(400)
+            )
+            .subscribe(() => this._getResults());
 
         this.inputService.cdr = this._cdr;
     }
@@ -118,29 +109,23 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
      * @description Change detection routine. It resets the sorting configuration if the header list is updated.
      * @param changes
      */
-    public ngOnChanges(changes:SimpleChanges):void
-    {
-        if(changes['inputHeaderList'])
-        {
-            if(!isNullOrUndefined(this.inputService))
-            {
+    public ngOnChanges(changes: SimpleChanges): void {
+        if (changes['inputHeaderList']) {
+            if (!isNullOrUndefined(this.inputService)) {
                 this.inputService.resetSortParams();
             }
         }
     }
 
-    public get _dataAvailableOrRequestPending():boolean
-    {
+    public get _dataAvailableOrRequestPending(): boolean {
         return this.isTableDataAvailable || (!isNullOrUndefined(this.inputService) && this.inputService.requestPending);
     }
 
-    private get isTableDataAvailable():boolean
-    {
+    private get isTableDataAvailable(): boolean {
         return this._rowList && this._rowList.length > 0;
     }
 
-    public _doPaging():void
-    {
+    public _doPaging(): void {
         // request data from server
         this._getResults();
 
@@ -148,154 +133,134 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
         this._resetSelectedRows();
     }
 
-    public _getCellDataType(data:unknown):string
-    {
-        function isRefType(arg:unknown):arg is TerraHrefTypeInterface
-        {
-            const typeCheck:TerraHrefTypeInterface = arg as TerraHrefTypeInterface;
-            return !isNullOrUndefined(typeCheck)
-                   && !isNullOrUndefined(typeCheck.type) && typeof typeCheck.type === 'string'
-                   && !isNullOrUndefined(typeCheck.value)
-                   && (typeof typeCheck.value === 'string' || typeof typeCheck.value === 'number' || typeof typeCheck.value === 'function');
+    public _getCellDataType(data: unknown): string {
+        function isRefType(arg: unknown): arg is TerraHrefTypeInterface {
+            const typeCheck: TerraHrefTypeInterface = arg as TerraHrefTypeInterface;
+            return (
+                !isNullOrUndefined(typeCheck) &&
+                !isNullOrUndefined(typeCheck.type) &&
+                typeof typeCheck.type === 'string' &&
+                !isNullOrUndefined(typeCheck.value) &&
+                (typeof typeCheck.value === 'string' ||
+                    typeof typeCheck.value === 'number' ||
+                    typeof typeCheck.value === 'function')
+            );
         }
 
-        function isTextType(arg:unknown):arg is TerraDataTableTextInterface
-        {
-            const typeCheck:TerraDataTableTextInterface = arg as TerraDataTableTextInterface;
-            return !isNullOrUndefined(arg) && !isNullOrUndefined(typeCheck.caption) && typeof typeCheck.caption === 'string';
+        function isTextType(arg: unknown): arg is TerraDataTableTextInterface {
+            const typeCheck: TerraDataTableTextInterface = arg as TerraDataTableTextInterface;
+            return (
+                !isNullOrUndefined(arg) &&
+                !isNullOrUndefined(typeCheck.caption) &&
+                typeof typeCheck.caption === 'string'
+            );
         }
 
-        function isTagArray(arg:unknown):arg is Array<TerraTagInterface>
-        {
-            const typeCheck:Array<TerraTagInterface> = arg as Array<TerraTagInterface>;
+        function isTagArray(arg: unknown): arg is Array<TerraTagInterface> {
+            const typeCheck: Array<TerraTagInterface> = arg as Array<TerraTagInterface>;
             // check if it is an array
-            if(!isArray(typeCheck))
-            {
+            if (!isArray(typeCheck)) {
                 return false;
             }
 
             // check if every element of the array implements the tag interface
-            let implementsInterface:boolean = typeCheck.every((elem:TerraTagInterface) =>
-            {
+            let implementsInterface: boolean = typeCheck.every((elem: TerraTagInterface) => {
                 return !isNullOrUndefined(elem.name) && typeof elem.name === 'string';
             });
 
             return !isNullOrUndefined(arg) && implementsInterface;
         }
 
-        function isButtonArray(arg:unknown):arg is Array<TerraButtonInterface>
-        {
-            const typeCheck:Array<TerraButtonInterface> = arg as Array<TerraButtonInterface>;
+        function isButtonArray(arg: unknown): arg is Array<TerraButtonInterface> {
+            const typeCheck: Array<TerraButtonInterface> = arg as Array<TerraButtonInterface>;
             // check if it is an array
-            if(!isArray(typeCheck))
-            {
+            if (!isArray(typeCheck)) {
                 return false;
             }
 
             // check if every element of the array implements the button interface
-            let implementsInterface:boolean = typeCheck.every((elem:TerraButtonInterface) =>
-            {
+            let implementsInterface: boolean = typeCheck.every((elem: TerraButtonInterface) => {
                 return !isNullOrUndefined(elem.clickFunction) && typeof elem.clickFunction === 'function';
             });
 
             return !isNullOrUndefined(arg) && implementsInterface;
         }
 
-        if(typeof data === 'object')
-        {
-            if(isRefType(data))
-            {
+        if (typeof data === 'object') {
+            if (isRefType(data)) {
                 return 'TerraRefTypeInterface';
-            }
-            else if(isTextType(data))
-            {
+            } else if (isTextType(data)) {
                 return 'TerraDataTableTextInterface';
-            }
-            else if(isTagArray(data))
-            {
+            } else if (isTagArray(data)) {
                 return 'tags';
-            }
-            else if(isButtonArray(data))
-            {
+            } else if (isButtonArray(data)) {
                 return 'buttons';
             }
         }
         return typeof data;
     }
 
-    public getTextAlign(item:TerraDataTableHeaderCellInterface):TerraTextAlignEnum // TODO: Pipe?
-    {
-        if(!isNullOrUndefined(item) && !isNullOrUndefined(item.textAlign))
-        {
+    public getTextAlign(item: TerraDataTableHeaderCellInterface): TerraTextAlignEnum {
+        // TODO: Pipe?
+        if (!isNullOrUndefined(item) && !isNullOrUndefined(item.textAlign)) {
             return item.textAlign;
-        }
-        else
-        {
+        } else {
             return TerraTextAlignEnum.LEFT;
         }
     }
 
-    public _isSortable(header:TerraDataTableHeaderCellInterface):boolean
-    {
-        if(isNullOrUndefined(header))
-        {
+    public _isSortable(header: TerraDataTableHeaderCellInterface): boolean {
+        if (isNullOrUndefined(header)) {
             return false;
         }
         return !isNullOrUndefined(header.sortBy);
     }
 
-    public _isUnsorted(header:TerraDataTableHeaderCellInterface):boolean
-    {
+    public _isUnsorted(header: TerraDataTableHeaderCellInterface): boolean {
         return this._isSortable(header) && header.sortBy !== this.inputService.sortBy;
     }
 
-    public _isSortedAsc(header:TerraDataTableHeaderCellInterface):boolean
-    {
+    public _isSortedAsc(header: TerraDataTableHeaderCellInterface): boolean {
         return this._isSorted(header, TerraDataTableSortOrderEnum.ascending);
     }
 
-    public _isSortedDesc(header:TerraDataTableHeaderCellInterface):boolean
-    {
+    public _isSortedDesc(header: TerraDataTableHeaderCellInterface): boolean {
         return this._isSorted(header, TerraDataTableSortOrderEnum.descending);
     }
 
-    private _changeSortingColumn(header:TerraDataTableHeaderCellInterface):void
-    {
-        if(isNullOrUndefined(this.inputService))
-        {
+    private _changeSortingColumn(header: TerraDataTableHeaderCellInterface): void {
+        if (isNullOrUndefined(this.inputService)) {
             return;
         }
 
         // clicked on the same column?
-        if(this.inputService.sortBy === header.sortBy)
-        {
+        if (this.inputService.sortBy === header.sortBy) {
             // only change sorting order
             this._toggleSortingOrder();
-        }
-        else
-        {
+        } else {
             this.inputService.sortBy = header.sortBy;
             this.inputService.sortOrder = TerraDataTableSortOrderEnum.descending; // default is descending
         }
     }
 
-    private _toggleSortingOrder():void
-    {
-        this.inputService.sortOrder = this.inputService.sortOrder === TerraDataTableSortOrderEnum.descending ?
-            TerraDataTableSortOrderEnum.ascending :
-            TerraDataTableSortOrderEnum.descending;
+    private _toggleSortingOrder(): void {
+        this.inputService.sortOrder =
+            this.inputService.sortOrder === TerraDataTableSortOrderEnum.descending
+                ? TerraDataTableSortOrderEnum.ascending
+                : TerraDataTableSortOrderEnum.descending;
     }
 
-    private _getResults():void
-    {
-        if(!isNullOrUndefined(this.inputService))
-        {
+    private _getResults(): void {
+        if (!isNullOrUndefined(this.inputService)) {
             this.inputService.getResults();
         }
     }
 
-    private _isSorted(header:TerraDataTableHeaderCellInterface, sortOrder:TerraDataTableSortOrderEnum):boolean
-    {
-        return this._isSortable(header) && header.sortBy === this.inputService.sortBy && this.inputService.sortOrder === sortOrder;
+    private _isSorted(header: TerraDataTableHeaderCellInterface, sortOrder: TerraDataTableSortOrderEnum): boolean {
+        return (
+            this._isSortable(header) &&
+            header.sortBy === this.inputService.sortBy &&
+            this.inputService.sortOrder === sortOrder
+        );
     }
 }

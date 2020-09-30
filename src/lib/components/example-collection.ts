@@ -55,7 +55,7 @@ import { TerraFileBrowserComponentExample } from './file-browser/example/terra-f
 import { TerraLoadingSpinnerComponentExample } from './loading-spinner/example/terra-loading-spinner.component.example';
 import { TooltipDirectiveExample } from './tooltip/example/tooltip-directive.example';
 
-export const examples:Array<Type<any>> = [
+export const examples: Array<Type<any>> = [
     TooltipDirectiveExample,
     TerraButtonComponentExample,
     TerraAlertComponentExample,

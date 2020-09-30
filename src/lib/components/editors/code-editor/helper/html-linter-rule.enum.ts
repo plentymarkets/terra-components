@@ -1,5 +1,4 @@
-export enum HtmlLinterRule
-{
+export enum HtmlLinterRule {
     tagnameLowercase = 'tagname-lowercase',
     attrLowercase = 'attr-lowercase',
     attrValueDoubleQuotes = 'attr-value-double-quotes',

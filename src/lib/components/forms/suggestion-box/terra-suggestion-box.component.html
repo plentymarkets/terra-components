@@ -1,40 +1,52 @@
-<div class="select-box-wrapper"
-     [placement]="inputTooltipPlacement"
-     [tcTooltip]="inputTooltipText"
-     [ngClass]="{
-                  'error': !isValid,
-                  'disabled': inputIsDisabled,
-                  'open': _toggleOpen
-                }"
-     (click)="_onClick($event)"
-     (keydown)="_onKeyDown($event)">
-
-    <terra-text-input [inputIsDisabled]="inputIsDisabled"
-                      [inputName]="inputName"
-                      (outputOnInput)="_onChange()"
-                      (click)="_onInputClick($event)"
-                      [(ngModel)]="_textInputValue">
+<div
+    class="select-box-wrapper"
+    [placement]="inputTooltipPlacement"
+    [tcTooltip]="inputTooltipText"
+    [ngClass]="{
+        error: !isValid,
+        disabled: inputIsDisabled,
+        open: _toggleOpen
+    }"
+    (click)="_onClick($event)"
+    (keydown)="_onKeyDown($event)"
+>
+    <terra-text-input
+        [inputIsDisabled]="inputIsDisabled"
+        [inputName]="inputName"
+        (outputOnInput)="_onChange()"
+        (click)="_onInputClick($event)"
+        [(ngModel)]="_textInputValue"
+    >
     </terra-text-input>
 
     <!-- suggestions -->
     <div class="select-box-dropdown">
         <span *ngIf="_displayListBoxValues.length === 0" (click)="$event.stopPropagation()">
-            <i>{{ _noEntriesTextKey | translate:_lang }} </i>
+            <i>{{ _noEntriesTextKey | translate: _lang }} </i>
         </span>
 
-        <span *ngIf="_displayListBoxValues.length > 0 && inputWithRecentlyUsed" class="select-box-dropdown-heading"
-              (click)="$event.stopPropagation()">
-            <i><b> {{ _listBoxHeadingKey | translate:_lang }} </b></i>
+        <span
+            *ngIf="_displayListBoxValues.length > 0 && inputWithRecentlyUsed"
+            class="select-box-dropdown-heading"
+            (click)="$event.stopPropagation()"
+        >
+            <i
+                ><b> {{ _listBoxHeadingKey | translate: _lang }} </b></i
+            >
         </span>
 
-        <span #renderedListBoxValues
-              *ngFor="let item of _displayListBoxValues"
-              (click)="_select(item)"
-              [ngClass]="{active: item.value === _selectedValue?.value, selected: item.value === _tmpSelectedValue?.value}">
-            <span class="{{item.icon}}" *ngIf="item.icon"></span>
-            <img *ngIf="item.imgsrc" src="{{item.imgsrc}}"/>
+        <span
+            #renderedListBoxValues
+            *ngFor="let item of _displayListBoxValues"
+            (click)="_select(item)"
+            [ngClass]="{
+                active: item.value === _selectedValue?.value,
+                selected: item.value === _tmpSelectedValue?.value
+            }"
+        >
+            <span class="{{ item.icon }}" *ngIf="item.icon"></span>
+            <img *ngIf="item.imgsrc" src="{{ item.imgsrc }}" />
             <span [innerHtml]="item.caption"></span>
         </span>
     </div>
-
 </div>

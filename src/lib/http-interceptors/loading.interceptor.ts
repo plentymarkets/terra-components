@@ -1,10 +1,5 @@
 import { Injectable } from '@angular/core';
-import {
-    HttpEvent,
-    HttpHandler,
-    HttpInterceptor,
-    HttpRequest
-} from '@angular/common/http';
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { TerraLoadingSpinnerService } from '../components/loading-spinner/service/terra-loading-spinner.service';
 import { finalize } from 'rxjs/operators';
@@ -13,13 +8,10 @@ import { finalize } from 'rxjs/operators';
  * @description HttpInterceptor that triggers the loading spinner in terra. It starts and also stops it.
  */
 @Injectable()
-export class LoadingInterceptor implements HttpInterceptor
-{
-    constructor(private _loadingSpinner:TerraLoadingSpinnerService)
-    {}
+export class LoadingInterceptor implements HttpInterceptor {
+    constructor(private _loadingSpinner: TerraLoadingSpinnerService) {}
 
-    public intercept(req:HttpRequest<unknown>, next:HttpHandler):Observable<HttpEvent<unknown>>
-    {
+    public intercept(req: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
         this._loadingSpinner.start();
         return next.handle(req).pipe(finalize(() => this._loadingSpinner.stop()));
     }

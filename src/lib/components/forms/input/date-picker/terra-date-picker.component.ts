@@ -1,101 +1,86 @@
-import {
-    Component,
-    Input,
-    OnChanges,
-    ViewChild
-} from '@angular/core';
-import {
-    ControlValueAccessor,
-    NG_VALUE_ACCESSOR
-} from '@angular/forms';
-import {
-    IMyDateModel,
-    IMyInputFocusBlur,
-    IMyOptions,
-    MyDatePicker
-} from 'mydatepicker';
+import { Component, Input, OnChanges, ViewChild } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { IMyDateModel, IMyInputFocusBlur, IMyOptions, MyDatePicker } from 'mydatepicker';
 import { isNullOrUndefined } from 'util';
 import { noop } from 'rxjs';
 import * as moment_ from 'moment';
 /* eslint-disable @typescript-eslint/typedef */
 const moment = moment_;
 
-let nextId:number = 0;
+let nextId: number = 0;
 
 /**
  * @author mfrank
  * @deprecated since v5. Use {@link https://material.angular.io/components/datepicker/overview} instead.
  */
 @Component({
-    selector:    'terra-date-picker',
+    selector: 'terra-date-picker',
     templateUrl: './terra-date-picker.component.html',
-    styleUrls:   ['./terra-date-picker.component.scss'],
-    providers:   [
+    styleUrls: ['./terra-date-picker.component.scss'],
+    providers: [
         {
-            provide:     NG_VALUE_ACCESSOR,
+            provide: NG_VALUE_ACCESSOR,
             useExisting: TerraDatePickerComponent,
-            multi:       true
+            multi: true
         }
     ]
 })
-export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
-{
+export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor {
     /**
      * @description Set the label.
      */
     @Input()
-    public inputName:string;
+    public inputName: string;
 
     /**
      * @description If true, a * indicates that the value is required. Default false.
      */
     @Input()
-    public inputIsRequired:boolean;
+    public inputIsRequired: boolean;
 
     /**
      * @description If false, the input will appear with a red border to indicate that the entered value is not valid. Default true.
      */
     @Input()
-    public inputIsValid:boolean;
+    public inputIsValid: boolean;
 
     /**
      * @description If true, the input will be disabled. Default false.
      */
     @Input()
-    public inputIsDisabled:boolean;
+    public inputIsDisabled: boolean;
 
     /**
      * @description If true, the calendar will be opened on top. Default false.
      */
     @Input()
-    public inputOpenCalendarTop:boolean;
+    public inputOpenCalendarTop: boolean;
 
     /**
      * @description Set the date format. Default 'dd.mm.yyyy'.
      */
     @Input()
-    public inputDisplayDateFormat:string;
+    public inputDisplayDateFormat: string;
 
     @ViewChild('viewChildMyDatePicker', { static: true })
-    public viewChildMyDatePicker:MyDatePicker;
+    public viewChildMyDatePicker: MyDatePicker;
 
-    public _currentLocale:string;
-    public _id:string;
-    public _datePickerOptions:IMyOptions;
-    public _dateAsString:string;
+    public _currentLocale: string;
+    public _id: string;
+    public _datePickerOptions: IMyOptions;
+    public _dateAsString: string;
 
     /**
      * @description a unique string identifier for the specific input instance.
      */
-    protected id:string;
+    protected id: string;
 
-    private _value:IMyDateModel;
+    private _value: IMyDateModel;
 
-    private onTouchedCallback:() => void = noop;
-    private onChangeCallback:(_:string) => void = noop;
+    private onTouchedCallback: () => void = noop;
+    private onChangeCallback: (_: string) => void = noop;
 
-    constructor()
-    {
+    constructor() {
         this.inputIsRequired = false;
         this.inputIsDisabled = false;
         this.inputIsValid = true;
@@ -108,68 +93,54 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
         this._id = `date-picker_#${nextId++}`;
     }
 
-    public ngOnChanges():void
-    {
+    public ngOnChanges(): void {
         this.updateDatePickerOptions();
     }
 
-    public registerOnChange(fn:(_:string) => void):void
-    {
+    public registerOnChange(fn: (_: string) => void): void {
         this.onChangeCallback = fn;
     }
 
-    public registerOnTouched(fn:() => void):void
-    {
+    public registerOnTouched(fn: () => void): void {
         this.onTouchedCallback = fn;
     }
 
-    public writeValue(value:unknown):void
-    {
-        if(!isNullOrUndefined(value) && typeof (value) === 'string' && isNaN(Date.parse(value)) === false)
-        {
-            let newDate:Date = new Date(value);
+    public writeValue(value: unknown): void {
+        if (!isNullOrUndefined(value) && typeof value === 'string' && isNaN(Date.parse(value)) === false) {
+            let newDate: Date = new Date(value);
 
             this.value = {
-                date:      {
-                    year:  newDate.getFullYear(),
+                date: {
+                    year: newDate.getFullYear(),
                     month: newDate.getMonth() + 1,
-                    day:   newDate.getDate()
+                    day: newDate.getDate()
                 },
-                jsdate:    newDate,
+                jsdate: newDate,
                 formatted: null,
-                epoc:      null
+                epoc: null
             };
-        }
-        else
-        {
+        } else {
             this.clearDate();
         }
     }
 
-    public get value():IMyDateModel
-    {
+    public get value(): IMyDateModel {
         return this._value;
     }
 
-    public set value(value:IMyDateModel)
-    {
-        if(!isNullOrUndefined(value) && typeof (value) === 'object')
-        {
+    public set value(value: IMyDateModel) {
+        if (!isNullOrUndefined(value) && typeof value === 'object') {
             this._value = value;
-        }
-        else
-        {
+        } else {
             this._value = null;
         }
 
-        if(this.viewChildMyDatePicker && this.viewChildMyDatePicker.inputBoxEl)
-        {
+        if (this.viewChildMyDatePicker && this.viewChildMyDatePicker.inputBoxEl) {
             this._dateAsString = this.viewChildMyDatePicker.inputBoxEl.nativeElement.value;
         }
     }
 
-    public clearDate():void
-    {
+    public clearDate(): void {
         this.viewChildMyDatePicker.clearDate();
     }
 
@@ -177,14 +148,10 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
      * Is triggered on `ngModelChange` and executes `onChangeCallBack`
      * @param value
      */
-    public _onChange(value:IMyDateModel):void
-    {
-        if(!isNullOrUndefined(value))
-        {
+    public _onChange(value: IMyDateModel): void {
+        if (!isNullOrUndefined(value)) {
             this.onChangeCallback(moment(value.jsdate).format());
-        }
-        else
-        {
+        } else {
             this.onChangeCallback(null);
         }
     }
@@ -193,25 +160,23 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
      * Is triggered on `inputFocusBlur` and executes `onTouchedCallback` if a blur event is emitted
      * @param event
      */
-    public _onFocusOrBlur(event:IMyInputFocusBlur):void
-    {
-        if(event.reason === 2) // blur
-        {
+    public _onFocusOrBlur(event: IMyInputFocusBlur): void {
+        if (event.reason === 2) {
+            // blur
             this.onTouchedCallback();
         }
     }
 
-    private updateDatePickerOptions():void
-    {
+    private updateDatePickerOptions(): void {
         this._datePickerOptions = {
-            height:                   'inherit',
-            componentDisabled:        this.inputIsDisabled,
-            openSelectorTopOfInput:   this.inputOpenCalendarTop,
-            showSelectorArrow:        !this.inputOpenCalendarTop,
-            inline:                   false,
-            editableDateField:        true,
+            height: 'inherit',
+            componentDisabled: this.inputIsDisabled,
+            openSelectorTopOfInput: this.inputOpenCalendarTop,
+            showSelectorArrow: !this.inputOpenCalendarTop,
+            inline: false,
+            editableDateField: true,
             openSelectorOnInputClick: false,
-            dateFormat:               this.inputDisplayDateFormat
+            dateFormat: this.inputDisplayDateFormat
         };
     }
 }
