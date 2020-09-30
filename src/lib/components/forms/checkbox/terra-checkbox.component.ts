@@ -5,6 +5,7 @@ import { noop } from 'rxjs';
 
 let nextId: number = 0;
 
+/** @deprecated since v5. Use angular material's [checkbox](https://material.angular.io/components/checkbox/overview) instead. */
 @Component({
     selector: 'terra-checkbox',
     styleUrls: ['./terra-checkbox.component.scss'],
