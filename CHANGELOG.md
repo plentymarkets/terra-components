@@ -1,8 +1,25 @@
-# 5.x.x (xx.xx.2020)
+# 5.9.0 (Unreleased)
+
+### Features
+
+-   **helpers** introduced new public utility class `Color` to simplify work with colors.
+
+### Bug Fixes
+
+-   **mat-checkbox** Fixed styles for disabled checkbox when checked and indeterminate.
+
+# 5.8.0 (16.09.2020)
 
 ### Features
 
 -   **prettier** We now use prettier to format the code. Additionally, there is a pre-commit hook that formats every file that is pushed into the repository.
+-   **mat-tree** Added styles for the [angular material tree](https://v8.material.angular.io/components/tree).
+
+### Bug Fixes
+
+-   **table-settings** Fixed caption for column config overlay.
+-   **mat-table** Adjust left padding for first column.
+-   **tcTooltip** Fixed `isDisabled` input when it's `true` in the beginning.
 
 # 5.7.0 (17.08.2020)
 
