@@ -31,10 +31,12 @@ describe('TerraNoResultNoticeComponent', () => {
     it('should highlight inner buttons', () => {
         component.inputButtons = noResultsNoticeMockButtons;
         fixture.detectChanges();
-        const buttons: Array<DebugElement> = fixture.debugElement.queryAll(By.css('terra-button'));
-        let buttonComponent: TerraButtonComponent = buttons[0].componentInstance as TerraButtonComponent;
-        fixture.detectChanges();
-        expect(buttonComponent.inputIsHighlighted).toBe(true);
+        const buttons: Array<DebugElement> = fixture.debugElement.queryAll(By.directive(TerraButtonComponent));
+        expect(
+            buttons.every(
+                (button: DebugElement) => (button.componentInstance as TerraButtonComponent).inputIsHighlighted
+            )
+        ).toBe(true);
     });
 
     it('should ensure that inner buttons are not small', () => {
