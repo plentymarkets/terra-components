@@ -1,24 +1,23 @@
 body {
     &.theme-core {
-    
         //---------- Coloring ----------\\
-        
+
         // colors for backgrounds, structural elements & text
-        --color-structure-0: #ffffff;                   //0     Container BG
-        --color-structure-1: #f3f4f5;                   //10    Hover BG
-        --color-structure-2: #e9eaec;                   //19    View BG
-        --color-structure-3: #dce0e3;                   //28    Border
-        --color-structure-4: var(--color-structure-5);  //deprecated
-        --color-structure-5: #c6c7ca;                   //53    Disabled Text & Icons
-        --color-structure-6: var(--color-structure-7);  //deprecated
-        --color-structure-7: #95989d;                   //98    Placeholder Text
-        --color-structure-8: var(--color-structure-9);  //deprecated
-        --color-structure-9: #646771;                   //142   Secondary Text, Icons
-        --color-structure-10: #5b5d66;                  //153   Tabs BG
-        --color-structure-11: #494c56;                  //169   Tabbar BG
-        --color-structure-12: #2f323a;                  //197   Primary Text, Navbar BG
-        --color-structure-13: #000000;                  //255   Shadow
-        
+        --color-structure-0: #ffffff; //0     Container BG
+        --color-structure-1: #f3f4f5; //10    Hover BG
+        --color-structure-2: #e9eaec; //19    View BG
+        --color-structure-3: #dce0e3; //28    Border
+        --color-structure-4: var(--color-structure-5); //deprecated
+        --color-structure-5: #c6c7ca; //53    Disabled Text & Icons
+        --color-structure-6: var(--color-structure-7); //deprecated
+        --color-structure-7: #95989d; //98    Placeholder Text
+        --color-structure-8: var(--color-structure-9); //deprecated
+        --color-structure-9: #646771; //142   Secondary Text, Icons
+        --color-structure-10: #5b5d66; //153   Tabs BG
+        --color-structure-11: #494c56; //169   Tabbar BG
+        --color-structure-12: #2f323a; //197   Primary Text, Navbar BG
+        --color-structure-13: #000000; //255   Shadow
+
         //// function group colors
         // Add
         --color-group-add-hex: #6ad26a;
@@ -27,9 +26,9 @@ body {
         --button-background-color-group-add: var(--color-group-navigation);
         --button-text-color-group-add: var(--color-structure-0);
         --button-border-bottom-group-add: 4px solid var(--color-group-add);
-        --color-add-light: var(--color-group-add);  // deprecated
-        --color-add: var(--color-group-add);        // deprecated
-        --color-add-dark: var(--color-group-add);   // deprecated
+        --color-add-light: var(--color-group-add); // deprecated
+        --color-add: var(--color-group-add); // deprecated
+        --color-add-dark: var(--color-group-add); // deprecated
 
         // Active
         --color-group-active-hex: #24b3e0; // only for reference in intelliJ
@@ -38,9 +37,9 @@ body {
         --button-background-color-group-active: var(--color-group-navigation);
         --button-text-color-group-active: var(--color-structure-0);
         --button-border-bottom-group-active: 4px solid var(--color-group-active);
-        --color-active-light: var(--color-group-active);    // deprecated
-        --color-active: var(--color-group-active);          // deprecated
-        --color-active-dark: var(--color-group-active);     // deprecated
+        --color-active-light: var(--color-group-active); // deprecated
+        --color-active: var(--color-group-active); // deprecated
+        --color-active-dark: var(--color-group-active); // deprecated
 
         // Alert
         --color-group-alert-hex: #f11539;
@@ -49,9 +48,9 @@ body {
         --button-background-color-group-alert: var(--color-group-navigation);
         --button-text-color-group-alert: var(--color-structure-0);
         --button-border-bottom-group-alert: 4px solid var(--color-group-alert);
-        --color-alert-light: var(--color-group-alert);  // deprecated
-        --color-alert: var(--color-group-alert);        // deprecated
-        --color-alert-dark: var(--color-group-alert);   // deprecated
+        --color-alert-light: var(--color-group-alert); // deprecated
+        --color-alert: var(--color-group-alert); // deprecated
+        --color-alert-dark: var(--color-group-alert); // deprecated
 
         // Action
         --color-group-action-hex: #ffdb4c;
@@ -60,9 +59,9 @@ body {
         --button-background-color-group-action: var(--color-group-navigation);
         --button-text-color-group-action: var(--color-structure-0);
         --button-border-bottom-group-action: 4px solid var(--color-group-action);
-        --color-accent-light: var(--color-group-action);    // deprecated
-        --color-accent: var(--color-group-action);          // deprecated
-        --color-accent-dark: var(--color-group-action);     // deprecated
+        --color-accent-light: var(--color-group-action); // deprecated
+        --color-accent: var(--color-group-action); // deprecated
+        --color-accent-dark: var(--color-group-action); // deprecated
 
         // Warning
         --color-group-warning-hex: #ff873e;
@@ -95,22 +94,21 @@ body {
         --button-border-bottom-group-navigation: 4px solid var(--color-group-navigation);
 
         // Disabled
-        --color-group-disabled: var(--color-structure-5);                                   //deprecated
-        --button-background-color-group-disabled: var(--color-group-navigation);            //deprecated
-        --button-text-color-group-disabled: var(--color-structure-0);                       //deprecated
-        --button-border-bottom-group-disabled: 4px solid var(--color-group-disabled);       //deprecated
+        --color-group-disabled: var(--color-structure-5); //deprecated
+        --button-background-color-group-disabled: var(--color-group-navigation); //deprecated
+        --button-text-color-group-disabled: var(--color-structure-0); //deprecated
+        --button-border-bottom-group-disabled: 4px solid var(--color-group-disabled); //deprecated
 
         //specific colors
-        --border-color: var(--color-structure-5);           //deprecated
-        --color-background: var(--color-structure-2);       //deprecated
-        --color-link: var(--color-group-info);              //deprecated
-    
-        
+        --border-color: var(--color-structure-5); //deprecated
+        --color-background: var(--color-structure-2); //deprecated
+        --color-link: var(--color-group-info); //deprecated
+
         //---------- Typography ----------\\
 
         --font-family: 'Roboto', sans-serif;
         --font-family-icons: 'plentyicons';
-    
+
         --font-size-1: 11px;
         --font-size-2: 12px;
         --font-size-3: 13px;
@@ -124,22 +122,21 @@ body {
         --font-weight-2: 500;
         --font-weight-3: 700;
 
-        
         //---------- Spacing ----------\\
-        
+
         //spaces used for paddings & margins
         --space-0: 0;
-        --space-1: 3px;         // button margin
-        --space-2: 6px;         // container margin (distance between container)
-        --space-3: 9px;         // button padding
-        --space-4: 12px;        // container padding
-        
+        --space-1: 3px; // button margin
+        --space-2: 6px; // container margin (distance between container)
+        --space-3: 9px; // button padding
+        --space-4: 12px; // container padding
+
         // spaces used for widths & heights
-        --space-5: 24px;        // extra small button
-        --space-6: 30px;        // small button
-        --space-7: 36px;        // button
-        --space-8: 42px;        // default height: portlet header, table rows, tabBar, toolbar, tree node...
-    
+        --space-5: 24px; // extra small button
+        --space-6: 30px; // small button
+        --space-7: 36px; // button
+        --space-8: 42px; // default height: portlet header, table rows, tabBar, toolbar, tree node...
+
         //Fixed Variables that don't get impacted by compact mode
         --space-1-fix: 3px;
         --space-2-fix: 6px;
@@ -149,29 +146,28 @@ body {
         --space-6-fix: 30px;
         --space-7-fix: 36px;
         --space-8-fix: 42px;
-    
-        --space-grid: 0 var(--space-1-fix) var(--space-2-fix) var(--space-1-fix);   // container margin
-    
-    
+
+        --space-grid: 0 var(--space-1-fix) var(--space-2-fix) var(--space-1-fix); // container margin
+
         // deprecated space variables
-        --space-xs: 2px;        //deprecated
-        --space-sm: 4px;        //deprecated
-        --space-md: 8px;        //deprecated
-        --space-lg: 12px;       //deprecated
-        --space-xl: 24px;       //deprecated
-        --space-xs-fix: 2px;    //deprecated
-        --space-sm-fix: 4px;    //deprecated
-        --space-md-fix: 8px;    //deprecated
-        --space-lg-fix: 12px;   //deprecated
-        --space-xl-fix: 24px;   //deprecated
-    
-        --height-sm: 24px;      //deprecated
-        --height-md: 36px;      //deprecated
-        --height-lg: 48px;      //deprecated
-        --height-sm-fix: 24px;  //deprecated
-        --height-md-fix: 36px;  //deprecated
-        --height-lg-fix: 48px;  //deprecated
-    
+        --space-xs: 2px; //deprecated
+        --space-sm: 4px; //deprecated
+        --space-md: 8px; //deprecated
+        --space-lg: 12px; //deprecated
+        --space-xl: 24px; //deprecated
+        --space-xs-fix: 2px; //deprecated
+        --space-sm-fix: 4px; //deprecated
+        --space-md-fix: 8px; //deprecated
+        --space-lg-fix: 12px; //deprecated
+        --space-xl-fix: 24px; //deprecated
+
+        --height-sm: 24px; //deprecated
+        --height-md: 36px; //deprecated
+        --height-lg: 48px; //deprecated
+        --height-sm-fix: 24px; //deprecated
+        --height-md-fix: 36px; //deprecated
+        --height-lg-fix: 48px; //deprecated
+
         --space-container: 0 var(--space-xs) var(--space-md) var(--space-xs); //deprecated
         --space-container-fix: 0 var(--space-xs-fix) var(--space-md-fix) var(--space-xs-fix); //deprecated
 
@@ -182,8 +178,7 @@ body {
         --header-height: calc(var(--navbar-height) + var(--tabbar-height));
         --breadcrumbs-height: 36px;
         --tab-content-fullscreen-top: 5px; //space between tab-content and fullscreen-top
-    
-    
+
         //---------- Others ----------\\
 
         --border-radius: none; //was 2px
@@ -200,18 +195,17 @@ body {
         --zIndex-8: 800;
         --zIndex-9: 900;
         --zIndex-10: 1060; // set a level over the overlay modal which has 1050
-    
-        
+
         //---------- Animations ----------\\
 
-        --transition-0: none;  //was ease 0s
+        --transition-0: none; //was ease 0s
         --transition-xs: none; //was ease 0.2s
         --transition-sm: none; //was ease 0.3s for colors and background-colors
         --transition-md: none; //was ease 0.4s
         --transition-lg: none; //was ease 0.6s for transformations of heights, widths, spaces, margins, paddings
         --transition-xl: none; //was ease 1.2s
 
-        --transition-delay-0: none;  //was 0s
+        --transition-delay-0: none; //was 0s
         --transition-delay-xs: none; //was 0.2s
         --transition-delay-sm: none; //was 0.3s
         --transition-delay-md: none; //was 0.4s
@@ -220,8 +214,7 @@ body {
 
         --transition-menu: none; //was all var(--transition-xs)
         --transition-menu-delay: none; //was var(--transition-delay-xs)
-    
-        
+
         //---------- Terra-Components ----------\\
 
         //Inputs & Select-Boxes
