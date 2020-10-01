@@ -1,4 +1,15 @@
-# 5.x.x (xx.xx.2020)
+# 5.9.0 (30.09.2020)
+
+### Features
+
+-   **helpers** introduced new public utility class `Color` to simplify work with colors.
+-   **terra-checkbox** is deprecated now. Use angular material's [checkbox](https://material.angular.io/components/checkbox/overview) instead.
+
+### Bug Fixes
+
+-   **mat-checkbox** Fixed styles for disabled checkbox when checked and indeterminate.
+
+# 5.8.0 (16.09.2020)
 
 ### Features
 
@@ -9,6 +20,7 @@
 
 -   **table-settings** Fixed caption for column config overlay.
 -   **mat-table** Adjust left padding for first column.
+-   **tcTooltip** Fixed `isDisabled` input when it's `true` in the beginning.
 
 # 5.7.0 (17.08.2020)
 
