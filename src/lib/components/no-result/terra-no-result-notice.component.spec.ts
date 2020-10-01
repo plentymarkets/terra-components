@@ -54,7 +54,7 @@ describe('TerraNoResultNoticeComponent', () => {
             .nativeElement as HTMLDivElement;
         const secondaryDiv: HTMLDivElement = fixture.debugElement.query(By.css('div.text-second'))
             .nativeElement as HTMLDivElement;
-        expect(primaryDiv.textContent).toBe('primary text');
-        expect(secondaryDiv.textContent).toBe('secondary text');
+        expect(primaryDiv.textContent).toBe(component.inputTextPrimary);
+        expect(secondaryDiv.textContent).toBe(component.inputTextSecondary);
     });
 });
