@@ -23,6 +23,8 @@ describe('TerraDecimalValidator:', () => {
         expect(applyValidator(1.1, 2, 1)).toBeNull();
         expect(applyValidator(25.28, Infinity, 2)).toBeNull();
         expect(applyValidator(20, 2, 0)).toBeNull();
+        expect(applyValidator(0.0, 3, 2)).toBeNull();
         expect(applyValidator(null, 1, 0)).toBeNull();
+        expect(applyValidator(undefined, 1, 0)).toBeNull();
     });
 });
