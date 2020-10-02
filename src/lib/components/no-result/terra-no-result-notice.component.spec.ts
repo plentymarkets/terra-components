@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TerraNoResultNoticeComponent } from './terra-no-result-notice.component';
-import { TerraButtonComponent } from '../..';
+import { TerraButtonComponent } from '../buttons/button/terra-button.component';
 import { By } from '@angular/platform-browser';
 import { noResultsNoticeMockButtons } from '../../testing/mock-buttons';
 import { Component, DebugElement } from '@angular/core';
@@ -42,10 +42,10 @@ describe('TerraNoResultNoticeComponent', () => {
     it('should ensure that inner buttons are not small', () => {
         component.inputButtons = noResultsNoticeMockButtons;
         fixture.detectChanges();
-        const buttons: Array<DebugElement> = fixture.debugElement.queryAll(By.css('terra-button'));
-        let buttonComponent: TerraButtonComponent = buttons[0].componentInstance as TerraButtonComponent;
-        fixture.detectChanges();
-        expect(buttonComponent.inputIsSmall).toBe(false);
+        const buttons: Array<DebugElement> = fixture.debugElement.queryAll(By.directive(TerraButtonComponent));
+        expect(
+            buttons.every((button: DebugElement) => !(button.componentInstance as TerraButtonComponent).inputIsSmall)
+        ).toBe(true);
     });
 
     it('should set a primary and a secondary text between their own `div` element', () => {
