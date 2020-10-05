@@ -1,32 +1,39 @@
 body {
     &.theme-compact {
+    
+        //---------- General Spacing ----------\\
+    
+        // spaces used for paddings & margins
+        --space-0: 0;
+        --space-1: 3px;         // button margin
+        --space-2: 3px;         // container margin (distance between container)
+        --space-3: 6px;         // button padding
+        --space-4: 9px;         // container padding
+    
+        // spaces used for widths & heights
+        --space-5: 24px;        // extra small button
+        --space-6: 24px;        // small button
+        --space-7: 30px;        // button
+        --space-8: 36px;        // default height: portlet header, table rows, tabBar, toolbar, tree node...
+    
+        // deprecated space variables
+        --height-sm: 24px;  //deprecated
+        --height-md: 24px;  //deprecated
+        --height-lg: 36px;  //deprecated
+
+        --space-xs: 1px;    //deprecated
+        --space-sm: 2px;    //deprecated
+        --space-md: 4px;    //deprecated
+        --space-lg: 6px;    //deprecated
+        --space-xl: 12px;   //deprecated
+    
+        
+        //---------- Specific Spacing ----------\\
+        
+        // Navigation
         --navbar-height: 32px;
         --tabbar-height: 32px;
         --breadcrumbs-height: 32px;
-
-        --height-sm: 24px;
-        --height-md: 24px;
-        --height-lg: 36px;
-
-        --space-xs: 1px;
-        --space-sm: 2px;
-        --space-md: 4px;
-        --space-lg: 6px;
-        --space-xl: 12px;
-
-        --transition-xs: ease 0.1s;
-        --transition-sm: ease 0.2s; //for colors and background-colors
-        --transition-md: ease 0.3s;
-        --transition-lg: ease 0.6s; //for transformations of heights, widths, spaces, margins, paddings
-        --transition-xl: ease 1.2s;
-        --transition-delay-xs: 0.1s;
-        --transition-delay-sm: 0.2s;
-        --transition-delay-md: 0.3s;
-        --transition-delay-lg: 0.6s;
-        --transition-delay-xl: 1.2s;
-
-        --transition-menu: all var(--transition-0);
-        --transition-menu-delay: var(--transition-delay-0);
 
         //Inputs & Select-Boxes//
         --input-padding-default: 0 var(--space-md) 0 30%;

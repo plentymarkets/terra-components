@@ -100,7 +100,7 @@ body {
         --button-text-color-group-disabled: var(--color-structure-0);                       //deprecated
         --button-border-bottom-group-disabled: 4px solid var(--color-group-disabled);       //deprecated
 
-        //specific colors
+        // specific colors
         --border-color: var(--color-structure-5);           //deprecated
         --color-background: var(--color-structure-2);       //deprecated
         --color-link: var(--color-group-info);              //deprecated
@@ -125,9 +125,9 @@ body {
         --font-weight-3: 700;
 
         
-        //---------- Spacing ----------\\
+        //---------- General Spacing ----------\\
         
-        //spaces used for paddings & margins
+        // spaces used for paddings & margins
         --space-0: 0;
         --space-1: 3px;         // button margin
         --space-2: 6px;         // container margin (distance between container)
@@ -140,11 +140,12 @@ body {
         --space-7: 36px;        // button
         --space-8: 42px;        // default height: portlet header, table rows, tabBar, toolbar, tree node...
     
-        //Fixed Variables that don't get impacted by compact mode
+        // Fixed Variables that don't get impacted by compact mode
         --space-1-fix: 3px;
         --space-2-fix: 6px;
         --space-3-fix: 9px;
         --space-4-fix: 12px;
+        
         --space-5-fix: 24px;
         --space-6-fix: 30px;
         --space-7-fix: 36px;
@@ -174,8 +175,10 @@ body {
     
         --space-container: 0 var(--space-xs) var(--space-md) var(--space-xs); //deprecated
         --space-container-fix: 0 var(--space-xs-fix) var(--space-md-fix) var(--space-xs-fix); //deprecated
-
-        //special spacing
+    
+        
+        //---------- Specific Spacing ----------\\
+        
         --navbar-height: 60px;
         --tabbar-height: 36px;
         --tabs-border-bottom-width: 2px;
@@ -224,7 +227,7 @@ body {
         
         //---------- Terra-Components ----------\\
 
-        //Inputs & Select-Boxes
+        // Inputs & Select-Boxes
         --input-wrapper-height-default: var(--height-md);
         --input-padding-default: var(--space-lg) 0 0 0;
         --input-isEmpty-padding-default: var(--input-padding-default);
@@ -245,7 +248,7 @@ body {
         --select-box-labeled-isSmall-padding-default: 0 var(--space-md) 0 30%;
         --select-box-isSmall-background-position-default: calc(100% - var(--space-lg)) calc(var(--space-lg) / 2);
 
-        //GWT
+        // GWT
         --gwt-has-toolbar-before-top: 50px;
         --gwt-has-titlebar-before-top: 40px;
         --gwt-has-pagination-before-top: 40px;
