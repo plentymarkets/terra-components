@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TerraInputComponent } from '../terra-input.component';
-import { Color } from './color.helper';
+import { Color } from '../../../../helpers/color.helper';
 import { TerraRegex } from '../../../../helpers/regex/terra-regex';
 
 @Component({

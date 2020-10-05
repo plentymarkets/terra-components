@@ -3,7 +3,7 @@
  * @package modules/helpers
  */
 import { isUndefined } from 'util';
-import { TerraRegex } from '../../../../helpers/regex/terra-regex';
+import { TerraRegex } from './regex/terra-regex';
 
 export type ColorRGB = { r: number; g: number; b: number };
 

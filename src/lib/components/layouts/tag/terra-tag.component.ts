@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
 import { isNullOrUndefined } from 'util';
-import { Color } from '../../forms/input/color-picker/color.helper';
+import { Color } from '../../../helpers/color.helper';
 import { TerraTagNameInterface } from './data/terra-tag-name.interface';
 import { Language } from 'angular-l10n';
 
