@@ -126,6 +126,7 @@ export class TerraFormEntryListComponent implements OnInit, OnChanges, ControlVa
             this.formArray.push(
                 TerraFormHelper.createNewControl(this.inputFormField.defaultValue, this.inputFormField)
             );
+            this.inputFormGroup.markAsDirty();
         }
     }
 
@@ -141,6 +142,7 @@ export class TerraFormEntryListComponent implements OnInit, OnChanges, ControlVa
         if (this._canRemoveElement) {
             this._childScopes.splice(index, 1);
             this.formArray.removeAt(index);
+            this.inputFormGroup.markAsDirty();
         }
     }
 

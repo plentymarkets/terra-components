@@ -1,3 +1,9 @@
+# 5.X.X (xx.xx.xxxx)
+
+### Bug Fixes
+
+- **terra-form-entry-list** Fixed form not being marked as dirty when number of entries changes
+
 # 5.9.0 (30.09.2020)
 
 ### Features
