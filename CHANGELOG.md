@@ -1,3 +1,9 @@
+# 5.9.1 (Unreleased)
+
+### Bug Fixes
+
+-   **styles** we now force focused elements to have no outline.
+
 # 5.9.0 (30.09.2020)
 
 ### Features
