@@ -1,8 +1,9 @@
-# 5.X.X (xx.xx.xxxx)
+# 5.9.1 (Unreleased)
 
 ### Bug Fixes
 
-- **terra-form-entry-list** Fixed form not being marked as dirty when number of entries changes
+-   **styles** we now force focused elements to have no outline.
+-   **terra-form-entry-list** Fixed form not being marked as dirty when number of entries changes
 
 # 5.9.0 (30.09.2020)
 
