@@ -2,8 +2,8 @@
 
 ### Features
 
--   **terra-button** marked as deprecated.
--   **terra-button-with-options** marked as deprecated.
+-   **terra-button** is deprecated now. Use angular material's [button](https://material.angular.io/components/button/overview) instead.
+-   **terra-button-with-options** is deprecated now. Use angular material's [button](https://material.angular.io/components/button/overview) and [menu](https://material.angular.io/components/menu/overview) instead.
 
 ### Bug Fixes
 
