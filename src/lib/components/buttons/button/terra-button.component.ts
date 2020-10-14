@@ -2,7 +2,6 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { isNullOrUndefined } from 'util';
 import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum';
 
-/** @deprecated since v5. Please use mat-button instead. */
 @Component({
     selector: 'terra-button',
     styleUrls: ['./terra-button.component.scss'],
