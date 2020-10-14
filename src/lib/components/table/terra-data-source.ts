@@ -3,9 +3,10 @@ import { BehaviorSubject, EMPTY, merge, Observable, Subject, Subscription } from
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { debounceTime, filter, map, switchMap } from 'rxjs/operators';
-import { TerraFilter, TerraPagerInterface } from '../..';
 import { createRequestParams, isPaginated } from './util';
 import { RequestParameterInterface } from './request-parameter.interface';
+import { TerraFilter } from './filter';
+import { TerraPagerInterface } from '../pager/data/terra-pager.interface';
 
 export abstract class TerraDataSource<T> extends DataSource<T> {
     public get data(): Array<T> {
