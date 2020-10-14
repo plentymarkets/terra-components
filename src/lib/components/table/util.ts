@@ -20,7 +20,7 @@ export function isPaginated<T>(result: any): result is TerraPagerInterface<T> {
 }
 
 export function createRequestParams(
-    filter: TerraFilter<{ [key: string]: unknown }>,
+    filter: TerraFilter<Object>,
     paginator: MatPaginator,
     sort: MatSort
 ): RequestParameterInterface {

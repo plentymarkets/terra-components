@@ -16,14 +16,14 @@ export abstract class TerraDataSource<T> extends DataSource<T> {
     }
     private _data: BehaviorSubject<Array<T>> = new BehaviorSubject([]);
 
-    public get filter(): TerraFilter<{ [key: string]: unknown }> {
+    public get filter(): TerraFilter<Object> {
         return this._filter;
     }
-    public set filter(f: TerraFilter<{ [key: string]: unknown }>) {
+    public set filter(f: TerraFilter<Object>) {
         this._filter = f;
         this._updateSubscription();
     }
-    private _filter: TerraFilter<{ [key: string]: unknown }> | undefined;
+    private _filter: TerraFilter<Object> | undefined;
 
     public get sort(): MatSort {
         return this._sort;
