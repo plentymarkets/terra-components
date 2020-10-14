@@ -4,6 +4,7 @@
 
 -   **terra-button** is deprecated now. Use angular material's [button](https://material.angular.io/components/button/overview) instead.
 -   **terra-button-with-options** is deprecated now. Use angular material's [button](https://material.angular.io/components/button/overview) and [menu](https://material.angular.io/components/menu/overview) instead.
+-   **terra-slider** is deprecated now. Use angular material's [silder](https://material.angular.io/components/slider/overview) instead.
 
 ### Bug Fixes
 
