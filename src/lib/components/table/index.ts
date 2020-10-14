@@ -6,3 +6,4 @@ export { TablePagingSortingDataSource } from './table-paging-sorting-data-source
 export { RequestParameterInterface } from './request-parameter.interface';
 export { TerraMatPaginatorIntl } from './terra-mat-paginator-intl';
 export { TableSettingsComponent } from './table-settings/table-settings.component';
+export { TerraDataSource } from './terra-data-source';

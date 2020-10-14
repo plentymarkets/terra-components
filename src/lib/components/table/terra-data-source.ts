@@ -1,0 +1,105 @@
+import { CollectionViewer, DataSource } from '@angular/cdk/collections';
+import { BehaviorSubject, EMPTY, merge, Observable, Subject, Subscription } from 'rxjs';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { MatSort, Sort } from '@angular/material/sort';
+import { debounceTime, filter, map, switchMap } from 'rxjs/operators';
+import { TerraFilter, TerraPagerInterface } from '../..';
+import { createRequestParams, isPaginated } from './util';
+import { RequestParameterInterface } from './request-parameter.interface';
+
+export abstract class TerraDataSource<T> extends DataSource<T> {
+    public _renderedData: BehaviorSubject<Array<T>> = new BehaviorSubject([]);
+
+    public get data(): Array<T> {
+        return this._renderedData.value;
+    }
+    public set data(data: Array<T>) {
+        this._renderedData.next(data);
+    }
+
+    public get filter(): TerraFilter<{ [key: string]: unknown }> {
+        return this._filter;
+    }
+    public set filter(f: TerraFilter<{ [key: string]: unknown }>) {
+        this._filter = f;
+        this._updateSubscription();
+    }
+    private _filter: TerraFilter<{ [key: string]: unknown }> | undefined;
+
+    public get sort(): MatSort {
+        return this._sort;
+    }
+    public set sort(s: MatSort) {
+        this._sort = s;
+        this._updateSubscription();
+    }
+    private _sort: MatSort | undefined;
+
+    public get paginator(): MatPaginator {
+        return this._paginator;
+    }
+    public set paginator(p: MatPaginator) {
+        this._paginator = p;
+        this._updateSubscription();
+    }
+    private _paginator: MatPaginator | undefined;
+
+    private _search: Subject<void> = new Subject();
+    private _subscription: Subscription = Subscription.EMPTY;
+
+    /**
+     * The request to get the data. Either paginated or a plain list.
+     * @returns Observable<Array<T> | TerraPagerInterface<T>>
+     */
+    public abstract request(requestParams: RequestParameterInterface): Observable<Array<T> | TerraPagerInterface<T>>;
+
+    public search(): void {
+        this._search.next();
+    }
+
+    public connect(collectionViewer: CollectionViewer): Observable<Array<T> | ReadonlyArray<T>> {
+        return this._renderedData.asObservable();
+    }
+
+    public disconnect(collectionViewer: CollectionViewer): void {
+        // make sure that all streams and subscriptions are canceled/complete
+        this._subscription.unsubscribe();
+        this._search.complete();
+        this._renderedData.complete();
+    }
+
+    private _updateSubscription(): void {
+        const search$: Observable<void> = merge(
+            this._filter ? this._filter.search$ : EMPTY,
+            this._search.asObservable()
+        );
+        const pageChange$: Observable<PageEvent | never> = this._paginator ? this._paginator.page : EMPTY;
+        const sortChange$: Observable<Sort | never> = this._sort ? this._sort.sortChange : EMPTY;
+
+        // watch for changes to the page or sort parameters
+        const pageOrSortChange$: Observable<PageEvent | Sort | never> = merge(pageChange$, sortChange$).pipe(
+            filter(() => this.data && this.data.length > 0), // accept page and/or sort events only if we already have data
+            debounceTime(500) // debounce to reduce amount of (canceled) requests
+        );
+
+        // watch for any change that should result in fetching data from the server.
+        // Either manual search event or page and/or sort event.
+        const anyChange$: Observable<void | PageEvent | Sort> = merge(search$, pageOrSortChange$);
+
+        const data$: Observable<Array<T>> = anyChange$.pipe(
+            map(() => createRequestParams(this._filter, this._paginator, this._sort)),
+            switchMap((params: RequestParameterInterface) => this.request(params)),
+            map((response: Array<T> | TerraPagerInterface<T>) => {
+                if (isPaginated(response)) {
+                    if (this._paginator) {
+                        this._paginator.length = response.totalsCount;
+                    }
+                    return response.entries;
+                }
+                return response;
+            })
+        );
+        this._subscription.unsubscribe();
+        this._subscription = data$.subscribe((data: Array<T>) => this._renderedData.next(data));
+    }
+}
