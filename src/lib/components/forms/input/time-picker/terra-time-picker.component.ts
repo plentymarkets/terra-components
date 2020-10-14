@@ -8,6 +8,7 @@ import { isNullOrUndefined } from 'util';
 import { noop } from 'rxjs';
 import { Language } from 'angular-l10n';
 
+/** @deprecated since v5. Please use mat-input of type time instead. */
 @Component({
     selector: 'terra-time-picker',
     styleUrls: ['./terra-time-picker.component.scss'],
