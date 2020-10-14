@@ -57,11 +57,11 @@ export abstract class TerraDataSource<T> extends DataSource<T> {
         this._search.next();
     }
 
-    public connect(collectionViewer: CollectionViewer): Observable<Array<T> | ReadonlyArray<T>> {
+    public connect(): Observable<Array<T> | ReadonlyArray<T>> {
         return this._data.asObservable();
     }
 
-    public disconnect(collectionViewer: CollectionViewer): void {
+    public disconnect(): void {
         // make sure that all streams and subscriptions are canceled/complete
         this._subscription.unsubscribe();
         this._search.complete();
