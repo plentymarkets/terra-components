@@ -1,4 +1,9 @@
-# 5.9.1 (Unreleased)
+# 5.10.0 (Unreleased)
+
+### Features
+
+-   **terra-button** marked as deprecated.
+-   **terra-button-with-options** marked as deprecated.
 
 ### Bug Fixes
 
