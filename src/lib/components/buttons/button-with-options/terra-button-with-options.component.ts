@@ -5,7 +5,6 @@ import { TerraButtonComponent } from '../button/terra-button.component';
 import { TerraTextAlignEnum } from '../../tables/data-table/enums/terra-text-align.enum';
 import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum';
 
-/** @deprecated since v5. Please use mat-button with mat-menu instead */
 @Component({
     selector: 'terra-button-with-options',
     templateUrl: './terra-button-with-options.component.html',
