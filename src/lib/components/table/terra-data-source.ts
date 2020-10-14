@@ -8,14 +8,13 @@ import { createRequestParams, isPaginated } from './util';
 import { RequestParameterInterface } from './request-parameter.interface';
 
 export abstract class TerraDataSource<T> extends DataSource<T> {
-    public _renderedData: BehaviorSubject<Array<T>> = new BehaviorSubject([]);
-
     public get data(): Array<T> {
-        return this._renderedData.value;
+        return this._data.value;
     }
     public set data(data: Array<T>) {
-        this._renderedData.next(data);
+        this._data.next(data);
     }
+    private _data: BehaviorSubject<Array<T>> = new BehaviorSubject([]);
 
     public get filter(): TerraFilter<{ [key: string]: unknown }> {
         return this._filter;
@@ -58,14 +57,14 @@ export abstract class TerraDataSource<T> extends DataSource<T> {
     }
 
     public connect(collectionViewer: CollectionViewer): Observable<Array<T> | ReadonlyArray<T>> {
-        return this._renderedData.asObservable();
+        return this._data.asObservable();
     }
 
     public disconnect(collectionViewer: CollectionViewer): void {
         // make sure that all streams and subscriptions are canceled/complete
         this._subscription.unsubscribe();
         this._search.complete();
-        this._renderedData.complete();
+        this._data.complete();
     }
 
     private _updateSubscription(): void {
@@ -100,6 +99,6 @@ export abstract class TerraDataSource<T> extends DataSource<T> {
             })
         );
         this._subscription.unsubscribe();
-        this._subscription = data$.subscribe((data: Array<T>) => this._renderedData.next(data));
+        this._subscription = data$.subscribe((data: Array<T>) => this._data.next(data));
     }
 }
