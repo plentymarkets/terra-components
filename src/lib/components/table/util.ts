@@ -1,6 +1,8 @@
-import { RequestParameterInterface, TerraFilter, TerraPagerInterface } from '../..';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { TerraFilter } from './filter';
+import { RequestParameterInterface } from './request-parameter.interface';
+import { TerraPagerInterface } from '../pager/data/terra-pager.interface';
 
 /**
  * Checks if the given results is a paginated one
