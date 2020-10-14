@@ -93,6 +93,8 @@ export abstract class TerraDataSource<T> extends DataSource<T> {
                     if (this._paginator) {
                         this._paginator.length = response.totalsCount;
                     }
+                    // TODO: we may be able to customize this with a method that extracts the data from the paginated response.
+                    //  similar to the tree control/data source
                     return response.entries;
                 }
                 return response;
