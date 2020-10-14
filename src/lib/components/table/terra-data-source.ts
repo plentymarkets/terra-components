@@ -1,4 +1,4 @@
-import { CollectionViewer, DataSource } from '@angular/cdk/collections';
+import { DataSource } from '@angular/cdk/collections';
 import { BehaviorSubject, EMPTY, merge, Observable, Subject, Subscription } from 'rxjs';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
