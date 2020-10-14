@@ -2,11 +2,11 @@
 
 ### Features
 
-- **terra-base-parameter** is deprectaed now. No replacement necessary
-- **terra-base-editor** is deprecated now. Please use ck-editor instead
-- **terra-base-data** is deprecated now. Please use ck-editor instead
-- **terra-code-editor** is deprecated now. Please use ck-editor instead
-- **terra-note-editor** is deprecated now. Please use ck-editor instead
+-   **terra-base-parameter** is deprecated now. No replacement necessary
+-   **terra-base-editor** is deprecated now. Please use ck-editor instead
+-   **terra-base-data** is deprecated now. Please use ck-editor instead
+-   **terra-code-editor** is deprecated now. Please use ck-editor instead
+-   **terra-note-editor** is deprecated now. Please use ck-editor instead
 
 # 5.9.1 (Unreleased)
 
