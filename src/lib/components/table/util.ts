@@ -19,6 +19,12 @@ export function isPaginated<T>(result: any): result is TerraPagerInterface<T> {
     );
 }
 
+/**
+ * Creates an Object containing all params for a request based on the filter, paginator and sort.
+ * @param filter
+ * @param paginator
+ * @param sort
+ */
 export function createRequestParams(
     filter: TerraFilter<Object>,
     paginator: MatPaginator,
