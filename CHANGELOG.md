@@ -1,5 +1,18 @@
 # 5.9.1 (Unreleased)
 
+### Features
+
+-   **terra-checkbox-tree** marked as deprecated. Use angular material's [tree](https://material.angular.io/components/tree/overview) instead.
+-   **terra-checkbox-tree-leaf-state** marked as deprecated. Use angular material's [tree](https://material.angular.io/components/tree/overview) instead.
+-   **terra-checkbox-leaf-interface** marked as deprecated. Use angular material's [tree](https://material.angular.io/components/tree/overview) instead.
+-   **terra-leaf-interface** marked as deprecated. Use angular material's [tree](https://material.angular.io/components/tree/overview) instead.
+-   **terra-base-tree** marked as deprecated. Use angular material's [tree](https://material.angular.io/components/tree/overview) instead.
+-   **terra-node-tree** marked as deprecated. Use angular material's [tree](https://material.angular.io/components/tree/overview) instead.
+-   **terra-node** marked as deprecated. Use angular material's [tree](https://material.angular.io/components/tree/overview) instead.
+-   **terra-node-interface** marked as deprecated. Use angular material's [tree](https://material.angular.io/components/tree/overview) instead.
+-   **terra-node-tree-helper** marked as deprecated. Use angular material's [tree](https://material.angular.io/components/tree/overview) instead.
+-   **terra-node-tree-config** marked as deprecated. Use angular material's [tree](https://material.angular.io/components/tree/overview) instead.
+
 ### Bug Fixes
 
 -   **styles** we now force focused elements to have no outline.
