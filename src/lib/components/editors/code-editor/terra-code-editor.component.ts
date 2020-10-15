@@ -21,6 +21,7 @@ import { TerraButtonInterface } from '../../buttons/button/data/terra-button.int
         }
     ]
 })
+/** @deprecated since v5.0. Please use ck-editor instead */
 export class TerraCodeEditorComponent extends TerraBaseEditorComponent implements OnInit, OnDestroy {
     public showCodeView: boolean = false;
     public editorContent: string = '';
