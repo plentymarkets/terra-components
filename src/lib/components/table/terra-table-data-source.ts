@@ -16,7 +16,7 @@ import { TerraPagerInterface } from '../pager/data/terra-pager.interface';
  *
  * @example
  * ```typescript
- * class MyDataSource extends TerraDataSource<MyData>
+ * class MyDataSource extends TerraTableDataSource<MyData>
  * {
  *     constructor(private service:MyDataService) {}
  *
@@ -51,7 +51,7 @@ import { TerraPagerInterface } from '../pager/data/terra-pager.interface';
  * }
  * ```
  */
-export abstract class TerraDataSource<T> extends DataSource<T> {
+export abstract class TerraTableDataSource<T> extends DataSource<T> {
     /** Snapshot of the currently displayed data. */
     public get data(): Array<T> {
         return this._data.value;
