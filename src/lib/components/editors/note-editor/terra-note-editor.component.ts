@@ -14,6 +14,7 @@ import { TerraBaseEditorComponent } from '../base-editor/terra-base-editor.compo
         }
     ]
 })
+/** @deprecated since v 5.0. Please use ck-editor instead. **/
 export class TerraNoteEditorComponent extends TerraBaseEditorComponent {
     constructor(translation: TranslationService, myElement: ElementRef) {
         super(translation, myElement);
