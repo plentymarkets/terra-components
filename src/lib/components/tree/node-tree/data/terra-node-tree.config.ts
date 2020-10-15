@@ -5,6 +5,9 @@ import { Injectable } from '@angular/core';
 import { TerraNodeTreeHelper } from '../helper/terra-node-tree.helper';
 import { ObjectHelper } from '../../../../helpers/object.helper';
 
+/**
+ * @deprecated since v5. Use mat-tree instead.
+ */
 @Injectable()
 export class TerraNodeTreeConfig<D> {
     protected _currentSelectedNode: TerraNodeInterface<D>;
