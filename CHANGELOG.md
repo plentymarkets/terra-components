@@ -5,6 +5,7 @@
 -   **terra-button** is deprecated now. Use angular material's [button](https://material.angular.io/components/button/overview) instead.
 -   **terra-button-with-options** is deprecated now. Use angular material's [button](https://material.angular.io/components/button/overview) and [menu](https://material.angular.io/components/menu/overview) instead.
 -   **terra-indicator** is deprecated now. Use angular material's [badge](https://material.angular.io/components/badge/overview) or [chip](https://material.angular.io/components/chips/overview) instead.
+-   **TerraButtonColorEnum** is deprecated now.
 -   **terra-base-parameter** is deprecated now. No replacement necessary
 -   **terra-base-editor** is deprecated now. Please use ck-editor instead
 -   **terra-base-data** is deprecated now. Please use ck-editor instead
