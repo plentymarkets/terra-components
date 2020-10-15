@@ -21,7 +21,7 @@ import { Language } from 'angular-l10n';
 
 const MAX_LASTLY_USED_ENTRIES: number = 5;
 
-/** @deprecated since v5. Please use mat-autocomplete of type color instead. */
+/** @deprecated since v5. Please use mat-autocomplete instead. */
 @Component({
     selector: 'terra-suggestion-box',
     styleUrls: ['./terra-suggestion-box.component.scss'],
