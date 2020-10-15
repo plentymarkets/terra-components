@@ -15,9 +15,10 @@ describe('utility', () => {
                 lastOnPage: 2,
                 lastPageNumber: 1,
                 isLastPage: true,
-                itemsPerPage: 25,
-                entries: []
+                itemsPerPage: 25
             };
+            expect(isPaginated(paginatedResult)).toBe(true);
+            paginatedResult.entries = [];
             expect(isPaginated(paginatedResult)).toBe(true);
         });
 
