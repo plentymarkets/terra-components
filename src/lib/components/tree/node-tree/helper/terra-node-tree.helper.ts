@@ -3,6 +3,7 @@ import { isNull, isNullOrUndefined } from 'util';
 
 /**
  * @author mfrank
+ * @deprecated since v5. Use mat-tree instead.
  */
 export class TerraNodeTreeHelper {
     public static recursiveFindNode<D>(
