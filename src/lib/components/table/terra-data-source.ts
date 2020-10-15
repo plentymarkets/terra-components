@@ -53,14 +53,17 @@ export abstract class TerraDataSource<T> extends DataSource<T> {
      */
     public abstract request(requestParams: RequestParameterInterface): Observable<Array<T> | TerraPagerInterface<T>>;
 
+    /** Initiates a request that fetches data from the server */
     public search(): void {
         this._search.next();
     }
 
+    /** Called by the table when it connects to this data source */
     public connect(): Observable<Array<T> | ReadonlyArray<T>> {
         return this._data.asObservable();
     }
 
+    /** Called by the table then it is destroyed. Cleans up streams and subscriptions */
     public disconnect(): void {
         // make sure that all streams and subscriptions are canceled/complete
         this._subscription.unsubscribe();
