@@ -52,6 +52,7 @@ import { TerraPagerInterface } from '../pager/data/terra-pager.interface';
  * ```
  */
 export abstract class TerraDataSource<T> extends DataSource<T> {
+    /** Snapshot of the currently displayed data. */
     public get data(): Array<T> {
         return this._data.value;
     }
@@ -60,6 +61,7 @@ export abstract class TerraDataSource<T> extends DataSource<T> {
     }
     private _data: BehaviorSubject<Array<T>> = new BehaviorSubject([]);
 
+    /** Instance of the TerraFilter class used to narrow results. */
     public get filter(): TerraFilter<Object> {
         return this._filter;
     }
@@ -69,6 +71,10 @@ export abstract class TerraDataSource<T> extends DataSource<T> {
     }
     private _filter: TerraFilter<Object> | undefined;
 
+    /**
+     * Instance of the MatSort directive used by the table to control its sorting.
+     * Sort changes emitted by the MatSort will trigger an update to the table's rendered data.
+     */
     public get sort(): MatSort {
         return this._sort;
     }
@@ -78,6 +84,11 @@ export abstract class TerraDataSource<T> extends DataSource<T> {
     }
     private _sort: MatSort | undefined;
 
+    /**
+     * Instance of the MatPaginator component used by the table to control what page and
+     * how many items of the data are displayed.
+     * Page changes emitted by the MatPaginator will trigger an update to the table's rendered data.
+     */
     public get paginator(): MatPaginator {
         return this._paginator;
     }
