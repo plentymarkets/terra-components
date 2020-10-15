@@ -9,8 +9,10 @@ import { TerraFilter } from './filter';
 import { TerraPagerInterface } from '../pager/data/terra-pager.interface';
 
 /**
+ * @experimental
+ *
  * A custom implementation of angular cdk's data source that
- * simplifies connection to a plentymarkets rest api.
+ * simplifies connection of table to a plentymarkets rest api.
  * Can be used with any combination of paging, sorting and filtering functionality.
  * To enable paging, sorting and/or filtering just pass the respective class/component to this data source.
  *
