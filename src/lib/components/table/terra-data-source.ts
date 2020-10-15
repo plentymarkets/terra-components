@@ -125,11 +125,15 @@ export abstract class TerraDataSource<T> extends DataSource<T> {
         this._data.complete();
     }
 
+    /**
+     * Subscribe to changes that should trigger an update to the table's rendered data. When the
+     * changes occur, process the current state of the filter, sort, and pagination and fetch the requested
+     * data from the server using the provided implementation of the `request` method.
+     *
+     * Sorting and pagination is only watched if MatSort and/or MatPaginator are provided.
+     */
     private _updateSubscription(): void {
-        const search$: Observable<void> = merge(
-            this._filter ? this._filter.search$ : EMPTY,
-            this._search.asObservable()
-        );
+        // check if sorting and/or pagination is enabled. If not, provide an EMPTY stream instead.
         const pageChange$: Observable<PageEvent | never> = this._paginator ? this._paginator.page : EMPTY;
         const sortChange$: Observable<Sort | never> = this._sort ? this._sort.sortChange : EMPTY;
 
@@ -137,6 +141,12 @@ export abstract class TerraDataSource<T> extends DataSource<T> {
         const pageOrSortChange$: Observable<PageEvent | Sort | never> = merge(pageChange$, sortChange$).pipe(
             filter(() => this.data && this.data.length > 0), // accept page and/or sort events only if we already have data
             debounceTime(500) // debounce to reduce amount of (canceled) requests
+        );
+
+        // A manual search can be triggered via the filter or this data source directly
+        const search$: Observable<void> = merge(
+            this._filter ? this._filter.search$ : EMPTY,
+            this._search.asObservable()
         );
 
         // watch for any change that should result in fetching data from the server.
