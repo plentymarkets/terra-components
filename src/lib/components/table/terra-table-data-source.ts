@@ -165,7 +165,7 @@ export abstract class TerraTableDataSource<T> extends DataSource<T> {
                     }
                     // TODO: we may be able to customize this with a method that extracts the data from the paginated response.
                     //  similar to the tree control/data source
-                    return response.entries;
+                    return response.entries || [];
                 }
                 return response;
             })
