@@ -1,10 +1,34 @@
-import { createRequestParams } from './util';
+import { createRequestParams, isPaginated } from './util';
 import { TerraFilter } from './filter';
 import { RequestParameterInterface } from './request-parameter.interface';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { TerraPagerInterface } from '../pager/data/terra-pager.interface';
 
 describe('utility', () => {
+    describe('isPaginated', () => {
+        it('should return true if value is of type TerraPagerInterface', () => {
+            const paginatedResult: TerraPagerInterface<any> = {
+                page: 1,
+                totalsCount: 2,
+                firstOnPage: 1,
+                lastOnPage: 2,
+                lastPageNumber: 1,
+                isLastPage: true,
+                itemsPerPage: 25,
+                entries: []
+            };
+            expect(isPaginated(paginatedResult)).toBe(true);
+        });
+
+        it('should return false if the given value is not of type TerraPagerInterface', () => {
+            expect(isPaginated([])).toBe(false);
+            expect(isPaginated({})).toBe(false);
+            expect(isPaginated({ page: 1 })).toBe(false);
+            // to be continued..
+        });
+    });
+
     describe('createRequestParams', () => {
         it('should return an empty object if filter, paginator and sort are not set', () => {
             expect(createRequestParams(null, null, null)).toEqual({});
