@@ -30,7 +30,7 @@ import { TerraPagerInterface } from '../pager/data/terra-pager.interface';
  * @Component({
  *     template: '...<table mat-table [dataSource]="dataSource">...'
  * })
- * class MyComponent implements OnInit, AfterViewInit
+ * class MyComponent implements OnInit
  * {
  *     public dataSource:MyDataSource = new MyDataSource(this.service);
  *     public filter:TerraFilter<any> = new TerraFilter();
@@ -45,9 +45,6 @@ import { TerraPagerInterface } from '../pager/data/terra-pager.interface';
  *         this.dataSource = this.sort;
  *         this.dataSource = this.paginator;
  *         this.dataSource = this.filter;
- *     }
- *
- *     ngAfterViewInit() {
  *         this.dataSource.search(); // triggers an initial search
  *     }
  * }
@@ -102,6 +99,11 @@ export abstract class TerraTableDataSource<T> extends DataSource<T> {
 
     private _search: Subject<void> = new Subject();
     private _subscription: Subscription = Subscription.EMPTY;
+
+    constructor() {
+        super();
+        this._updateSubscription(); // initially subscribe to any change to be able to search even if no filter, paging or sorting is applied.
+    }
 
     /**
      * The request to get the data. Either paginated or a plain list.
