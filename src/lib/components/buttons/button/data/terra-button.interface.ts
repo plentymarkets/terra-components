@@ -1,6 +1,6 @@
 /**
  * @author mkunze
- *
+ * @deprecated since v5.
  * Please use this only for rendering content in ngFor. See {@link TerraDataTableComponent}
  */
 export interface TerraButtonInterface {
