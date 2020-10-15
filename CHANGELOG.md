@@ -5,6 +5,16 @@
 -   **terra-button** is deprecated now. Use angular material's [button](https://material.angular.io/components/button/overview) instead.
 -   **terra-button-with-options** is deprecated now. Use angular material's [button](https://material.angular.io/components/button/overview) and [menu](https://material.angular.io/components/menu/overview) instead.
 -   **terra-indicator** is deprecated now. Use angular material's [badge](https://material.angular.io/components/badge/overview) or [chip](https://material.angular.io/components/chips/overview) instead.
+-   **terra-checkbox-tree** marked as deprecated. Use angular material's [tree](https://material.angular.io/components/tree/overview) instead.
+-   **terra-checkbox-tree-leaf-state** marked as deprecated. Use angular material's [tree](https://material.angular.io/components/tree/overview) instead.
+-   **terra-checkbox-leaf-interface** marked as deprecated. Use angular material's [tree](https://material.angular.io/components/tree/overview) instead.
+-   **terra-leaf-interface** marked as deprecated. Use angular material's [tree](https://material.angular.io/components/tree/overview) instead.
+-   **terra-base-tree** marked as deprecated. Use angular material's [tree](https://material.angular.io/components/tree/overview) instead.
+-   **terra-node-tree** marked as deprecated. Use angular material's [tree](https://material.angular.io/components/tree/overview) instead.
+-   **terra-node** marked as deprecated. Use angular material's [tree](https://material.angular.io/components/tree/overview) instead.
+-   **terra-node-interface** marked as deprecated. Use angular material's [tree](https://material.angular.io/components/tree/overview) instead.
+-   **terra-node-tree-helper** marked as deprecated. Use angular material's [tree](https://material.angular.io/components/tree/overview) instead.
+-   **terra-node-tree-config** marked as deprecated. Use angular material's [tree](https://material.angular.io/components/tree/overview) instead.
 -   **TerraButtonColorEnum** is deprecated now.
 -   **terra-base-parameter** is deprecated now. No replacement necessary
 -   **terra-base-editor** is deprecated now. Please use ck-editor instead
