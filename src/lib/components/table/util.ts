@@ -5,7 +5,7 @@ import { RequestParameterInterface } from './request-parameter.interface';
 import { TerraPagerInterface } from '../pager/data/terra-pager.interface';
 
 /**
- * Checks if the given results is a paginated one
+ * A type guard that checks whether the given result is a paginated one
  * @param result
  */
 export function isPaginated<T>(result: any): result is TerraPagerInterface<T> {
