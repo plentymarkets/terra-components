@@ -5,6 +5,8 @@
 -   **terra-button** is deprecated now. Use angular material's [button](https://material.angular.io/components/button/overview) instead.
 -   **terra-button-with-options** is deprecated now. Use angular material's [button](https://material.angular.io/components/button/overview) and [menu](https://material.angular.io/components/menu/overview) instead.
 -   **terra-base-toolbar** is deprecated now. Use angular material's [toolbar](https://material.angular.io/components/toolbar/overview) instead.
+-   **terra-info-box** is deprecated now. Use angular material's [card](https://material.angular.io/components/card/overview) instead.
+-   **terra-color-picker** is deprecated now. Use angular material's [input](https://material.angular.io/components/input/overview) with type color instead.
 
 ### Bug Fixes
 
