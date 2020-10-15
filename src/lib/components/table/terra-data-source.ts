@@ -8,6 +8,49 @@ import { RequestParameterInterface } from './request-parameter.interface';
 import { TerraFilter } from './filter';
 import { TerraPagerInterface } from '../pager/data/terra-pager.interface';
 
+/**
+ * A custom implementation of angular cdk's data source that
+ * simplifies connection to a plentymarkets rest api.
+ * Can be used with any combination of paging, sorting and filtering functionality.
+ * To enable paging, sorting and/or filtering just pass the respective class/component to this data source.
+ *
+ * @example
+ * ```typescript
+ * class MyDataSource extends TerraDataSource<MyData>
+ * {
+ *     constructor(private service:MyDataService) {}
+ *
+ *     public request():Observable<Array<MyData> | TerraPagerInterface<MyData>> {
+ *         return this.service.getData();
+ *     }
+ * }
+ *
+ * @Component({
+ *     template: '...<table mat-table [dataSource]="dataSource">...'
+ * })
+ * class MyComponent implements OnInit, AfterViewInit
+ * {
+ *     public dataSource:MyDataSource = new MyDataSource(this.service);
+ *     public filter:TerraFilter<any> = new TerraFilter();
+ *     @ViewChild(MatPaginator, {static: true})
+ *     public paginator:MatPaginator;
+ *     @ViewChild(MatSort, {static: true})
+ *     public sort:MatSort;
+ *
+ *     constructor(private service:MyDataService) {}
+ *
+ *     ngOnInit() {
+ *         this.dataSource = this.sort;
+ *         this.dataSource = this.paginator;
+ *         this.dataSource = this.filter;
+ *     }
+ *
+ *     ngAfterViewInit() {
+ *         this.dataSource.search(); // triggers an initial search
+ *     }
+ * }
+ * ```
+ */
 export abstract class TerraDataSource<T> extends DataSource<T> {
     public get data(): Array<T> {
         return this._data.value;
