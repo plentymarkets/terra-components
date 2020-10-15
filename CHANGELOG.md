@@ -9,8 +9,8 @@
 -   **terra-base-data** is deprecated now. Please use ck-editor instead
 -   **terra-code-editor** is deprecated now. Please use ck-editor instead
 -   **terra-note-editor** is deprecated now. Please use ck-editor instead
+-   **terra-color-picker** is deprecated now. Use angular material's [input](https://material.angular.io/components/input/overview) with type color instead.
 
-# 5.9.1 (Unreleased)
 
 ### Bug Fixes
 
