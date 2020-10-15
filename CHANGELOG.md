@@ -14,6 +14,14 @@
 -   **terra-node-interface** marked as deprecated. Use angular material's [tree](https://material.angular.io/components/tree/overview) instead.
 -   **terra-node-tree-helper** marked as deprecated. Use angular material's [tree](https://material.angular.io/components/tree/overview) instead.
 -   **terra-node-tree-config** marked as deprecated. Use angular material's [tree](https://material.angular.io/components/tree/overview) instead.
+-   **TerraButtonColorEnum** is deprecated now.
+-   **terra-base-parameter** is deprecated now. No replacement necessary
+-   **terra-base-editor** is deprecated now. Please use ck-editor instead
+-   **terra-base-data** is deprecated now. Please use ck-editor instead
+-   **terra-code-editor** is deprecated now. Please use ck-editor instead
+-   **terra-note-editor** is deprecated now. Please use ck-editor instead
+-   **terra-info-box** is deprecated now. Use angular material's [card](https://material.angular.io/components/card/overview) instead.
+-   **terra-color-picker** is deprecated now. Use angular material's [input](https://material.angular.io/components/input/overview) with type color instead.
 
 ### Bug Fixes
 
