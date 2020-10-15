@@ -11,7 +11,6 @@
 -   **terra-note-editor** is deprecated now. Please use ck-editor instead
 -   **terra-color-picker** is deprecated now. Use angular material's [input](https://material.angular.io/components/input/overview) with type color instead.
 
-
 ### Bug Fixes
 
 -   **styles** we now force focused elements to have no outline.
