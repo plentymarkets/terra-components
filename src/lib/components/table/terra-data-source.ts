@@ -8,6 +8,8 @@ import { RequestParameterInterface } from './request-parameter.interface';
 import { TerraFilter } from './filter';
 import { TerraPagerInterface } from '../pager/data/terra-pager.interface';
 
+type RequestFn<T> = (params: RequestParameterInterface) => Observable<Array<T> | TerraPagerInterface<T>>;
+
 /**
  * A custom implementation of angular cdk's data source that
  * simplifies connection to a plentymarkets rest api.
@@ -16,21 +18,14 @@ import { TerraPagerInterface } from '../pager/data/terra-pager.interface';
  *
  * @example
  * ```typescript
- * class MyDataSource extends TerraDataSource<MyData>
- * {
- *     constructor(private service:MyDataService) {}
- *
- *     public request():Observable<Array<MyData> | TerraPagerInterface<MyData>> {
- *         return this.service.getData();
- *     }
- * }
- *
  * @Component({
  *     template: '...<table mat-table [dataSource]="dataSource">...'
  * })
  * class MyComponent implements OnInit, AfterViewInit
  * {
- *     public dataSource:MyDataSource = new MyDataSource(this.service);
+ *     public dataSource:TerraDataSource<MyData> = new TerraDataSource(
+ *         params => this.service.getData(params)
+ *     );
  *     public filter:TerraFilter<any> = new TerraFilter();
  *     @ViewChild(MatPaginator, {static: true})
  *     public paginator:MatPaginator;
@@ -51,7 +46,7 @@ import { TerraPagerInterface } from '../pager/data/terra-pager.interface';
  * }
  * ```
  */
-export abstract class TerraDataSource<T> extends DataSource<T> {
+export class TerraDataSource<T> extends DataSource<T> {
     /** Snapshot of the currently displayed data. */
     public get data(): Array<T> {
         return this._data.value;
@@ -101,11 +96,15 @@ export abstract class TerraDataSource<T> extends DataSource<T> {
     private _search: Subject<void> = new Subject();
     private _subscription: Subscription = Subscription.EMPTY;
 
-    /**
-     * The request to get the data. Either paginated or a plain list.
-     * @returns Observable<Array<T> | TerraPagerInterface<T>>
-     */
-    public abstract request(requestParams: RequestParameterInterface): Observable<Array<T> | TerraPagerInterface<T>>;
+    constructor(
+        /**
+         * The request to get the data. Either paginated or a plain list.
+         * @returns Observable<Array<T> | TerraPagerInterface<T>>
+         */
+        private request: RequestFn<T>
+    ) {
+        super();
+    }
 
     /** Initiates a request that fetches data from the server */
     public search(): void {
