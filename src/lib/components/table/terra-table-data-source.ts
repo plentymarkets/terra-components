@@ -105,7 +105,7 @@ export class TerraTableDataSource<T> extends DataSource<T> {
          * The request to get the data. Either paginated or a plain list.
          * @returns Observable<Array<T> | TerraPagerInterface<T>>
          */
-        private request: RequestFn<T>
+        public request: RequestFn<T>
     ) {
         super();
         this._updateSubscription(); // initially subscribe to any change to be able to search even if no filter, paging or sorting is applied.
