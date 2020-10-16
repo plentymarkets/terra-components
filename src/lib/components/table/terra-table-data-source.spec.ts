@@ -1,11 +1,11 @@
+import { EventEmitter } from '@angular/core';
+import { fakeAsync, tick } from '@angular/core/testing';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { Observable, of } from 'rxjs';
 import { TerraTableDataSource } from './terra-table-data-source';
 import { RequestParameterInterface } from './request-parameter.interface';
-import { Observable, of } from 'rxjs';
-import { MatPaginator } from '@angular/material/paginator';
-import { EventEmitter } from '@angular/core';
 import { TerraFilter } from './filter';
-import { MatSort } from '@angular/material/sort';
-import { fakeAsync, tick } from '@angular/core/testing';
 import { TerraPagerInterface } from '../pager/data/terra-pager.interface';
 
 class ConcreteTableDataSource extends TerraTableDataSource<{}> {
