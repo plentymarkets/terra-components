@@ -1,5 +1,6 @@
 import { TerraBaseData } from '../../../data/terra-base.data';
 
+/** @deprecated since v5. */
 export interface TerraSuggestionBoxValueInterface {
     /** The value of the suggestion value */
     value: number | string | TerraBaseData;

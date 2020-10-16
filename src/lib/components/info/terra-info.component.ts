@@ -6,6 +6,7 @@ import { TerraPlacementEnum } from '../../helpers/enums/terra-placement.enum';
     styleUrls: ['./terra-info.component.scss'],
     templateUrl: './terra-info.component.html'
 })
+/** @deprecated v5.0. Please use mat-icon or mat-button with a tooltip instead */
 export class TerraInfoComponent {
     @Input()
     public textPlacement: TerraPlacementEnum;
