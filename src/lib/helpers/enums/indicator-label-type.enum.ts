@@ -1,3 +1,4 @@
+/** @deprecated since v5.0. */
 export enum TerraIndicatorLabelTypeEnum {
     default = 'default',
     primary = 'primary',

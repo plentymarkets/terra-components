@@ -5,6 +5,9 @@ import { isNullOrUndefined } from 'util';
 import { Language } from 'angular-l10n';
 import { TerraPlacementEnum } from '../../../../helpers/enums/terra-placement.enum';
 
+/**
+ * @deprecated since v5. Use mat-tree instead.
+ */
 @Component({
     selector: 'terra-node',
     styleUrls: ['./terra-node.component.scss'],
