@@ -97,7 +97,9 @@ export abstract class TerraTableDataSource<T> extends DataSource<T> {
     }
     private _paginator: MatPaginator | undefined;
 
+    /** A stream that emits whenever a manual search is requested. */
     private _search: Subject<void> = new Subject();
+    /** Reference to the latest subscription to update the table's data. */
     private _subscription: Subscription = Subscription.EMPTY;
 
     constructor() {
@@ -142,7 +144,7 @@ export abstract class TerraTableDataSource<T> extends DataSource<T> {
         const pageChange$: Observable<PageEvent | never> = this._paginator ? this._paginator.page : EMPTY;
         const sortChange$: Observable<Sort | never> = this._sort ? this._sort.sortChange : EMPTY;
 
-        // watch for changes to the page or sort parameters
+        // watch for changes to the page and sort parameters
         const pageOrSortChange$: Observable<PageEvent | Sort | never> = merge(pageChange$, sortChange$).pipe(
             filter(() => this.data && this.data.length > 0), // accept page and/or sort events only if we already have data
             debounceTime(500) // debounce to reduce amount of (canceled) requests
