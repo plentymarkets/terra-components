@@ -5,6 +5,7 @@
 -   **terra-button** is deprecated now. Use angular material's [button](https://material.angular.io/components/button/overview) instead.
 -   **terra-button-with-options** is deprecated now. Use angular material's [button](https://material.angular.io/components/button/overview) and [menu](https://material.angular.io/components/menu/overview) instead.
 -   **terra-color-picker** is deprecated now. Use angular material's [input](https://material.angular.io/components/input/overview) with type color instead.
+-   **table** removed classes `TableDataSource`, `TablePagingDataSource`, `TableSortingDataSource` and `TablePagingSortingDataSource`. Use new `TerraTableDataSource` class instead.
 
 ### Bug Fixes
 
