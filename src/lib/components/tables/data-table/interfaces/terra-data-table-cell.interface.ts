@@ -6,6 +6,7 @@ import { TerraHrefTypeInterface } from './terra-href-type.interface';
 /**
  * @author mkunze
  */
+/** @deprecated since v5.0. Please use mat-table instead */
 export interface TerraDataTableCellInterface {
     data:
         | string

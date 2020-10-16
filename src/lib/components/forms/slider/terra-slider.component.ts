@@ -16,6 +16,7 @@ import { TerraSliderTick } from './data/terra-slider-tick';
 import { InteractEvent } from 'interactjs';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
+/** @deprecated since v5. Please use mat-slider instead. */
 @Component({
     selector: 'terra-slider',
     templateUrl: './terra-slider.component.html',
