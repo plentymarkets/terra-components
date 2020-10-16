@@ -110,41 +110,44 @@ describe('TerraTableDataSource', () => {
             // due to debounceTime operator
             tick(500);
 
-            expect(dataSource.request).toHaveBeenCalledWith({ sortBy: sort.active, sortOrder: sort.direction });
+            expect(dataSource.request).toHaveBeenCalledWith({
+                sortBy: sort.active,
+                sortOrder: sort.direction
+            });
         }));
     });
 
-    it('should be able to assign a paginator instance', () => {
-        const paginator: MatPaginator = {
-            pageIndex: 1,
-            pageSize: 25,
-            page: new EventEmitter()
-        } as MatPaginator;
-        dataSource.paginator = paginator;
-        expect(dataSource.paginator).toBe(paginator);
-    });
-
-    it('should start a request if a paginator is available, data is present and the page or pageSize has changed', fakeAsync(() => {
-        spyOn(dataSource, 'request').and.callThrough();
-
-        dataSource.data = [{}];
-        const paginator: Partial<MatPaginator> = {
-            pageIndex: 1,
-            pageSize: 25,
-            page: new EventEmitter()
-        };
-        dataSource.paginator = paginator as MatPaginator;
-
-        paginator.page.emit();
-
-        // due to debounceTime operator
-        tick(500);
-
-        expect(dataSource.request).toHaveBeenCalledWith({
-            page: paginator.pageIndex + 1,
-            itemsPerPage: paginator.pageSize
+    describe('with paging', () => {
+        let paginator: MatPaginator;
+        beforeEach(() => {
+            paginator = {
+                pageIndex: 1,
+                pageSize: 25,
+                page: new EventEmitter()
+            } as MatPaginator;
+            dataSource.paginator = paginator;
         });
-    }));
+
+        it('should be able to assign a paginator instance', () => {
+            expect(dataSource.paginator).toBe(paginator);
+        });
+
+        it('should start a request if a paginator is available, data is present and the page or pageSize has changed', fakeAsync(() => {
+            dataSource.data = [{}];
+
+            spyOn(dataSource, 'request').and.callThrough();
+
+            paginator.page.emit();
+
+            // due to debounceTime operator
+            tick(500);
+
+            expect(dataSource.request).toHaveBeenCalledWith({
+                page: paginator.pageIndex + 1,
+                itemsPerPage: paginator.pageSize
+            });
+        }));
+    });
 
     describe('targeting a paginated api', () => {
         let paginatedResult: TerraPagerInterface<any>;
