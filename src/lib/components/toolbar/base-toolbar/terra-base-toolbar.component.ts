@@ -6,6 +6,8 @@ import { Component, Input } from '@angular/core';
     templateUrl: './terra-base-toolbar.component.html',
     host: { '[class.terra-sticky-toolbar]': 'isSticky' }
 })
+
+/** @deprecated since v5.0. Please use mat-toolbar instead */
 export class TerraBaseToolbarComponent {
     /**
      * @deprecated since v4. Breadcrumbs have its own styles now.
