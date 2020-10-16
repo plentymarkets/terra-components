@@ -25,6 +25,7 @@
 -   **terra-note-editor** is deprecated now. Please use ck-editor instead
 -   **terra-info-box** is deprecated now. Use angular material's [card](https://material.angular.io/components/card/overview) instead.
 -   **terra-color-picker** is deprecated now. Use angular material's [input](https://material.angular.io/components/input/overview) with type color instead.
+-   **activated-route-helper** is now deprecated.
 
 ### Bug Fixes
 

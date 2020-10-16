@@ -1,5 +1,6 @@
 import { ActivatedRouteSnapshot, UrlSegment } from '@angular/router';
 
+/** @deprecated since v5.0. */
 export class ActivatedRouteHelper {
     /**
      * evaluates the full url to an activated route based on its snapshot
