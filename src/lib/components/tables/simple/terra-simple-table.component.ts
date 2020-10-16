@@ -10,6 +10,7 @@ import { isNullOrUndefined } from 'util';
     styleUrls: ['./terra-simple-table.component.scss'],
     templateUrl: './terra-simple-table.component.html'
 })
+/** @deprecated since v5.0. Please use mat-table instead. */
 export class TerraSimpleTableComponent<D> implements OnChanges {
     @Input()
     public inputHeaderList: Array<TerraSimpleTableHeaderCellInterface>;

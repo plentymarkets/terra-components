@@ -31,6 +31,7 @@ import { TerraDataTableContextMenuEntryInterface } from './context-menu/data/ter
     providers: [TerraDataTableContextMenuService],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
+/** @deprecated since v5.0. Please use mat-table instead. */
 export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements OnInit, OnChanges {
     /**
      * @description Mandatory service that is used to request the table data from the server
