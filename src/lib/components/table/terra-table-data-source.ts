@@ -28,7 +28,10 @@ import { TerraPagerInterface } from '../pager/data/terra-pager.interface';
  * }
  *
  * @Component({
- *     template: '...<table mat-table [dataSource]="dataSource">...'
+ *     template: `
+ *        <mat-paginator></mat-paginator>
+ *        <table mat-table [dataSource]="dataSource" matSort>...<table>
+ *     `
  * })
  * class MyComponent implements OnInit
  * {
