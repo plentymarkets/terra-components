@@ -4,6 +4,7 @@
 
 -   **terra-button** is deprecated now. Use angular material's [button](https://material.angular.io/components/button/overview) instead.
 -   **terra-button-with-options** is deprecated now. Use angular material's [button](https://material.angular.io/components/button/overview) and [menu](https://material.angular.io/components/menu/overview) instead.
+-   **terra-simple-table** is deprecated now. Use angular material's [table](https://material.angular.io/components/table/overview) instead
 -   **terra-suggestion-box** is deprecated now. Use angular material's [autocomplete](https://material.angular.io/components/autocomplete/overview) instead.
 -   **terra-indicator** is deprecated now. Use angular material's [badge](https://material.angular.io/components/badge/overview) or [chip](https://material.angular.io/components/chips/overview) instead.
 -   **terra-base-toolbar** is deprecated now. Use angular material's [toolbar](https://material.angular.io/components/toolbar/overview) instead.
