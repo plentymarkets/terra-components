@@ -24,14 +24,20 @@ describe('TerraTableDataSource', () => {
         expect(dataSource).toBeTruthy();
     });
 
+    it('should be able to manually set data', () => {
+        const newData: Array<any> = [{ foo: 'bar' }];
+        dataSource.data = newData;
+        expect(dataSource.data).toEqual(newData);
+    });
+
     it('should notify the table if data has been updated manually', () => {
         let data: Array<any> = dataSource.data;
         expect(data).toEqual([]);
         dataSource.connect().subscribe((d: Array<any>) => (data = d));
+
         const newData: Array<any> = [{ foo: 'bar' }];
         dataSource.data = newData;
 
-        expect(dataSource.data).toEqual(newData);
         expect(data).toEqual(newData);
     });
 
