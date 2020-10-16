@@ -1,5 +1,6 @@
 import { TerraSelectBoxValueInterface } from '../../forms/select-box/data/terra-select-box.interface';
 
+/** @deprecated since v5.0. Please use mat-paginator instead */
 export const terraPagerDefaultPagingSizes: Array<TerraSelectBoxValueInterface> = [
     {
         value: 25,

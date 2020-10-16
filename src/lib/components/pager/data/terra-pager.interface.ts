@@ -1,3 +1,4 @@
+/** @deprecated since v5.0. Please use mat-paginator instead */
 export interface TerraPagerInterface<T> {
     page: number;
     totalsCount: number;
