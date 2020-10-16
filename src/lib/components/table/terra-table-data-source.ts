@@ -121,18 +121,14 @@ export abstract class TerraTableDataSource<T> extends DataSource<T> {
         this._search.next();
     }
 
-    /** Called by the table when it connects to this data source */
+    /** Called by the table when it connects to this data source. */
     public connect(): Observable<Array<T> | ReadonlyArray<T>> {
         return this._data.asObservable();
     }
 
-    // TODO: check if this is really needed. I think it might break the subscription logic.
-    /** Called by the table when it is destroyed. Cleans up streams and subscriptions */
+    /** Called by the table when it is destroyed. No-op. */
     public disconnect(): void {
-        // make sure that all streams and subscriptions are canceled/complete
-        this._subscription.unsubscribe();
-        this._search.complete();
-        this._data.complete();
+        /* no-op */
     }
 
     /**
