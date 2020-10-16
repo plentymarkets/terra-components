@@ -1,7 +1,10 @@
 import { TerraTableDataSource } from './terra-table-data-source';
 import { RequestParameterInterface } from './request-parameter.interface';
 import { Observable, of } from 'rxjs';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { EventEmitter } from '@angular/core';
 import { TerraFilter } from './filter';
+import { MatSort } from '@angular/material/sort';
 
 class ConcreteTableDataSource extends TerraTableDataSource<{}> {
     public request(requestParams: RequestParameterInterface): Observable<Array<{}>> {
@@ -64,5 +67,25 @@ describe('TerraTableDataSource', () => {
         filter.search();
 
         expect(dataSource.request).toHaveBeenCalledWith(filter.filterParameter);
+    });
+
+    it('should be able to assign a MatSort instance', () => {
+        const sort: MatSort = {
+            active: 'foo',
+            direction: 'desc',
+            sortChange: new EventEmitter()
+        } as MatSort;
+        dataSource.sort = sort;
+        expect(dataSource.sort).toBe(sort);
+    });
+
+    it('should be able to assign a paginator instance', () => {
+        const paginator: MatPaginator = {
+            pageIndex: 1,
+            pageSize: 25,
+            page: new EventEmitter<PageEvent>()
+        } as MatPaginator;
+        dataSource.paginator = paginator;
+        expect(dataSource.paginator).toBe(paginator);
     });
 });
