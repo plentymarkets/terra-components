@@ -55,32 +55,34 @@ describe('TerraTableDataSource', () => {
         expect(dataSource.data).toEqual([{}]);
     });
 
-    it('should be able to assign a filter', () => {
-        const filter: TerraFilter<any> = new TerraFilter();
-        dataSource.filter = filter;
-        expect(dataSource.filter).toBe(filter);
-    });
+    describe('with filtering', () => {
+        let filter: TerraFilter<any>;
+        beforeEach(() => {
+            filter = new TerraFilter();
+            dataSource.filter = filter;
+        });
 
-    it('should start a request if a search is triggered via the filter', () => {
-        spyOn(dataSource, 'request').and.callThrough();
+        it('should be able to assign a filter', () => {
+            expect(dataSource.filter).toBe(filter);
+        });
 
-        const filter: TerraFilter<any> = new TerraFilter();
-        dataSource.filter = filter;
-        filter.search();
+        it('should start a request if a search is triggered via the filter', () => {
+            spyOn(dataSource, 'request').and.callThrough();
 
-        expect(dataSource.request).toHaveBeenCalled();
-    });
+            filter.search();
 
-    it('should pass filter parameters to the request', () => {
-        spyOn(dataSource, 'request').and.callThrough();
+            expect(dataSource.request).toHaveBeenCalled();
+        });
 
-        const filter: TerraFilter<any> = new TerraFilter();
-        dataSource.filter = filter;
-        filter.filterParameter = { id: 123, foo: 'bar' };
+        it('should pass filter parameters to the request', () => {
+            spyOn(dataSource, 'request').and.callThrough();
 
-        filter.search();
+            filter.filterParameter = { id: 123, foo: 'bar' };
 
-        expect(dataSource.request).toHaveBeenCalledWith(filter.filterParameter);
+            filter.search();
+
+            expect(dataSource.request).toHaveBeenCalledWith(filter.filterParameter);
+        });
     });
 
     it('should be able to assign a MatSort instance', () => {
