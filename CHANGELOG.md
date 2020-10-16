@@ -5,6 +5,35 @@
 -   **terra-button** is deprecated now. Use angular material's [button](https://material.angular.io/components/button/overview) instead.
 -   **terra-button-with-options** is deprecated now. Use angular material's [button](https://material.angular.io/components/button/overview) and [menu](https://material.angular.io/components/menu/overview) instead.
 -   **terra-time-picker** is deprecated now. Use angular material's [input](https://material.angular.io/components/input/overview) with type time instead.
+-   **terra-card** is deprecated now. Use angular material's [card](https://material.angular.io/components/card/overview) instead.
+-   **terra-note** is deprecated now. Use angular material's [card](https://material.angular.io/components/card/overview) instead.
+-   **terra-base-table** is deprecated now. Use angular material's [table](https://material.angular.io/components/table/overview) instead.
+-   **terra-slider** is deprecated now. Use angular material's [silder](https://material.angular.io/components/slider/overview) instead.
+-   **terra-pager** is deprecated now. Use angular material's [paginator](https://material.angular.io/components/paginator/overview) instead.
+-   **terra-data-table** is deprecated now. Use angular material's [table](https://material.angular.io/components/table/overview) instead.
+-   **terra-info-component** is deprecated now. Use angular material's [button](https://material.angular.io/components/button/overview) or an icon with a tooltip
+-   **terra-simple-table** is deprecated now. Use angular material's [table](https://material.angular.io/components/table/overview) instead
+-   **terra-suggestion-box** is deprecated now. Use angular material's [autocomplete](https://material.angular.io/components/autocomplete/overview) instead.
+-   **terra-indicator** is deprecated now. Use angular material's [badge](https://material.angular.io/components/badge/overview) or [chip](https://material.angular.io/components/chips/overview) instead.
+-   **terra-base-toolbar** is deprecated now. Use angular material's [toolbar](https://material.angular.io/components/toolbar/overview) instead.
+-   **terra-checkbox-tree** marked as deprecated. Use angular material's [tree](https://material.angular.io/components/tree/overview) instead.
+-   **terra-checkbox-tree-leaf-state** marked as deprecated. Use angular material's [tree](https://material.angular.io/components/tree/overview) instead.
+-   **terra-checkbox-leaf-interface** marked as deprecated. Use angular material's [tree](https://material.angular.io/components/tree/overview) instead.
+-   **terra-leaf-interface** marked as deprecated. Use angular material's [tree](https://material.angular.io/components/tree/overview) instead.
+-   **terra-base-tree** marked as deprecated. Use angular material's [tree](https://material.angular.io/components/tree/overview) instead.
+-   **terra-node-tree** marked as deprecated. Use angular material's [tree](https://material.angular.io/components/tree/overview) instead.
+-   **terra-node** marked as deprecated. Use angular material's [tree](https://material.angular.io/components/tree/overview) instead.
+-   **terra-node-interface** marked as deprecated. Use angular material's [tree](https://material.angular.io/components/tree/overview) instead.
+-   **terra-node-tree-helper** marked as deprecated. Use angular material's [tree](https://material.angular.io/components/tree/overview) instead.
+-   **terra-node-tree-config** marked as deprecated. Use angular material's [tree](https://material.angular.io/components/tree/overview) instead.
+-   **TerraButtonColorEnum** is deprecated now.
+-   **terra-base-parameter** is deprecated now. No replacement necessary
+-   **terra-base-editor** is deprecated now. Please use ck-editor instead
+-   **terra-base-data** is deprecated now. Please use ck-editor instead
+-   **terra-code-editor** is deprecated now. Please use ck-editor instead
+-   **terra-note-editor** is deprecated now. Please use ck-editor instead
+-   **terra-info-box** is deprecated now. Use angular material's [card](https://material.angular.io/components/card/overview) instead.
+-   **terra-color-picker** is deprecated now. Use angular material's [input](https://material.angular.io/components/input/overview) with type color instead.
 
 ### Bug Fixes
 

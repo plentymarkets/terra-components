@@ -7,6 +7,7 @@ import { StringHelper } from '../../../helpers/string.helper';
     styleUrls: ['./terra-card.component.scss'],
     templateUrl: './terra-card.component.html'
 })
+/** @deprecated since v5.0. Please use mat-card instead */
 export class TerraCardComponent implements AfterContentChecked {
     @ViewChild('header', { static: true })
     public _viewChildHeader: ElementRef;
