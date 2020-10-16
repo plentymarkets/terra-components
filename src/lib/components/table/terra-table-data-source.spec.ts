@@ -1,6 +1,7 @@
 import { TerraTableDataSource } from './terra-table-data-source';
 import { RequestParameterInterface } from './request-parameter.interface';
 import { Observable, of } from 'rxjs';
+import { TerraFilter } from './filter';
 
 class ConcreteTableDataSource extends TerraTableDataSource<{}> {
     public request(requestParams: RequestParameterInterface): Observable<Array<{}>> {
@@ -12,8 +13,6 @@ describe('TerraTableDataSource', () => {
     let dataSource: ConcreteTableDataSource;
 
     beforeEach(() => (dataSource = new ConcreteTableDataSource()));
-
-    afterEach(() => dataSource.disconnect());
 
     it('should create', () => {
         expect(dataSource).toBeTruthy();
@@ -37,5 +36,33 @@ describe('TerraTableDataSource', () => {
 
         expect(dataSource.request).toHaveBeenCalledWith({});
         expect(dataSource.data).toEqual([{}]);
+    });
+
+    it('should be able to assign a filter', () => {
+        const filter: TerraFilter<any> = new TerraFilter();
+        dataSource.filter = filter;
+        expect(dataSource.filter).toBe(filter);
+    });
+
+    it('should start a request if a search is triggered via the filter', () => {
+        spyOn(dataSource, 'request').and.callThrough();
+
+        const filter: TerraFilter<any> = new TerraFilter();
+        dataSource.filter = filter;
+        filter.search();
+
+        expect(dataSource.request).toHaveBeenCalled();
+    });
+
+    it('should pass filter parameters to the request', () => {
+        spyOn(dataSource, 'request').and.callThrough();
+
+        const filter: TerraFilter<any> = new TerraFilter();
+        dataSource.filter = filter;
+        filter.filterParameter = { id: 123, foo: 'bar' };
+
+        filter.search();
+
+        expect(dataSource.request).toHaveBeenCalledWith(filter.filterParameter);
     });
 });

@@ -121,7 +121,8 @@ export abstract class TerraTableDataSource<T> extends DataSource<T> {
         return this._data.asObservable();
     }
 
-    /** Called by the table then it is destroyed. Cleans up streams and subscriptions */
+    // TODO: check if this is really needed. I think it might break the subscription logic.
+    /** Called by the table when it is destroyed. Cleans up streams and subscriptions */
     public disconnect(): void {
         // make sure that all streams and subscriptions are canceled/complete
         this._subscription.unsubscribe();
