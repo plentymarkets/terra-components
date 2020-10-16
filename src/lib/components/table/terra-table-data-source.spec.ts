@@ -5,10 +5,11 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { EventEmitter } from '@angular/core';
 import { TerraFilter } from './filter';
 import { MatSort } from '@angular/material/sort';
+import { fakeAsync, tick } from '@angular/core/testing';
 
 class ConcreteTableDataSource extends TerraTableDataSource<{}> {
     public request(requestParams: RequestParameterInterface): Observable<Array<{}>> {
-        return of(new Array({}));
+        return of([{}]);
     }
 }
 
@@ -79,6 +80,26 @@ describe('TerraTableDataSource', () => {
         expect(dataSource.sort).toBe(sort);
     });
 
+    it('should start a request if MatSort is given, data is present and a sort event occurs', fakeAsync(() => {
+        spyOn(dataSource, 'request').and.callThrough();
+        dataSource.data = [{}];
+        const sort: MatSort = {
+            active: 'foo',
+            direction: 'desc',
+            sortChange: new EventEmitter()
+        } as MatSort;
+        dataSource.sort = sort;
+
+        expect(dataSource.data.length).toBeGreaterThan(0);
+
+        sort.sortChange.emit();
+
+        // due to debounceTime operator
+        tick(500);
+
+        expect(dataSource.request).toHaveBeenCalledWith({ sortBy: sort.active, sortOrder: sort.direction });
+    }));
+
     it('should be able to assign a paginator instance', () => {
         const paginator: MatPaginator = {
             pageIndex: 1,
@@ -88,4 +109,26 @@ describe('TerraTableDataSource', () => {
         dataSource.paginator = paginator;
         expect(dataSource.paginator).toBe(paginator);
     });
+
+    it('should start a request if a paginator is available, data is present and the page or pageSize has changed', fakeAsync(() => {
+        spyOn(dataSource, 'request').and.callThrough();
+
+        dataSource.data = [{}];
+        const paginator: Partial<MatPaginator> = {
+            pageIndex: 1,
+            pageSize: 25,
+            page: new EventEmitter<PageEvent>()
+        };
+        dataSource.paginator = paginator as MatPaginator;
+
+        paginator.page.emit();
+
+        // due to debounceTime operator
+        tick(500);
+
+        expect(dataSource.request).toHaveBeenCalledWith({
+            page: paginator.pageIndex + 1,
+            itemsPerPage: paginator.pageSize
+        });
+    }));
 });
