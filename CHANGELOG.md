@@ -34,6 +34,7 @@
 -   **terra-note-editor** is deprecated now. Please use ck-editor instead
 -   **terra-info-box** is deprecated now. Use angular material's [card](https://material.angular.io/components/card/overview) instead.
 -   **terra-color-picker** is deprecated now. Use angular material's [input](https://material.angular.io/components/input/overview) with type color instead.
+-   **terra-tag-select** is deprecated now. Use angular material's [chip-list](https://material.angular.io/components/chips/overview) instead.
 -   **table** removed experimental classes `TableDataSource`, `TablePagingDataSource`, `TableSortingDataSource` and `TablePagingSortingDataSource`. Use new `TerraTableDataSource` class instead.
 
 ### Bug Fixes
