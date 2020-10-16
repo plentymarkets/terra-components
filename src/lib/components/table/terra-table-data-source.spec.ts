@@ -85,35 +85,34 @@ describe('TerraTableDataSource', () => {
         });
     });
 
-    it('should be able to assign a MatSort instance', () => {
-        const sort: MatSort = {
-            active: 'foo',
-            direction: 'desc',
-            sortChange: new EventEmitter()
-        } as MatSort;
-        dataSource.sort = sort;
-        expect(dataSource.sort).toBe(sort);
+    describe('with sorting', () => {
+        let sort: MatSort;
+        beforeEach(() => {
+            sort = {
+                active: 'foo',
+                direction: 'desc',
+                sortChange: new EventEmitter()
+            } as MatSort;
+            dataSource.sort = sort;
+        });
+
+        it('should be able to assign a MatSort instance', () => {
+            expect(dataSource.sort).toBe(sort);
+        });
+
+        it('should start a request if MatSort is given, data is present and a sort event occurs', fakeAsync(() => {
+            dataSource.data = [{}];
+
+            spyOn(dataSource, 'request').and.callThrough();
+
+            sort.sortChange.emit();
+
+            // due to debounceTime operator
+            tick(500);
+
+            expect(dataSource.request).toHaveBeenCalledWith({ sortBy: sort.active, sortOrder: sort.direction });
+        }));
     });
-
-    it('should start a request if MatSort is given, data is present and a sort event occurs', fakeAsync(() => {
-        spyOn(dataSource, 'request').and.callThrough();
-        dataSource.data = [{}];
-        const sort: MatSort = {
-            active: 'foo',
-            direction: 'desc',
-            sortChange: new EventEmitter()
-        } as MatSort;
-        dataSource.sort = sort;
-
-        expect(dataSource.data.length).toBeGreaterThan(0);
-
-        sort.sortChange.emit();
-
-        // due to debounceTime operator
-        tick(500);
-
-        expect(dataSource.request).toHaveBeenCalledWith({ sortBy: sort.active, sortOrder: sort.direction });
-    }));
 
     it('should be able to assign a paginator instance', () => {
         const paginator: MatPaginator = {
