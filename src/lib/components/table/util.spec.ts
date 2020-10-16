@@ -59,5 +59,25 @@ describe('utility', () => {
             expect(params.sortBy).toBe(sort.active);
             expect(params.sortOrder).toBe(sort.direction);
         });
+
+        it('should include filter params, sort and page information if filter, paginator and sort are givem', () => {
+            const sort: Partial<MatSort> = { active: 'id', direction: 'asc' };
+            const paginator: Partial<MatPaginator> = { pageIndex: 0, pageSize: 25 };
+            const filter: TerraFilter<any> = new TerraFilter();
+            filter.filterParameter = { id: 123, foo: 'bar' };
+
+            const params: RequestParameterInterface = createRequestParams(
+                filter,
+                paginator as MatPaginator,
+                sort as MatSort
+            );
+            expect(params).toEqual({
+                ...filter.filterParameter,
+                page: paginator.pageIndex + 1,
+                itemsPerPage: paginator.pageSize,
+                sortBy: sort.active,
+                sortOrder: sort.direction
+            });
+        });
     });
 });
