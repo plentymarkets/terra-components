@@ -24,6 +24,11 @@ describe('TerraTableDataSource', () => {
         expect(dataSource).toBeTruthy();
     });
 
+    it('should implement a `disconnect` method', () => {
+        expect(dataSource.disconnect).toBeTruthy();
+        expect(dataSource.disconnect).not.toThrow();
+    });
+
     it('should be able to manually set data', () => {
         const newData: Array<any> = [{ foo: 'bar' }];
         dataSource.data = newData;
