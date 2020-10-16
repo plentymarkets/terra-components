@@ -1,18 +1,20 @@
 import { TerraTableDataSource } from './terra-table-data-source';
 import { RequestParameterInterface } from './request-parameter.interface';
 import { Observable, of } from 'rxjs';
-import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { MatPaginator } from '@angular/material/paginator';
 import { EventEmitter } from '@angular/core';
 import { TerraFilter } from './filter';
 import { MatSort } from '@angular/material/sort';
 import { fakeAsync, tick } from '@angular/core/testing';
+import { TerraPagerInterface } from '../pager/data/terra-pager.interface';
 
 class ConcreteTableDataSource extends TerraTableDataSource<{}> {
-    public request(requestParams: RequestParameterInterface): Observable<Array<{}>> {
+    public request(requestParams: RequestParameterInterface): Observable<Array<{}> | TerraPagerInterface<{}>> {
         return of([{}]);
     }
 }
 
+// tslint:disable:max-function-line-count
 describe('TerraTableDataSource', () => {
     let dataSource: ConcreteTableDataSource;
 
@@ -104,7 +106,7 @@ describe('TerraTableDataSource', () => {
         const paginator: MatPaginator = {
             pageIndex: 1,
             pageSize: 25,
-            page: new EventEmitter<PageEvent>()
+            page: new EventEmitter()
         } as MatPaginator;
         dataSource.paginator = paginator;
         expect(dataSource.paginator).toBe(paginator);
@@ -117,7 +119,7 @@ describe('TerraTableDataSource', () => {
         const paginator: Partial<MatPaginator> = {
             pageIndex: 1,
             pageSize: 25,
-            page: new EventEmitter<PageEvent>()
+            page: new EventEmitter()
         };
         dataSource.paginator = paginator as MatPaginator;
 
@@ -131,4 +133,60 @@ describe('TerraTableDataSource', () => {
             itemsPerPage: paginator.pageSize
         });
     }));
+
+    it('should return entries of a paginated response', () => {
+        const paginatedResult: TerraPagerInterface<any> = {
+            page: 1,
+            totalsCount: 2,
+            firstOnPage: 1,
+            lastOnPage: 2,
+            lastPageNumber: 1,
+            isLastPage: true,
+            itemsPerPage: 25,
+            entries: [{}, {}]
+        };
+        spyOn(dataSource, 'request').and.returnValue(of(paginatedResult));
+
+        dataSource.search();
+
+        expect(dataSource.data).toBe(paginatedResult.entries);
+    });
+
+    it(`should return an empty array if a paginated response doesn't have entries`, () => {
+        const paginatedResult: TerraPagerInterface<any> = {
+            page: 1,
+            totalsCount: 2,
+            firstOnPage: 1,
+            lastOnPage: 2,
+            lastPageNumber: 1,
+            isLastPage: true,
+            itemsPerPage: 25
+        };
+        spyOn(dataSource, 'request').and.returnValue(of(paginatedResult));
+
+        dataSource.search();
+
+        expect(dataSource.data).toEqual([]);
+    });
+
+    it(`should update the paginator's length if available`, () => {
+        const paginatedResult: TerraPagerInterface<any> = {
+            page: 1,
+            totalsCount: 2,
+            firstOnPage: 1,
+            lastOnPage: 2,
+            lastPageNumber: 1,
+            isLastPage: true,
+            itemsPerPage: 25
+        };
+        spyOn(dataSource, 'request').and.returnValue(of(paginatedResult));
+        dataSource.paginator = {
+            page: new EventEmitter(),
+            length: 0
+        } as MatPaginator;
+
+        dataSource.search();
+
+        expect(dataSource.paginator.length).toBe(paginatedResult.totalsCount);
+    });
 });
