@@ -16,8 +16,7 @@ export function isPaginated<T>(result: any): result is TerraPagerInterface<T> {
         'lastPageNumber' in result &&
         'firstOnPage' in result &&
         'lastOnPage' in result &&
-        'itemsPerPage' in result &&
-        'entries' in result
+        'itemsPerPage' in result
     );
 }
 

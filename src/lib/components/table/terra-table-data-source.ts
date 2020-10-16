@@ -11,17 +11,22 @@ import { TerraPagerInterface } from '../pager/data/terra-pager.interface';
 type RequestFn<T> = (params: RequestParameterInterface) => Observable<Array<T> | TerraPagerInterface<T>>;
 
 /**
+ * @experimental
+ *
  * A custom implementation of angular cdk's data source that
- * simplifies connection to a plentymarkets rest api.
+ * simplifies connection of table to a plentymarkets rest api.
  * Can be used with any combination of paging, sorting and filtering functionality.
  * To enable paging, sorting and/or filtering just pass the respective class/component to this data source.
  *
  * @example
  * ```typescript
  * @Component({
- *     template: '...<table mat-table [dataSource]="dataSource">...'
+ *     template: `
+ *        <mat-paginator></mat-paginator>
+ *        <table mat-table [dataSource]="dataSource" matSort>...</table>
+ *     `
  * })
- * class MyComponent implements OnInit, AfterViewInit
+ * class MyComponent implements OnInit
  * {
  *     public dataSource:TerraDataSource<MyData> = new TerraDataSource(
  *         params => this.service.getData(params)
@@ -35,18 +40,15 @@ type RequestFn<T> = (params: RequestParameterInterface) => Observable<Array<T> |
  *     constructor(private service:MyDataService) {}
  *
  *     ngOnInit() {
- *         this.dataSource = this.sort;
- *         this.dataSource = this.paginator;
- *         this.dataSource = this.filter;
- *     }
- *
- *     ngAfterViewInit() {
- *         this.dataSource.search(); // triggers an initial search
+ *         this.dataSource = this.sort; // enable sorting
+ *         this.dataSource = this.paginator; // enable paging
+ *         this.dataSource = this.filter; // enable filtering
+ *         this.dataSource.search(); // trigger an initial search
  *     }
  * }
  * ```
  */
-export class TerraDataSource<T> extends DataSource<T> {
+export class TerraTableDataSource<T> extends DataSource<T> {
     /** Snapshot of the currently displayed data. */
     public get data(): Array<T> {
         return this._data.value;
@@ -93,7 +95,9 @@ export class TerraDataSource<T> extends DataSource<T> {
     }
     private _paginator: MatPaginator | undefined;
 
+    /** A stream that emits whenever a manual search is requested. */
     private _search: Subject<void> = new Subject();
+    /** Reference to the latest subscription to update the table's data. */
     private _subscription: Subscription = Subscription.EMPTY;
 
     constructor(
@@ -104,6 +108,7 @@ export class TerraDataSource<T> extends DataSource<T> {
         private request: RequestFn<T>
     ) {
         super();
+        this._updateSubscription(); // initially subscribe to any change to be able to search even if no filter, paging or sorting is applied.
     }
 
     /** Initiates a request that fetches data from the server */
@@ -111,17 +116,14 @@ export class TerraDataSource<T> extends DataSource<T> {
         this._search.next();
     }
 
-    /** Called by the table when it connects to this data source */
+    /** Called by the table when it connects to this data source. */
     public connect(): Observable<Array<T> | ReadonlyArray<T>> {
         return this._data.asObservable();
     }
 
-    /** Called by the table then it is destroyed. Cleans up streams and subscriptions */
+    /** Called by the table when it is destroyed. No-op. */
     public disconnect(): void {
-        // make sure that all streams and subscriptions are canceled/complete
-        this._subscription.unsubscribe();
-        this._search.complete();
-        this._data.complete();
+        /* no-op */
     }
 
     /**
@@ -136,7 +138,7 @@ export class TerraDataSource<T> extends DataSource<T> {
         const pageChange$: Observable<PageEvent | never> = this._paginator ? this._paginator.page : EMPTY;
         const sortChange$: Observable<Sort | never> = this._sort ? this._sort.sortChange : EMPTY;
 
-        // watch for changes to the page or sort parameters
+        // watch for changes to the page and sort parameters
         const pageOrSortChange$: Observable<PageEvent | Sort | never> = merge(pageChange$, sortChange$).pipe(
             filter(() => this.data && this.data.length > 0), // accept page and/or sort events only if we already have data
             debounceTime(500) // debounce to reduce amount of (canceled) requests
@@ -162,7 +164,7 @@ export class TerraDataSource<T> extends DataSource<T> {
                     }
                     // TODO: we may be able to customize this with a method that extracts the data from the paginated response.
                     //  similar to the tree control/data source
-                    return response.entries;
+                    return response.entries || [];
                 }
                 return response;
             })

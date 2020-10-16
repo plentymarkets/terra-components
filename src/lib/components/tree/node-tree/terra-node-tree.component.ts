@@ -7,6 +7,9 @@ import { FormControl } from '@angular/forms';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { StringHelper } from '../../../helpers';
 
+/**
+ * @deprecated since v5. Use mat-tree instead.
+ */
 @Component({
     selector: 'terra-node-tree',
     styleUrls: ['./terra-node-tree.component.scss'],
