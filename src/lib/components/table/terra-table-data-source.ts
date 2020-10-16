@@ -48,7 +48,7 @@ import { TerraPagerInterface } from '../pager/data/terra-pager.interface';
  *         this.dataSource = this.sort; // enable sorting
  *         this.dataSource = this.paginator; // enable paging
  *         this.dataSource = this.filter; // enable filtering
- *         this.dataSource.search(); // triggers an initial search
+ *         this.dataSource.search(); // trigger an initial search
  *     }
  * }
  * ```
