@@ -16,6 +16,7 @@ import { noop } from 'rxjs';
         }
     ]
 })
+/** @deprecated since v5. Please use ck-editor instead */
 export class TerraBaseEditorComponent implements OnInit, ControlValueAccessor {
     @Input()
     public inputHeaderLabel: string;

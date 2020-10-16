@@ -1,5 +1,8 @@
 import { Observable } from 'rxjs';
 
+/**
+ * @deprecated since v5. Use mat-tree instead.
+ */
 export interface TerraNodeInterface<D> {
     /**
      * @description The identifier of node. It must be UNIQUE.
