@@ -140,59 +140,44 @@ describe('TerraTableDataSource', () => {
         });
     }));
 
-    it('should return entries of a paginated response', () => {
-        const paginatedResult: TerraPagerInterface<any> = {
-            page: 1,
-            totalsCount: 2,
-            firstOnPage: 1,
-            lastOnPage: 2,
-            lastPageNumber: 1,
-            isLastPage: true,
-            itemsPerPage: 25,
-            entries: [{}, {}]
-        };
-        spyOn(dataSource, 'request').and.returnValue(of(paginatedResult));
+    describe('targeting a paginated api', () => {
+        let paginatedResult: TerraPagerInterface<any>;
+        beforeEach(() => {
+            paginatedResult = {
+                page: 1,
+                totalsCount: 2,
+                firstOnPage: 1,
+                lastOnPage: 2,
+                lastPageNumber: 1,
+                isLastPage: true,
+                itemsPerPage: 25
+            };
+            spyOn(dataSource, 'request').and.returnValue(of(paginatedResult));
+        });
 
-        dataSource.search();
+        it('should return entries of the paginated response', () => {
+            paginatedResult.entries = [{}, {}];
 
-        expect(dataSource.data).toBe(paginatedResult.entries);
-    });
+            dataSource.search();
 
-    it(`should return an empty array if a paginated response doesn't have entries`, () => {
-        const paginatedResult: TerraPagerInterface<any> = {
-            page: 1,
-            totalsCount: 2,
-            firstOnPage: 1,
-            lastOnPage: 2,
-            lastPageNumber: 1,
-            isLastPage: true,
-            itemsPerPage: 25
-        };
-        spyOn(dataSource, 'request').and.returnValue(of(paginatedResult));
+            expect(dataSource.data).toBe(paginatedResult.entries);
+        });
 
-        dataSource.search();
+        it(`should return an empty array if the paginated response doesn't have entries`, () => {
+            dataSource.search();
 
-        expect(dataSource.data).toEqual([]);
-    });
+            expect(dataSource.data).toEqual([]);
+        });
 
-    it(`should update the paginator's length if available`, () => {
-        const paginatedResult: TerraPagerInterface<any> = {
-            page: 1,
-            totalsCount: 2,
-            firstOnPage: 1,
-            lastOnPage: 2,
-            lastPageNumber: 1,
-            isLastPage: true,
-            itemsPerPage: 25
-        };
-        spyOn(dataSource, 'request').and.returnValue(of(paginatedResult));
-        dataSource.paginator = {
-            page: new EventEmitter(),
-            length: 0
-        } as MatPaginator;
+        it(`should update the paginator's length with the total count of results`, () => {
+            dataSource.paginator = {
+                page: new EventEmitter(),
+                length: 0
+            } as MatPaginator;
 
-        dataSource.search();
+            dataSource.search();
 
-        expect(dataSource.paginator.length).toBe(paginatedResult.totalsCount);
+            expect(dataSource.paginator.length).toBe(paginatedResult.totalsCount);
+        });
     });
 });
