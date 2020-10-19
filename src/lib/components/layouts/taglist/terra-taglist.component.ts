@@ -1,6 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { TerraTagInterface } from '../tag/data/terra-tag.interface';
 
+/**
+ * @deprecated since v5. Use angular material's [chip-list](https://material.angular.io/components/chips/overview) instead.
+ */
 @Component({
     selector: 'terra-taglist',
     styleUrls: ['./terra-taglist.component.scss'],

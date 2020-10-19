@@ -8,6 +8,7 @@ import { TerraDataTableComponent } from '../terra-data-table.component';
     templateUrl: './table-row.component.html',
     styleUrls: ['./table-row.component.scss']
 })
+/** @deprecated since v5.0. Please use mat-table instead */
 export class TableRowComponent {
     /* tslint:disable-next-line:no-input-rename */
     @Input('tcTableRow')

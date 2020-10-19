@@ -8,6 +8,7 @@ import { TerraDataTableContextMenuService } from './terra-data-table-context-men
 @Directive({
     selector: '[hasContextMenu]'
 })
+/** @deprecated since v5.0. Please use mat-table instead */
 export class TerraDataTableContextMenuDirective<D extends TerraBaseData> {
     /**
      * @description data that is passed to the context menu component when clicking on a row

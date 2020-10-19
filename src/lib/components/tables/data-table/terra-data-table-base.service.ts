@@ -12,6 +12,7 @@ import { isNullOrUndefined } from 'util';
 /**
  * @author pweyrich
  */
+/** @deprecated since v5.0. Please use mat-table instead */
 export abstract class TerraDataTableBaseService<T, P> {
     public filterParameter: P;
     public sortBy: string;

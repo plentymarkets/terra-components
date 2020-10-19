@@ -11,6 +11,7 @@ import { debounceTime } from 'rxjs/operators';
     styleUrls: ['./terra-pager.component.scss'],
     templateUrl: './terra-pager.component.html'
 })
+/** @deprecated since v5.0. Please use mat-paginator instead */
 export class TerraPagerComponent implements OnInit, OnDestroy {
     @Input()
     public inputPagingData: TerraPagerInterface<unknown>;

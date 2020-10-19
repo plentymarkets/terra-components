@@ -1,5 +1,6 @@
 /**
  * @author mkunze
+ * @deprecated since v5. Use mat-tree instead.
  */
 export interface TerraLeafInterface {
     caption: string;

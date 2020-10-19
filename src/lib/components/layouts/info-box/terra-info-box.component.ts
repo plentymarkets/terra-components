@@ -8,6 +8,7 @@ import { TerraButtonInterface } from '../../buttons/button/data/terra-button.int
     styleUrls: ['./terra-info-box.component.scss'],
     templateUrl: './terra-info-box.component.html'
 })
+/** @deprecated since v5.0. Please use mat-card instead*/
 export class TerraInfoBoxComponent {
     @Input()
     public inputTagList: Array<TerraTagInterface>;
