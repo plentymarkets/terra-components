@@ -35,7 +35,7 @@ describe('TerraTableDataSource', () => {
         expect(dataSource.data).toEqual(newData);
     });
 
-    it('should notify the table if data has been updated manually', () => {
+    it('should notify the table when data has been updated manually', () => {
         let data: Array<any> = dataSource.data;
         expect(data).toEqual([]);
         dataSource.connect().subscribe((d: Array<any>) => (data = d));
@@ -46,7 +46,7 @@ describe('TerraTableDataSource', () => {
         expect(data).toEqual(newData);
     });
 
-    it('should start a request if search is called', () => {
+    it('should start a request when search is called', () => {
         spyOn(dataSource, 'request').and.callThrough();
 
         dataSource.search();
@@ -66,7 +66,7 @@ describe('TerraTableDataSource', () => {
             expect(dataSource.filter).toBe(filter);
         });
 
-        it('should start a request if a search is triggered via the filter', () => {
+        it('should start a request when a search is triggered via the filter', () => {
             spyOn(dataSource, 'request').and.callThrough();
 
             filter.search();
@@ -100,7 +100,7 @@ describe('TerraTableDataSource', () => {
             expect(dataSource.sort).toBe(sort);
         });
 
-        it('should start a request if MatSort is given, data is present and a sort event occurs', fakeAsync(() => {
+        it('should start a request when MatSort is given, data is present and a sort event occurs', fakeAsync(() => {
             dataSource.data = [{}];
 
             spyOn(dataSource, 'request').and.callThrough();
@@ -132,7 +132,7 @@ describe('TerraTableDataSource', () => {
             expect(dataSource.paginator).toBe(paginator);
         });
 
-        it('should start a request if a paginator is available, data is present and the page or pageSize has changed', fakeAsync(() => {
+        it('should start a request when a paginator is available, data is present and the page or pageSize has changed', fakeAsync(() => {
             dataSource.data = [{}];
 
             spyOn(dataSource, 'request').and.callThrough();
