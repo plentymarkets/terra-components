@@ -2,7 +2,7 @@ import { TerraTagNameInterface } from './terra-tag-name.interface';
 
 /**
  * @author dtrauf
- *
+ * @deprecated since v5.
  */
 export interface TerraTagInterface {
     /** The ID of the tag */
