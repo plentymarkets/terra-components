@@ -1,9 +1,4 @@
-import {
-    HttpEvent,
-    HttpHandler,
-    HttpInterceptor,
-    HttpRequest
-} from '@angular/common/http';
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -16,20 +11,17 @@ import { Observable } from 'rxjs';
  *  your application.
  */
 @Injectable()
-export class AuthInterceptor implements HttpInterceptor
-{
-    public intercept(req:HttpRequest<any>, next:HttpHandler):Observable<HttpEvent<any>>
-    {
+export class AuthInterceptor implements HttpInterceptor {
+    public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         // Get the token from local storage.
-        const accessToken:string = localStorage.getItem('accessToken');
+        const accessToken: string = localStorage.getItem('accessToken');
 
         // check if access token is available
-        if(accessToken)
-        {
+        if (accessToken) {
             // Clone the request and replace the original headers with
             // cloned headers, updated with the authorization.
             // send cloned request with header to the next handler.
-            return next.handle(req.clone({setHeaders: {Authorization: 'Bearer ' + accessToken}}));
+            return next.handle(req.clone({ setHeaders: { Authorization: 'Bearer ' + accessToken } }));
         }
 
         // if no accessToken is available, pass on the untouched request.

@@ -1,37 +1,27 @@
-.container-fluid
-{
+.container-fluid {
     height: 100%;
 
-    .row
-    {
+    .row {
         height: 100%;
         flex-wrap: nowrap;
     }
 }
 
-@media (max-width: 767px)
-{
-    .hidden-xs
-    {
-        display: none
+@media (max-width: 767px) {
+    .hidden-xs {
+        display: none;
     }
 }
 
-@media (min-width: 992px)
-{
-    .container-fluid
-    {
-        .row
-        {
-            > div
-            {
-                &:first-child
-                {
+@media (min-width: 992px) {
+    .container-fluid {
+        .row {
+            > div {
+                &:first-child {
                     padding-left: calc(var(--space-xs) * 2);
                 }
-                
-                &:last-child
-                {
+
+                &:last-child {
                     padding-right: calc(var(--space-xs) * 2);
                 }
             }

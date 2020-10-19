@@ -1,17 +1,13 @@
-<div class="tag"
-     [ngStyle]="{ 'background-color' : _bgColor }"
-     [ngClass]="inputCustomClass">
-    <span class="tag-icon"
-          *ngIf="inputIsTaggable"
-          [ngStyle]="{ 'color': _color }"
-          [ngClass]="{'isTagged': inputIsTagged, 'icon-ticket_prio1': inputIsTagged, 'icon-ticket_prio8': !inputIsTagged}">
+<div class="tag" [ngStyle]="{ 'background-color': _bgColor }" [ngClass]="inputCustomClass">
+    <span
+        class="tag-icon"
+        *ngIf="inputIsTaggable"
+        [ngStyle]="{ color: _color }"
+        [ngClass]="{ isTagged: inputIsTagged, 'icon-ticket_prio1': inputIsTagged, 'icon-ticket_prio8': !inputIsTagged }"
+    >
     </span>
-    <span class="tag-text"
-          [ngStyle]="{ 'color': _color }">
-        {{_tagName}}
+    <span class="tag-text" [ngStyle]="{ color: _color }">
+        {{ _tagName }}
     </span>
-    <span *ngIf="isClosable"
-          class="icon icon-close"
-          (click)="_close()">
-    </span>
+    <span *ngIf="isClosable" class="icon icon-close" (click)="_close()"> </span>
 </div>
