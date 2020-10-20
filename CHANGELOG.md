@@ -37,6 +37,7 @@
 -   **terra-base-data** is deprecated now. Use `{}` instead.
 -   **terra-base-parameter** is deprecated now. Use `{}` instead.
 -   **TerraButtonColorEnum** is deprecated now.
+-   **table** removed experimental classes `TableDataSource`, `TablePagingDataSource`, `TableSortingDataSource` and `TablePagingSortingDataSource`. Use new `TerraTableDataSource` class instead.
 
 ### Bug Fixes
 
