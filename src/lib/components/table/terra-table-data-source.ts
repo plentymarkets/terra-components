@@ -40,9 +40,9 @@ type RequestFn<T> = (params: RequestParameterInterface) => Observable<Array<T> |
  *     constructor(private service:MyDataService) {}
  *
  *     ngOnInit() {
- *         this.dataSource = this.sort; // enable sorting
- *         this.dataSource = this.paginator; // enable paging
- *         this.dataSource = this.filter; // enable filtering
+ *         this.dataSource.sort = this.sort; // enable sorting
+ *         this.dataSource.paginator = this.paginator; // enable paging
+ *         this.dataSource.filter = this.filter; // enable filtering
  *         this.dataSource.search(); // trigger an initial search
  *     }
  * }

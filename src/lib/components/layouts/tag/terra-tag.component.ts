@@ -4,6 +4,9 @@ import { Color } from '../../../helpers/color.helper';
 import { TerraTagNameInterface } from './data/terra-tag-name.interface';
 import { Language } from 'angular-l10n';
 
+/**
+ * @deprecated since v5. Use angular material's [chip](https://material.angular.io/components/chips/overview) instead.
+ */
 @Component({
     selector: 'terra-tag',
     styleUrls: ['./terra-tag.component.scss'],
