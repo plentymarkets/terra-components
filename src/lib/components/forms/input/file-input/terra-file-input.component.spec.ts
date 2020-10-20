@@ -32,7 +32,7 @@ import { TerraInfoComponent } from '../../../info/terra-info.component';
 import { TooltipDirective } from '../../../tooltip/tooltip.directive';
 import { Router } from '@angular/router';
 import { MockRouter } from '../../../../testing/mock-router';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
 describe('TerraFileInputComponent', () => {
     let component: TerraFileInputComponent;
@@ -159,6 +159,26 @@ describe('TerraFileInputComponent', () => {
         divFilePreview.click();
 
         expect(component.onPreviewClicked).toHaveBeenCalled();
+    });
+
+    it('should open a preview dialog when clicking on the file preview', () => {
+        component.inputShowPreview = true;
+        fixture.detectChanges();
+
+        const dialog: MatDialog = TestBed.get(MatDialog);
+        spyOn(dialog, 'open');
+        // ensure that the dialog can be opened by emulating that the selected file is a web image
+        spyOn(component, 'isWebImage').and.returnValue(true);
+
+        const divFilePreview: HTMLDivElement = fixture.debugElement.query(By.css('div.file-preview')).nativeElement;
+
+        divFilePreview.click();
+
+        const data: any = {
+            filepath: component.value,
+            filename: component.getFilename(component.value)
+        };
+        expect(dialog.open).toHaveBeenCalledWith(component._previewDialog, { data: data });
     });
 
     it('should call `isWebImage` after value changed', () => {
