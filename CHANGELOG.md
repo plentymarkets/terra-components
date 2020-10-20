@@ -5,21 +5,23 @@
 -   **terra-syntax-editor** has been removed. Use [ck-editor](https://ckeditor.com/ckeditor-4/) instead.
 -   **dependencies** removed peer dependency `ng2-ace-editor` since we no longer depend on it.
 
-# 5.10.0 (Unreleased)
+# 5.10.0 (20.10.2020)
 
 ### Features
 
 -   **terra-button** is deprecated now. Use angular material's [button](https://material.angular.io/components/button/overview) instead.
 -   **terra-button-with-options** is deprecated now. Use angular material's [button](https://material.angular.io/components/button/overview) and [menu](https://material.angular.io/components/menu/overview) instead.
 -   **terra-time-picker** is deprecated now. Use angular material's [input](https://material.angular.io/components/input/overview) with type time instead.
+-   **terra-color-picker** is deprecated now. Use angular material's [input](https://material.angular.io/components/input/overview) with type color instead.
 -   **terra-card** is deprecated now. Use angular material's [card](https://material.angular.io/components/card/overview) instead.
 -   **terra-note** is deprecated now. Use angular material's [card](https://material.angular.io/components/card/overview) instead.
--   **terra-base-table** is deprecated now. Use angular material's [table](https://material.angular.io/components/table/overview) instead.
--   **terra-slider** is deprecated now. Use angular material's [silder](https://material.angular.io/components/slider/overview) instead.
+-   **terra-info-box** is deprecated now. Use angular material's [card](https://material.angular.io/components/card/overview) instead.
+-   **terra-slider** is deprecated now. Use angular material's [slider](https://material.angular.io/components/slider/overview) instead.
 -   **terra-pager** is deprecated now. Use angular material's [paginator](https://material.angular.io/components/paginator/overview) instead.
+-   **terra-base-table** is deprecated now. Use angular material's [table](https://material.angular.io/components/table/overview) instead.
 -   **terra-data-table** is deprecated now. Use angular material's [table](https://material.angular.io/components/table/overview) instead.
--   **terra-info-component** is deprecated now. Use angular material's [button](https://material.angular.io/components/button/overview) or an icon with a tooltip
--   **terra-simple-table** is deprecated now. Use angular material's [table](https://material.angular.io/components/table/overview) instead
+-   **terra-simple-table** is deprecated now. Use angular material's [table](https://material.angular.io/components/table/overview) instead.
+-   **terra-info-component** is deprecated now. Use angular material's [button](https://material.angular.io/components/button/overview) or an icon with a tooltip.
 -   **terra-suggestion-box** is deprecated now. Use angular material's [autocomplete](https://material.angular.io/components/autocomplete/overview) instead.
 -   **terra-indicator** is deprecated now. Use angular material's [badge](https://material.angular.io/components/badge/overview) or [chip](https://material.angular.io/components/chips/overview) instead.
 -   **terra-base-toolbar** is deprecated now. Use angular material's [toolbar](https://material.angular.io/components/toolbar/overview) instead.
@@ -33,17 +35,16 @@
 -   **terra-node-interface** marked as deprecated. Use angular material's [tree](https://material.angular.io/components/tree/overview) instead.
 -   **terra-node-tree-helper** marked as deprecated. Use angular material's [tree](https://material.angular.io/components/tree/overview) instead.
 -   **terra-node-tree-config** marked as deprecated. Use angular material's [tree](https://material.angular.io/components/tree/overview) instead.
--   **TerraButtonColorEnum** is deprecated now.
--   **terra-base-parameter** is deprecated now. No replacement necessary
--   **terra-base-editor** is deprecated now. Please use ck-editor instead
--   **terra-base-data** is deprecated now. Please use ck-editor instead
--   **terra-code-editor** is deprecated now. Please use ck-editor instead
--   **terra-note-editor** is deprecated now. Please use ck-editor instead
--   **terra-info-box** is deprecated now. Use angular material's [card](https://material.angular.io/components/card/overview) instead.
--   **terra-color-picker** is deprecated now. Use angular material's [input](https://material.angular.io/components/input/overview) with type color instead.
--   **terra-tag-select** is deprecated now. Use angular material's [chip-list](https://material.angular.io/components/chips/overview) instead.
+-   **terra-base-editor** is deprecated now. Please use [ck-editor](https://ckeditor.com/ckeditor-4/) instead.
+-   **terra-code-editor** is deprecated now. Please use [ck-editor](https://ckeditor.com/ckeditor-4/) instead.
+-   **terra-note-editor** is deprecated now. Please use [ck-editor](https://ckeditor.com/ckeditor-4/) instead.
 -   **terra-tag** is deprecated now. Use angular material's [chips](https://material.angular.io/components/chips/overview) instead.
 -   **terra-tag-list** is deprecated now. Use angular material's [chip-list](https://material.angular.io/components/chips/overview) instead.
+-   **terra-tag-select** is deprecated now. Use angular material's [chip-list](https://material.angular.io/components/chips/overview) instead.
+-   **terra-base-data** is deprecated now. Use `{}` instead.
+-   **terra-base-parameter** is deprecated now. Use `{}` instead.
+-   **TerraButtonColorEnum** is deprecated now.
+-   **table** removed experimental classes `TableDataSource`, `TablePagingDataSource`, `TableSortingDataSource` and `TablePagingSortingDataSource`. Use new `TerraTableDataSource` class instead.
 
 ### Bug Fixes
 
