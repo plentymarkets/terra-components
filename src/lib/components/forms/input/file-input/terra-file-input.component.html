@@ -63,7 +63,7 @@
         </terra-button>
     </div>
 
-    <ng-template let-data #preview>
+    <ng-template let-data #imagePreviewDialog>
         <h2 mat-dialog-title>{{ data.filename }}</h2>
         <mat-dialog-content>
             <img [src]="data.filepath" />

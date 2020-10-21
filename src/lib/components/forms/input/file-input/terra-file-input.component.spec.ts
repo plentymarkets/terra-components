@@ -178,7 +178,7 @@ describe('TerraFileInputComponent', () => {
             filepath: component.value,
             filename: component.getFilename(component.value)
         };
-        expect(dialog.open).toHaveBeenCalledWith(component._previewDialog, { data: data });
+        expect(dialog.open).toHaveBeenCalledWith(component._imagePreviewDialog, { data: data });
     });
 
     it('should call `isWebImage` after value changed', () => {

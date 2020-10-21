@@ -52,8 +52,8 @@ export class TerraFileInputComponent extends TerraInputComponent implements OnIn
     @ViewChild('overlay', { static: false })
     public _overlay: TerraOverlayComponent;
 
-    @ViewChild('preview', { static: true })
-    public _previewDialog: TemplateRef<{ filename: string; filepath: string }>;
+    @ViewChild('imagePreviewDialog', { static: true })
+    public _imagePreviewDialog: TemplateRef<{ filename: string; filepath: string }>;
 
     /** @deprecated */
     public primaryOverlayButton: TerraOverlayButtonInterface;
@@ -92,7 +92,7 @@ export class TerraFileInputComponent extends TerraInputComponent implements OnIn
 
     public onPreviewClicked(): void {
         if (this.isWebImage(this.value)) {
-            this.dialog.open(this._previewDialog, {
+            this.dialog.open(this._imagePreviewDialog, {
                 data: {
                     filepath: this.value,
                     filename: this.getFilename(this.value)
