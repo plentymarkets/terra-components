@@ -68,6 +68,7 @@ import { TerraBaseEditorComponent } from './editors/base-editor/terra-base-edito
 import { TerraFormContainerWrapperComponent } from './forms/form/form-container/container-wrapper/terra-form-container-wrapper.component';
 import { TableSettingsComponent } from './table/table-settings/table-settings.component';
 import { TableSettingsDialogComponent } from './table/table-settings/dialog/table-settings-dialog.component';
+import { DeleteFileConfirmationDialogComponent } from './file-browser/dialog/delete-file-confirmation-dialog.component';
 
 export const exportedComponents: Array<Type<any>> = [
     TerraAlertPanelComponent,
@@ -135,7 +136,8 @@ export const exportedComponents: Array<Type<any>> = [
     FilterComponent,
     TerraInfoComponent,
     TableSettingsComponent,
-    TableSettingsDialogComponent
+    TableSettingsDialogComponent,
+    DeleteFileConfirmationDialogComponent
 ];
 
 export const components: Array<Type<any>> = [
