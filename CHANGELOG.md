@@ -1,3 +1,9 @@
+# 5.11.0 (Unreleased)
+
+### Features
+
+-   **terra-file-input** properties `primaryOverlayButton` and `secondaryOverlayButton` are deprecated now.
+
 # 5.10.0 (20.10.2020)
 
 ### Features
