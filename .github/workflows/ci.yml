@@ -1,11 +1,11 @@
 # This is displayed in the pr check area
-name: Comparison to 6.X.X
+name: Comparison to publishable branch
 
 # Controls when the action will run. Triggers the workflow on pull request
-# events but only for the 6.X.X branch
+# events but only for the 5.X.X or 6.X.X branch
 on:
     pull_request:
-        branches: [6.X.X]
+        branches: [5.X.X, 6.X.X]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
