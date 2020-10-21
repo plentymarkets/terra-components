@@ -2,7 +2,7 @@
 name: Comparison to 6.X.X
 
 # Controls when the action will run. Triggers the workflow on pull request
-# events but only for the 5.X.X branch
+# events but only for the 6.X.X branch
 on:
     pull_request:
         branches: [6.X.X]
