@@ -65,8 +65,8 @@
 
     <ng-template let-data #preview>
         <h2 mat-dialog-title>{{ data.filename }}</h2>
-        <mat-dialog-content class="preview-overlay">
-            <span [style.background-image]="'url(' + data.filepath + ')'"></span>
+        <mat-dialog-content>
+            <img [src]="data.filepath" />
         </mat-dialog-content>
     </ng-template>
 </div>
