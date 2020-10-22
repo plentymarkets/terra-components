@@ -32,8 +32,8 @@ import { TerraInfoComponent } from '../../../info/terra-info.component';
 import { TooltipDirective } from '../../../tooltip/tooltip.directive';
 import { Router } from '@angular/router';
 import { MockRouter } from '../../../../testing/mock-router';
-import Spy = jasmine.Spy;
 import { MatDialogModule } from '@angular/material/dialog';
+import Spy = jasmine.Spy;
 
 describe('TerraFileInputComponent', () => {
     let component: TerraFileInputComponent;
