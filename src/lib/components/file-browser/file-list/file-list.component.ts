@@ -47,7 +47,7 @@ const MAX_UPLOAD_COUNT: number = 10;
 export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges, OnDestroy {
     // @TODO rename to storageService:TerraBaseStorageService
     @ViewChild('deleteConfirmationDialog', { static: true })
-    public _deleteConfirmationDialog: TemplateRef<{}>;
+    public _deleteConfirmationDialog: TemplateRef<number>;
 
     @Input()
     public inputStorageServices: Array<TerraBaseStorageService> = null;
@@ -367,7 +367,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
 
         const deleteCount: number = this._deleteCount;
 
-        const deleteConfirmationDialog: MatDialogRef<{}> = this._dialog.open(this._deleteConfirmationDialog, {
+        const deleteConfirmationDialog: MatDialogRef<number, boolean> = this._dialog.open(this._deleteConfirmationDialog, {
             data: deleteCount
         });
 
@@ -601,7 +601,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         this.activeStorageService.uploadFiles(fileList, uploadPrefix);
     }
 
-    private deleteObjects(): void {
+    private _deleteObjects(): void {
         let keyList: Array<string> = [];
         let extractKeys: Function = (objects: Array<TerraStorageObject>): void => {
             objects.forEach((object: TerraStorageObject) => {
