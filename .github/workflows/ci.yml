@@ -1,5 +1,5 @@
 # This is displayed in the pr check area
-name: Comparison to publishable branch
+name: Comparison to 6.X.X
 
 # Controls when the action will run. Triggers the workflow on pull request
 # events but only for the 5.X.X or 6.X.X branch
