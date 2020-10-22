@@ -210,6 +210,20 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         this._newDirectoryName = this.activeStorageService.prepareKey(name, true, true);
     }
 
+    public get _deleteCount(): number {
+        if (isNullOrUndefined(this._objectsToDelete)) {
+            return 0;
+        }
+
+        return this._objectsToDelete
+            .map((object: TerraStorageObject) => {
+                return object.fileCount;
+            })
+            .reduce((sum: number, current: number) => {
+                return sum + current;
+            }, 0);
+    }
+
     @DefaultLocale()
     private _defaultLocale: string;
 
@@ -348,10 +362,12 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
     public openDeleteDialog(): void {
         this._objectsToDelete = this._selectedStorageObjects;
 
+        const deleteCount: number = this._deleteCount;
+
         const deleteConfirmationDialog: MatDialogRef<DeleteFileConfirmationDialogComponent> = this._dialog.open(
             DeleteFileConfirmationDialogComponent,
             {
-                data: this._objectsToDelete,
+                data: deleteCount,
                 autoFocus: false
             }
         );

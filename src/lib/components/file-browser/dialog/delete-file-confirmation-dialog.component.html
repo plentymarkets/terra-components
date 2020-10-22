@@ -1,10 +1,10 @@
 <h2 mat-dialog-title>{{ _translationPrefix + '.confirmDelete' | translate: _lang }}</h2>
 <mat-dialog-content>
-    {{ _translationPrefix + '.confirmDeleteMany' | translate: _lang:{ count: _deleteCount } }}
+    {{ _translationPrefix + '.confirmDeleteMany' | translate: _lang:{ count: deleteCount } }}
 </mat-dialog-content>
 <mat-dialog-actions>
     <div class="float-lg-right">
-        <button mat-flat-button color="primary" [mat-dialog-close]="false">
+        <button mat-flat-button [mat-dialog-close]="false">
             {{ _translationPrefix + '.cancel' | translate: _lang }}
         </button>
         <button mat-flat-button color="warn" [mat-dialog-close]="true">
