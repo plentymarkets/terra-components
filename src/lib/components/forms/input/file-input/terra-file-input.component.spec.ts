@@ -33,6 +33,7 @@ import { TooltipDirective } from '../../../tooltip/tooltip.directive';
 import { Router } from '@angular/router';
 import { MockRouter } from '../../../../testing/mock-router';
 import Spy = jasmine.Spy;
+import { MatDialog } from '@angular/material/dialog';
 
 describe('TerraFileInputComponent', () => {
     let component: TerraFileInputComponent;
@@ -79,6 +80,10 @@ describe('TerraFileInputComponent', () => {
                 {
                     provide: TerraFrontendStorageService,
                     useValue: terraFrontendStorageServiceStub
+                },
+                {
+                    provide: MatDialog,
+                    useValue: {}
                 },
                 TerraLoadingSpinnerService,
                 TerraFileBrowserService
