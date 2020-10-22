@@ -117,10 +117,10 @@
         <span>{{ _translationPrefix + '.uploadProgress' | translate: _lang:_progress }}</span>
     </div>
 
-    <ng-template let-data #deleteConfirmationDialog>
+    <ng-template let-deleteCount #deleteConfirmationDialog>
         <h2 mat-dialog-title>{{ _translationPrefix + '.confirmDelete' | translate: _lang }}</h2>
         <mat-dialog-content>
-            {{ _translationPrefix + '.confirmDeleteMany' | translate: _lang:{ count: _deleteCount } }}
+            {{ _translationPrefix + '.confirmDeleteMany' | translate: _lang:{ count: deleteCount } }}
         </mat-dialog-content>
         <mat-dialog-actions>
             <button mat-flat-button [mat-dialog-close]="false">

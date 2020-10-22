@@ -82,10 +82,6 @@ describe('TerraFileInputComponent', () => {
                     provide: TerraFrontendStorageService,
                     useValue: terraFrontendStorageServiceStub
                 },
-                {
-                    provide: MatDialog,
-                    useValue: {}
-                },
                 TerraLoadingSpinnerService,
                 TerraFileBrowserService
             ]
