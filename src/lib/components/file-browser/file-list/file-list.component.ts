@@ -367,13 +367,16 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
 
         const deleteCount: number = this._deleteCount;
 
-        const deleteConfirmationDialog: MatDialogRef<number, boolean> = this._dialog.open(this._deleteConfirmationDialog, {
-            data: deleteCount
-        });
+        const deleteConfirmationDialog: MatDialogRef<number, boolean> = this._dialog.open(
+            this._deleteConfirmationDialog,
+            {
+                data: deleteCount
+            }
+        );
 
         deleteConfirmationDialog.afterClosed().subscribe((result: boolean) => {
             if (result) {
-                this.deleteObjects();
+                this._deleteObjects();
             } else {
                 this._objectsToDelete = [];
             }
