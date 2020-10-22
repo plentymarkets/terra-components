@@ -12,6 +12,7 @@ import {
     OnInit,
     Output,
     SimpleChanges,
+    TemplateRef,
     ViewChild
 } from '@angular/core';
 import { Subscription } from 'rxjs';
@@ -34,7 +35,6 @@ import { TerraButtonInterface } from '../../buttons/button/data/terra-button.int
 import { TerraSimpleTableHeaderCellInterface } from '../../tables/simple/cell/terra-simple-table-header-cell.interface';
 import { AlertService } from '../../alert/alert.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { DeleteFileConfirmationDialogComponent } from '../dialog/delete-file-confirmation-dialog.component';
 
 const MAX_UPLOAD_COUNT: number = 10;
 
@@ -46,6 +46,9 @@ const MAX_UPLOAD_COUNT: number = 10;
 })
 export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges, OnDestroy {
     // @TODO rename to storageService:TerraBaseStorageService
+    @ViewChild('deleteConfirmationDialog', { static: true })
+    public _deleteConfirmationDialog: TemplateRef<{}>;
+
     @Input()
     public inputStorageServices: Array<TerraBaseStorageService> = null;
 
@@ -362,15 +365,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
     public openDeleteDialog(): void {
         this._objectsToDelete = this._selectedStorageObjects;
 
-        const deleteCount: number = this._deleteCount;
-
-        const deleteConfirmationDialog: MatDialogRef<DeleteFileConfirmationDialogComponent> = this._dialog.open(
-            DeleteFileConfirmationDialogComponent,
-            {
-                data: deleteCount,
-                autoFocus: false
-            }
-        );
+        const deleteConfirmationDialog: MatDialogRef<{}> = this._dialog.open(this._deleteConfirmationDialog);
 
         deleteConfirmationDialog.afterClosed().subscribe((result: boolean) => {
             if (result) {
