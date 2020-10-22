@@ -82,8 +82,6 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
 
     private _activeStorageService: TerraBaseStorageService;
 
-    private _dialog: MatDialog;
-
     public get activeStorageService(): TerraBaseStorageService {
         if (!isNullOrUndefined(this._activeStorageService)) {
             return this._activeStorageService;
@@ -221,7 +219,8 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         private _translationService: TranslationService,
         private _localeService: LocaleService,
         private _alertService: AlertService,
-        @Host() public _parentFileBrowser: TerraFileBrowserComponent
+        @Host() public _parentFileBrowser: TerraFileBrowserComponent,
+        private _dialog: MatDialog
     ) {}
 
     public ngOnInit(): void {
