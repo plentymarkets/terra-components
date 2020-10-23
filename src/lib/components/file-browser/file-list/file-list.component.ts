@@ -363,7 +363,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
     }
 
     public _openDeleteDialog(): void {
-        this._objectsToDelete = this._selectedStorageObjects;
+        this._objectsToDelete.concat(this._selectedStorageObjects);
 
         const deleteCount: number = this._deleteCount;
 
