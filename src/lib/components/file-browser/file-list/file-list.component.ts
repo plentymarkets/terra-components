@@ -362,9 +362,8 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         this._imagePreviewTimeout = setTimeout(debounceFn.bind(this), 500);
     }
 
-    public _delete(): void {
-        this._setObjectsToDelete();
-
+    public _deleteSelected(): void {
+        this._objectsToDelete = this._selectedStorageObjects;
         this._openDeleteDialog();
     }
 
@@ -385,14 +384,6 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
                 this._objectsToDelete = [];
             }
         });
-    }
-
-    private _setObjectsToDelete(storageObject?: TerraStorageObject): void {
-        if (storageObject) {
-            this._objectsToDelete = [storageObject];
-        } else {
-            this._objectsToDelete = this._selectedStorageObjects;
-        }
     }
 
     private _renderFileList(): void {
@@ -509,7 +500,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
                 {
                     icon: 'icon-delete',
                     clickFunction: (event: Event): void => {
-                        this._setObjectsToDelete(storageObject);
+                        this._objectsToDelete = [storageObject];
                         this._openDeleteDialog();
                         event.stopPropagation();
                     },
