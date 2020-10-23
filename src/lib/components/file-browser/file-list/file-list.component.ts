@@ -362,7 +362,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         this._imagePreviewTimeout = setTimeout(debounceFn.bind(this), 500);
     }
 
-    public openDeleteDialog(): void {
+    public _openDeleteDialog(): void {
         this._objectsToDelete = this._selectedStorageObjects;
 
         const deleteCount: number = this._deleteCount;
