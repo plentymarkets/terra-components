@@ -75,8 +75,6 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
 
     public _showNewDirectoryPrompt: boolean = false;
 
-    public _objectsToDelete: Array<TerraStorageObject> = [];
-
     public _selectedStorageObjects: Array<TerraStorageObject> = [];
 
     public _fileTableHeaderList: Array<TerraSimpleTableHeaderCellInterface> = [];
@@ -211,20 +209,6 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
 
     public set newDirectoryName(name: string) {
         this._newDirectoryName = this.activeStorageService.prepareKey(name, true, true);
-    }
-
-    public get _deleteCount(): number {
-        if (isNullOrUndefined(this._objectsToDelete)) {
-            return 0;
-        }
-
-        return this._objectsToDelete
-            .map((object: TerraStorageObject) => {
-                return object.fileCount;
-            })
-            .reduce((sum: number, current: number) => {
-                return sum + current;
-            }, 0);
     }
 
     @DefaultLocale()
@@ -363,12 +347,11 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
     }
 
     public _deleteSelected(): void {
-        this._objectsToDelete = this._selectedStorageObjects;
-        this._openDeleteDialog();
+        this._openDeleteDialog(this._selectedStorageObjects);
     }
 
-    private _openDeleteDialog(): void {
-        const deleteCount: number = this._deleteCount;
+    private _openDeleteDialog(objectsToDelete: Array<TerraStorageObject>): void {
+        const deleteCount: number = this._getDeleteCount(objectsToDelete);
 
         const deleteConfirmationDialog: MatDialogRef<number, boolean> = this._dialog.open(
             this._deleteConfirmationDialog,
@@ -379,9 +362,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
 
         deleteConfirmationDialog.afterClosed().subscribe((result: boolean) => {
             if (result) {
-                this._deleteObjects();
-            } else {
-                this._objectsToDelete = [];
+                this._deleteObjects(objectsToDelete);
             }
         });
     }
@@ -500,8 +481,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
                 {
                     icon: 'icon-delete',
                     clickFunction: (event: Event): void => {
-                        this._objectsToDelete = [storageObject];
-                        this._openDeleteDialog();
+                        this._openDeleteDialog([storageObject]);
                         event.stopPropagation();
                     },
                     tooltipText: storageObject.isFile
@@ -608,22 +588,34 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         this.activeStorageService.uploadFiles(fileList, uploadPrefix);
     }
 
-    private _deleteObjects(): void {
+    private _deleteObjects(objectsToDelete: Array<TerraStorageObject>): void {
         let keyList: Array<string> = [];
         let extractKeys: Function = (objects: Array<TerraStorageObject>): void => {
             objects.forEach((object: TerraStorageObject) => {
                 keyList.push(object.key);
             });
         };
-        extractKeys(this._objectsToDelete);
+        extractKeys(objectsToDelete);
         this.activeStorageService.deleteFiles(keyList).subscribe(() => {
-            this._objectsToDelete = [];
-
             if (!isNullOrUndefined(this.imagePreviewObject) && keyList.indexOf(this.imagePreviewObject.key) >= 0) {
                 this.imagePreviewObject = null;
                 this.hideImagePreview.emit();
             }
             this.selectNode.emit(this.currentStorageRoot);
         });
+    }
+
+    private _getDeleteCount(objectsToDelete: Array<TerraStorageObject>): number {
+        if (isNullOrUndefined(objectsToDelete)) {
+            return 0;
+        }
+
+        return objectsToDelete
+            .map((object: TerraStorageObject) => {
+                return object.fileCount;
+            })
+            .reduce((sum: number, current: number) => {
+                return sum + current;
+            }, 0);
     }
 }
