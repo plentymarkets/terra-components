@@ -46,9 +46,6 @@ const MAX_UPLOAD_COUNT: number = 10;
 })
 export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges, OnDestroy {
     // @TODO rename to storageService:TerraBaseStorageService
-    @ViewChild('deleteConfirmationDialog', { static: true })
-    public _deleteConfirmationDialog: TemplateRef<number>;
-
     @Input()
     public inputStorageServices: Array<TerraBaseStorageService> = null;
 
@@ -65,6 +62,9 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
 
     @Language()
     public _lang: string;
+
+    @ViewChild('deleteConfirmationDialog', { static: true })
+    public _deleteConfirmationDialog: TemplateRef<number>;
 
     public _translationPrefix: string = 'terraFileBrowser';
 
