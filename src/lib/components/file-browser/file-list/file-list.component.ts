@@ -498,6 +498,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
                     icon: 'icon-delete',
                     clickFunction: (event: Event): void => {
                         this._objectsToDelete = [storageObject];
+                        this._openDeleteDialog();
                         event.stopPropagation();
                     },
                     tooltipText: storageObject.isFile
