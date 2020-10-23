@@ -23,7 +23,7 @@
             [inputIsDisabled]="_selectedStorageObjects.length <= 0"
             [inputTooltipText]="_translationPrefix + '.deleteSelectedFiles' | translate: _lang"
             inputTooltipPlacement="right"
-            (outputClicked)="_openDeleteDialog()"
+            (outputClicked)="_delete()"
         >
         </terra-button>
     </div>

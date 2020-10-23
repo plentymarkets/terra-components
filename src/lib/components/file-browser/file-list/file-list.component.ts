@@ -362,9 +362,13 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         this._imagePreviewTimeout = setTimeout(debounceFn.bind(this), 500);
     }
 
-    public _openDeleteDialog(): void {
-        this._objectsToDelete.concat(this._selectedStorageObjects);
+    public _delete(): void {
+        this._setObjectsToDelete();
 
+        this._openDeleteDialog();
+    }
+
+    private _openDeleteDialog(): void {
         const deleteCount: number = this._deleteCount;
 
         const deleteConfirmationDialog: MatDialogRef<number, boolean> = this._dialog.open(
@@ -381,6 +385,14 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
                 this._objectsToDelete = [];
             }
         });
+    }
+
+    private _setObjectsToDelete(storageObject?: TerraStorageObject): void {
+        if (storageObject) {
+            this._objectsToDelete = [storageObject];
+        } else {
+            this._objectsToDelete = this._selectedStorageObjects;
+        }
     }
 
     private _renderFileList(): void {
@@ -497,7 +509,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
                 {
                     icon: 'icon-delete',
                     clickFunction: (event: Event): void => {
-                        this._objectsToDelete = [storageObject];
+                        this._setObjectsToDelete(storageObject);
                         this._openDeleteDialog();
                         event.stopPropagation();
                     },
