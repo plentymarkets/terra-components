@@ -1,3 +1,9 @@
+# 5.10.1 (Unreleased)
+
+### Fix
+
+-   **terra-file-browser** replaced delete confirmation dialog with material dialog
+
 # 5.10.0 (20.10.2020)
 
 ### Features

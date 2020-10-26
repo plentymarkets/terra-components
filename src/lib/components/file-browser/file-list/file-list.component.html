@@ -23,7 +23,7 @@
             [inputIsDisabled]="_selectedStorageObjects.length <= 0"
             [inputTooltipText]="_translationPrefix + '.deleteSelectedFiles' | translate: _lang"
             inputTooltipPlacement="right"
-            (outputClicked)="_objectsToDelete = _selectedStorageObjects"
+            (outputClicked)="_deleteSelected()"
         >
         </terra-button>
     </div>
@@ -62,32 +62,6 @@
                 [inputIsDisabled]="!newDirectoryName"
                 (outputClicked)="_createDirectory()"
             ></terra-button>
-        </div>
-    </div>
-
-    <div [hidden]="_objectsToDelete.length === 0" class="prompt" [class.in]="_objectsToDelete.length > 0">
-        <span class="prompt-title">
-            {{ _translationPrefix + '.confirmDelete' | translate: _lang }}
-        </span>
-        <span class="prompt-title">
-            {{ _translationPrefix + '.confirmDeleteMany' | translate: _lang:{ count: _deleteCount } }}
-        </span>
-        <div class="float-lg-right">
-            <terra-button
-                [inputIcon]="'icon-close'"
-                [inputCaption]="_translationPrefix + '.cancel' | translate: _lang"
-                [inputIsSmall]="true"
-                (outputClicked)="_objectsToDelete = []"
-            >
-            </terra-button>
-
-            <terra-button
-                [inputIcon]="'icon-delete'"
-                [inputCaption]="_translationPrefix + '.delete' | translate: _lang"
-                [inputIsSmall]="true"
-                (outputClicked)="_deleteObjects()"
-            >
-            </terra-button>
         </div>
     </div>
 
@@ -142,4 +116,19 @@
         </div>
         <span>{{ _translationPrefix + '.uploadProgress' | translate: _lang:_progress }}</span>
     </div>
+
+    <ng-template let-deleteCount #deleteConfirmationDialog>
+        <h2 mat-dialog-title>{{ _translationPrefix + '.confirmDelete' | translate: _lang }}</h2>
+        <mat-dialog-content>
+            {{ _translationPrefix + '.confirmDeleteMany' | translate: _lang:{ count: deleteCount } }}
+        </mat-dialog-content>
+        <mat-dialog-actions>
+            <button mat-flat-button [mat-dialog-close]="false">
+                {{ _translationPrefix + '.cancel' | translate: _lang }}
+            </button>
+            <button mat-flat-button color="warn" [mat-dialog-close]="true">
+                {{ _translationPrefix + '.delete' | translate: _lang }}
+            </button>
+        </mat-dialog-actions>
+    </ng-template>
 </div>
