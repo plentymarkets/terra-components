@@ -14,7 +14,6 @@ import { TerraTextAreaInputComponentExample } from './forms/input/text-area-inpu
 import { TerraTextInputComponentExample } from './forms/input/text-input/example/terra-text-input.component.example';
 import { TerraCheckboxComponentExample } from './forms/checkbox/example/terra-checkbox.component.example';
 import { TerraMultiCheckBoxComponentExample } from './forms/multi-check-box/example/terra-multi-check-box.component.example';
-import { TerraRadioButtonComponentExample } from './forms/radio-button/example/terra-radio-button.component.example';
 import { TerraSelectBoxComponentExample } from './forms/select-box/example/terra-select-box.component.example';
 import { TerraSliderComponentExample } from './forms/slider/example/terra-slider.component.example';
 import { TerraSuggestionBoxComponentExample } from './forms/suggestion-box/example/terra-suggestion-box.component.example';
@@ -72,7 +71,6 @@ export const examples: Array<Type<any>> = [
     TerraTextInputComponentExample,
     TerraCheckboxComponentExample,
     TerraMultiCheckBoxComponentExample,
-    TerraRadioButtonComponentExample,
     TerraSelectBoxComponentExample,
     TerraSliderComponentExample,
     TerraSuggestionBoxComponentExample,
