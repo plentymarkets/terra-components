@@ -2,6 +2,8 @@
 
 ### Breaking Changes
 
+-   **terra-syntax-editor** has been removed. Use [ck-editor](https://ckeditor.com/ckeditor-4/) instead.
+-   **dependencies** removed peer dependency `ng2-ace-editor` since we no longer depend on it.
 -   **terra-form** removed deprecated `TerraFormTypeMap`.
 
 # 5.10.1 (Unreleased)
