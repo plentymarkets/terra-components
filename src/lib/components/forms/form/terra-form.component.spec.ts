@@ -2,7 +2,6 @@ import { TerraFormComponent } from './terra-form.component';
 import { TerraControlTypeEnum } from '../dynamic-form/enum/terra-control-type.enum';
 import { TerraFormFieldInterface } from './model/terra-form-field.interface';
 import { TerraFormFieldBase } from '../dynamic-form/data/terra-form-field-base';
-import { TerraFormTypeMap } from './model/terra-form-type-map.enum';
 import { FormTypeMap } from './model/form-type-map';
 import { DebugElement, NO_ERRORS_SCHEMA, SimpleChange } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
@@ -35,14 +34,6 @@ describe(`TerraFormComponent:`, () => {
         expect(component.inputIsDisabled).toBe(false);
         expect(component.inputFormFields).toEqual({});
         expect(component.inputControlTypeMap).toBeUndefined();
-    });
-
-    it('should use a TerraFormTypeMap instance as fallback internally if no custom map is given via #inputControlTypeMap', () => {
-        spyOn(console, 'warn'); // disable console outputs to prevent deprecation warnings to be printed in the terminal
-        component.ngOnChanges({});
-        component.ngOnInit();
-        expect(component._controlTypeMap).toEqual(new TerraFormTypeMap());
-        expect(console.warn).toHaveBeenCalledTimes(2);
     });
 
     it('should use a custom map if given via #inputControlTypeMap', () => {

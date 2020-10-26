@@ -3,7 +3,6 @@ import { ControlValueAccessor, FormGroup, NG_VALUE_ACCESSOR } from '@angular/for
 import { isNullOrUndefined } from 'util';
 import { TerraFormScope } from './model/terra-form-scope.data';
 import { TerraFormFieldInterface } from './model/terra-form-field.interface';
-import { TerraFormTypeMap } from './model/terra-form-type-map.enum';
 import { TerraFormFieldHelper } from './helper/terra-form-field.helper';
 import { Data } from '@angular/router';
 import { TerraFormFieldBase } from '../dynamic-form/data/terra-form-field-base';
@@ -70,7 +69,7 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges, OnIn
      * @default undefined - an instance of the TerraFormTypeMap will serve as fallback to support a default set of control types.
      */
     @Input()
-    public inputControlTypeMap: FormTypeMapInterface | TerraFormTypeMap | FormTypeMap;
+    public inputControlTypeMap: FormTypeMapInterface | FormTypeMap;
 
     /**
      * @description If true, disables the whole form - and all its containing controls/form fields.
@@ -84,7 +83,7 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges, OnIn
      */
     public readonly scope: TerraFormScope = new TerraFormScope();
 
-    public _controlTypeMap: FormTypeMapInterface | TerraFormTypeMap | FormTypeMap = {};
+    public _controlTypeMap: FormTypeMapInterface | FormTypeMap = {};
 
     public _formFields: { [key: string]: TerraFormFieldInterface };
 
@@ -107,9 +106,7 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges, OnIn
      * @description Initializes the controlTypeMap with its default value if `inputControlTypeMap` is not given.
      */
     public ngOnInit(): void {
-        if (isNullOrUndefined(this.inputControlTypeMap)) {
-            this._controlTypeMap = new TerraFormTypeMap();
-        }
+        //
     }
 
     /**

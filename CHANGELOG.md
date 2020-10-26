@@ -1,3 +1,9 @@
+# 6.0.0 (Unreleased)
+
+### Breaking Changes
+
+-   **terra-form** removed deprecated `TerraFormTypeMap`.
+
 # 5.10.1 (Unreleased)
 
 ### Fix
