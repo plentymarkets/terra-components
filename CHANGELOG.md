@@ -5,6 +5,12 @@
 -   **terra-syntax-editor** has been removed. Use [ck-editor](https://ckeditor.com/ckeditor-4/) instead.
 -   **dependencies** removed peer dependency `ng2-ace-editor` since we no longer depend on it.
 
+# 5.10.1 (Unreleased)
+
+### Fix
+
+-   **terra-file-browser** replaced delete confirmation dialog with material dialog
+
 # 5.10.0 (20.10.2020)
 
 ### Features
