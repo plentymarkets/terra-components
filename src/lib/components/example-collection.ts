@@ -22,7 +22,6 @@ import { TerraTagComponentExample } from './layouts/tag/example/terra-tag.compon
 import { TerraFileInputComponentExample } from './forms/input/file-input/example/terra-file-input.component.example';
 import { TerraCheckboxTreeComponentExample } from './tree/checkbox-tree/example/terra-checkbox-tree.component.example';
 import { TerraToggleComponentExample } from './buttons/toggle/example/terra-toggle.component.example';
-import { TerraSyntaxEditorComponentExample } from './editors/syntax-editor/example/terra-syntax-editor.component.example';
 import { TerraSimpleTableComponentExample } from './tables/simple/example/terra-simple-table.component.example';
 import { TerraPagerComponentExample } from './pager/example/terra-pager.component.example';
 import { TerraTaglistComponentExample } from './layouts/taglist/example/terra-taglist.component.example';
@@ -79,7 +78,6 @@ export const examples: Array<Type<any>> = [
     TerraFileInputComponentExample,
     TerraCheckboxTreeComponentExample,
     TerraToggleComponentExample,
-    TerraSyntaxEditorComponentExample,
     TerraSimpleTableComponentExample,
     TerraPagerComponentExample,
     TerraTaglistComponentExample,
