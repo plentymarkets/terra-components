@@ -32,6 +32,7 @@ import { TerraInfoComponent } from '../../../info/terra-info.component';
 import { TooltipDirective } from '../../../tooltip/tooltip.directive';
 import { Router } from '@angular/router';
 import { MockRouter } from '../../../../testing/mock-router';
+import { MatDialogModule } from '@angular/material/dialog';
 import Spy = jasmine.Spy;
 
 describe('TerraFileInputComponent', () => {
@@ -69,7 +70,8 @@ describe('TerraFileInputComponent', () => {
                 FormsModule,
                 ReactiveFormsModule,
                 HttpClientModule,
-                LocalizationModule.forRoot(l10nConfig)
+                LocalizationModule.forRoot(l10nConfig),
+                MatDialogModule
             ],
             providers: [
                 {
