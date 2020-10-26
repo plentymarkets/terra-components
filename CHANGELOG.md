@@ -1,3 +1,10 @@
+# 6.X.X (Unreleased)
+
+### Breaking Changes
+
+-   **terra-tag** removed deprecated `onCloseTag` method.
+-   **terra-taglist** removed deprecated `onCloseTag` method.
+
 # 5.10.1 (Unreleased)
 
 ### Fix
