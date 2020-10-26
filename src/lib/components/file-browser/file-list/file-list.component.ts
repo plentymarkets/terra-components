@@ -589,13 +589,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
     }
 
     private _deleteObjects(objectsToDelete: Array<TerraStorageObject>): void {
-        let keyList: Array<string> = [];
-        let extractKeys: Function = (objects: Array<TerraStorageObject>): void => {
-            objects.forEach((object: TerraStorageObject) => {
-                keyList.push(object.key);
-            });
-        };
-        extractKeys(objectsToDelete);
+        const keyList: Array<string> = objectsToDelete.map((object: TerraStorageObject) => object.key);
         this.activeStorageService.deleteFiles(keyList).subscribe(() => {
             if (!isNullOrUndefined(this.imagePreviewObject) && keyList.indexOf(this.imagePreviewObject.key) >= 0) {
                 this.imagePreviewObject = null;
