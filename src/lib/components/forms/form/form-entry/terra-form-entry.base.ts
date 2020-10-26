@@ -1,20 +1,11 @@
 import { isNullOrUndefined } from 'util';
-import {
-    ComponentFactory,
-    ComponentFactoryResolver,
-    ComponentRef,
-    Input,
-    OnChanges,
-    OnDestroy,
-    SimpleChanges,
-    Type,
-    ViewChild
-} from '@angular/core';
+import { ComponentFactory, ComponentFactoryResolver, ComponentRef, Input, OnChanges, OnDestroy, SimpleChanges, Type, ViewChild, Directive } from '@angular/core';
 import { TerraFormTypeInterface } from '../model/terra-form-type.interface';
 import { FormEntryContainerDirective } from './form-entry-container.directive';
 import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
 import { TerraTextInputComponent } from '../../input/text-input/terra-text-input.component';
 
+@Directive()
 export class TerraFormEntryBase implements OnChanges, OnDestroy {
     /**
      * @description Specification of the formField that should be displayed.

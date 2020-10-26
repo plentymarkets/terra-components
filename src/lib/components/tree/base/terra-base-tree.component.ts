@@ -1,4 +1,4 @@
-import { Input, OnInit } from '@angular/core';
+import { Input, OnInit, Directive } from '@angular/core';
 import { TerraLeafInterface } from '../leaf/terra-leaf.interface';
 import { isNullOrUndefined } from 'util';
 
@@ -6,6 +6,7 @@ import { isNullOrUndefined } from 'util';
  * @author mkunze
  * @Deprecated since v5. Use mat-tree instead.
  */
+@Directive()
 export class TerraBaseTreeComponent implements OnInit {
     /**
      * current level leaf list

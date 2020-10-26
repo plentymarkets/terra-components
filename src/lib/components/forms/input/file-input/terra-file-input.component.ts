@@ -48,7 +48,7 @@ export class TerraFileInputComponent extends TerraInputComponent implements OnIn
     /**
      * @Deprecated ViewChild overlay does not exist in the template
      */
-    @ViewChild('overlay', { static: false })
+    @ViewChild('overlay')
     public _overlay: TerraOverlayComponent;
 
     @ViewChild('previewOverlay', { static: true })
