@@ -5,7 +5,7 @@
 -   **terra-syntax-editor** has been removed. Use [ck-editor](https://ckeditor.com/ckeditor-4/) instead.
 -   **dependencies** removed peer dependency `ng2-ace-editor` since we no longer depend on it.
 -   **terra-base-toolbar**'s input `inputIsBreadcrumbs` has been removed. There's no replacement.
--   **file-input** removed file-browser overlay.
+-   **file-input** removed attribute `_overlay` and method `showFileBrowser()`.
 
 # 5.10.1 (Unreleased)
 
