@@ -2,6 +2,7 @@
 
 ### Breaking Changes
 
+-   **interactables** removed `terraResizable` and `terraDropzone` directives and all related interfaces.
 -   **terra-radio-button** has been removed. Use `tc-radio-group` and `tc-radio-input` instead.
 -   **dynamic-component-loader** was removed. Use angular's [NgComponentOutlet](https://angular.io/api/common/NgComponentOutlet) instead.
 -   **terra-syntax-editor** has been removed. Use [ck-editor](https://ckeditor.com/ckeditor-4/) instead.
