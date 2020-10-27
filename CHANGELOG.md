@@ -4,7 +4,7 @@
 
 -   **terra-syntax-editor** has been removed. Use [ck-editor](https://ckeditor.com/ckeditor-4/) instead.
 -   **dependencies** removed peer dependency `ng2-ace-editor` since we no longer depend on it.
--   **terra-tag** removed deprecated `onCloseTag` method.
+-   **terra-tag** removed deprecated `onCloseTag` output.
 -   **terra-taglist** removed deprecated `onCloseTag` method.
 -   **terra-base-toolbar**'s input `inputIsBreadcrumbs` has been removed. There's no replacement.
 
