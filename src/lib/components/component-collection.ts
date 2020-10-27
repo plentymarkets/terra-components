@@ -6,7 +6,6 @@ import { TerraNumberInputComponent } from './forms/input/number-input/terra-numb
 import { TerraButtonComponent } from './buttons/button/terra-button.component';
 import { TerraCheckboxTreeComponent } from './tree/checkbox-tree/terra-checkbox-tree.component';
 import { TerraCheckboxComponent } from './forms/checkbox/terra-checkbox.component';
-import { TerraRadioButtonComponent } from './forms/radio-button/terra-radio-button.component';
 import { TerraSelectBoxComponent } from './forms/select-box/terra-select-box.component';
 import { TerraBaseToolbarComponent } from './toolbar/base-toolbar/terra-base-toolbar.component';
 import { TerraIndicatorComponent } from './indicator/terra-indicator.component';
@@ -76,7 +75,6 @@ export const exportedComponents: Array<Type<any>> = [
     TerraCheckboxTreeComponent,
     TerraCheckboxComponent,
     CheckboxGroupComponent,
-    TerraRadioButtonComponent,
     TerraSelectBoxComponent,
     TerraBaseToolbarComponent,
     TerraPagerComponent,
