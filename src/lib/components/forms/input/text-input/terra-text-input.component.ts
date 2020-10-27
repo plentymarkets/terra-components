@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { TerraInputComponent } from '../terra-input.component';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import * as IBAN from 'iban';
-import { TranslationService } from 'angular-l10n';
+import { L10nTranslationService } from 'angular-l10n';
 import { TerraRegex } from '../../../../helpers/regex/terra-regex';
 
 let nextId: number = 0;
@@ -55,7 +55,7 @@ export class TerraTextInputComponent extends TerraInputComponent {
      */
     public _id: string;
 
-    constructor(private _translation: TranslationService) {
+    constructor(private _translation: L10nTranslationService) {
         super(TerraRegex.MIXED);
 
         // generate the id of the input instance

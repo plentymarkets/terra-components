@@ -19,7 +19,7 @@ import { Subscription } from 'rxjs';
 import { TerraBaseStorageService } from '../terra-base-storage.interface';
 import { TerraFileBrowserComponent } from '../terra-file-browser.component';
 import { TerraFileBrowserService } from '../terra-file-browser.service';
-import { DefaultLocale, Language, LocaleService, TranslationService } from 'angular-l10n';
+import { DefaultLocale, Language, LocaleService, L10nTranslationService } from 'angular-l10n';
 import { TerraUploadProgress } from '../model/terra-upload-progress';
 import { isNullOrUndefined, isNumber } from 'util';
 import { TerraBasePrivateStorageService } from '../terra-base-private-storage.interface';
@@ -217,7 +217,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
     constructor(
         private _changeDetector: ChangeDetectorRef,
         private _fileBrowserService: TerraFileBrowserService,
-        private _translationService: TranslationService,
+        private _translationService: L10nTranslationService,
         private _localeService: LocaleService,
         private _alertService: AlertService,
         @Host() public _parentFileBrowser: TerraFileBrowserComponent,

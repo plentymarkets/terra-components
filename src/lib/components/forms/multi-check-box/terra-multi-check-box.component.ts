@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { TranslationService } from 'angular-l10n';
+import { L10nTranslationService } from 'angular-l10n';
 import { isNullOrUndefined } from 'util';
 import { TerraMultiCheckBoxValueInterface } from './data/terra-multi-check-box-value.interface';
 import { throttleTime } from 'rxjs/operators';
@@ -54,7 +54,7 @@ export class TerraMultiCheckBoxComponent implements OnInit, OnDestroy, ControlVa
     >();
     private readonly _langPrefix: string = 'terraMultiCheckBox';
 
-    constructor(private _translation: TranslationService) {}
+    constructor(private _translation: L10nTranslationService) {}
 
     public writeValue(valueList: Array<TerraMultiCheckBoxValueInterface>): void {
         this._valueList = valueList;

@@ -4,7 +4,7 @@ import { TerraBaseStorageService } from '../terra-base-storage.interface';
 import { TerraImageMetadata } from '../model/terra-image-metadata.interface';
 import { isNullOrUndefined } from 'util';
 import { TerraBaseMetadataStorageService } from '../terra-base-metadata-storage.interface';
-import { Language, TranslationService } from 'angular-l10n';
+import { Language, L10nTranslationService } from 'angular-l10n';
 
 @Component({
     selector: 'terra-image-preview',
@@ -51,7 +51,7 @@ export class TerraImagePreviewComponent implements OnInit, OnDestroy {
         return this.inputStorageService instanceof TerraBaseMetadataStorageService;
     }
 
-    constructor(private _changeDetector: ChangeDetectorRef, private _translation: TranslationService) {}
+    constructor(private _changeDetector: ChangeDetectorRef, private _translation: L10nTranslationService) {}
 
     public ngOnInit(): void {
         // implementation is required by angular-l10n. See https://robisim74.github.io/angular-l10n/spec/getting-the-translation/#messages

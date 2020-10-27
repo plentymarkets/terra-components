@@ -1,6 +1,6 @@
 import { MockTranslationService } from './mock-translation-service';
 import { NgModule } from '@angular/core';
-import { InjectorRef, TranslationService } from 'angular-l10n';
+import { InjectorRef, L10nTranslationService } from 'angular-l10n';
 
 const translationService: MockTranslationService = new MockTranslationService();
 
@@ -11,7 +11,7 @@ const translationService: MockTranslationService = new MockTranslationService();
     providers: [
         InjectorRef,
         {
-            provide: TranslationService,
+            provide: L10nTranslationService,
             useValue: translationService
         }
     ]

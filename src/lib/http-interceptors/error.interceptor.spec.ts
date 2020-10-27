@@ -5,7 +5,7 @@ import { HTTP_INTERCEPTORS, HttpClient, HttpErrorResponse } from '@angular/commo
 import { Data } from '@angular/router';
 import { AlertService } from '../components/alert/alert.service';
 import { MockTranslationModule } from '../testing/mock-translation-module';
-import { LocaleService, TranslationService } from 'angular-l10n';
+import { LocaleService, L10nTranslationService } from 'angular-l10n';
 import Spy = jasmine.Spy;
 
 const localeServiceStub: Partial<LocaleService> = {
@@ -42,7 +42,7 @@ describe('ErrorInterceptor', () => {
     });
 
     it('should create an instance', () => {
-        const translationService: TranslationService = TestBed.get(TranslationService);
+        const translationService: L10nTranslationService = TestBed.get(L10nTranslationService);
         const localeService: LocaleService = TestBed.get(LocaleService);
         expect(new ErrorInterceptor(alertService, translationService, localeService)).toBeTruthy();
     });
@@ -73,7 +73,7 @@ describe('ErrorInterceptor', () => {
         const errorMsg: string = 'Forbidden';
         const status: number = 403;
         const spy: Spy = spyOn(alertService, 'error');
-        const translationService: TranslationService = TestBed.get(TranslationService);
+        const translationService: L10nTranslationService = TestBed.get(L10nTranslationService);
 
         httpClient.get<Data>(url).subscribe(
             () => fail(`should have failed with the ${status} error`),
@@ -93,7 +93,7 @@ describe('ErrorInterceptor', () => {
         const errorBody: {} = { error: { missing_permissions: { test: { de: 'test' } } } };
         const status: number = 403;
         const alertSpy: Spy = spyOn(alertService, 'error');
-        const translationService: TranslationService = TestBed.get(TranslationService);
+        const translationService: L10nTranslationService = TestBed.get(L10nTranslationService);
         const translationSpy: Spy = spyOn(translationService, 'translate');
 
         httpClient.get<Data>(url).subscribe(

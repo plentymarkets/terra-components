@@ -2,7 +2,7 @@ import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { AlertService } from '../components/alert/alert.service';
-import { LocaleService, TranslationService } from 'angular-l10n';
+import { LocaleService, L10nTranslationService } from 'angular-l10n';
 import { Injectable } from '@angular/core';
 import { DispatchHelper } from '../helpers/dispatch.helper';
 import { environment } from '../environments/environment';
@@ -15,7 +15,7 @@ import { environment } from '../environments/environment';
 export class ErrorInterceptor implements HttpInterceptor {
     constructor(
         private _alertService: AlertService,
-        private _translation: TranslationService,
+        private _translation: L10nTranslationService,
         private _locale: LocaleService
     ) {}
 

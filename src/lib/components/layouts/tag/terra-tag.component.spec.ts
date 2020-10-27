@@ -5,7 +5,7 @@ import { DebugElement, SimpleChange } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { TerraTagNameInterface } from './data/terra-tag-name.interface';
 import { MockTranslationModule } from '../../../testing/mock-translation-module';
-import { TranslationService } from 'angular-l10n';
+import { L10nTranslationService } from 'angular-l10n';
 import { MockTranslationService } from '../../../testing/mock-translation-service';
 
 describe('TerraTagComponent', () => {
@@ -185,7 +185,7 @@ describe('TerraTagComponent', () => {
             let textElement: DebugElement = tagDiv.query(By.css('span.tag-text'));
             let text: HTMLSpanElement = textElement.nativeElement;
 
-            let translationService: MockTranslationService = TestBed.get(TranslationService);
+            let translationService: MockTranslationService = TestBed.get(L10nTranslationService);
             let tagName: TerraTagNameInterface = tagOne.names.find(
                 (tag: TerraTagNameInterface) => tag.language === translationService.getLanguage()
             );

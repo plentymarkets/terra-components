@@ -2,7 +2,7 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { TerraNodeTreeConfig } from './data/terra-node-tree.config';
 import { isNullOrUndefined } from 'util';
 import { TerraNodeInterface } from './data/terra-node.interface';
-import { Language, TranslationService } from 'angular-l10n';
+import { Language, L10nTranslationService } from 'angular-l10n';
 import { FormControl } from '@angular/forms';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { StringHelper } from '../../../helpers';
@@ -39,7 +39,7 @@ export class TerraNodeTreeComponent<D> implements OnDestroy, OnInit {
 
     public _formControl: FormControl = new FormControl();
 
-    constructor(private _translation: TranslationService) {}
+    constructor(private _translation: L10nTranslationService) {}
 
     public ngOnInit(): void {
         this.inputConfig.checkVisibilityAndAssignDefault(this.inputConfig.list);

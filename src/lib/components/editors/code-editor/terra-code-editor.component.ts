@@ -1,5 +1,5 @@
 import { Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { Language, TranslationService } from 'angular-l10n';
+import { Language, L10nTranslationService } from 'angular-l10n';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TerraBaseEditorComponent } from '../base-editor/terra-base-editor.component';
 import { TerraOverlayComponent } from '../../layouts/overlay/terra-overlay.component';
@@ -49,7 +49,7 @@ export class TerraCodeEditorComponent extends TerraBaseEditorComponent implement
 
     private _linter: HtmlLinter;
 
-    constructor(translation: TranslationService, myElement: ElementRef) {
+    constructor(translation: L10nTranslationService, myElement: ElementRef) {
         super(translation, myElement);
         // initialize placeholder
         this._placeholder = this._translation.translate('terraNoteEditor.insertText');

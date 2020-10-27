@@ -1,5 +1,5 @@
 import { AfterContentChecked, Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { Language, TranslationService } from 'angular-l10n';
+import { Language, L10nTranslationService } from 'angular-l10n';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NestedDataTreeConfig } from './config/nested-data-tree.config';
 import { NestedDataInterface } from './data/nested-data.interface';
@@ -69,7 +69,7 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
     private _completeNestedData: NestedValueInterface;
     private _nestedList: Array<TerraNodeInterface<NestedDataInterface<{}>>>;
 
-    constructor(protected _translation: TranslationService, public _nestedTreeConfig: TerraNodeTreeConfig<{}>) {
+    constructor(protected _translation: L10nTranslationService, public _nestedTreeConfig: TerraNodeTreeConfig<{}>) {
         this.value = null;
         this._completeNestedData = {
             id: null,

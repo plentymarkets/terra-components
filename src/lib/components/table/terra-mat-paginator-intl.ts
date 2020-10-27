@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MatPaginatorIntl } from '@angular/material/paginator';
-import { TranslationService } from 'angular-l10n';
+import { L10nTranslationService } from 'angular-l10n';
 
 @Injectable()
 export class TerraMatPaginatorIntl extends MatPaginatorIntl {
@@ -9,7 +9,7 @@ export class TerraMatPaginatorIntl extends MatPaginatorIntl {
     public firstPageLabel: string = '';
     public lastPageLabel: string = '';
 
-    constructor(private translation: TranslationService) {
+    constructor(private translation: L10nTranslationService) {
         super();
         this.translation.translationChanged().subscribe(() => {
             this.updateLabels();
