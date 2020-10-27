@@ -10,6 +10,7 @@
 -   **terra-tag** removed deprecated `onCloseTag` output.
 -   **terra-taglist** removed deprecated `onCloseTag` output.
 -   **terra-base-toolbar**'s input `inputIsBreadcrumbs` has been removed. There's no replacement.
+-   **fixed-header** directive has been removed. Use angular material's [table](https://material.angular.io/components/table/overview) with a sticky header instead.
 -   **terra-label-tooltip** directive has been removed. Use `TooltipDirective` with a set `onlyEllipsisTooltip` input instead.
 
 # 5.10.1 (Unreleased)
