@@ -8,7 +8,6 @@ import { TerraBaseStorageService } from '../../../file-browser/terra-base-storag
 import { TerraRegex } from '../../../../helpers/regex/terra-regex';
 import { TerraStorageObject } from '../../../file-browser/model/terra-storage-object';
 import { TerraOverlayComponent } from '../../../layouts/overlay/terra-overlay.component';
-import { TerraOverlayButtonInterface } from '../../../layouts/overlay/data/terra-overlay-button.interface';
 import { StringHelper } from '../../../../helpers/string.helper';
 import { Language } from 'angular-l10n';
 
@@ -45,17 +44,8 @@ export class TerraFileInputComponent extends TerraInputComponent implements OnIn
         return this._storageServices;
     }
 
-    /**
-     * @Deprecated ViewChild overlay does not exist in the template
-     */
-    @ViewChild('overlay', { static: false })
-    public _overlay: TerraOverlayComponent;
-
     @ViewChild('previewOverlay', { static: true })
     public _previewOverlay: TerraOverlayComponent;
-
-    public primaryOverlayButton: TerraOverlayButtonInterface;
-    public secondaryOverlayButton: TerraOverlayButtonInterface;
 
     @Language()
     public _lang: string;
@@ -87,16 +77,6 @@ export class TerraFileInputComponent extends TerraInputComponent implements OnIn
     public onPreviewClicked(): void {
         if (this.isWebImage(this.value)) {
             this._previewOverlay.showOverlay();
-        }
-    }
-
-    /**
-     * @Deprecated ViewChild overlay does not exist in the template
-     */
-    public showFileBrowser(): void {
-        console.warn('Function showFileBrowser() is deprecated and should not called.');
-        if (!isNullOrUndefined(this._overlay)) {
-            this._overlay.showOverlay();
         }
     }
 
