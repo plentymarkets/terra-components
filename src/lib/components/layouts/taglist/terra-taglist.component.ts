@@ -16,20 +16,10 @@ export class TerraTaglistComponent implements OnInit {
     @Input()
     public isReadOnly: boolean;
 
-    /* tslint:disable:no-output-on-prefix */
-    /**
-     * @deprecated use closeTag instead
-     */
-    @Output()
-    public onCloseTag: EventEmitter<number> = new EventEmitter<number>();
-    /* tslint:enable:no-output-on-prefix */
-
     @Output()
     public closeTag: EventEmitter<number> = new EventEmitter<number>();
 
     public ngOnInit(): void {
-        if (this.onCloseTag.observers.length > 0) {
-            console.warn('`onCloseTag` is deprecated. Please use `closeTag` instead.');
-        }
+        // implementation is required by angular-l10n. See https://robisim74.github.io/angular-l10n/spec/getting-the-translation/#messages
     }
 }
