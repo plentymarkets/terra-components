@@ -22,7 +22,6 @@ import { TerraDoubleInputComponent } from './forms/input/double-input/terra-doub
 import { TerraPortletComponent } from './layouts/portlet/terra-portlet.component';
 import { TerraFilterComponent } from './filter/terra-filter.component';
 import { TerraMultiCheckBoxComponent } from './forms/multi-check-box/terra-multi-check-box.component';
-import { TerraDynamicComponentLoaderComponent } from './dynamic-component-loader/terra-dynamic-component-loader.component';
 import { TerraSuggestionBoxComponent } from './forms/suggestion-box/terra-suggestion-box.component';
 import { TerraDatePickerComponent } from './forms/input/date-picker/terra-date-picker.component';
 import { TerraTextAreaInputComponent } from './forms/input/text-area-input/terra-text-area-input.component';
@@ -92,7 +91,6 @@ export const exportedComponents: Array<Type<any>> = [
     TerraPortletComponent,
     TerraFilterComponent,
     TerraMultiCheckBoxComponent,
-    TerraDynamicComponentLoaderComponent,
     TerraSuggestionBoxComponent,
     TerraDatePickerComponent,
     TerraTextAreaInputComponent,

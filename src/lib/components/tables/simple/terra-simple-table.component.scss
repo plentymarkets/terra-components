@@ -1,30 +1,5 @@
 @import '../data-table/terra-data-table.component';
 
-:host[fixedHeader] {
-    display: block;
-    margin-top: 32px;
-    padding-bottom: 32px;
-    height: 100%;
-
-    .table-responsive {
-        overflow-y: auto;
-        max-height: 100%;
-    }
-
-    thead {
-        position: absolute;
-        z-index: 1;
-        width: 100%;
-        margin-top: -32px;
-
-        tr {
-            width: 100%;
-            display: table;
-            white-space: nowrap;
-        }
-    }
-}
-
 .table-responsive {
     tbody.highlighting tr.disabled {
         opacity: 0.5;
