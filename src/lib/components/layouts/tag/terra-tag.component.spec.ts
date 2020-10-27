@@ -213,7 +213,7 @@ describe('TerraTagComponent', () => {
 
             fixture.detectChanges();
 
-            component.onCloseTag.subscribe((id: number) => {
+            component.closeTag.subscribe((id: number) => {
                 expect(id).toBe(component.tagId);
                 done();
             });

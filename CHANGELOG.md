@@ -1,3 +1,19 @@
+# 6.0.0 (Unreleased)
+
+### Breaking Changes
+
+-   **terra-radio-button** has been removed. Use `tc-radio-group` and `tc-radio-input` instead.
+-   **dynamic-component-loader** was removed. Use angular's [NgComponentOutlet](https://angular.io/api/common/NgComponentOutlet) instead.
+-   **terra-syntax-editor** has been removed. Use [ck-editor](https://ckeditor.com/ckeditor-4/) instead.
+-   **dependencies** removed peer dependency `ng2-ace-editor` since we no longer depend on it.
+-   **breadcrumbs-service** removed method initialPath since it has been deprecated.
+-   **terra-tag** removed deprecated `onCloseTag` output.
+-   **terra-taglist** removed deprecated `onCloseTag` output.
+-   **terra-base-toolbar**'s input `inputIsBreadcrumbs` has been removed. There's no replacement.
+-   **file-input** removed attribute `_overlay` and method `showFileBrowser()` and the overlayButtons `primaryOverlayButton` and `secondaryOverlayButton`.
+-   **fixed-header** directive has been removed. Use angular material's [table](https://material.angular.io/components/table/overview) with a sticky header instead.
+-   **terra-label-tooltip** directive has been removed. Use `TooltipDirective` with a set `onlyEllipsisTooltip` input instead.
+
 # 5.10.1 (Unreleased)
 
 ### Fix

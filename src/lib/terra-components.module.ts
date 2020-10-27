@@ -6,7 +6,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { L10nTranslationModule } from 'angular-l10n';
 import { MyDatePickerModule } from 'mydatepicker';
-import { AceEditorModule } from 'ng2-ace-editor';
 import { RouterModule } from '@angular/router';
 import { TerraInteractModule } from './components/interactables/interact.module';
 import { QuillModule } from 'ngx-quill';
@@ -26,7 +25,6 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
         L10nTranslationModule,
         ModalModule.forRoot(),
         MyDatePickerModule,
-        AceEditorModule,
         QuillModule,
         CKEditorModule,
         TerraInteractModule,

@@ -65,16 +65,6 @@ export class TerraBreadcrumbsService {
             });
     }
 
-    /**
-     * @deprecated use set accessor for activatedRoute instead.
-     * @param value
-     */
-    public set initialPath(value: string) {
-        this._containers = [];
-        this._initialPath = value;
-        this._initialRoute = this._findRoute(value, this._router.config);
-    }
-
     public set activatedRoute(activatedRoute: ActivatedRouteSnapshot) {
         this._containers = [];
         this._initialPath = ActivatedRouteHelper.getBasePathForActivatedRoute(activatedRoute);
