@@ -66,7 +66,6 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges, OnIn
     /**
      * @description A custom map of supported control types may be provided here.
      *     Please note: All of the control types contained in this map have to implement the ControlValueAccessor interface.
-     * @default undefined - an instance of the TerraFormTypeMap will serve as fallback to support a default set of control types.
      */
     @Input()
     public inputControlTypeMap: FormTypeMapInterface | FormTypeMap;
@@ -106,7 +105,11 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges, OnIn
      * @description Initializes the controlTypeMap with its default value if `inputControlTypeMap` is not given.
      */
     public ngOnInit(): void {
-        //
+        if (isNullOrUndefined(this.inputControlTypeMap)) {
+            console.warn(
+                'There is no value for `inputControlTypeMap` given. Provide an instance of `FormTypeMap` or use a custom map conforming to the `FormTypeMapInterface`.'
+            );
+        }
     }
 
     /**

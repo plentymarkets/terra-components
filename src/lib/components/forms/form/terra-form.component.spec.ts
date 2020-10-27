@@ -44,6 +44,14 @@ describe(`TerraFormComponent:`, () => {
         expect(component._controlTypeMap).toBe(typeMap);
     });
 
+    it('should throw a warning if there is no custom map given via #inputControlTypeMap', () => {
+        const consoleWarnSpy: Spy = spyOn(console, 'warn');
+        component.ngOnInit();
+        expect(consoleWarnSpy).toHaveBeenCalledWith(
+            'There is no value for `inputControlTypeMap` given. Provide an instance of `FormTypeMap` or use a custom map conforming to the `FormTypeMapInterface`.'
+        );
+    });
+
     it('should wrap the #TerraFormContainerComponent in a div-element with a `container-fluid`-class', () => {
         const containerFluid: DebugElement = fixture.debugElement.query(By.css('.container-fluid'));
         expect(containerFluid).toBeTruthy();
