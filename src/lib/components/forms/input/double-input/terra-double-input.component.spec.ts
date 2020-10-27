@@ -3,7 +3,6 @@ import { FormControl, FormsModule, Validators } from '@angular/forms';
 import { ComponentFixture, fakeAsync, flush, TestBed } from '@angular/core/testing';
 import { LocalizationModule } from 'angular-l10n';
 import { l10nConfig } from '../../../../../app/translation/l10n.config';
-import { TerraLabelTooltipDirective } from '../../../../helpers/terra-label-tooltip.directive';
 import { TerraDoubleInputComponent } from './terra-double-input.component';
 import { TerraButtonComponent } from '../../../buttons/button/terra-button.component';
 import { TerraRegex } from '../../../../helpers/regex/terra-regex';
@@ -22,12 +21,7 @@ describe('TerraDoubleInputComponent', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            declarations: [
-                TooltipDirective,
-                TerraDoubleInputComponent,
-                TerraButtonComponent,
-                TerraLabelTooltipDirective
-            ],
+            declarations: [TooltipDirective, TerraDoubleInputComponent, TerraButtonComponent],
             imports: [FormsModule, LocalizationModule.forRoot(l10nConfig)],
             providers: [
                 {

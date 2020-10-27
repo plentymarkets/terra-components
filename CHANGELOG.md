@@ -5,6 +5,10 @@
 -   **terra-syntax-editor** has been removed. Use [ck-editor](https://ckeditor.com/ckeditor-4/) instead.
 -   **dependencies** removed peer dependency `ng2-ace-editor` since we no longer depend on it.
 -   **breadcrumbs-service** removed method initialPath since it has been deprecated.
+-   **terra-tag** removed deprecated `onCloseTag` output.
+-   **terra-taglist** removed deprecated `onCloseTag` output.
+-   **terra-base-toolbar**'s input `inputIsBreadcrumbs` has been removed. There's no replacement.
+-   **terra-label-tooltip** directive has been removed. Use `TooltipDirective` with a set `onlyEllipsisTooltip` input instead.
 
 # 5.10.1 (Unreleased)
 
