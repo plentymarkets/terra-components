@@ -110,11 +110,6 @@ export { TerraBaseTreeComponent } from './components/tree/base/terra-base-tree.c
 export { TerraCheckboxTreeComponent } from './components/tree/checkbox-tree/terra-checkbox-tree.component';
 export { TerraLeafInterface } from './components/tree/leaf/terra-leaf.interface';
 
-export { TerraSyntaxEditorComponent } from './components/editors/syntax-editor/terra-syntax-editor.component';
-export { TerraSyntaxEditorData } from './components/editors/syntax-editor/data/terra-syntax-editor.data';
-
-export { TerraDynamicComponentLoaderComponent } from './components/dynamic-component-loader/terra-dynamic-component-loader.component';
-
 // TODO file browser index
 export {
     createS3StorageObject,

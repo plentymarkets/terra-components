@@ -3,7 +3,6 @@ import { FormsModule } from '@angular/forms';
 import { LocalizationModule } from 'angular-l10n';
 import { l10nConfig } from '../../../../app/translation/l10n.config';
 import { DebugElement, SimpleChange } from '@angular/core';
-import { TerraLabelTooltipDirective } from '../../../helpers/terra-label-tooltip.directive';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
 import { buttonList } from '../../../testing/mock-buttons';
@@ -26,13 +25,7 @@ describe('TerraPortletComponent', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            declarations: [
-                TooltipDirective,
-                TerraPortletComponent,
-                TerraButtonComponent,
-                TerraLabelTooltipDirective,
-                TerraInfoComponent
-            ],
+            declarations: [TooltipDirective, TerraPortletComponent, TerraButtonComponent, TerraInfoComponent],
             imports: [FormsModule, BrowserAnimationsModule, LocalizationModule.forRoot(l10nConfig)],
             providers: [
                 {
