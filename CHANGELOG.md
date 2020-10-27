@@ -4,6 +4,7 @@
 
 -   **terra-syntax-editor** has been removed. Use [ck-editor](https://ckeditor.com/ckeditor-4/) instead.
 -   **dependencies** removed peer dependency `ng2-ace-editor` since we no longer depend on it.
+-   **terra-base-toolbar**'s input `inputIsBreadcrumbs` has been removed. There's no replacement.
 -   **fixed-header** directive has been removed. Use angular material's [table](https://material.angular.io/components/table/overview) with a sticky header instead.
 
 # 5.10.1 (Unreleased)
