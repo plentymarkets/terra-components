@@ -29,7 +29,6 @@ export { CheckboxGroupComponent } from './components/forms/checkbox-group/checkb
 export { TerraMultiCheckBoxValueInterface } from './components/forms/multi-check-box/data/terra-multi-check-box-value.interface';
 export { TerraMultiCheckBoxComponent } from './components/forms/multi-check-box/terra-multi-check-box.component';
 
-export { TerraRadioButtonComponent } from './components/forms/radio-button/terra-radio-button.component';
 export { RadioGroupComponent } from './components/forms/input/radio/radio-group.component';
 export { RadioInputComponent } from './components/forms/input/radio/radio-input.component';
 
