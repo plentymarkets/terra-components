@@ -4,6 +4,7 @@
 
 -   **terra-syntax-editor** has been removed. Use [ck-editor](https://ckeditor.com/ckeditor-4/) instead.
 -   **dependencies** removed peer dependency `ng2-ace-editor` since we no longer depend on it.
+-   **breadcrumbs-service** removed method initialPath since it has been deprecated.
 
 # 5.10.1 (Unreleased)
 
