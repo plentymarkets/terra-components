@@ -4,7 +4,7 @@ import { directives } from './components/directive-collection';
 import { ModalModule } from 'ngx-bootstrap';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { LocalizationModule } from 'angular-l10n';
+import { L10nTranslationModule } from 'angular-l10n';
 import { MyDatePickerModule } from 'mydatepicker';
 import { AceEditorModule } from 'ng2-ace-editor';
 import { RouterModule } from '@angular/router';
@@ -23,7 +23,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
         FormsModule,
         ReactiveFormsModule,
         RouterModule,
-        LocalizationModule,
+        L10nTranslationModule,
         ModalModule.forRoot(),
         MyDatePickerModule,
         AceEditorModule,
