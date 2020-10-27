@@ -8,7 +8,7 @@
 -   **terra-tag** removed deprecated `onCloseTag` output.
 -   **terra-taglist** removed deprecated `onCloseTag` output.
 -   **terra-base-toolbar**'s input `inputIsBreadcrumbs` has been removed. There's no replacement.
--   **file-input** removed attribute `_overlay` and method `showFileBrowser()`.
+-   **file-input** removed attribute `_overlay` and method `showFileBrowser()` and the overlayButtons `primaryOverlayButton` and `secondaryOverlayButton`.
 -   **terra-label-tooltip** directive has been removed. Use `TooltipDirective` with a set `onlyEllipsisTooltip` input instead.
 
 # 5.10.1 (Unreleased)
