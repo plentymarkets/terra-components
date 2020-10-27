@@ -6,7 +6,6 @@ import { l10nConfig } from '../../../../app/translation/l10n.config';
 import { TerraSuggestionBoxComponent } from './terra-suggestion-box.component';
 import { MockElementRef } from '../../../testing/mock-element-ref';
 import { By } from '@angular/platform-browser';
-import { TerraLabelTooltipDirective } from '../../../helpers/terra-label-tooltip.directive';
 import { TerraSuggestionBoxValueInterface } from './data/terra-suggestion-box.interface';
 import { TerraTextInputComponent } from '../input/text-input/terra-text-input.component';
 import { TooltipDirective } from '../../tooltip/tooltip.directive';
@@ -25,12 +24,7 @@ describe('TerraSuggestionBoxComponent', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            declarations: [
-                TooltipDirective,
-                TerraSuggestionBoxComponent,
-                TerraTextInputComponent,
-                TerraLabelTooltipDirective
-            ],
+            declarations: [TooltipDirective, TerraSuggestionBoxComponent, TerraTextInputComponent],
             imports: [FormsModule, LocalizationModule.forRoot(l10nConfig)],
             providers: [
                 {
