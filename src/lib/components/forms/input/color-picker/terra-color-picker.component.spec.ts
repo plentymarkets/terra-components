@@ -3,7 +3,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { LocalizationModule } from 'angular-l10n';
 import { l10nConfig } from '../../../../../app/translation/l10n.config';
-import { TerraLabelTooltipDirective } from '../../../../helpers/terra-label-tooltip.directive';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 import { TerraRegex } from '../../../../helpers/regex/terra-regex';
@@ -21,7 +20,7 @@ describe('Component: TerraColorPickerComponent', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            declarations: [TooltipDirective, TerraColorPickerComponent, TerraLabelTooltipDirective],
+            declarations: [TooltipDirective, TerraColorPickerComponent],
             imports: [FormsModule, LocalizationModule.forRoot(l10nConfig)],
             providers: [
                 {

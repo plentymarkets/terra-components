@@ -6,7 +6,6 @@ import { TerraNumberInputComponent } from './forms/input/number-input/terra-numb
 import { TerraButtonComponent } from './buttons/button/terra-button.component';
 import { TerraCheckboxTreeComponent } from './tree/checkbox-tree/terra-checkbox-tree.component';
 import { TerraCheckboxComponent } from './forms/checkbox/terra-checkbox.component';
-import { TerraRadioButtonComponent } from './forms/radio-button/terra-radio-button.component';
 import { TerraSelectBoxComponent } from './forms/select-box/terra-select-box.component';
 import { TerraBaseToolbarComponent } from './toolbar/base-toolbar/terra-base-toolbar.component';
 import { TerraIndicatorComponent } from './indicator/terra-indicator.component';
@@ -23,7 +22,6 @@ import { TerraDoubleInputComponent } from './forms/input/double-input/terra-doub
 import { TerraPortletComponent } from './layouts/portlet/terra-portlet.component';
 import { TerraFilterComponent } from './filter/terra-filter.component';
 import { TerraMultiCheckBoxComponent } from './forms/multi-check-box/terra-multi-check-box.component';
-import { TerraDynamicComponentLoaderComponent } from './dynamic-component-loader/terra-dynamic-component-loader.component';
 import { TerraSuggestionBoxComponent } from './forms/suggestion-box/terra-suggestion-box.component';
 import { TerraDatePickerComponent } from './forms/input/date-picker/terra-date-picker.component';
 import { TerraTextAreaInputComponent } from './forms/input/text-area-input/terra-text-area-input.component';
@@ -77,7 +75,6 @@ export const exportedComponents: Array<Type<any>> = [
     TerraCheckboxTreeComponent,
     TerraCheckboxComponent,
     CheckboxGroupComponent,
-    TerraRadioButtonComponent,
     TerraSelectBoxComponent,
     TerraBaseToolbarComponent,
     TerraPagerComponent,
@@ -94,7 +91,6 @@ export const exportedComponents: Array<Type<any>> = [
     TerraPortletComponent,
     TerraFilterComponent,
     TerraMultiCheckBoxComponent,
-    TerraDynamicComponentLoaderComponent,
     TerraSuggestionBoxComponent,
     TerraDatePickerComponent,
     TerraTextAreaInputComponent,

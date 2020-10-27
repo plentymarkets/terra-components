@@ -29,7 +29,6 @@ export { CheckboxGroupComponent } from './components/forms/checkbox-group/checkb
 export { TerraMultiCheckBoxValueInterface } from './components/forms/multi-check-box/data/terra-multi-check-box-value.interface';
 export { TerraMultiCheckBoxComponent } from './components/forms/multi-check-box/terra-multi-check-box.component';
 
-export { TerraRadioButtonComponent } from './components/forms/radio-button/terra-radio-button.component';
 export { RadioGroupComponent } from './components/forms/input/radio/radio-group.component';
 export { RadioInputComponent } from './components/forms/input/radio/radio-input.component';
 
@@ -109,8 +108,6 @@ export { TerraBaseTreeComponent } from './components/tree/base/terra-base-tree.c
 // TREES
 export { TerraCheckboxTreeComponent } from './components/tree/checkbox-tree/terra-checkbox-tree.component';
 export { TerraLeafInterface } from './components/tree/leaf/terra-leaf.interface';
-
-export { TerraDynamicComponentLoaderComponent } from './components/dynamic-component-loader/terra-dynamic-component-loader.component';
 
 // TODO file browser index
 export {
