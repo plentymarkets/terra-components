@@ -2,7 +2,6 @@ import { TerraFormComponent } from './terra-form.component';
 import { TerraControlTypeEnum } from '../dynamic-form/enum/terra-control-type.enum';
 import { TerraFormFieldInterface } from './model/terra-form-field.interface';
 import { TerraFormFieldBase } from '../dynamic-form/data/terra-form-field-base';
-import { TerraFormTypeMap } from './model/terra-form-type-map.enum';
 import { FormTypeMap } from './model/form-type-map';
 import { DebugElement, NO_ERRORS_SCHEMA, SimpleChange } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
@@ -37,20 +36,20 @@ describe(`TerraFormComponent:`, () => {
         expect(component.inputControlTypeMap).toBeUndefined();
     });
 
-    it('should use a TerraFormTypeMap instance as fallback internally if no custom map is given via #inputControlTypeMap', () => {
-        spyOn(console, 'warn'); // disable console outputs to prevent deprecation warnings to be printed in the terminal
-        component.ngOnChanges({});
-        component.ngOnInit();
-        expect(component._controlTypeMap).toEqual(new TerraFormTypeMap());
-        expect(console.warn).toHaveBeenCalledTimes(2);
-    });
-
     it('should use a custom map if given via #inputControlTypeMap', () => {
         const typeMap: FormTypeMap = new FormTypeMap();
         component.inputControlTypeMap = typeMap;
         component.ngOnChanges({ inputControlTypeMap: new SimpleChange(null, typeMap, false) });
         component.ngOnInit();
         expect(component._controlTypeMap).toBe(typeMap);
+    });
+
+    it('should throw a warning if there is no custom map given via #inputControlTypeMap', () => {
+        const consoleWarnSpy: Spy = spyOn(console, 'warn');
+        component.ngOnInit();
+        expect(consoleWarnSpy).toHaveBeenCalledWith(
+            'There is no value for `inputControlTypeMap` given. Provide an instance of `FormTypeMap` or use a custom map conforming to the `FormTypeMapInterface`.'
+        );
     });
 
     it('should wrap the #TerraFormContainerComponent in a div-element with a `container-fluid`-class', () => {
