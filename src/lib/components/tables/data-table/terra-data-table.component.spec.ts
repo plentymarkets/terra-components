@@ -19,7 +19,6 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TerraDataTableServiceExample } from './example/terra-data-table.service.example';
 import { TerraLoadingSpinnerService } from '../../loading-spinner/service/terra-loading-spinner.service';
 import { ChangeDetectionStrategy, Component, DebugElement } from '@angular/core';
-import { TerraLabelTooltipDirective } from '../../../helpers/terra-label-tooltip.directive';
 import { By } from '@angular/platform-browser';
 import { TableRowComponent } from './table-row/table-row.component';
 import { MockRouter } from '../../../testing/mock-router';
@@ -49,8 +48,7 @@ describe('TerraDataTableComponent', () => {
                 TerraBaseToolbarComponent,
                 TerraNumberInputComponent,
                 TerraSelectBoxComponent,
-                TableRowComponent,
-                TerraLabelTooltipDirective
+                TableRowComponent
             ],
             imports: [CommonModule, FormsModule, NoopAnimationsModule, LocalizationModule.forRoot(l10nConfig)],
             providers: [
