@@ -1,4 +1,4 @@
-import { Component, Inject, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { TerraFormFieldBase } from '../data/terra-form-field-base';
 import { TerraControlTypeEnum } from '../enum/terra-control-type.enum';
@@ -12,7 +12,7 @@ import { L10nLocale, L10N_LOCALE } from 'angular-l10n';
     templateUrl: './terra-dynamic-switch.component.html',
     styleUrls: ['./terra-dynamic-switch.component.scss']
 })
-export class TerraDynamicSwitchComponent implements OnInit, OnDestroy {
+export class TerraDynamicSwitchComponent {
     // Auf TerraFormFieldConditionalBean umbauen
     // private readonly DELAY_FOR_CHANGE_DETECTION:number = 1;
 
@@ -42,13 +42,5 @@ export class TerraDynamicSwitchComponent implements OnInit, OnDestroy {
 
     constructor(@Inject(L10N_LOCALE) public _locale: L10nLocale) {
         this.inputSubSwitch = false;
-    }
-
-    public ngOnInit(): void {
-        // implementation is required by angular-l10n. See https://robisim74.github.io/angular-l10n/spec/getting-the-translation/#messages
-    }
-
-    public ngOnDestroy(): void {
-        // implementation is required by angular-l10n. See https://robisim74.github.io/angular-l10n/spec/getting-the-translation/#messages
     }
 }

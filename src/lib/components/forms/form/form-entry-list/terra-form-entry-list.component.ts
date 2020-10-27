@@ -1,4 +1,4 @@
-import { Component, Inject, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, Type } from '@angular/core';
+import { Component, Inject, Input, OnChanges, SimpleChanges, Type } from '@angular/core';
 import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
 import { isArray, isNullOrUndefined } from 'util';
 import { TerraFormScope } from '../model/terra-form-scope.data';
@@ -27,7 +27,7 @@ import { noop } from 'rxjs';
         }
     ]
 })
-export class TerraFormEntryListComponent implements OnInit, OnChanges, ControlValueAccessor, OnDestroy {
+export class TerraFormEntryListComponent implements OnChanges, ControlValueAccessor {
     @Input()
     public inputFormField: TerraFormFieldInterface;
 
@@ -60,14 +60,6 @@ export class TerraFormEntryListComponent implements OnInit, OnChanges, ControlVa
     private _onTouchedCallback: () => void = noop;
 
     constructor(@Inject(L10N_LOCALE) public _locale: L10nLocale) {}
-
-    public ngOnInit(): void {
-        // implementation is required by angular-l10n. See https://robisim74.github.io/angular-l10n/spec/getting-the-translation/#messages
-    }
-
-    public ngOnDestroy(): void {
-        // implementation is required by angular-l10n. See https://robisim74.github.io/angular-l10n/spec/getting-the-translation/#messages
-    }
 
     public ngOnChanges(changes: SimpleChanges): void {
         if (changes.hasOwnProperty('inputFormGroup') || changes.hasOwnProperty('inputFormFieldKey')) {

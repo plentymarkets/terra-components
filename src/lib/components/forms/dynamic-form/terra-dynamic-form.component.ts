@@ -1,14 +1,4 @@
-import {
-    Component,
-    EventEmitter,
-    Inject,
-    Input,
-    OnChanges,
-    OnDestroy,
-    OnInit,
-    Output,
-    SimpleChanges
-} from '@angular/core';
+import { Component, EventEmitter, Inject, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { isNullOrUndefined } from 'util';
 import { TerraFormFieldControlService } from './service/terra-form-field-control.service';
 import { TerraFormFieldBase } from './data/terra-form-field-base';
@@ -45,7 +35,7 @@ export interface TerraDynamicFormRequestParams {
     styleUrls: ['./terra-dynamic-form.component.scss'],
     providers: [TerraFormFieldControlService]
 })
-export class TerraDynamicFormComponent implements OnInit, OnChanges, OnDestroy {
+export class TerraDynamicFormComponent implements OnInit, OnChanges {
     @Input()
     public inputFormFunctions: TerraDynamicFormFunctionsHandler<any>;
 
@@ -115,10 +105,6 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges, OnDestroy {
             this._formFieldControlService.createFormGroup(this.inputFormFields);
             this.registerValueChange();
         }
-    }
-
-    public ngOnDestroy(): void {
-        // implementation is required by angular-l10n. See https://robisim74.github.io/angular-l10n/spec/getting-the-translation/#messages
     }
 
     public _validate(): void {

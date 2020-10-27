@@ -1,14 +1,4 @@
-import {
-    Component,
-    EventEmitter,
-    Inject,
-    Input,
-    OnChanges,
-    OnDestroy,
-    OnInit,
-    Output,
-    SimpleChanges
-} from '@angular/core';
+import { Component, EventEmitter, Inject, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { isNullOrUndefined } from 'util';
 import { Color } from '../../../helpers/color.helper';
 import { TerraTagNameInterface } from './data/terra-tag-name.interface';
@@ -22,7 +12,7 @@ import { L10nLocale, L10N_LOCALE } from 'angular-l10n';
     styleUrls: ['./terra-tag.component.scss'],
     templateUrl: './terra-tag.component.html'
 })
-export class TerraTagComponent implements OnInit, OnChanges, OnDestroy {
+export class TerraTagComponent implements OnChanges {
     /**
      * If no translation is given for the current language, this will be used as caption for the tag
      */
@@ -91,14 +81,6 @@ export class TerraTagComponent implements OnInit, OnChanges, OnDestroy {
     public _tagName: string;
 
     constructor(@Inject(L10N_LOCALE) private _locale: L10nLocale) {}
-
-    public ngOnInit(): void {
-        // implementation is required by angular-l10n. See https://robisim74.github.io/angular-l10n/spec/getting-the-translation/#messages
-    }
-
-    public ngOnDestroy(): void {
-        // implementation is required by angular-l10n. See https://robisim74.github.io/angular-l10n/spec/getting-the-translation/#messages
-    }
 
     /**
      * Change detection routine. Updates the 'tagName' depending on the inputs 'inputBadge', 'name' and 'names'.

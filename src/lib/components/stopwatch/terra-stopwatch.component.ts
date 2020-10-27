@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Inject, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
 import { L10nLocale, L10N_LOCALE } from 'angular-l10n';
 import { isNullOrUndefined } from 'util';
 
@@ -7,7 +7,7 @@ import { isNullOrUndefined } from 'util';
     styleUrls: ['./terra-stopwatch.component.scss'],
     templateUrl: './terra-stopwatch.component.html'
 })
-export class TerraStopwatchComponent implements OnInit, OnDestroy {
+export class TerraStopwatchComponent implements OnInit {
     /**
      * @description If true, the start, pause and reset control will show
      */
@@ -63,10 +63,6 @@ export class TerraStopwatchComponent implements OnInit, OnDestroy {
         if (this.autoPlay) {
             this.start();
         }
-    }
-
-    public ngOnDestroy(): void {
-        // implementation is required by angular-l10n. See https://robisim74.github.io/angular-l10n/spec/getting-the-translation/#messages
     }
 
     /**

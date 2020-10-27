@@ -5,7 +5,6 @@ import {
     Inject,
     Input,
     OnChanges,
-    OnDestroy,
     OnInit,
     Output,
     QueryList,
@@ -35,7 +34,7 @@ const MAX_LASTLY_USED_ENTRIES: number = 5;
         }
     ]
 })
-export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlValueAccessor, OnDestroy {
+export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlValueAccessor {
     @Input()
     public inputName: string;
 
@@ -115,10 +114,6 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
                 this.selectedValue = null;
             }
         }
-    }
-
-    public ngOnDestroy(): void {
-        // implementation is required by angular-l10n. See https://robisim74.github.io/angular-l10n/spec/getting-the-translation/#messages
     }
 
     public registerOnChange(fn: (_: any) => void): void {

@@ -1,4 +1,4 @@
-import { Component, Inject, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Inject, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TerraTagInterface } from '../../layouts/tag/data/terra-tag.interface';
 import { TerraSuggestionBoxValueInterface } from '../suggestion-box/data/terra-suggestion-box.interface';
@@ -20,7 +20,7 @@ import { noop } from 'rxjs';
     ]
 })
 /** @deprecated since v5.0. Please use mat-chips-list instead */
-export class TerraTagSelectComponent implements ControlValueAccessor, OnInit, OnChanges, OnDestroy {
+export class TerraTagSelectComponent implements ControlValueAccessor, OnInit, OnChanges {
     @Input()
     public name: string;
 
@@ -46,10 +46,6 @@ export class TerraTagSelectComponent implements ControlValueAccessor, OnInit, On
 
     public ngOnInit(): void {
         this._generateSuggestionValues(this._tagList);
-    }
-
-    public ngOnDestroy(): void {
-        // implementation is required by angular-l10n. See https://robisim74.github.io/angular-l10n/spec/getting-the-translation/#messages
     }
 
     public ngOnChanges(changes: SimpleChanges): void {

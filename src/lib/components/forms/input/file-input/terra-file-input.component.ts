@@ -1,4 +1,4 @@
-import { Component, Inject, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, Input, ViewChild } from '@angular/core';
 import { isNullOrUndefined } from 'util';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TerraInputComponent } from '../terra-input.component';
@@ -25,7 +25,7 @@ let nextId: number = 0;
         }
     ]
 })
-export class TerraFileInputComponent extends TerraInputComponent implements OnInit, OnDestroy {
+export class TerraFileInputComponent extends TerraInputComponent {
     @Input()
     public inputShowPreview: boolean = false;
 
@@ -57,14 +57,6 @@ export class TerraFileInputComponent extends TerraInputComponent implements OnIn
 
         // generate the id of the input instance
         this._id = `file-input_#${nextId++}`;
-    }
-
-    public ngOnInit(): void {
-        // implementation is required by angular-l10n. See https://robisim74.github.io/angular-l10n/spec/getting-the-translation/#messages
-    }
-
-    public ngOnDestroy(): void {
-        // implementation is required by angular-l10n. See https://robisim74.github.io/angular-l10n/spec/getting-the-translation/#messages
     }
 
     public onObjectSelected(selectedObject: TerraStorageObject): void {

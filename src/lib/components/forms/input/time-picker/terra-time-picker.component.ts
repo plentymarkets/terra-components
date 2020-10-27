@@ -1,7 +1,7 @@
 /**
  * @author twieder
  */
-import { Component, Inject, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TerraSelectBoxValueInterface } from '../../select-box/data/terra-select-box.interface';
 import { isNullOrUndefined } from 'util';
@@ -21,7 +21,7 @@ import { L10nLocale, L10N_LOCALE } from 'angular-l10n';
         }
     ]
 })
-export class TerraTimePickerComponent implements OnInit, ControlValueAccessor, OnDestroy {
+export class TerraTimePickerComponent implements OnInit, ControlValueAccessor {
     /**
      * @description If true, the input will be disabled. Default false.
      * */
@@ -39,10 +39,6 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor, O
 
     public ngOnInit(): void {
         this.createTimeValues();
-    }
-
-    public ngOnDestroy(): void {
-        // implementation is required by angular-l10n. See https://robisim74.github.io/angular-l10n/spec/getting-the-translation/#messages
     }
 
     public createTimeValues(): void {
