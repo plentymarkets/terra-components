@@ -2,6 +2,7 @@
 
 ### Breaking Changes
 
+-   **dynamic-component-loader** was removed. Use angular's [NgComponentOutlet](https://angular.io/api/common/NgComponentOutlet) instead.
 -   **terra-syntax-editor** has been removed. Use [ck-editor](https://ckeditor.com/ckeditor-4/) instead.
 -   **dependencies** removed peer dependency `ng2-ace-editor` since we no longer depend on it.
 -   **exception-interface** was removed. Use angular's [HttpClient](https://angular.io/guide/http) instead.
