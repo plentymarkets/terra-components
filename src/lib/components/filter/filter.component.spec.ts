@@ -9,7 +9,6 @@ import { TerraButtonComponent } from '../buttons/button/terra-button.component';
 import { TerraPortletComponent } from '../layouts/portlet/terra-portlet.component';
 import { l10nConfig } from '../../../app/translation/l10n.config';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { TerraLabelTooltipDirective } from '../../helpers/terra-label-tooltip.directive';
 import { TerraInfoComponent } from '../info/terra-info.component';
 import { TooltipDirective } from '../tooltip/tooltip.directive';
 import { Router } from '@angular/router';
@@ -26,7 +25,6 @@ describe('FilterComponent:', () => {
         TestBed.configureTestingModule({
             declarations: [
                 TooltipDirective,
-                TerraLabelTooltipDirective,
                 TerraButtonComponent,
                 TerraBaseToolbarComponent,
                 TerraInfoComponent,

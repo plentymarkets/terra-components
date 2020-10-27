@@ -6,6 +6,7 @@
 -   **dependencies** removed peer dependency `ng2-ace-editor` since we no longer depend on it.
 -   **terra-base-toolbar**'s input `inputIsBreadcrumbs` has been removed. There's no replacement.
 -   **terra-radio-button** has been removed. Use `tc-radio-group` and `tc-radio-input` instead.
+-   **terra-label-tooltip** directive has been removed. Use `TooltipDirective` with a set `onlyEllipsisTooltip` input instead.
 
 # 5.10.1 (Unreleased)
 
