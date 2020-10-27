@@ -3,7 +3,7 @@
         <div class="btn-group" role="group">
             <terra-button
                 inputIcon="icon-save"
-                [inputTooltipText]="_translationPrefix + '.saveMetadata' | translate: _lang"
+                [inputTooltipText]="_translationPrefix + '.saveMetadata' | translate: _locale.language"
                 (outputClicked)="_updateMetadata()"
             >
             </terra-button>
@@ -18,13 +18,13 @@
 
             <div *ngIf="_canHandleMetadata">
                 <terra-text-input
-                    [inputName]="_translationPrefix + '.imageSize' | translate: _lang"
+                    [inputName]="_translationPrefix + '.imageSize' | translate: _locale.language"
                     [inputIsReadonly]="true"
                     [ngModel]="_metadata.width ? _metadata.width + ' x ' + _metadata.height + ' px' : '-'"
                 ></terra-text-input>
 
                 <terra-text-input
-                    [inputName]="_translationPrefix + '.altText' | translate: _lang"
+                    [inputName]="_translationPrefix + '.altText' | translate: _locale.language"
                     [(ngModel)]="_metadata.alttext"
                 ></terra-text-input>
             </div>

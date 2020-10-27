@@ -1,5 +1,5 @@
-import { AfterContentChecked, Component, Input, OnInit } from '@angular/core';
-import { L10nTranslationService } from 'angular-l10n';
+import { AfterContentChecked, Component, Inject, Input, OnInit } from '@angular/core';
+import { L10nLocale, L10nTranslationService, L10N_LOCALE } from 'angular-l10n';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TerraCategoryPickerBaseService } from './service/terra-category-picker-base.service';
 import { TerraNodeInterface } from '../../tree/node-tree/data/terra-node.interface';
@@ -55,10 +55,11 @@ export class TerraCategoryPickerComponent
     private _list: Array<TerraNodeInterface<NestedDataInterface<CategoryDataInterface>>>;
 
     constructor(
+        @Inject(L10N_LOCALE) locale: L10nLocale,
         translation: L10nTranslationService,
         public _nestedTreeConfig: NestedDataTreeConfig<CategoryDataInterface>
     ) {
-        super(translation, _nestedTreeConfig);
+        super(locale, translation, _nestedTreeConfig);
         this.value = 0;
         this._completeCategory = {
             id: null,

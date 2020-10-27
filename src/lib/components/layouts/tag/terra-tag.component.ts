@@ -1,8 +1,18 @@
-import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
+import {
+    Component,
+    EventEmitter,
+    Inject,
+    Input,
+    OnChanges,
+    OnDestroy,
+    OnInit,
+    Output,
+    SimpleChanges
+} from '@angular/core';
 import { isNullOrUndefined } from 'util';
 import { Color } from '../../../helpers/color.helper';
 import { TerraTagNameInterface } from './data/terra-tag-name.interface';
-import { Language } from 'angular-l10n';
+import { L10nLocale, L10N_LOCALE } from 'angular-l10n';
 
 /**
  * @deprecated since v5. Use angular material's [chip](https://material.angular.io/components/chips/overview) instead.
@@ -86,10 +96,9 @@ export class TerraTagComponent implements OnInit, OnChanges, OnDestroy {
     @Output()
     public closeTag: EventEmitter<number> = new EventEmitter<number>();
 
-    @Language()
-    public _lang: string;
-
     public _tagName: string;
+
+    constructor(@Inject(L10N_LOCALE) private _locale: L10nLocale) {}
 
     public ngOnInit(): void {
         if (this.onCloseTag.observers.length > 0) {
@@ -147,7 +156,7 @@ export class TerraTagComponent implements OnInit, OnChanges, OnDestroy {
         }
 
         const tagName: TerraTagNameInterface = this.names.find(
-            (name: TerraTagNameInterface) => name.language === this._lang
+            (name: TerraTagNameInterface) => name.language === this._locale.language
         );
         if (isNullOrUndefined(tagName)) {
             return this.name;

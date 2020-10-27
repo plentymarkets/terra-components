@@ -1,5 +1,5 @@
-import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
-import { Language } from 'angular-l10n';
+import { Component, EventEmitter, Inject, OnDestroy, OnInit, Output } from '@angular/core';
+import { L10nLocale, L10N_LOCALE } from 'angular-l10n';
 
 /**
  * @author mkunze
@@ -22,8 +22,7 @@ export class FilterComponent implements OnInit, OnDestroy {
     @Output()
     public reset: EventEmitter<void> = new EventEmitter<void>();
 
-    @Language()
-    public _lang: string;
+    constructor(@Inject(L10N_LOCALE) public _locale: L10nLocale) {}
 
     public ngOnInit(): void {
         // implementation is required by angular-l10n. See https://robisim74.github.io/angular-l10n/spec/getting-the-translation/#messages

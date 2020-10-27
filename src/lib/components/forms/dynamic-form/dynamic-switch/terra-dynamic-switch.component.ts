@@ -1,8 +1,8 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { TerraFormFieldBase } from '../data/terra-form-field-base';
 import { TerraControlTypeEnum } from '../enum/terra-control-type.enum';
-import { Language } from 'angular-l10n';
+import { L10nLocale, L10N_LOCALE } from 'angular-l10n';
 
 /**
  * @deprecated since v5.0.0. Use terra-form instead.
@@ -34,16 +34,13 @@ export class TerraDynamicSwitchComponent implements OnInit, OnDestroy {
     @Input()
     public inputUsePortlet: boolean;
 
-    @Language()
-    public _lang: string;
-
     // Necessary for using enum in html
     public _controlTypeEnum: any = TerraControlTypeEnum;
 
     @Input()
     public inputShowDeprecatedConfig: boolean;
 
-    constructor() {
+    constructor(@Inject(L10N_LOCALE) public _locale: L10nLocale) {
         this.inputSubSwitch = false;
     }
 

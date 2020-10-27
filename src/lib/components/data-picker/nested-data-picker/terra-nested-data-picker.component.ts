@@ -1,5 +1,5 @@
-import { AfterContentChecked, Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { Language, L10nTranslationService } from 'angular-l10n';
+import { AfterContentChecked, Component, Inject, Input, OnDestroy, OnInit } from '@angular/core';
+import { L10nLocale, L10nTranslationService, L10N_LOCALE } from 'angular-l10n';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NestedDataTreeConfig } from './config/nested-data-tree.config';
 import { NestedDataInterface } from './data/nested-data.interface';
@@ -55,9 +55,6 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
 
     public toggleTree: boolean = false;
 
-    @Language()
-    public _lang: string;
-
     public _nestedDataName: string;
 
     public value: number | string;
@@ -69,7 +66,11 @@ export class TerraNestedDataPickerComponent implements OnInit, AfterContentCheck
     private _completeNestedData: NestedValueInterface;
     private _nestedList: Array<TerraNodeInterface<NestedDataInterface<{}>>>;
 
-    constructor(protected _translation: L10nTranslationService, public _nestedTreeConfig: TerraNodeTreeConfig<{}>) {
+    constructor(
+        @Inject(L10N_LOCALE) public _locale: L10nLocale,
+        public _translation: L10nTranslationService,
+        public _nestedTreeConfig: TerraNodeTreeConfig<{}>
+    ) {
         this.value = null;
         this._completeNestedData = {
             id: null,

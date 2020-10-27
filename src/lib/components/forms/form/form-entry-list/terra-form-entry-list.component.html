@@ -42,7 +42,7 @@
 
             <terra-button
                 [inputIcon]="'icon-delete'"
-                [inputTooltipText]="'terraDynamicForm.removeListEntry' | translate: _lang"
+                [inputTooltipText]="'terraDynamicForm.removeListEntry' | translate: _locale.language"
                 [inputIsDisabled]="!_canRemoveElement"
                 (outputClicked)="_removeElement(i)"
             >
@@ -50,7 +50,7 @@
         </div>
         <terra-button
             [inputIcon]="'icon-add'"
-            [inputTooltipText]="'terraDynamicForm.addListEntry' | translate: _lang"
+            [inputTooltipText]="'terraDynamicForm.addListEntry' | translate: _locale.language"
             [inputIsDisabled]="!_canAddElement"
             (outputClicked)="_addElement()"
         >

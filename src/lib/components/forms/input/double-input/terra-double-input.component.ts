@@ -1,8 +1,8 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnDestroy, OnInit } from '@angular/core';
 import { TerraInputComponent } from '../terra-input.component';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TerraRegex } from '../../../../helpers/regex/terra-regex';
-import { DefaultLocale } from 'angular-l10n';
+import { L10nLocale, L10N_LOCALE } from 'angular-l10n';
 
 let nextId: number = 0;
 
@@ -35,9 +35,6 @@ export class TerraDoubleInputComponent extends TerraInputComponent implements On
     @Input()
     public inputDecimalCount: number = 2;
 
-    @DefaultLocale()
-    public _locale: string;
-
     public _step: number;
 
     /**
@@ -45,7 +42,7 @@ export class TerraDoubleInputComponent extends TerraInputComponent implements On
      */
     public _id: string;
 
-    constructor() {
+    constructor(@Inject(L10N_LOCALE) public _locale: L10nLocale) {
         super(TerraRegex.DOUBLE);
 
         // generate the id of the input instance

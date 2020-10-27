@@ -1,10 +1,10 @@
-import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Inject, Input, OnDestroy, OnInit } from '@angular/core';
 import { TerraStorageObject } from '../model/terra-storage-object';
 import { TerraBaseStorageService } from '../terra-base-storage.interface';
 import { TerraImageMetadata } from '../model/terra-image-metadata.interface';
 import { isNullOrUndefined } from 'util';
 import { TerraBaseMetadataStorageService } from '../terra-base-metadata-storage.interface';
-import { Language, L10nTranslationService } from 'angular-l10n';
+import { L10nLocale, L10nTranslationService, L10N_LOCALE } from 'angular-l10n';
 
 @Component({
     selector: 'terra-image-preview',
@@ -14,9 +14,6 @@ import { Language, L10nTranslationService } from 'angular-l10n';
 export class TerraImagePreviewComponent implements OnInit, OnDestroy {
     @Input()
     public inputStorageService: TerraBaseStorageService;
-
-    @Language()
-    public _lang: string;
 
     public _translationPrefix: string = 'terraFileBrowser';
     public _metadata: TerraImageMetadata = {};
@@ -51,7 +48,11 @@ export class TerraImagePreviewComponent implements OnInit, OnDestroy {
         return this.inputStorageService instanceof TerraBaseMetadataStorageService;
     }
 
-    constructor(private _changeDetector: ChangeDetectorRef, private _translation: L10nTranslationService) {}
+    constructor(
+        @Inject(L10N_LOCALE) public _locale: L10nLocale,
+        private _changeDetector: ChangeDetectorRef,
+        private _translation: L10nTranslationService
+    ) {}
 
     public ngOnInit(): void {
         // implementation is required by angular-l10n. See https://robisim74.github.io/angular-l10n/spec/getting-the-translation/#messages

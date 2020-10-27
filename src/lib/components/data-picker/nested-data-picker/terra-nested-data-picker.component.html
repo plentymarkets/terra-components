@@ -13,7 +13,7 @@
         <terra-button
             *ngIf="displayResetButton"
             class="col-md-1"
-            inputTooltipText="{{ 'cancel' | translate: _lang }}"
+            inputTooltipText="{{ 'cancel' | translate: _locale.language }}"
             inputTooltipPlacement="top"
             inputIcon="icon-cancel"
             (outputClicked)="reset()"
@@ -26,7 +26,7 @@
         </div>
         <terra-base-toolbar>
             <terra-button
-                inputTooltipText="{{ 'terraNestedDataPicker.select' | translate: _lang }}"
+                inputTooltipText="{{ 'terraNestedDataPicker.select' | translate: _locale.language }}"
                 inputTooltipPlacement="top"
                 inputIcon="icon-success"
                 [inputIsSmall]="true"
@@ -34,7 +34,7 @@
             >
             </terra-button>
             <terra-button
-                inputTooltipText="{{ 'cancel' | translate: _lang }}"
+                inputTooltipText="{{ 'cancel' | translate: _locale.language }}"
                 inputTooltipPlacement="top"
                 inputIcon="icon-cancel"
                 [inputIsSmall]="true"
@@ -42,7 +42,7 @@
             >
             </terra-button>
             <terra-button
-                inputTooltipText="{{ 'terraNestedDataPicker.reset' | translate: _lang }}"
+                inputTooltipText="{{ 'terraNestedDataPicker.reset' | translate: _locale.language }}"
                 inputTooltipPlacement="top"
                 inputIcon="icon-reset"
                 [inputIsSmall]="true"

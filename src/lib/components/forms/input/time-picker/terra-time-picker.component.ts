@@ -1,12 +1,12 @@
 /**
  * @author twieder
  */
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnDestroy, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TerraSelectBoxValueInterface } from '../../select-box/data/terra-select-box.interface';
 import { isNullOrUndefined } from 'util';
 import { noop } from 'rxjs';
-import { Language } from 'angular-l10n';
+import { L10nLocale, L10N_LOCALE } from 'angular-l10n';
 
 /** @deprecated since v5. Please use mat-input of type time instead. */
 @Component({
@@ -30,13 +30,12 @@ export class TerraTimePickerComponent implements OnInit, ControlValueAccessor, O
     public valuesHours: Array<TerraSelectBoxValueInterface> = [];
     public valuesMinutes: Array<TerraSelectBoxValueInterface> = [];
 
-    @Language()
-    public _lang: string;
-
     private _value: Date = new Date();
 
     private _onTouchedCallback: () => void = noop;
     private _onChangeCallback: (_: any) => void = noop;
+
+    constructor(@Inject(L10N_LOCALE) public _locale: L10nLocale) {}
 
     public ngOnInit(): void {
         this.createTimeValues();

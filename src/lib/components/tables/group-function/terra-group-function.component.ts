@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Language } from 'angular-l10n';
+import { L10nLocale, L10N_LOCALE } from 'angular-l10n';
 
 @Component({
     selector: 'terra-group-function',
@@ -48,11 +48,7 @@ export class TerraGroupFunctionComponent implements OnInit, OnDestroy {
     @Output()
     public executeGroupFunction: EventEmitter<void> = new EventEmitter();
 
-    /**
-     * @description currently selected language
-     */
-    @Language()
-    public _lang: string;
+    constructor(@Inject(L10N_LOCALE) public _locale: L10nLocale) {}
 
     public ngOnInit(): void {
         // implementation is required by angular-l10n. See https://robisim74.github.io/angular-l10n/spec/getting-the-translation/#messages

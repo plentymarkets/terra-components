@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { isNullOrUndefined } from 'util';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TerraInputComponent } from '../terra-input.component';
@@ -10,7 +10,7 @@ import { TerraStorageObject } from '../../../file-browser/model/terra-storage-ob
 import { TerraOverlayComponent } from '../../../layouts/overlay/terra-overlay.component';
 import { TerraOverlayButtonInterface } from '../../../layouts/overlay/data/terra-overlay-button.interface';
 import { StringHelper } from '../../../../helpers/string.helper';
-import { Language } from 'angular-l10n';
+import { L10nLocale, L10N_LOCALE } from 'angular-l10n';
 
 let nextId: number = 0;
 
@@ -57,15 +57,12 @@ export class TerraFileInputComponent extends TerraInputComponent implements OnIn
     public primaryOverlayButton: TerraOverlayButtonInterface;
     public secondaryOverlayButton: TerraOverlayButtonInterface;
 
-    @Language()
-    public _lang: string;
-
     public _id: string;
     public _translationPrefix: string = 'terraFileInput';
 
     private _storageServices: Array<TerraBaseStorageService>;
 
-    constructor() {
+    constructor(@Inject(L10N_LOCALE) public _locale: L10nLocale) {
         super(TerraRegex.MIXED);
 
         // generate the id of the input instance

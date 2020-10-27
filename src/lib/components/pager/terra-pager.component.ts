@@ -1,9 +1,9 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { TerraPagerInterface } from './data/terra-pager.interface';
 import { TerraSelectBoxValueInterface } from '../forms/select-box/data/terra-select-box.interface';
 import { Subject } from 'rxjs';
 import { terraPagerDefaultPagingSizes } from './data/terra-pager-default-paging-sizes';
-import { Language } from 'angular-l10n';
+import { L10nLocale, L10N_LOCALE } from 'angular-l10n';
 import { debounceTime } from 'rxjs/operators';
 
 @Component({
@@ -28,10 +28,9 @@ export class TerraPagerComponent implements OnInit, OnDestroy {
     @Output()
     public outputDoPaging: EventEmitter<TerraPagerInterface<any>> = new EventEmitter<TerraPagerInterface<any>>();
 
-    @Language()
-    public _lang: string;
-
     private _pagingClicks: Subject<TerraPagerInterface<any>> = new Subject<TerraPagerInterface<any>>();
+
+    constructor(@Inject(L10N_LOCALE) public _locale: L10nLocale) {}
 
     public ngOnInit(): void {
         this._pagingClicks

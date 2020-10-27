@@ -14,7 +14,7 @@
         [disabled]="inputIsDisabled"
         pattern="{{ regex }}"
         step="{{ _step }}"
-        [lang]="_locale"
+        [lang]="_locale.language"
         placeholder="{{ inputIsRequired ? inputName + '*' : inputName }}"
         [ngClass]="{
             isSmall: inputIsSmall,

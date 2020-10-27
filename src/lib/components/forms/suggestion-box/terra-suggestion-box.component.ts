@@ -2,6 +2,7 @@ import {
     Component,
     ElementRef,
     EventEmitter,
+    Inject,
     Input,
     OnChanges,
     OnDestroy,
@@ -17,7 +18,7 @@ import { isNull, isNullOrUndefined } from 'util';
 import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum';
 import { TerraBaseData } from '../../data/terra-base.data';
 import { noop } from 'rxjs';
-import { Language } from 'angular-l10n';
+import { L10nLocale, L10N_LOCALE } from 'angular-l10n';
 
 const MAX_LASTLY_USED_ENTRIES: number = 5;
 
@@ -64,9 +65,6 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
 
     public isValid: boolean = true;
 
-    @Language()
-    public _lang: string;
-
     public _displayListBoxValues: Array<TerraSuggestionBoxValueInterface> = [];
     public _listBoxHeadingKey: string = '';
     public _noEntriesTextKey: string;
@@ -85,7 +83,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
     @ViewChildren('renderedListBoxValues')
     private _renderedListBoxValues: QueryList<ElementRef>;
 
-    constructor(private _elementRef: ElementRef) {}
+    constructor(@Inject(L10N_LOCALE) public _locale: L10nLocale, private _elementRef: ElementRef) {}
 
     public ngOnInit(): void {
         this._clickListener = (event: Event): void => {

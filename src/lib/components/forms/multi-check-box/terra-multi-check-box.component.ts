@@ -73,7 +73,7 @@ export class TerraMultiCheckBoxComponent implements OnInit, OnDestroy, ControlVa
     public ngOnInit(): void {
         if (!this.inputName) {
             // this is necessary for language switch
-            this._translation.translationChanged().subscribe(() => {
+            this._translation.onChange().subscribe(() => {
                 this.inputName = this._translation.translate(this._langPrefix + '.selectAll');
             });
         }
