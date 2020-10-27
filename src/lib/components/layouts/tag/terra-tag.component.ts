@@ -72,14 +72,6 @@ export class TerraTagComponent implements OnInit, OnChanges, OnDestroy {
     @Input()
     public names: Array<TerraTagNameInterface> = [];
 
-    /* tslint:disable:no-output-on-prefix */
-    /**
-     * @deprecated use closeTag instead
-     */
-    @Output()
-    public onCloseTag: EventEmitter<number> = new EventEmitter<number>();
-    /* tslint:enable:no-output-on-prefix */
-
     /**
      * Notifies when the user clicks on the close icon.
      */
@@ -92,9 +84,7 @@ export class TerraTagComponent implements OnInit, OnChanges, OnDestroy {
     public _tagName: string;
 
     public ngOnInit(): void {
-        if (this.onCloseTag.observers.length > 0) {
-            console.warn('`onCloseTag` is deprecated. Please use `closeTag` instead.');
-        }
+        // implementation is required by angular-l10n. See https://robisim74.github.io/angular-l10n/spec/getting-the-translation/#messages
     }
 
     public ngOnDestroy(): void {
@@ -112,7 +102,6 @@ export class TerraTagComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     public _close(): void {
-        this.onCloseTag.emit(this.tagId);
         this.closeTag.emit(this.tagId);
     }
 
