@@ -3,7 +3,6 @@ import { FormsModule } from '@angular/forms';
 import { ComponentFixture, fakeAsync, flush, TestBed } from '@angular/core/testing';
 import { LocalizationModule } from 'angular-l10n';
 import { l10nConfig } from '../../../../../app/translation/l10n.config';
-import { TerraLabelTooltipDirective } from '../../../../helpers/terra-label-tooltip.directive';
 import { TerraTextAreaInputComponent } from './terra-text-area-input.component';
 import { By } from '@angular/platform-browser';
 import { MockElementRef } from '../../../../testing/mock-element-ref';
@@ -23,7 +22,7 @@ describe('TerraTextAreaInputComponent', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            declarations: [TooltipDirective, TerraTextAreaInputComponent, TerraLabelTooltipDirective],
+            declarations: [TooltipDirective, TerraTextAreaInputComponent],
             imports: [FormsModule, LocalizationModule.forRoot(l10nConfig)],
             providers: [
                 {

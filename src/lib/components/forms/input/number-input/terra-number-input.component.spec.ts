@@ -3,7 +3,6 @@ import { FormControl, FormsModule, Validators } from '@angular/forms';
 import { ComponentFixture, fakeAsync, flush, TestBed } from '@angular/core/testing';
 import { LocalizationModule } from 'angular-l10n';
 import { l10nConfig } from '../../../../../app/translation/l10n.config';
-import { TerraLabelTooltipDirective } from '../../../../helpers/terra-label-tooltip.directive';
 import { TerraNumberInputComponent } from './terra-number-input.component';
 import { By } from '@angular/platform-browser';
 import { TerraButtonComponent } from '../../../buttons/button/terra-button.component';
@@ -23,12 +22,7 @@ describe('TerraNumberInputComponent', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            declarations: [
-                TooltipDirective,
-                TerraNumberInputComponent,
-                TerraButtonComponent,
-                TerraLabelTooltipDirective
-            ],
+            declarations: [TooltipDirective, TerraNumberInputComponent, TerraButtonComponent],
             imports: [FormsModule, LocalizationModule.forRoot(l10nConfig)],
             providers: [
                 {
