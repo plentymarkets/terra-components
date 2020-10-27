@@ -117,7 +117,6 @@ export const exportedComponents: Array<Type<any>> = [
     TerraFormContainerComponent,
     TerraFormEntryComponent,
     TerraFormEntryListComponent,
-    TerraFormContainerWrapperComponent,
     TerraBreadcrumbsComponent,
     TerraTagSelectComponent,
     TerraStopwatchComponent,
@@ -136,5 +135,6 @@ export const components: Array<Type<any>> = [
     TerraFileListComponent,
     TerraImagePreviewComponent,
     TerraBaseEditorComponent,
-    TableSettingsDialogComponent
+    TableSettingsDialogComponent,
+    TerraFormContainerWrapperComponent
 ];
