@@ -1,11 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA, SimpleChange } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { TranslationModule } from 'angular-l10n';
+import { L10nTranslationModule } from 'angular-l10n';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { TerraFormEntryListComponent } from './terra-form-entry-list.component';
 import { TerraFormContainerComponent } from '../form-container/terra-form-container.component';
 import { TerraFormScope } from '../model/terra-form-scope.data';
+import { mockL10nConfig } from 'src/lib/testing/mock-l10n-config';
 
 describe('TerraFormEntryListComponent: ', () => {
     let fixture: ComponentFixture<TerraFormEntryListComponent>;
@@ -13,7 +14,7 @@ describe('TerraFormEntryListComponent: ', () => {
     beforeEach(() => {
         fixture = TestBed.configureTestingModule({
             schemas: [NO_ERRORS_SCHEMA],
-            imports: [TranslationModule.forRoot({})],
+            imports: [L10nTranslationModule.forRoot(mockL10nConfig)],
             declarations: [TerraFormEntryListComponent, TerraFormContainerComponent]
         }).createComponent(TerraFormEntryListComponent);
 

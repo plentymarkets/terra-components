@@ -5,11 +5,11 @@ import { HTTP_INTERCEPTORS, HttpClient, HttpErrorResponse } from '@angular/commo
 import { Data } from '@angular/router';
 import { AlertService } from '../components/alert/alert.service';
 import { MockTranslationModule } from '../testing/mock-translation-module';
-import { LocaleService, L10nTranslationService } from 'angular-l10n';
+import { L10nTranslationService, L10nIntlService, L10nLocale, L10N_LOCALE } from 'angular-l10n';
 import Spy = jasmine.Spy;
 
-const localeServiceStub: Partial<LocaleService> = {
-    getCurrentLanguage: (): string => 'de'
+const localeServiceStub: Partial<L10nLocale> = {
+    language: 'de'
 };
 
 describe('ErrorInterceptor', () => {
@@ -30,7 +30,7 @@ describe('ErrorInterceptor', () => {
                     multi: true
                 },
                 {
-                    provide: LocaleService,
+                    provide: L10N_LOCALE,
                     useValue: localeServiceStub
                 }
             ]
@@ -43,7 +43,7 @@ describe('ErrorInterceptor', () => {
 
     it('should create an instance', () => {
         const translationService: L10nTranslationService = TestBed.get(L10nTranslationService);
-        const localeService: LocaleService = TestBed.get(LocaleService);
+        const localeService: L10nLocale = TestBed.get(L10N_LOCALE);
         expect(new ErrorInterceptor(alertService, translationService, localeService)).toBeTruthy();
     });
 

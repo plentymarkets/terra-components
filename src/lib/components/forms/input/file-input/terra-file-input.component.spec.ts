@@ -1,8 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { LocalizationModule } from 'angular-l10n';
-import { l10nConfig } from '../../../../../app/translation/l10n.config';
+import { L10nTranslationModule } from 'angular-l10n';
 import { TerraFileInputComponent } from './terra-file-input.component';
 import { TerraThreeColumnsContainerComponent } from '../../../layouts/column-container/three-columns/terra-three-columns-container.component';
 import { TerraNodeTreeComponent } from '../../../tree/node-tree/terra-node-tree.component';
@@ -33,6 +32,7 @@ import { MockRouter } from '../../../../testing/mock-router';
 import { MatDialogModule } from '@angular/material/dialog';
 import Spy = jasmine.Spy;
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { mockL10nConfig } from 'src/lib/testing/mock-l10n-config';
 
 describe('TerraFileInputComponent', () => {
     let component: TerraFileInputComponent;
@@ -68,7 +68,7 @@ describe('TerraFileInputComponent', () => {
                 FormsModule,
                 ReactiveFormsModule,
                 HttpClientModule,
-                LocalizationModule.forRoot(l10nConfig),
+                L10nTranslationModule.forRoot(mockL10nConfig),
                 MatDialogModule
             ],
             providers: [

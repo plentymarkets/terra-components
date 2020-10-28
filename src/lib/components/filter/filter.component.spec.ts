@@ -1,19 +1,18 @@
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { LocalizationModule } from 'angular-l10n';
-
+import { L10nTranslationModule } from 'angular-l10n';
 import { By } from '@angular/platform-browser';
 import { FilterComponent } from './filter.component';
 import { TerraBaseToolbarComponent } from '../toolbar/base-toolbar/terra-base-toolbar.component';
 import { TerraButtonComponent } from '../buttons/button/terra-button.component';
 import { TerraPortletComponent } from '../layouts/portlet/terra-portlet.component';
-import { l10nConfig } from '../../../app/translation/l10n.config';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TerraInfoComponent } from '../info/terra-info.component';
 import { TooltipDirective } from '../tooltip/tooltip.directive';
 import { Router } from '@angular/router';
 import { MockRouter } from '../../testing/mock-router';
 import Spy = jasmine.Spy;
+import { mockL10nConfig } from 'src/lib/testing/mock-l10n-config';
 
 describe('FilterComponent:', () => {
     let filterComponent: FilterComponent;
@@ -31,7 +30,7 @@ describe('FilterComponent:', () => {
                 TerraPortletComponent,
                 FilterComponent
             ],
-            imports: [BrowserAnimationsModule, LocalizationModule.forRoot(l10nConfig)],
+            imports: [BrowserAnimationsModule, L10nTranslationModule.forRoot(mockL10nConfig)],
             providers: [
                 {
                     provide: Router,
