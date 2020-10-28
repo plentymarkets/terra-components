@@ -1,8 +1,8 @@
 {
     "scripts": {
         "start": "ng serve",
-        "build": "ng build lib && gulp compileStyles && npm run build:schematics && gulp copy",
-        "build:lib": "ng build lib",
+        "build": "ng build lib --prod && gulp compileStyles && npm run build:schematics && gulp copy",
+        "build:lib": "ng build lib --prod",
         "build:dev-app": "ng build dev-app --aot",
         "build:schematics": "cd src/lib && npm run build",
         "test": "ng test lib",
