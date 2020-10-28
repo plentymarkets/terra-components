@@ -13,6 +13,7 @@
     -   changed peer dependency `mydatepicker`to require version 9
     -   changed peer dependency `ngx-quill` to require version 11
     -   changed peer dependency `ngx-bootstrap` to require version 6.1.0
+-   **terra-form**
     -   removed deprecated `TerraFormTypeMap`. Provide a value for `inputControlTypeMap` because the default value was removed, too.
     -   `TerraFormContainerWrapperComponent` and `TerraFormEntryContainerDirective` have been removed from the exports of the `TerraComponentsModule` since they were intended for internal usage only.
 -   **table** `TableSettingsComponent` has been removed from the exports of the `TerraComponentsModule` since it was intended for internal usage only
