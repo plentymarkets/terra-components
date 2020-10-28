@@ -20,6 +20,7 @@
 -   **fixed-header** directive has been removed. Use angular material's [table](https://material.angular.io/components/table/overview) with a sticky header instead.
 -   **terra-label-tooltip** directive has been removed. Use `TooltipDirective` with a set `onlyEllipsisTooltip` input instead.
 -   **public-api** removed examples from the public api
+-   **ngx-bootstrap** updated ngx-bootstrap to version 6.1.0
 
 # 5.10.1 (Unreleased)
 
