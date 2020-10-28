@@ -114,10 +114,7 @@ describe('TerraFormContainerComponent: ', () => {
             const formFields: Array<DebugElement> = row.queryAll(By.css('.form-entry'));
             expect(formFields.length).toBe(formFieldCount);
 
-            const isEveryFieldsParent: boolean = formFields.every(
-                (formField: DebugElement) => formField.parent === row
-            );
-            expect(isEveryFieldsParent).toBe(true);
+            formFields.forEach((formField: DebugElement) => expect(formField.parent).toEqual(row));
         });
     });
 });
