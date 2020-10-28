@@ -11,6 +11,7 @@
     -   removed peer dependency `ng2-ace-editor` since we no longer depend on it.
     -   changed peer dependency `mydatepicker`to require version 9
     -   changed peer dependency `ngx-quill` to require version 11
+    -   changed peer dependency `ngx-bootstrap` to require version 6.1.0
 -   **exception-interface** was removed. Use angular's [HttpClient](https://angular.io/guide/http) instead.
 -   **breadcrumbs-service** removed method initialPath since it has been deprecated.
 -   **terra-tag** removed deprecated `onCloseTag` output.
