@@ -11,7 +11,7 @@ export class TerraMatPaginatorIntl extends MatPaginatorIntl {
 
     constructor(private translation: L10nTranslationService) {
         super();
-        this.translation.translationChanged().subscribe(() => {
+        this.translation.onChange().subscribe(() => {
             this.updateLabels();
             this.changes.next();
         });
