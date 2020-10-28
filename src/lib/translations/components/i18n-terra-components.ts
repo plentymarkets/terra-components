@@ -290,6 +290,6 @@ const enEN = {
 };
 
 export const i18nTerraComponents = {
-    'de-De': deDe,
-    'en-EN': enEN
+    de: deDe,
+    en: enEN
 };
