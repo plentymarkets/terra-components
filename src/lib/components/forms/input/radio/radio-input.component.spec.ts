@@ -3,10 +3,9 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RadioGroupComponent } from './radio-group.component';
 import { By } from '@angular/platform-browser';
 import { Component, DebugElement } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 
 @Component({
-    template: `<tc-radio-group [ngModel]="1">
+    template: `<tc-radio-group>
         <tc-radio-input></tc-radio-input>
     </tc-radio-group>`
 })
@@ -14,20 +13,17 @@ class HostComponent {}
 
 describe(`RadioInputComponent:`, () => {
     let fixture: ComponentFixture<HostComponent>;
-    let component: HostComponent;
     let radioInputComponent: RadioInputComponent;
     let radioGroupComponent: RadioGroupComponent;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            imports: [FormsModule],
             declarations: [RadioInputComponent, RadioGroupComponent, HostComponent]
         });
     }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(HostComponent);
-        component = fixture.componentInstance;
         radioInputComponent = fixture.debugElement.query(By.directive(RadioInputComponent)).componentInstance;
         radioGroupComponent = fixture.debugElement.query(By.directive(RadioGroupComponent)).componentInstance;
 
@@ -35,7 +31,6 @@ describe(`RadioInputComponent:`, () => {
     });
 
     it(`should create`, () => {
-        expect(component).toBeTruthy();
         expect(radioInputComponent).toBeTruthy();
         expect(radioGroupComponent).toBeTruthy();
     });
@@ -124,10 +119,12 @@ describe(`RadioInputComponent:`, () => {
         });
 
         it(`should set [checked] attribute of the <input> if the group's #value equals #value`, () => {
-            expect(inputElement.checked).toBe(false);
-
             const value: string = 'Test value';
             radioGroupComponent.value = value;
+            fixture.detectChanges();
+
+            expect(inputElement.checked).toBe(false);
+
             radioInputComponent.value = value;
             fixture.detectChanges();
 
