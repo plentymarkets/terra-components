@@ -213,7 +213,7 @@ export class TerraFormHelper {
                     }
                 }
 
-                return startsWithCol && endsWithNumber && endsWithNumber;
+                return startsWithCol && endsWithNumber;
             })
             .join(' ');
     }
