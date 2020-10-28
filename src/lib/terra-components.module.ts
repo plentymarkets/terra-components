@@ -25,7 +25,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
         LocalizationModule,
         ModalModule.forRoot(),
         MyDatePickerModule,
-        QuillModule,
+        QuillModule.forRoot(),
         CKEditorModule,
         TerraInteractModule,
         MatListModule,
