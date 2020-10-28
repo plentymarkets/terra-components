@@ -1,7 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { L10nTranslationModule } from 'angular-l10n';
+import { L10nIntlModule, L10nTranslationModule } from 'angular-l10n';
 import { TerraFileInputComponent } from './terra-file-input.component';
 import { TerraThreeColumnsContainerComponent } from '../../../layouts/column-container/three-columns/terra-three-columns-container.component';
 import { TerraNodeTreeComponent } from '../../../tree/node-tree/terra-node-tree.component';
@@ -69,6 +69,7 @@ describe('TerraFileInputComponent', () => {
                 ReactiveFormsModule,
                 HttpClientModule,
                 L10nTranslationModule.forRoot(mockL10nConfig),
+                L10nIntlModule,
                 MatDialogModule
             ],
             providers: [

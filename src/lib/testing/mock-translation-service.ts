@@ -7,7 +7,7 @@ export class MockTranslationService {
     // implements ITranslationService
     private lang: string = 'de';
 
-    public translationChanged(): Observable<string> {
+    public onChange(): Observable<string> {
         return of(this.lang);
     }
 
