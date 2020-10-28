@@ -45,7 +45,7 @@
         "moment": "^2.24.0",
         "mydatepicker": "^9.0.2",
         "ngx-bootstrap": "^4.3.0",
-        "ngx-quill": "^12.0.1",
+        "ngx-quill": "^11.1.0",
         "reflect-metadata": "^0.1.13",
         "tippy.js": "^5.1.4",
         "ts-keycode-enum": "^1.0.6"
