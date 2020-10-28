@@ -7,7 +7,6 @@ export * from './utils';
 export * from './components/table';
 
 export { TerraComponentsModule } from './terra-components.module';
-export { TerraComponentsExamplesModule } from './terra-components-examples.module';
 
 export { TerraAlertPanelComponent } from './components/alert/terra-alert-panel.component';
 export { TerraAlertComponent } from './components/alert/terra-alert.component';
