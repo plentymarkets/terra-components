@@ -25,7 +25,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
         LocalizationModule,
         ModalModule.forRoot(),
         MyDatePickerModule,
-        QuillModule,
+        QuillModule.forRoot(),
         CKEditorModule,
         TerraInteractModule,
         MatListModule,
