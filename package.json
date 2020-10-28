@@ -1,8 +1,8 @@
 {
     "scripts": {
         "start": "ng serve",
-        "build": "ng build lib && gulp compileStyles && npm run build:schematics && gulp copy",
-        "build:lib": "ng build lib",
+        "build": "ng build lib --prod && gulp compileStyles && npm run build:schematics && gulp copy",
+        "build:lib": "ng build lib --prod",
         "build:dev-app": "ng build dev-app --aot",
         "build:schematics": "cd src/lib && npm run build",
         "test": "ng test lib",
@@ -23,7 +23,7 @@
         "interactjs": "1.3.4",
         "lodash.clonedeep": "^4.5.0",
         "moment": "^2.24.0",
-        "mydatepicker": "^2.6.6",
+        "mydatepicker": "^9.0.2",
         "ngx-bootstrap": "^4.3.0",
         "ngx-quill": "^5.2.0",
         "quill": "^1.3.6",
