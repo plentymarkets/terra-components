@@ -55,11 +55,11 @@ export class TerraCategoryPickerComponent
     private _list: Array<TerraNodeInterface<NestedDataInterface<CategoryDataInterface>>>;
 
     constructor(
-        @Inject(L10N_LOCALE) locale: L10nLocale,
+        @Inject(L10N_LOCALE) public _locale: L10nLocale,
         translation: L10nTranslationService,
         public _nestedTreeConfig: NestedDataTreeConfig<CategoryDataInterface>
     ) {
-        super(locale, translation, _nestedTreeConfig);
+        super(_locale, translation, _nestedTreeConfig);
         this.value = 0;
         this._completeCategory = {
             id: null,

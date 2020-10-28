@@ -12,7 +12,7 @@
         <terra-node-tree [inputShowSearch]="false" [inputConfig]="_nestedTreeConfig"> </terra-node-tree>
         <terra-base-toolbar>
             <terra-button
-                inputTooltipText="{{ 'terraCategoryPicker.select' | translate: _lang }}"
+                inputTooltipText="{{ 'terraCategoryPicker.select' | translate: _locale.language }}"
                 inputTooltipPlacement="top"
                 inputIcon="icon-success"
                 [inputIsSmall]="true"
@@ -21,7 +21,7 @@
             >
             </terra-button>
             <terra-button
-                inputTooltipText="{{ 'cancel' | translate: _lang }}"
+                inputTooltipText="{{ 'cancel' | translate: _locale.language }}"
                 inputTooltipPlacement="top"
                 inputIcon="icon-cancel"
                 [inputIsSmall]="true"
@@ -29,7 +29,7 @@
             >
             </terra-button>
             <terra-button
-                inputTooltipText="{{ 'terraCategoryPicker.reset' | translate: _lang }}"
+                inputTooltipText="{{ 'terraCategoryPicker.reset' | translate: _locale.language }}"
                 inputTooltipPlacement="top"
                 inputIcon="icon-reset"
                 [inputIsSmall]="true"

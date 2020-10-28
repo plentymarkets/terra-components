@@ -3,7 +3,7 @@
         *ngIf="controls && isRunning"
         inputIcon="icon-control_pause"
         [inputIsSmall]="isSmall"
-        [inputTooltipText]="_locale.languagePrefix + 'pause' | translate: _locale.language"
+        [inputTooltipText]="_langPrefix + 'pause' | translate: _locale.language"
         (outputClicked)="stop()"
     >
     </terra-button>
@@ -11,7 +11,7 @@
         *ngIf="controls && !isRunning"
         inputIcon="icon-control_play"
         [inputIsSmall]="isSmall"
-        [inputTooltipText]="_locale.languagePrefix + 'start' | translate: _locale.language"
+        [inputTooltipText]="_langPrefix + 'start' | translate: _locale.language"
         (outputClicked)="start()"
     >
     </terra-button>
@@ -20,7 +20,7 @@
         *ngIf="controls"
         inputIcon="icon-reset"
         [inputIsSmall]="isSmall"
-        [inputTooltipText]="_locale.languagePrefix + 'reset' | translate: _locale.language"
+        [inputTooltipText]="_langPrefix + 'reset' | translate: _locale.language"
         (outputClicked)="reset()"
     >
     </terra-button>
