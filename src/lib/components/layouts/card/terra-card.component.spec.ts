@@ -158,7 +158,7 @@ describe(`TerraCardComponent:`, () => {
             fixture.detectChanges();
             backgroundImageElement = fixture.debugElement.query(By.css('div.terra-card-image'));
             expect(backgroundImageElement).toBeTruthy();
-            expect(backgroundImageElement.styles['background-image']).toBe(`url(${expectedImagePath})`);
+            expect(backgroundImageElement.styles['background-image']).toBe(`url("${expectedImagePath}")`);
         });
     });
 });
