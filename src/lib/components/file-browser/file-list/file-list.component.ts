@@ -225,7 +225,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
     ) {}
 
     public ngOnInit(): void {
-        if (!isNullOrUndefined(this.inputStorageServices) && this.inputStorageServices.length > 0) {
+        if (this.inputStorageServices?.length > 0) {
             this.activeStorageService = this.inputStorageServices[0];
         } else {
             console.error('At least one instance of TerraBaseStorageService is required');
@@ -294,7 +294,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
     public onFileSelect(event: Event): void {
         let target: any = event.target || event.srcElement;
 
-        if (!isNullOrUndefined(target) && !isNullOrUndefined(target.files)) {
+        if (target?.files) {
             this._uploadFiles(target.files);
 
             // unset value of file input to allow selecting same file again

@@ -169,7 +169,7 @@ export class TerraSuggestionBoxComponent implements OnInit, OnChanges, ControlVa
         let searchString: any = this._textInputValue;
         this.toggleOpen = true;
 
-        if (!isNullOrUndefined(searchString) && searchString.length >= 3) {
+        if (searchString?.length >= 3) {
             this._listBoxHeadingKey = 'terraSuggestionBox.suggestions';
             this._noEntriesTextKey = 'terraSuggestionBox.noSuggestions';
             if (!isNullOrUndefined(this.inputListBoxValues)) {

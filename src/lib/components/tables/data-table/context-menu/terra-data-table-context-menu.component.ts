@@ -115,6 +115,6 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData> impleme
     }
 
     public get _linksAreSet(): boolean {
-        return !isNullOrUndefined(this.links) && this.links.length > 0;
+        return this.links?.length > 0;
     }
 }

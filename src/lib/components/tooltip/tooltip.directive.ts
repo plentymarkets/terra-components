@@ -65,7 +65,7 @@ export class TooltipDirective implements OnDestroy, OnChanges, OnInit {
 
     public ngOnInit(): void {
         this.navigationSubscription = this._router.events
-            .pipe(filter(() => this._tippyInstance && this._tippyInstance.state && this._tippyInstance.state.isShown))
+            .pipe(filter(() => this._tippyInstance?.state?.isShown))
             .subscribe(() => {
                 this._tippyInstance.hide(0);
             });

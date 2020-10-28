@@ -145,7 +145,7 @@ export abstract class TerraTableDataSource<T> extends DataSource<T> {
 
         // watch for changes to the page and sort parameters
         const pageOrSortChange$: Observable<PageEvent | Sort | never> = merge(pageChange$, sortChange$).pipe(
-            filter(() => this.data && this.data.length > 0), // accept page and/or sort events only if we already have data
+            filter(() => this.data?.length > 0), // accept page and/or sort events only if we already have data
             debounceTime(500) // debounce to reduce amount of (canceled) requests
         );
 

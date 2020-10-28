@@ -158,7 +158,7 @@ export class TerraInputComponent implements ControlValueAccessor {
                             dismissOnTimeout: 0
                         });
                     }
-                } else if (!isNullOrUndefined(this.value) && this.value.length > 0) {
+                } else if (this.value?.length > 0) {
                     let invalidMessage: string;
 
                     if (!this.inputInvalidMessage || this.inputInvalidMessage.length === 0) {

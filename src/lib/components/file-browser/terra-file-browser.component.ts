@@ -52,7 +52,7 @@ export class TerraFileBrowserComponent implements OnChanges, OnInit {
     }
 
     public get inputStorageServices(): Array<TerraBaseStorageService> {
-        if (!isNullOrUndefined(this._storageServices) && this._storageServices.length > 0) {
+        if (this._storageServices?.length > 0) {
             return this._storageServices;
         }
 

@@ -80,10 +80,7 @@ export class TerraCategoryPickerComponent
             this._nestedTreeConfig.list = this._list;
         }
 
-        if (
-            !isNullOrUndefined(this._nestedTreeConfig.currentSelectedNode) &&
-            !isNullOrUndefined(this._nestedTreeConfig.currentSelectedNode.value)
-        ) {
+        if (this._nestedTreeConfig?.currentSelectedNode?.value) {
             this._isContainerCategorySelected =
                 this._nestedTreeConfig.currentSelectedNode.value.data.type === 'container';
         }

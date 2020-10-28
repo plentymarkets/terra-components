@@ -43,8 +43,6 @@ export class TerraInfoBoxComponent {
     }
 
     public get hasFooter(): boolean {
-        return (
-            !isNullOrUndefined(this.inputId) || (!isNullOrUndefined(this.inputTagList) && this.inputTagList.length > 0)
-        );
+        return !isNullOrUndefined(this.inputId) || this.inputTagList?.length > 0;
     }
 }

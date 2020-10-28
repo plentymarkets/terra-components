@@ -20,7 +20,7 @@ export class TerraFileChooserComponent extends TerraButtonComponent {
     }
 
     public get inputPrimaryBrowserButtonCaption(): string {
-        if (!isNullOrUndefined(this._primaryBrowserButtonCaption) && this._primaryBrowserButtonCaption.length > 0) {
+        if (this._primaryBrowserButtonCaption?.length > 0) {
             return this._primaryBrowserButtonCaption;
         }
 
@@ -33,7 +33,7 @@ export class TerraFileChooserComponent extends TerraButtonComponent {
     }
 
     public get inputSecondaryBrowserButtonCaption(): string {
-        if (!isNullOrUndefined(this._secondaryBrowserButtonCaption) && this._secondaryBrowserButtonCaption.length > 0) {
+        if (this._secondaryBrowserButtonCaption?.length > 0) {
             return this._secondaryBrowserButtonCaption;
         }
 
