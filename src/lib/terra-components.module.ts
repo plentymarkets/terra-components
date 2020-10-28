@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { components, exportedComponents } from './components/component-collection';
-import { directives } from './components/directive-collection';
+import { directives, exportedDirectives } from './components/directive-collection';
 import { ModalModule } from 'ngx-bootstrap';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -35,6 +35,6 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     ],
     declarations: [...components, ...directives, ...pipes],
     entryComponents: [...exportedComponents],
-    exports: [...exportedComponents, ...directives, ...pipes]
+    exports: [...exportedComponents, ...exportedDirectives, ...pipes]
 })
 export class TerraComponentsModule {}
