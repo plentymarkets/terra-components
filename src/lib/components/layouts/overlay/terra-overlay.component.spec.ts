@@ -90,7 +90,7 @@ describe('TerraOverlayComponent', () => {
 
         fixture.detectChanges();
 
-        expect(modalDialogElement.classes['modal-lg']).toBe(false);
+        expect(modalDialogElement.classes['modal-lg']).toBeFalsy();
         expect(modalDialogElement.classes['modal-xl']).toBe(true);
         expect(modalDialogElement.classes['modal-sm']).toBe(true);
     });

@@ -12,7 +12,6 @@ describe('TerraTagComponent', () => {
     let component: TerraTagComponent;
     let fixture: ComponentFixture<TerraTagComponent>;
     let tagDiv: DebugElement;
-    const customClass: string = 'testClass';
     const name: string = 'Test';
 
     beforeEach(() => {
@@ -46,13 +45,13 @@ describe('TerraTagComponent', () => {
     });
 
     it('should have set tagDiv classes equal to `inputCustomClass`', () => {
-        expect(Object.entries(tagDiv.classes).length).toBe(0); // no classes set
+        expect(tagDiv.classes['tag']).toBe(true); // only the tag class is set
 
+        const customClass: string = 'testClass';
         component.inputCustomClass = customClass;
 
         fixture.detectChanges();
 
-        expect(Object.entries(tagDiv.classes).length).toBeGreaterThan(0);
         expect(tagDiv.classes[customClass]).toBe(true);
     });
 
@@ -80,14 +79,14 @@ describe('TerraTagComponent', () => {
 
             expect(iconElement.classes['isTagged']).toBe(true);
             expect(iconElement.classes['icon-ticket_prio1']).toBe(true);
-            expect(iconElement.classes['icon-ticket_prio8']).toBe(false);
+            expect(iconElement.classes['icon-ticket_prio8']).toBeFalsy();
 
             component.inputIsTagged = false;
 
             fixture.detectChanges();
 
-            expect(iconElement.classes['isTagged']).toBe(false);
-            expect(iconElement.classes['icon-ticket_prio1']).toBe(false);
+            expect(iconElement.classes['isTagged']).toBeFalsy();
+            expect(iconElement.classes['icon-ticket_prio1']).toBeFalsy();
             expect(iconElement.classes['icon-ticket_prio8']).toBe(true);
         });
     });
@@ -107,31 +106,32 @@ describe('TerraTagComponent', () => {
             component.inputIsTaggable = true;
             fixture.detectChanges();
 
-            let iconElement: DebugElement = tagDiv.query(By.css('span.tag-icon'));
+            const iconElement: HTMLSpanElement = tagDiv.query(By.css('span.tag-icon')).nativeElement;
 
-            expect(iconElement.styles['color']).toBeFalsy(); // style is not present
-
-            component.inputColor = tagTwo.color;
-
+            // dark background, light font color
+            component.inputColor = '#111111';
             fixture.detectChanges();
+            expect(iconElement.style.color).toEqual('rgb(255, 255, 255)');
 
-            iconElement = tagDiv.query(By.css('span.tag-icon'));
-
-            // getting access to protected/private methods
-            expect(iconElement.styles['color']).toEqual(component['_color']); // style is present and equals #ffffff or #000000
+            // light background, dark font color
+            component.inputColor = '#ffffff';
+            fixture.detectChanges();
+            expect(iconElement.style.color).toEqual('rgb(0, 0, 0)');
         });
 
         it('should set color style to tag text depending on #inputColor', () => {
-            let textElement: DebugElement = tagDiv.query(By.css('span.tag-text'));
+            const textElement: HTMLSpanElement = tagDiv.query(By.css('span.tag-text')).nativeElement;
+            expect(textElement.style.color).toBeFalsy(); // style is not present
 
-            expect(textElement.styles['color']).toBeFalsy(); // style is not present
-
-            component.inputColor = tagTwo.color;
-
+            // dark background, light font color
+            component.inputColor = '#111111';
             fixture.detectChanges();
+            expect(textElement.style.color).toEqual('rgb(255, 255, 255)');
 
-            // getting access to protected/private methods
-            expect(textElement.styles['color']).toEqual(component['_color']); // style is present and equals #ffffff or #000000
+            // light background, dark font color
+            component.inputColor = '#ffffff';
+            fixture.detectChanges();
+            expect(textElement.style.color).toEqual('rgb(0, 0, 0)');
         });
     });
 

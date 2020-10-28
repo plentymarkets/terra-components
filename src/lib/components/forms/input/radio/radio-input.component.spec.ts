@@ -2,39 +2,43 @@ import { RadioInputComponent } from './radio-input.component';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RadioGroupComponent } from './radio-group.component';
 import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import { Component, DebugElement } from '@angular/core';
+
+@Component({
+    template: `<tc-radio-group>
+        <tc-radio-input></tc-radio-input>
+    </tc-radio-group>`
+})
+class HostComponent {}
 
 describe(`RadioInputComponent:`, () => {
-    let fixture: ComponentFixture<RadioInputComponent>;
-    let component: RadioInputComponent;
+    let fixture: ComponentFixture<HostComponent>;
+    let radioInputComponent: RadioInputComponent;
     let radioGroupComponent: RadioGroupComponent;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [RadioInputComponent],
-            providers: [
-                {
-                    provide: RadioGroupComponent,
-                    useValue: { value: 1 }
-                }
-            ]
+            declarations: [RadioInputComponent, RadioGroupComponent, HostComponent]
         });
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(RadioInputComponent);
-        component = fixture.componentInstance;
-        radioGroupComponent = TestBed.get(RadioGroupComponent);
+        fixture = TestBed.createComponent(HostComponent);
+        radioInputComponent = fixture.debugElement.query(By.directive(RadioInputComponent)).componentInstance;
+        radioGroupComponent = fixture.debugElement.query(By.directive(RadioGroupComponent)).componentInstance;
+
+        fixture.detectChanges(); // initial bindings
     });
 
     it(`should create`, () => {
-        expect(component).toBeTruthy();
+        expect(radioInputComponent).toBeTruthy();
+        expect(radioGroupComponent).toBeTruthy();
     });
 
     it(`should initialize its inputs`, () => {
-        expect(component.label).toBeUndefined();
-        expect(component.value).toBeUndefined();
-        expect(component.disabled).toBe(false);
+        expect(radioInputComponent.label).toBeUndefined();
+        expect(radioInputComponent.value).toBeUndefined();
+        expect(radioInputComponent.disabled).toBe(false);
     });
 
     it(`should display the given #label text in the <label>`, () => {
@@ -42,7 +46,7 @@ describe(`RadioInputComponent:`, () => {
         expect(labelElement.innerText).toBe('');
 
         const label: string = 'label';
-        component.label = label;
+        radioInputComponent.label = label;
         fixture.detectChanges();
 
         expect(labelElement.innerText.trim()).toBe(label.trim());
@@ -52,7 +56,7 @@ describe(`RadioInputComponent:`, () => {
         let labelElement: HTMLLabelElement = fixture.debugElement.query(By.css('label')).nativeElement;
         expect(labelElement.classList.contains('disabled')).toBe(false);
 
-        component.disabled = true;
+        radioInputComponent.disabled = true;
         fixture.detectChanges();
 
         expect(labelElement.classList.contains('disabled')).toBe(true);
@@ -87,7 +91,7 @@ describe(`RadioInputComponent:`, () => {
         it(`should set [disabled] attribute of the <input> depending on #disabled`, () => {
             expect(inputElement.disabled).toBe(false);
 
-            component.disabled = true;
+            radioInputComponent.disabled = true;
             fixture.detectChanges();
 
             expect(inputElement.disabled).toBe(true);
@@ -98,16 +102,16 @@ describe(`RadioInputComponent:`, () => {
 
             expect(inputElement.value).not.toBe(testValue);
 
-            component.value = testValue;
+            radioInputComponent.value = testValue;
             fixture.detectChanges();
 
             expect(inputElement.value).toBe(testValue);
         });
 
         it(`should set [name] attribute of the <input> depending on the group's #name property`, () => {
-            expect(inputElement.name).toBe('');
-
             const name: string = 'Test name';
+            expect(inputElement.name).not.toBe(name);
+
             radioGroupComponent.name = name;
             fixture.detectChanges();
 
@@ -115,11 +119,13 @@ describe(`RadioInputComponent:`, () => {
         });
 
         it(`should set [checked] attribute of the <input> if the group's #value equals #value`, () => {
+            const value: string = 'Test value';
+            radioGroupComponent.value = value;
+            fixture.detectChanges();
+
             expect(inputElement.checked).toBe(false);
 
-            const value: string = 'Test value';
-            component.value = value;
-            radioGroupComponent.value = value;
+            radioInputComponent.value = value;
             fixture.detectChanges();
 
             expect(inputElement.checked).toBe(true);
@@ -132,7 +138,7 @@ describe(`RadioInputComponent:`, () => {
 
         it(`should assign #value to the group's #value if the <input>'s (change) event is triggered`, () => {
             const value: string = 'Test value';
-            component.value = value;
+            radioInputComponent.value = value;
             expect(radioGroupComponent.value).not.toBe(value);
 
             inputDebugElement.triggerEventHandler('change', {});
