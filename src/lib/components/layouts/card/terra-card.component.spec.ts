@@ -108,7 +108,7 @@ describe(`TerraCardComponent:`, () => {
         });
     });
 
-    fdescribe('in image section', () => {
+    describe('in image section', () => {
         let imageElement: DebugElement;
         let iconElement: DebugElement;
 
