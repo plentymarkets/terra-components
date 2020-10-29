@@ -7,6 +7,7 @@ import { noop } from 'rxjs';
 
 /** @deprecated since v5. Use angular material's [input](https://material.angular.io/components/input) instead. */
 @Directive()
+// tslint:disable-next-line:directive-class-suffix
 export class TerraInputComponent implements ControlValueAccessor {
     /**
      * @description Set the label.

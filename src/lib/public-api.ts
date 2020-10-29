@@ -171,7 +171,6 @@ export { TerraFormEntryListComponent } from './components/forms/form/form-entry-
 export { TerraFormFieldHelper } from './components/forms/form/helper/terra-form-field.helper';
 export { TerraFormFieldInterface } from './components/forms/form/model/terra-form-field.interface';
 export { TerraFormScope } from './components/forms/form/model/terra-form-scope.data';
-export { TerraFormTypeMap } from './components/forms/form/model/terra-form-type-map.enum';
 export { FormTypeMap } from './components/forms/form/model/form-type-map';
 export {
     TERRA_FORM_PROPERTY_METADATA_KEY, // TODO: may be removed from public api

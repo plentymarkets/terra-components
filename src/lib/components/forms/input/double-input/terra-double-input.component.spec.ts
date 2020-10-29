@@ -74,7 +74,7 @@ describe('TerraDoubleInputComponent', () => {
 
     it('component should have price-input css if input is given', () => {
         component.inputIsPriceInput = true;
-
+        fixture.detectChanges();
         expect(debugElement.classes.hasOwnProperty('price-input')).toBeTruthy();
     });
 

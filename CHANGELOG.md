@@ -2,8 +2,7 @@
 
 ### Breaking Changes
 
--   **terra-form** `TerraFormContainerWrapperComponent` and `TerraFormEntryContainerDirective` have been removed from the exports of the `TerraComponentsModule` since they were intended for internal usage only.
--   **table** `TableSettingsComponent` has been removed from the exports of the `TerraComponentsModule` since it was intended for internal usage only
+-   **interactables** removed `terraResizable` and `terraDropzone` directives and all related interfaces.
 -   **terra-radio-button** has been removed. Use `tc-radio-group` and `tc-radio-input` instead.
 -   **dynamic-component-loader** was removed. Use angular's [NgComponentOutlet](https://angular.io/api/common/NgComponentOutlet) instead.
 -   **terra-syntax-editor** has been removed. Use [ck-editor](https://ckeditor.com/ckeditor-4/) instead.
@@ -11,6 +10,11 @@
     -   removed peer dependency `ng2-ace-editor` since we no longer depend on it.
     -   changed peer dependency `mydatepicker`to require version 9
     -   changed peer dependency `ngx-quill` to require version 11
+    -   changed peer dependency `ngx-bootstrap` to require version 6.1.0
+-   **terra-form**
+    -   removed deprecated `TerraFormTypeMap`. Provide a value for `inputControlTypeMap` because the default value was removed, too.
+    -   `TerraFormContainerWrapperComponent` and `TerraFormEntryContainerDirective` have been removed from the exports of the `TerraComponentsModule` since they were intended for internal usage only.
+-   **table** `TableSettingsComponent` has been removed from the exports of the `TerraComponentsModule` since it was intended for internal usage only
 -   **exception-interface** was removed. Use angular's [HttpClient](https://angular.io/guide/http) instead.
 -   **breadcrumbs-service** removed method initialPath since it has been deprecated.
 -   **terra-tag** removed deprecated `onCloseTag` output.

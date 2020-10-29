@@ -4,9 +4,10 @@ import { isNullOrUndefined } from 'util';
 
 /**
  * @author mkunze
- * @Deprecated since v5. Use mat-tree instead.
+ * @deprecated since v5. Use mat-tree instead.
  */
 @Directive()
+// tslint:disable-next-line:directive-class-suffix
 export class TerraBaseTreeComponent implements OnInit {
     /**
      * current level leaf list

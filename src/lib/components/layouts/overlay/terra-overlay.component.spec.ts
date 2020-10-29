@@ -2,13 +2,13 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { TerraOverlayComponent } from './terra-overlay.component';
-import { ModalDirective, ModalModule } from 'ngx-bootstrap';
 import { TerraButtonComponent } from '../../buttons/button/terra-button.component';
 import { mockButtonOne, mockButtonTwo } from '../../../testing/mock-buttons';
 import { TooltipDirective } from '../../tooltip/tooltip.directive';
 import { Router } from '@angular/router';
 import { MockRouter } from '../../../testing/mock-router';
 import Spy = jasmine.Spy;
+import { ModalDirective, ModalModule } from 'ngx-bootstrap/modal';
 
 describe('TerraOverlayComponent', () => {
     let component: TerraOverlayComponent;
@@ -90,7 +90,7 @@ describe('TerraOverlayComponent', () => {
 
         fixture.detectChanges();
 
-        expect(modalDialogElement.classes['modal-lg']).toBe(false);
+        expect(modalDialogElement.classes['modal-lg']).toBeFalsy();
         expect(modalDialogElement.classes['modal-xl']).toBe(true);
         expect(modalDialogElement.classes['modal-sm']).toBe(true);
     });

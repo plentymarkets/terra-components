@@ -1,7 +1,6 @@
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ModalModule } from 'ngx-bootstrap';
 import { LocalizationModule } from 'angular-l10n';
 import { l10nConfig } from '../../../../../app/translation/l10n.config';
 import { TerraFileInputComponent } from './terra-file-input.component';
@@ -33,6 +32,7 @@ import { Router } from '@angular/router';
 import { MockRouter } from '../../../../testing/mock-router';
 import { MatDialogModule } from '@angular/material/dialog';
 import Spy = jasmine.Spy;
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 describe('TerraFileInputComponent', () => {
     let component: TerraFileInputComponent;
