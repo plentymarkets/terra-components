@@ -7,10 +7,10 @@ export class DefaultUserLanguage implements L10nUserLanguage {
     constructor(@Inject(L10N_CONFIG) private config: L10nConfig) {}
 
     public async get(): Promise<string | null> {
-        let browserLanguage = localStorage.getItem('plentymarkets_lang_');
-        if (StringHelper.isNullUndefinedOrEmpty(browserLanguage)) {
-            browserLanguage = this.config.defaultLocale.language;
+        let langInLocalStorage: string = localStorage.getItem('plentymarkets_lang_');
+        if (StringHelper.isNullUndefinedOrEmpty(langInLocalStorage)) {
+            langInLocalStorage = this.config.defaultLocale.language;
         }
-        return Promise.resolve(browserLanguage);
+        return Promise.resolve(langInLocalStorage);
     }
 }
