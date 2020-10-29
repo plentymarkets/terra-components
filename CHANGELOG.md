@@ -10,7 +10,6 @@
     -   removed peer dependency `ng2-ace-editor` since we no longer depend on it.
     -   changed peer dependency `angular-l10n` to require version 9.
     -   changed peer dependency `mydatepicker`to require version 9.
-    -   changed peer dependency `mydatepicker`to require version 9
     -   changed peer dependency `ngx-quill` to require version 11
     -   changed peer dependency `ngx-bootstrap` to require version 6.1.0
 -   **terra-form**
