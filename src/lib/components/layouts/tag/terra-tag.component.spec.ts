@@ -4,7 +4,7 @@ import { tagOne, tagTwo } from '../../../testing/mock-tags';
 import { DebugElement, SimpleChange } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { TerraTagNameInterface } from './data/terra-tag-name.interface';
-import { L10nTranslationModule, L10nTranslationService } from 'angular-l10n';
+import { L10nTranslationModule, L10nTranslationService, L10N_LOCALE } from 'angular-l10n';
 import { MockTranslationService } from '../../../testing/mock-translation-service';
 import { mockL10nConfig } from 'src/lib/testing/mock-l10n-config';
 
@@ -17,7 +17,16 @@ describe('TerraTagComponent', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             declarations: [TerraTagComponent],
-            imports: [L10nTranslationModule.forRoot(mockL10nConfig)]
+            providers: [
+                {
+                    provide: L10nTranslationService,
+                    useClass: MockTranslationService
+                },
+                {
+                    provide: L10N_LOCALE,
+                    useValue: { language: 'de' }
+                }
+            ]
         });
     });
 
@@ -186,9 +195,11 @@ describe('TerraTagComponent', () => {
             let text: HTMLSpanElement = textElement.nativeElement;
 
             let translationService: MockTranslationService = TestBed.get(L10nTranslationService);
-            let tagName: TerraTagNameInterface = tagOne.names.find(
-                (tag: TerraTagNameInterface) => tag.language === translationService.getLanguage()
-            );
+            let tagName: TerraTagNameInterface = tagOne.names.find((tag: TerraTagNameInterface) => {
+                console.log('locale ' + translationService.getLocale().language);
+                console.log('tag ' + tag.language);
+                return tag.language === translationService.getLocale().language;
+            });
             expect(text.innerText).toEqual(tagName.name);
         });
     });
