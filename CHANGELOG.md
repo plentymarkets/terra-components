@@ -23,7 +23,7 @@
 -   **file-input** removed attribute `_overlay` and method `showFileBrowser()` and the overlayButtons `primaryOverlayButton` and `secondaryOverlayButton`.
 -   **fixed-header** directive has been removed. Use angular material's [table](https://material.angular.io/components/table/overview) with a sticky header instead.
 -   **terra-label-tooltip** directive has been removed. Use `TooltipDirective` with a set `onlyEllipsisTooltip` input instead.
--   **public-api** removed examples from the public api
+-   **public-api** removed examples from the public api.
 
 # 5.10.1 (Unreleased)
 
