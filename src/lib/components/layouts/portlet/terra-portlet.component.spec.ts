@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { L10nTranslationModule } from 'angular-l10n';
 import { DebugElement, SimpleChange } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
 import { buttonList } from '../../../testing/mock-buttons';
 import { TerraPortletComponent } from './terra-portlet.component';
@@ -26,7 +26,7 @@ describe('TerraPortletComponent', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             declarations: [TooltipDirective, TerraPortletComponent, TerraButtonComponent, TerraInfoComponent],
-            imports: [FormsModule, BrowserAnimationsModule, L10nTranslationModule.forRoot(mockL10nConfig)],
+            imports: [FormsModule, NoopAnimationsModule, L10nTranslationModule.forRoot(mockL10nConfig)],
             providers: [
                 {
                     provide: Router,
@@ -95,7 +95,7 @@ describe('TerraPortletComponent', () => {
         component.inputCollapsed = true;
         fixture.detectChanges();
 
-        expect(portletHead.classes['unfolded']).toBe(false);
+        expect(portletHead.classes['unfolded']).toBeFalsy();
     });
 
     it(`should call #toggleCollapse() if his header is clicked`, () => {
@@ -165,7 +165,7 @@ describe('TerraPortletComponent', () => {
         component.inputIsCollapsable = true;
         fixture.detectChanges();
 
-        expect(debugElement.query(By.css('div.portlet-body')).classes['collapsed']).toBe(false);
+        expect(debugElement.query(By.css('div.portlet-body')).classes['collapsed']).toBeFalsy();
 
         debugElement.query(By.css('div.portlet-head')).triggerEventHandler('click', null);
         fixture.detectChanges();
@@ -175,7 +175,7 @@ describe('TerraPortletComponent', () => {
         debugElement.query(By.css('div.portlet-head')).triggerEventHandler('click', null);
         fixture.detectChanges();
 
-        expect(debugElement.query(By.css('div.portlet-body')).classes['collapsed']).toBe(false);
+        expect(debugElement.query(By.css('div.portlet-body')).classes['collapsed']).toBeFalsy();
     });
 
     it(`should update view correctly if 'inputIsCollapsable' is changed`, () => {
