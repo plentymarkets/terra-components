@@ -4,6 +4,7 @@ import { isNullOrUndefined } from 'util';
 
 /** @deprecated since v5.0. Please use mat-table instead. */
 @Directive()
+// tslint:disable-next-line:directive-class-suffix
 export class TerraBaseTable<T> {
     /**
      * @description EventEmitter that notifies when a row has been selected via the select box. This is enabled, only if
