@@ -8,19 +8,8 @@ export class DefaultUserLanguage implements L10nUserLanguage {
 
     public async get(): Promise<string | null> {
         let browserLanguage = localStorage.getItem('plentymarkets_lang_');
-        if (
-            StringHelper.isNullUndefinedOrEmpty(browserLanguage) &&
-            typeof navigator !== 'undefined' &&
-            navigator.language
-        ) {
-            switch (this.config.format) {
-                case 'language':
-                    browserLanguage = navigator.language.split('-')[0];
-                    break;
-                case 'language-region':
-                    browserLanguage = navigator.language;
-                    break;
-            }
+        if (StringHelper.isNullUndefinedOrEmpty(browserLanguage)) {
+            browserLanguage = 'en';
         }
         return Promise.resolve(browserLanguage);
     }
