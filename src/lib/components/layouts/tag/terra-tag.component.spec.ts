@@ -194,11 +194,9 @@ describe('TerraTagComponent', () => {
             let text: HTMLSpanElement = textElement.nativeElement;
 
             let translationService: MockTranslationService = TestBed.get(L10nTranslationService);
-            let tagName: TerraTagNameInterface = tagOne.names.find((tag: TerraTagNameInterface) => {
-                console.log('locale ' + translationService.getLocale().language);
-                console.log('tag ' + tag.language);
-                return tag.language === translationService.getLocale().language;
-            });
+            let tagName: TerraTagNameInterface = tagOne.names.find(
+                (tag: TerraTagNameInterface) => tag.language === translationService.getLocale().language
+            );
             expect(text.innerText).toEqual(tagName.name);
         });
     });
