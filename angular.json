@@ -17,6 +17,7 @@
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
+                        "aot": true,
                         "outputPath": "dist",
                         "index": "src/index.html",
                         "main": "src/main.ts",
@@ -30,7 +31,6 @@
                             "src/styles.scss"
                         ],
                         "scripts": [],
-                        "es5BrowserSupport": true,
                         "vendorChunk": true
                     }
                 },
@@ -54,6 +54,11 @@
                     "options": {
                         "tsConfig": "src/lib/tsconfig.lib.json",
                         "project": "src/lib/package.json"
+                    },
+                    "configurations": {
+                        "production": {
+                            "tsConfig": "src/lib/tsconfig.lib.prod.json"
+                        }
                     }
                 },
                 "test": {

@@ -1,8 +1,10 @@
 import { TerraDataTableRowInterface } from './data-table/interfaces/terra-data-table-row.interface';
-import { EventEmitter, Output } from '@angular/core';
+import { EventEmitter, Output, Directive } from '@angular/core';
 import { isNullOrUndefined } from 'util';
 
 /** @deprecated since v5.0. Please use mat-table instead. */
+@Directive()
+// tslint:disable-next-line:directive-class-suffix
 export class TerraBaseTable<T> {
     /**
      * @description EventEmitter that notifies when a row has been selected via the select box. This is enabled, only if
