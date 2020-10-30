@@ -1,4 +1,4 @@
-# 6.0.0 (Unreleased)
+# 6.0.0-alpha.0 (30.10.2020)
 
 ### Breaking Changes
 
