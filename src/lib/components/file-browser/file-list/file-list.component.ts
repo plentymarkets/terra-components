@@ -12,6 +12,7 @@ import {
     OnInit,
     Output,
     SimpleChanges,
+    TemplateRef,
     ViewChild
 } from '@angular/core';
 import { Subscription } from 'rxjs';
@@ -33,6 +34,7 @@ import { TerraSimpleTableCellInterface } from '../../tables/simple/cell/terra-si
 import { TerraButtonInterface } from '../../buttons/button/data/terra-button.interface';
 import { TerraSimpleTableHeaderCellInterface } from '../../tables/simple/cell/terra-simple-table-header-cell.interface';
 import { AlertService } from '../../alert/alert.service';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 const MAX_UPLOAD_COUNT: number = 10;
 
@@ -61,6 +63,9 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
     @Language()
     public _lang: string;
 
+    @ViewChild('deleteConfirmationDialog', { static: true })
+    public _deleteConfirmationDialog: TemplateRef<number>;
+
     public _translationPrefix: string = 'terraFileBrowser';
 
     public _isDragActive: boolean = false;
@@ -69,8 +74,6 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
     public _storageList: TerraStorageObjectList;
 
     public _showNewDirectoryPrompt: boolean = false;
-
-    public _objectsToDelete: Array<TerraStorageObject> = [];
 
     public _selectedStorageObjects: Array<TerraStorageObject> = [];
 
@@ -208,20 +211,6 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         this._newDirectoryName = this.activeStorageService.prepareKey(name, true, true);
     }
 
-    public get _deleteCount(): number {
-        if (isNullOrUndefined(this._objectsToDelete)) {
-            return 0;
-        }
-
-        return this._objectsToDelete
-            .map((object: TerraStorageObject) => {
-                return object.fileCount;
-            })
-            .reduce((sum: number, current: number) => {
-                return sum + current;
-            }, 0);
-    }
-
     @DefaultLocale()
     private _defaultLocale: string;
 
@@ -231,7 +220,8 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         private _translationService: TranslationService,
         private _localeService: LocaleService,
         private _alertService: AlertService,
-        @Host() public _parentFileBrowser: TerraFileBrowserComponent
+        @Host() public _parentFileBrowser: TerraFileBrowserComponent,
+        private _dialog: MatDialog
     ) {}
 
     public ngOnInit(): void {
@@ -330,25 +320,6 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         });
     }
 
-    public _deleteObjects(): void {
-        let keyList: Array<string> = [];
-        let extractKeys: Function = (objects: Array<TerraStorageObject>): void => {
-            objects.forEach((object: TerraStorageObject) => {
-                keyList.push(object.key);
-            });
-        };
-        extractKeys(this._objectsToDelete);
-        this.activeStorageService.deleteFiles(keyList).subscribe(() => {
-            this._objectsToDelete = [];
-
-            if (!isNullOrUndefined(this.imagePreviewObject) && keyList.indexOf(this.imagePreviewObject.key) >= 0) {
-                this.imagePreviewObject = null;
-                this.hideImagePreview.emit();
-            }
-            this.selectNode.emit(this.currentStorageRoot);
-        });
-    }
-
     public _onRowClick(row: TerraSimpleTableRowInterface<TerraStorageObject>): void {
         let storageObject: TerraStorageObject = row.value;
         if (storageObject.isDirectory) {
@@ -373,6 +344,27 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
             this._parentFileBrowser.outputSelectedChange.emit(storageObject);
         };
         this._imagePreviewTimeout = setTimeout(debounceFn.bind(this), 500);
+    }
+
+    public _deleteSelected(): void {
+        this._openDeleteDialog(this._selectedStorageObjects);
+    }
+
+    private _openDeleteDialog(objectsToDelete: Array<TerraStorageObject>): void {
+        const deleteCount: number = this._getDeleteCount(objectsToDelete);
+
+        const deleteConfirmationDialog: MatDialogRef<number, boolean> = this._dialog.open(
+            this._deleteConfirmationDialog,
+            {
+                data: deleteCount
+            }
+        );
+
+        deleteConfirmationDialog.afterClosed().subscribe((result: boolean) => {
+            if (result) {
+                this._deleteObjects(objectsToDelete);
+            }
+        });
     }
 
     private _renderFileList(): void {
@@ -489,7 +481,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
                 {
                     icon: 'icon-delete',
                     clickFunction: (event: Event): void => {
-                        this._objectsToDelete = [storageObject];
+                        this._openDeleteDialog([storageObject]);
                         event.stopPropagation();
                     },
                     tooltipText: storageObject.isFile
@@ -594,5 +586,36 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
 
         let uploadPrefix: string = this.currentStorageRoot ? this.currentStorageRoot.key : '/';
         this.activeStorageService.uploadFiles(fileList, uploadPrefix);
+    }
+
+    private _deleteObjects(objectsToDelete: Array<TerraStorageObject>): void {
+        let keyList: Array<string> = [];
+        let extractKeys: Function = (objects: Array<TerraStorageObject>): void => {
+            objects.forEach((object: TerraStorageObject) => {
+                keyList.push(object.key);
+            });
+        };
+        extractKeys(objectsToDelete);
+        this.activeStorageService.deleteFiles(keyList).subscribe(() => {
+            if (!isNullOrUndefined(this.imagePreviewObject) && keyList.indexOf(this.imagePreviewObject.key) >= 0) {
+                this.imagePreviewObject = null;
+                this.hideImagePreview.emit();
+            }
+            this.selectNode.emit(this.currentStorageRoot);
+        });
+    }
+
+    private _getDeleteCount(objectsToDelete: Array<TerraStorageObject>): number {
+        if (isNullOrUndefined(objectsToDelete)) {
+            return 0;
+        }
+
+        return objectsToDelete
+            .map((object: TerraStorageObject) => {
+                return object.fileCount;
+            })
+            .reduce((sum: number, current: number) => {
+                return sum + current;
+            }, 0);
     }
 }

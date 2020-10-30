@@ -4,6 +4,10 @@
 
 -   **terra-file-input** properties `primaryOverlayButton` and `secondaryOverlayButton` are deprecated now.
 
+### Fix
+
+-   **terra-file-browser** replaced delete confirmation dialog with material dialog
+
 # 5.10.0 (20.10.2020)
 
 ### Features
