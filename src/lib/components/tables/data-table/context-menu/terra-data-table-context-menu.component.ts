@@ -28,7 +28,7 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData> impleme
     // tslint:disable-next-line:variable-name
     private __isShown: boolean = false;
 
-    @ViewChild('list', { static: false })
+    @ViewChild('list')
     private list: ElementRef;
 
     private readonly clickListener: (event: Event) => void;

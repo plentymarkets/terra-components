@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { components, exportedComponents } from './components/component-collection';
-import { directives } from './components/directive-collection';
-import { ModalModule } from 'ngx-bootstrap';
+import { directives, exportedDirectives } from './components/directive-collection';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LocalizationModule } from 'angular-l10n';
@@ -15,6 +14,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
     imports: [
@@ -25,7 +25,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
         LocalizationModule,
         ModalModule.forRoot(),
         MyDatePickerModule,
-        QuillModule,
+        QuillModule.forRoot(),
         CKEditorModule,
         TerraInteractModule,
         MatListModule,
@@ -35,6 +35,6 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     ],
     declarations: [...components, ...directives, ...pipes],
     entryComponents: [...exportedComponents],
-    exports: [...exportedComponents, ...directives, ...pipes]
+    exports: [...exportedComponents, ...exportedDirectives, ...pipes]
 })
 export class TerraComponentsModule {}
