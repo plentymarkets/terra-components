@@ -1,5 +1,5 @@
 # This is displayed in the pr check area
-name: Comparison to ${{ github.base_ref }}
+name: Comparison to base
 
 # Controls when the action will run. Triggers the workflow on pull request events
 on: [pull_request]
