@@ -97,7 +97,7 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
     private _updateFieldVisibility(): void {
         this._formFields.forEach((field: TerraKeyValuePairInterface<TerraFormFieldInterface>) => {
             if (isString(field.value.isVisible)) {
-                this._formFieldVisibility[field.key] = this.inputScope.evaluate(field.value.isVisible as string);
+                this._formFieldVisibility[field.key] = this.inputScope?.evaluate(field.value.isVisible as string);
             } else {
                 this._formFieldVisibility[field.key] =
                     isNullOrUndefined(field.value.isVisible) || field.value.isVisible;
