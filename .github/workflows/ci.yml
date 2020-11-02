@@ -25,9 +25,9 @@ jobs:
             # Runs the set of integrity checks concurrently
             - name: Run checks
               run: |
-                  npm run lint
-                  npm run prettier
-                  npm run build:lib
+                  time npm run lint
+                  time npm run prettier
+                  time npm run build:lib
                   npm run build:dev-app
                   npm run build:schematics
-                  npm run test-headless-coverage
+                  time npm run test-headless-coverage
