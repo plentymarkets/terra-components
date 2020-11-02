@@ -1,11 +1,8 @@
 # This is displayed in the pr check area
-name: Comparison to 5.X.X
+name: Comparison to base
 
-# Controls when the action will run. Triggers the workflow on pull request
-# events but only for the 5.X.X branch
-on:
-    pull_request:
-        branches: [5.X.X]
+# Controls when the action will run. Triggers the workflow on pull request events
+on: [pull_request]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
