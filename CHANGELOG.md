@@ -25,7 +25,11 @@
 -   **terra-label-tooltip** directive has been removed. Use `TooltipDirective` with a set `onlyEllipsisTooltip` input instead.
 -   **public-api** removed `TerraComponentsExamplesModule` from the public api.
 
-# 5.10.1 (Unreleased)
+# 5.11.0 (Unreleased)
+
+### Features
+
+-   **terra-file-input** properties `primaryOverlayButton` and `secondaryOverlayButton` are deprecated now.
 
 ### Fix
 
