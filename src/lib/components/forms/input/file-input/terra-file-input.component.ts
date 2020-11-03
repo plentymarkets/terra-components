@@ -7,7 +7,6 @@ import { FileTypeHelper } from '../../../../helpers/fileType.helper';
 import { TerraBaseStorageService } from '../../../file-browser/terra-base-storage.interface';
 import { TerraRegex } from '../../../../helpers/regex/terra-regex';
 import { TerraStorageObject } from '../../../file-browser/model/terra-storage-object';
-import { TerraOverlayComponent } from '../../../layouts/overlay/terra-overlay.component';
 import { StringHelper } from '../../../../helpers/string.helper';
 import { Language } from 'angular-l10n';
 import { MatDialog } from '@angular/material/dialog';
