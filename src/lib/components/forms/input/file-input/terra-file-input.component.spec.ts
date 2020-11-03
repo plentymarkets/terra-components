@@ -32,8 +32,7 @@ import { TerraInfoComponent } from '../../../info/terra-info.component';
 import { TooltipDirective } from '../../../tooltip/tooltip.directive';
 import { Router } from '@angular/router';
 import { MockRouter } from '../../../../testing/mock-router';
-import { MatDialogModule } from '@angular/material/dialog';
-import Spy = jasmine.Spy;
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
 describe('TerraFileInputComponent', () => {
     let component: TerraFileInputComponent;
@@ -130,14 +129,14 @@ describe('TerraFileInputComponent', () => {
     });
 
     it('should call `resetValue` on button click', () => {
-        const resetValue: Spy = spyOn(component, 'resetValue');
+        spyOn(component, 'resetValue');
         const button: TerraButtonComponent = fixture.debugElement.query(
             By.css('terra-button.input-group-btn.margin-left')
         ).componentInstance as TerraButtonComponent;
 
         button.outputClicked.emit();
 
-        expect(resetValue).toHaveBeenCalled();
+        expect(component.resetValue).toHaveBeenCalled();
     });
 
     it('should have a value after selection and after reset the value should be an empty string', () => {
@@ -154,23 +153,43 @@ describe('TerraFileInputComponent', () => {
         component.inputShowPreview = true;
         fixture.detectChanges();
 
-        const onPreviewClicked: Spy = spyOn(component, 'onPreviewClicked');
+        spyOn(component, 'onPreviewClicked');
         const divFilePreview: HTMLDivElement = fixture.debugElement.query(By.css('div.file-preview')).nativeElement;
 
         divFilePreview.click();
 
-        expect(onPreviewClicked).toHaveBeenCalled();
+        expect(component.onPreviewClicked).toHaveBeenCalled();
+    });
+
+    it('should open a preview dialog when clicking on the file preview', () => {
+        component.inputShowPreview = true;
+        fixture.detectChanges();
+
+        const dialog: MatDialog = TestBed.get(MatDialog);
+        spyOn(dialog, 'open');
+        // ensure that the dialog can be opened by emulating that the selected file is a web image
+        spyOn(component, 'isWebImage').and.returnValue(true);
+
+        const divFilePreview: HTMLDivElement = fixture.debugElement.query(By.css('div.file-preview')).nativeElement;
+
+        divFilePreview.click();
+
+        const data: any = {
+            filepath: component.value,
+            filename: component.getFilename(component.value)
+        };
+        expect(dialog.open).toHaveBeenCalledWith(component._imagePreviewDialog, { data: data });
     });
 
     it('should call `isWebImage` after value changed', () => {
-        const isWebImage: Spy = spyOn(component, 'isWebImage');
+        spyOn(component, 'isWebImage');
 
         component.inputShowPreview = true;
         component.onObjectSelected(new TerraStorageObject(fileData.objects[1]));
 
         fixture.detectChanges();
 
-        expect(isWebImage).toHaveBeenCalled();
+        expect(component.isWebImage).toHaveBeenCalled();
     });
 
     it('should have a span with an image equal to the value as background-image when the image is a web image', () => {
