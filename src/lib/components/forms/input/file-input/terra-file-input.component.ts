@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { isNullOrUndefined } from 'util';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TerraInputComponent } from '../terra-input.component';
@@ -7,9 +7,9 @@ import { FileTypeHelper } from '../../../../helpers/fileType.helper';
 import { TerraBaseStorageService } from '../../../file-browser/terra-base-storage.interface';
 import { TerraRegex } from '../../../../helpers/regex/terra-regex';
 import { TerraStorageObject } from '../../../file-browser/model/terra-storage-object';
-import { TerraOverlayComponent } from '../../../layouts/overlay/terra-overlay.component';
 import { StringHelper } from '../../../../helpers/string.helper';
 import { Language } from 'angular-l10n';
+import { MatDialog } from '@angular/material/dialog';
 
 let nextId: number = 0;
 
@@ -44,8 +44,8 @@ export class TerraFileInputComponent extends TerraInputComponent implements OnIn
         return this._storageServices;
     }
 
-    @ViewChild('previewOverlay', { static: true })
-    public _previewOverlay: TerraOverlayComponent;
+    @ViewChild('imagePreviewDialog', { static: true })
+    public _imagePreviewDialog: TemplateRef<{ filename: string; filepath: string }>;
 
     @Language()
     public _lang: string;
@@ -55,7 +55,10 @@ export class TerraFileInputComponent extends TerraInputComponent implements OnIn
 
     private _storageServices: Array<TerraBaseStorageService>;
 
-    constructor() {
+    constructor(
+        /** Instance of the dialog service */
+        private dialog: MatDialog
+    ) {
         super(TerraRegex.MIXED);
 
         // generate the id of the input instance
@@ -76,7 +79,12 @@ export class TerraFileInputComponent extends TerraInputComponent implements OnIn
 
     public onPreviewClicked(): void {
         if (this.isWebImage(this.value)) {
-            this._previewOverlay.showOverlay();
+            this.dialog.open(this._imagePreviewDialog, {
+                data: {
+                    filepath: this.value,
+                    filename: this.getFilename(this.value)
+                }
+            });
         }
     }
 
