@@ -25,15 +25,18 @@
 -   **terra-label-tooltip** directive has been removed. Use `TooltipDirective` with a set `onlyEllipsisTooltip` input instead.
 -   **public-api** removed `TerraComponentsExamplesModule` from the public api.
 
-# 5.11.0 (Unreleased)
+# 5.11.0 (05.11.2020)
 
 ### Features
 
--   **terra-file-input** properties `primaryOverlayButton` and `secondaryOverlayButton` are deprecated now.
+-   **terra-file-input**
+    -   properties `primaryOverlayButton` and `secondaryOverlayButton` are deprecated now.
+    -   now uses a material dialog for the image preview
 
 ### Fix
 
 -   **terra-file-browser** replaced delete confirmation dialog with material dialog
+-   **mat-form-field** fixed Safari Bug for disabled inputs (non-readable text)
 
 # 5.10.0 (20.10.2020)
 
