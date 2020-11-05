@@ -2,7 +2,9 @@
 
 ### Features
 
--   **terra-file-input** properties `primaryOverlayButton` and `secondaryOverlayButton` are deprecated now.
+-   **terra-file-input**
+    -   properties `primaryOverlayButton` and `secondaryOverlayButton` are deprecated now.
+    -   now uses a material dialog for the image preview
 
 ### Fix
 
