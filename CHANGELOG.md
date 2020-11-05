@@ -7,6 +7,7 @@
 ### Fix
 
 -   **terra-file-browser** replaced delete confirmation dialog with material dialog
+-   **mat-form-field** fixed Safari Bug for disabled inputs (non-readable text)
 
 # 5.10.0 (20.10.2020)
 
