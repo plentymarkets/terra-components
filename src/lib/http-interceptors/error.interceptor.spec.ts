@@ -36,14 +36,14 @@ describe('ErrorInterceptor', () => {
             ]
         });
 
-        httpClient = TestBed.get(HttpClient);
-        httpTestingController = TestBed.get(HttpTestingController);
-        alertService = TestBed.get(AlertService);
+        httpClient = TestBed.inject(HttpClient);
+        httpTestingController = TestBed.inject(HttpTestingController);
+        alertService = TestBed.inject(AlertService);
     });
 
     it('should create an instance', () => {
-        const translationService: TranslationService = TestBed.get(TranslationService);
-        const localeService: LocaleService = TestBed.get(LocaleService);
+        const translationService: TranslationService = TestBed.inject(TranslationService);
+        const localeService: LocaleService = TestBed.inject(LocaleService);
         expect(new ErrorInterceptor(alertService, translationService, localeService)).toBeTruthy();
     });
 
@@ -73,7 +73,7 @@ describe('ErrorInterceptor', () => {
         const errorMsg: string = 'Forbidden';
         const status: number = 403;
         const spy: Spy = spyOn(alertService, 'error');
-        const translationService: TranslationService = TestBed.get(TranslationService);
+        const translationService: TranslationService = TestBed.inject(TranslationService);
 
         httpClient.get<Data>(url).subscribe(
             () => fail(`should have failed with the ${status} error`),
@@ -93,7 +93,7 @@ describe('ErrorInterceptor', () => {
         const errorBody: {} = { error: { missing_permissions: { test: { de: 'test' } } } };
         const status: number = 403;
         const alertSpy: Spy = spyOn(alertService, 'error');
-        const translationService: TranslationService = TestBed.get(TranslationService);
+        const translationService: TranslationService = TestBed.inject(TranslationService);
         const translationSpy: Spy = spyOn(translationService, 'translate');
 
         httpClient.get<Data>(url).subscribe(

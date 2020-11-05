@@ -84,7 +84,7 @@ describe('TerraDataTableComponent', () => {
     describe('With an #inputService', () => {
         let service: TerraDataTableServiceExample;
         beforeEach(() => {
-            service = TestBed.get(TerraDataTableServiceExample);
+            service = TestBed.inject(TerraDataTableServiceExample);
             component.inputService = service;
         });
 

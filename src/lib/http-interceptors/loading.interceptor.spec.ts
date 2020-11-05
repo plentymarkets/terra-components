@@ -27,15 +27,15 @@ describe('LoadingInterceptor:', () => {
             ]
         });
 
-        httpClient = TestBed.get(HttpClient);
-        httpTestingController = TestBed.get(HttpTestingController);
-        loadingSpinner = TestBed.get(TerraLoadingSpinnerService);
+        httpClient = TestBed.inject(HttpClient);
+        httpTestingController = TestBed.inject(HttpTestingController);
+        loadingSpinner = TestBed.inject(TerraLoadingSpinnerService);
         spyOn(loadingSpinner, 'start');
         spyOn(loadingSpinner, 'stop');
     });
 
     it(`should create`, () => {
-        const interceptors: Array<HttpInterceptor> = TestBed.get(HTTP_INTERCEPTORS);
+        const interceptors: Array<HttpInterceptor> = TestBed.inject(HTTP_INTERCEPTORS);
         expect(
             interceptors.find((interceptor: HttpInterceptor) => interceptor instanceof LoadingInterceptor)
         ).toBeTruthy();

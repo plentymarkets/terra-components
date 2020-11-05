@@ -24,7 +24,7 @@ describe(`TerraCodeEditorComponent:`, () => {
     });
 
     beforeEach(() => {
-        component = new TerraCodeEditorComponent(TestBed.get(TranslationService), TestBed.get(ElementRef));
+        component = new TerraCodeEditorComponent(TestBed.inject(TranslationService), TestBed.inject(ElementRef));
     });
 
     it(`should create`, () => {

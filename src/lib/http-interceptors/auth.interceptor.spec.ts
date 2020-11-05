@@ -22,8 +22,8 @@ describe(`AuthInterceptor:`, () => {
             ]
         });
 
-        httpClient = TestBed.get(HttpClient);
-        httpTestingController = TestBed.get(HttpTestingController);
+        httpClient = TestBed.inject(HttpClient);
+        httpTestingController = TestBed.inject(HttpTestingController);
     });
 
     it(`should add Authorization to the headers of any request`, () => {
