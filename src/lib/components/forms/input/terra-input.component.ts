@@ -5,9 +5,9 @@ import { isNullOrUndefined } from 'util';
 import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum';
 import { noop } from 'rxjs';
 
+// tslint:disable:directive-class-suffix
 /** @deprecated since v5. Use angular material's [input](https://material.angular.io/components/input) instead. */
 @Directive()
-// tslint:disable-next-line:directive-class-suffix
 export class TerraInputComponent implements ControlValueAccessor {
     /**
      * @description Set the label.

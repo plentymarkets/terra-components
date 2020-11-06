@@ -2,12 +2,12 @@ import { Input, OnInit, Directive } from '@angular/core';
 import { TerraLeafInterface } from '../leaf/terra-leaf.interface';
 import { isNullOrUndefined } from 'util';
 
+// tslint:disable:directive-class-suffix
 /**
  * @author mkunze
  * @deprecated since v5. Use mat-tree instead.
  */
 @Directive()
-// tslint:disable-next-line:directive-class-suffix
 export class TerraBaseTreeComponent implements OnInit {
     /**
      * current level leaf list
