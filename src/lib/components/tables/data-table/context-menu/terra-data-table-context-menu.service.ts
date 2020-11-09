@@ -4,6 +4,7 @@ import { TerraBaseData } from '../../../data/terra-base.data';
 
 /**
  * @author mkunze
+ * @deprecated since v5.
  */
 @Injectable()
 export class TerraDataTableContextMenuService<D extends TerraBaseData> {

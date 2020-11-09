@@ -1,3 +1,11 @@
+# 5.12.0 (Unreleased)
+
+### Features
+
+-   **terra-select-box** since terra-select-box is deprecated, `AllowedColors` enum and `TerraSelectBoxInterface` are deprecated now as well.
+-   **terra-overlay** since terra-overlay is deprecated, `TerraOverlayButtonInterface` is now deprecated as well.
+-   **terra-data-table-context-menu** component and service are deprecated now. Use angular material's [menu](https://material.angular.io/components/menu) instead.
+
 # 5.11.0 (05.11.2020)
 
 ### Features
