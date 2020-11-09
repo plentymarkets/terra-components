@@ -19,17 +19,16 @@ jobs:
             - name: Clean install
               run: npm ci
 
-            # Runs the set of integrity checks concurrently
             - name: Check coding rules
               run: |
                   npm run lint
                   npm run prettier
 
-            - name: Test builds
+            - name: Perform test builds
               run: |
                   time npm run build:lib
                   time npm run build:dev-app
                   npm run build:schematics
 
-            - name: Unit tests
+            - name: Run unit tests
               run: npm run test-headless-coverage
