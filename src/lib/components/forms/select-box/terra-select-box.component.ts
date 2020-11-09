@@ -16,6 +16,9 @@ import { isNullOrUndefined } from 'util';
 import { StringHelper } from '../../../helpers/string.helper';
 import { noop } from 'rxjs';
 
+/**
+ * @deprecated since v4. Use '<mat-select>' instead. See {@link https://material.angular.io/components/select/overview}
+ */
 @Component({
     selector: 'terra-select-box',
     styleUrls: ['./terra-select-box.component.scss'],
@@ -28,9 +31,6 @@ import { noop } from 'rxjs';
         }
     ]
 })
-/**
- * @deprecated since v4. Use '<mat-select>' instead. See {@link https://material.angular.io/components/select/overview}
- */
 export class TerraSelectBoxComponent implements OnInit, OnChanges {
     @Input()
     public inputName: string = ' ';
