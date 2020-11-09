@@ -1,8 +1,23 @@
-# 5.10.1 (Unreleased)
+# 5.12.0 (Unreleased)
+
+### Features
+
+-   **terra-select-box** since terra-select-box is deprecated, `AllowedColors` enum and `TerraSelectBoxInterface` are deprecated now as well.
+-   **terra-overlay** since terra-overlay is deprecated, `TerraOverlayButtonInterface` is now deprecated as well.
+-   **terra-data-table-context-menu** component and service are deprecated now. Use angular material's [menu](https://material.angular.io/components/menu) instead.
+
+# 5.11.0 (05.11.2020)
+
+### Features
+
+-   **terra-file-input**
+    -   properties `primaryOverlayButton` and `secondaryOverlayButton` are deprecated now.
+    -   now uses a material dialog for the image preview
 
 ### Fix
 
 -   **terra-file-browser** replaced delete confirmation dialog with material dialog
+-   **mat-form-field** fixed Safari Bug for disabled inputs (non-readable text)
 
 # 5.10.0 (20.10.2020)
 

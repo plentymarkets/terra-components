@@ -1,5 +1,6 @@
 /**
  * @author mfrank
+ * @deprecated since v5.
  */
 export interface TerraOverlayButtonInterface {
     icon?: string;
