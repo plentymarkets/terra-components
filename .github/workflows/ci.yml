@@ -20,11 +20,16 @@ jobs:
               run: npm ci
 
             # Runs the set of integrity checks concurrently
-            - name: Run checks
+            - name: Check coding rules
               run: |
                   npm run lint
                   npm run prettier
-                  npm run build:lib
-                  npm run build:dev-app
+
+            - name: Test builds
+              run: |
+                  time npm run build:lib
+                  time npm run build:dev-app
                   npm run build:schematics
-                  npm run test-headless-coverage
+
+            - name: Unit tests
+              run: npm run test-headless-coverage
