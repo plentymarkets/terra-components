@@ -1,3 +1,4 @@
+/** @deprecated since v5. */
 export enum AllowedColors {
     add = 'var(--color-group-add)',
     active = 'var(--color-group-active)',
