@@ -1,11 +1,11 @@
-# 6.1.0 (Unreleased)
+# 6.0.0-alpha.1 (Unreleased)
 
 ### Breaking Changes
 
 -   **dependencies**
     -   changed peer dependency `angular-l10n` to require version 9.
 
-# 6.0.0 (Unreleased)
+# 6.0.0-alpha.0 (30.10.2020)
 
 ### Breaking Changes
 
@@ -15,7 +15,7 @@
 -   **terra-syntax-editor** has been removed. Use [ck-editor](https://ckeditor.com/ckeditor-4/) instead.
 -   **dependencies**
     -   removed peer dependency `ng2-ace-editor` since we no longer depend on it.
-    -   changed peer dependency `mydatepicker`to require version 9.
+    -   changed peer dependency `mydatepicker` to require version 9
     -   changed peer dependency `ngx-quill` to require version 11
     -   changed peer dependency `ngx-bootstrap` to require version 6.1.0
 -   **terra-form**
@@ -30,13 +30,28 @@
 -   **file-input** removed attribute `_overlay` and method `showFileBrowser()` and the overlayButtons `primaryOverlayButton` and `secondaryOverlayButton`.
 -   **fixed-header** directive has been removed. Use angular material's [table](https://material.angular.io/components/table/overview) with a sticky header instead.
 -   **terra-label-tooltip** directive has been removed. Use `TooltipDirective` with a set `onlyEllipsisTooltip` input instead.
--   **public-api** removed examples from the public api
+-   **public-api** removed `TerraComponentsExamplesModule` from the public api.
 
-# 5.10.1 (Unreleased)
+# 5.12.0 (Unreleased)
+
+### Features
+
+-   **terra-select-box** since terra-select-box is deprecated, `AllowedColors` enum and `TerraSelectBoxInterface` are deprecated now as well.
+-   **terra-overlay** since terra-overlay is deprecated, `TerraOverlayButtonInterface` is now deprecated as well.
+-   **terra-data-table-context-menu** component and service are deprecated now. Use angular material's [menu](https://material.angular.io/components/menu) instead.
+
+# 5.11.0 (05.11.2020)
+
+### Features
+
+-   **terra-file-input**
+    -   properties `primaryOverlayButton` and `secondaryOverlayButton` are deprecated now.
+    -   now uses a material dialog for the image preview
 
 ### Fix
 
 -   **terra-file-browser** replaced delete confirmation dialog with material dialog
+-   **mat-form-field** fixed Safari Bug for disabled inputs (non-readable text)
 
 # 5.10.0 (20.10.2020)
 

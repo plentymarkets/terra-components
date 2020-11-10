@@ -1,4 +1,4 @@
-import { Component, Inject, Input, ViewChild } from '@angular/core';
+import { Component, Input, TemplateRef, ViewChild } from '@angular/core';
 import { isNullOrUndefined } from 'util';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TerraInputComponent } from '../terra-input.component';
@@ -7,9 +7,8 @@ import { FileTypeHelper } from '../../../../helpers/fileType.helper';
 import { TerraBaseStorageService } from '../../../file-browser/terra-base-storage.interface';
 import { TerraRegex } from '../../../../helpers/regex/terra-regex';
 import { TerraStorageObject } from '../../../file-browser/model/terra-storage-object';
-import { TerraOverlayComponent } from '../../../layouts/overlay/terra-overlay.component';
 import { StringHelper } from '../../../../helpers/string.helper';
-import { L10nLocale, L10N_LOCALE } from 'angular-l10n';
+import { MatDialog } from '@angular/material/dialog';
 
 let nextId: number = 0;
 
@@ -44,15 +43,18 @@ export class TerraFileInputComponent extends TerraInputComponent {
         return this._storageServices;
     }
 
-    @ViewChild('previewOverlay', { static: true })
-    public _previewOverlay: TerraOverlayComponent;
+    @ViewChild('imagePreviewDialog', { static: true })
+    public _imagePreviewDialog: TemplateRef<{ filename: string; filepath: string }>;
 
     public _id: string;
     public _translationPrefix: string = 'terraFileInput';
 
     private _storageServices: Array<TerraBaseStorageService>;
 
-    constructor(@Inject(L10N_LOCALE) public _locale: L10nLocale) {
+    constructor(
+        /** Instance of the dialog service */
+        private dialog: MatDialog
+    ) {
         super(TerraRegex.MIXED);
 
         // generate the id of the input instance
@@ -65,7 +67,12 @@ export class TerraFileInputComponent extends TerraInputComponent {
 
     public onPreviewClicked(): void {
         if (this.isWebImage(this.value)) {
-            this._previewOverlay.showOverlay();
+            this.dialog.open(this._imagePreviewDialog, {
+                data: {
+                    filepath: this.value,
+                    filename: this.getFilename(this.value)
+                }
+            });
         }
     }
 
