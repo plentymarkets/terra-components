@@ -10,7 +10,6 @@ import { MockRouter } from '../../../../testing/mock-router';
 import { mockL10nConfig } from 'src/lib/testing/mock-l10n-config';
 import { Color, ColorRGB } from '../../../../helpers';
 
-
 describe('Component: TerraColorPickerComponent', () => {
     let component: TerraColorPickerComponent;
     let fixture: ComponentFixture<TerraColorPickerComponent>;
