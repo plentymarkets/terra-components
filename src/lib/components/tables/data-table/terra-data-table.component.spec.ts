@@ -25,7 +25,7 @@ import { TooltipDirective } from '../../tooltip/tooltip.directive';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MockActivatedRoute } from '../../../testing/mock-activated-route';
 import Spy = jasmine.Spy;
-import { mockL10nConfig } from 'src/lib/testing/mock-l10n-config';
+import { mockL10nConfig } from '../../../testing/mock-l10n-config';
 
 describe('TerraDataTableComponent', () => {
     let component: TerraDataTableComponent<any, any>;

@@ -6,7 +6,7 @@ import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { TerraFormEntryListComponent } from './terra-form-entry-list.component';
 import { TerraFormContainerComponent } from '../form-container/terra-form-container.component';
 import { TerraFormScope } from '../model/terra-form-scope.data';
-import { mockL10nConfig } from 'src/lib/testing/mock-l10n-config';
+import { mockL10nConfig } from '../../../../testing/mock-l10n-config';
 
 describe('TerraFormEntryListComponent: ', () => {
     let fixture: ComponentFixture<TerraFormEntryListComponent>;

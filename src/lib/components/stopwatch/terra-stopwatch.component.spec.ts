@@ -7,7 +7,7 @@ import { TooltipDirective } from '../tooltip/tooltip.directive';
 import { Router } from '@angular/router';
 import { MockRouter } from '../../testing/mock-router';
 import Spy = jasmine.Spy;
-import { mockL10nConfig } from 'src/lib/testing/mock-l10n-config';
+import { mockL10nConfig } from '../../testing/mock-l10n-config';
 
 describe('Component: TerraStopwatchComponent', () => {
     let component: TerraStopwatchComponent;

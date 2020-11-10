@@ -5,7 +5,7 @@ import { TableSettingsComponent } from './table-settings.component';
 import { Observable, of } from 'rxjs';
 import { TableSettingsDialogComponent } from './dialog/table-settings-dialog.component';
 import { MockButtonComponent } from '../../../testing/mock-button';
-import { mockL10nConfig } from 'src/lib/testing/mock-l10n-config';
+import { mockL10nConfig } from '../../../testing/mock-l10n-config';
 
 describe('TableSettingsComponent', () => {
     let component: TableSettingsComponent;

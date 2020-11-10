@@ -5,7 +5,7 @@ import { L10nTranslationModule } from 'angular-l10n';
 import { MockRouter } from '../../../../testing/mock-router';
 import { Router } from '@angular/router';
 import { TerraPlacementEnum } from '../../../../helpers';
-import { mockL10nConfig } from 'src/lib/testing/mock-l10n-config';
+import { mockL10nConfig } from '../../../../testing/mock-l10n-config';
 
 describe('TerraNodeComponent', () => {
     let component: TerraNodeComponent<any>;

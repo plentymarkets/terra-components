@@ -9,7 +9,7 @@ import { AllowedColors } from './data/allowed.colors.enum';
 import { DebugElement } from '@angular/core';
 import { Router } from '@angular/router';
 import { MockRouter } from '../../../testing/mock-router';
-import { mockL10nConfig } from 'src/lib/testing/mock-l10n-config';
+import { mockL10nConfig } from '../../../testing/mock-l10n-config';
 
 /**
  * @author mfrank

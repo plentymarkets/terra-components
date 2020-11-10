@@ -5,8 +5,8 @@ import { TerraTagComponent } from '../tag/terra-tag.component';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 import { TerraTagInterface } from '../tag/data/terra-tag.interface';
-import { mockL10nConfig } from 'src/lib/testing/mock-l10n-config';
 import { L10nTranslationModule } from 'angular-l10n';
+import { mockL10nConfig } from '../../../testing/mock-l10n-config';
 
 describe('TerraTaglistComponent', () => {
     let component: TerraTaglistComponent;

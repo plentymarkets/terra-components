@@ -31,7 +31,7 @@ import { Router } from '@angular/router';
 import { MockRouter } from '../../../../testing/mock-router';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ModalModule } from 'ngx-bootstrap/modal';
-import { mockL10nConfig } from 'src/lib/testing/mock-l10n-config';
+import { mockL10nConfig } from '../../../../testing/mock-l10n-config';
 
 describe('TerraFileInputComponent', () => {
     let component: TerraFileInputComponent;

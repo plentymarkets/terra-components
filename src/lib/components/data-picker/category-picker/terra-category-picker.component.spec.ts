@@ -2,7 +2,7 @@ import { TerraCategoryPickerComponent } from './terra-category-picker.component'
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { L10nTranslationModule } from 'angular-l10n';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { mockL10nConfig } from 'src/lib/testing/mock-l10n-config';
+import { mockL10nConfig } from '../../../testing/mock-l10n-config';
 
 describe('TerraCategoryPickerComponent', () => {
     let component: TerraCategoryPickerComponent;

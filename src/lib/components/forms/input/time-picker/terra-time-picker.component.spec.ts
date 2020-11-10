@@ -6,7 +6,7 @@ import { L10nTranslationModule } from 'angular-l10n';
 import { TerraTimePickerComponent } from './terra-time-picker.component';
 import { TerraSelectBoxComponent } from '../../select-box/terra-select-box.component';
 import { TerraSelectBoxValueInterface } from '../../select-box/data/terra-select-box.interface';
-import { mockL10nConfig } from 'src/lib/testing/mock-l10n-config';
+import { mockL10nConfig } from '../../../../testing/mock-l10n-config';
 
 @Directive({
     selector: '[tcTooltip]'

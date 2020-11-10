@@ -10,7 +10,7 @@ import { By } from '@angular/platform-browser';
 import { MockButtonComponent } from '../../../../testing/mock-button';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ColumnInterface } from '../interface/column.interface';
-import { mockL10nConfig } from 'src/lib/testing/mock-l10n-config';
+import { mockL10nConfig } from '../../../../testing/mock-l10n-config';
 
 const column1: ColumnInterface = { key: 'TestName1', label: 'TestName1' };
 const column2: ColumnInterface = { key: 'TestName2', label: 'TestName2' };
