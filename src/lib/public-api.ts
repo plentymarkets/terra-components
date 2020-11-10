@@ -192,4 +192,4 @@ export { TerraStopwatchComponent } from './components/stopwatch/terra-stopwatch.
 export { SelectSortDirective } from './components/forms/select-box/directive/select-sort.directive';
 
 // l10n translations
-export { l10nTerraComponents } from './translations/components/l10n-terra-components';
+export { l10nTerraComponents } from './translations/l10n-terra-components';
