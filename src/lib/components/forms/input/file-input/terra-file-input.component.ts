@@ -1,4 +1,4 @@
-import { Component, Input, TemplateRef, ViewChild } from '@angular/core';
+import { Component, Inject, Input, TemplateRef, ViewChild } from '@angular/core';
 import { isNullOrUndefined } from 'util';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TerraInputComponent } from '../terra-input.component';
@@ -9,6 +9,7 @@ import { TerraRegex } from '../../../../helpers/regex/terra-regex';
 import { TerraStorageObject } from '../../../file-browser/model/terra-storage-object';
 import { StringHelper } from '../../../../helpers/string.helper';
 import { MatDialog } from '@angular/material/dialog';
+import { L10N_LOCALE, L10nLocale } from 'angular-l10n';
 
 let nextId: number = 0;
 
@@ -52,6 +53,7 @@ export class TerraFileInputComponent extends TerraInputComponent {
     private _storageServices: Array<TerraBaseStorageService>;
 
     constructor(
+        @Inject(L10N_LOCALE) public _locale: L10nLocale,
         /** Instance of the dialog service */
         private dialog: MatDialog
     ) {
