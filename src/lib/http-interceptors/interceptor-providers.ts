@@ -20,7 +20,7 @@ export const httpInterceptorProviders: Array<Provider> = [
         provide: HTTP_INTERCEPTORS,
         useClass: ErrorInterceptor,
         multi: true,
-        deps: [AlertService, L10nTranslationService, L10nIntlService]
+        deps: [AlertService, L10nTranslationService, L10N_LOCALE]
     },
     {
         provide: HTTP_INTERCEPTORS,
