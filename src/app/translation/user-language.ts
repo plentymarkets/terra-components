@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
 import { L10nConfig, L10nUserLanguage, L10N_CONFIG } from 'angular-l10n';
-import { StringHelper } from 'src/lib/helpers/string.helper';
+import { StringHelper } from '../../lib/helpers';
 
 @Injectable()
 export class DefaultUserLanguage implements L10nUserLanguage {

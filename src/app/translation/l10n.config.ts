@@ -1,5 +1,5 @@
 import { L10nConfig } from 'angular-l10n';
-import { l10nTerraComponents } from 'src/lib/translations/l10n-terra-components';
+import { l10nTerraComponents } from '../../lib';
 
 export const l10nConfig: L10nConfig = {
     format: 'language',

@@ -8,7 +8,7 @@ import { MockTranslationModule } from '../testing/mock-translation-module';
 import { L10nTranslationService, L10nIntlService, L10nLocale, L10N_LOCALE } from 'angular-l10n';
 import Spy = jasmine.Spy;
 
-const localeServiceStub: Partial<L10nLocale> = {
+const l10nLocaleStub: Partial<L10nLocale> = {
     language: 'de'
 };
 
@@ -31,7 +31,7 @@ describe('ErrorInterceptor', () => {
                 },
                 {
                     provide: L10N_LOCALE,
-                    useValue: localeServiceStub
+                    useValue: l10nLocaleStub
                 }
             ]
         });
