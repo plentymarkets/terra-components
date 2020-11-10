@@ -3,7 +3,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth.interceptor';
 import { ErrorInterceptor } from './error.interceptor';
 import { LoadingInterceptor } from './loading.interceptor';
-import { L10nIntlService, L10nTranslationService } from 'angular-l10n';
+import { L10N_LOCALE, L10nTranslationService } from 'angular-l10n';
 import { AlertService } from '../components/alert/alert.service';
 import { TerraLoadingSpinnerService } from '../components/loading-spinner/service/terra-loading-spinner.service';
 
