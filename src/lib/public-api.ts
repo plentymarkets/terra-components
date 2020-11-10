@@ -190,3 +190,6 @@ export { SelectSortPipe } from './pipes/select-sort.pipe';
 export { AllowedColors } from './components/forms/select-box/data/allowed.colors.enum';
 export { TerraStopwatchComponent } from './components/stopwatch/terra-stopwatch.component';
 export { SelectSortDirective } from './components/forms/select-box/directive/select-sort.directive';
+
+// l10n translations
+export { l10nTerraComponents } from './translations/components/l10n-terra-components';
