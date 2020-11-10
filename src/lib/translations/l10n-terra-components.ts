@@ -1,4 +1,4 @@
-const deDe = {
+const de: {} = {
     terraDataTable: {
         groupFunction: 'Gruppenfunktion'
     },
@@ -144,7 +144,7 @@ const deDe = {
     }
 };
 
-const enEN = {
+const en: {} = {
     terraDataTable: {
         groupFunction: 'Group function'
     },
@@ -289,7 +289,7 @@ const enEN = {
     }
 };
 
-export const i18nTerraComponents = {
-    de: deDe,
-    en: enEN
+export const l10nTerraComponents: {} = {
+    de: de,
+    en: en
 };
