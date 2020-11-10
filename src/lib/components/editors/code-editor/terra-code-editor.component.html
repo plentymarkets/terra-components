@@ -34,11 +34,11 @@
     </terra-button>
     <terra-overlay
         #viewConfirmationOverlay
-        [inputOverlayTitle]="'terraCodeEditor.changeViewOverlay.title' | translate: _lang"
+        [inputOverlayTitle]="'terraCodeEditor.changeViewOverlay.title' | translate: _locale.language"
         [inputPrimaryButtonInterface]="_viewConfirmation.primaryButton"
         [inputSecondaryButtonInterface]="_viewConfirmation.secondaryButton"
         class="preview-overlay"
     >
-        <p>{{ 'terraCodeEditor.changeViewOverlay.text' | translate: _lang }}</p>
+        <p>{{ 'terraCodeEditor.changeViewOverlay.text' | translate: _locale.language }}</p>
     </terra-overlay>
 </div>

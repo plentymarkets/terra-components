@@ -1,11 +1,11 @@
-import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { isNullOrUndefined } from 'util';
 import { TerraFormFieldControlService } from './service/terra-form-field-control.service';
 import { TerraFormFieldBase } from './data/terra-form-field-base';
 import { TerraDynamicFormFunctionsHandler } from './handler/terra-dynamic-form-functions.handler';
 import { Observable } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
-import { Language } from 'angular-l10n';
+import { L10nLocale, L10N_LOCALE } from 'angular-l10n';
 
 /**
  * @deprecated since v5.0.0. Use terra-form instead.
@@ -35,7 +35,7 @@ export interface TerraDynamicFormRequestParams {
     styleUrls: ['./terra-dynamic-form.component.scss'],
     providers: [TerraFormFieldControlService]
 })
-export class TerraDynamicFormComponent implements OnInit, OnChanges, OnDestroy {
+export class TerraDynamicFormComponent implements OnInit, OnChanges {
     @Input()
     public inputFormFunctions: TerraDynamicFormFunctionsHandler<any>;
 
@@ -69,10 +69,10 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges, OnDestroy {
     @Output()
     public inputShowDeprecatedEntriesChange: EventEmitter<boolean> = new EventEmitter();
 
-    @Language()
-    public _lang: string;
-
-    constructor(public _formFieldControlService: TerraFormFieldControlService) {
+    constructor(
+        @Inject(L10N_LOCALE) public _locale: L10nLocale,
+        public _formFieldControlService: TerraFormFieldControlService
+    ) {
         this.inputPortletStyle = 'col-12 col-md-8 col-lg-5';
         this.inputRequestParams = {
             route: '',
@@ -105,10 +105,6 @@ export class TerraDynamicFormComponent implements OnInit, OnChanges, OnDestroy {
             this._formFieldControlService.createFormGroup(this.inputFormFields);
             this.registerValueChange();
         }
-    }
-
-    public ngOnDestroy(): void {
-        // implementation is required by angular-l10n. See https://robisim74.github.io/angular-l10n/spec/getting-the-translation/#messages
     }
 
     public _validate(): void {

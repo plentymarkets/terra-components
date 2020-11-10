@@ -1,10 +1,10 @@
-import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Inject, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TerraTagInterface } from '../../layouts/tag/data/terra-tag.interface';
 import { TerraSuggestionBoxValueInterface } from '../suggestion-box/data/terra-suggestion-box.interface';
 import { isNullOrUndefined } from 'util';
 import { TerraTagNameInterface } from '../../layouts/tag/data/terra-tag-name.interface';
-import { Language } from 'angular-l10n';
+import { L10nLocale, L10N_LOCALE } from 'angular-l10n';
 import { noop } from 'rxjs';
 
 @Component({
@@ -20,7 +20,7 @@ import { noop } from 'rxjs';
     ]
 })
 /** @deprecated since v5.0. Please use mat-chips-list instead */
-export class TerraTagSelectComponent implements ControlValueAccessor, OnInit, OnChanges, OnDestroy {
+export class TerraTagSelectComponent implements ControlValueAccessor, OnInit, OnChanges {
     @Input()
     public name: string;
 
@@ -33,9 +33,6 @@ export class TerraTagSelectComponent implements ControlValueAccessor, OnInit, On
     @Input()
     public isReadOnly: boolean = false;
 
-    @Language()
-    public _lang: string;
-
     public _suggestionValues: Array<TerraSuggestionBoxValueInterface> = [];
     public _selectedTag: TerraTagInterface;
     public _selectedTags: Array<TerraTagInterface> = [];
@@ -45,12 +42,10 @@ export class TerraTagSelectComponent implements ControlValueAccessor, OnInit, On
     private _onTouchedCallback: () => void = noop;
     private _onChangeCallback: (_: any) => void = noop;
 
+    constructor(@Inject(L10N_LOCALE) private _locale: L10nLocale) {}
+
     public ngOnInit(): void {
         this._generateSuggestionValues(this._tagList);
-    }
-
-    public ngOnDestroy(): void {
-        // implementation is required by angular-l10n. See https://robisim74.github.io/angular-l10n/spec/getting-the-translation/#messages
     }
 
     public ngOnChanges(changes: SimpleChanges): void {
@@ -126,15 +121,15 @@ export class TerraTagSelectComponent implements ControlValueAccessor, OnInit, On
      * @param tag
      */
     private _getTranslatedName(tag: TerraTagInterface): string {
-        // Fallback if names or this._lang is not set
-        if (isNullOrUndefined(tag.names) || isNullOrUndefined(this._lang)) {
+        // Fallback if names or this._locale.language is not set
+        if (isNullOrUndefined(tag.names) || isNullOrUndefined(this._locale.language)) {
             return tag.name;
         } else {
             const tagName: TerraTagNameInterface = tag.names.find(
-                (name: TerraTagNameInterface) => name.language === this._lang
+                (name: TerraTagNameInterface) => name.language === this._locale.language
             );
 
-            // Fallback if no name for this._lang is set
+            // Fallback if no name for this._locale.language is set
             if (isNullOrUndefined(tagName)) {
                 return tag.name;
             } else {

@@ -2,12 +2,12 @@ import { TerraStopwatchComponent } from './terra-stopwatch.component';
 import { ComponentFixture, discardPeriodicTasks, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { TerraButtonComponent } from '../buttons/button/terra-button.component';
 import { FormsModule } from '@angular/forms';
-import { LocalizationModule } from 'angular-l10n';
-import { l10nConfig } from '../../../app/translation/l10n.config';
+import { L10nTranslationModule } from 'angular-l10n';
 import { TooltipDirective } from '../tooltip/tooltip.directive';
 import { Router } from '@angular/router';
 import { MockRouter } from '../../testing/mock-router';
 import Spy = jasmine.Spy;
+import { mockL10nConfig } from '../../testing/mock-l10n-config';
 
 describe('Component: TerraStopwatchComponent', () => {
     let component: TerraStopwatchComponent;
@@ -19,7 +19,7 @@ describe('Component: TerraStopwatchComponent', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             declarations: [TerraStopwatchComponent, TerraButtonComponent, TooltipDirective],
-            imports: [FormsModule, LocalizationModule.forRoot(l10nConfig)],
+            imports: [FormsModule, L10nTranslationModule.forRoot(mockL10nConfig)],
             providers: [
                 {
                     provide: Router,

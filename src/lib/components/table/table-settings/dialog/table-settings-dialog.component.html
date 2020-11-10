@@ -1,4 +1,4 @@
-<h2 mat-dialog-title>{{ 'tableSettings.configColumns' | translate: _lang }}</h2>
+<h2 mat-dialog-title>{{ 'tableSettings.configColumns' | translate: _locale.language }}</h2>
 <mat-dialog-content class="table-settings-dialog-content">
     <mat-selection-list
         (selectionChange)="_columns = _sort(_columns)"
@@ -24,9 +24,10 @@
     </mat-selection-list>
 </mat-dialog-content>
 <mat-dialog-actions>
-    <terra-button [inputCaption]="'tableSettings.cancel' | translate: _lang" mat-dialog-close> </terra-button>
+    <terra-button [inputCaption]="'tableSettings.cancel' | translate: _locale.language" mat-dialog-close>
+    </terra-button>
     <terra-button
-        [inputCaption]="'tableSettings.confirm' | translate: _lang"
+        [inputCaption]="'tableSettings.confirm' | translate: _locale.language"
         [mat-dialog-close]="this._selectedColumns"
     >
     </terra-button>
