@@ -1,3 +1,13 @@
+# 6.0.0-alpha.2 (12.11.2020)
+
+### Breaking Changes
+
+-   **dependencies** reverted update of `angular-l10n`.
+
+### Bug Fixes
+
+-   **terra-select-box** handle `null` or `undefined` caption when determining whether a value is selected.
+
 # 6.0.0-alpha.1 (10.11.2020)
 
 ### Breaking Changes
