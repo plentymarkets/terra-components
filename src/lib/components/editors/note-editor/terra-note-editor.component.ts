@@ -1,5 +1,5 @@
 import { Component, ElementRef } from '@angular/core';
-import { L10nTranslationService } from 'angular-l10n';
+import { TranslationService } from 'angular-l10n';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TerraBaseEditorComponent } from '../base-editor/terra-base-editor.component';
 
@@ -16,7 +16,7 @@ import { TerraBaseEditorComponent } from '../base-editor/terra-base-editor.compo
 })
 /** @deprecated since v 5.0. Please use ck-editor instead. **/
 export class TerraNoteEditorComponent extends TerraBaseEditorComponent {
-    constructor(translation: L10nTranslationService, myElement: ElementRef) {
+    constructor(translation: TranslationService, myElement: ElementRef) {
         super(translation, myElement);
         // initialize placeholder
         this._placeholder = this._translation.translate('terraNoteEditor.insertText');

@@ -1,8 +1,8 @@
-import { Component, Inject, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { TerraInputComponent } from '../terra-input.component';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TerraRegex } from '../../../../helpers/regex/terra-regex';
-import { L10nLocale, L10N_LOCALE } from 'angular-l10n';
+import { DefaultLocale } from 'angular-l10n';
 
 let nextId: number = 0;
 
@@ -21,7 +21,7 @@ let nextId: number = 0;
 /**
  * @deprecated since v4. Use '<mat-input>' instead. See {@link https://material.angular.io/components/input/overview}
  */
-export class TerraDoubleInputComponent extends TerraInputComponent implements OnInit {
+export class TerraDoubleInputComponent extends TerraInputComponent implements OnInit, OnDestroy {
     /**
      * @description If true, the value will be right-aligned.
      */
@@ -35,6 +35,9 @@ export class TerraDoubleInputComponent extends TerraInputComponent implements On
     @Input()
     public inputDecimalCount: number = 2;
 
+    @DefaultLocale()
+    public _locale: string;
+
     public _step: number;
 
     /**
@@ -42,7 +45,7 @@ export class TerraDoubleInputComponent extends TerraInputComponent implements On
      */
     public _id: string;
 
-    constructor(@Inject(L10N_LOCALE) public _locale: L10nLocale) {
+    constructor() {
         super(TerraRegex.DOUBLE);
 
         // generate the id of the input instance
@@ -52,6 +55,10 @@ export class TerraDoubleInputComponent extends TerraInputComponent implements On
     public ngOnInit(): void {
         this.regex = TerraRegex.getDouble(this.inputDecimalCount);
         this._step = 1 / Math.pow(10, this.inputDecimalCount);
+    }
+
+    public ngOnDestroy(): void {
+        // implementation is required by angular-l10n. See https://robisim74.github.io/angular-l10n/spec/getting-the-translation/#messages
     }
 
     /**

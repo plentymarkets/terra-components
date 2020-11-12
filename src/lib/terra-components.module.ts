@@ -3,7 +3,7 @@ import { components, exportedComponents } from './components/component-collectio
 import { directives, exportedDirectives } from './components/directive-collection';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { L10nTranslationModule } from 'angular-l10n';
+import { LocalizationModule } from 'angular-l10n';
 import { MyDatePickerModule } from 'mydatepicker';
 import { RouterModule } from '@angular/router';
 import { TerraInteractModule } from './components/interactables/interact.module';
@@ -22,7 +22,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
         FormsModule,
         ReactiveFormsModule,
         RouterModule,
-        L10nTranslationModule,
+        LocalizationModule,
         ModalModule.forRoot(),
         MyDatePickerModule,
         QuillModule.forRoot(),

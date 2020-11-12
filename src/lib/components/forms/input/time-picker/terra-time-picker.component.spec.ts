@@ -2,11 +2,10 @@ import { DebugElement, Directive, Input } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { L10nTranslationModule } from 'angular-l10n';
+import { TranslationModule } from 'angular-l10n';
 import { TerraTimePickerComponent } from './terra-time-picker.component';
 import { TerraSelectBoxComponent } from '../../select-box/terra-select-box.component';
 import { TerraSelectBoxValueInterface } from '../../select-box/data/terra-select-box.interface';
-import { mockL10nConfig } from '../../../../testing/mock-l10n-config';
 
 @Directive({
     selector: '[tcTooltip]'
@@ -23,7 +22,7 @@ describe('TerraTimePickerComponent:', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [FormsModule, L10nTranslationModule.forRoot(mockL10nConfig)],
+            imports: [FormsModule, TranslationModule.forRoot({})],
             declarations: [TerraTimePickerComponent, TerraSelectBoxComponent, MockTooltipDirective]
         });
         fixture = TestBed.createComponent(TerraTimePickerComponent);

@@ -1,11 +1,10 @@
 import { TerraNodeComponent } from './terra-node.component';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TooltipDirective } from '../../../tooltip/tooltip.directive';
-import { L10nTranslationModule } from 'angular-l10n';
+import { LocalizationModule } from 'angular-l10n';
 import { MockRouter } from '../../../../testing/mock-router';
 import { Router } from '@angular/router';
 import { TerraPlacementEnum } from '../../../../helpers';
-import { mockL10nConfig } from '../../../../testing/mock-l10n-config';
 
 describe('TerraNodeComponent', () => {
     let component: TerraNodeComponent<any>;
@@ -14,7 +13,7 @@ describe('TerraNodeComponent', () => {
 
     beforeEach(() => {
         fixture = TestBed.configureTestingModule({
-            imports: [L10nTranslationModule.forRoot(mockL10nConfig)],
+            imports: [LocalizationModule.forRoot({})],
             declarations: [TooltipDirective, TerraNodeComponent],
             providers: [
                 {

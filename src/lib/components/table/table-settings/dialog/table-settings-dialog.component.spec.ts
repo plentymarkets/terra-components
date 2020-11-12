@@ -2,7 +2,7 @@ import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatListModule } from '@angular/material/list';
 import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
-import { L10nTranslationModule } from 'angular-l10n';
+import { TranslationModule } from 'angular-l10n';
 import { FormsModule } from '@angular/forms';
 import { TableSettingsDialogComponent } from './table-settings-dialog.component';
 import { TableSettingsDialogData } from '../interface/table-settings-dialog-data.interface';
@@ -10,7 +10,6 @@ import { By } from '@angular/platform-browser';
 import { MockButtonComponent } from '../../../../testing/mock-button';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ColumnInterface } from '../interface/column.interface';
-import { mockL10nConfig } from '../../../../testing/mock-l10n-config';
 
 const column1: ColumnInterface = { key: 'TestName1', label: 'TestName1' };
 const column2: ColumnInterface = { key: 'TestName2', label: 'TestName2' };
@@ -27,13 +26,7 @@ describe('TableSettingsDialogComponent', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             declarations: [TableSettingsDialogComponent, MockButtonComponent],
-            imports: [
-                MatListModule,
-                MatDialogModule,
-                L10nTranslationModule.forRoot(mockL10nConfig),
-                FormsModule,
-                DragDropModule
-            ],
+            imports: [MatListModule, MatDialogModule, TranslationModule.forRoot({}), FormsModule, DragDropModule],
             providers: [
                 {
                     provide: MAT_DIALOG_DATA,

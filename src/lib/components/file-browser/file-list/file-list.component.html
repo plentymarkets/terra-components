@@ -2,7 +2,7 @@
     <div class="btn-group" role="group">
         <terra-button
             inputIcon="icon-upload"
-            [inputTooltipText]="_translationPrefix + '.uploadFile' | translate: _locale.language"
+            [inputTooltipText]="_translationPrefix + '.uploadFile' | translate: _lang"
             inputTooltipPlacement="right"
             (outputClicked)="fileChooser.click()"
         >
@@ -10,7 +10,7 @@
         <terra-button
             inputIcon="icon-folder_add"
             *ngIf="_parentFileBrowser.inputAllowFolders"
-            [inputTooltipText]="_translationPrefix + '.createFolder' | translate: _locale.language"
+            [inputTooltipText]="_translationPrefix + '.createFolder' | translate: _lang"
             inputTooltipPlacement="right"
             (outputClicked)="_showNewDirectoryPrompt = true"
         >
@@ -21,7 +21,7 @@
         <terra-button
             inputIcon="icon-delete"
             [inputIsDisabled]="_selectedStorageObjects.length <= 0"
-            [inputTooltipText]="_translationPrefix + '.deleteSelectedFiles' | translate: _locale.language"
+            [inputTooltipText]="_translationPrefix + '.deleteSelectedFiles' | translate: _lang"
             inputTooltipPlacement="right"
             (outputClicked)="_deleteSelected()"
         >
@@ -41,23 +41,23 @@
 
 <div class="file-list-container" [class.empty]="_fileTableRowList.length <= 0">
     <div [hidden]="!_showNewDirectoryPrompt" class="prompt" [class.in]="_showNewDirectoryPrompt">
-        <span class="prompt-title">{{ _translationPrefix + '.createFolder' | translate: _locale.language }}</span>
+        <span class="prompt-title">{{ _translationPrefix + '.createFolder' | translate: _lang }}</span>
         <terra-text-input
-            [inputName]="_translationPrefix + '.folderName' | translate: _locale.language"
+            [inputName]="_translationPrefix + '.folderName' | translate: _lang"
             [(ngModel)]="newDirectoryName"
         >
         </terra-text-input>
         <div class="float-lg-right">
             <terra-button
                 [inputIcon]="'icon-close'"
-                [inputCaption]="_translationPrefix + '.cancel' | translate: _locale.language"
+                [inputCaption]="_translationPrefix + '.cancel' | translate: _lang"
                 [inputIsSmall]="true"
                 (outputClicked)="_showNewDirectoryPrompt = false"
             ></terra-button>
 
             <terra-button
                 [inputIcon]="'icon-folder_add'"
-                [inputCaption]="_translationPrefix + '.create' | translate: _locale.language"
+                [inputCaption]="_translationPrefix + '.create' | translate: _lang"
                 [inputIsSmall]="true"
                 [inputIsDisabled]="!newDirectoryName"
                 (outputClicked)="_createDirectory()"
@@ -82,12 +82,12 @@
 
     <div *ngIf="_fileTableRowList.length <= 0" class="empty-directory">
         <div>
-            <p>{{ _translationPrefix + '.noFiles' | translate: _locale.language }}</p>
+            <p>{{ _translationPrefix + '.noFiles' | translate: _lang }}</p>
 
             <div>
                 <terra-button
                     inputIcon="icon-upload"
-                    [inputCaption]="_translationPrefix + '.uploadFile' | translate: _locale.language"
+                    [inputCaption]="_translationPrefix + '.uploadFile' | translate: _lang"
                     (outputClicked)="fileChooser.click()"
                 >
                 </terra-button>
@@ -95,7 +95,7 @@
                 <terra-button
                     inputIcon="icon-folder_add"
                     *ngIf="_parentFileBrowser.inputAllowFolders"
-                    [inputCaption]="_translationPrefix + '.createFolder' | translate: _locale.language"
+                    [inputCaption]="_translationPrefix + '.createFolder' | translate: _lang"
                     (outputClicked)="_showNewDirectoryPrompt = true"
                 >
                 </terra-button>
@@ -106,7 +106,7 @@
     <div class="file-drop" #fileDropzone [class.in]="_isDragActive" (drop)="onFileDrop($event)">
         <div>
             <span class="icon-upload"></span>
-            {{ _translationPrefix + '.uploadFile' | translate: _locale.language }}
+            {{ _translationPrefix + '.uploadFile' | translate: _lang }}
         </div>
     </div>
 
@@ -114,20 +114,20 @@
         <div class="upload-progress">
             <div [style.width.%]="_progress.progress"></div>
         </div>
-        <span>{{ _translationPrefix + '.uploadProgress' | translate: _locale.language:_progress }}</span>
+        <span>{{ _translationPrefix + '.uploadProgress' | translate: _lang:_progress }}</span>
     </div>
 
     <ng-template let-deleteCount #deleteConfirmationDialog>
-        <h2 mat-dialog-title>{{ _translationPrefix + '.confirmDelete' | translate: _locale.language }}</h2>
+        <h2 mat-dialog-title>{{ _translationPrefix + '.confirmDelete' | translate: _lang }}</h2>
         <mat-dialog-content>
-            {{ _translationPrefix + '.confirmDeleteMany' | translate: _locale.language:{ count: deleteCount } }}
+            {{ _translationPrefix + '.confirmDeleteMany' | translate: _lang:{ count: deleteCount } }}
         </mat-dialog-content>
         <mat-dialog-actions>
             <button mat-flat-button [mat-dialog-close]="false">
-                {{ _translationPrefix + '.cancel' | translate: _locale.language }}
+                {{ _translationPrefix + '.cancel' | translate: _lang }}
             </button>
             <button mat-flat-button color="warn" [mat-dialog-close]="true">
-                {{ _translationPrefix + '.delete' | translate: _locale.language }}
+                {{ _translationPrefix + '.delete' | translate: _lang }}
             </button>
         </mat-dialog-actions>
     </ng-template>

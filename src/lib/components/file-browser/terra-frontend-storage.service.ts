@@ -4,7 +4,7 @@ import { TerraUploadQueue } from './model/terra-upload-queue';
 import { TerraStorageObjectList } from './model/terra-storage-object-list';
 import { createS3StorageObject } from './model/s3-storage-object.interface';
 import { TerraImageMetadata } from './model/terra-image-metadata.interface';
-import { L10nTranslationService } from 'angular-l10n';
+import { TranslationService } from 'angular-l10n';
 import { isNullOrUndefined } from 'util';
 import { TerraBaseMetadataStorageService } from './terra-base-metadata-storage.interface';
 import { tap } from 'rxjs/operators';
@@ -41,7 +41,7 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
 
     constructor(
         private http: HttpClient,
-        private _translation: L10nTranslationService,
+        private _translation: TranslationService,
         private _alertService: AlertService
     ) {
         super();

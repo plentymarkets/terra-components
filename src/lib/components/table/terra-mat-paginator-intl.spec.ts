@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { TerraMatPaginatorIntl } from './terra-mat-paginator-intl';
-import { L10nTranslationService } from 'angular-l10n';
+import { TranslationService } from 'angular-l10n';
 import { MockTranslationService } from '../../testing/mock-translation-service';
 
 describe('TerraMatPaginatorIntl', () => {
@@ -11,7 +11,7 @@ describe('TerraMatPaginatorIntl', () => {
         TestBed.configureTestingModule({
             providers: [
                 {
-                    provide: L10nTranslationService,
+                    provide: TranslationService,
                     useClass: MockTranslationService
                 },
                 {
