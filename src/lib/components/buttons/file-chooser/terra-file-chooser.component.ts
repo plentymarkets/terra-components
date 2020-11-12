@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
-import { L10nTranslationService } from 'angular-l10n';
+import { TranslationService } from 'angular-l10n';
 import { isNullOrUndefined } from 'util';
 import { TerraFileBrowserComponent } from '../../file-browser/terra-file-browser.component';
 import { TerraButtonComponent } from '../button/terra-button.component';
@@ -91,7 +91,7 @@ export class TerraFileChooserComponent extends TerraButtonComponent {
 
     private _storageServices: Array<TerraBaseStorageService>;
 
-    constructor(private _translation: L10nTranslationService) {
+    constructor(private _translation: TranslationService) {
         super();
 
         this.primaryOverlayButton = {

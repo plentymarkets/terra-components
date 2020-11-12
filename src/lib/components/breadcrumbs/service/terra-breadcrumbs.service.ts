@@ -10,7 +10,7 @@ import {
     UrlSerializer
 } from '@angular/router';
 import { isNullOrUndefined } from 'util';
-import { L10nTranslationService } from 'angular-l10n';
+import { TranslationService } from 'angular-l10n';
 import { TerraBreadcrumbContainer } from '../terra-breadcrumb-container';
 import { UrlHelper } from '../../../helpers/url.helper';
 import { StringHelper } from '../../../helpers/string.helper';
@@ -26,7 +26,7 @@ export class TerraBreadcrumbsService {
 
     constructor(
         private _router: Router,
-        private _translation: L10nTranslationService,
+        private _translation: TranslationService,
         private _urlSerializer: UrlSerializer
     ) {
         this._router.events

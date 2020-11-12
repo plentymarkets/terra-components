@@ -5,8 +5,7 @@ import { TerraTagComponent } from '../tag/terra-tag.component';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 import { TerraTagInterface } from '../tag/data/terra-tag.interface';
-import { L10nTranslationModule } from 'angular-l10n';
-import { mockL10nConfig } from '../../../testing/mock-l10n-config';
+import { MockTranslationModule } from '../../../testing/mock-translation-module';
 
 describe('TerraTaglistComponent', () => {
     let component: TerraTaglistComponent;
@@ -15,7 +14,7 @@ describe('TerraTaglistComponent', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             declarations: [TerraTagComponent, TerraTaglistComponent],
-            imports: [L10nTranslationModule.forRoot(mockL10nConfig)]
+            imports: [MockTranslationModule]
         });
     });
 

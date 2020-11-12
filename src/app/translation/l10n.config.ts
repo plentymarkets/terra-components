@@ -1,17 +1,40 @@
-import { L10nConfig } from 'angular-l10n';
-import { l10nTerraComponents } from '../../lib';
+import { L10nConfig, LogLevel, ProviderType, StorageStrategy } from 'angular-l10n';
+import { environment } from 'src/lib/environments/environment';
 
+const logLevel: LogLevel = environment.test ? LogLevel.Off : LogLevel.Warn;
 export const l10nConfig: L10nConfig = {
-    format: 'language',
-    providers: [{ name: 'terra-components', asset: l10nTerraComponents }],
-    cache: true,
-    keySeparator: '.',
-    defaultLocale: {
-        language: 'de',
-        currency: 'EUR'
+    logger: {
+        level: logLevel
     },
-    schema: [
-        { locale: { language: 'de', currency: 'EUR' }, dir: 'ltr', text: 'Deutsch' },
-        { locale: { language: 'en', currency: 'GBP' }, dir: 'ltr', text: 'English' }
-    ]
+    locale: {
+        languages: [
+            {
+                code: 'en',
+                dir: 'ltr'
+            },
+            {
+                code: 'de',
+                dir: 'ltr'
+            }
+        ],
+        language: 'en',
+        defaultLocale: {
+            languageCode: 'de',
+            countryCode: 'DE'
+        },
+        currency: 'EUR',
+        storage: StorageStrategy.Local,
+        storageNames: { defaultLocale: 'plentymarkets_lang_' }
+    },
+    translation: {
+        providers: [
+            {
+                type: ProviderType.Static,
+                prefix: 'assets/lang/locale-'
+            }
+        ],
+        caching: true,
+        composedKeySeparator: '.',
+        i18nPlural: false
+    }
 };

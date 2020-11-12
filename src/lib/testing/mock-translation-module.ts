@@ -1,6 +1,6 @@
 import { MockTranslationService } from './mock-translation-service';
 import { NgModule } from '@angular/core';
-import { L10nTranslationService } from 'angular-l10n';
+import { InjectorRef, TranslationService } from 'angular-l10n';
 
 const translationService: MockTranslationService = new MockTranslationService();
 
@@ -9,14 +9,15 @@ const translationService: MockTranslationService = new MockTranslationService();
  */
 @NgModule({
     providers: [
+        InjectorRef,
         {
-            provide: L10nTranslationService,
+            provide: TranslationService,
             useValue: translationService
         }
     ]
 })
 export class MockTranslationModule {
-    constructor() {
+    constructor(private injector: InjectorRef) {
         // Creates the instance of the InjectorRef, so that module dependencies are available.
     }
 }

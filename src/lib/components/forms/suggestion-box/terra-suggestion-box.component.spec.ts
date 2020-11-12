@@ -1,7 +1,8 @@
 import { DebugElement, ElementRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { L10nTranslationModule } from 'angular-l10n';
+import { LocalizationModule } from 'angular-l10n';
+import { l10nConfig } from '../../../../app/translation/l10n.config';
 import { TerraSuggestionBoxComponent } from './terra-suggestion-box.component';
 import { MockElementRef } from '../../../testing/mock-element-ref';
 import { By } from '@angular/platform-browser';
@@ -11,7 +12,6 @@ import { TooltipDirective } from '../../tooltip/tooltip.directive';
 import { Router } from '@angular/router';
 import { MockRouter } from '../../../testing/mock-router';
 import Spy = jasmine.Spy;
-import { mockL10nConfig } from '../../../testing/mock-l10n-config';
 
 describe('TerraSuggestionBoxComponent', () => {
     let component: TerraSuggestionBoxComponent;
@@ -25,7 +25,7 @@ describe('TerraSuggestionBoxComponent', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             declarations: [TooltipDirective, TerraSuggestionBoxComponent, TerraTextInputComponent],
-            imports: [FormsModule, L10nTranslationModule.forRoot(mockL10nConfig)],
+            imports: [FormsModule, LocalizationModule.forRoot(l10nConfig)],
             providers: [
                 {
                     provide: Router,

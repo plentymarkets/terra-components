@@ -1,10 +1,3 @@
-# 6.0.0-alpha.1 (Unreleased)
-
-### Breaking Changes
-
--   **dependencies**
-    -   changed peer dependency `angular-l10n` to require version 9.
-
 # 6.0.0-alpha.0 (30.10.2020)
 
 ### Breaking Changes
