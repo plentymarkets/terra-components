@@ -1,8 +1,8 @@
-import { Component, Inject, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { TerraNodeTreeConfig } from './data/terra-node-tree.config';
 import { isNullOrUndefined } from 'util';
 import { TerraNodeInterface } from './data/terra-node.interface';
-import { L10nLocale, L10nTranslationService, L10N_LOCALE } from 'angular-l10n';
+import { Language, TranslationService } from 'angular-l10n';
 import { FormControl } from '@angular/forms';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { StringHelper } from '../../../helpers';
@@ -34,9 +34,12 @@ export class TerraNodeTreeComponent<D> implements OnDestroy, OnInit {
     @Input()
     public isTreeDisabled: boolean;
 
+    @Language()
+    public _lang: string;
+
     public _formControl: FormControl = new FormControl();
 
-    constructor(@Inject(L10N_LOCALE) public _locale: L10nLocale, private _translation: L10nTranslationService) {}
+    constructor(private _translation: TranslationService) {}
 
     public ngOnInit(): void {
         this.inputConfig.checkVisibilityAndAssignDefault(this.inputConfig.list);

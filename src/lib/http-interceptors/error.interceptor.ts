@@ -2,8 +2,8 @@ import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { AlertService } from '../components/alert/alert.service';
-import { L10nTranslationService, L10nLocale, L10N_LOCALE } from 'angular-l10n';
-import { Inject, Injectable } from '@angular/core';
+import { LocaleService, TranslationService } from 'angular-l10n';
+import { Injectable } from '@angular/core';
 import { DispatchHelper } from '../helpers/dispatch.helper';
 import { environment } from '../environments/environment';
 
@@ -15,8 +15,8 @@ import { environment } from '../environments/environment';
 export class ErrorInterceptor implements HttpInterceptor {
     constructor(
         private _alertService: AlertService,
-        private _translation: L10nTranslationService,
-        @Inject(L10N_LOCALE) private _locale: L10nLocale
+        private _translation: TranslationService,
+        private _locale: LocaleService
     ) {}
 
     public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -43,7 +43,7 @@ export class ErrorInterceptor implements HttpInterceptor {
                             error.error['error'][missingPermissionsKey];
                         let translations: Array<string> = this._getMissingPermissionTranslations(
                             missingPermissions,
-                            this._locale.language
+                            this._locale.getCurrentLanguage()
                         );
 
                         const separator: string = '<br/> • ';

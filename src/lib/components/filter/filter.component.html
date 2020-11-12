@@ -2,7 +2,7 @@
     <terra-base-toolbar>
         <div class="btn-group" role="group">
             <terra-button
-                [inputTooltipText]="'tcFilter.search' | translate: _locale.language"
+                [inputTooltipText]="'tcFilter.search' | translate: _lang"
                 [inputTooltipPlacement]="'right'"
                 [inputType]="'submit'"
                 [inputIcon]="'icon-search'"
@@ -10,7 +10,7 @@
             >
             </terra-button>
             <terra-button
-                [inputTooltipText]="'tcFilter.reset' | translate: _locale.language"
+                [inputTooltipText]="'tcFilter.reset' | translate: _lang"
                 [inputTooltipPlacement]="'right'"
                 [inputIcon]="'icon-reset'"
                 (outputClicked)="reset.emit()"

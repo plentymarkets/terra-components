@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
-import { L10nLocale, L10N_LOCALE } from 'angular-l10n';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Language } from 'angular-l10n';
 import { isNullOrUndefined } from 'util';
 
 @Component({
@@ -7,7 +7,7 @@ import { isNullOrUndefined } from 'util';
     styleUrls: ['./terra-stopwatch.component.scss'],
     templateUrl: './terra-stopwatch.component.html'
 })
-export class TerraStopwatchComponent implements OnInit {
+export class TerraStopwatchComponent implements OnInit, OnDestroy {
     /**
      * @description If true, the start, pause and reset control will show
      */
@@ -49,12 +49,13 @@ export class TerraStopwatchComponent implements OnInit {
     @Output()
     public secondsChange: EventEmitter<number> = new EventEmitter<number>();
 
+    @Language()
+    public _lang: string;
+
     public readonly _langPrefix: string = 'terraStopwatch.';
 
     private _timer: number = null;
     private _secondsValue: number = 0;
-
-    constructor(@Inject(L10N_LOCALE) public _locale: L10nLocale) {}
 
     /**
      * @description initialisation routine. Starts the stopwatch if autoPlay is set.
@@ -63,6 +64,10 @@ export class TerraStopwatchComponent implements OnInit {
         if (this.autoPlay) {
             this.start();
         }
+    }
+
+    public ngOnDestroy(): void {
+        // implementation is required by angular-l10n. See https://robisim74.github.io/angular-l10n/spec/getting-the-translation/#messages
     }
 
     /**

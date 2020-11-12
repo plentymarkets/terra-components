@@ -1,9 +1,9 @@
-import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { TerraPagerInterface } from './data/terra-pager.interface';
 import { TerraSelectBoxValueInterface } from '../forms/select-box/data/terra-select-box.interface';
 import { Subject } from 'rxjs';
 import { terraPagerDefaultPagingSizes } from './data/terra-pager-default-paging-sizes';
-import { L10nLocale, L10N_LOCALE } from 'angular-l10n';
+import { Language } from 'angular-l10n';
 import { debounceTime } from 'rxjs/operators';
 
 @Component({
@@ -12,7 +12,7 @@ import { debounceTime } from 'rxjs/operators';
     templateUrl: './terra-pager.component.html'
 })
 /** @deprecated since v5.0. Please use mat-paginator instead */
-export class TerraPagerComponent implements OnInit {
+export class TerraPagerComponent implements OnInit, OnDestroy {
     @Input()
     public inputPagingData: TerraPagerInterface<any>;
 
@@ -28,9 +28,10 @@ export class TerraPagerComponent implements OnInit {
     @Output()
     public outputDoPaging: EventEmitter<TerraPagerInterface<any>> = new EventEmitter<TerraPagerInterface<any>>();
 
-    private _pagingClicks: Subject<TerraPagerInterface<any>> = new Subject<TerraPagerInterface<any>>();
+    @Language()
+    public _lang: string;
 
-    constructor(@Inject(L10N_LOCALE) public _locale: L10nLocale) {}
+    private _pagingClicks: Subject<TerraPagerInterface<any>> = new Subject<TerraPagerInterface<any>>();
 
     public ngOnInit(): void {
         this._pagingClicks
@@ -57,6 +58,10 @@ export class TerraPagerComponent implements OnInit {
                 isLastPage: false
             };
         }
+    }
+
+    public ngOnDestroy(): void {
+        // implementation is required by angular-l10n. See https://robisim74.github.io/angular-l10n/spec/getting-the-translation/#messages
     }
 
     public onFirstPage(): void {

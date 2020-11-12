@@ -1,4 +1,3 @@
-import { L10nLocale } from 'angular-l10n';
 import { Observable, of } from 'rxjs';
 
 /**
@@ -6,14 +5,14 @@ import { Observable, of } from 'rxjs';
  */
 export class MockTranslationService {
     // implements ITranslationService
-    private locale: L10nLocale = { language: 'de' };
+    private lang: string = 'de';
 
-    public onChange(): Observable<string> {
-        return of(this.locale.language);
+    public translationChanged(): Observable<string> {
+        return of(this.lang);
     }
 
-    public getLocale(): L10nLocale {
-        return this.locale;
+    public getLanguage(): string {
+        return this.lang;
     }
 
     public translate(key: string): string {
@@ -21,6 +20,6 @@ export class MockTranslationService {
     }
 
     public latestTranslation(): Observable<string> {
-        return of(this.locale.language);
+        return of(this.lang);
     }
 }

@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
-import { L10nTranslationModule } from 'angular-l10n';
+import { LocalizationModule } from 'angular-l10n';
+import { l10nConfig } from '../../../../app/translation/l10n.config';
 import { DebugElement, SimpleChange } from '@angular/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
@@ -13,7 +14,6 @@ import { TooltipDirective } from '../../tooltip/tooltip.directive';
 import { Router } from '@angular/router';
 import { MockRouter } from '../../../testing/mock-router';
 import Spy = jasmine.Spy;
-import { mockL10nConfig } from '../../../testing/mock-l10n-config';
 
 describe('TerraPortletComponent', () => {
     let component: TerraPortletComponent;
@@ -26,7 +26,7 @@ describe('TerraPortletComponent', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             declarations: [TooltipDirective, TerraPortletComponent, TerraButtonComponent, TerraInfoComponent],
-            imports: [FormsModule, NoopAnimationsModule, L10nTranslationModule.forRoot(mockL10nConfig)],
+            imports: [FormsModule, NoopAnimationsModule, LocalizationModule.forRoot(l10nConfig)],
             providers: [
                 {
                     provide: Router,

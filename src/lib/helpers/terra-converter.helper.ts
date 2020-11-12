@@ -1,4 +1,4 @@
-import { L10nIntlService } from 'angular-l10n';
+import { LocaleService } from 'angular-l10n';
 
 export class TerraConverterHelper {
     /**
@@ -6,7 +6,7 @@ export class TerraConverterHelper {
      * @param byteSize
      * @param localeService
      */
-    public static convertAndFormatSize(byteSize: number, localeService: L10nIntlService): string {
+    public static convertAndFormatSize(byteSize: number, localeService: LocaleService): string {
         let GB_CONVERSION_FACTOR: number = 1073741824;
         let MB_CONVERSION_FACTOR: number = 1048576;
         let KB_CONVERSION_FACTOR: number = 1024;
@@ -26,7 +26,7 @@ export class TerraConverterHelper {
      * @param value
      * @param localeService
      */
-    public static getLocaleDecimalValue(value: number, localeService: L10nIntlService): string {
-        return localeService.formatNumber(value, { digits: '1.0-2' }); // max 2 digits after the comma
+    public static getLocaleDecimalValue(value: number, localeService: LocaleService): string {
+        return localeService.formatDecimal(value, '1.0-2'); // max 2 digits after the comma
     }
 }

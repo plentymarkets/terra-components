@@ -1,7 +1,8 @@
 import { DebugElement } from '@angular/core';
 import { FormControl, FormsModule, Validators } from '@angular/forms';
 import { ComponentFixture, fakeAsync, flush, TestBed } from '@angular/core/testing';
-import { L10nTranslationModule } from 'angular-l10n';
+import { LocalizationModule } from 'angular-l10n';
+import { l10nConfig } from '../../../../../app/translation/l10n.config';
 import { TerraNumberInputComponent } from './terra-number-input.component';
 import { By } from '@angular/platform-browser';
 import { TerraButtonComponent } from '../../../buttons/button/terra-button.component';
@@ -10,7 +11,6 @@ import { TooltipDirective } from '../../../tooltip/tooltip.directive';
 import { Router } from '@angular/router';
 import { MockRouter } from '../../../../testing/mock-router';
 import Spy = jasmine.Spy;
-import { mockL10nConfig } from '../../../../testing/mock-l10n-config';
 
 describe('TerraNumberInputComponent', () => {
     let component: TerraNumberInputComponent;
@@ -23,7 +23,7 @@ describe('TerraNumberInputComponent', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             declarations: [TooltipDirective, TerraNumberInputComponent, TerraButtonComponent],
-            imports: [FormsModule, L10nTranslationModule.forRoot(mockL10nConfig)],
+            imports: [FormsModule, LocalizationModule.forRoot(l10nConfig)],
             providers: [
                 {
                     provide: Router,
