@@ -143,7 +143,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges {
     public get _emptyValueSelected(): boolean {
         return (
             isNullOrUndefined(this._selectedValue) ||
-            (StringHelper.isNullUndefinedOrEmpty(this._selectedValue.caption.toString()) &&
+            (StringHelper.isNullUndefinedOrEmpty(this._selectedValue.caption?.toString()) &&
                 StringHelper.isNullUndefinedOrEmpty(this._selectedValue.icon))
         );
     }
