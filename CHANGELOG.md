@@ -1,3 +1,9 @@
+# 6.0.0-alpha.3 (19.11.2020)
+
+### Breaking Changes
+
+-   **dependencies** updated `angular-l10n` to version 9. To migrate your app to this version, see [this migration guide](https://github.com/robisim74/angular-l10n/blob/master/MIGRATION_GUIDE.md).
+
 # 6.0.0-alpha.2 (12.11.2020)
 
 ### Breaking Changes
