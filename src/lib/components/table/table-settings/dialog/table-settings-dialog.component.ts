@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { Language } from 'angular-l10n';
+import { L10nLocale, L10N_LOCALE } from 'angular-l10n';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatColumnDef } from '@angular/material/table';
 import { TableSettingsDialogData } from '../interface/table-settings-dialog-data.interface';
@@ -14,10 +14,10 @@ export class TableSettingsDialogComponent implements OnInit {
     public _columns: Array<ColumnInterface>;
     public _selectedColumns: Array<string>;
 
-    @Language()
-    public _lang: string;
-
-    constructor(@Inject(MAT_DIALOG_DATA) public data: TableSettingsDialogData) {}
+    constructor(
+        @Inject(L10N_LOCALE) public _locale: L10nLocale,
+        @Inject(MAT_DIALOG_DATA) public data: TableSettingsDialogData
+    ) {}
 
     /**
      * @description Assign the injected data to the component properties.
