@@ -1,7 +1,8 @@
 import { TerraCategoryPickerComponent } from './terra-category-picker.component';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { LocalizationModule } from 'angular-l10n';
+import { L10nTranslationModule } from 'angular-l10n';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { mockL10nConfig } from '../../../testing/mock-l10n-config';
 
 describe('TerraCategoryPickerComponent', () => {
     let component: TerraCategoryPickerComponent;
@@ -9,7 +10,7 @@ describe('TerraCategoryPickerComponent', () => {
 
     beforeEach(() => {
         fixture = TestBed.configureTestingModule({
-            imports: [LocalizationModule.forRoot({})],
+            imports: [L10nTranslationModule.forRoot(mockL10nConfig)],
             declarations: [TerraCategoryPickerComponent],
             schemas: [NO_ERRORS_SCHEMA]
         }).createComponent(TerraCategoryPickerComponent);

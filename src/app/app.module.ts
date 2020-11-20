@@ -1,5 +1,5 @@
 import { APP_INITIALIZER, NgModule } from '@angular/core';
-import { L10nLoader, LocalizationModule } from 'angular-l10n';
+import { L10nIntlModule, L10nLoader, L10nTranslationModule } from 'angular-l10n';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
@@ -8,9 +8,10 @@ import { AppComponent } from './app.component';
 import { ShowcaseComponent } from './showcase/showcase.component';
 import { TerraComponentsExamplesModule } from '../lib/terra-components-examples.module';
 import { RouterModule } from '@angular/router';
+import { DefaultUserLanguage } from './translation/user-language';
 
 export function initL10n(l10nLoader: L10nLoader): Function {
-    return (): Promise<void> => l10nLoader.load();
+    return (): Promise<void> => l10nLoader.init();
 }
 
 /**
@@ -24,7 +25,8 @@ export function initL10n(l10nLoader: L10nLoader): Function {
         BrowserAnimationsModule,
         RouterModule.forRoot([]),
         HttpClientModule,
-        LocalizationModule.forRoot(l10nConfig),
+        L10nTranslationModule.forRoot(l10nConfig, { userLanguage: DefaultUserLanguage }),
+        L10nIntlModule,
         TerraComponentsExamplesModule
     ],
     declarations: [AppComponent, ShowcaseComponent],

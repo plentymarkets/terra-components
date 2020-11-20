@@ -1,10 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { TranslationModule } from 'angular-l10n';
+import { L10nTranslationModule } from 'angular-l10n';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { TableSettingsComponent } from './table-settings.component';
 import { Observable, of } from 'rxjs';
 import { TableSettingsDialogComponent } from './dialog/table-settings-dialog.component';
 import { MockButtonComponent } from '../../../testing/mock-button';
+import { mockL10nConfig } from '../../../testing/mock-l10n-config';
 
 describe('TableSettingsComponent', () => {
     let component: TableSettingsComponent;
@@ -20,7 +21,7 @@ describe('TableSettingsComponent', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             declarations: [TableSettingsComponent, MockButtonComponent],
-            imports: [TranslationModule.forRoot({})],
+            imports: [L10nTranslationModule.forRoot(mockL10nConfig)],
             providers: [
                 {
                     provide: MatDialog,

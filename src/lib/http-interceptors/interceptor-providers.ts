@@ -3,7 +3,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth.interceptor';
 import { ErrorInterceptor } from './error.interceptor';
 import { LoadingInterceptor } from './loading.interceptor';
-import { LocaleService, TranslationService } from 'angular-l10n';
+import { L10N_LOCALE, L10nTranslationService } from 'angular-l10n';
 import { AlertService } from '../components/alert/alert.service';
 import { TerraLoadingSpinnerService } from '../components/loading-spinner/service/terra-loading-spinner.service';
 
@@ -20,7 +20,7 @@ export const httpInterceptorProviders: Array<Provider> = [
         provide: HTTP_INTERCEPTORS,
         useClass: ErrorInterceptor,
         multi: true,
-        deps: [AlertService, TranslationService, LocaleService]
+        deps: [AlertService, L10nTranslationService, L10N_LOCALE]
     },
     {
         provide: HTTP_INTERCEPTORS,

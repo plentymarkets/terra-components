@@ -1,3 +1,26 @@
+# 6.0.0-alpha.3 (19.11.2020)
+
+### Breaking Changes
+
+-   **dependencies** updated `angular-l10n` to version 9. To migrate your app to this version, see [this migration guide](https://github.com/robisim74/angular-l10n/blob/master/MIGRATION_GUIDE.md).
+
+# 6.0.0-alpha.2 (12.11.2020)
+
+### Breaking Changes
+
+-   **dependencies** reverted update of `angular-l10n`.
+
+### Bug Fixes
+
+-   **terra-select-box** handle `null` or `undefined` caption when determining whether a value is selected.
+
+# 6.0.0-alpha.1 (10.11.2020)
+
+### Breaking Changes
+
+-   **dependencies**
+    -   changed peer dependency `angular-l10n` to require version 9.
+
 # 6.0.0-alpha.0 (30.10.2020)
 
 ### Breaking Changes

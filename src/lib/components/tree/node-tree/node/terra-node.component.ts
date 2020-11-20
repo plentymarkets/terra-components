@@ -1,8 +1,8 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { TerraNodeInterface } from '../data/terra-node.interface';
 import { TerraNodeTreeConfig } from '../data/terra-node-tree.config';
 import { isNullOrUndefined } from 'util';
-import { Language } from 'angular-l10n';
+import { L10nLocale, L10N_LOCALE } from 'angular-l10n';
 import { TerraPlacementEnum } from '../../../../helpers/enums/terra-placement.enum';
 
 /**
@@ -13,7 +13,7 @@ import { TerraPlacementEnum } from '../../../../helpers/enums/terra-placement.en
     styleUrls: ['./terra-node.component.scss'],
     templateUrl: './terra-node.component.html'
 })
-export class TerraNodeComponent<D> implements OnInit, OnDestroy {
+export class TerraNodeComponent<D> implements OnInit {
     /**
      * @description The node interface.
      */
@@ -26,12 +26,11 @@ export class TerraNodeComponent<D> implements OnInit, OnDestroy {
     @Input()
     public inputConfig: TerraNodeTreeConfig<D>;
 
-    @Language()
-    public _lang: string;
-
     public _tooltip: string;
     public _tooltipPlacement: string = TerraPlacementEnum.RIGHT;
     public _onlyEllipsisTooltip: boolean = true;
+
+    constructor(@Inject(L10N_LOCALE) public _locale: L10nLocale) {}
 
     public ngOnInit(): void {
         if (isNullOrUndefined(this.inputNode.tooltip)) {
@@ -47,10 +46,6 @@ export class TerraNodeComponent<D> implements OnInit, OnDestroy {
         if (!isNullOrUndefined(this.inputNode.tooltipPlacement)) {
             this._tooltipPlacement = this.inputNode.tooltipPlacement;
         }
-    }
-
-    public ngOnDestroy(): void {
-        // implementation is required by angular-l10n. See https://robisim74.github.io/angular-l10n/spec/getting-the-translation/#messages
     }
 
     // handle the node click

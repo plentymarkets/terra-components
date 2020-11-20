@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, Type } from '@angular/core';
+import { Component, Inject, Input, OnChanges, SimpleChanges, Type } from '@angular/core';
 import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
 import { isArray, isNullOrUndefined } from 'util';
 import { TerraFormScope } from '../model/terra-form-scope.data';
@@ -10,7 +10,7 @@ import {
     FormGroup,
     NG_VALUE_ACCESSOR
 } from '@angular/forms';
-import { Language } from 'angular-l10n';
+import { L10nLocale, L10N_LOCALE } from 'angular-l10n';
 import { TerraFormFieldHelper } from '../helper/terra-form-field.helper';
 import { TerraFormHelper } from '../helper/terra-form.helper';
 import { noop } from 'rxjs';
@@ -27,7 +27,7 @@ import { noop } from 'rxjs';
         }
     ]
 })
-export class TerraFormEntryListComponent implements OnInit, OnChanges, ControlValueAccessor, OnDestroy {
+export class TerraFormEntryListComponent implements OnChanges, ControlValueAccessor {
     @Input()
     public inputFormField: TerraFormFieldInterface;
 
@@ -51,9 +51,6 @@ export class TerraFormEntryListComponent implements OnInit, OnChanges, ControlVa
 
     public formArray: FormArray;
 
-    @Language()
-    public _lang: string;
-
     public _childScopes: Array<TerraFormScope> = [];
 
     private _min: number;
@@ -62,13 +59,7 @@ export class TerraFormEntryListComponent implements OnInit, OnChanges, ControlVa
     private _onChangeCallback: (value: any) => void = noop;
     private _onTouchedCallback: () => void = noop;
 
-    public ngOnInit(): void {
-        // implementation is required by angular-l10n. See https://robisim74.github.io/angular-l10n/spec/getting-the-translation/#messages
-    }
-
-    public ngOnDestroy(): void {
-        // implementation is required by angular-l10n. See https://robisim74.github.io/angular-l10n/spec/getting-the-translation/#messages
-    }
+    constructor(@Inject(L10N_LOCALE) public _locale: L10nLocale) {}
 
     public ngOnChanges(changes: SimpleChanges): void {
         if (changes.hasOwnProperty('inputFormGroup') || changes.hasOwnProperty('inputFormFieldKey')) {

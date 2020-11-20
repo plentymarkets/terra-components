@@ -1,7 +1,6 @@
 import { TerraDataTableComponent } from './terra-data-table.component';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { LocalizationModule } from 'angular-l10n';
-import { l10nConfig } from '../../../../app/translation/l10n.config';
+import { L10nTranslationModule } from 'angular-l10n';
 import { TerraPagerComponent } from '../../pager/terra-pager.component';
 import { TerraButtonComponent } from '../../buttons/button/terra-button.component';
 import { TerraCheckboxComponent } from '../../forms/checkbox/terra-checkbox.component';
@@ -26,6 +25,7 @@ import { TooltipDirective } from '../../tooltip/tooltip.directive';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MockActivatedRoute } from '../../../testing/mock-activated-route';
 import Spy = jasmine.Spy;
+import { mockL10nConfig } from '../../../testing/mock-l10n-config';
 
 describe('TerraDataTableComponent', () => {
     let component: TerraDataTableComponent<any, any>;
@@ -50,7 +50,7 @@ describe('TerraDataTableComponent', () => {
                 TerraSelectBoxComponent,
                 TableRowComponent
             ],
-            imports: [CommonModule, FormsModule, NoopAnimationsModule, LocalizationModule.forRoot(l10nConfig)],
+            imports: [CommonModule, FormsModule, NoopAnimationsModule, L10nTranslationModule.forRoot(mockL10nConfig)],
             providers: [
                 TerraDataTableServiceExample,
                 TerraLoadingSpinnerService,

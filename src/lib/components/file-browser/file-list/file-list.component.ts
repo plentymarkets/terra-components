@@ -6,6 +6,7 @@ import {
     ElementRef,
     EventEmitter,
     Host,
+    Inject,
     Input,
     OnChanges,
     OnDestroy,
@@ -19,7 +20,7 @@ import { Subscription } from 'rxjs';
 import { TerraBaseStorageService } from '../terra-base-storage.interface';
 import { TerraFileBrowserComponent } from '../terra-file-browser.component';
 import { TerraFileBrowserService } from '../terra-file-browser.service';
-import { DefaultLocale, Language, LocaleService, TranslationService } from 'angular-l10n';
+import { L10nIntlService, L10nLocale, L10nTranslationService, L10N_LOCALE } from 'angular-l10n';
 import { TerraUploadProgress } from '../model/terra-upload-progress';
 import { isNullOrUndefined, isNumber } from 'util';
 import { TerraBasePrivateStorageService } from '../terra-base-private-storage.interface';
@@ -59,9 +60,6 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
     public selectNode: EventEmitter<TerraStorageObject> = new EventEmitter<TerraStorageObject>();
 
     public imagePreviewObject: TerraStorageObject;
-
-    @Language()
-    public _lang: string;
 
     @ViewChild('deleteConfirmationDialog', { static: true })
     public _deleteConfirmationDialog: TemplateRef<number>;
@@ -211,14 +209,12 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         this._newDirectoryName = this.activeStorageService.prepareKey(name, true, true);
     }
 
-    @DefaultLocale()
-    private _defaultLocale: string;
-
     constructor(
+        @Inject(L10N_LOCALE) public _locale: L10nLocale,
         private _changeDetector: ChangeDetectorRef,
         private _fileBrowserService: TerraFileBrowserService,
-        private _translationService: TranslationService,
-        private _localeService: LocaleService,
+        private _translationService: L10nTranslationService,
+        private _localeService: L10nIntlService,
         private _alertService: AlertService,
         @Host() public _parentFileBrowser: TerraFileBrowserComponent,
         private _dialog: MatDialog
@@ -419,7 +415,11 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
             },
             {
                 caption: storageObject.isFile
-                    ? this._localeService.formatDate(storageObject.lastModified, 'medium', this._defaultLocale)
+                    ? this._localeService.formatDate(
+                          storageObject.lastModified,
+                          { dateStyle: 'medium', timeStyle: 'medium' },
+                          this._locale.language
+                      )
                     : ''
             }
         );
