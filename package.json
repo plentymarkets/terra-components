@@ -13,6 +13,7 @@
         "lint": "ng lint lib",
         "prettier": "prettier --check .",
         "reinstall": "npm ci",
+        "postinstall": "ngcc --properties es2015 --create-ivy-entry-points",
         "prepare-release": "npm run reinstall && npm run build && npm run test-once && npm start"
     },
     "prettier": "@plentymarkets/terra-prettier-config",
