@@ -1,6 +1,6 @@
 import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum';
 import { Component, ElementRef, Input, OnInit } from '@angular/core';
-import { TranslationService } from 'angular-l10n';
+import { L10nTranslationService } from 'angular-l10n';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { isNullOrUndefined } from 'util';
 import { noop } from 'rxjs';
@@ -51,7 +51,7 @@ export class TerraBaseEditorComponent implements OnInit, ControlValueAccessor {
     public _onChangeCallback: (_: any) => void = noop;
     public _onTouchedCallback: (_: any) => void = noop;
 
-    constructor(protected _translation: TranslationService, protected _myElement: ElementRef) {
+    constructor(protected _translation: L10nTranslationService, protected _myElement: ElementRef) {
         // initialize placeholder
         this._placeholder = this._translation.translate('terraNoteEditor.insertText');
         this._modules = {

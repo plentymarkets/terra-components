@@ -22,7 +22,7 @@
     <!-- suggestions -->
     <div class="select-box-dropdown">
         <span *ngIf="_displayListBoxValues.length === 0" (click)="$event.stopPropagation()">
-            <i>{{ _noEntriesTextKey | translate: _lang }} </i>
+            <i>{{ _noEntriesTextKey | translate: _locale.language }} </i>
         </span>
 
         <span
@@ -31,7 +31,7 @@
             (click)="$event.stopPropagation()"
         >
             <i
-                ><b> {{ _listBoxHeadingKey | translate: _lang }} </b></i
+                ><b> {{ _listBoxHeadingKey | translate: _locale.language }} </b></i
             >
         </span>
 

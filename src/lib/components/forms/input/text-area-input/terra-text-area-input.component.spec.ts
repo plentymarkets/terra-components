@@ -1,8 +1,7 @@
 import { DebugElement, ElementRef, SimpleChange } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ComponentFixture, fakeAsync, flush, TestBed } from '@angular/core/testing';
-import { LocalizationModule } from 'angular-l10n';
-import { l10nConfig } from '../../../../../app/translation/l10n.config';
+import { L10nTranslationModule } from 'angular-l10n';
 import { TerraTextAreaInputComponent } from './terra-text-area-input.component';
 import { By } from '@angular/platform-browser';
 import { MockElementRef } from '../../../../testing/mock-element-ref';
@@ -11,6 +10,7 @@ import { TooltipDirective } from '../../../tooltip/tooltip.directive';
 import { Router } from '@angular/router';
 import { MockRouter } from '../../../../testing/mock-router';
 import Spy = jasmine.Spy;
+import { mockL10nConfig } from '../../../../testing/mock-l10n-config';
 
 describe('TerraTextAreaInputComponent', () => {
     let component: TerraTextAreaInputComponent;
@@ -23,7 +23,7 @@ describe('TerraTextAreaInputComponent', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             declarations: [TooltipDirective, TerraTextAreaInputComponent],
-            imports: [FormsModule, LocalizationModule.forRoot(l10nConfig)],
+            imports: [FormsModule, L10nTranslationModule.forRoot(mockL10nConfig)],
             providers: [
                 {
                     provide: Router,

@@ -9,7 +9,7 @@ import { TerraTagInterface } from '../tag/data/terra-tag.interface';
     styleUrls: ['./terra-taglist.component.scss'],
     templateUrl: './terra-taglist.component.html'
 })
-export class TerraTaglistComponent implements OnInit {
+export class TerraTaglistComponent {
     @Input()
     public inputTagList: Array<TerraTagInterface>;
 
@@ -18,8 +18,4 @@ export class TerraTaglistComponent implements OnInit {
 
     @Output()
     public closeTag: EventEmitter<number> = new EventEmitter<number>();
-
-    public ngOnInit(): void {
-        // implementation is required by angular-l10n. See https://robisim74.github.io/angular-l10n/spec/getting-the-translation/#messages
-    }
 }

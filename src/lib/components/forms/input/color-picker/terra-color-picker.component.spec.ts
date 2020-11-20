@@ -1,13 +1,13 @@
 import { TerraColorPickerComponent } from './terra-color-picker.component';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
-import { LocalizationModule } from 'angular-l10n';
-import { l10nConfig } from '../../../../../app/translation/l10n.config';
+import { L10nTranslationModule } from 'angular-l10n';
 import { By } from '@angular/platform-browser';
 import { TerraRegex } from '../../../../helpers/regex/terra-regex';
 import { TooltipDirective } from '../../../tooltip/tooltip.directive';
 import { Router } from '@angular/router';
 import { MockRouter } from '../../../../testing/mock-router';
+import { mockL10nConfig } from '../../../../testing/mock-l10n-config';
 import { Color, ColorRGB } from '../../../../helpers';
 
 describe('Component: TerraColorPickerComponent', () => {
@@ -21,7 +21,7 @@ describe('Component: TerraColorPickerComponent', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             declarations: [TooltipDirective, TerraColorPickerComponent],
-            imports: [FormsModule, LocalizationModule.forRoot(l10nConfig)],
+            imports: [FormsModule, L10nTranslationModule.forRoot(mockL10nConfig)],
             providers: [
                 {
                     provide: Router,
