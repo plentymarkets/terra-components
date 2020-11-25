@@ -15,6 +15,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
     imports: [
@@ -31,7 +33,9 @@ import { ModalModule } from 'ngx-bootstrap/modal';
         MatListModule,
         MatDialogModule,
         MatButtonModule,
-        DragDropModule
+        DragDropModule,
+        MatIconModule,
+        MatTooltipModule
     ],
     declarations: [...components, ...directives, ...pipes],
     entryComponents: [...exportedComponents],

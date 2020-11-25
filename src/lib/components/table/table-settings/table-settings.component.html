@@ -1,5 +1,5 @@
-<terra-button
-    inputIcon="icon-settings"
-    [inputTooltipText]="'tableSettings.configColumns' | translate: _locale.language"
-    (outputClicked)="_openSettings()"
-></terra-button>
+<button mat-icon-button
+        (click)="_openSettings()"
+        [matTooltip]="'cms.shopBuilder.content.backupTable.cantRestore' | translate: _locale.language">
+    <mat-icon fontIcon="icon-settings"></mat-icon>
+</button>
