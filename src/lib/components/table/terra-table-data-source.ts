@@ -160,7 +160,7 @@ export abstract class TerraTableDataSource<T> extends DataSource<T> {
         const search$: Observable<void> = merge(
             this._filter ? this._filter.search$ : EMPTY,
             this._search.asObservable()
-        ).pipe(tap(() => (this._paginator.pageIndex = 0)));
+        ).pipe(tap(() => (this._paginator ? (this._paginator.pageIndex = 0) : null)));
 
         // watch for reloads
         const reload$: Observable<void> = this._reload.asObservable();
