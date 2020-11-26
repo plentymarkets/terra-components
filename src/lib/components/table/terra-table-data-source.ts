@@ -131,6 +131,11 @@ export abstract class TerraTableDataSource<T> extends DataSource<T> {
         /* no-op */
     }
 
+    /** Initiates a request that reloads the data with the currently set filters and page data **/
+    public reload(): void {
+        this._search.next();
+    }
+
     /**
      * Subscribe to changes that should trigger an update to the table's rendered data. When the
      * changes occur, process the current state of the filter, sort, and pagination and fetch the requested
