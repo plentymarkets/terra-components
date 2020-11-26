@@ -2,7 +2,7 @@ import { DataSource } from '@angular/cdk/collections';
 import { BehaviorSubject, combineLatest, EMPTY, merge, Observable, Subject, Subscription } from 'rxjs';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
-import { debounceTime, filter, map, switchMap } from 'rxjs/operators';
+import { debounceTime, filter, map, switchMap, tap } from 'rxjs/operators';
 import { createRequestParams, isPaginated } from './util';
 import { RequestParameterInterface } from './request-parameter.interface';
 import { TerraFilter } from './filter';
@@ -160,35 +160,15 @@ export abstract class TerraTableDataSource<T> extends DataSource<T> {
         const search$: Observable<void> = merge(
             this._filter ? this._filter.search$ : EMPTY,
             this._search.asObservable()
-        );
+        ).pipe(tap(() => (this._paginator.pageIndex = 0)));
 
-        // A manual search can be triggered via the filter or this data source directly
-        const reload$: Observable<void> = merge(
-            this._filter ? this._filter.search$ : EMPTY,
-            this._reload.asObservable()
-        );
+        // A reload can be triggered via the filter or this data source directly
+        const reload$: Observable<void> = this._reload.asObservable();
 
         // watch for any change that should result in fetching data from the server.
         // Either manual search event or page and/or sort event.
-        const anyChangesReload$: Observable<void | PageEvent | Sort> = merge(reload$, pageOrSortChange$);
-        const anyChangesSearch$: Observable<void | PageEvent | Sort> = merge(search$, pageOrSortChange$);
+        const anyChangesSearch$: Observable<void | PageEvent | Sort> = merge(search$, reload$, pageOrSortChange$);
 
-        const dataReload$: Observable<Array<T>> = anyChangesReload$.pipe(
-            map(() => createRequestParams(this._filter, this._paginator, this._sort)),
-            switchMap((params: RequestParameterInterface) => this.request(params)),
-            map((response: Array<T> | TerraPagerInterface<T>) => {
-                if (isPaginated(response)) {
-                    if (this._paginator) {
-                        this._paginator.length = response.totalsCount;
-                        this._paginator.pageIndex = 0;
-                    }
-                    // TODO: we may be able to customize this with a method that extracts the data from the paginated response.
-                    //  similar to the tree control/data source
-                    return response.entries || [];
-                }
-                return response;
-            })
-        );
         const dataSearch$: Observable<Array<T>> = anyChangesSearch$.pipe(
             map(() => createRequestParams(this._filter, this._paginator, this._sort)),
             switchMap((params: RequestParameterInterface) => this.request(params)),
@@ -205,14 +185,6 @@ export abstract class TerraTableDataSource<T> extends DataSource<T> {
             })
         );
         this._subscription.unsubscribe();
-        this._subscription = combineLatest([dataSearch$, dataReload$]).subscribe(
-            ([dataSearch, dataRelaod]: [Array<T>, Array<T>]) => {
-                if (dataSearch) {
-                    this._data.next(dataSearch);
-                } else {
-                    this._data.next(dataRelaod);
-                }
-            }
-        );
+        this._subscription = dataSearch$.subscribe((data: Array<T>) => this._data.next(data));
     }
 }
