@@ -169,7 +169,7 @@ export abstract class TerraTableDataSource<T> extends DataSource<T> {
         // Either manual search event or page and/or sort event.
         const anyChange$: Observable<void | PageEvent | Sort> = merge(search$, reload$, pageOrSortChange$);
 
-        const dataSearch$: Observable<Array<T>> = anyChange$.pipe(
+        const data$: Observable<Array<T>> = anyChange$.pipe(
             map(() => createRequestParams(this._filter, this._paginator, this._sort)),
             switchMap((params: RequestParameterInterface) => this.request(params)),
             map((response: Array<T> | TerraPagerInterface<T>) => {
@@ -185,6 +185,6 @@ export abstract class TerraTableDataSource<T> extends DataSource<T> {
             })
         );
         this._subscription.unsubscribe();
-        this._subscription = dataSearch$.subscribe((data: Array<T>) => this._data.next(data));
+        this._subscription = data$.subscribe((data: Array<T>) => this._data.next(data));
     }
 }
