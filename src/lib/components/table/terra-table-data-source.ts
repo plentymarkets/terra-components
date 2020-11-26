@@ -1,5 +1,5 @@
 import { DataSource } from '@angular/cdk/collections';
-import { BehaviorSubject, combineLatest, EMPTY, merge, Observable, Subject, Subscription } from 'rxjs';
+import { BehaviorSubject, EMPTY, merge, Observable, Subject, Subscription } from 'rxjs';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { debounceTime, filter, map, switchMap, tap } from 'rxjs/operators';
@@ -156,7 +156,7 @@ export abstract class TerraTableDataSource<T> extends DataSource<T> {
             debounceTime(500) // debounce to reduce amount of (canceled) requests
         );
 
-        // A manual search can be triggered via the filter or this data source directly
+        // A manual search can be triggered via the filter or this data source directly. When using search the paginator will be set to the first page
         const search$: Observable<void> = merge(
             this._filter ? this._filter.search$ : EMPTY,
             this._search.asObservable()
@@ -167,9 +167,9 @@ export abstract class TerraTableDataSource<T> extends DataSource<T> {
 
         // watch for any change that should result in fetching data from the server.
         // Either manual search event or page and/or sort event.
-        const anyChangesSearch$: Observable<void | PageEvent | Sort> = merge(search$, reload$, pageOrSortChange$);
+        const anyChange$: Observable<void | PageEvent | Sort> = merge(search$, reload$, pageOrSortChange$);
 
-        const dataSearch$: Observable<Array<T>> = anyChangesSearch$.pipe(
+        const dataSearch$: Observable<Array<T>> = anyChange$.pipe(
             map(() => createRequestParams(this._filter, this._paginator, this._sort)),
             switchMap((params: RequestParameterInterface) => this.request(params)),
             map((response: Array<T> | TerraPagerInterface<T>) => {
