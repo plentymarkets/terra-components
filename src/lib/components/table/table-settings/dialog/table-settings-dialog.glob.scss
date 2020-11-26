@@ -1,4 +1,8 @@
 .table-settings-dialog-content {
+    .mat-selection-list.cdk-drop-list {
+        max-height: inherit;
+        overflow: auto;
+    }
     /* Checkbox and text inline and vertically centered */
     .mat-list-option {
         .mat-header-cell {
