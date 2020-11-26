@@ -162,7 +162,7 @@ export abstract class TerraTableDataSource<T> extends DataSource<T> {
             this._search.asObservable()
         ).pipe(tap(() => (this._paginator.pageIndex = 0)));
 
-        // A reload can be triggered via the filter or this data source directly
+        // watch for reloads
         const reload$: Observable<void> = this._reload.asObservable();
 
         // watch for any change that should result in fetching data from the server.
