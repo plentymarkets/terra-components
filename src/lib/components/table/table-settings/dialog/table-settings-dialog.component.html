@@ -1,7 +1,6 @@
 <h2 mat-dialog-title>{{ 'tableSettings.configColumns' | translate: _locale.language }}</h2>
 <mat-dialog-content class="table-settings-dialog-content">
     <mat-selection-list
-        class="overlay-scrollable"
         (selectionChange)="_columns = _sort(_columns)"
         [(ngModel)]="_selectedColumns"
         cdkDropList
