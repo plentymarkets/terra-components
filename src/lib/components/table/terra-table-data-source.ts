@@ -123,6 +123,11 @@ export abstract class TerraTableDataSource<T> extends DataSource<T> {
         this._search.next();
     }
 
+    /** Initiates a request that reloads the data with the currently set filters and page data **/
+    public reload(): void {
+        this._reload.next();
+    }
+
     /** Called by the table when it connects to this data source. */
     public connect(): Observable<Array<T> | ReadonlyArray<T>> {
         return this._data.asObservable();
@@ -131,11 +136,6 @@ export abstract class TerraTableDataSource<T> extends DataSource<T> {
     /** Called by the table when it is destroyed. No-op. */
     public disconnect(): void {
         /* no-op */
-    }
-
-    /** Initiates a request that reloads the data with the currently set filters and page data **/
-    public reload(): void {
-        this._reload.next();
     }
 
     /**
