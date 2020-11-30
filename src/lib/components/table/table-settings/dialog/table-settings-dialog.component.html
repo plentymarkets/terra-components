@@ -25,11 +25,10 @@
     </mat-selection-list>
 </mat-dialog-content>
 <mat-dialog-actions>
-    <terra-button [inputCaption]="'tableSettings.cancel' | translate: _locale.language" mat-dialog-close>
-    </terra-button>
-    <terra-button
-        [inputCaption]="'tableSettings.confirm' | translate: _locale.language"
-        [mat-dialog-close]="this._selectedColumns"
-    >
-    </terra-button>
+    <button mat-button mat-dialog-close class="mat-button">
+        {{ 'tableSettings.cancel' | translate: _locale.language }}
+    </button>
+    <button mat-button [mat-dialog-close]="this._selectedColumns" class="mat-button navigation">
+        {{ 'tableSettings.confirm' | translate: _locale.language }}
+    </button>
 </mat-dialog-actions>
