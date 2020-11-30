@@ -3,6 +3,9 @@
 ### Breaking Changes
 
 -   **table** `TerraTableDataSource` now supports a `reload` method. The `reload` method loads the data with current filter and pager. The `search` method now loads the first page of the data.
+
+### Bug Fixes
+
 -   **local build** delete `terra-components` folder in `terra` to prevent compilation errors.
 
 # 6.0.0-alpha.3 (19.11.2020)
