@@ -8,6 +8,10 @@
 
 -   **local build** delete `terra-components` folder in `terra` to prevent compilation errors.
 
+### Features
+
+-   **table-settings** replaced `terra-button` with `mat-icon-button`.
+
 # 6.0.0-alpha.3 (19.11.2020)
 
 ### Breaking Changes
