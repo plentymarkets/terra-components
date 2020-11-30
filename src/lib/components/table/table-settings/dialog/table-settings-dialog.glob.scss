@@ -1,5 +1,7 @@
 .table-settings-dialog-content {
-    overflow: hidden !important;
+    &.no-content-scroll {
+        overflow: hidden;
+    }
     .mat-selection-list.cdk-drop-list {
         max-height: inherit;
         overflow: auto;
