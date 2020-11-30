@@ -1,8 +1,12 @@
-# 6.0.p-aplha.4 (unreleases)
+# 6.0.p-alpha.4 (Unreleased)
 
 ### Bug Fixes
 
 -   **local build** delete `terra-components` folder in `terra` to prevent compilation errors.
+
+### Features
+
+- **table-settings** replaced `terra-button` with `mat-icon-button`.
 
 # 6.0.0-alpha.3 (19.11.2020)
 
