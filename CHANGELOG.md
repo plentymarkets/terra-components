@@ -1,3 +1,9 @@
+# 6.0.0-alpha.4 (Unreleased)
+
+### Bug Fixes
+
+- **terra-form-helper** fixed loss of `form controls` when passing `list form-fields` to terra form.
+
 # 6.0.0-alpha.3 (19.11.2020)
 
 ### Breaking Changes
