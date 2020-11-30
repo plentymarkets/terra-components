@@ -55,6 +55,15 @@ describe('TerraTableDataSource', () => {
         expect(dataSource.data).toEqual([{}]);
     });
 
+    it('should start a request when reload is called', () => {
+        spyOn(dataSource, 'request').and.callThrough();
+
+        dataSource.reload();
+
+        expect(dataSource.request).toHaveBeenCalledWith({});
+        expect(dataSource.data).toEqual([{}]);
+    });
+
     describe('with filtering', () => {
         let filter: TerraFilter<any>;
         beforeEach(() => {
@@ -130,6 +139,22 @@ describe('TerraTableDataSource', () => {
 
         it('should be able to assign a paginator instance', () => {
             expect(dataSource.paginator).toBe(paginator);
+        });
+
+        it('should reload with the same page', () => {
+            paginator.pageIndex = 2;
+
+            dataSource.reload();
+
+            expect(paginator.pageIndex).toBe(2);
+        });
+
+        it('should search with intial page', () => {
+            paginator.pageIndex = 2;
+
+            dataSource.search();
+
+            expect(paginator.pageIndex).toBe(0);
         });
 
         it('should start a request when a paginator is available, data is present and the page or pageSize has changed', fakeAsync(() => {
