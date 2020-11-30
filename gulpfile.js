@@ -4,6 +4,7 @@ const fs = require('fs');
 const semver = require('semver');
 const argv = require('yargs').argv;
 const sass = require('gulp-sass');
+const del = require('del');
 const tildeImporter = require('node-sass-tilde-importer');
 
 const badgeUrlPrefix = 'https://img.shields.io/badge/';
@@ -120,6 +121,11 @@ const copySassFiles = parallel(
 );
 const copyFilesToDist = parallel(copyFonts, copyLang, copyReadme, copySassFiles);
 
+//delete terra-components folder in terra
+function cleanUpTerra() {
+    return del(config.destinations.terra + '/**', { force: true });
+}
+
 //copy files from dist to terra
 function copyToTerra() {
     return src(config.sources.dist).pipe(dest(config.destinations.terra));
@@ -128,7 +134,7 @@ function copyToTerra() {
 /**
  * Copies all the files to the dist folder and then to the terra workspace
  **/
-const copy = series(copyFilesToDist, copyToTerra);
+const copy = series(copyFilesToDist, cleanUpTerra, copyToTerra);
 exports.copy = copy;
 
 /**
