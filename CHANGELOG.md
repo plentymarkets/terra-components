@@ -9,7 +9,6 @@
 -   **terra-form-helper** fixed loss of `form controls` when passing `list form-fields` to terra form.
 -   **local build** delete `terra-components` folder in `terra` to prevent compilation errors.
 
-
 # 6.0.0-alpha.3 (19.11.2020)
 
 ### Breaking Changes
