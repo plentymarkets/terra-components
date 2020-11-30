@@ -1,4 +1,8 @@
-# 6.0.p-aplha.4 (unreleases)
+# 6.0.0-alpha.4 (Unreleased)
+
+### Breaking Changes
+
+-   **table** `TerraTableDataSource` now supports a `reload` method. The `reload` method loads the data with current filter and pager. The `search` method now loads the first page of the data.
 
 ### Bug Fixes
 
