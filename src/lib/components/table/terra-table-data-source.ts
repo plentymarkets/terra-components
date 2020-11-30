@@ -2,7 +2,7 @@ import { DataSource } from '@angular/cdk/collections';
 import { BehaviorSubject, EMPTY, merge, Observable, Subject, Subscription } from 'rxjs';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
-import { debounceTime, filter, map, switchMap } from 'rxjs/operators';
+import { debounceTime, filter, map, switchMap, tap } from 'rxjs/operators';
 import { createRequestParams, isPaginated } from './util';
 import { RequestParameterInterface } from './request-parameter.interface';
 import { TerraFilter } from './filter';
@@ -102,6 +102,8 @@ export abstract class TerraTableDataSource<T> extends DataSource<T> {
 
     /** A stream that emits whenever a manual search is requested. */
     private _search: Subject<void> = new Subject();
+    /** A stream that emits whenever a reload is requested. */
+    private _reload: Subject<void> = new Subject();
     /** Reference to the latest subscription to update the table's data. */
     private _subscription: Subscription = Subscription.EMPTY;
 
@@ -119,6 +121,11 @@ export abstract class TerraTableDataSource<T> extends DataSource<T> {
     /** Initiates a request that fetches data from the server */
     public search(): void {
         this._search.next();
+    }
+
+    /** Initiates a request that reloads the data with the currently set filters and page data **/
+    public reload(): void {
+        this._reload.next();
     }
 
     /** Called by the table when it connects to this data source. */
@@ -149,15 +156,18 @@ export abstract class TerraTableDataSource<T> extends DataSource<T> {
             debounceTime(500) // debounce to reduce amount of (canceled) requests
         );
 
-        // A manual search can be triggered via the filter or this data source directly
+        // A manual search can be triggered via the filter or this data source directly. When using search the paginator will be set to the first page
         const search$: Observable<void> = merge(
             this._filter ? this._filter.search$ : EMPTY,
             this._search.asObservable()
-        );
+        ).pipe(tap(() => (this._paginator ? (this._paginator.pageIndex = 0) : null)));
+
+        // watch for reloads
+        const reload$: Observable<void> = this._reload.asObservable();
 
         // watch for any change that should result in fetching data from the server.
         // Either manual search event or page and/or sort event.
-        const anyChange$: Observable<void | PageEvent | Sort> = merge(search$, pageOrSortChange$);
+        const anyChange$: Observable<void | PageEvent | Sort> = merge(search$, reload$, pageOrSortChange$);
 
         const data$: Observable<Array<T>> = anyChange$.pipe(
             map(() => createRequestParams(this._filter, this._paginator, this._sort)),
