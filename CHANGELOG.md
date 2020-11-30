@@ -1,3 +1,9 @@
+# 6.0.p-aplha.4 (unreleases)
+
+### Bug Fixes
+
+-   **local build** delete `terra-components` folder in `terra` to prevent compilation errors.
+
 # 6.0.0-alpha.3 (19.11.2020)
 
 ### Breaking Changes
