@@ -13,6 +13,7 @@
 
 -   **table-settings** replaced `terra-button` with `mat-icon-button`.
 -   **table-settings-overlay** replaced `terra-button` with `mat-button`.
+-   **terra-code-editor** toolbar now supports links.
 
 # 6.0.0-alpha.3 (19.11.2020)
 
