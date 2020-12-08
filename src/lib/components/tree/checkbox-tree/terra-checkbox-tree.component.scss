@@ -1,30 +1,25 @@
-@import "../../forms/checkbox/terra-checkbox.component";
+@import '../../forms/checkbox/terra-checkbox.component';
 
-.flex-container
-{
+.flex-container {
     display: flex;
 }
 
-.leaf-title
-{
+.leaf-title {
     margin-left: 3px;
 }
 
-.terra-tree
-{
+.terra-tree {
     display: block;
     overflow-x: hidden;
     padding-left: 10px;
-    
-    ul
-    {
+
+    ul {
         margin: 0;
         padding: 0;
         list-style: none;
         font-size: inherit;
-        
-        li
-        {
+
+        li {
             font-size: inherit;
             cursor: pointer;
             padding-left: 5px;
@@ -35,64 +30,54 @@
             -moz-user-select: none;
             -ms-user-select: none;
             user-select: none;
-            
-            &.disabled
-            {
+
+            &.disabled {
                 color: var(--color-structure-7);
             }
-            
-            &.active
-            {
-                > .leaf-titel
-                {
+
+            &.active {
+                > .leaf-titel {
                     --input-control-checkbox-hover-color: var(--color-structure-0);
                     background: var(--color-active-dark);
                     color: var(--color-structure-0);
                 }
             }
-            
-            .leaf-titel
-            {
+
+            .leaf-titel {
                 border-bottom: 1px solid var(--color-structure-2);
                 color: inherit;
                 margin: 0;
                 padding: 4px 8px 4px 4px;
-                
-                .icon
-                {
+
+                .icon {
                     width: 1rem;
                     height: 1rem;
                     text-align: center;
                 }
-                
-                &:hover
-                {
+
+                &:hover {
                     --input-control-checkbox-hover-color: var(--color-structure-0);
                     color: var(--color-structure-0);
                     background: var(--color-active);
                 }
             }
-            
-            &:hover
-            {
-                > .node-toggle:before
-                {
+
+            &:hover {
+                > .node-toggle:before {
                     border-bottom-color: var(--color-active-dark);
                 }
             }
         }
     }
-    
-    .node-toggle
-    {
+
+    .node-toggle {
         position: absolute;
         left: 0;
         top: 8px;
         width: 8px;
         height: 8px;
-        
-        &:before
-        {
+
+        &:before {
             position: absolute;
             display: block;
             top: -6px;
@@ -107,28 +92,23 @@
             transform: rotate(45deg);
         }
     }
-    
-    .node.collapsed
-    {
-        > .node-toggle:before
-        {
+
+    .node.collapsed {
+        > .node-toggle:before {
             -webkit-transform: rotate(-45deg);
             transform: rotate(-45deg);
             border-bottom-color: var(--color-structure-7);
             left: -10px;
             top: -3px;
         }
-        
-        &:hover
-        {
-            > .node-toggle:before
-            {
+
+        &:hover {
+            > .node-toggle:before {
                 border-bottom-color: var(--color-active-dark);
             }
         }
-        
-        > terra-checkbox-tree
-        {
+
+        > terra-checkbox-tree {
             display: none;
         }
     }

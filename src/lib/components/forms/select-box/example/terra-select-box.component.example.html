@@ -1,17 +1,16 @@
 <terra-portlet inputPortletHeader="select language">
-    <terra-select-box
-        [inputListBoxValues]="_selectBoxValueList"
-        [(ngModel)]="_selectedValue">
-    </terra-select-box>
+    <terra-select-box [inputListBoxValues]="_selectBoxValueList" [(ngModel)]="_selectedValue"> </terra-select-box>
     <terra-select-box
         inputName="language"
         inputOpenOnTop="true"
         [inputListBoxValues]="_selectBoxValueList"
-        [(ngModel)]="_selectedValue">
+        [(ngModel)]="_selectedValue"
+    >
     </terra-select-box>
     <terra-select-box
         inputName="select with color"
         [inputListBoxValues]="_coloredSelectBoxValueList"
-        [(ngModel)]="_selectedWebstore">
+        [(ngModel)]="_selectedWebstore"
+    >
     </terra-select-box>
 </terra-portlet>

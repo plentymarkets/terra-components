@@ -1,81 +1,66 @@
-input[type="radio"]
-{
+input[type='radio'] {
     position: absolute;
     opacity: 0;
-    
+
     // apply styles to the checkmark depending on the state of the input
-    &:checked + span.check
-    {
-        &:before
-        {
+    &:checked + span.check {
+        &:before {
             background-color: var(--color-structure-11);
         }
     }
-    
-    &:hover:checked + span.check:before
-    {
+
+    &:hover:checked + span.check:before {
         background-color: var(--color-group-active);
     }
-    
-    &:focus + span.check
-    {
+
+    &:focus + span.check {
         border-color: var(--color-group-active);
-        
-        &:before
-        {
+
+        &:before {
             background-color: var(--color-group-active);
         }
     }
-    
-    &:focus ~ span:not(check)
-    {
+
+    &:focus ~ span:not(check) {
         color: var(--color-group-active);
     }
-    
-    &:disabled + span.check
-    {
+
+    &:disabled + span.check {
         border-color: var(--color-structure-4);
     }
-    
-    &:disabled:checked + span.check:before
-    {
+
+    &:disabled:checked + span.check:before {
         background-color: var(--color-structure-4);
     }
 }
 
-label
-{
+label {
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
     display: block;
-    
-    &.inline
-    {
+
+    &.inline {
         display: inline-block;
-        margin-right: .5rem;
+        margin-right: 0.5rem;
     }
-    
-    &:hover
-    {
+
+    &:hover {
         cursor: pointer;
         color: var(--color-group-active);
-        
-        .check
-        {
+
+        .check {
             border-color: var(--color-group-active);
         }
     }
-    
-    &.disabled
-    {
+
+    &.disabled {
         cursor: not-allowed;
         color: var(--color-structure-4);
     }
-    
-    .check
-    {
+
+    .check {
         width: 1rem;
         height: 1rem;
         background-color: var(--color-structure-0);
@@ -86,9 +71,8 @@ label
         display: inline-block;
         vertical-align: middle;
         margin-right: 4px;
-        
-        &:before
-        {
+
+        &:before {
             width: 8px;
             height: 8px;
             margin-left: -4px;
@@ -98,7 +82,7 @@ label
             vertical-align: middle;
             color: transparent;
             font-size: 0;
-            content: "";
+            content: '';
             background-color: transparent;
             border-radius: 100%;
             left: 50%;
@@ -106,10 +90,8 @@ label
             display: block;
         }
     }
-    
-    span:not(.check)
-    {
+
+    span:not(.check) {
         vertical-align: middle;
     }
 }
-

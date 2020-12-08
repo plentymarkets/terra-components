@@ -1,16 +1,20 @@
 <form>
     <terra-base-toolbar>
         <div class="btn-group" role="group">
-            <terra-button [inputTooltipText]="'tcFilter.search' | translate:_lang"
-                          [inputTooltipPlacement]="'right'"
-                          [inputType]="'submit'"
-                          [inputIcon]="'icon-search'"
-                          (outputClicked)="search.emit()">
+            <terra-button
+                [inputTooltipText]="'tcFilter.search' | translate: _locale.language"
+                [inputTooltipPlacement]="'right'"
+                [inputType]="'submit'"
+                [inputIcon]="'icon-search'"
+                (outputClicked)="search.emit()"
+            >
             </terra-button>
-            <terra-button [inputTooltipText]="'tcFilter.reset' | translate:_lang"
-                          [inputTooltipPlacement]="'right'"
-                          [inputIcon]="'icon-reset'"
-                          (outputClicked)="reset.emit()">
+            <terra-button
+                [inputTooltipText]="'tcFilter.reset' | translate: _locale.language"
+                [inputTooltipPlacement]="'right'"
+                [inputIcon]="'icon-reset'"
+                (outputClicked)="reset.emit()"
+            >
             </terra-button>
         </div>
     </terra-base-toolbar>

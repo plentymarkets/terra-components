@@ -1,16 +1,17 @@
 <div class="taglist">
     <ng-template ngFor let-tag [ngForOf]="inputTagList">
-        <terra-tag [tagId]="tag.id"
-                   [inputBadge]="tag.name"
-                   [name]="tag.name"
-                   [inputIsTaggable]="tag.isTaggable"
-                   [inputIsTagged]="tag.isTagged"
-                   [inputCustomClass]="tag.customClass"
-                   [inputColor]="tag.color"
-                   [isClosable]="tag.isClosable && !isReadOnly"
-                   [names]="tag.names"
-                   (closeTag)="closeTag.emit($event); onCloseTag.emit($event)">
+        <terra-tag
+            [tagId]="tag.id"
+            [inputBadge]="tag.name"
+            [name]="tag.name"
+            [inputIsTaggable]="tag.isTaggable"
+            [inputIsTagged]="tag.isTagged"
+            [inputCustomClass]="tag.customClass"
+            [inputColor]="tag.color"
+            [isClosable]="tag.isClosable && !isReadOnly"
+            [names]="tag.names"
+            (closeTag)="closeTag.emit($event)"
+        >
         </terra-tag>
     </ng-template>
 </div>
-

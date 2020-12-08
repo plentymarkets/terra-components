@@ -4,9 +4,9 @@ export * from './helpers';
 export * from './models';
 export * from './components/editors/ck-editor/presets';
 export * from './utils';
+export * from './components/table';
 
 export { TerraComponentsModule } from './terra-components.module';
-export { TerraComponentsExamplesModule } from './terra-components-examples.module';
 
 // alert
 export * from './components/alert';
@@ -20,7 +20,7 @@ export { TerraFileChooserComponent } from './components/buttons/file-chooser/ter
 
 export { TerraBaseData } from './components/data/terra-base.data';
 export { TerraFilterComponent } from './components/filter/terra-filter.component';
-export { FilterComponent } from  './components/filter/filter.component';
+export { FilterComponent } from './components/filter/filter.component';
 
 // FORM ELEMENTS
 export { TerraCheckboxComponent } from './components/forms/checkbox/terra-checkbox.component';
@@ -28,7 +28,6 @@ export { CheckboxGroupComponent } from './components/forms/checkbox-group/checkb
 export { TerraMultiCheckBoxValueInterface } from './components/forms/multi-check-box/data/terra-multi-check-box-value.interface';
 export { TerraMultiCheckBoxComponent } from './components/forms/multi-check-box/terra-multi-check-box.component';
 
-export { TerraRadioButtonComponent } from './components/forms/radio-button/terra-radio-button.component';
 export { RadioGroupComponent } from './components/forms/input/radio/radio-group.component';
 export { RadioInputComponent } from './components/forms/input/radio/radio-input.component';
 
@@ -89,7 +88,7 @@ export { TerraDataTableTextInterface } from './components/tables/data-table/inte
 export { TerraDataTableHeaderCellInterface } from './components/tables/data-table/interfaces/terra-data-table-header-cell.interface';
 export { TerraDataTableRowInterface } from './components/tables/data-table/interfaces/terra-data-table-row.interface';
 export { TerraDataTableContextMenuDirective } from './components/tables/data-table/context-menu/terra-data-table-context-menu.directive';
-export { TerraDataTableContextMenuEntryInterface }from './components/tables/data-table/context-menu/data/terra-data-table-context-menu-entry.interface';
+export { TerraDataTableContextMenuEntryInterface } from './components/tables/data-table/context-menu/data/terra-data-table-context-menu-entry.interface';
 export { TerraDataTableContextMenuService } from './components/tables/data-table/context-menu/terra-data-table-context-menu.service';
 export { TerraDataTableContextMenuComponent } from './components/tables/data-table/context-menu/terra-data-table-context-menu.component';
 export { TerraDataTableComponent } from './components/tables/data-table/terra-data-table.component';
@@ -109,11 +108,6 @@ export { TerraBaseTreeComponent } from './components/tree/base/terra-base-tree.c
 export { TerraCheckboxTreeComponent } from './components/tree/checkbox-tree/terra-checkbox-tree.component';
 export { TerraLeafInterface } from './components/tree/leaf/terra-leaf.interface';
 
-export { TerraSyntaxEditorComponent } from './components/editors/syntax-editor/terra-syntax-editor.component';
-export { TerraSyntaxEditorData } from './components/editors/syntax-editor/data/terra-syntax-editor.data';
-
-export { TerraDynamicComponentLoaderComponent } from './components/dynamic-component-loader/terra-dynamic-component-loader.component';
-
 // TODO file browser index
 export {
     createS3StorageObject,
@@ -122,20 +116,13 @@ export {
 export { TerraImageMetadata } from './components/file-browser/model/terra-image-metadata.interface';
 export { TerraStorageObject } from './components/file-browser/model/terra-storage-object';
 export { TerraStorageObjectList } from './components/file-browser/model/terra-storage-object-list';
-export {
-    TerraUploadItem,
-    UploadCallback
-} from './components/file-browser/model/terra-upload-item';
-export {
-    TerraUploadQueue,
-    UploadQueueUrlFactory
-}from './components/file-browser/model/terra-upload-queue';
+export { TerraUploadItem, UploadCallback } from './components/file-browser/model/terra-upload-item';
+export { TerraUploadQueue, UploadQueueUrlFactory } from './components/file-browser/model/terra-upload-queue';
 export { TerraBaseStorageService } from './components/file-browser/terra-base-storage.interface';
 export { TerraFrontendStorageService } from './components/file-browser/terra-frontend-storage.service';
 export { TerraFileBrowserService } from './components/file-browser/terra-file-browser.service';
 export { TerraFileBrowserComponent } from './components/file-browser/terra-file-browser.component';
 export { TerraBasePrivateStorageService } from './components/file-browser/terra-base-private-storage.interface';
-
 
 export { TerraNoResultNoticeComponent } from './components/no-result/terra-no-result-notice.component';
 export { TerraNoteEditorComponent } from './components/editors/note-editor/terra-note-editor.component';
@@ -177,7 +164,6 @@ export { NestedValueInterface } from './components/data-picker/nested-data-picke
 
 export { TerraValidators } from './validators/validators';
 
-
 export { TerraFormComponent } from './components/forms/form/terra-form.component';
 export { TerraFormContainerComponent } from './components/forms/form/form-container/terra-form-container.component';
 export { TerraFormEntryComponent } from './components/forms/form/form-entry/terra-form-entry.component';
@@ -185,7 +171,6 @@ export { TerraFormEntryListComponent } from './components/forms/form/form-entry-
 export { TerraFormFieldHelper } from './components/forms/form/helper/terra-form-field.helper';
 export { TerraFormFieldInterface } from './components/forms/form/model/terra-form-field.interface';
 export { TerraFormScope } from './components/forms/form/model/terra-form-scope.data';
-export { TerraFormTypeMap } from './components/forms/form/model/terra-form-type-map.enum';
 export { FormTypeMap } from './components/forms/form/model/form-type-map';
 export {
     TERRA_FORM_PROPERTY_METADATA_KEY, // TODO: may be removed from public api
@@ -200,6 +185,10 @@ export { TerraDataTableBaseService } from './components/tables/data-table/terra-
 export { TableRowComponent } from './components/tables/data-table/table-row/table-row.component';
 export { CKEditorDirective } from './components/editors/ck-editor/ck-editor.directive';
 export { TooltipDirective } from './components/tooltip/tooltip.directive';
+export { SelectSortPipe } from './pipes/select-sort.pipe';
 export { AllowedColors } from './components/forms/select-box/data/allowed.colors.enum';
-
 export { TerraStopwatchComponent } from './components/stopwatch/terra-stopwatch.component';
+export { SelectSortDirective } from './components/forms/select-box/directive/select-sort.directive';
+
+// l10n translations
+export { l10nTerraComponents } from './translations/l10n-terra-components';

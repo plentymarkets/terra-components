@@ -1,32 +1,26 @@
-.date-picker
-{
-    .mydp
-    {
+.date-picker {
+    .mydp {
         border: none;
         overflow: visible;
         position: inherit;
         height: 100%;
 
-        [class*=" icon-"]
-        {
+        [class*=' icon-'] {
             font-family: mydatepicker !important;
         }
 
         .icon-cross,
-        .icon-calendar
-        {
+        .icon-calendar {
             font-size: 20px;
         }
 
-        .selectiongroup
-        {
+        .selectiongroup {
             display: block;
             overflow: visible;
             position: inherit;
             height: 100%;
 
-            input
-            {
+            input {
                 color: var(--input-color, var(--color-structure-13));
                 border-bottom: var(--input-wrapper-border, (1px solid var(--border-color)));
                 border-radius: var(--border-radius) var(--border-radius) 0 0;
@@ -46,43 +40,39 @@
                 position: inherit;
                 display: inline-block;
 
-                &::-webkit-input-placeholder
-                {
+                &::-webkit-input-placeholder {
                     font-size: var(--font-size-3);
                     font-weight: var(--font-weight-1);
                     color: var(--color-structure-7);
                 }
 
-                &:-moz-placeholder
-                { /* Firefox 18- */
+                &:-moz-placeholder {
+                    /* Firefox 18- */
                     font-size: var(--font-size-3);
                     font-weight: var(--font-weight-1);
                     color: var(--color-structure-7);
                 }
 
-                &::-moz-placeholder
-                { /* Firefox 19+ */
+                &::-moz-placeholder {
+                    /* Firefox 19+ */
                     font-size: var(--font-size-3);
                     font-weight: var(--font-weight-1);
                     color: var(--color-structure-7);
                 }
 
-                &:-ms-input-placeholder
-                {
+                &:-ms-input-placeholder {
                     font-size: var(--font-size-3);
                     font-weight: var(--font-weight-1);
                     color: var(--color-structure-7);
                 }
 
                 &:active,
-                &:focus
-                {
+                &:focus {
                     border-bottom: var(--input-wrapper-border-hover, 2px solid var(--color-active));
                 }
             }
 
-            .selbtngroup
-            {
+            .selbtngroup {
                 width: 54px;
                 display: inline-block;
                 text-align: right;
@@ -93,36 +83,30 @@
                 right: 0;
                 top: 0;
 
-                .btnclear
-                {
+                .btnclear {
                     background-color: transparent;
                     color: var(--color-alert);
                     width: 22px;
                     border: 0;
                     //css for clear selected myDateModel button
-                    .icon-cross
-                    {
+                    .icon-cross {
                         line-height: 1.5em !important;
 
-                        &:before
-                        {
+                        &:before {
                             content: '\e910';
                         }
                     }
                 }
 
-                .btnpicker
-                {
+                .btnpicker {
                     background-color: transparent;
                     width: 24px;
                     border: 0;
                     //css for myDateModel select button
-                    .icon-calendar
-                    {
+                    .icon-calendar {
                         line-height: 1.5em !important;
 
-                        &:before
-                        {
+                        &:before {
                             content: '\e925';
                         }
                     }
@@ -130,73 +114,57 @@
             }
         }
 
-        .selector
-        {
+        .selector {
             width: auto !important;
             border: 1px solid var(--color-structure-7);
 
-            &:before
-            {
+            &:before {
                 border-bottom-color: var(--color-structure-7);
             }
 
-            &:focus
-            {
+            &:focus {
                 border-color: var(--color-structure-7);
 
-                &:before
-                {
+                &:before {
                     border-bottom-color: var(--color-structure-7);
                 }
             }
 
-            .header
-            {
-                .icon-left
-                {
-                    &:focus
-                    {
+            .header {
+                .icon-left {
+                    &:focus {
                         color: var(--color-structure-13);
                     }
 
-                    &:hover
-                    {
+                    &:hover {
                         color: var(--color-active);
                     }
 
-                    &:before
-                    {
+                    &:before {
                         content: '\e912';
                     }
                 }
 
-                .icon-right
-                {
-                    &:focus
-                    {
+                .icon-right {
+                    &:focus {
                         color: var(--color-structure-13);
                     }
 
-                    &:hover
-                    {
+                    &:hover {
                         color: var(--color-active);
                     }
 
-                    &:before
-                    {
+                    &:before {
                         content: '\e913';
                     }
                 }
 
-                .monthlabel
-                {
-                    &:focus
-                    {
+                .monthlabel {
+                    &:focus {
                         color: var(--color-structure-13);
                     }
 
-                    &:hover
-                    {
+                    &:hover {
                         color: var(--color-active);
                     }
                 }
@@ -205,20 +173,16 @@
     }
 }
 
-div.disabled .selectiongroup
-{
+div.disabled .selectiongroup {
     background-color: var(--color-structure-2);
 
-    input.selection
-    {
+    input.selection {
         opacity: unset !important;
         background-color: var(--color-structure-2);
     }
 
-    .selbtngroup
-    {
+    .selbtngroup {
         opacity: unset !important;
         background-color: var(--color-structure-2);
     }
-
 }

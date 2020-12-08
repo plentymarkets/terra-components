@@ -1,11 +1,9 @@
-.input-group
-{
+.input-group {
     margin-bottom: 12px;
     flex-wrap: initial !important;
     align-items: initial !important;
 
-    & > .input-group-text
-    {
+    & > .input-group-text {
         width: 100%;
         display: initial;
         align-items: initial;
@@ -23,21 +21,17 @@
 
         .input-wrapper,
         .select-box-wrapper,
-        .btn
-        {
+        .btn {
             margin-bottom: 0;
         }
-
     }
 
-    & > .input-group-btn
-    {
+    & > .input-group-btn {
         width: auto;
 
         .input-wrapper,
         .select-box-wrapper,
-        .btn
-        {
+        .btn {
             margin-bottom: 0;
         }
     }
