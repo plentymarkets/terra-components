@@ -1,3 +1,20 @@
+mat-dialog-container {
+    &.mat-dialog-container {
+        .mat-dialog-content {
+            &.table-settings-dialog-content {
+                overflow: hidden;
+                padding: 0;
+            }
+        }
+
+        .table-settings-mat-selection-list {
+            max-height: inherit;
+            overflow: auto;
+            padding: calc(var(--space-lg) + var(--space-md)) var(--space-lg);
+        }
+    }
+}
+
 .table-settings-dialog-content {
     /* Checkbox and text inline and vertically centered */
     .mat-list-option {

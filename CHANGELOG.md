@@ -1,3 +1,18 @@
+# 6.0.0-alpha.4 (04.12.2020)
+
+### Breaking Changes
+
+-   **table** `TerraTableDataSource` now supports a `reload` method. The `reload` method loads the data with current filter and pager. The `search` method now loads the first page of the data.
+
+### Features
+
+-   **table-settings** replaced `terra-button` with `mat-icon-button`.
+-   **table-settings-overlay** replaced `terra-button` with `mat-button`.
+
+### Bug Fixes
+
+-   **terra-form-helper** fixed loss of `form controls` when passing `list form-fields` to terra form.
+
 # 6.0.0-alpha.3 (19.11.2020)
 
 ### Breaking Changes

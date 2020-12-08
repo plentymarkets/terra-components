@@ -1,6 +1,7 @@
 <h2 mat-dialog-title>{{ 'tableSettings.configColumns' | translate: _locale.language }}</h2>
 <mat-dialog-content class="table-settings-dialog-content">
     <mat-selection-list
+        class="table-settings-mat-selection-list"
         (selectionChange)="_columns = _sort(_columns)"
         [(ngModel)]="_selectedColumns"
         cdkDropList
@@ -24,11 +25,10 @@
     </mat-selection-list>
 </mat-dialog-content>
 <mat-dialog-actions>
-    <terra-button [inputCaption]="'tableSettings.cancel' | translate: _locale.language" mat-dialog-close>
-    </terra-button>
-    <terra-button
-        [inputCaption]="'tableSettings.confirm' | translate: _locale.language"
-        [mat-dialog-close]="this._selectedColumns"
-    >
-    </terra-button>
+    <button mat-button mat-dialog-close>
+        {{ 'tableSettings.cancel' | translate: _locale.language }}
+    </button>
+    <button mat-button [mat-dialog-close]="this._selectedColumns" class="navigation">
+        {{ 'tableSettings.confirm' | translate: _locale.language }}
+    </button>
 </mat-dialog-actions>
