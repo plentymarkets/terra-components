@@ -1,3 +1,8 @@
+# unreleased
+
+### Features
+-   **terra-code-editor** toolbar now supports links.
+
 # 6.0.0-alpha.4 (04.12.2020)
 
 ### Breaking Changes
@@ -8,7 +13,6 @@
 
 -   **table-settings** replaced `terra-button` with `mat-icon-button`.
 -   **table-settings-overlay** replaced `terra-button` with `mat-button`.
--   **terra-code-editor** toolbar now supports links.
 
 ### Bug Fixes
 
