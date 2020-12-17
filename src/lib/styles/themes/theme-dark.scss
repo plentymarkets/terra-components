@@ -1,7 +1,5 @@
-body
-{
-    &.theme-dark
-    {
+body {
+    &.theme-dark {
         // Navbar, Tabbar, Breadcrumbs
         --nav-background-color: var(--color-structure-12);
         --nav-link-color: var(--color-structure-0);
@@ -20,19 +18,19 @@ body
         --terra-breadcrumbs-wrapper-background-color: var(--color-structure-11);
         --terra-breadcrumb-color: var(--color-structure-0);
         --terra-breadcrumb-icon-color: var(--color-structure-4);
-    
+
         // Navbar Global Search
         --navbar-search-background-color: var(--color-structure-11);
         --navbar-search-color: var(--color-structure-7);
         --navbar-search-active-background-color: var(--color-structure-0);
         --navbar-search-active-color: var(--color-structure-11);
-        
+
         // Dropdowns, Context-Menu, Tooltips
         --dropdown-menu-background-color: var(--color-structure-11);
         --dropdown-item-color: var(--color-structure-0);
         --context-menu-background-color: var(--color-structure-11);
         --context-menu-color: var(--color-structure-0) !important;
-        
+
         // Table
         --table-head-background-color: var(--color-structure-9);
         --table-head-color: var(--color-structure-0);

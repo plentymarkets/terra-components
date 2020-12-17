@@ -1,24 +1,21 @@
-import {
-    Component,
-    Input
-} from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
-    selector:    'terra-note',
-    styleUrls:   ['./terra-note.component.scss'],
+    selector: 'terra-note',
+    styleUrls: ['./terra-note.component.scss'],
     templateUrl: './terra-note.component.html'
 })
-export class TerraNoteComponent
-{
+/** @deprecated since v5.0. Please use mat-card instead */
+export class TerraNoteComponent {
     @Input()
-    public inputIsSelected:boolean;
+    public inputIsSelected: boolean;
 
     @Input()
-    public inputId:number;
+    public inputId: number;
 
     @Input()
-    public inputHeaderText:string;
+    public inputHeaderText: string;
 
     @Input()
-    public inputNoteText:string;
+    public inputNoteText: string;
 }

@@ -1,14 +1,14 @@
 import { TerraBaseData } from '../../../data/terra-base.data';
 
-export interface TerraSuggestionBoxValueInterface
-{
+/** @deprecated since v5. */
+export interface TerraSuggestionBoxValueInterface {
     /** The value of the suggestion value */
-    value:number | string | TerraBaseData;
+    value: number | string | TerraBaseData;
     // i18n from locale_de and locale_en
-    caption:string;
+    caption: string;
     /** Optional icon for suggestion value */
-    icon?:string;
+    icon?: string;
     /** Optional image for suggestion value (only the src-attribute) */
-    imgsrc?:string;
-    active?:boolean;
+    imgsrc?: string;
+    active?: boolean;
 }

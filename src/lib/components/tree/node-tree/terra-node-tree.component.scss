@@ -1,23 +1,20 @@
-.search-wrapper
-{
+.search-wrapper {
     background-color: var(--color-structure-11);
     padding: 4px 4px 1px 4px;
-    
+
     --input-background-color: var(--color-structure-11);
     --label-color: var(--color-structure-0);
     --input-color: var(--color-structure-0);
     --input-placeholder-color: var(--color-structure-0);
 }
 
-ul
-{
+ul {
     background-color: var(--color-structure-11);
     padding: 0;
     margin: 0;
 }
 
-.searchDisabled
-{
+.searchDisabled {
     height: 4.5%;
     width: 100%;
     position: absolute;
@@ -28,8 +25,7 @@ ul
     margin-left: -4px;
 }
 
-.isDisabled
-{
+.isDisabled {
     height: 10000px;
     width: 100%;
     position: absolute;

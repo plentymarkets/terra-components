@@ -1,10 +1,4 @@
-import {
-    Component,
-    Input,
-    OnDestroy,
-    OnInit,
-    ViewChild
-} from '@angular/core';
+import { Component, Inject, Input, TemplateRef, ViewChild } from '@angular/core';
 import { isNullOrUndefined } from 'util';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TerraInputComponent } from '../terra-input.component';
@@ -13,141 +7,100 @@ import { FileTypeHelper } from '../../../../helpers/fileType.helper';
 import { TerraBaseStorageService } from '../../../file-browser/terra-base-storage.interface';
 import { TerraRegex } from '../../../../helpers/regex/terra-regex';
 import { TerraStorageObject } from '../../../file-browser/model/terra-storage-object';
-import { TerraOverlayComponent } from '../../../layouts/overlay/terra-overlay.component';
-import { TerraOverlayButtonInterface } from '../../../layouts/overlay/data/terra-overlay-button.interface';
 import { StringHelper } from '../../../../helpers/string.helper';
-import { Language } from 'angular-l10n';
+import { MatDialog } from '@angular/material/dialog';
+import { L10N_LOCALE, L10nLocale } from 'angular-l10n';
 
-let nextId:number = 0;
+let nextId: number = 0;
 
 @Component({
-    selector:  'terra-file-input',
+    selector: 'terra-file-input',
     templateUrl: './terra-file-input.component.html',
     styleUrls: ['./terra-file-input.component.scss'],
     providers: [
         {
-            provide:     NG_VALUE_ACCESSOR,
+            provide: NG_VALUE_ACCESSOR,
             useExisting: TerraFileInputComponent,
-            multi:       true
+            multi: true
         }
     ]
 })
-export class TerraFileInputComponent extends TerraInputComponent implements OnInit, OnDestroy
-{
+export class TerraFileInputComponent extends TerraInputComponent {
     @Input()
-    public inputShowPreview:boolean = false;
+    public inputShowPreview: boolean = false;
 
     @Input()
-    public inputAllowedExtensions:Array<string> = [];
+    public inputAllowedExtensions: Array<string> = [];
 
     @Input()
-    public inputAllowFolders:boolean = true;
+    public inputAllowFolders: boolean = true;
 
     @Input()
-    public set inputStorageServices(services:Array<TerraBaseStorageService>)
-    {
+    public set inputStorageServices(services: Array<TerraBaseStorageService>) {
         this._storageServices = services;
     }
 
-    public get inputStorageServices():Array<TerraBaseStorageService>
-    {
+    public get inputStorageServices(): Array<TerraBaseStorageService> {
         return this._storageServices;
     }
 
-    /**
-     * @Deprecated ViewChild overlay does not exist in the template
-     */
-    @ViewChild('overlay', { static: false })
-    public _overlay:TerraOverlayComponent;
+    @ViewChild('imagePreviewDialog', { static: true })
+    public _imagePreviewDialog: TemplateRef<{ filename: string; filepath: string }>;
 
-    @ViewChild('previewOverlay', { static: true })
-    public _previewOverlay:TerraOverlayComponent;
+    public _id: string;
+    public _translationPrefix: string = 'terraFileInput';
 
-    public primaryOverlayButton:TerraOverlayButtonInterface;
-    public secondaryOverlayButton:TerraOverlayButtonInterface;
+    private _storageServices: Array<TerraBaseStorageService>;
 
-
-    @Language()
-    public _lang:string;
-
-    public _id:string;
-    public _translationPrefix:string = 'terraFileInput';
-
-    private _storageServices:Array<TerraBaseStorageService>;
-
-    constructor()
-    {
+    constructor(
+        @Inject(L10N_LOCALE) public _locale: L10nLocale,
+        /** Instance of the dialog service */
+        private dialog: MatDialog
+    ) {
         super(TerraRegex.MIXED);
 
         // generate the id of the input instance
         this._id = `file-input_#${nextId++}`;
     }
 
-    public ngOnInit():void
-    {
-        // implementation is required by angular-l10n. See https://robisim74.github.io/angular-l10n/spec/getting-the-translation/#messages
-    }
-
-    public ngOnDestroy():void
-    {
-        // implementation is required by angular-l10n. See https://robisim74.github.io/angular-l10n/spec/getting-the-translation/#messages
-    }
-
-    public onObjectSelected(selectedObject:TerraStorageObject):void
-    {
+    public onObjectSelected(selectedObject: TerraStorageObject): void {
         this.value = selectedObject.publicUrl;
     }
 
-    public onPreviewClicked():void
-    {
-        if(this.isWebImage(this.value))
-        {
-            this._previewOverlay.showOverlay();
+    public onPreviewClicked(): void {
+        if (this.isWebImage(this.value)) {
+            this.dialog.open(this._imagePreviewDialog, {
+                data: {
+                    filepath: this.value,
+                    filename: this.getFilename(this.value)
+                }
+            });
         }
     }
 
-    /**
-     * @Deprecated ViewChild overlay does not exist in the template
-     */
-    public showFileBrowser():void
-    {
-        console.warn('Function showFileBrowser() is deprecated and should not called.');
-        if(!isNullOrUndefined(this._overlay))
-        {
-            this._overlay.showOverlay();
-        }
-    }
-
-    public getIconClass(filename:string):string
-    {
-        if(isNullOrUndefined(filename))
-        {
+    public getIconClass(filename: string): string {
+        if (isNullOrUndefined(filename)) {
             return '';
         }
 
-        if(PathHelper.isDirectory(filename))
-        {
+        if (PathHelper.isDirectory(filename)) {
             return 'icon-folder';
         }
         return FileTypeHelper.mapIconClass(filename);
     }
 
-    public isWebImage(filename:string):boolean
-    {
+    public isWebImage(filename: string): boolean {
         return !StringHelper.isNullUndefinedOrEmpty(filename) && FileTypeHelper.isWebImage(filename);
     }
 
-    public getFilename(path:string):string
-    {
-        if(isNullOrUndefined(path))
-        {
+    public getFilename(path: string): string {
+        if (isNullOrUndefined(path)) {
             return '';
         }
         return PathHelper.basename(path);
     }
 
-    public resetValue():void
-    {
+    public resetValue(): void {
         this.value = '';
     }
 }

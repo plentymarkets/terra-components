@@ -1,23 +1,19 @@
-.context-menu
-{
+.context-menu {
     visibility: visible;
     opacity: 1;
     top: calc(var(--height-md) + 2px);
 
-    &.small
-    {
+    &.small {
         top: calc(var(--height-sm) + 2px);
     }
 }
 
-.alignRight
-{
+.alignRight {
     left: 0;
     right: initial;
 }
 
-.context-menu-divider
-{
+.context-menu-divider {
     background: var(--color-structure-3);
     cursor: default;
     height: 1px;

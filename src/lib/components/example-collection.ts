@@ -14,7 +14,6 @@ import { TerraTextAreaInputComponentExample } from './forms/input/text-area-inpu
 import { TerraTextInputComponentExample } from './forms/input/text-input/example/terra-text-input.component.example';
 import { TerraCheckboxComponentExample } from './forms/checkbox/example/terra-checkbox.component.example';
 import { TerraMultiCheckBoxComponentExample } from './forms/multi-check-box/example/terra-multi-check-box.component.example';
-import { TerraRadioButtonComponentExample } from './forms/radio-button/example/terra-radio-button.component.example';
 import { TerraSelectBoxComponentExample } from './forms/select-box/example/terra-select-box.component.example';
 import { TerraSliderComponentExample } from './forms/slider/example/terra-slider.component.example';
 import { TerraSuggestionBoxComponentExample } from './forms/suggestion-box/example/terra-suggestion-box.component.example';
@@ -23,7 +22,6 @@ import { TerraTagComponentExample } from './layouts/tag/example/terra-tag.compon
 import { TerraFileInputComponentExample } from './forms/input/file-input/example/terra-file-input.component.example';
 import { TerraCheckboxTreeComponentExample } from './tree/checkbox-tree/example/terra-checkbox-tree.component.example';
 import { TerraToggleComponentExample } from './buttons/toggle/example/terra-toggle.component.example';
-import { TerraSyntaxEditorComponentExample } from './editors/syntax-editor/example/terra-syntax-editor.component.example';
 import { TerraSimpleTableComponentExample } from './tables/simple/example/terra-simple-table.component.example';
 import { TerraPagerComponentExample } from './pager/example/terra-pager.component.example';
 import { TerraTaglistComponentExample } from './layouts/taglist/example/terra-taglist.component.example';
@@ -55,7 +53,7 @@ import { TerraFileBrowserComponentExample } from './file-browser/example/terra-f
 import { TerraLoadingSpinnerComponentExample } from './loading-spinner/example/terra-loading-spinner.component.example';
 import { TooltipDirectiveExample } from './tooltip/example/tooltip-directive.example';
 
-export const examples:Array<Type<any>> = [
+export const examples: Array<Type<any>> = [
     TooltipDirectiveExample,
     TerraButtonComponentExample,
     TerraAlertComponentExample,
@@ -72,7 +70,6 @@ export const examples:Array<Type<any>> = [
     TerraTextInputComponentExample,
     TerraCheckboxComponentExample,
     TerraMultiCheckBoxComponentExample,
-    TerraRadioButtonComponentExample,
     TerraSelectBoxComponentExample,
     TerraSliderComponentExample,
     TerraSuggestionBoxComponentExample,
@@ -81,7 +78,6 @@ export const examples:Array<Type<any>> = [
     TerraFileInputComponentExample,
     TerraCheckboxTreeComponentExample,
     TerraToggleComponentExample,
-    TerraSyntaxEditorComponentExample,
     TerraSimpleTableComponentExample,
     TerraPagerComponentExample,
     TerraTaglistComponentExample,

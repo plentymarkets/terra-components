@@ -1,39 +1,37 @@
-body
-{
-    &.theme-filled-buttons
-    {
+body {
+    &.theme-filled-buttons {
         --button-background-color-group-add: var(--color-group-add);
         --button-text-color-group-add: var(--color-structure-0);
         --button-border-bottom-group-add: 0;
-        
+
         --button-background-color-group-active: var(--color-group-active);
         --button-text-color-group-active: var(--color-structure-0);
         --button-border-bottom-group-active: 0;
-        
+
         --button-background-color-group-alert: var(--color-group-alert);
         --button-text-color-group-alert: var(--color-structure-0);
         --button-border-bottom-group-alert: 0;
-        
+
         --button-background-color-group-action: var(--color-group-action);
         --button-text-color-group-action: var(--color-structure-10);
         --button-border-bottom-group-action: 0;
-        
+
         --button-background-color-group-warning: var(--color-group-warning);
         --button-text-color-group-warning: var(--color-structure-0);
         --button-border-bottom-group-warning: 0;
-        
+
         --button-background-color-group-info: var(--color-group-info);
         --button-text-color-group-info: var(--color-structure-0);
         --button-border-bottom-group-info: 0;
-        
+
         --button-background-color-group-transfer: var(--color-group-transfer);
         --button-text-color-group-transfer: var(--color-structure-0);
         --button-border-bottom-group-transfer: 0;
-        
+
         --button-background-color-group-navigation: var(--color-group-navigation);
         --button-text-color-group-navigation: var(--color-structure-0);
         --button-border-bottom-group-navigation: 0;
-        
+
         --button-background-color-group-disabled: var(--color-group-disabled);
         --button-text-color-group-disabled: var(--color-structure-0);
         --button-border-bottom-group-disabled: 0;

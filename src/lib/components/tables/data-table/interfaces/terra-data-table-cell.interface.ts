@@ -6,10 +6,16 @@ import { TerraHrefTypeInterface } from './terra-href-type.interface';
 /**
  * @author mkunze
  */
-export interface TerraDataTableCellInterface
-{
-    data:string | number | TerraDataTableTextInterface | TerraHrefTypeInterface | Array<TerraButtonInterface> | Array<TerraTagInterface>;
-    isHidden?:boolean;
-    tooltipText?:string;
-    tooltipPlacement?:string;
+/** @deprecated since v5.0. Please use mat-table instead */
+export interface TerraDataTableCellInterface {
+    data:
+        | string
+        | number
+        | TerraDataTableTextInterface
+        | TerraHrefTypeInterface
+        | Array<TerraButtonInterface>
+        | Array<TerraTagInterface>;
+    isHidden?: boolean;
+    tooltipText?: string;
+    tooltipPlacement?: string;
 }
