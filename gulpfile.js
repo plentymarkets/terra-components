@@ -162,12 +162,9 @@ function changeVersion(done) {
     console.log('--- OLD PACKAGE VERSION: ' + jsonDist.version + ' ---');
 
     const version = semver.inc(jsonDist.version, increment, preid);
-    if (version == null)
-    {
+    if (version == null) {
         console.error('! - Invalid parameter used. Changing of version aborted. Please check command - !');
-    }
-    else
-    {
+    } else {
         console.log('--- NEW PACKAGE VERSION: ' + version + ' ---');
         console.log('-------------------------------------------------');
         jsonDist.version = version;
