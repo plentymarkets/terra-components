@@ -1,8 +1,12 @@
-# unreleased
+# 6.0.0-alpha.4 (21.12.2020)
 
 ### Features
 
 -   **terra-code-editor** toolbar now supports links.
+
+### Bug Fixes
+
+-   **terra-components** fix security vulnerability
 
 # 6.0.0-alpha.4 (04.12.2020)
 
