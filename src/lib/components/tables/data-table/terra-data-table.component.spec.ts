@@ -1,5 +1,5 @@
 import { TerraDataTableComponent } from './terra-data-table.component';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { L10nTranslationModule } from 'angular-l10n';
 import { TerraPagerComponent } from '../../pager/terra-pager.component';
 import { TerraButtonComponent } from '../../buttons/button/terra-button.component';
@@ -104,16 +104,19 @@ describe('TerraDataTableComponent', () => {
                 expect(pagerDE.attributes.hasOwnProperty('hidden')).toBe(true);
             });
 
-            it('should show the pager if #inputHasPager is set and data is available', async(() => {
-                service.addEntry();
-                service.getResults();
-                fixture.detectChanges();
+            it(
+                'should show the pager if #inputHasPager is set and data is available',
+                waitForAsync(() => {
+                    service.addEntry();
+                    service.getResults();
+                    fixture.detectChanges();
 
-                let pagerDE: DebugElement = fixture.debugElement.query(By.css('terra-pager'));
-                expect(service.rowList).toBeDefined();
-                expect(service.rowList.length).toBeGreaterThan(0);
-                expect(pagerDE.attributes.hasOwnProperty('hidden')).toBe(false);
-            }));
+                    let pagerDE: DebugElement = fixture.debugElement.query(By.css('terra-pager'));
+                    expect(service.rowList).toBeDefined();
+                    expect(service.rowList.length).toBeGreaterThan(0);
+                    expect(pagerDE.attributes.hasOwnProperty('hidden')).toBe(false);
+                })
+            );
 
             it(`should hide the pager if #inputHasPager is not set`, () => {
                 component.inputHasPager = false;

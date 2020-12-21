@@ -1,5 +1,5 @@
 import { RadioInputComponent } from './radio-input.component';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { RadioGroupComponent } from './radio-group.component';
 import { By } from '@angular/platform-browser';
 import { Component, DebugElement } from '@angular/core';
@@ -16,11 +16,13 @@ describe(`RadioInputComponent:`, () => {
     let radioInputComponent: RadioInputComponent;
     let radioGroupComponent: RadioGroupComponent;
 
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
-            declarations: [RadioInputComponent, RadioGroupComponent, HostComponent]
-        });
-    }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                declarations: [RadioInputComponent, RadioGroupComponent, HostComponent]
+            });
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(HostComponent);

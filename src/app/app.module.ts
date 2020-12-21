@@ -23,7 +23,7 @@ export function initL10n(l10nLoader: L10nLoader): Function {
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
-        RouterModule.forRoot([]),
+        RouterModule.forRoot([], { relativeLinkResolution: 'legacy' }),
         HttpClientModule,
         L10nTranslationModule.forRoot(l10nConfig, { userLanguage: DefaultUserLanguage }),
         L10nIntlModule,
