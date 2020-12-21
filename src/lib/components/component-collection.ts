@@ -20,7 +20,6 @@ import { TerraDataTableContextMenuComponent } from './tables/data-table/context-
 import { TerraSimpleTableComponent } from './tables/simple/terra-simple-table.component';
 import { TerraDoubleInputComponent } from './forms/input/double-input/terra-double-input.component';
 import { TerraPortletComponent } from './layouts/portlet/terra-portlet.component';
-import { TerraFilterComponent } from './filter/terra-filter.component';
 import { TerraMultiCheckBoxComponent } from './forms/multi-check-box/terra-multi-check-box.component';
 import { TerraSuggestionBoxComponent } from './forms/suggestion-box/terra-suggestion-box.component';
 import { TerraDatePickerComponent } from './forms/input/date-picker/terra-date-picker.component';
@@ -89,7 +88,6 @@ export const exportedComponents: Array<Type<any>> = [
     TerraSimpleTableComponent,
     TerraDoubleInputComponent,
     TerraPortletComponent,
-    TerraFilterComponent,
     TerraMultiCheckBoxComponent,
     TerraSuggestionBoxComponent,
     TerraDatePickerComponent,
