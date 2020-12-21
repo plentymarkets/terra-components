@@ -1,9 +1,8 @@
-@import "../buttons/button/terra-button.component";
-@import "../forms/select-box/terra-select-box.component";
-@import "../forms/input/terra-input.component";
+@import '../buttons/button/terra-button.component';
+@import '../forms/select-box/terra-select-box.component';
+@import '../forms/input/terra-input.component';
 
-.pager
-{
+.pager {
     --input-text-align: center;
     --select-box-width: 72px;
     --select-box-wrapper-margin-bottom: 0;
@@ -11,8 +10,7 @@
     --input-width: 43px;
     --btn-sm-padding: 0 7px;
 
-    .pager-inner-wrapper
-    {
+    .pager-inner-wrapper {
         display: block;
         flex-wrap: initial;
         justify-content: initial;
@@ -27,30 +25,26 @@
         z-index: var(--pager-z-index);
         --select-box-wrapper-margin-bottom: 0;
     }
-    
-    .form-group
-    {
+
+    .form-group {
         margin: 0;
         float: left;
     }
-    
-    .pager-text
-    {
+
+    .pager-text {
         line-height: var(--height-sm);
         float: left;
         font-size: var(--font-size-2);
         font-weight: var(--font-weight-2);
         margin: 0 6px;
     }
-    
-    .terra-select-box
-    {
+
+    .terra-select-box {
         float: left;
         margin-right: 4px;
     }
-    
-    .btn-group
-    {
+
+    .btn-group {
         margin-right: 4px;
     }
 }

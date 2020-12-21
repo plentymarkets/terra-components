@@ -1,21 +1,19 @@
-body
-{
-    &.theme-compact
-    {
+body {
+    &.theme-compact {
         --navbar-height: 32px;
         --tabbar-height: 32px;
         --breadcrumbs-height: 32px;
-        
+
         --height-sm: 24px;
         --height-md: 24px;
         --height-lg: 36px;
-        
+
         --space-xs: 1px;
         --space-sm: 2px;
         --space-md: 4px;
         --space-lg: 6px;
         --space-xl: 12px;
-        
+
         --transition-xs: ease 0.1s;
         --transition-sm: ease 0.2s; //for colors and background-colors
         --transition-md: ease 0.3s;
@@ -26,10 +24,10 @@ body
         --transition-delay-md: 0.3s;
         --transition-delay-lg: 0.6s;
         --transition-delay-xl: 1.2s;
-        
+
         --transition-menu: all var(--transition-0);
         --transition-menu-delay: var(--transition-delay-0);
-        
+
         //Inputs & Select-Boxes//
         --input-padding-default: 0 var(--space-md) 0 30%;
         --input-isEmpty-padding-default: 0;
@@ -40,13 +38,13 @@ body
         --select-box-labeled-isSmall-padding-default: var(--space-md) var(--space-md) var(--space-md) 30%;
         --select-box-isSmall-background-position-default: calc(100% - var(--space-lg)) var(--space-lg);
         --textarea-label-padding-default: var(--space-sm) 0 0 0;
-        
+
         //Navbar-dropdown-menu//
         --dropdown-menu-transition-default: all var(--transition-0);
         --dropdown-menu-transition-delay-default: var(--transition-delay-0);
         --dropdown-menu-transition-hide-default: all var(--transition-0);
         --dropdown-menu-transition-delay-hide-default: var(--transition-delay-0);
-        
+
         //GWT
         --gwt-has-toolbar-before-top: 35px;
         --gwt-has-titlebar-before-top: 33px;
