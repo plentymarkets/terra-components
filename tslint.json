@@ -1,4 +1,9 @@
 {
+    "rules": {
+        "deprecation": {
+            "severity": "warning"
+        }
+    },
     "extends": "./node_modules/@plentymarkets/terra-lint-rules/tslint-rules.json",
     "rulesDirectory": [
         "node_modules/codelyzer",

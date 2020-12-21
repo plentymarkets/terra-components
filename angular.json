@@ -50,7 +50,7 @@
             "prefix": "tc",
             "architect": {
                 "build": {
-                    "builder": "@angular-devkit/build-ng-packagr:build",
+                    "builder": "@angular-devkit/build-angular:ng-packagr",
                     "options": {
                         "tsConfig": "src/lib/tsconfig.lib.json",
                         "project": "src/lib/package.json"
