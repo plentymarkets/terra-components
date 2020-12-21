@@ -11,9 +11,11 @@
         "test-headless-coverage": "ng test lib --watch=false --codeCoverage --browsers=ChromeHeadless",
         "badge:coverage": "npm run test-headless-coverage && gulp updateCoverageBadge",
         "lint": "ng lint lib",
+        "prettier": "prettier --check .",
         "reinstall": "npm ci",
         "prepare-release": "npm run reinstall && npm run build && npm run test-once && npm start"
     },
+    "prettier": "@plentymarkets/terra-prettier-config",
     "dependencies": {
         "bootstrap": "^4.4.1",
         "htmlhint": "~0.10.3",
@@ -46,7 +48,8 @@
         "@angular/platform-browser": "~8.2.14",
         "@angular/platform-browser-dynamic": "~8.2.14",
         "@angular/router": "~8.2.14",
-        "@plentymarkets/terra-lint-rules": "~0.1.0-prettier.0",
+        "@plentymarkets/terra-lint-rules": "~0.1.0",
+        "@plentymarkets/terra-prettier-config": "~0.1.0",
         "@types/htmlhint": "^0.9.1",
         "@types/jasmine": "^3.5.11",
         "@types/jasminewd2": "~2.0.8",

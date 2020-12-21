@@ -19,6 +19,7 @@ import { noop } from 'rxjs';
         }
     ]
 })
+/** @deprecated since v5.0. Please use mat-chips-list instead */
 export class TerraTagSelectComponent implements ControlValueAccessor, OnInit, OnChanges, OnDestroy {
     @Input()
     public name: string;

@@ -1,9 +1,12 @@
 import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
 import { isNullOrUndefined } from 'util';
-import { Color } from '../../forms/input/color-picker/color.helper';
+import { Color } from '../../../helpers/color.helper';
 import { TerraTagNameInterface } from './data/terra-tag-name.interface';
 import { Language } from 'angular-l10n';
 
+/**
+ * @deprecated since v5. Use angular material's [chip](https://material.angular.io/components/chips/overview) instead.
+ */
 @Component({
     selector: 'terra-tag',
     styleUrls: ['./terra-tag.component.scss'],

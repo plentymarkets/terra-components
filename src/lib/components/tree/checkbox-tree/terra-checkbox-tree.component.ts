@@ -3,6 +3,9 @@ import { TerraBaseTreeComponent } from '../base/terra-base-tree.component';
 import { TerraCheckboxLeafInterface } from '../leaf/terra-checkbox-leaf.interface';
 import { TerraCheckboxTreeLeafState } from './data/terra-checkbox-tree-leaf-state';
 
+/**
+ * @deprecated since v5. Use mat-tree instead.
+ */
 @Component({
     selector: 'terra-checkbox-tree',
     styleUrls: ['./terra-checkbox-tree.component.scss'],

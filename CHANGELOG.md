@@ -1,4 +1,82 @@
-# 5.x.x (xx.xx.2020)
+# 5.12.0 (Unreleased)
+
+### Features
+
+-   **terra-select-box** since terra-select-box is deprecated, `AllowedColors` enum and `TerraSelectBoxInterface` are deprecated now as well.
+-   **terra-overlay** since terra-overlay is deprecated, `TerraOverlayButtonInterface` is now deprecated as well.
+-   **terra-data-table-context-menu** component and service are deprecated now. Use angular material's [menu](https://material.angular.io/components/menu) instead.
+
+# 5.11.0 (05.11.2020)
+
+### Features
+
+-   **terra-file-input**
+    -   properties `primaryOverlayButton` and `secondaryOverlayButton` are deprecated now.
+    -   now uses a material dialog for the image preview
+
+### Fix
+
+-   **terra-file-browser** replaced delete confirmation dialog with material dialog
+-   **mat-form-field** fixed Safari Bug for disabled inputs (non-readable text)
+
+# 5.10.0 (20.10.2020)
+
+### Features
+
+-   **terra-button** is deprecated now. Use angular material's [button](https://material.angular.io/components/button/overview) instead.
+-   **terra-button-with-options** is deprecated now. Use angular material's [button](https://material.angular.io/components/button/overview) and [menu](https://material.angular.io/components/menu/overview) instead.
+-   **terra-time-picker** is deprecated now. Use angular material's [input](https://material.angular.io/components/input/overview) with type time instead.
+-   **terra-color-picker** is deprecated now. Use angular material's [input](https://material.angular.io/components/input/overview) with type color instead.
+-   **terra-card** is deprecated now. Use angular material's [card](https://material.angular.io/components/card/overview) instead.
+-   **terra-note** is deprecated now. Use angular material's [card](https://material.angular.io/components/card/overview) instead.
+-   **terra-info-box** is deprecated now. Use angular material's [card](https://material.angular.io/components/card/overview) instead.
+-   **terra-slider** is deprecated now. Use angular material's [slider](https://material.angular.io/components/slider/overview) instead.
+-   **terra-pager** is deprecated now. Use angular material's [paginator](https://material.angular.io/components/paginator/overview) instead.
+-   **terra-base-table** is deprecated now. Use angular material's [table](https://material.angular.io/components/table/overview) instead.
+-   **terra-data-table** is deprecated now. Use angular material's [table](https://material.angular.io/components/table/overview) instead.
+-   **terra-simple-table** is deprecated now. Use angular material's [table](https://material.angular.io/components/table/overview) instead.
+-   **terra-info-component** is deprecated now. Use angular material's [button](https://material.angular.io/components/button/overview) or an icon with a tooltip.
+-   **terra-suggestion-box** is deprecated now. Use angular material's [autocomplete](https://material.angular.io/components/autocomplete/overview) instead.
+-   **terra-indicator** is deprecated now. Use angular material's [badge](https://material.angular.io/components/badge/overview) or [chip](https://material.angular.io/components/chips/overview) instead.
+-   **terra-base-toolbar** is deprecated now. Use angular material's [toolbar](https://material.angular.io/components/toolbar/overview) instead.
+-   **terra-checkbox-tree** marked as deprecated. Use angular material's [tree](https://material.angular.io/components/tree/overview) instead.
+-   **terra-checkbox-tree-leaf-state** marked as deprecated. Use angular material's [tree](https://material.angular.io/components/tree/overview) instead.
+-   **terra-checkbox-leaf-interface** marked as deprecated. Use angular material's [tree](https://material.angular.io/components/tree/overview) instead.
+-   **terra-leaf-interface** marked as deprecated. Use angular material's [tree](https://material.angular.io/components/tree/overview) instead.
+-   **terra-base-tree** marked as deprecated. Use angular material's [tree](https://material.angular.io/components/tree/overview) instead.
+-   **terra-node-tree** marked as deprecated. Use angular material's [tree](https://material.angular.io/components/tree/overview) instead.
+-   **terra-node** marked as deprecated. Use angular material's [tree](https://material.angular.io/components/tree/overview) instead.
+-   **terra-node-interface** marked as deprecated. Use angular material's [tree](https://material.angular.io/components/tree/overview) instead.
+-   **terra-node-tree-helper** marked as deprecated. Use angular material's [tree](https://material.angular.io/components/tree/overview) instead.
+-   **terra-node-tree-config** marked as deprecated. Use angular material's [tree](https://material.angular.io/components/tree/overview) instead.
+-   **terra-base-editor** is deprecated now. Please use [ck-editor](https://ckeditor.com/ckeditor-4/) instead.
+-   **terra-code-editor** is deprecated now. Please use [ck-editor](https://ckeditor.com/ckeditor-4/) instead.
+-   **terra-note-editor** is deprecated now. Please use [ck-editor](https://ckeditor.com/ckeditor-4/) instead.
+-   **terra-tag** is deprecated now. Use angular material's [chips](https://material.angular.io/components/chips/overview) instead.
+-   **terra-tag-list** is deprecated now. Use angular material's [chip-list](https://material.angular.io/components/chips/overview) instead.
+-   **terra-tag-select** is deprecated now. Use angular material's [chip-list](https://material.angular.io/components/chips/overview) instead.
+-   **terra-base-data** is deprecated now. Use `{}` instead.
+-   **terra-base-parameter** is deprecated now. Use `{}` instead.
+-   **TerraButtonColorEnum** is deprecated now.
+-   **table** removed experimental classes `TableDataSource`, `TablePagingDataSource`, `TableSortingDataSource` and `TablePagingSortingDataSource`. Use new `TerraTableDataSource` class instead.
+
+### Bug Fixes
+
+-   **styles** we now force focused elements to have no outline.
+-   **terra-form-entry-list** Fixed form not being marked as dirty when number of entries changes
+
+# 5.9.0 (30.09.2020)
+
+### Features
+
+-   **helpers** introduced new public utility class `Color` to simplify work with colors.
+-   **terra-checkbox** is deprecated now. Use angular material's [checkbox](https://material.angular.io/components/checkbox/overview) instead.
+
+### Bug Fixes
+
+-   **mat-checkbox** Fixed styles for disabled checkbox when checked and indeterminate.
+
+# 5.8.0 (16.09.2020)
 
 ### Features
 
@@ -9,6 +87,7 @@
 
 -   **table-settings** Fixed caption for column config overlay.
 -   **mat-table** Adjust left padding for first column.
+-   **tcTooltip** Fixed `isDisabled` input when it's `true` in the beginning.
 
 # 5.7.0 (17.08.2020)
 

@@ -6,6 +6,7 @@ import { TerraIndicatorLabelTypeEnum } from '../../helpers/enums/indicator-label
     styleUrls: ['./terra-indicator.component.scss'],
     templateUrl: './terra-indicator.component.html'
 })
+/** @deprecated since v5.0. Please use mat-badge or mat-chip instead */
 export class TerraIndicatorComponent {
     @Input()
     public inputLabel: string;

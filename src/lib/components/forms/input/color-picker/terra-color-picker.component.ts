@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TerraInputComponent } from '../terra-input.component';
-import { Color } from './color.helper';
+import { Color } from '../../../../helpers/color.helper';
 import { TerraRegex } from '../../../../helpers/regex/terra-regex';
 
+/** @deprecated since v5. Please use mat-input of type color instead. */
 @Component({
     selector: 'terra-color-picker',
     styleUrls: ['./terra-color-picker.component.scss'],

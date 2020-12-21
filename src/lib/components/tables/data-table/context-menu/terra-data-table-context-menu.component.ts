@@ -6,6 +6,7 @@ import { isNullOrUndefined } from 'util';
 
 /**
  * @author mkunze
+ * @deprecated since v5.
  */
 @Component({
     // tslint:disable-next-line

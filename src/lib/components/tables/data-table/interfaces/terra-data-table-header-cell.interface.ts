@@ -3,6 +3,7 @@
  */
 import { TerraTextAlignEnum } from '../enums/terra-text-align.enum';
 
+/** @deprecated since v5.0. Please use mat-table instead */
 export interface TerraDataTableHeaderCellInterface {
     caption: string;
     width: number;

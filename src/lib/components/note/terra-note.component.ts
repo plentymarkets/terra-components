@@ -5,6 +5,7 @@ import { Component, Input } from '@angular/core';
     styleUrls: ['./terra-note.component.scss'],
     templateUrl: './terra-note.component.html'
 })
+/** @deprecated since v5.0. Please use mat-card instead */
 export class TerraNoteComponent {
     @Input()
     public inputIsSelected: boolean;
