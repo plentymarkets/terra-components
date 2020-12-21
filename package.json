@@ -58,6 +58,7 @@
         "angular-l10n": "^9.3.0",
         "ckeditor4-angular": "^1.0.1",
         "codelyzer": "^5.1.2",
+        "del": "^6.0.0",
         "gulp": "^4.0.2",
         "gulp-sass": "^4.1.0",
         "husky": "^4.2.5",
