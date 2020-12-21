@@ -168,14 +168,16 @@ function changeVersion(done) {
     console.log('--- OLD PACKAGE VERSION: ' + jsonDist.version + ' ---');
 
     const version = semver.inc(jsonDist.version, increment, preid);
-
-    console.log('--- NEW PACKAGE VERSION: ' + version + ' ---');
-    console.log('-------------------------------------------------');
-
-    jsonDist.version = version;
-    jsonLib.version = version;
-    fs.writeFileSync(libPath, JSON.stringify(jsonLib, null, '\t'));
-    fs.writeFileSync(distPath, JSON.stringify(jsonDist, null, '\t'));
+    if (version == null) {
+        console.error('! - Invalid parameter used. Changing of version aborted. Please check command - !');
+    } else {
+        console.log('--- NEW PACKAGE VERSION: ' + version + ' ---');
+        console.log('-------------------------------------------------');
+        jsonDist.version = version;
+        jsonLib.version = version;
+        fs.writeFileSync(libPath, JSON.stringify(jsonLib, null, '\t'));
+        fs.writeFileSync(distPath, JSON.stringify(jsonDist, null, '\t'));
+    }
     done();
 }
 exports.changeVersion = changeVersion;
