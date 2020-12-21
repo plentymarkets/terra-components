@@ -25,7 +25,7 @@ export class TerraCheckboxComponentExample implements OnInit {
         this.viewChildIndeterminateCb.isIndeterminate = !this.viewChildIndeterminateCb.isIndeterminate;
     }
 
-    public _setCheckboxValue(): void {
-        this.viewChildTestCb.value = !this.viewChildTestCb.value;
+    public _setCheckboxValue(value: boolean): void {
+        this.viewChildTestCb.writeValue(!value);
     }
 }
