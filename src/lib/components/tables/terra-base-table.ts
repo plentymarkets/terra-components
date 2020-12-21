@@ -14,7 +14,6 @@ export class TerraBaseTable<T> {
     public outputRowCheckBoxChanged: EventEmitter<TerraDataTableRowInterface<T>> = new EventEmitter();
 
     public _headerCheckbox: { checked: boolean; isIndeterminate: boolean };
-    protected readonly _rowList: Array<TerraDataTableRowInterface<T>>;
 
     /**
      * @description Constructor initializing the table component
@@ -24,6 +23,10 @@ export class TerraBaseTable<T> {
             checked: false,
             isIndeterminate: false
         };
+    }
+
+    public get _rowList(): Array<TerraDataTableRowInterface<T>> {
+        return null;
     }
 
     /**
