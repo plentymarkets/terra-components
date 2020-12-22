@@ -1,3 +1,9 @@
+# 6.0.0-alpha.6 (DD.MM.YYYY)
+
+### Features
+
+-   **string-helper** changed deprecated util function to plain js in method `isNullUndefinedOrEmpty`.
+
 # 6.0.0-alpha.5 (21.12.2020)
 
 ### Features
