@@ -1,3 +1,9 @@
+# 6.0.0-alpha.6 (DD.MM.YYYY)
+
+### Features
+
+-   **dependencies** updated all `jasmine` and `karma` packages to the latest compatible versions.
+
 # 6.0.0-alpha.5 (21.12.2020)
 
 ### Features
