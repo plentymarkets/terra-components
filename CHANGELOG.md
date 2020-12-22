@@ -1,9 +1,13 @@
-# unreleased
+# 6.0.0-alpha.5 (21.12.2020)
 
 ### Features
 
 -   **terra-code-editor** toolbar now supports links.
 -   **terra-filter** removed terra-filter. Use the new tc-filter please.
+
+### Bug Fixes
+
+-   **terra-components** fix security vulnerability
 
 # 6.0.0-alpha.4 (04.12.2020)
 
