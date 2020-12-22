@@ -3,7 +3,7 @@
 ### Features
 
 -   **terra-code-editor** toolbar now supports links.
--   **terra-filter** removed terra-filter. Use the new tc-filter please.
+-   **terra-filter** removed terra-filter. Use the new tc-filter instead.
 
 ### Bug Fixes
 
