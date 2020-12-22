@@ -1,193 +1,21 @@
-$icon-logout: '\eb10';
-$icon-content: '\eb11';
-$icon-login: '\eb12';
-$icon-footer: '\eb13';
-$icon-header: '\eb14';
-$icon-unlink: '\eb0f';
-$icon-anonymize: '\eb0e';
-$icon-active_doc: '\eb01';
-$icon-active_fold_closed: '\eb02';
-$icon-active_fold_open: '\eb03';
-$icon-active_settings: '\eb04';
-$icon-equals: '\eb05';
-$icon-inactive_doc: '\eb06';
-$icon-inactive_fold_closed: '\eb07';
-$icon-inactive_fold_open: '\eb08';
-$icon-intermed_fold_closed: '\eb09';
-$icon-intermed_fold_open: '\eb0a';
-$icon-link: '\eb0b';
-$icon-real: '\eb0c';
-$icon-reg_expr: '\eb0d';
-$icon-plenty_base: '\eb00';
-$icon-colorpicker: '\eafe';
-$icon-servicecenter: '\eaff';
-$icon-open_external_link: '\eafc';
-$icon-unlock_contact: '\eafd';
-$icon-exch_adre_type: '\e94e';
-$icon-ship_amaz_1st: '\eaf7';
-$icon-ship_amaz_2nd: '\eaf8';
-$icon-ship_amaz_prime_1st: '\eaf9';
-$icon-ship_amaz_prime_2nd: '\eafa';
-$icon-ship_amaz_prime: '\eafb';
-$icon-caret: '\e921';
-$icon-item-artikel: '\e92f';
-$icon-align_center: '\e930';
-$icon-align_justify: '\e931';
-$icon-align_left: '\e932';
-$icon-align_right: '\e935';
-$icon-device_desktop: '\e936';
-$icon-device_laptop: '\e937';
-$icon-device_mobile: '\e938';
-$icon-device_tablet: '\e940';
-$icon-ebay: '\e941';
-$icon-switch_editor: '\e942';
-$icon-text_bold: '\e943';
-$icon-text_italic: '\e944';
-$icon-text_strikethrough: '\e945';
-$icon-text_underline: '\e946';
-$icon-click_and_collect: '\e947';
-$icon-ebay_basket: '\e948';
-$icon-ebay_plus: '\e949';
-$icon-hood: '\e94a';
-$icon-reverse_fullscreen: '\e94c';
-$icon-ricardo: '\e94d';
-$icon-backend_ceres: '\e91e';
-$icon-backend_io: '\e91f';
-$icon-shipping_cbc_logistics: '\e920';
-$icon-application_double: '\e94f';
-$icon-box_minus_disabled: '\e950';
-$icon-box_minus: '\e951';
-$icon-box_plus_disabled: '\e952';
-$icon-box_plus: '\e953';
-$icon-icon_questionmark_bck: '\e954';
-$icon-manual_search: '\e955';
-$icon-pay_5_paypal: '\e956';
-$icon-pay_25_laredoute: '\e957';
-$icon-pay_amazon_payment: '\e958';
-$icon-pay_amazon: '\e95d';
-$icon-pay_bill: '\e95e';
-$icon-pay_billsafe: '\e95f';
-$icon-pay_cash_in_advance: '\e960';
-$icon-pay_cash_on_delivery: '\ea02';
-$icon-pay_cash: '\ea03';
-$icon-pay_cheque: '\ea04';
-$icon-pay_clickandbuy: '\ea05';
-$icon-pay_concardis: '\ea06';
-$icon-pay_coupon: '\ea07';
-$icon-pay_credit_card: '\ea08';
-$icon-pay_crefopay: '\ea09';
-$icon-pay_debit: '\ea0a';
-$icon-pay_ec: '\ea65';
-$icon-pay_eos: '\ea66';
-$icon-pay_expercash: '\ea67';
-$icon-pay_gartenxxl: '\ea68';
-$icon-pay_gimahhot: '\ea69';
-$icon-pay_heidelpay: '\ea6a';
-$icon-pay_hitmeister: '\ea6b';
-$icon-pay_iclear: '\ea6c';
-$icon-pay_iloxx: '\ea6d';
-$icon-pay_klarna: '\ea6e';
-$icon-pay_masterpayment: '\ea6f';
-$icon-pay_meinpaket: '\ea70';
-$icon-pay_neckermann: '\ea71';
-$icon-pay_other: '\eaab';
-$icon-pay_pay_card: '\eab4';
-$icon-pay_paymorrow_new: '\eab5';
-$icon-pay_paymorrow: '\eab6';
-$icon-pay_payolution: '\eab7';
-$icon-pay_payone: '\eab8';
-$icon-pay_paypal_express: '\eab9';
-$icon-pay_paypal_qr: '\eaba';
-$icon-pay_pixmania: '\eabb';
-$icon-pay_plus: '\eabc';
-$icon-pay_postpay: '\eabd';
-$icon-pay_rakuten: '\eabe';
-$icon-pay_ratepay: '\eabf';
-$icon-pay_saferpay: '\eac0';
-$icon-pay_sagepay: '\eac1';
-$icon-pay_santander: '\eac2';
-$icon-pay_shopgate: '\eac3';
-$icon-pay_skrill: '\eac4';
-$icon-pay_sofortueberweisung: '\eac5';
-$icon-pay_wirecard: '\eac6';
-$icon-pay_worldpay: '\eac7';
-$icon-pay_zalando: '\eac8';
-$icon-pay_zentralverkauf: '\eac9';
-$icon-shipping_bilog: '\eaca';
-$icon-shipping_bps: '\eacb';
-$icon-shipping_bvw: '\eacc';
-$icon-shipping_dachser: '\eacd';
-$icon-shipping_db_schenker: '\eace';
-$icon-shipping_deutschepost: '\eacf';
-$icon-shipping_dhl_packstation: '\ead0';
-$icon-shipping_dhl: '\ead1';
-$icon-shipping_dpd: '\ead2';
-$icon-shipping_ems_garantpost: '\ead3';
-$icon-shipping_ereturn: '\ead4';
-$icon-shipping_esellersfriend: '\ead5';
-$icon-shipping_fedex: '\ead6';
-$icon-shipping_gel_express: '\ead7';
-$icon-shipping_gls: '\ead8';
-$icon-shipping_hbh: '\ead9';
-$icon-shipping_hermes: '\eada';
-$icon-shipping_ids_logistik: '\eadb';
-$icon-shipping_ilopack: '\eadc';
-$icon-shipping_iloxx: '\eadd';
-$icon-shipping_lkv: '\eade';
-$icon-shipping_other: '\eadf';
-$icon-shipping_post_at: '\eae0';
-$icon-shipping_pvs_logistik: '\eae1';
-$icon-shipping_rhenus: '\eae2';
-$icon-shipping_selbstabholer: '\eae3';
-$icon-shipping_shippingcenter: '\eae4';
-$icon-shipping_spedition: '\eae5';
-$icon-shipping_swiss_post: '\eae6';
-$icon-shipping_tnt: '\eae7';
-$icon-shipping_trans-o-flex: '\eae8';
-$icon-shipping_ups: '\eae9';
-$icon-shipping_yousellwesend: '\eaea';
-$icon-customer_link: '\eaeb';
-$icon-design_inline_edit: '\eaec';
-$icon-document_show: '\eaed';
-$icon-dunning_level_1: '\eaee';
-$icon-dunning_level_2: '\eaef';
-$icon-dunning_level_3: '\eaf0';
-$icon-dunning_level_4: '\eaf1';
-$icon-dunning_level_5: '\eaf2';
-$icon-email_sent: '\eaf3';
-$icon-file_extension_odt: '\eaf4';
-$icon-payment_sepa_pain: '\eaf5';
-$icon-shipping_centre: '\eaf6';
-$icon-order_new: '\e9e9';
-$icon-refund_create: '\eb23';
-$icon-refund_reversal_create: '\eb24';
-$icon-icon-reversal_document-13: '\eb22';
-$icon-reorder_search: '\ea56';
-$icon-shipment_tracking: '\ea64';
-$icon-zoom_out: '\eb21';
-$icon-plugin_productive_deploy: '\e90c';
-$icon-plugin_to_productive: '\eb1f';
-$icon-plugin_to_stage: '\eb20';
-$icon-image: '\eb17';
-$icon-plugin_stage_deploy: '\eb1c';
-$icon-plugin_stage: '\eb1d';
-$icon-trash: '\eaae';
-$icon-author: '\eab2';
-$icon-changelog: '\eab3';
-$icon-item_move: '\eb1a';
-$icon-marketplace: '\eb1b';
-$icon-plugin: '\eb1e';
-$icon-burger: '\eab0';
-$icon-grid: '\eab1';
-$icon-plugin_inbox: '\eaaf';
-$icon-dunning_level: '\e94b';
-$icon-folder_closeable: '\eaac';
-$icon-order_multi: '\eaad';
-$icon-support: '\eaaa';
-$icon-diagramm: '\eaa6';
-$icon-forum: '\eaa7';
-$icon-handbuch: '\eaa8';
-$icon-statistik: '\eaa9';
+$icon-idealo-logo-freigestellt-path1: '\eb2e';
+$icon-idealo-logo-freigestellt-path2: '\eb2f';
+$icon-idealo-logo-freigestellt-path3: '\eb30';
+$icon-idealo-logo-freigestellt-path4: '\eb31';
+$icon-idealo-logo-freigestellt-path5: '\eb32';
+$icon-idealo-logo-freigestellt-path6: '\eb33';
+$icon-idealo-logo-freigestellt-path7: '\eb34';
+$icon-idealo-logo-freigestellt-path8: '\eb35';
+$icon-idealo-logo-freigestellt-path9: '\eb36';
+$icon-idealo-logo-freigestellt-path10: '\eb37';
+$icon-idealo-logo-freigestellt-path11: '\eb38';
+$icon-idealo-logo-freigestellt-path12: '\eb39';
+$icon-idealo-logo-freigestellt-path13: '\eb3a';
+$icon-idealo-logo-freigestellt-path14: '\eb3b';
+$icon-idealo-logo-freigestellt-path15: '\eb3c';
+$icon-idealo-logo-freigestellt-path16: '\eb3d';
+$icon-idealo-logo-freigestellt-path17: '\eb3e';
+$icon-idealo-logo-freigestellt-path18: '\eb3f';
 $icon-active: '\e900';
 $icon-add: '\e901';
 $icon-address_label: '\e902';
@@ -200,6 +28,7 @@ $icon-calculate_acquisition_pricepng: '\e908';
 $icon-calendar_extend_appointment: '\e909';
 $icon-cancel: '\e90a';
 $icon-category_edit: '\e90b';
+$icon-plugin_productive_deploy: '\e90c';
 $icon-checkbox_checked: '\e90d';
 $icon-checkbox_indeterminate: '\e90e';
 $icon-checkbox_unchecked: '\e90f';
@@ -217,6 +46,10 @@ $icon-control_stop: '\e91a';
 $icon-copy_clipboard: '\e91b';
 $icon-copy: '\e91c';
 $icon-credit_note: '\e91d';
+$icon-backend_ceres: '\e91e';
+$icon-backend_io: '\e91f';
+$icon-shipping_cbc_logistics: '\e920';
+$icon-caret: '\e921';
 $icon-customer_new_password: '\e922';
 $icon-customer: '\e923';
 $icon-data_export: '\e924';
@@ -230,8 +63,16 @@ $icon-design_copy: '\e92b';
 $icon-design_export: '\e92c';
 $icon-design_import: '\e92d';
 $icon-design_inline_edit_toggle: '\e92e';
+$icon-item-artikel: '\e92f';
+$icon-align_center: '\e930';
+$icon-align_justify: '\e931';
+$icon-align_left: '\e932';
 $icon-design_publish: '\e933';
 $icon-design_transfer: '\e934';
+$icon-align_right: '\e935';
+$icon-device_desktop: '\e936';
+$icon-device_laptop: '\e937';
+$icon-device_mobile: '\e938';
 $icon-document: '\e939';
 $icon-domain_new: '\e93a';
 $icon-domains: '\e93b';
@@ -239,10 +80,39 @@ $icon-download: '\e93c';
 $icon-drag_sort_handle: '\e93d';
 $icon-dropbox: '\e93e';
 $icon-dunning_letter: '\e93f';
+$icon-device_tablet: '\e940';
+$icon-ebay: '\e941';
+$icon-switch_editor: '\e942';
+$icon-text_bold: '\e943';
+$icon-text_italic: '\e944';
+$icon-text_strikethrough: '\e945';
+$icon-text_underline: '\e946';
+$icon-click_and_collect: '\e947';
+$icon-ebay_basket: '\e948';
+$icon-ebay_plus: '\e949';
+$icon-hood: '\e94a';
+$icon-dunning_level: '\e94b';
+$icon-reverse_fullscreen: '\e94c';
+$icon-ricardo: '\e94d';
+$icon-exch_adre_type: '\e94e';
+$icon-application_double: '\e94f';
+$icon-box_minus_disabled: '\e950';
+$icon-box_minus: '\e951';
+$icon-box_plus_disabled: '\e952';
+$icon-box_plus: '\e953';
+$icon-icon_questionmark_bck: '\e954';
+$icon-manual_search: '\e955';
+$icon-pay_5_paypal: '\e956';
+$icon-pay_25_laredoute: '\e957';
+$icon-pay_amazon_payment: '\e958';
 $icon-edit_blog: '\e959';
 $icon-edit_listing: '\e95a';
 $icon-edit: '\e95b';
 $icon-email_send: '\e95c';
+$icon-pay_amazon: '\e95d';
+$icon-pay_bill: '\e95e';
+$icon-pay_billsafe: '\e95f';
+$icon-pay_cash_in_advance: '\e960';
 $icon-email_service: '\e961';
 $icon-error: '\e962';
 $icon-execute: '\e963';
@@ -379,6 +249,7 @@ $icon-offer: '\e9e5';
 $icon-order_confirmation_create: '\e9e6';
 $icon-order_flag: '\e9e7';
 $icon-order_mulit: '\e9e8';
+$icon-order_new: '\e9e9';
 $icon-order_not_possible: '\e9ea';
 $icon-order_note_create: '\e9eb';
 $icon-order_note_customer: '\e9ec';
@@ -403,6 +274,15 @@ $icon-payment_book_incoming_directly: '\e9fe';
 $icon-payment_credit_note: '\e9ff';
 $icon-payment_manual_booking: '\ea00';
 $icon-payment_register_incoming: '\ea01';
+$icon-pay_cash_on_delivery: '\ea02';
+$icon-pay_cash: '\ea03';
+$icon-pay_cheque: '\ea04';
+$icon-pay_clickandbuy: '\ea05';
+$icon-pay_concardis: '\ea06';
+$icon-pay_coupon: '\ea07';
+$icon-pay_credit_card: '\ea08';
+$icon-pay_crefopay: '\ea09';
+$icon-pay_debit: '\ea0a';
 $icon-picklist_close: '\ea0b';
 $icon-picklist: '\ea0c';
 $icon-placeholder_show_list: '\ea0d';
@@ -478,6 +358,7 @@ $icon-reload: '\ea52';
 $icon-reorder_create: '\ea53';
 $icon-reorder_not_possible: '\ea54';
 $icon-reorder_scan: '\ea55';
+$icon-reorder_search: '\ea56';
 $icon-reorder_show: '\ea57';
 $icon-reorder_type: '\ea58';
 $icon-reorder: '\ea59';
@@ -491,12 +372,25 @@ $icon-send_email: '\ea60';
 $icon-set_package_number: '\ea61';
 $icon-settings_transfer: '\ea62';
 $icon-settings: '\ea63';
+$icon-shipment_tracking: '\ea64';
+$icon-pay_ec: '\ea65';
+$icon-pay_eos: '\ea66';
+$icon-pay_expercash: '\ea67';
+$icon-pay_gartenxxl: '\ea68';
+$icon-pay_gimahhot: '\ea69';
+$icon-pay_heidelpay: '\ea6a';
+$icon-pay_hitmeister: '\ea6b';
+$icon-pay_iclear: '\ea6c';
+$icon-pay_iloxx: '\ea6d';
+$icon-pay_klarna: '\ea6e';
+$icon-pay_masterpayment: '\ea6f';
+$icon-pay_meinpaket: '\ea70';
+$icon-pay_neckermann: '\ea71';
 $icon-shipping_dhl_packstation_valid: '\ea72';
 $icon-shipping_express: '\ea73';
 $icon-skype: '\ea74';
-$icon-table_sort: '\eb18';
-$icon-sort_asc: '\eb16';
-$icon-sort_desc: '\eb15';
+$icon-sort_asc: '\ea75';
+$icon-sort_desc: '\ea76';
 $icon-sort_down: '\ea77';
 $icon-sort_up: '\ea78';
 $icon-sound: '\ea79';
@@ -544,7 +438,133 @@ $icon-vcard: '\eaa2';
 $icon-visibility_private: '\eaa3';
 $icon-warning: '\eaa4';
 $icon-zoom: '\eaa5';
+$icon-diagramm: '\eaa6';
+$icon-forum: '\eaa7';
+$icon-handbuch: '\eaa8';
+$icon-statistik: '\eaa9';
+$icon-support: '\eaaa';
+$icon-pay_other: '\eaab';
+$icon-folder_closeable: '\eaac';
+$icon-order_multi: '\eaad';
+$icon-trash: '\eaae';
+$icon-plugin_inbox: '\eaaf';
+$icon-burger: '\eab0';
+$icon-grid: '\eab1';
+$icon-author: '\eab2';
+$icon-changelog: '\eab3';
+$icon-pay_pay_card: '\eab4';
+$icon-pay_paymorrow_new: '\eab5';
+$icon-pay_paymorrow: '\eab6';
+$icon-pay_payolution: '\eab7';
+$icon-pay_payone: '\eab8';
+$icon-pay_paypal_express: '\eab9';
+$icon-pay_paypal_qr: '\eaba';
+$icon-pay_pixmania: '\eabb';
+$icon-pay_plus: '\eabc';
+$icon-pay_postpay: '\eabd';
+$icon-pay_rakuten: '\eabe';
+$icon-pay_ratepay: '\eabf';
+$icon-pay_saferpay: '\eac0';
+$icon-pay_sagepay: '\eac1';
+$icon-pay_santander: '\eac2';
+$icon-pay_shopgate: '\eac3';
+$icon-pay_skrill: '\eac4';
+$icon-pay_sofortueberweisung: '\eac5';
+$icon-pay_wirecard: '\eac6';
+$icon-pay_worldpay: '\eac7';
+$icon-pay_zalando: '\eac8';
+$icon-pay_zentralverkauf: '\eac9';
+$icon-shipping_bilog: '\eaca';
+$icon-shipping_bps: '\eacb';
+$icon-shipping_bvw: '\eacc';
+$icon-shipping_dachser: '\eacd';
+$icon-shipping_db_schenker: '\eace';
+$icon-shipping_deutschepost: '\eacf';
+$icon-shipping_dhl_packstation: '\ead0';
+$icon-shipping_dhl: '\ead1';
+$icon-shipping_dpd: '\ead2';
+$icon-shipping_ems_garantpost: '\ead3';
+$icon-shipping_ereturn: '\ead4';
+$icon-shipping_esellersfriend: '\ead5';
+$icon-shipping_fedex: '\ead6';
+$icon-shipping_gel_express: '\ead7';
+$icon-shipping_gls: '\ead8';
+$icon-shipping_hbh: '\ead9';
+$icon-shipping_hermes: '\eada';
+$icon-shipping_ids_logistik: '\eadb';
+$icon-shipping_ilopack: '\eadc';
+$icon-shipping_iloxx: '\eadd';
+$icon-shipping_lkv: '\eade';
+$icon-shipping_other: '\eadf';
+$icon-shipping_post_at: '\eae0';
+$icon-shipping_pvs_logistik: '\eae1';
+$icon-shipping_rhenus: '\eae2';
+$icon-shipping_selbstabholer: '\eae3';
+$icon-shipping_shippingcenter: '\eae4';
+$icon-shipping_spedition: '\eae5';
+$icon-shipping_swiss_post: '\eae6';
+$icon-shipping_tnt: '\eae7';
+$icon-shipping_trans-o-flex: '\eae8';
+$icon-shipping_ups: '\eae9';
+$icon-shipping_yousellwesend: '\eaea';
+$icon-customer_link: '\eaeb';
+$icon-design_inline_edit: '\eaec';
+$icon-document_show: '\eaed';
+$icon-dunning_level_1: '\eaee';
+$icon-dunning_level_2: '\eaef';
+$icon-dunning_level_3: '\eaf0';
+$icon-dunning_level_4: '\eaf1';
+$icon-dunning_level_5: '\eaf2';
+$icon-email_sent: '\eaf3';
+$icon-file_extension_odt: '\eaf4';
+$icon-payment_sepa_pain: '\eaf5';
+$icon-shipping_centre: '\eaf6';
+$icon-ship_amaz_1st: '\eaf7';
+$icon-ship_amaz_2nd: '\eaf8';
+$icon-ship_amaz_prime_1st: '\eaf9';
+$icon-ship_amaz_prime_2nd: '\eafa';
+$icon-ship_amaz_prime: '\eafb';
+$icon-open_external_link: '\eafc';
+$icon-unlock_contact: '\eafd';
+$icon-colorpicker: '\eafe';
+$icon-servicecenter: '\eaff';
+$icon-plenty_base: '\eb00';
+$icon-active_doc: '\eb01';
+$icon-active_fold_closed: '\eb02';
+$icon-active_fold_open: '\eb03';
+$icon-active_settings: '\eb04';
+$icon-equals: '\eb05';
+$icon-inactive_doc: '\eb06';
+$icon-inactive_fold_closed: '\eb07';
+$icon-inactive_fold_open: '\eb08';
+$icon-intermed_fold_closed: '\eb09';
+$icon-intermed_fold_open: '\eb0a';
+$icon-link: '\eb0b';
+$icon-real: '\eb0c';
+$icon-reg_expr: '\eb0d';
+$icon-anonymize: '\eb0e';
+$icon-unlink: '\eb0f';
+$icon-auslog: '\eb10';
+$icon-content: '\eb11';
+$icon-einlog: '\eb12';
+$icon-footer: '\eb13';
+$icon-header: '\eb14';
+$icon-table_sort_desc: '\eb15';
+$icon-table_sort_asc: '\eb16';
+$icon-image: '\eb17';
+$icon-table_sort: '\eb18';
 $icon-content_check_out: '\eb19';
+$icon-item_move: '\eb1a';
+$icon-marketplace: '\eb1b';
+$icon-plugin_stage_deploy: '\eb1c';
+$icon-plugin_stage: '\eb1d';
+$icon-plugin: '\eb1e';
+$icon-plugin_to_productive: '\eb1f';
+$icon-plugin_to_stage: '\eb20';
+$icon-zoom_out: '\eb21';
+$icon-icon-reversal_document-13: '\eb22';
+$icon-refund_create: '\eb23';
+$icon-refund_reversal_create: '\eb24';
 $icon-content_my_account: '\eb25';
 $icon-new_order: '\eb26';
 $icon-reply_all: '\eb27';
@@ -555,3346 +575,2911 @@ $icon-content_search: '\eb2b';
 $icon-content_itemset: '\eb2c';
 $icon-content_item: '\eb2d';
 
-.icon-table_sort {
+.icon-idealo-logo-freigestellt .path1 {
     &:before {
-        content: $icon-table_sort;
+        content: $icon-idealo-logo-freigestellt-path1;
+        color: rgb(10, 55, 97);
     }
 }
-
-.icon-logout {
+.icon-idealo-logo-freigestellt .path2 {
     &:before {
-        content: $icon-logout;
+        content: $icon-idealo-logo-freigestellt-path2;
+        margin-left: -1.580078125em;
+        color: rgb(10, 55, 97);
     }
 }
-
-.icon-content {
+.icon-idealo-logo-freigestellt .path3 {
     &:before {
-        content: $icon-content;
+        content: $icon-idealo-logo-freigestellt-path3;
+        margin-left: -1.580078125em;
+        color: rgb(10, 55, 97);
     }
 }
-
-.icon-login {
+.icon-idealo-logo-freigestellt .path4 {
     &:before {
-        content: $icon-login;
+        content: $icon-idealo-logo-freigestellt-path4;
+        margin-left: -1.580078125em;
+        color: rgb(10, 55, 97);
     }
 }
-
-.icon-footer {
+.icon-idealo-logo-freigestellt .path5 {
     &:before {
-        content: $icon-footer;
+        content: $icon-idealo-logo-freigestellt-path5;
+        margin-left: -1.580078125em;
+        color: rgb(10, 55, 97);
     }
 }
-
-.icon-header {
+.icon-idealo-logo-freigestellt .path6 {
     &:before {
-        content: $icon-header;
+        content: $icon-idealo-logo-freigestellt-path6;
+        margin-left: -1.580078125em;
+        color: rgb(10, 55, 97);
     }
 }
-
-.icon-unlink {
+.icon-idealo-logo-freigestellt .path7 {
     &:before {
-        content: $icon-unlink;
+        content: $icon-idealo-logo-freigestellt-path7;
+        margin-left: -1.580078125em;
+        color: rgb(10, 55, 97);
     }
 }
-
-.icon-anonymize {
+.icon-idealo-logo-freigestellt .path8 {
     &:before {
-        content: $icon-anonymize;
+        content: $icon-idealo-logo-freigestellt-path8;
+        margin-left: -1.580078125em;
+        color: rgb(255, 102, 0);
     }
 }
-
-.icon-active_doc {
+.icon-idealo-logo-freigestellt .path9 {
     &:before {
-        content: $icon-active_doc;
+        content: $icon-idealo-logo-freigestellt-path9;
+        margin-left: -1.580078125em;
+        color: rgb(10, 55, 97);
     }
 }
-
-.icon-active_fold_closed {
+.icon-idealo-logo-freigestellt .path10 {
     &:before {
-        content: $icon-active_fold_closed;
+        content: $icon-idealo-logo-freigestellt-path10;
+        margin-left: -1.580078125em;
+        color: rgb(10, 55, 97);
     }
 }
-
-.icon-active_fold_open {
+.icon-idealo-logo-freigestellt .path11 {
     &:before {
-        content: $icon-active_fold_open;
+        content: $icon-idealo-logo-freigestellt-path11;
+        margin-left: -1.580078125em;
+        color: rgb(10, 55, 97);
     }
 }
-
-.icon-active_settings {
+.icon-idealo-logo-freigestellt .path12 {
     &:before {
-        content: $icon-active_settings;
+        content: $icon-idealo-logo-freigestellt-path12;
+        margin-left: -1.580078125em;
+        color: rgb(10, 55, 97);
     }
 }
-
-.icon-equals {
+.icon-idealo-logo-freigestellt .path13 {
     &:before {
-        content: $icon-equals;
+        content: $icon-idealo-logo-freigestellt-path13;
+        margin-left: -1.580078125em;
+        color: rgb(10, 55, 97);
     }
 }
-
-.icon-inactive_doc {
+.icon-idealo-logo-freigestellt .path14 {
     &:before {
-        content: $icon-inactive_doc;
+        content: $icon-idealo-logo-freigestellt-path14;
+        margin-left: -1.580078125em;
+        color: rgb(10, 55, 97);
     }
 }
-
-.icon-inactive_fold_closed {
+.icon-idealo-logo-freigestellt .path15 {
     &:before {
-        content: $icon-inactive_fold_closed;
+        content: $icon-idealo-logo-freigestellt-path15;
+        margin-left: -1.580078125em;
+        color: rgb(10, 55, 97);
     }
 }
-
-.icon-inactive_fold_open {
+.icon-idealo-logo-freigestellt .path16 {
     &:before {
-        content: $icon-inactive_fold_open;
+        content: $icon-idealo-logo-freigestellt-path16;
+        margin-left: -1.580078125em;
+        color: rgb(10, 55, 97);
     }
 }
-
-.icon-intermed_fold_closed {
+.icon-idealo-logo-freigestellt .path17 {
     &:before {
-        content: $icon-intermed_fold_closed;
+        content: $icon-idealo-logo-freigestellt-path17;
+        margin-left: -1.580078125em;
+        color: rgb(10, 55, 97);
     }
 }
-
-.icon-intermed_fold_open {
+.icon-idealo-logo-freigestellt .path18 {
     &:before {
-        content: $icon-intermed_fold_open;
+        content: $icon-idealo-logo-freigestellt-path18;
+        margin-left: -1.580078125em;
+        color: rgb(10, 55, 97);
     }
 }
-
-.icon-link {
-    &:before {
-        content: $icon-link;
-    }
-}
-
-.icon-real {
-    &:before {
-        content: $icon-real;
-    }
-}
-
-.icon-reg_expr {
-    &:before {
-        content: $icon-reg_expr;
-    }
-}
-
-.icon-plenty_base {
-    &:before {
-        content: $icon-plenty_base;
-    }
-}
-
-.icon-colorpicker {
-    &:before {
-        content: $icon-colorpicker;
-    }
-}
-
-.icon-servicecenter {
-    &:before {
-        content: $icon-servicecenter;
-    }
-}
-
-.icon-open_external_link {
-    &:before {
-        content: $icon-open_external_link;
-    }
-}
-
-.icon-unlock_contact {
-    &:before {
-        content: $icon-unlock_contact;
-    }
-}
-
-.icon-exch_adre_type {
-    &:before {
-        content: $icon-exch_adre_type;
-    }
-}
-
-.icon-ship_amaz_1st {
-    &:before {
-        content: $icon-ship_amaz_1st;
-    }
-}
-
-.icon-ship_amaz_2nd {
-    &:before {
-        content: $icon-ship_amaz_2nd;
-    }
-}
-
-.icon-ship_amaz_prime_1st {
-    &:before {
-        content: $icon-ship_amaz_prime_1st;
-    }
-}
-
-.icon-ship_amaz_prime_2nd {
-    &:before {
-        content: $icon-ship_amaz_prime_2nd;
-    }
-}
-
-.icon-ship_amaz_prime {
-    &:before {
-        content: $icon-ship_amaz_prime;
-    }
-}
-
-.icon-caret {
-    &:before {
-        content: $icon-caret;
-    }
-}
-
-.icon-item-artikel {
-    &:before {
-        content: $icon-item-artikel;
-    }
-}
-
-.icon-align_center {
-    &:before {
-        content: $icon-align_center;
-    }
-}
-
-.icon-align_justify {
-    &:before {
-        content: $icon-align_justify;
-    }
-}
-
-.icon-align_left {
-    &:before {
-        content: $icon-align_left;
-    }
-}
-
-.icon-align_right {
-    &:before {
-        content: $icon-align_right;
-    }
-}
-
-.icon-device_desktop {
-    &:before {
-        content: $icon-device_desktop;
-    }
-}
-
-.icon-device_laptop {
-    &:before {
-        content: $icon-device_laptop;
-    }
-}
-
-.icon-device_mobile {
-    &:before {
-        content: $icon-device_mobile;
-    }
-}
-
-.icon-device_tablet {
-    &:before {
-        content: $icon-device_tablet;
-    }
-}
-
-.icon-ebay {
-    &:before {
-        content: $icon-ebay;
-    }
-}
-
-.icon-switch_editor {
-    &:before {
-        content: $icon-switch_editor;
-    }
-}
-
-.icon-text_bold {
-    &:before {
-        content: $icon-text_bold;
-    }
-}
-
-.icon-text_italic {
-    &:before {
-        content: $icon-text_italic;
-    }
-}
-
-.icon-text_strikethrough {
-    &:before {
-        content: $icon-text_strikethrough;
-    }
-}
-
-.icon-text_underline {
-    &:before {
-        content: $icon-text_underline;
-    }
-}
-
-.icon-click_and_collect {
-    &:before {
-        content: $icon-click_and_collect;
-    }
-}
-
-.icon-ebay_basket {
-    &:before {
-        content: $icon-ebay_basket;
-    }
-}
-
-.icon-ebay_plus {
-    &:before {
-        content: $icon-ebay_plus;
-    }
-}
-
-.icon-hood {
-    &:before {
-        content: $icon-hood;
-    }
-}
-
-.icon-reverse_fullscreen {
-    &:before {
-        content: $icon-reverse_fullscreen;
-    }
-}
-
-.icon-ricardo {
-    &:before {
-        content: $icon-ricardo;
-    }
-}
-
-.icon-backend_ceres {
-    &:before {
-        content: $icon-backend_ceres;
-    }
-}
-
-.icon-backend_io {
-    &:before {
-        content: $icon-backend_io;
-    }
-}
-
-.icon-shipping_cbc_logistics {
-    &:before {
-        content: $icon-shipping_cbc_logistics;
-    }
-}
-
-.icon-application_double {
-    &:before {
-        content: $icon-application_double;
-    }
-}
-
-.icon-box_minus_disabled {
-    &:before {
-        content: $icon-box_minus_disabled;
-    }
-}
-
-.icon-box_minus {
-    &:before {
-        content: $icon-box_minus;
-    }
-}
-
-.icon-box_plus_disabled {
-    &:before {
-        content: $icon-box_plus_disabled;
-    }
-}
-
-.icon-box_plus {
-    &:before {
-        content: $icon-box_plus;
-    }
-}
-
-.icon-icon_questionmark_bck {
-    &:before {
-        content: $icon-icon_questionmark_bck;
-    }
-}
-
-.icon-manual_search {
-    &:before {
-        content: $icon-manual_search;
-    }
-}
-
-.icon-pay_5_paypal {
-    &:before {
-        content: $icon-pay_5_paypal;
-    }
-}
-
-.icon-pay_25_laredoute {
-    &:before {
-        content: $icon-pay_25_laredoute;
-    }
-}
-
-.icon-pay_amazon_payment {
-    &:before {
-        content: $icon-pay_amazon_payment;
-    }
-}
-
-.icon-pay_amazon {
-    &:before {
-        content: $icon-pay_amazon;
-    }
-}
-
-.icon-pay_bill {
-    &:before {
-        content: $icon-pay_bill;
-    }
-}
-
-.icon-pay_billsafe {
-    &:before {
-        content: $icon-pay_billsafe;
-    }
-}
-
-.icon-pay_cash_in_advance {
-    &:before {
-        content: $icon-pay_cash_in_advance;
-    }
-}
-
-.icon-pay_cash_on_delivery {
-    &:before {
-        content: $icon-pay_cash_on_delivery;
-    }
-}
-
-.icon-pay_cash {
-    &:before {
-        content: $icon-pay_cash;
-    }
-}
-
-.icon-pay_cheque {
-    &:before {
-        content: $icon-pay_cheque;
-    }
-}
-
-.icon-pay_clickandbuy {
-    &:before {
-        content: $icon-pay_clickandbuy;
-    }
-}
-
-.icon-pay_concardis {
-    &:before {
-        content: $icon-pay_concardis;
-    }
-}
-
-.icon-pay_coupon {
-    &:before {
-        content: $icon-pay_coupon;
-    }
-}
-
-.icon-pay_credit_card {
-    &:before {
-        content: $icon-pay_credit_card;
-    }
-}
-
-.icon-pay_crefopay {
-    &:before {
-        content: $icon-pay_crefopay;
-    }
-}
-
-.icon-pay_debit {
-    &:before {
-        content: $icon-pay_debit;
-    }
-}
-
-.icon-pay_ec {
-    &:before {
-        content: $icon-pay_ec;
-    }
-}
-
-.icon-pay_eos {
-    &:before {
-        content: $icon-pay_eos;
-    }
-}
-
-.icon-pay_expercash {
-    &:before {
-        content: $icon-pay_expercash;
-    }
-}
-
-.icon-pay_gartenxxl {
-    &:before {
-        content: $icon-pay_gartenxxl;
-    }
-}
-
-.icon-pay_gimahhot {
-    &:before {
-        content: $icon-pay_gimahhot;
-    }
-}
-
-.icon-pay_heidelpay {
-    &:before {
-        content: $icon-pay_heidelpay;
-    }
-}
-
-.icon-pay_hitmeister {
-    &:before {
-        content: $icon-pay_hitmeister;
-    }
-}
-
-.icon-pay_iclear {
-    &:before {
-        content: $icon-pay_iclear;
-    }
-}
-
-.icon-pay_iloxx {
-    &:before {
-        content: $icon-pay_iloxx;
-    }
-}
-
-.icon-pay_klarna {
-    &:before {
-        content: $icon-pay_klarna;
-    }
-}
-
-.icon-pay_masterpayment {
-    &:before {
-        content: $icon-pay_masterpayment;
-    }
-}
-
-.icon-pay_meinpaket {
-    &:before {
-        content: $icon-pay_meinpaket;
-    }
-}
-
-.icon-pay_neckermann {
-    &:before {
-        content: $icon-pay_neckermann;
-    }
-}
-
-.icon-pay_other {
-    &:before {
-        content: $icon-pay_other;
-    }
-}
-
-.icon-pay_pay_card {
-    &:before {
-        content: $icon-pay_pay_card;
-    }
-}
-
-.icon-pay_paymorrow_new {
-    &:before {
-        content: $icon-pay_paymorrow_new;
-    }
-}
-
-.icon-pay_paymorrow {
-    &:before {
-        content: $icon-pay_paymorrow;
-    }
-}
-
-.icon-pay_payolution {
-    &:before {
-        content: $icon-pay_payolution;
-    }
-}
-
-.icon-pay_payone {
-    &:before {
-        content: $icon-pay_payone;
-    }
-}
-
-.icon-pay_paypal_express {
-    &:before {
-        content: $icon-pay_paypal_express;
-    }
-}
-
-.icon-pay_paypal_qr {
-    &:before {
-        content: $icon-pay_paypal_qr;
-    }
-}
-
-.icon-pay_pixmania {
-    &:before {
-        content: $icon-pay_pixmania;
-    }
-}
-
-.icon-pay_plus {
-    &:before {
-        content: $icon-pay_plus;
-    }
-}
-
-.icon-pay_postpay {
-    &:before {
-        content: $icon-pay_postpay;
-    }
-}
-
-.icon-pay_rakuten {
-    &:before {
-        content: $icon-pay_rakuten;
-    }
-}
-
-.icon-pay_ratepay {
-    &:before {
-        content: $icon-pay_ratepay;
-    }
-}
-
-.icon-pay_saferpay {
-    &:before {
-        content: $icon-pay_saferpay;
-    }
-}
-
-.icon-pay_sagepay {
-    &:before {
-        content: $icon-pay_sagepay;
-    }
-}
-
-.icon-pay_santander {
-    &:before {
-        content: $icon-pay_santander;
-    }
-}
-
-.icon-pay_shopgate {
-    &:before {
-        content: $icon-pay_shopgate;
-    }
-}
-
-.icon-pay_skrill {
-    &:before {
-        content: $icon-pay_skrill;
-    }
-}
-
-.icon-pay_sofortueberweisung {
-    &:before {
-        content: $icon-pay_sofortueberweisung;
-    }
-}
-
-.icon-pay_wirecard {
-    &:before {
-        content: $icon-pay_wirecard;
-    }
-}
-
-.icon-pay_worldpay {
-    &:before {
-        content: $icon-pay_worldpay;
-    }
-}
-
-.icon-pay_zalando {
-    &:before {
-        content: $icon-pay_zalando;
-    }
-}
-
-.icon-pay_zentralverkauf {
-    &:before {
-        content: $icon-pay_zentralverkauf;
-    }
-}
-
-.icon-shipping_bilog {
-    &:before {
-        content: $icon-shipping_bilog;
-    }
-}
-
-.icon-shipping_bps {
-    &:before {
-        content: $icon-shipping_bps;
-    }
-}
-
-.icon-shipping_bvw {
-    &:before {
-        content: $icon-shipping_bvw;
-    }
-}
-
-.icon-shipping_dachser {
-    &:before {
-        content: $icon-shipping_dachser;
-    }
-}
-
-.icon-shipping_db_schenker {
-    &:before {
-        content: $icon-shipping_db_schenker;
-    }
-}
-
-.icon-shipping_deutschepost {
-    &:before {
-        content: $icon-shipping_deutschepost;
-    }
-}
-
-.icon-shipping_dhl_packstation {
-    &:before {
-        content: $icon-shipping_dhl_packstation;
-    }
-}
-
-.icon-shipping_dhl {
-    &:before {
-        content: $icon-shipping_dhl;
-    }
-}
-
-.icon-shipping_dpd {
-    &:before {
-        content: $icon-shipping_dpd;
-    }
-}
-
-.icon-shipping_ems_garantpost {
-    &:before {
-        content: $icon-shipping_ems_garantpost;
-    }
-}
-
-.icon-shipping_ereturn {
-    &:before {
-        content: $icon-shipping_ereturn;
-    }
-}
-
-.icon-shipping_esellersfriend {
-    &:before {
-        content: $icon-shipping_esellersfriend;
-    }
-}
-
-.icon-shipping_fedex {
-    &:before {
-        content: $icon-shipping_fedex;
-    }
-}
-
-.icon-shipping_gel_express {
-    &:before {
-        content: $icon-shipping_gel_express;
-    }
-}
-
-.icon-shipping_gls {
-    &:before {
-        content: $icon-shipping_gls;
-    }
-}
-
-.icon-shipping_hbh {
-    &:before {
-        content: $icon-shipping_hbh;
-    }
-}
-
-.icon-shipping_hermes {
-    &:before {
-        content: $icon-shipping_hermes;
-    }
-}
-
-.icon-shipping_ids_logistik {
-    &:before {
-        content: $icon-shipping_ids_logistik;
-    }
-}
-
-.icon-shipping_ilopack {
-    &:before {
-        content: $icon-shipping_ilopack;
-    }
-}
-
-.icon-shipping_iloxx {
-    &:before {
-        content: $icon-shipping_iloxx;
-    }
-}
-
-.icon-shipping_lkv {
-    &:before {
-        content: $icon-shipping_lkv;
-    }
-}
-
-.icon-shipping_other {
-    &:before {
-        content: $icon-shipping_other;
-    }
-}
-
-.icon-shipping_post_at {
-    &:before {
-        content: $icon-shipping_post_at;
-    }
-}
-
-.icon-shipping_pvs_logistik {
-    &:before {
-        content: $icon-shipping_pvs_logistik;
-    }
-}
-
-.icon-shipping_rhenus {
-    &:before {
-        content: $icon-shipping_rhenus;
-    }
-}
-
-.icon-shipping_selbstabholer {
-    &:before {
-        content: $icon-shipping_selbstabholer;
-    }
-}
-
-.icon-shipping_shippingcenter {
-    &:before {
-        content: $icon-shipping_shippingcenter;
-    }
-}
-
-.icon-shipping_spedition {
-    &:before {
-        content: $icon-shipping_spedition;
-    }
-}
-
-.icon-shipping_swiss_post {
-    &:before {
-        content: $icon-shipping_swiss_post;
-    }
-}
-
-.icon-shipping_tnt {
-    &:before {
-        content: $icon-shipping_tnt;
-    }
-}
-
-.icon-shipping_trans-o-flex {
-    &:before {
-        content: $icon-shipping_trans-o-flex;
-    }
-}
-
-.icon-shipping_ups {
-    &:before {
-        content: $icon-shipping_ups;
-    }
-}
-
-.icon-shipping_yousellwesend {
-    &:before {
-        content: $icon-shipping_yousellwesend;
-    }
-}
-
-.icon-customer_link {
-    &:before {
-        content: $icon-customer_link;
-    }
-}
-
-.icon-design_inline_edit {
-    &:before {
-        content: $icon-design_inline_edit;
-    }
-}
-
-.icon-document_show {
-    &:before {
-        content: $icon-document_show;
-    }
-}
-
-.icon-dunning_level_1 {
-    &:before {
-        content: $icon-dunning_level_1;
-    }
-}
-
-.icon-dunning_level_2 {
-    &:before {
-        content: $icon-dunning_level_2;
-    }
-}
-
-.icon-dunning_level_3 {
-    &:before {
-        content: $icon-dunning_level_3;
-    }
-}
-
-.icon-dunning_level_4 {
-    &:before {
-        content: $icon-dunning_level_4;
-    }
-}
-
-.icon-dunning_level_5 {
-    &:before {
-        content: $icon-dunning_level_5;
-    }
-}
-
-.icon-email_sent {
-    &:before {
-        content: $icon-email_sent;
-    }
-}
-
-.icon-file_extension_odt {
-    &:before {
-        content: $icon-file_extension_odt;
-    }
-}
-
-.icon-payment_sepa_pain {
-    &:before {
-        content: $icon-payment_sepa_pain;
-    }
-}
-
-.icon-shipping_centre {
-    &:before {
-        content: $icon-shipping_centre;
-    }
-}
-
-.icon-order_new {
-    &:before {
-        content: $icon-order_new;
-    }
-}
-
-.icon-icon-reversal_document-13 {
-    &:before {
-        content: $icon-icon-reversal_document-13;
-    }
-}
-
-.icon-reorder_search {
-    &:before {
-        content: $icon-reorder_search;
-    }
-}
-
-.icon-shipment_tracking {
-    &:before {
-        content: $icon-shipment_tracking;
-    }
-}
-
-.icon-zoom_out {
-    &:before {
-        content: $icon-zoom_out;
-    }
-}
-
-.icon-plugin_productive_deploy {
-    &:before {
-        content: $icon-plugin_productive_deploy;
-    }
-}
-
-.icon-plugin_to_productive {
-    &:before {
-        content: $icon-plugin_to_productive;
-    }
-}
-
-.icon-plugin_to_stage {
-    &:before {
-        content: $icon-plugin_to_stage;
-    }
-}
-
-.icon-image {
-    &:before {
-        content: $icon-image;
-    }
-}
-
-.icon-plugin_stage_deploy {
-    &:before {
-        content: $icon-plugin_stage_deploy;
-    }
-}
-
-.icon-plugin_stage {
-    &:before {
-        content: $icon-plugin_stage;
-    }
-}
-
-.icon-trash {
-    &:before {
-        content: $icon-trash;
-    }
-}
-
-.icon-author {
-    &:before {
-        content: $icon-author;
-    }
-}
-
-.icon-changelog {
-    &:before {
-        content: $icon-changelog;
-    }
-}
-
-.icon-item_move {
-    &:before {
-        content: $icon-item_move;
-    }
-}
-
-.icon-marketplace {
-    &:before {
-        content: $icon-marketplace;
-    }
-}
-
-.icon-plugin {
-    &:before {
-        content: $icon-plugin;
-    }
-}
-
-.icon-burger {
-    &:before {
-        content: $icon-burger;
-    }
-}
-
-.icon-grid {
-    &:before {
-        content: $icon-grid;
-    }
-}
-
-.icon-plugin_inbox {
-    &:before {
-        content: $icon-plugin_inbox;
-    }
-}
-
-.icon-dunning_level {
-    &:before {
-        content: $icon-dunning_level;
-    }
-}
-
-.icon-folder_closeable {
-    &:before {
-        content: $icon-folder_closeable;
-    }
-}
-
-.icon-order_multi {
-    &:before {
-        content: $icon-order_multi;
-    }
-}
-
-.icon-support {
-    &:before {
-        content: $icon-support;
-    }
-}
-
-.icon-diagramm {
-    &:before {
-        content: $icon-diagramm;
-    }
-}
-
-.icon-forum {
-    &:before {
-        content: $icon-forum;
-    }
-}
-
-.icon-handbuch {
-    &:before {
-        content: $icon-handbuch;
-    }
-}
-
-.icon-statistik {
-    &:before {
-        content: $icon-statistik;
-    }
-}
-
 .icon-active {
     &:before {
         content: $icon-active;
     }
 }
-
 .icon-add {
     &:before {
         content: $icon-add;
     }
 }
-
 .icon-address_label {
     &:before {
         content: $icon-address_label;
     }
 }
-
 .icon-adjustment_form {
     &:before {
         content: $icon-adjustment_form;
     }
 }
-
 .icon-apply_all {
     &:before {
         content: $icon-apply_all;
     }
 }
-
 .icon-back {
     &:before {
         content: $icon-back;
     }
 }
-
 .icon-booking_carry_outpng {
     &:before {
         content: $icon-booking_carry_outpng;
     }
 }
-
 .icon-booking_reset {
     &:before {
         content: $icon-booking_reset;
     }
 }
-
 .icon-calculate_acquisition_pricepng {
     &:before {
         content: $icon-calculate_acquisition_pricepng;
     }
 }
-
 .icon-calendar_extend_appointment {
     &:before {
         content: $icon-calendar_extend_appointment;
     }
 }
-
 .icon-cancel {
     &:before {
         content: $icon-cancel;
     }
 }
-
 .icon-category_edit {
     &:before {
         content: $icon-category_edit;
     }
 }
-
+.icon-plugin_productive_deploy {
+    &:before {
+        content: $icon-plugin_productive_deploy;
+    }
+}
 .icon-checkbox_checked {
     &:before {
         content: $icon-checkbox_checked;
     }
 }
-
 .icon-checkbox_indeterminate {
     &:before {
         content: $icon-checkbox_indeterminate;
     }
 }
-
 .icon-checkbox_unchecked {
     &:before {
         content: $icon-checkbox_unchecked;
     }
 }
-
 .icon-close {
     &:before {
         content: $icon-close;
     }
 }
-
 .icon-collapse_down {
     &:before {
         content: $icon-collapse_down;
     }
 }
-
 .icon-collapse_left {
     &:before {
         content: $icon-collapse_left;
     }
 }
-
 .icon-collapse_rightpng {
     &:before {
         content: $icon-collapse_rightpng;
     }
 }
-
 .icon-collapse_up {
     &:before {
         content: $icon-collapse_up;
     }
 }
-
 .icon-confirm {
     &:before {
         content: $icon-confirm;
     }
 }
-
 .icon-control_pause {
     &:before {
         content: $icon-control_pause;
     }
 }
-
 .icon-control_play {
     &:before {
         content: $icon-control_play;
     }
 }
-
 .icon-control_skip {
     &:before {
         content: $icon-control_skip;
     }
 }
-
 .icon-control_start {
     &:before {
         content: $icon-control_start;
     }
 }
-
 .icon-control_stop {
     &:before {
         content: $icon-control_stop;
     }
 }
-
 .icon-copy_clipboard {
     &:before {
         content: $icon-copy_clipboard;
     }
 }
-
 .icon-copy {
     &:before {
         content: $icon-copy;
     }
 }
-
 .icon-credit_note {
     &:before {
         content: $icon-credit_note;
     }
 }
-
+.icon-backend_ceres {
+    &:before {
+        content: $icon-backend_ceres;
+    }
+}
+.icon-backend_io {
+    &:before {
+        content: $icon-backend_io;
+    }
+}
+.icon-shipping_cbc_logistics {
+    &:before {
+        content: $icon-shipping_cbc_logistics;
+    }
+}
+.icon-caret {
+    &:before {
+        content: $icon-caret;
+    }
+}
 .icon-customer_new_password {
     &:before {
         content: $icon-customer_new_password;
     }
 }
-
 .icon-customer {
     &:before {
         content: $icon-customer;
     }
 }
-
 .icon-data_export {
     &:before {
         content: $icon-data_export;
     }
 }
-
 .icon-date_pick {
     &:before {
         content: $icon-date_pick;
     }
 }
-
 .icon-debug {
     &:before {
         content: $icon-debug;
     }
 }
-
 .icon-delete {
     &:before {
         content: $icon-delete;
     }
 }
-
 .icon-delivery_note_create {
     &:before {
         content: $icon-delivery_note_create;
     }
 }
-
 .icon-delivery_note {
     &:before {
         content: $icon-delivery_note;
     }
 }
-
 .icon-design_add {
     &:before {
         content: $icon-design_add;
     }
 }
-
 .icon-design_copy {
     &:before {
         content: $icon-design_copy;
     }
 }
-
 .icon-design_export {
     &:before {
         content: $icon-design_export;
     }
 }
-
 .icon-design_import {
     &:before {
         content: $icon-design_import;
     }
 }
-
 .icon-design_inline_edit_toggle {
     &:before {
         content: $icon-design_inline_edit_toggle;
     }
 }
-
+.icon-item-artikel {
+    &:before {
+        content: $icon-item-artikel;
+    }
+}
+.icon-align_center {
+    &:before {
+        content: $icon-align_center;
+    }
+}
+.icon-align_justify {
+    &:before {
+        content: $icon-align_justify;
+    }
+}
+.icon-align_left {
+    &:before {
+        content: $icon-align_left;
+    }
+}
 .icon-design_publish {
     &:before {
         content: $icon-design_publish;
     }
 }
-
 .icon-design_transfer {
     &:before {
         content: $icon-design_transfer;
     }
 }
-
+.icon-align_right {
+    &:before {
+        content: $icon-align_right;
+    }
+}
+.icon-device_desktop {
+    &:before {
+        content: $icon-device_desktop;
+    }
+}
+.icon-device_laptop {
+    &:before {
+        content: $icon-device_laptop;
+    }
+}
+.icon-device_mobile {
+    &:before {
+        content: $icon-device_mobile;
+    }
+}
 .icon-document {
     &:before {
         content: $icon-document;
     }
 }
-
 .icon-domain_new {
     &:before {
         content: $icon-domain_new;
     }
 }
-
 .icon-domains {
     &:before {
         content: $icon-domains;
     }
 }
-
 .icon-download {
     &:before {
         content: $icon-download;
     }
 }
-
 .icon-drag_sort_handle {
     &:before {
         content: $icon-drag_sort_handle;
     }
 }
-
 .icon-dropbox {
     &:before {
         content: $icon-dropbox;
     }
 }
-
 .icon-dunning_letter {
     &:before {
         content: $icon-dunning_letter;
     }
 }
-
+.icon-device_tablet {
+    &:before {
+        content: $icon-device_tablet;
+    }
+}
+.icon-ebay {
+    &:before {
+        content: $icon-ebay;
+    }
+}
+.icon-switch_editor {
+    &:before {
+        content: $icon-switch_editor;
+    }
+}
+.icon-text_bold {
+    &:before {
+        content: $icon-text_bold;
+    }
+}
+.icon-text_italic {
+    &:before {
+        content: $icon-text_italic;
+    }
+}
+.icon-text_strikethrough {
+    &:before {
+        content: $icon-text_strikethrough;
+    }
+}
+.icon-text_underline {
+    &:before {
+        content: $icon-text_underline;
+    }
+}
+.icon-click_and_collect {
+    &:before {
+        content: $icon-click_and_collect;
+    }
+}
+.icon-ebay_basket {
+    &:before {
+        content: $icon-ebay_basket;
+    }
+}
+.icon-ebay_plus {
+    &:before {
+        content: $icon-ebay_plus;
+    }
+}
+.icon-hood {
+    &:before {
+        content: $icon-hood;
+    }
+}
+.icon-dunning_level {
+    &:before {
+        content: $icon-dunning_level;
+    }
+}
+.icon-reverse_fullscreen {
+    &:before {
+        content: $icon-reverse_fullscreen;
+    }
+}
+.icon-ricardo {
+    &:before {
+        content: $icon-ricardo;
+    }
+}
+.icon-exch_adre_type {
+    &:before {
+        content: $icon-exch_adre_type;
+    }
+}
+.icon-application_double {
+    &:before {
+        content: $icon-application_double;
+    }
+}
+.icon-box_minus_disabled {
+    &:before {
+        content: $icon-box_minus_disabled;
+    }
+}
+.icon-box_minus {
+    &:before {
+        content: $icon-box_minus;
+    }
+}
+.icon-box_plus_disabled {
+    &:before {
+        content: $icon-box_plus_disabled;
+    }
+}
+.icon-box_plus {
+    &:before {
+        content: $icon-box_plus;
+    }
+}
+.icon-icon_questionmark_bck {
+    &:before {
+        content: $icon-icon_questionmark_bck;
+    }
+}
+.icon-manual_search {
+    &:before {
+        content: $icon-manual_search;
+    }
+}
+.icon-pay_5_paypal {
+    &:before {
+        content: $icon-pay_5_paypal;
+    }
+}
+.icon-pay_25_laredoute {
+    &:before {
+        content: $icon-pay_25_laredoute;
+    }
+}
+.icon-pay_amazon_payment {
+    &:before {
+        content: $icon-pay_amazon_payment;
+    }
+}
 .icon-edit_blog {
     &:before {
         content: $icon-edit_blog;
     }
 }
-
 .icon-edit_listing {
     &:before {
         content: $icon-edit_listing;
     }
 }
-
 .icon-edit {
     &:before {
         content: $icon-edit;
     }
 }
-
 .icon-email_send {
     &:before {
         content: $icon-email_send;
     }
 }
-
+.icon-pay_amazon {
+    &:before {
+        content: $icon-pay_amazon;
+    }
+}
+.icon-pay_bill {
+    &:before {
+        content: $icon-pay_bill;
+    }
+}
+.icon-pay_billsafe {
+    &:before {
+        content: $icon-pay_billsafe;
+    }
+}
+.icon-pay_cash_in_advance {
+    &:before {
+        content: $icon-pay_cash_in_advance;
+    }
+}
 .icon-email_service {
     &:before {
         content: $icon-email_service;
     }
 }
-
 .icon-error {
     &:before {
         content: $icon-error;
     }
 }
-
 .icon-execute {
     &:before {
         content: $icon-execute;
     }
 }
-
 .icon-export {
     &:before {
         content: $icon-export;
     }
 }
-
 .icon-favourite_active {
     &:before {
         content: $icon-favourite_active;
     }
 }
-
 .icon-favourite_inactive {
     &:before {
         content: $icon-favourite_inactive;
     }
 }
-
 .icon-favourites {
     &:before {
         content: $icon-favourites;
     }
 }
-
 .icon-file_attachment {
     &:before {
         content: $icon-file_attachment;
     }
 }
-
 .icon-file_extension_blank {
     &:before {
         content: $icon-file_extension_blank;
     }
 }
-
 .icon-file_extension_css {
     &:before {
         content: $icon-file_extension_css;
     }
 }
-
 .icon-file_extension_csv {
     &:before {
         content: $icon-file_extension_csv;
     }
 }
-
 .icon-file_extension_doc {
     &:before {
         content: $icon-file_extension_doc;
     }
 }
-
 .icon-file_extension_docx {
     &:before {
         content: $icon-file_extension_docx;
     }
 }
-
 .icon-file_extension_gif {
     &:before {
         content: $icon-file_extension_gif;
     }
 }
-
 .icon-file_extension_gzip {
     &:before {
         content: $icon-file_extension_gzip;
     }
 }
-
 .icon-file_extension_hh {
     &:before {
         content: $icon-file_extension_hh;
     }
 }
-
 .icon-file_extension_html {
     &:before {
         content: $icon-file_extension_html;
     }
 }
-
 .icon-file_extension_ico {
     &:before {
         content: $icon-file_extension_ico;
     }
 }
-
 .icon-file_extension_jpeg {
     &:before {
         content: $icon-file_extension_jpeg;
     }
 }
-
 .icon-file_extension_jpg {
     &:before {
         content: $icon-file_extension_jpg;
     }
 }
-
 .icon-file_extension_js {
     &:before {
         content: $icon-file_extension_js;
     }
 }
-
 .icon-file_extension_json {
     &:before {
         content: $icon-file_extension_json;
     }
 }
-
 .icon-file_extension_md {
     &:before {
         content: $icon-file_extension_md;
     }
 }
-
 .icon-file_extension_openoffice {
     &:before {
         content: $icon-file_extension_openoffice;
     }
 }
-
 .icon-file_extension_pdf {
     &:before {
         content: $icon-file_extension_pdf;
     }
 }
-
 .icon-file_extension_png {
     &:before {
         content: $icon-file_extension_png;
     }
 }
-
 .icon-file_extension_rtf {
     &:before {
         content: $icon-file_extension_rtf;
     }
 }
-
 .icon-file_extension_swf {
     &:before {
         content: $icon-file_extension_swf;
     }
 }
-
 .icon-file_extension_tar {
     &:before {
         content: $icon-file_extension_tar;
     }
 }
-
 .icon-file_extension_tiff {
     &:before {
         content: $icon-file_extension_tiff;
     }
 }
-
 .icon-file_extension_twig {
     &:before {
         content: $icon-file_extension_twig;
     }
 }
-
 .icon-file_extension_txt {
     &:before {
         content: $icon-file_extension_txt;
     }
 }
-
 .icon-file_extension_xls {
     &:before {
         content: $icon-file_extension_xls;
     }
 }
-
 .icon-file_extension_xlsx {
     &:before {
         content: $icon-file_extension_xlsx;
     }
 }
-
 .icon-file_extension_xml {
     &:before {
         content: $icon-file_extension_xml;
     }
 }
-
 .icon-file_extension_zip {
     &:before {
         content: $icon-file_extension_zip;
     }
 }
-
 .icon-filter_add {
     &:before {
         content: $icon-filter_add;
     }
 }
-
 .icon-filter_remove {
     &:before {
         content: $icon-filter_remove;
     }
 }
-
 .icon-filter {
     &:before {
         content: $icon-filter;
     }
 }
-
 .icon-first {
     &:before {
         content: $icon-first;
     }
 }
-
 .icon-flag_alarm {
     &:before {
         content: $icon-flag_alarm;
     }
 }
-
 .icon-flag_black {
     &:before {
         content: $icon-flag_black;
     }
 }
-
 .icon-flag_blue {
     &:before {
         content: $icon-flag_blue;
-        color: #008ebd;
     }
 }
-
 .icon-flag_bomb_black {
     &:before {
         content: $icon-flag_bomb_black;
     }
 }
-
 .icon-flag_bomb_green {
     &:before {
         content: $icon-flag_bomb_green;
-        color: #4cad33;
     }
 }
-
 .icon-flag_bomb_red {
     &:before {
         content: $icon-flag_bomb_red;
-        color: #d4021d;
     }
 }
-
 .icon-flag_green {
     &:before {
         content: $icon-flag_green;
-        color: #4cad33;
     }
 }
-
 .icon-flag_help {
     &:before {
         content: $icon-flag_help;
     }
 }
-
 .icon-flag_ledblack_16 {
     &:before {
         content: $icon-flag_ledblack_16;
     }
 }
-
 .icon-flag_ledblue_16 {
     &:before {
         content: $icon-flag_ledblue_16;
-        color: #008ebd;
     }
 }
-
 .icon-flag_leddarkblue_16 {
     &:before {
         content: $icon-flag_leddarkblue_16;
-        color: #354763;
     }
 }
-
 .icon-flag_leddarkgreen_16 {
     &:before {
         content: $icon-flag_leddarkgreen_16;
-        color: #066011;
     }
 }
-
 .icon-flag_leddarkred_16 {
     &:before {
         content: $icon-flag_leddarkred_16;
-        color: #910000;
     }
 }
-
 .icon-flag_ledgreen_16 {
     &:before {
         content: $icon-flag_ledgreen_16;
-        color: #4cad33;
     }
 }
-
 .icon-flag_ledgrey_16 {
     &:before {
         content: $icon-flag_ledgrey_16;
-        color: #707173;
     }
 }
-
 .icon-flag_ledorange_16 {
     &:before {
         content: $icon-flag_ledorange_16;
-        color: #ffa100;
     }
 }
-
 .icon-flag_ledpink_16 {
     &:before {
         content: $icon-flag_ledpink_16;
-        color: #dd0ba9;
     }
 }
-
 .icon-flag_ledpurple_16 {
     &:before {
         content: $icon-flag_ledpurple_16;
-        color: #870e6d;
     }
 }
-
 .icon-flag_ledred_16 {
     &:before {
         content: $icon-flag_ledred_16;
-        color: #d4021d;
     }
 }
-
 .icon-flag_ledyellow_16 {
     &:before {
         content: $icon-flag_ledyellow_16;
-        color: #ffce36;
     }
 }
-
 .icon-flag_none {
     &:before {
         content: $icon-flag_none;
     }
 }
-
 .icon-flag_red {
     &:before {
         content: $icon-flag_red;
-        color: #d4021d;
     }
 }
-
 .icon-flag_star {
     &:before {
         content: $icon-flag_star;
     }
 }
-
 .icon-flag_user_blue {
     &:before {
         content: $icon-flag_user_blue;
-        color: #008ebd;
     }
 }
-
 .icon-flag_user_dark_blue {
     &:before {
         content: $icon-flag_user_dark_blue;
-        color: #354763;
     }
 }
-
 .icon-flag_user_female {
     &:before {
         content: $icon-flag_user_female;
     }
 }
-
 .icon-flag_user_gray {
     &:before {
         content: $icon-flag_user_gray;
-        color: #707173;
     }
 }
-
 .icon-flag_user_green {
     &:before {
         content: $icon-flag_user_green;
-        color: #4cad33;
     }
 }
-
 .icon-flag_user_light_gray {
     &:before {
         content: $icon-flag_user_light_gray;
-        color: #c7c7c7;
     }
 }
-
 .icon-flag_user_orange {
     &:before {
         content: $icon-flag_user_orange;
-        color: #ffa100;
     }
 }
-
 .icon-flag_user_purple {
     &:before {
         content: $icon-flag_user_purple;
-        color: #870e6d;
     }
 }
-
 .icon-flag_user_red {
     &:before {
         content: $icon-flag_user_red;
-        color: #d4021d;
     }
 }
-
 .icon-flag_user_turquoise {
     &:before {
         content: $icon-flag_user_turquoise;
     }
 }
-
 .icon-flag_user_yellow {
     &:before {
         content: $icon-flag_user_yellow;
-        color: #ffce36;
     }
 }
-
 .icon-flag_weather_clouds {
     &:before {
         content: $icon-flag_weather_clouds;
     }
 }
-
 .icon-flag_weather_cloudy {
     &:before {
         content: $icon-flag_weather_cloudy;
     }
 }
-
 .icon-flag_weather_lightning {
     &:before {
         content: $icon-flag_weather_lightning;
     }
 }
-
 .icon-flag_weather_rain {
     &:before {
         content: $icon-flag_weather_rain;
     }
 }
-
 .icon-flag_weather_snow {
     &:before {
         content: $icon-flag_weather_snow;
     }
 }
-
 .icon-flag_weather_sun {
     &:before {
         content: $icon-flag_weather_sun;
     }
 }
-
 .icon-flag_yellow {
     &:before {
         content: $icon-flag_yellow;
-        color: #ffce36;
     }
 }
-
 .icon-folder_add {
     &:before {
         content: $icon-folder_add;
     }
 }
-
 .icon-folder_closable {
     &:before {
         content: $icon-folder_closable;
     }
 }
-
 .icon-folder_openable {
     &:before {
         content: $icon-folder_openable;
     }
 }
-
 .icon-folder_opened {
     &:before {
         content: $icon-folder_opened;
     }
 }
-
 .icon-folder {
     &:before {
         content: $icon-folder;
     }
 }
-
 .icon-frontend_open {
     &:before {
         content: $icon-frontend_open;
     }
 }
-
 .icon-fullscreen {
     &:before {
         content: $icon-fullscreen;
     }
 }
-
 .icon-help {
     &:before {
         content: $icon-help;
     }
 }
-
 .icon-inactive {
     &:before {
         content: $icon-inactive;
     }
 }
-
 .icon-infinite {
     &:before {
         content: $icon-infinite;
     }
 }
-
 .icon-info {
     &:before {
         content: $icon-info;
     }
 }
-
 .icon-insert_after {
     &:before {
         content: $icon-insert_after;
     }
 }
-
 .icon-insert_before {
     &:before {
         content: $icon-insert_before;
     }
 }
-
 .icon-invoice_create {
     &:before {
         content: $icon-invoice_create;
     }
 }
-
 .icon-item_barcode_show {
     &:before {
         content: $icon-item_barcode_show;
     }
 }
-
 .icon-item_bundle {
     &:before {
         content: $icon-item_bundle;
     }
 }
-
 .icon-item_image_gallery {
     &:before {
         content: $icon-item_image_gallery;
     }
 }
-
 .icon-item_image_selected_1 {
     &:before {
         content: $icon-item_image_selected_1;
     }
 }
-
 .icon-item_image_selected_2 {
     &:before {
         content: $icon-item_image_selected_2;
     }
 }
-
 .icon-item_label {
     &:before {
         content: $icon-item_label;
     }
 }
-
 .icon-item_plus {
     &:before {
         content: $icon-item_plus;
     }
 }
-
 .icon-item_referrer_url {
     &:before {
         content: $icon-item_referrer_url;
     }
 }
-
 .icon-item_scan {
     &:before {
         content: $icon-item_scan;
     }
 }
-
 .icon-item_search {
     &:before {
         content: $icon-item_search;
     }
 }
-
 .icon-item_serial_number_register {
     &:before {
         content: $icon-item_serial_number_register;
     }
 }
-
 .icon-item_serial_number {
     &:before {
         content: $icon-item_serial_number;
     }
 }
-
 .icon-item_variation_distribute_quantity {
     &:before {
         content: $icon-item_variation_distribute_quantity;
     }
 }
-
 .icon-item_variation_inheritance {
     &:before {
         content: $icon-item_variation_inheritance;
     }
 }
-
 .icon-item_webshop_invisible {
     &:before {
         content: $icon-item_webshop_invisible;
     }
 }
-
 .icon-item {
     &:before {
         content: $icon-item;
     }
 }
-
 .icon-items_incoming_history {
     &:before {
         content: $icon-items_incoming_history;
     }
 }
-
 .icon-lang_de {
     &:before {
         content: $icon-lang_de;
     }
 }
-
 .icon-lang_en {
     &:before {
         content: $icon-lang_en;
     }
 }
-
 .icon-lang_multilingual {
     &:before {
         content: $icon-lang_multilingual;
     }
 }
-
 .icon-last {
     &:before {
         content: $icon-last;
     }
 }
-
 .icon-lionbridge_status_check {
     &:before {
         content: $icon-lionbridge_status_check;
     }
 }
-
 .icon-lionbridge_status_checked {
     &:before {
         content: $icon-lionbridge_status_checked;
     }
 }
-
 .icon-listing_create {
     &:before {
         content: $icon-listing_create;
     }
 }
-
 .icon-listing_direct_lister {
     &:before {
         content: $icon-listing_direct_lister;
     }
 }
-
 .icon-listing_remove {
     &:before {
         content: $icon-listing_remove;
     }
 }
-
 .icon-listing_show_active {
     &:before {
         content: $icon-listing_show_active;
     }
 }
-
 .icon-listing_template_transfer {
     &:before {
         content: $icon-listing_template_transfer;
     }
 }
-
 .icon-listing_type_shop {
     &:before {
         content: $icon-listing_type_shop;
     }
 }
-
 .icon-listings_show_active {
     &:before {
         content: $icon-listings_show_active;
     }
 }
-
 .icon-listings_show {
     &:before {
         content: $icon-listings_show;
     }
 }
-
 .icon-more {
     &:before {
         content: $icon-more;
     }
 }
-
 .icon-move_down {
     &:before {
         content: $icon-move_down;
     }
 }
-
 .icon-move_up {
     &:before {
         content: $icon-move_up;
     }
 }
-
 .icon-navigate_back {
     &:before {
         content: $icon-navigate_back;
     }
 }
-
 .icon-new_todo {
     &:before {
         content: $icon-new_todo;
     }
 }
-
 .icon-next {
     &:before {
         content: $icon-next;
     }
 }
-
 .icon-offer {
     &:before {
         content: $icon-offer;
     }
 }
-
 .icon-order_confirmation_create {
     &:before {
         content: $icon-order_confirmation_create;
     }
 }
-
 .icon-order_flag {
     &:before {
         content: $icon-order_flag;
     }
 }
-
 .icon-order_mulit {
     &:before {
         content: $icon-order_mulit;
     }
 }
-
+.icon-order_new {
+    &:before {
+        content: $icon-order_new;
+    }
+}
 .icon-order_not_possible {
     &:before {
         content: $icon-order_not_possible;
     }
 }
-
 .icon-order_note_create {
     &:before {
         content: $icon-order_note_create;
     }
 }
-
 .icon-order_note_customer {
     &:before {
         content: $icon-order_note_customer;
     }
 }
-
 .icon-order_note {
     &:before {
         content: $icon-order_note;
     }
 }
-
 .icon-order_open {
     &:before {
         content: $icon-order_open;
     }
 }
-
 .icon-order_parcel_service_change {
     &:before {
         content: $icon-order_parcel_service_change;
     }
 }
-
 .icon-order_parcel_service_preset_change {
     &:before {
         content: $icon-order_parcel_service_preset_change;
     }
 }
-
 .icon-order_property {
     &:before {
         content: $icon-order_property;
     }
 }
-
 .icon-order_return_create_edit {
     &:before {
         content: $icon-order_return_create_edit;
     }
 }
-
 .icon-order_return_slip {
     &:before {
         content: $icon-order_return_slip;
     }
 }
-
 .icon-order_return {
     &:before {
         content: $icon-order_return;
     }
 }
-
 .icon-order_returns_label {
     &:before {
         content: $icon-order_returns_label;
     }
 }
-
 .icon-order_scheduler_new {
     &:before {
         content: $icon-order_scheduler_new;
     }
 }
-
 .icon-order_sent {
     &:before {
         content: $icon-order_sent;
     }
 }
-
 .icon-order_show_existing_processes {
     &:before {
         content: $icon-order_show_existing_processes;
     }
 }
-
 .icon-order_split {
     &:before {
         content: $icon-order_split;
     }
 }
-
 .icon-order {
     &:before {
         content: $icon-order;
     }
 }
-
 .icon-outgoing_items {
     &:before {
         content: $icon-outgoing_items;
     }
 }
-
 .icon-owner {
     &:before {
         content: $icon-owner;
     }
 }
-
 .icon-payment_assign {
     &:before {
         content: $icon-payment_assign;
     }
 }
-
 .icon-payment_book_incoming_directly {
     &:before {
         content: $icon-payment_book_incoming_directly;
     }
 }
-
 .icon-payment_credit_note {
     &:before {
         content: $icon-payment_credit_note;
     }
 }
-
 .icon-payment_manual_booking {
     &:before {
         content: $icon-payment_manual_booking;
     }
 }
-
 .icon-payment_register_incoming {
     &:before {
         content: $icon-payment_register_incoming;
     }
 }
-
+.icon-pay_cash_on_delivery {
+    &:before {
+        content: $icon-pay_cash_on_delivery;
+    }
+}
+.icon-pay_cash {
+    &:before {
+        content: $icon-pay_cash;
+    }
+}
+.icon-pay_cheque {
+    &:before {
+        content: $icon-pay_cheque;
+    }
+}
+.icon-pay_clickandbuy {
+    &:before {
+        content: $icon-pay_clickandbuy;
+    }
+}
+.icon-pay_concardis {
+    &:before {
+        content: $icon-pay_concardis;
+    }
+}
+.icon-pay_coupon {
+    &:before {
+        content: $icon-pay_coupon;
+    }
+}
+.icon-pay_credit_card {
+    &:before {
+        content: $icon-pay_credit_card;
+    }
+}
+.icon-pay_crefopay {
+    &:before {
+        content: $icon-pay_crefopay;
+    }
+}
+.icon-pay_debit {
+    &:before {
+        content: $icon-pay_debit;
+    }
+}
 .icon-picklist_close {
     &:before {
         content: $icon-picklist_close;
     }
 }
-
 .icon-picklist {
     &:before {
         content: $icon-picklist;
     }
 }
-
 .icon-placeholder_show_list {
     &:before {
         content: $icon-placeholder_show_list;
     }
 }
-
 .icon-plenty_testsystem_new {
     &:before {
         content: $icon-plenty_testsystem_new;
     }
 }
-
 .icon-plugin_copy_to_stage {
     &:before {
         content: $icon-plugin_copy_to_stage;
     }
 }
-
 .icon-plugin_linked_to_git {
     &:before {
         content: $icon-plugin_linked_to_git;
     }
 }
-
 .icon-plugin_not_copied_to_stage {
     &:before {
         content: $icon-plugin_not_copied_to_stage;
     }
 }
-
 .icon-plugin_not_linked_to_git {
     &:before {
         content: $icon-plugin_not_linked_to_git;
     }
 }
-
 .icon-plugin_not_productive {
     &:before {
         content: $icon-plugin_not_productive;
     }
 }
-
 .icon-plugin_productive {
     &:before {
         content: $icon-plugin_productive;
     }
 }
-
 .icon-plugin_pull_productive {
     &:before {
         content: $icon-plugin_pull_productive;
     }
 }
-
 .icon-plugin_pull_stage {
     &:before {
         content: $icon-plugin_pull_stage;
     }
 }
-
 .icon-plugin_pull {
     &:before {
         content: $icon-plugin_pull;
     }
 }
-
 .icon-plugin_push {
     &:before {
         content: $icon-plugin_push;
     }
 }
-
 .icon-plugin_repo_fetch {
     &:before {
         content: $icon-plugin_repo_fetch;
     }
 }
-
 .icon-preview_not_available {
     &:before {
         content: $icon-preview_not_available;
     }
 }
-
 .icon-preview {
     &:before {
         content: $icon-preview;
     }
 }
-
 .icon-print {
     &:before {
         content: $icon-print;
     }
 }
-
 .icon-printer_add {
     &:before {
         content: $icon-printer_add;
     }
 }
-
 .icon-problem {
     &:before {
         content: $icon-problem;
     }
 }
-
 .icon-process_add {
     &:before {
         content: $icon-process_add;
     }
 }
-
 .icon-process_caching {
     &:before {
         content: $icon-process_caching;
     }
 }
-
 .icon-process_counter_1 {
     &:before {
         content: $icon-process_counter_1;
     }
 }
-
 .icon-process_counter_2 {
     &:before {
         content: $icon-process_counter_2;
     }
 }
-
 .icon-process_counter_3 {
     &:before {
         content: $icon-process_counter_3;
     }
 }
-
 .icon-process_counter_4 {
     &:before {
         content: $icon-process_counter_4;
     }
 }
-
 .icon-process_counter_5 {
     &:before {
         content: $icon-process_counter_5;
     }
 }
-
 .icon-process_counter_6 {
     &:before {
         content: $icon-process_counter_6;
     }
 }
-
 .icon-process_counter_7 {
     &:before {
         content: $icon-process_counter_7;
     }
 }
-
 .icon-process_counter_8 {
     &:before {
         content: $icon-process_counter_8;
     }
 }
-
 .icon-process_counter_9 {
     &:before {
         content: $icon-process_counter_9;
     }
 }
-
 .icon-process_counter_10 {
     &:before {
         content: $icon-process_counter_10;
     }
 }
-
 .icon-process_counter_11 {
     &:before {
         content: $icon-process_counter_11;
     }
 }
-
 .icon-process_counter_12 {
     &:before {
         content: $icon-process_counter_12;
     }
 }
-
 .icon-process_counter_13 {
     &:before {
         content: $icon-process_counter_13;
     }
 }
-
 .icon-process_counter_14 {
     &:before {
         content: $icon-process_counter_14;
     }
 }
-
 .icon-process_counter_15 {
     &:before {
         content: $icon-process_counter_15;
     }
 }
-
 .icon-process_counter_16 {
     &:before {
         content: $icon-process_counter_16;
     }
 }
-
 .icon-process_counter_17 {
     &:before {
         content: $icon-process_counter_17;
     }
 }
-
 .icon-process_counter_18 {
     &:before {
         content: $icon-process_counter_18;
     }
 }
-
 .icon-process_counter_19 {
     &:before {
         content: $icon-process_counter_19;
     }
 }
-
 .icon-process_counter_20 {
     &:before {
         content: $icon-process_counter_20;
     }
 }
-
 .icon-process_counter_21 {
     &:before {
         content: $icon-process_counter_21;
     }
 }
-
 .icon-process_counter_22 {
     &:before {
         content: $icon-process_counter_22;
     }
 }
-
 .icon-process_counter_23 {
     &:before {
         content: $icon-process_counter_23;
     }
 }
-
 .icon-process_counter_24 {
     &:before {
         content: $icon-process_counter_24;
     }
 }
-
 .icon-process_counter_25 {
     &:before {
         content: $icon-process_counter_25;
     }
 }
-
 .icon-process_dialog {
     &:before {
         content: $icon-process_dialog;
     }
 }
-
 .icon-process_end {
     &:before {
         content: $icon-process_end;
     }
 }
-
 .icon-process_error_grey {
     &:before {
         content: $icon-process_error_grey;
-        color: #707173;
     }
 }
-
 .icon-process_error_red {
     &:before {
         content: $icon-process_error_red;
-        color: #d4021d;
     }
 }
-
 .icon-process_error {
     &:before {
         content: $icon-process_error;
     }
 }
-
 .icon-process_jump {
     &:before {
         content: $icon-process_jump;
     }
 }
-
 .icon-process_loop {
     &:before {
         content: $icon-process_loop;
     }
 }
-
 .icon-process_order_status {
     &:before {
         content: $icon-process_order_status;
     }
 }
-
 .icon-process_polling {
     &:before {
         content: $icon-process_polling;
     }
 }
-
 .icon-process_scan {
     &:before {
         content: $icon-process_scan;
     }
 }
-
 .icon-rating_small_-1 {
     &:before {
         content: $icon-rating_small_-1;
     }
 }
-
 .icon-rating_small_-2 {
     &:before {
         content: $icon-rating_small_-2;
     }
 }
-
 .icon-rating_small_-3 {
     &:before {
         content: $icon-rating_small_-3;
     }
 }
-
 .icon-rating_small_-4 {
     &:before {
         content: $icon-rating_small_-4;
     }
 }
-
 .icon-rating_small_-5 {
     &:before {
         content: $icon-rating_small_-5;
     }
 }
-
 .icon-rating_small_0 {
     &:before {
         content: $icon-rating_small_0;
     }
 }
-
 .icon-rating_small_1 {
     &:before {
         content: $icon-rating_small_1;
     }
 }
-
 .icon-rating_small_02 {
     &:before {
         content: $icon-rating_small_02;
     }
 }
-
 .icon-rating_small_3 {
     &:before {
         content: $icon-rating_small_3;
     }
 }
-
 .icon-rating_small_4 {
     &:before {
         content: $icon-rating_small_4;
     }
 }
-
 .icon-rating_small_5 {
     &:before {
         content: $icon-rating_small_5;
     }
 }
-
 .icon-receipt_archive {
     &:before {
         content: $icon-receipt_archive;
     }
 }
-
 .icon-referrer_backend {
     &:before {
         content: $icon-referrer_backend;
     }
 }
-
 .icon-refresh {
     &:before {
         content: $icon-refresh;
     }
 }
-
 .icon-reload {
     &:before {
         content: $icon-reload;
     }
 }
-
 .icon-reorder_create {
     &:before {
         content: $icon-reorder_create;
     }
 }
-
 .icon-reorder_not_possible {
     &:before {
         content: $icon-reorder_not_possible;
     }
 }
-
 .icon-reorder_scan {
     &:before {
         content: $icon-reorder_scan;
     }
 }
-
+.icon-reorder_search {
+    &:before {
+        content: $icon-reorder_search;
+    }
+}
 .icon-reorder_show {
     &:before {
         content: $icon-reorder_show;
     }
 }
-
 .icon-reorder_type {
     &:before {
         content: $icon-reorder_type;
     }
 }
-
 .icon-reorder {
     &:before {
         content: $icon-reorder;
     }
 }
-
 .icon-repair_slip {
     &:before {
         content: $icon-repair_slip;
     }
 }
-
 .icon-reset_32 {
     &:before {
         content: $icon-reset_32;
     }
 }
-
 .icon-reset {
     &:before {
         content: $icon-reset;
     }
 }
-
 .icon-save {
     &:before {
         content: $icon-save;
     }
 }
-
 .icon-search_apply {
     &:before {
         content: $icon-search_apply;
     }
 }
-
 .icon-search {
     &:before {
         content: $icon-search;
     }
 }
-
 .icon-send_email {
     &:before {
         content: $icon-send_email;
     }
 }
-
 .icon-set_package_number {
     &:before {
         content: $icon-set_package_number;
     }
 }
-
 .icon-settings_transfer {
     &:before {
         content: $icon-settings_transfer;
     }
 }
-
 .icon-settings {
     &:before {
         content: $icon-settings;
     }
 }
-
+.icon-shipment_tracking {
+    &:before {
+        content: $icon-shipment_tracking;
+    }
+}
+.icon-pay_ec {
+    &:before {
+        content: $icon-pay_ec;
+    }
+}
+.icon-pay_eos {
+    &:before {
+        content: $icon-pay_eos;
+    }
+}
+.icon-pay_expercash {
+    &:before {
+        content: $icon-pay_expercash;
+    }
+}
+.icon-pay_gartenxxl {
+    &:before {
+        content: $icon-pay_gartenxxl;
+    }
+}
+.icon-pay_gimahhot {
+    &:before {
+        content: $icon-pay_gimahhot;
+    }
+}
+.icon-pay_heidelpay {
+    &:before {
+        content: $icon-pay_heidelpay;
+    }
+}
+.icon-pay_hitmeister {
+    &:before {
+        content: $icon-pay_hitmeister;
+    }
+}
+.icon-pay_iclear {
+    &:before {
+        content: $icon-pay_iclear;
+    }
+}
+.icon-pay_iloxx {
+    &:before {
+        content: $icon-pay_iloxx;
+    }
+}
+.icon-pay_klarna {
+    &:before {
+        content: $icon-pay_klarna;
+    }
+}
+.icon-pay_masterpayment {
+    &:before {
+        content: $icon-pay_masterpayment;
+    }
+}
+.icon-pay_meinpaket {
+    &:before {
+        content: $icon-pay_meinpaket;
+    }
+}
+.icon-pay_neckermann {
+    &:before {
+        content: $icon-pay_neckermann;
+    }
+}
 .icon-shipping_dhl_packstation_valid {
     &:before {
         content: $icon-shipping_dhl_packstation_valid;
     }
 }
-
 .icon-shipping_express {
     &:before {
         content: $icon-shipping_express;
     }
 }
-
 .icon-skype {
     &:before {
         content: $icon-skype;
     }
 }
-
 .icon-sort_asc {
     &:before {
         content: $icon-sort_asc;
     }
 }
-
 .icon-sort_desc {
     &:before {
         content: $icon-sort_desc;
     }
 }
-
 .icon-sort_down {
     &:before {
         content: $icon-sort_down;
     }
 }
-
 .icon-sort_up {
     &:before {
         content: $icon-sort_up;
     }
 }
-
 .icon-sound {
     &:before {
         content: $icon-sound;
     }
 }
-
 .icon-stock_intake_without_reorder {
     &:before {
         content: $icon-stock_intake_without_reorder;
     }
 }
-
 .icon-stock_intake {
     &:before {
         content: $icon-stock_intake;
     }
 }
-
 .icon-stock_limited {
     &:before {
         content: $icon-stock_limited;
     }
 }
-
 .icon-stock {
     &:before {
         content: $icon-stock;
     }
 }
-
 .icon-success {
     &:before {
         content: $icon-success;
     }
 }
-
 .icon-tag_disabled {
     &:before {
         content: $icon-tag_disabled;
     }
 }
-
 .icon-tag {
     &:before {
         content: $icon-tag;
     }
 }
-
 .icon-telephone_hangup {
     &:before {
         content: $icon-telephone_hangup;
     }
 }
-
 .icon-telephone {
     &:before {
         content: $icon-telephone;
     }
 }
-
 .icon-ticket_add_faq {
     &:before {
         content: $icon-ticket_add_faq;
     }
 }
-
 .icon-ticket_all {
     &:before {
         content: $icon-ticket_all;
     }
 }
-
 .icon-ticket_attachment_private {
     &:before {
         content: $icon-ticket_attachment_private;
     }
 }
-
 .icon-ticket_create {
     &:before {
         content: $icon-ticket_create;
     }
 }
-
 .icon-ticket_deadline_exceeded {
     &:before {
         content: $icon-ticket_deadline_exceeded;
     }
 }
-
 .icon-ticket_deadline_today {
     &:before {
         content: $icon-ticket_deadline_today;
     }
 }
-
 .icon-ticket_events {
     &:before {
         content: $icon-ticket_events;
     }
 }
-
 .icon-ticket_folder_move {
     &:before {
         content: $icon-ticket_folder_move;
     }
 }
-
 .icon-ticket_link {
     &:before {
         content: $icon-ticket_link;
     }
 }
-
 .icon-ticket_message_new {
     &:before {
         content: $icon-ticket_message_new;
     }
 }
-
 .icon-ticket_message_private_new {
     &:before {
         content: $icon-ticket_message_private_new;
     }
 }
-
 .icon-ticket_message_private {
     &:before {
         content: $icon-ticket_message_private;
     }
 }
-
 .icon-ticket_message {
     &:before {
         content: $icon-ticket_message;
     }
 }
-
 .icon-ticket_mine_done {
     &:before {
         content: $icon-ticket_mine_done;
     }
 }
-
 .icon-ticket_mine_todo {
     &:before {
         content: $icon-ticket_mine_todo;
     }
 }
-
 .icon-ticket_mine {
     &:before {
         content: $icon-ticket_mine;
     }
 }
-
 .icon-ticket_new {
     &:before {
         content: $icon-ticket_new;
     }
 }
-
 .icon-ticket_prio1 {
     &:before {
         content: $icon-ticket_prio1;
     }
 }
-
 .icon-ticket_prio2 {
     &:before {
         content: $icon-ticket_prio2;
     }
 }
-
 .icon-ticket_prio3 {
     &:before {
         content: $icon-ticket_prio3;
     }
 }
-
 .icon-ticket_prio4 {
     &:before {
         content: $icon-ticket_prio4;
     }
 }
-
 .icon-ticket_prio5 {
     &:before {
         content: $icon-ticket_prio5;
     }
 }
-
 .icon-ticket_prio6 {
     &:before {
         content: $icon-ticket_prio6;
     }
 }
-
 .icon-ticket_prio7 {
     &:before {
         content: $icon-ticket_prio7;
     }
 }
-
 .icon-ticket_prio8 {
     &:before {
         content: $icon-ticket_prio8;
     }
 }
-
 .icon-ticket_show_parent {
     &:before {
         content: $icon-ticket_show_parent;
     }
 }
-
 .icon-ticket_show {
     &:before {
         content: $icon-ticket_show;
     }
 }
-
 .icon-ticket_todo {
     &:before {
         content: $icon-ticket_todo;
     }
 }
-
 .icon-timer {
     &:before {
         content: $icon-timer;
     }
 }
-
 .icon-upload {
     &:before {
         content: $icon-upload;
     }
 }
-
 .icon-user_my_account {
     &:before {
         content: $icon-user_my_account;
     }
 }
-
 .icon-vcard {
     &:before {
         content: $icon-vcard;
     }
 }
-
 .icon-visibility_private {
     &:before {
         content: $icon-visibility_private;
     }
 }
-
 .icon-warning {
     &:before {
         content: $icon-warning;
     }
 }
-
 .icon-zoom {
     &:before {
         content: $icon-zoom;
     }
 }
-
+.icon-diagramm {
+    &:before {
+        content: $icon-diagramm;
+    }
+}
+.icon-forum {
+    &:before {
+        content: $icon-forum;
+    }
+}
+.icon-handbuch {
+    &:before {
+        content: $icon-handbuch;
+    }
+}
+.icon-statistik {
+    &:before {
+        content: $icon-statistik;
+    }
+}
+.icon-support {
+    &:before {
+        content: $icon-support;
+    }
+}
+.icon-pay_other {
+    &:before {
+        content: $icon-pay_other;
+    }
+}
+.icon-folder_closeable {
+    &:before {
+        content: $icon-folder_closeable;
+    }
+}
+.icon-order_multi {
+    &:before {
+        content: $icon-order_multi;
+    }
+}
+.icon-trash {
+    &:before {
+        content: $icon-trash;
+    }
+}
+.icon-plugin_inbox {
+    &:before {
+        content: $icon-plugin_inbox;
+    }
+}
+.icon-burger {
+    &:before {
+        content: $icon-burger;
+    }
+}
+.icon-grid {
+    &:before {
+        content: $icon-grid;
+    }
+}
+.icon-author {
+    &:before {
+        content: $icon-author;
+    }
+}
+.icon-changelog {
+    &:before {
+        content: $icon-changelog;
+    }
+}
+.icon-pay_pay_card {
+    &:before {
+        content: $icon-pay_pay_card;
+    }
+}
+.icon-pay_paymorrow_new {
+    &:before {
+        content: $icon-pay_paymorrow_new;
+    }
+}
+.icon-pay_paymorrow {
+    &:before {
+        content: $icon-pay_paymorrow;
+    }
+}
+.icon-pay_payolution {
+    &:before {
+        content: $icon-pay_payolution;
+    }
+}
+.icon-pay_payone {
+    &:before {
+        content: $icon-pay_payone;
+    }
+}
+.icon-pay_paypal_express {
+    &:before {
+        content: $icon-pay_paypal_express;
+    }
+}
+.icon-pay_paypal_qr {
+    &:before {
+        content: $icon-pay_paypal_qr;
+    }
+}
+.icon-pay_pixmania {
+    &:before {
+        content: $icon-pay_pixmania;
+    }
+}
+.icon-pay_plus {
+    &:before {
+        content: $icon-pay_plus;
+    }
+}
+.icon-pay_postpay {
+    &:before {
+        content: $icon-pay_postpay;
+    }
+}
+.icon-pay_rakuten {
+    &:before {
+        content: $icon-pay_rakuten;
+    }
+}
+.icon-pay_ratepay {
+    &:before {
+        content: $icon-pay_ratepay;
+    }
+}
+.icon-pay_saferpay {
+    &:before {
+        content: $icon-pay_saferpay;
+    }
+}
+.icon-pay_sagepay {
+    &:before {
+        content: $icon-pay_sagepay;
+    }
+}
+.icon-pay_santander {
+    &:before {
+        content: $icon-pay_santander;
+    }
+}
+.icon-pay_shopgate {
+    &:before {
+        content: $icon-pay_shopgate;
+    }
+}
+.icon-pay_skrill {
+    &:before {
+        content: $icon-pay_skrill;
+    }
+}
+.icon-pay_sofortueberweisung {
+    &:before {
+        content: $icon-pay_sofortueberweisung;
+    }
+}
+.icon-pay_wirecard {
+    &:before {
+        content: $icon-pay_wirecard;
+    }
+}
+.icon-pay_worldpay {
+    &:before {
+        content: $icon-pay_worldpay;
+    }
+}
+.icon-pay_zalando {
+    &:before {
+        content: $icon-pay_zalando;
+    }
+}
+.icon-pay_zentralverkauf {
+    &:before {
+        content: $icon-pay_zentralverkauf;
+    }
+}
+.icon-shipping_bilog {
+    &:before {
+        content: $icon-shipping_bilog;
+    }
+}
+.icon-shipping_bps {
+    &:before {
+        content: $icon-shipping_bps;
+    }
+}
+.icon-shipping_bvw {
+    &:before {
+        content: $icon-shipping_bvw;
+    }
+}
+.icon-shipping_dachser {
+    &:before {
+        content: $icon-shipping_dachser;
+    }
+}
+.icon-shipping_db_schenker {
+    &:before {
+        content: $icon-shipping_db_schenker;
+    }
+}
+.icon-shipping_deutschepost {
+    &:before {
+        content: $icon-shipping_deutschepost;
+    }
+}
+.icon-shipping_dhl_packstation {
+    &:before {
+        content: $icon-shipping_dhl_packstation;
+    }
+}
+.icon-shipping_dhl {
+    &:before {
+        content: $icon-shipping_dhl;
+    }
+}
+.icon-shipping_dpd {
+    &:before {
+        content: $icon-shipping_dpd;
+    }
+}
+.icon-shipping_ems_garantpost {
+    &:before {
+        content: $icon-shipping_ems_garantpost;
+    }
+}
+.icon-shipping_ereturn {
+    &:before {
+        content: $icon-shipping_ereturn;
+    }
+}
+.icon-shipping_esellersfriend {
+    &:before {
+        content: $icon-shipping_esellersfriend;
+    }
+}
+.icon-shipping_fedex {
+    &:before {
+        content: $icon-shipping_fedex;
+    }
+}
+.icon-shipping_gel_express {
+    &:before {
+        content: $icon-shipping_gel_express;
+    }
+}
+.icon-shipping_gls {
+    &:before {
+        content: $icon-shipping_gls;
+    }
+}
+.icon-shipping_hbh {
+    &:before {
+        content: $icon-shipping_hbh;
+    }
+}
+.icon-shipping_hermes {
+    &:before {
+        content: $icon-shipping_hermes;
+    }
+}
+.icon-shipping_ids_logistik {
+    &:before {
+        content: $icon-shipping_ids_logistik;
+    }
+}
+.icon-shipping_ilopack {
+    &:before {
+        content: $icon-shipping_ilopack;
+    }
+}
+.icon-shipping_iloxx {
+    &:before {
+        content: $icon-shipping_iloxx;
+    }
+}
+.icon-shipping_lkv {
+    &:before {
+        content: $icon-shipping_lkv;
+    }
+}
+.icon-shipping_other {
+    &:before {
+        content: $icon-shipping_other;
+    }
+}
+.icon-shipping_post_at {
+    &:before {
+        content: $icon-shipping_post_at;
+    }
+}
+.icon-shipping_pvs_logistik {
+    &:before {
+        content: $icon-shipping_pvs_logistik;
+    }
+}
+.icon-shipping_rhenus {
+    &:before {
+        content: $icon-shipping_rhenus;
+    }
+}
+.icon-shipping_selbstabholer {
+    &:before {
+        content: $icon-shipping_selbstabholer;
+    }
+}
+.icon-shipping_shippingcenter {
+    &:before {
+        content: $icon-shipping_shippingcenter;
+    }
+}
+.icon-shipping_spedition {
+    &:before {
+        content: $icon-shipping_spedition;
+    }
+}
+.icon-shipping_swiss_post {
+    &:before {
+        content: $icon-shipping_swiss_post;
+    }
+}
+.icon-shipping_tnt {
+    &:before {
+        content: $icon-shipping_tnt;
+    }
+}
+.icon-shipping_trans-o-flex {
+    &:before {
+        content: $icon-shipping_trans-o-flex;
+    }
+}
+.icon-shipping_ups {
+    &:before {
+        content: $icon-shipping_ups;
+    }
+}
+.icon-shipping_yousellwesend {
+    &:before {
+        content: $icon-shipping_yousellwesend;
+    }
+}
+.icon-customer_link {
+    &:before {
+        content: $icon-customer_link;
+    }
+}
+.icon-design_inline_edit {
+    &:before {
+        content: $icon-design_inline_edit;
+    }
+}
+.icon-document_show {
+    &:before {
+        content: $icon-document_show;
+    }
+}
+.icon-dunning_level_1 {
+    &:before {
+        content: $icon-dunning_level_1;
+    }
+}
+.icon-dunning_level_2 {
+    &:before {
+        content: $icon-dunning_level_2;
+    }
+}
+.icon-dunning_level_3 {
+    &:before {
+        content: $icon-dunning_level_3;
+    }
+}
+.icon-dunning_level_4 {
+    &:before {
+        content: $icon-dunning_level_4;
+    }
+}
+.icon-dunning_level_5 {
+    &:before {
+        content: $icon-dunning_level_5;
+    }
+}
+.icon-email_sent {
+    &:before {
+        content: $icon-email_sent;
+    }
+}
+.icon-file_extension_odt {
+    &:before {
+        content: $icon-file_extension_odt;
+    }
+}
+.icon-payment_sepa_pain {
+    &:before {
+        content: $icon-payment_sepa_pain;
+    }
+}
+.icon-shipping_centre {
+    &:before {
+        content: $icon-shipping_centre;
+    }
+}
+.icon-ship_amaz_1st {
+    &:before {
+        content: $icon-ship_amaz_1st;
+    }
+}
+.icon-ship_amaz_2nd {
+    &:before {
+        content: $icon-ship_amaz_2nd;
+    }
+}
+.icon-ship_amaz_prime_1st {
+    &:before {
+        content: $icon-ship_amaz_prime_1st;
+    }
+}
+.icon-ship_amaz_prime_2nd {
+    &:before {
+        content: $icon-ship_amaz_prime_2nd;
+    }
+}
+.icon-ship_amaz_prime {
+    &:before {
+        content: $icon-ship_amaz_prime;
+    }
+}
+.icon-open_external_link {
+    &:before {
+        content: $icon-open_external_link;
+    }
+}
+.icon-unlock_contact {
+    &:before {
+        content: $icon-unlock_contact;
+    }
+}
+.icon-colorpicker {
+    &:before {
+        content: $icon-colorpicker;
+    }
+}
+.icon-servicecenter {
+    &:before {
+        content: $icon-servicecenter;
+    }
+}
+.icon-plenty_base {
+    &:before {
+        content: $icon-plenty_base;
+    }
+}
+.icon-active_doc {
+    &:before {
+        content: $icon-active_doc;
+    }
+}
+.icon-active_fold_closed {
+    &:before {
+        content: $icon-active_fold_closed;
+    }
+}
+.icon-active_fold_open {
+    &:before {
+        content: $icon-active_fold_open;
+    }
+}
+.icon-active_settings {
+    &:before {
+        content: $icon-active_settings;
+    }
+}
+.icon-equals {
+    &:before {
+        content: $icon-equals;
+    }
+}
+.icon-inactive_doc {
+    &:before {
+        content: $icon-inactive_doc;
+    }
+}
+.icon-inactive_fold_closed {
+    &:before {
+        content: $icon-inactive_fold_closed;
+    }
+}
+.icon-inactive_fold_open {
+    &:before {
+        content: $icon-inactive_fold_open;
+    }
+}
+.icon-intermed_fold_closed {
+    &:before {
+        content: $icon-intermed_fold_closed;
+    }
+}
+.icon-intermed_fold_open {
+    &:before {
+        content: $icon-intermed_fold_open;
+    }
+}
+.icon-link {
+    &:before {
+        content: $icon-link;
+    }
+}
+.icon-real {
+    &:before {
+        content: $icon-real;
+    }
+}
+.icon-reg_expr {
+    &:before {
+        content: $icon-reg_expr;
+    }
+}
+.icon-anonymize {
+    &:before {
+        content: $icon-anonymize;
+    }
+}
+.icon-unlink {
+    &:before {
+        content: $icon-unlink;
+    }
+}
+.icon-auslog {
+    &:before {
+        content: $icon-auslog;
+    }
+}
+.icon-content {
+    &:before {
+        content: $icon-content;
+    }
+}
+.icon-einlog {
+    &:before {
+        content: $icon-einlog;
+    }
+}
+.icon-footer {
+    &:before {
+        content: $icon-footer;
+    }
+}
+.icon-header {
+    &:before {
+        content: $icon-header;
+    }
+}
+.icon-table_sort_desc {
+    &:before {
+        content: $icon-table_sort_desc;
+    }
+}
+.icon-table_sort_asc {
+    &:before {
+        content: $icon-table_sort_asc;
+    }
+}
+.icon-image {
+    &:before {
+        content: $icon-image;
+    }
+}
+.icon-table_sort {
+    &:before {
+        content: $icon-table_sort;
+    }
+}
 .icon-content_check_out {
     &:before {
         content: $icon-content_check_out;
     }
 }
-
+.icon-item_move {
+    &:before {
+        content: $icon-item_move;
+    }
+}
+.icon-marketplace {
+    &:before {
+        content: $icon-marketplace;
+    }
+}
+.icon-plugin_stage_deploy {
+    &:before {
+        content: $icon-plugin_stage_deploy;
+    }
+}
+.icon-plugin_stage {
+    &:before {
+        content: $icon-plugin_stage;
+    }
+}
+.icon-plugin {
+    &:before {
+        content: $icon-plugin;
+    }
+}
+.icon-plugin_to_productive {
+    &:before {
+        content: $icon-plugin_to_productive;
+    }
+}
+.icon-plugin_to_stage {
+    &:before {
+        content: $icon-plugin_to_stage;
+    }
+}
+.icon-zoom_out {
+    &:before {
+        content: $icon-zoom_out;
+    }
+}
+.icon-icon-reversal_document-13 {
+    &:before {
+        content: $icon-icon-reversal_document-13;
+    }
+}
+.icon-refund_create {
+    &:before {
+        content: $icon-refund_create;
+    }
+}
+.icon-refund_reversal_create {
+    &:before {
+        content: $icon-refund_reversal_create;
+    }
+}
 .icon-content_my_account {
     &:before {
         content: $icon-content_my_account;
     }
 }
-
 .icon-new_order {
     &:before {
         content: $icon-new_order;
     }
 }
-
 .icon-reply_all {
     &:before {
         content: $icon-reply_all;
     }
 }
-
 .icon-reply {
     &:before {
         content: $icon-reply;
     }
 }
-
 .icon-shaking_hands {
     &:before {
         content: $icon-shaking_hands;
     }
 }
-
 .icon-content_category {
     &:before {
         content: $icon-content_category;
     }
 }
-
 .icon-content_search {
     &:before {
         content: $icon-content_search;
     }
 }
-
 .icon-content_itemset {
     &:before {
         content: $icon-content_itemset;
