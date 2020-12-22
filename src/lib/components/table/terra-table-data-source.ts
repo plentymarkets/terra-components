@@ -16,9 +16,11 @@ import { TerraPagerInterface } from '../pager/data/terra-pager.interface';
  * Can be used with any combination of paging, sorting and filtering functionality.
  * To enable paging, sorting and/or filtering just pass the respective class/component to this data source.
  *
+ * MyFilterData is optional. To simplify the access of filter parameters.
+ *
  * @example
  * ```typescript
- * class MyDataSource extends TerraTableDataSource<MyData>
+ * class MyDataSource extends TerraTableDataSource<MyData, MyFilterData>
  * {
  *     constructor(private service:MyDataService) {}
  *
@@ -36,7 +38,7 @@ import { TerraPagerInterface } from '../pager/data/terra-pager.interface';
  * class MyComponent implements OnInit
  * {
  *     public dataSource:MyDataSource = new MyDataSource(this.service);
- *     public filter:TerraFilter<any> = new TerraFilter();
+ *     public filter:TerraFilter<MyFilterData> = new TerraFilter<MyFilterData>();
  *     @ViewChild(MatPaginator, {static: true})
  *     public paginator:MatPaginator;
  *     @ViewChild(MatSort, {static: true})
@@ -53,25 +55,25 @@ import { TerraPagerInterface } from '../pager/data/terra-pager.interface';
  * }
  * ```
  */
-export abstract class TerraTableDataSource<T> extends DataSource<T> {
+export abstract class TerraTableDataSource<D, F = {}> extends DataSource<D> {
     /** Snapshot of the currently displayed data. */
-    public get data(): Array<T> {
+    public get data(): Array<D> {
         return this._data.value;
     }
-    public set data(data: Array<T>) {
+    public set data(data: Array<D>) {
         this._data.next(data);
     }
-    private _data: BehaviorSubject<Array<T>> = new BehaviorSubject([]);
+    private _data: BehaviorSubject<Array<D>> = new BehaviorSubject([]);
 
     /** Instance of the TerraFilter class used to narrow results. */
-    public get filter(): TerraFilter<Object> {
+    public get filter(): TerraFilter<F> {
         return this._filter;
     }
-    public set filter(f: TerraFilter<Object>) {
+    public set filter(f: TerraFilter<F>) {
         this._filter = f;
         this._updateSubscription();
     }
-    private _filter: TerraFilter<Object> | undefined;
+    private _filter: TerraFilter<F> | undefined;
 
     /**
      * Instance of the MatSort directive used by the table to control its sorting.
@@ -114,9 +116,9 @@ export abstract class TerraTableDataSource<T> extends DataSource<T> {
 
     /**
      * The request to get the data. Either paginated or a plain list.
-     * @returns Observable<Array<T> | TerraPagerInterface<T>>
+     * @returns Observable<Array<D> | TerraPagerInterface<D>>
      */
-    public abstract request(requestParams: RequestParameterInterface): Observable<Array<T> | TerraPagerInterface<T>>;
+    public abstract request(requestParams: RequestParameterInterface): Observable<Array<D> | TerraPagerInterface<D>>;
 
     /** Initiates a request that fetches data from the server */
     public search(): void {
@@ -129,7 +131,7 @@ export abstract class TerraTableDataSource<T> extends DataSource<T> {
     }
 
     /** Called by the table when it connects to this data source. */
-    public connect(): Observable<Array<T> | ReadonlyArray<T>> {
+    public connect(): Observable<Array<D> | ReadonlyArray<D>> {
         return this._data.asObservable();
     }
 
@@ -169,10 +171,10 @@ export abstract class TerraTableDataSource<T> extends DataSource<T> {
         // Either manual search event or page and/or sort event.
         const anyChange$: Observable<void | PageEvent | Sort> = merge(search$, reload$, pageOrSortChange$);
 
-        const data$: Observable<Array<T>> = anyChange$.pipe(
+        const data$: Observable<Array<D>> = anyChange$.pipe(
             map(() => createRequestParams(this._filter, this._paginator, this._sort)),
             switchMap((params: RequestParameterInterface) => this.request(params)),
-            map((response: Array<T> | TerraPagerInterface<T>) => {
+            map((response: Array<D> | TerraPagerInterface<D>) => {
                 if (isPaginated(response)) {
                     if (this._paginator) {
                         this._paginator.length = response.totalsCount;
@@ -185,6 +187,6 @@ export abstract class TerraTableDataSource<T> extends DataSource<T> {
             })
         );
         this._subscription.unsubscribe();
-        this._subscription = data$.subscribe((data: Array<T>) => this._data.next(data));
+        this._subscription = data$.subscribe((data: Array<D>) => this._data.next(data));
     }
 }
