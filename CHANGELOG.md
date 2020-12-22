@@ -3,6 +3,7 @@
 ### Features
 
 -   **terra-code-editor** toolbar now supports links.
+-   **terra-filter** removed terra-filter. Use the new tc-filter please.
 
 # 6.0.0-alpha.4 (04.12.2020)
 
