@@ -1,3 +1,17 @@
+# 6.0.0-alpha.X (DD.MM.YYYY)
+
+### Breaking Changes
+
+-   **terra-tag** removed deprecated `inputBadge`. Use `name` instead.
+-   **terra-filter** removed deprecated `terra-filter`. Use the new `tc-filter` instead.
+-   **terra-slider** removed deprecated fields `inputValue` and `inputValueChange`.
+-   **terra-checkbox** removed getter and setter for `value` and `valueChange` emitter. Use `ngModel` and `ngModelChange` instead.
+
+### Features
+
+-   **dependencies** updated all `jasmine` and `karma` packages to the latest compatible versions.
+-   **string-helper** changed deprecated util function to plain js in method `isNullUndefinedOrEmpty`.
+
 # 6.0.0-alpha.5 (21.12.2020)
 
 ### Features
