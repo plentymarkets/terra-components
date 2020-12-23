@@ -2,14 +2,14 @@
 
 ### Features
 
--   **terra-slider** remove deprecated fields `inputValue` and `inputValueChange`.
+-   **terra-filter** removed deprecated `terra-filter`. Use the new `tc-filter` instead.
+-   **terra-slider** removed deprecated fields `inputValue` and `inputValueChange`.
 
 # 6.0.0-alpha.5 (21.12.2020)
 
 ### Features
 
 -   **terra-code-editor** toolbar now supports links.
--   **terra-filter** removed terra-filter. Use the new tc-filter instead.
 
 ### Bug Fixes
 
