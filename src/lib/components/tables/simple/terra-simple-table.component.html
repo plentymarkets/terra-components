@@ -6,7 +6,7 @@
                     <terra-checkbox
                         #viewChildHeaderCheckbox
                         (change)="_onHeaderCheckboxChange()"
-                        [value]="_headerCheckbox.checked"
+                        [(ngModel)]="_headerCheckbox.checked"
                         [isIndeterminate]="_headerCheckbox.isIndeterminate"
                     >
                     </terra-checkbox>
@@ -33,7 +33,7 @@
             >
                 <td *ngIf="inputHasCheckboxes" width="40px" (click)="_onCheckboxClick($event)">
                     <terra-checkbox
-                        [value]="row.selected"
+                        [(ngModel)]="row.selected"
                         [inputIsDisabled]="row.disabled"
                         (change)="_onRowCheckboxChange(row)"
                     >
