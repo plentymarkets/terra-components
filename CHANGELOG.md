@@ -1,4 +1,4 @@
-# 6.0.0-alpha.6 (DD.MM.YYYY)
+# 6.0.0-alpha.X (DD.MM.YYYY)
 
 ### Breaking Changes
 
