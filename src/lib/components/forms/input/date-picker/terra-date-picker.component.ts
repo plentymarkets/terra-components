@@ -129,7 +129,7 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
             this._value = null;
         }
 
-        if (this.viewChildMyDatePicker && this.viewChildMyDatePicker.inputBoxEl) {
+        if (this.viewChildMyDatePicker?.inputBoxEl) {
             this._dateAsString = this.viewChildMyDatePicker.inputBoxEl.nativeElement.value;
         }
     }

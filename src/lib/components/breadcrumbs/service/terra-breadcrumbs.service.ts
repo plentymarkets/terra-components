@@ -116,9 +116,9 @@ export class TerraBreadcrumbsService {
         let shortUrlWithoutLeadingSlash: string = UrlHelper.removeLeadingSlash(url);
         let route: Route = this._findRoute(shortUrlWithoutLeadingSlash, this._initialRoute.children);
 
-        if (!isNullOrUndefined(route) && !isNullOrUndefined(route.data) && !isNullOrUndefined(breadcrumb)) {
+        if (route?.data && breadcrumb) {
             // you can set a name to update the breadcrumb name
-            if (!isNullOrUndefined(name)) {
+            if (!name) {
                 breadcrumb.name = this._translation.translate(name);
             }
             // or it will be updated automatically from it's route data
@@ -331,11 +331,7 @@ export class TerraBreadcrumbsService {
 
         let routerLink: string = this._initialPath + url;
 
-        if (
-            !isNullOrUndefined(container) &&
-            !isNullOrUndefined(container.currentSelectedBreadcrumb) &&
-            container.currentSelectedBreadcrumb.routerLink === routerLink
-        ) {
+        if (container?.currentSelectedBreadcrumb?.routerLink === routerLink) {
             return container.currentSelectedBreadcrumb;
         } else {
             return container.breadcrumbList.find((bc: TerraBreadcrumb) => {
@@ -358,10 +354,7 @@ export class TerraBreadcrumbsService {
             if (isNullOrUndefined(nextContainer)) {
                 let previousContainer: TerraBreadcrumbContainer = this._containers[index - 1];
 
-                if (
-                    !isNullOrUndefined(previousContainer) &&
-                    !isNullOrUndefined(previousContainer.currentSelectedBreadcrumb)
-                ) {
+                if (previousContainer?.currentSelectedBreadcrumb) {
                     this._router.navigateByUrl(previousContainer.currentSelectedBreadcrumb.routerLink);
                 }
             } else {

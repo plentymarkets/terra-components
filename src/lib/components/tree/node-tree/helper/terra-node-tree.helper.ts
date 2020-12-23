@@ -76,7 +76,7 @@ export class TerraNodeTreeHelper {
         nodeList.forEach((node: TerraNodeInterface<D>) => {
             node.isActive = false;
 
-            if (!isNullOrUndefined(node.children) && node.children.length > 0) {
+            if (node.children?.length > 0) {
                 this.recursiveSetNodeInactive(node.children);
             }
         });

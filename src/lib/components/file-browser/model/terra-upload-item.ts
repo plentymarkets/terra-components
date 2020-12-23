@@ -35,7 +35,7 @@ export class TerraUploadItem {
         if (isNullOrUndefined(file)) {
             this.uploaded = true;
         }
-        if (!isNullOrUndefined(this.path) && this.path.charAt(0) === '/') {
+        if (this.path?.charAt(0) === '/') {
             this.path = this.path.substr(1);
         }
     }

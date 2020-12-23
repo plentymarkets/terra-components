@@ -130,7 +130,7 @@ export abstract class TerraDataTableBaseService<T, P> {
         // set page and itemsPerPage attribute
         // IMPORTANT: this must be done after the filter parameters have been applied,...
         // since they can also have a page and itemsPerPage attribute, but those should be ignored!!
-        if (this._pagingData && this._pagingData.page && this._pagingData.itemsPerPage) {
+        if (this._pagingData?.page && this._pagingData?.itemsPerPage) {
             params['page'] = this._pagingData.page;
             params['itemsPerPage'] = this._pagingData.itemsPerPage;
         }

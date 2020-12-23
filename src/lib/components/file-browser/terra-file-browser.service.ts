@@ -45,7 +45,7 @@ export class TerraFileBrowserService {
             };
 
             let isFileEvent: (event: DragEvent) => boolean = (event: DragEvent): boolean => {
-                return !isNullOrUndefined(event.dataTransfer.types) && event.dataTransfer.types.indexOf('Files') >= 0;
+                return event?.dataTransfer?.types?.indexOf('Files') >= 0;
             };
 
             window.addEventListener('dragenter', (event: DragEvent) => {

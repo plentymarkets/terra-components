@@ -120,8 +120,7 @@ export class TerraSelectBoxComponent implements OnInit, OnChanges {
     public ngOnChanges(changes: SimpleChanges): void {
         if (
             this._isInit === true &&
-            changes['inputListBoxValues'] &&
-            changes['inputListBoxValues'].currentValue.length > 0 &&
+            changes['inputListBoxValues']?.currentValue.length > 0 &&
             !this.inputListBoxValues.find((x: TerraSelectBoxValueInterface): boolean => this._selectedValue === x)
         ) {
             this._select(this.inputListBoxValues[0]);

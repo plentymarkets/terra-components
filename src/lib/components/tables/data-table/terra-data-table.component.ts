@@ -119,11 +119,11 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
     }
 
     public get _dataAvailableOrRequestPending(): boolean {
-        return this.isTableDataAvailable || (!isNullOrUndefined(this.inputService) && this.inputService.requestPending);
+        return this.isTableDataAvailable || this.inputService?.requestPending;
     }
 
     private get isTableDataAvailable(): boolean {
-        return this._rowList && this._rowList.length > 0;
+        return this._rowList?.length > 0;
     }
 
     public _doPaging(): void {
@@ -137,16 +137,15 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
     public _getCellDataType(data: any): string {
         function isRefType(arg: any): arg is TerraHrefTypeInterface {
             return (
-                !isNullOrUndefined(arg) &&
-                !isNullOrUndefined(arg.type) &&
+                arg?.type &&
                 typeof arg.type === 'string' &&
-                !isNullOrUndefined(arg.value) &&
+                arg?.value &&
                 (typeof arg.value === 'string' || typeof arg.value === 'number' || typeof arg.value === 'function')
             );
         }
 
         function isTextType(arg: any): arg is TerraDataTableTextInterface {
-            return !isNullOrUndefined(arg) && !isNullOrUndefined(arg.caption) && typeof arg.caption === 'string';
+            return arg?.caption && typeof arg.caption === 'string';
         }
 
         function isTagArray(arg: any): arg is Array<TerraTagInterface> {
@@ -193,7 +192,7 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
 
     public getTextAlign(item: TerraDataTableHeaderCellInterface): TerraTextAlignEnum {
         // TODO: Pipe?
-        if (!isNullOrUndefined(item) && !isNullOrUndefined(item.textAlign)) {
+        if (item?.textAlign) {
             return item.textAlign;
         } else {
             return TerraTextAlignEnum.LEFT;
