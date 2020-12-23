@@ -52,24 +52,6 @@ export class TerraCheckboxComponent implements ControlValueAccessor {
     public notifyOnChanges: boolean;
 
     /**
-     * @description set accessor for the current value of the check box.
-     * @deprecated use ngModel instead.
-     * @param value
-     */
-    @Input()
-    public set value(value: boolean) {
-        this.writeValue(value);
-    }
-
-    /**
-     * @description get accessor for the current value of the check box
-     * @deprecated use ngModel instead
-     */
-    public get value(): boolean {
-        return this._innerValue;
-    }
-
-    /**
      * @description Set accessor for the indeterminate state of the checkbox
      * @param value
      */
@@ -87,13 +69,6 @@ export class TerraCheckboxComponent implements ControlValueAccessor {
     public get isIndeterminate(): boolean {
         return this._isIndeterminate;
     }
-
-    /**
-     * @description Emits the current value when it has changed.
-     * @deprecated use ngModelChange instead.
-     */
-    @Output()
-    public valueChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
     /**
      * @description Emits the current isIndeterminate state when it has changed.
@@ -121,14 +96,13 @@ export class TerraCheckboxComponent implements ControlValueAccessor {
     }
 
     /**
-     * @description Notifies a consumer via `ngModelChange` and `valueChange` with the given value.
+     * @description Notifies a consumer via `ngModelChange` with the given value.
      * Is called whenever the value of the checkbox changes.
      * @param value
      */
     public onChange(value: boolean): void {
         this._onChangeCallback(value);
         this._updateIntermediateState(false);
-        this.valueChange.emit(value);
     }
 
     /**

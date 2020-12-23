@@ -1,7 +1,8 @@
 <div>
     <p>Simple Checkbox</p>
     <div>
-        <terra-checkbox inputCaption="Test" [tooltipText]="'This is a tooltip'" #viewChildTestCb> </terra-checkbox>
+        <terra-checkbox [(ngModel)]="testCbState" inputCaption="Test" [tooltipText]="'This is a tooltip'">
+        </terra-checkbox>
         <terra-button (outputClicked)="_setCheckboxValue()" inputCaption="change value"> </terra-button>
     </div>
     <div>

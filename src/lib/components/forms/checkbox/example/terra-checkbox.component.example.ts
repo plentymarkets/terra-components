@@ -7,11 +7,10 @@ import { TerraCheckboxComponent } from '../terra-checkbox.component';
     templateUrl: './terra-checkbox.component.example.html'
 })
 export class TerraCheckboxComponentExample implements OnInit {
+    public testCbState: boolean = false;
+
     @ViewChild('viewChildIndeterminateCb', { static: true })
     private viewChildIndeterminateCb: TerraCheckboxComponent;
-
-    @ViewChild('viewChildTestCb', { static: true })
-    private viewChildTestCb: TerraCheckboxComponent;
 
     public ngOnInit(): void {
         this.viewChildIndeterminateCb.isIndeterminate = true;
@@ -26,6 +25,6 @@ export class TerraCheckboxComponentExample implements OnInit {
     }
 
     public _setCheckboxValue(): void {
-        this.viewChildTestCb.value = !this.viewChildTestCb.value;
+        this.testCbState = !this.testCbState;
     }
 }
