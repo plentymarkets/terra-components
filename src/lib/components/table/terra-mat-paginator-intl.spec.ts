@@ -23,7 +23,7 @@ describe('TerraMatPaginatorIntl', () => {
     });
 
     beforeEach(() => {
-        paginatorIntl = TestBed.get(MatPaginatorIntl);
+        paginatorIntl = TestBed.inject(MatPaginatorIntl);
     });
 
     it('should initialize the paginator intl', () => {

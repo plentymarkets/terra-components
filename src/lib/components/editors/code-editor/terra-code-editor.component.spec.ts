@@ -29,9 +29,9 @@ describe(`TerraCodeEditorComponent:`, () => {
 
     beforeEach(() => {
         component = new TerraCodeEditorComponent(
-            TestBed.get(L10N_LOCALE),
-            TestBed.get(L10nTranslationService),
-            TestBed.get(ElementRef)
+            TestBed.inject(L10N_LOCALE),
+            TestBed.inject(L10nTranslationService),
+            TestBed.inject(ElementRef)
         );
     });
 
