@@ -79,7 +79,6 @@ describe('TerraTaglistComponent', () => {
                 let tagInterface: TerraTagInterface = tagList[index];
 
                 expect(tag.tagId).toEqual(tagInterface.id);
-                expect(tag.inputBadge).toEqual(tagInterface.name);
                 expect(tag.name).toEqual(tagInterface.name);
                 expect(tag.inputIsTaggable).toEqual(tagInterface.isTaggable);
                 expect(tag.inputIsTagged).toEqual(tagInterface.isTagged);

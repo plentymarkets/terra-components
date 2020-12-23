@@ -20,13 +20,6 @@ export class TerraTagComponent implements OnChanges {
     public name: string;
 
     /**
-     * Caption of the tag. If given, this is always shown.
-     * @deprecated use 'name' instead
-     */
-    @Input()
-    public inputBadge: string;
-
-    /**
      * States whether a tag can be tagged.
      * @Default false
      */
@@ -87,7 +80,7 @@ export class TerraTagComponent implements OnChanges {
      * @param changes
      */
     public ngOnChanges(changes?: SimpleChanges): void {
-        if (changes.hasOwnProperty('name') || changes.hasOwnProperty('names') || changes.hasOwnProperty('inputBadge')) {
+        if (changes.hasOwnProperty('name') || changes.hasOwnProperty('names')) {
             this._tagName = this._getTagName();
         }
     }
@@ -118,10 +111,6 @@ export class TerraTagComponent implements OnChanges {
     }
 
     private _getTagName(): string {
-        if (this.inputBadge) {
-            return this.inputBadge;
-        }
-
         if (isNullOrUndefined(this.names)) {
             return this.name;
         }
