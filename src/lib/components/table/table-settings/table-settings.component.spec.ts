@@ -45,7 +45,7 @@ describe('TableSettingsComponent', () => {
     });
 
     it('should open settings dialog', () => {
-        const dialog: MatDialog = TestBed.get(MatDialog);
+        const dialog: MatDialog = TestBed.inject(MatDialog);
         spyOn(dialog, 'open').and.callThrough();
         component._openSettings();
         expect(dialog.open).toHaveBeenCalledWith(TableSettingsDialogComponent, {
