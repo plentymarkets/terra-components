@@ -164,7 +164,7 @@ describe('TerraFileInputComponent', () => {
         component.inputShowPreview = true;
         fixture.detectChanges();
 
-        const dialog: MatDialog = TestBed.get(MatDialog);
+        const dialog: MatDialog = TestBed.inject(MatDialog);
         spyOn(dialog, 'open');
         // ensure that the dialog can be opened by emulating that the selected file is a web image
         spyOn(component, 'isWebImage').and.returnValue(true);

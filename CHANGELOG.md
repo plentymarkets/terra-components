@@ -1,7 +1,13 @@
-# 6.0.0-alpha.6 (DD.MM.YYYY)
+# 6.0.0-alpha.X (DD.MM.YYYY)
+
+### Breaking Changes
+
+-   **terra-checkbox** removed getter and setter for `value` and `valueChange` emitter. Use `ngModel` and `ngModelChange` instead.
+-   **terra-slider** remove deprecated fields `inputValue` and `inputValueChange`.
 
 ### Features
 
+-   **dependencies** updated all `jasmine` and `karma` packages to the latest compatible versions.
 -   **string-helper** changed deprecated util function to plain js in method `isNullUndefinedOrEmpty`.
 
 # 6.0.0-alpha.5 (21.12.2020)
