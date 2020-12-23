@@ -29,19 +29,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
         }
     ]
 })
-export class TerraSliderComponent implements OnInit, OnChanges, ControlValueAccessor {
-    /**
-     * @deprecated use `ngModel` instead
-     */
-    @Input()
-    public inputValue: number;
-
-    /**
-     * @deprecated use `ngModelChange` instead
-     */
-    @Output()
-    public inputValueChange: EventEmitter<number> = new EventEmitter<number>();
-
+export class TerraSliderComponent implements OnInit, ControlValueAccessor {
     /**
      * label text
      */
@@ -103,16 +91,6 @@ export class TerraSliderComponent implements OnInit, OnChanges, ControlValueAcce
     constructor(private _element: ElementRef, private _changeDetector: ChangeDetectorRef) {}
 
     /**
-     * change detection routine. Updates the #value if #inputValue has changed for backwards compatibility purposes.
-     * @param changes
-     */
-    public ngOnChanges(changes: SimpleChanges): void {
-        if (changes.hasOwnProperty('inputValue')) {
-            this._value = this.inputValue; // for backwards compatibility
-        }
-    }
-
-    /**
      * get position of slider element in px to left bound
      */
     public get _handlePosition(): number {
@@ -159,10 +137,8 @@ export class TerraSliderComponent implements OnInit, OnChanges, ControlValueAcce
             this._value = this.inputMax;
         }
 
-        this.inputValueChange.emit(this._value);
         this.changeCallback(this._value);
         this.touchedCallback();
-        this.inputValue = this._value; // for backwards compatibility
 
         this._changeDetector.detectChanges();
     }
