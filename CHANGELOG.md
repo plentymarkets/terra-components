@@ -3,6 +3,7 @@
 ### Breaking Changes
 
 -   **terra-checkbox** removed getter and setter for `value` and `valueChange` emitter. Use `ngModel` and `ngModelChange` instead.
+-   **terra-slider** remove deprecated fields `inputValue` and `inputValueChange`.
 
 # 6.0.0-alpha.5 (21.12.2020)
 
