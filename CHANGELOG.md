@@ -2,6 +2,7 @@
 
 ### Breaking Changes
 
+-   **terra-tag** removed deprecated `inputBadge`. Use `name` instead.
 -   **terra-checkbox** removed getter and setter for `value` and `valueChange` emitter. Use `ngModel` and `ngModelChange` instead.
 -   **terra-slider** remove deprecated fields `inputValue` and `inputValueChange`.
 
