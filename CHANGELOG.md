@@ -1,9 +1,10 @@
-# unreleased
+# 6.0.0-alpha.X (DD.MM.YYYY)
 
-### Features
+### Breaking Changes
 
 -   **terra-filter** removed deprecated `terra-filter`. Use the new `tc-filter` instead.
 -   **terra-slider** removed deprecated fields `inputValue` and `inputValueChange`.
+-   **terra-checkbox** removed getter and setter for `value` and `valueChange` emitter. Use `ngModel` and `ngModelChange` instead.
 
 # 6.0.0-alpha.5 (21.12.2020)
 
