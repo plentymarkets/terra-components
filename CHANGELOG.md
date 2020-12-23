@@ -1,3 +1,9 @@
+# unreleased
+
+### Features
+
+-   **terra-slider** remove deprecated fields `inputValue` and `inputValueChange`.
+
 # 6.0.0-alpha.5 (21.12.2020)
 
 ### Features
