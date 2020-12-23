@@ -44,7 +44,6 @@ describe('TerraTagComponent', () => {
         expect(component.inputIsTaggable).toBe(false);
         expect(component.inputCustomClass).toBeUndefined();
         expect(component.inputColor).toBeUndefined();
-        expect(component.inputBadge).toBeUndefined();
         expect(component.name).toBeUndefined();
         expect(component.names).toEqual([]);
         expect(component.inputIsTagged).toBe(false);
@@ -148,29 +147,7 @@ describe('TerraTagComponent', () => {
             fixture.detectChanges(); // this needs to be called to initialize the Language-Decorator!!
         });
 
-        it('should set text depending on inputBadge', () => {
-            component.inputBadge = name;
-            component.ngOnChanges({ inputBadge: new SimpleChange(null, name, true) });
-            fixture.detectChanges();
-
-            let textElement: DebugElement = tagDiv.query(By.css('span.tag-text'));
-            let text: HTMLSpanElement = textElement.nativeElement;
-            expect(text.innerText).toEqual(name);
-
-            component.inputBadge = null;
-            component.name = name;
-
-            component.ngOnChanges({ name: new SimpleChange(null, name, true) });
-            fixture.detectChanges();
-
-            textElement = tagDiv.query(By.css('span.tag-text'));
-            text = textElement.nativeElement;
-
-            expect(text.innerText).toEqual(name);
-        });
-
         it('should set text depending on name', () => {
-            component.inputBadge = null;
             component.name = name;
 
             component.ngOnChanges({ name: new SimpleChange(null, name, true) });
@@ -183,7 +160,6 @@ describe('TerraTagComponent', () => {
         });
 
         it('should set text depending on names', () => {
-            component.inputBadge = null;
             component.name = null;
             component.names = tagOne.names;
 
