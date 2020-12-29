@@ -37,15 +37,16 @@ describe('TerraAlertPanelComponent: ', () => {
         expect(component._alerts.length).toBe(0);
     });
 
-    xit('close() should close the first alert that matches a given identifier', () => {
-        // const identifier:string = 'identifier';
-        // const message:string = 'test';
-        // service.info(message);
-        // service.success(message, identifier);
-        // service.error(message, identifier);
-        // expect(service._alerts.length).toBe(3);
-        //
-        // service.closeAlertBy(identifier);
-        // expect(service._alerts.length).toBe(2);
+    it('close() should close the first alert that matches a given identifier', () => {
+        component.ngOnInit();
+        const identifier: string = 'identifier';
+        const message: string = 'test';
+        service.info(message);
+        service.success(message, identifier);
+        service.error(message, identifier);
+        expect(component._alerts.length).toBe(3);
+
+        service.close(identifier);
+        expect(component._alerts.length).toBe(2);
     });
 });
