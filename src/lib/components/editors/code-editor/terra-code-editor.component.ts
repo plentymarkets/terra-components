@@ -67,6 +67,7 @@ export class TerraCodeEditorComponent extends TerraBaseEditorComponent implement
                             header: [1, 2, 3, 4, 5, 6, false]
                         }
                     ],
+                    ['link'],
                     ['code-block']
                 ],
                 handlers: {

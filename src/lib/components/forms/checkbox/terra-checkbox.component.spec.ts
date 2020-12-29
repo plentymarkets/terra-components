@@ -43,7 +43,7 @@ describe('Component: TerraCheckboxComponent', () => {
         });
 
         it('should not call change callback if a new value is set via #writeValue()', () => {
-            component.writeValue(!component.value); // toggle value
+            component.writeValue(!component._innerValue); // toggle value
             expect(onChangeSpy).not.toHaveBeenCalled();
         });
 

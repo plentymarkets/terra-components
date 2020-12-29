@@ -4,8 +4,15 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { TableSettingsComponent } from './table-settings.component';
 import { Observable, of } from 'rxjs';
 import { TableSettingsDialogComponent } from './dialog/table-settings-dialog.component';
-import { MockButtonComponent } from '../../../testing/mock-button';
 import { mockL10nConfig } from '../../../testing/mock-l10n-config';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { Directive, Input, TemplateRef } from '@angular/core';
+
+@Directive({ selector: '[tcTooltip]' })
+class TooltipMockDirective {
+    @Input('tcTooltip') public tooltip: string | TemplateRef<any>;
+}
 
 describe('TableSettingsComponent', () => {
     let component: TableSettingsComponent;
@@ -20,8 +27,8 @@ describe('TableSettingsComponent', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            declarations: [TableSettingsComponent, MockButtonComponent],
-            imports: [L10nTranslationModule.forRoot(mockL10nConfig)],
+            declarations: [TableSettingsComponent, TooltipMockDirective],
+            imports: [L10nTranslationModule.forRoot(mockL10nConfig), MatIconModule, MatButtonModule],
             providers: [
                 {
                     provide: MatDialog,
@@ -38,7 +45,7 @@ describe('TableSettingsComponent', () => {
     });
 
     it('should open settings dialog', () => {
-        const dialog: MatDialog = TestBed.get(MatDialog);
+        const dialog: MatDialog = TestBed.inject(MatDialog);
         spyOn(dialog, 'open').and.callThrough();
         component._openSettings();
         expect(dialog.open).toHaveBeenCalledWith(TableSettingsDialogComponent, {

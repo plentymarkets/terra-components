@@ -19,7 +19,6 @@ export { TerraToggleComponent } from './components/buttons/toggle/terra-toggle.c
 export { TerraFileChooserComponent } from './components/buttons/file-chooser/terra-file-chooser.component';
 
 export { TerraBaseData } from './components/data/terra-base.data';
-export { TerraFilterComponent } from './components/filter/terra-filter.component';
 export { FilterComponent } from './components/filter/filter.component';
 
 // FORM ELEMENTS

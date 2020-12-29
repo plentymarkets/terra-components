@@ -20,7 +20,7 @@
                     <terra-checkbox
                         (change)="_onHeaderCheckboxChange()"
                         (click)="$event.stopPropagation()"
-                        [value]="_headerCheckbox.checked"
+                        [(ngModel)]="_headerCheckbox.checked"
                         [isIndeterminate]="_headerCheckbox.isIndeterminate"
                     >
                     </terra-checkbox>
