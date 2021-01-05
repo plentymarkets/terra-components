@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { TerraAlertInterface } from './data/terra-alert.interface';
+import { TerraAlertInterface } from './models';
 import { AlertService } from './alert.service';
 
 /**

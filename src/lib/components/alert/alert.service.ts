@@ -1,6 +1,5 @@
 import { EventEmitter, Inject, Injectable } from '@angular/core';
-import { TerraAlertInterface } from './data/terra-alert.interface';
-import { AlertType } from './alert-type.enum';
+import { AlertType, TerraAlertInterface } from './models';
 import { IS_ROOT_WINDOW } from '../../utils/window';
 
 @Injectable({
@@ -27,7 +26,7 @@ export class AlertService {
      * @param identifier
      */
     public success(message: string, identifier?: string): void {
-        this._add(message, AlertType.success, this.defaultTimeout, identifier);
+        this._add(message, 'success', this.defaultTimeout, identifier);
     }
 
     /**
@@ -36,7 +35,7 @@ export class AlertService {
      * @param identifier
      */
     public error(message: string, identifier?: string): void {
-        this._add(message, AlertType.error, 0, identifier);
+        this._add(message, 'danger', 0, identifier);
     }
 
     /**
@@ -45,7 +44,7 @@ export class AlertService {
      * @param identifier
      */
     public info(message: string, identifier?: string): void {
-        this._add(message, AlertType.info, this.defaultTimeout, identifier);
+        this._add(message, 'info', this.defaultTimeout, identifier);
     }
 
     /**
@@ -54,7 +53,7 @@ export class AlertService {
      * @param identifier
      */
     public warning(message: string, identifier?: string): void {
-        this._add(message, AlertType.warning, this.defaultTimeout, identifier);
+        this._add(message, 'warning', this.defaultTimeout, identifier);
     }
 
     /**

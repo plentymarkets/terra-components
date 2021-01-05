@@ -1,8 +1,7 @@
 import { Subscription } from 'rxjs';
 
 import { AlertService } from './alert.service';
-import { TerraAlertInterface } from './data/terra-alert.interface';
-import { AlertType } from './alert-type.enum';
+import { TerraAlertInterface } from './models';
 
 describe('AlertService', () => {
     let service: AlertService;
@@ -32,7 +31,7 @@ describe('AlertService', () => {
             service.info(text);
             expect(latest).toBeDefined();
             expect(latest.msg).toBe(text);
-            expect(latest.type).toBe(AlertType.info);
+            expect(latest.type).toBe('info');
             expect(latest.dismissOnTimeout).toBe(defaultTimeout);
             expect(latest.identifier).toBeUndefined();
 
@@ -44,7 +43,7 @@ describe('AlertService', () => {
             service.warning(text);
             expect(latest).toBeDefined();
             expect(latest.msg).toBe(text);
-            expect(latest.type).toBe(AlertType.warning);
+            expect(latest.type).toBe('warning');
             expect(latest.dismissOnTimeout).toBe(defaultTimeout);
             expect(latest.identifier).toBeUndefined();
 
@@ -56,7 +55,7 @@ describe('AlertService', () => {
             service.success(text);
             expect(latest).toBeDefined();
             expect(latest.msg).toBe(text);
-            expect(latest.type).toBe(AlertType.success);
+            expect(latest.type).toBe('success');
             expect(latest.dismissOnTimeout).toBe(defaultTimeout);
             expect(latest.identifier).toBeUndefined();
 
@@ -68,7 +67,7 @@ describe('AlertService', () => {
             service.error(text);
             expect(latest).toBeDefined();
             expect(latest.msg).toBe(text);
-            expect(latest.type).toBe(AlertType.error);
+            expect(latest.type).toBe('danger');
             expect(latest.dismissOnTimeout).toBe(0);
             expect(latest.identifier).toBeUndefined();
 
@@ -116,7 +115,7 @@ describe('AlertService', () => {
                     type: service.addEvent,
                     detail: jasmine.objectContaining({
                         msg: msg,
-                        type: AlertType.info
+                        type: 'info'
                     })
                 })
             );

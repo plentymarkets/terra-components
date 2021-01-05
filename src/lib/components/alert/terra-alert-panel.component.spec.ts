@@ -1,8 +1,7 @@
 import { AlertService } from './alert.service';
 import { TerraAlertPanelComponent } from './terra-alert-panel.component';
 import { fakeAsync, tick } from '@angular/core/testing';
-import { TerraAlertInterface } from './data/terra-alert.interface';
-import { AlertType } from './alert-type.enum';
+import { TerraAlertInterface } from './models/terra-alert.interface';
 
 describe('TerraAlertPanelComponent: ', () => {
     let component: TerraAlertPanelComponent;
@@ -68,7 +67,7 @@ describe('TerraAlertPanelComponent: ', () => {
     it('should add an alert if requested via a window event', () => {
         component.ngOnInit();
         const event: CustomEvent<TerraAlertInterface> = new CustomEvent<TerraAlertInterface>(service.addEvent, {
-            detail: { msg: 'my message', type: AlertType.info, dismissOnTimeout: 0 }
+            detail: { msg: 'my message', type: 'info', dismissOnTimeout: 0 }
         });
         window.dispatchEvent(event);
 
