@@ -57,8 +57,7 @@ describe('TerraAlertPanelComponent: ', () => {
         spyOn(component, '_closeAlertByIndex');
         component.ngOnInit();
         service.info('my message');
-        tick(1000);
-        service.info('another info');
+        service.error('an error');
         expect(component._alerts.length).toBe(2);
 
         tick(service['defaultTimeout']);
