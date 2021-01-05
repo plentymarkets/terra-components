@@ -10,27 +10,52 @@ describe('TerraAlertPanelComponent: ', () => {
     beforeEach(() => {
         service = new AlertService(true);
         component = new TerraAlertPanelComponent(service);
+        component.ngOnInit();
     });
 
-    it('should register listeners on the window for adding and closing alerts when initialized', () => {
-        spyOn(window, 'addEventListener');
-        component.ngOnInit();
-        expect(window.addEventListener).toHaveBeenCalledTimes(2);
-        expect(window.addEventListener).toHaveBeenCalledWith(service.addEvent, component['_addAlertListener']);
-        expect(window.addEventListener).toHaveBeenCalledWith(service.closeEvent, component['_closeAlertListener']);
+    it('should add an alert when requested via the AlertService', () => {
+        const msg: string = 'my message';
+        service.info(msg);
+        expect(component._alerts.length).toBe(1);
+
+        const alert: TerraAlertInterface = component._alerts[0];
+        expect(alert.msg).toBe(msg);
+        expect(alert.type).toBe(AlertType.info);
     });
 
-    it('should remove the event listeners on the window when destroyed', () => {
-        component.ngOnInit();
-        spyOn(window, 'removeEventListener');
-        component.ngOnDestroy();
-        expect(window.removeEventListener).toHaveBeenCalledTimes(2);
-        expect(window.removeEventListener).toHaveBeenCalledWith(service.addEvent, component['_addAlertListener']);
-        expect(window.removeEventListener).toHaveBeenCalledWith(service.closeEvent, component['_closeAlertListener']);
+    it('should close an alert when requested via the AlertService', () => {
+        const msg: string = 'my message';
+        const identifier: string = 'myIdentifier';
+        service.info(msg, identifier);
+        expect(component._alerts.length).toBe(1);
+
+        service.close(identifier);
+        expect(component._alerts.length).toBe(0);
+    });
+
+    it('should add an alert when requested via a window event', () => {
+        const event: CustomEvent<TerraAlertInterface> = new CustomEvent<TerraAlertInterface>(service.addEvent, {
+            detail: { msg: 'my message', type: AlertType.info, dismissOnTimeout: 0 }
+        });
+        window.dispatchEvent(event);
+
+        expect(component._alerts.length).toBe(1);
+    });
+
+    it('should close an alert when requested via a window event', () => {
+        const identifier: string = 'myInfo';
+        service.info('my message', identifier);
+        expect(component._alerts.length).toBe(1);
+
+        const event: CustomEvent<string> = new CustomEvent<string>(service.closeEvent, {
+            detail: identifier
+        });
+        window.dispatchEvent(event);
+
+        expect(component._alerts.length).toBe(0);
     });
 
     it('_closeAlertByIndex() should close the alert at the given index', () => {
-        component.ngOnInit();
         const message: string = 'success';
         service.success(message);
         expect(component._alerts.length).toBe(1);
@@ -41,7 +66,6 @@ describe('TerraAlertPanelComponent: ', () => {
     });
 
     it('close() should close the first alert that matches a given identifier', () => {
-        component.ngOnInit();
         const identifier: string = 'identifier';
         const message: string = 'test';
         service.info(message);
@@ -55,7 +79,6 @@ describe('TerraAlertPanelComponent: ', () => {
 
     it('should dismiss an alert automatically after the given #dismissOnTimeout amount of time', fakeAsync(() => {
         spyOn(component, '_closeAlertByIndex');
-        component.ngOnInit();
         service.info('my message');
         tick(1000);
         service.info('another info');
@@ -65,28 +88,4 @@ describe('TerraAlertPanelComponent: ', () => {
 
         expect(component._closeAlertByIndex).toHaveBeenCalledWith(1);
     }));
-
-    it('should add an alert if requested via a window event', () => {
-        component.ngOnInit();
-        const event: CustomEvent<TerraAlertInterface> = new CustomEvent<TerraAlertInterface>(service.addEvent, {
-            detail: { msg: 'my message', type: AlertType.info, dismissOnTimeout: 0 }
-        });
-        window.dispatchEvent(event);
-
-        expect(component._alerts.length).toBe(1);
-    });
-
-    it('should close an alert if requested via a window event', () => {
-        component.ngOnInit();
-        const identifier: string = 'myInfo';
-        service.info('my message', identifier);
-        expect(component._alerts.length).toBe(1);
-
-        const event: CustomEvent<string> = new CustomEvent<string>(service.closeEvent, {
-            detail: identifier
-        });
-        window.dispatchEvent(event);
-
-        expect(component._alerts.length).toBe(0);
-    });
 });
