@@ -4,12 +4,11 @@ export * from './helpers';
 export * from './models';
 export * from './components/editors/ck-editor/presets';
 export * from './utils';
+
 export * from './components/table';
+export * from './components/alert';
 
 export { TerraComponentsModule } from './terra-components.module';
-
-// alert
-export * from './components/alert';
 
 export { TerraButtonInterface } from './components/buttons/button/data/terra-button.interface';
 export { TerraButtonComponent } from './components/buttons/button/terra-button.component';
