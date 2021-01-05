@@ -12,7 +12,7 @@ import { AlertService } from './alert.service';
     styleUrls: ['./terra-alert-panel.component.scss']
 })
 export class TerraAlertPanelComponent implements OnInit, OnDestroy {
-    /** @description List of alerts that are currently shown in the panel. */
+    /** List of alerts that are currently shown in the panel. */
     public _alerts: Array<TerraAlertInterface> = [];
 
     private _addAlertSub: Subscription;
