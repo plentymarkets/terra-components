@@ -11,6 +11,7 @@
 
 -   **dependencies** updated all `jasmine` and `karma` packages to the latest compatible versions.
 -   **string-helper** changed deprecated util function to plain js in method `isNullUndefinedOrEmpty`.
+-   **terra-file-input** improve accessibility by providing the alt property
 
 # 6.0.0-alpha.5 (21.12.2020)
 
