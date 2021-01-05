@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { fromEvent, merge, Observable, Subject } from 'rxjs';
+import { map, takeUntil } from 'rxjs/operators';
 import { TerraAlertInterface } from './data/terra-alert.interface';
 import { AlertService } from './alert.service';
 
@@ -14,39 +15,31 @@ import { AlertService } from './alert.service';
 export class TerraAlertPanelComponent implements OnInit, OnDestroy {
     /** List of alerts that are currently shown in the panel. */
     public _alerts: Array<TerraAlertInterface> = [];
+    /** A stream that emits when this component is destroyed. */
+    private _destroyed: Subject<void> = new Subject();
 
-    private _addAlertSub: Subscription;
-    private _closeAlertSub: Subscription;
-
-    private readonly _addAlertListener: EventListener;
-    private readonly _closeAlertListener: EventListener;
-
-    constructor(private _service: AlertService) {
-        // init event listeners
-        this._addAlertListener = (event: CustomEvent<TerraAlertInterface>): void => this._add(event.detail);
-        this._closeAlertListener = (event: CustomEvent<string>): void => this.closeAlertByIdentifier(event.detail);
-    }
+    constructor(private _service: AlertService) {}
 
     public ngOnInit(): void {
-        // listen to the EventEmitters of the service
-        this._addAlertSub = this._service.addAlert.subscribe((alert: TerraAlertInterface) => this._add(alert));
-        this._closeAlertSub = this._service.closeAlert.subscribe((identifier: string) =>
-            this.closeAlertByIdentifier(identifier)
+        const addEvent$: Observable<TerraAlertInterface> = fromEvent(window, this._service.addEvent).pipe(
+            map((event: CustomEvent<TerraAlertInterface>) => event.detail)
         );
+        merge(this._service.addAlert, addEvent$)
+            .pipe(takeUntil(this._destroyed))
+            .subscribe((alert: TerraAlertInterface) => this._add(alert));
 
-        // listen to events that concern _alerts and are dispatched to the hosting window
-        window.addEventListener(this._service.addEvent, this._addAlertListener);
-        window.addEventListener(this._service.closeEvent, this._closeAlertListener);
+        const closeEvent$: Observable<string> = fromEvent(window, this._service.closeEvent).pipe(
+            map((event: CustomEvent<string>) => event.detail)
+        );
+        merge(this._service.closeAlert, closeEvent$)
+            .pipe(takeUntil(this._destroyed))
+            .subscribe((identifier: string) => this.closeAlertByIdentifier(identifier));
     }
 
     public ngOnDestroy(): void {
-        // unsubscribe to the EventEmitters of the service
-        this._addAlertSub.unsubscribe();
-        this._closeAlertSub.unsubscribe();
-
-        // remove listeners from the hosting window
-        window.removeEventListener(this._service.addEvent, this._addAlertListener);
-        window.removeEventListener(this._service.closeEvent, this._closeAlertListener);
+        // unsubscribe to the EventEmitters of the service and the window events
+        this._destroyed.next();
+        this._destroyed.complete();
     }
 
     /**
