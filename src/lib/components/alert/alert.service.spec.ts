@@ -111,7 +111,6 @@ describe('AlertService', () => {
             spyOn(window.parent.window, 'dispatchEvent');
             const msg: string = 'my message';
             service.info(msg);
-            expect(window.parent.window.dispatchEvent).toHaveBeenCalled();
             expect(window.parent.window.dispatchEvent).toHaveBeenCalledWith(
                 jasmine.objectContaining({
                     type: service.addEvent,
@@ -127,7 +126,6 @@ describe('AlertService', () => {
             spyOn(window.parent.window, 'dispatchEvent');
             const identifier: string = 'myId';
             service.close(identifier);
-            expect(window.parent.window.dispatchEvent).toHaveBeenCalled();
             expect(window.parent.window.dispatchEvent).toHaveBeenCalledWith(
                 jasmine.objectContaining({
                     type: service.closeEvent,
