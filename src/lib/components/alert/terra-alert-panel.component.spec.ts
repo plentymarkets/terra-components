@@ -1,5 +1,6 @@
 import { AlertService } from './alert.service';
 import { TerraAlertPanelComponent } from './terra-alert-panel.component';
+import { fakeAsync, tick } from '@angular/core/testing';
 
 describe('TerraAlertPanelComponent: ', () => {
     let component: TerraAlertPanelComponent;
@@ -49,4 +50,15 @@ describe('TerraAlertPanelComponent: ', () => {
         service.close(identifier);
         expect(component._alerts.length).toBe(2);
     });
+
+    it('should dismiss an alert automatically after the given #dismissOnTimeout amount of time', fakeAsync(() => {
+        spyOn(component, '_closeAlert');
+        component.ngOnInit();
+        service.info('my message');
+        expect(component._alerts.length).toBe(1);
+
+        tick(service['defaultTimeout']);
+
+        expect(component._closeAlert).toHaveBeenCalledWith(component._alerts[0]);
+    }));
 });
