@@ -24,14 +24,14 @@ export class TerraAlertPanelComponent implements OnInit, OnDestroy {
     constructor(private _service: AlertService) {
         // init event listeners
         this._addAlertListener = (event: CustomEvent<TerraAlertInterface>): void => this._add(event.detail);
-        this._closeAlertListener = (event: CustomEvent<string>): void => this.closeAlertByIdentifier(event.detail);
+        this._closeAlertListener = (event: CustomEvent<string>): void => this._closeAlertByIdentifier(event.detail);
     }
 
     public ngOnInit(): void {
         // listen to the EventEmitters of the service
         this._addAlertSub = this._service.addAlert.subscribe((alert: TerraAlertInterface) => this._add(alert));
         this._closeAlertSub = this._service.closeAlert.subscribe((identifier: string) =>
-            this.closeAlertByIdentifier(identifier)
+            this._closeAlertByIdentifier(identifier)
         );
 
         // listen to events that concern _alerts and are dispatched to the hosting window
@@ -58,7 +58,7 @@ export class TerraAlertPanelComponent implements OnInit, OnDestroy {
     }
 
     /** @description Closes the first alert that matches the given identifier. */
-    private closeAlertByIdentifier(identifier: string): void {
+    private _closeAlertByIdentifier(identifier: string): void {
         const index: number = this._alerts.findIndex((alert: TerraAlertInterface) => alert.identifier === identifier);
         this._closeAlertByIndex(index);
     }
