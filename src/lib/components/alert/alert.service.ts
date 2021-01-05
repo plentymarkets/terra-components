@@ -7,15 +7,9 @@ import { IS_ROOT_WINDOW } from '../../utils/window';
     providedIn: 'root' // TODO: We may change this to platform in Angular v9!?
 })
 export class AlertService {
-    /**
-     * Notifies that an alert is supposed to be added
-     * @deprecated since v6. Will be removed in a future major release.
-     */
+    /** Notifies that an alert is supposed to be added. */
     public addAlert: EventEmitter<TerraAlertInterface> = new EventEmitter<TerraAlertInterface>();
-    /**
-     * Notifies that an alert is supposed to be closed.
-     * @deprecated since v6. Will be removed in a future major release.
-     */
+    /** Notifies that an alert is supposed to be closed. */
     public closeAlert: EventEmitter<string> = new EventEmitter<string>();
 
     /** Name of the CustomEvent that is dispatched to the parent window to add an alert. */
