@@ -52,13 +52,15 @@ describe('TerraAlertPanelComponent: ', () => {
     });
 
     it('should dismiss an alert automatically after the given #dismissOnTimeout amount of time', fakeAsync(() => {
-        spyOn(component, '_closeAlert');
+        spyOn(component, '_closeAlertByIndex');
         component.ngOnInit();
         service.info('my message');
-        expect(component._alerts.length).toBe(1);
+        tick(1000);
+        service.info('another info');
+        expect(component._alerts.length).toBe(2);
 
         tick(service['defaultTimeout']);
 
-        expect(component._closeAlert).toHaveBeenCalledWith(component._alerts[0]);
+        expect(component._closeAlertByIndex).toHaveBeenCalledWith(1);
     }));
 });

@@ -49,12 +49,6 @@ export class TerraAlertPanelComponent implements OnInit, OnDestroy {
         window.removeEventListener(this._service.closeEvent, this._closeAlertListener);
     }
 
-    /** @description Closes a given alert reference. */
-    public _closeAlert(alert: TerraAlertInterface): void {
-        const index: number = this._alerts.indexOf(alert);
-        this._closeAlertByIndex(index);
-    }
-
     /**
      * @description Closes the alert at the given index.
      * @internal
@@ -66,6 +60,12 @@ export class TerraAlertPanelComponent implements OnInit, OnDestroy {
     /** @description Closes the first alert that matches the given identifier. */
     private closeAlertByIdentifier(identifier: string): void {
         const index: number = this._alerts.findIndex((alert: TerraAlertInterface) => alert.identifier === identifier);
+        this._closeAlertByIndex(index);
+    }
+
+    /** @description Closes a given alert reference. */
+    private _closeAlert(alert: TerraAlertInterface): void {
+        const index: number = this._alerts.indexOf(alert);
         this._closeAlertByIndex(index);
     }
 
