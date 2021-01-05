@@ -11,6 +11,7 @@
 
 -   **dependencies** updated all `jasmine` and `karma` packages to the latest compatible versions.
 -   **string-helper** changed deprecated util function to plain js in method `isNullUndefinedOrEmpty`.
+-   **color-picker** improve accessibility by referencing the label to the input.
 
 # 6.0.0-alpha.5 (21.12.2020)
 
