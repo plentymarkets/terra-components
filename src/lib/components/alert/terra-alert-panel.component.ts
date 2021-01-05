@@ -50,31 +50,33 @@ export class TerraAlertPanelComponent implements OnInit, OnDestroy {
     }
 
     /**
-     * @description Closes the alert at the given index.
+     * Closes the alert at the given index.
      * @internal
      */
     public _closeAlertByIndex(index: number): void {
         this._alerts.splice(index, 1);
     }
 
-    /** @description Closes the first alert that matches the given identifier. */
+    /** Closes the first alert that matches the given identifier. */
     private _closeAlertByIdentifier(identifier: string): void {
         const index: number = this._alerts.findIndex((alert: TerraAlertInterface) => alert.identifier === identifier);
         this._closeAlertByIndex(index);
     }
 
-    /** @description Closes a given alert reference. */
+    /** Closes a given alert reference. */
     private _closeAlert(alert: TerraAlertInterface): void {
         const index: number = this._alerts.indexOf(alert);
         this._closeAlertByIndex(index);
     }
 
+    /** Adds an alert and sets up a timeout to dismiss the alert automatically if needed. */
     private _add(alert: TerraAlertInterface): void {
         // add the alert
         this._alerts.unshift(alert);
 
-        // close the alert automatically after the given period of time
+        // alert should be dismissed automatically?
         if (alert.dismissOnTimeout > 0) {
+            // close the alert automatically after the given period of time
             setTimeout(() => this._closeAlert(alert), alert.dismissOnTimeout);
         }
     }
