@@ -79,7 +79,7 @@ export class AlertService {
 
     /**
      * Dispatches event to the parent window indicating that an alert should be added.
-     * @param {TerraAlertInterface} alert
+     * @param alert
      */
     private addAlertForPlugin(alert: TerraAlertInterface): void {
         const event: CustomEvent<TerraAlertInterface> = new CustomEvent<TerraAlertInterface>(this.addEvent, {
@@ -91,7 +91,7 @@ export class AlertService {
 
     /**
      * Dispatches event to the parent window indicating that an alert should be closed.
-     * @param {string} identifier
+     * @param identifier
      */
     private closeAlertForPlugin(identifier: string): void {
         const event: CustomEvent<string> = new CustomEvent<string>(this.closeEvent, {
@@ -103,7 +103,7 @@ export class AlertService {
 
     /**
      * Notifies whenever an alert should be added.
-     * @param {TerraAlertInterface} alert
+     * @param alert
      */
     private notifyOnAdd(alert: TerraAlertInterface): void {
         // check whether the service is used in the root window or in an iframe
@@ -118,7 +118,7 @@ export class AlertService {
 
     /**
      * Notifies whenever an alert should be closed.
-     * @param {string} identifier
+     * @param identifier
      */
     private notifyOnClose(identifier: string): void {
         // check whether the service is used in the root window or in an iframe
