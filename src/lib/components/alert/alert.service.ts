@@ -4,7 +4,7 @@ import { AlertType } from './alert-type.enum';
 import { IS_ROOT_WINDOW } from '../../utils/window';
 
 @Injectable({
-    providedIn: 'root' // TODO: We may change this to platform in Angular v9!?
+    providedIn: 'root' // TODO: We may change this to 'platform' in Angular v9!?
 })
 export class AlertService {
     /** Notifies that an alert is supposed to be added. */
@@ -95,7 +95,7 @@ export class AlertService {
         window.parent.window.dispatchEvent(event);
     }
 
-    /** Notifies whenever an alert has been added. */
+    /** Notifies whenever an alert should be added. */
     private notifyOnAdd(alert: TerraAlertInterface): void {
         // check whether the service is used in the root window or in an iframe
         if (this.isRootWindow) {
@@ -107,7 +107,7 @@ export class AlertService {
         }
     }
 
-    /** Notifies whenever an alert has been closed. */
+    /** Notifies whenever an alert should be closed. */
     private notifyOnClose(identifier: string): void {
         // check whether the service is used in the root window or in an iframe
         if (this.isRootWindow) {
