@@ -5,6 +5,7 @@
     [ngClass]="{ error: !isValid, disabled: isDisabled }"
 >
     <input
+        id="{{ inputName }}"
         type="text"
         [(ngModel)]="color"
         pattern="{{ regex }}"
@@ -13,7 +14,7 @@
         [disabled]="isDisabled"
         [required]="inputIsRequired"
     />
-    <label [tcTooltip]="inputName" [onlyEllipsisTooltip]="true"
+    <label for="{{ inputName }}" [tcTooltip]="inputName" [onlyEllipsisTooltip]="true"
         >{{ inputName }}
         <span *ngIf="inputIsRequired">*</span>
     </label>

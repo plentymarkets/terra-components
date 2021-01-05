@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { MockRouter } from '../../../../testing/mock-router';
 import { mockL10nConfig } from '../../../../testing/mock-l10n-config';
 import { Color, ColorRGB } from '../../../../helpers';
+import { DebugElement } from '@angular/core';
 
 describe('Component: TerraColorPickerComponent', () => {
     let component: TerraColorPickerComponent;
@@ -72,10 +73,21 @@ describe('Component: TerraColorPickerComponent', () => {
     it('should display a given color in the graphical picker', () => {
         component.color = testColor;
         fixture.detectChanges();
-        let colorDisplayDebug: HTMLElement = fixture.debugElement.query(By.css('div.color-picker')).nativeElement;
+        const colorDisplayDebug: HTMLElement = fixture.debugElement.query(By.css('div.color-picker')).nativeElement;
         expect(colorDisplayDebug).toBeTruthy();
         expect(colorDisplayDebug.style.backgroundColor).toBeTruthy();
         expect(colorDisplayDebug.style.backgroundColor).toEqual(toRGBValue(testColor));
+    });
+
+    it('should reference an input with a label', () => {
+        const name: string = 'test-color';
+        component.inputName = name;
+        fixture.detectChanges();
+        const reference: DebugElement = fixture.debugElement.query(By.css('#' + name));
+        const label: DebugElement = fixture.debugElement.query(By.css('label[for=' + name + ']'));
+        console.log(label);
+        expect(reference.name).toBe('input');
+        expect(label.properties['for']).toEqual(name);
     });
 });
 
