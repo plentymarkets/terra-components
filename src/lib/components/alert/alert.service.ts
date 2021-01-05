@@ -4,7 +4,7 @@ import { AlertType } from './alert-type.enum';
 import { IS_ROOT_WINDOW } from '../../utils/window';
 
 @Injectable({
-    providedIn: 'root' // TODO: We may change this to 'platform' in Angular v9!?
+    providedIn: 'root' // TODO: We may change this to 'platform' if we want to globally manage alerts here in the future.
 })
 export class AlertService {
     /** Notifies that an alert is supposed to be added. */
