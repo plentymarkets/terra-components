@@ -14,7 +14,7 @@
         [disabled]="isDisabled"
         [required]="inputIsRequired"
     />
-    <label for="{{ inputName }}" [tcTooltip]="inputName" [onlyEllipsisTooltip]="true"
+    <label htmlFor="{{ inputName }}" [tcTooltip]="inputName" [onlyEllipsisTooltip]="true"
         >{{ inputName }}
         <span *ngIf="inputIsRequired">*</span>
     </label>

@@ -85,9 +85,8 @@ describe('Component: TerraColorPickerComponent', () => {
         fixture.detectChanges();
         const reference: DebugElement = fixture.debugElement.query(By.css('#' + name));
         const label: DebugElement = fixture.debugElement.query(By.css('label[for=' + name + ']'));
-        console.log(label);
         expect(reference.name).toBe('input');
-        expect(label.properties['for']).toEqual(name);
+        expect(label.properties['htmlFor']).toEqual(name);
     });
 });
 
