@@ -14,7 +14,6 @@ import { noop, Subscription } from 'rxjs';
 @Component({
     selector: 'terra-form',
     templateUrl: './terra-form.component.html',
-    styleUrls: ['./terra-form.component.scss'],
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,
