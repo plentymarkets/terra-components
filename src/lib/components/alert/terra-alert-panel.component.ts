@@ -51,7 +51,7 @@ export class TerraAlertPanelComponent implements OnInit, OnDestroy {
 
     /**
      * Closes the alert at the given index.
-     * @internal
+     * @private
      */
     public _closeAlertByIndex(index: number): void {
         this._alerts.splice(index, 1);
