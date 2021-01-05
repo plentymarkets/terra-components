@@ -1,6 +1,8 @@
 import { AlertService } from './alert.service';
 import { TerraAlertPanelComponent } from './terra-alert-panel.component';
 import { fakeAsync, tick } from '@angular/core/testing';
+import { TerraAlertInterface } from './data/terra-alert.interface';
+import { AlertType } from './alert-type.enum';
 
 describe('TerraAlertPanelComponent: ', () => {
     let component: TerraAlertPanelComponent;
@@ -63,4 +65,28 @@ describe('TerraAlertPanelComponent: ', () => {
 
         expect(component._closeAlertByIndex).toHaveBeenCalledWith(1);
     }));
+
+    it('should add an alert if requested via a window event', () => {
+        component.ngOnInit();
+        const event: CustomEvent<TerraAlertInterface> = new CustomEvent<TerraAlertInterface>(service.addEvent, {
+            detail: { msg: 'my message', type: AlertType.info, dismissOnTimeout: 0 }
+        });
+        window.dispatchEvent(event);
+
+        expect(component._alerts.length).toBe(1);
+    });
+
+    it('should close an alert if requested via a window event', () => {
+        component.ngOnInit();
+        const identifier: string = 'myInfo';
+        service.info('my message', identifier);
+        expect(component._alerts.length).toBe(1);
+
+        const event: CustomEvent<string> = new CustomEvent<string>(service.closeEvent, {
+            detail: identifier
+        });
+        window.dispatchEvent(event);
+
+        expect(component._alerts.length).toBe(0);
+    });
 });
