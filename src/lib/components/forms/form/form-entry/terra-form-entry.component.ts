@@ -7,7 +7,6 @@ import { TerraFormEntryBase } from './terra-form-entry.base';
 @Component({
     selector: 'terra-form-entry',
     templateUrl: './terra-form-entry.component.html',
-    styleUrls: ['./terra-form-entry.component.scss'],
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,

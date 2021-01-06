@@ -9,8 +9,7 @@ import { Subscription } from 'rxjs';
  */
 @Component({
     selector: 'terra-alert-panel',
-    templateUrl: './terra-alert-panel.component.html',
-    styleUrls: ['./terra-alert-panel.component.scss']
+    templateUrl: './terra-alert-panel.component.html'
 })
 export class TerraAlertPanelComponent implements OnInit, OnDestroy {
     public _alerts: Array<TerraAlertInterface>;

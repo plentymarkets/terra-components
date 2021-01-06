@@ -8,7 +8,6 @@ import { noop } from 'rxjs';
 @Component({
     selector: 'tc-checkbox-group',
     templateUrl: './checkbox-group.component.html',
-    styleUrls: ['./checkbox-group.component.scss'],
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,
