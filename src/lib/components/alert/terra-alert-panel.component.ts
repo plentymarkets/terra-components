@@ -8,8 +8,7 @@ import { AlertService } from './alert.service';
  */
 @Component({
     selector: 'terra-alert-panel',
-    templateUrl: './terra-alert-panel.component.html',
-    styleUrls: ['./terra-alert-panel.component.scss']
+    templateUrl: './terra-alert-panel.component.html'
 })
 export class TerraAlertPanelComponent implements OnInit, OnDestroy {
     /** List of alerts that are currently shown in the panel. */

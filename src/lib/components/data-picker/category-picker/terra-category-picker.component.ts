@@ -17,7 +17,6 @@ import { Observable } from 'rxjs';
 @Component({
     selector: 'terra-category-picker',
     templateUrl: './terra-category-picker.component.html',
-    styleUrls: ['./terra-category-picker.component.scss'],
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,

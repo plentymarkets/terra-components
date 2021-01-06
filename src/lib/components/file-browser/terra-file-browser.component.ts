@@ -11,7 +11,6 @@ import { StringHelper } from '../../helpers/string.helper';
 @Component({
     selector: 'terra-file-browser',
     templateUrl: './terra-file-browser.component.html',
-    styleUrls: ['./terra-file-browser.component.scss'],
     providers: [TerraNodeTreeConfig]
 })
 export class TerraFileBrowserComponent implements OnChanges, OnInit {

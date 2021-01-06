@@ -10,8 +10,7 @@ import { ColumnInterface } from './interface/column.interface';
  */
 @Component({
     selector: 'tc-table-settings',
-    templateUrl: './table-settings.component.html',
-    styleUrls: ['./table-settings.component.scss']
+    templateUrl: './table-settings.component.html'
 })
 export class TableSettingsComponent {
     /**

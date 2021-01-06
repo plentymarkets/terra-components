@@ -4,7 +4,6 @@ import { isNullOrUndefined } from 'util';
 
 @Component({
     selector: 'terra-stopwatch',
-    styleUrls: ['./terra-stopwatch.component.scss'],
     templateUrl: './terra-stopwatch.component.html'
 })
 export class TerraStopwatchComponent implements OnInit {
