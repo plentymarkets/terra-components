@@ -8,7 +8,7 @@
 -   **terra-checkbox** removed getter and setter for `value` and `valueChange` emitter. Use `ngModel` and `ngModelChange` instead.
 -   **alert** removed `TerraAlertComponent`. Use `AlertService` instead.
 -   **input** `TerraInputComponent`'s `validate()` method no longer shows error alerts when the input is invalid.
--   **font** icons moved to [terra-icon npm package](https://www.npmjs.com/package/@plentymarkets/terra-icons)
+-   **font** icons moved to [terra-icons npm package](https://www.npmjs.com/package/@plentymarkets/terra-icons)
 -   **icons.sccs** renamed file from `src/lib/styles/icons.scss` to `src/lib/styles/function-groups.scss`
 
 ### Features
