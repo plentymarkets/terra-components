@@ -77,10 +77,6 @@ function copyVariablesScss() {
     return src('src/lib/styles/_variables.scss').pipe(dest(config.destinations.styles));
 }
 
-function copyPlentyIconsScss() {
-    return src('src/lib/styles/fonts/plentyicons.scss').pipe(dest(config.destinations.styles + 'fonts'));
-}
-
 function copyCustomDataTableScss() {
     return src('src/lib/components/tables/data-table/custom-data-table.scss').pipe(
         dest('dist/components/tables/data-table')
@@ -112,7 +108,6 @@ function copyButtonScss() {
 const copySassFiles = parallel(
     copyIconsScss,
     copyVariablesScss,
-    copyPlentyIconsScss,
     copyCustomDataTableScss,
     copyNodeTreeScss,
     copyTagScss,
