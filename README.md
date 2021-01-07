@@ -1,4 +1,4 @@
-![code coverage](https://img.shields.io/badge/coverage-52.4%25-yellow)
+![code coverage](https://img.shields.io/badge/coverage-52.44%25-yellow)
 [![npm version](https://badge.fury.io/js/%40plentymarkets%2Fterra-components.svg)](https://badge.fury.io/js/%40plentymarkets%2Fterra-components)
 
 ![plentymarkets Logo](http://www.plentymarkets.eu/layout/pm/images/logo/plentymarkets-logo.jpg)
