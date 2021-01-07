@@ -117,12 +117,12 @@ describe(`TerraFormFieldHelper:`, () => {
         });
 
         it(`should parse #isList correctly`, () => {
-            expect(TerraFormFieldHelper.getListRange(false)).toBe([0, Infinity]);
-            expect(TerraFormFieldHelper.getListRange(true)).toBe([0, Infinity]);
-            expect(TerraFormFieldHelper.getListRange('')).toBe([0, Infinity]);
-            expect(TerraFormFieldHelper.getListRange('[1,]')).toBe([1, Infinity]);
-            expect(TerraFormFieldHelper.getListRange('[1,2]')).toBe([1, 2]);
-            expect(TerraFormFieldHelper.getListRange('[ 1 , 2 ]')).toBe([1, 2]);
+            expect(TerraFormFieldHelper.getListRange(false)).toEqual([0, Infinity]);
+            expect(TerraFormFieldHelper.getListRange(true)).toEqual([0, Infinity]);
+            expect(TerraFormFieldHelper.getListRange('')).toEqual([0, Infinity]);
+            expect(TerraFormFieldHelper.getListRange('[1,]')).toEqual([1, Infinity]);
+            expect(TerraFormFieldHelper.getListRange('[1,2]')).toEqual([1, 2]);
+            expect(TerraFormFieldHelper.getListRange('[ 1 , 2 ]')).toEqual([1, 2]);
         });
 
         it(`must not return a list at any time if #skipList is set`, () => {
