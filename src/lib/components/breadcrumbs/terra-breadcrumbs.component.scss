@@ -59,6 +59,15 @@
 
             &:hover {
                 color: var(--color-active);
+                .icon-caret {
+                    .context-menu {
+                        display: block;
+                        visibility: visible;
+                        opacity: 1;
+                        transition: all var(--transition-0);
+                        transition-delay: var(--transition-delay-0);
+                    }
+                }
             }
 
             .icon-caret {
@@ -82,18 +91,6 @@
                         span {
                             margin-right: 5px;
                         }
-                    }
-                }
-            }
-
-            &:hover {
-                .icon-caret {
-                    .context-menu {
-                        display: block;
-                        visibility: visible;
-                        opacity: 1;
-                        transition: all var(--transition-0);
-                        transition-delay: var(--transition-delay-0);
                     }
                 }
             }
