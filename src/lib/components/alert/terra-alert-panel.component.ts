@@ -20,19 +20,14 @@ export class TerraAlertPanelComponent implements OnInit, OnDestroy {
     constructor(private _service: AlertService) {}
 
     public ngOnInit(): void {
-        const addEvent$: Observable<TerraAlertInterface> = fromEvent(window, this._service.addEvent).pipe(
-            map((event: CustomEvent<TerraAlertInterface>) => event.detail)
-        );
-        merge(this._service.addAlert, addEvent$)
-            .pipe(takeUntil(this._destroyed))
-            .subscribe((alert: TerraAlertInterface) => this._add(alert));
-
-        const closeEvent$: Observable<string> = fromEvent(window, this._service.closeEvent).pipe(
-            map((event: CustomEvent<string>) => event.detail)
-        );
-        merge(this._service.closeAlert, closeEvent$)
-            .pipe(takeUntil(this._destroyed))
-            .subscribe((identifier: string) => this._closeAlertByIdentifier(identifier));
+        this._createEventObservable(
+            this._service.addAlert,
+            this._service.addEvent
+        ).subscribe((alert: TerraAlertInterface) => this._add(alert));
+        this._createEventObservable(
+            this._service.closeAlert,
+            this._service.closeEvent
+        ).subscribe((identifier: string) => this._closeAlertByIdentifier(identifier));
     }
 
     public ngOnDestroy(): void {
@@ -71,5 +66,16 @@ export class TerraAlertPanelComponent implements OnInit, OnDestroy {
             // close the alert automatically after the given period of time
             setTimeout(() => this._closeAlert(alert), alert.dismissOnTimeout);
         }
+    }
+
+    /**
+     * Creates an Observable that emits whenever the given observable emits or a custom window event with the given #eventName occurs.
+     * @param obs
+     * @param eventName
+     */
+    private _createEventObservable<T>(obs: Observable<T>, eventName: string): Observable<T> {
+        return merge(obs, fromEvent(window, eventName).pipe(map((event: CustomEvent<T>) => event.detail))).pipe(
+            takeUntil(this._destroyed)
+        );
     }
 }
