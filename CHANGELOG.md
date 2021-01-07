@@ -6,6 +6,8 @@
 -   **terra-filter** removed deprecated `terra-filter`. Use the new `tc-filter` instead.
 -   **terra-slider** removed deprecated fields `inputValue` and `inputValueChange`.
 -   **terra-checkbox** removed getter and setter for `value` and `valueChange` emitter. Use `ngModel` and `ngModelChange` instead.
+-   **alert** removed `TerraAlertComponent`. Use `AlertService` instead.
+-   **input** `TerraInputComponent`'s `validate()` method no longer shows error alerts when the input is invalid.
 
 ### Features
 

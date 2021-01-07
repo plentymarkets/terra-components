@@ -1,21 +1,14 @@
-import { TestBed } from '@angular/core/testing';
+import { Subscription } from 'rxjs';
 
 import { AlertService } from './alert.service';
 import { TerraAlertInterface } from './data/terra-alert.interface';
-import { Subscription } from 'rxjs';
 import { AlertType } from './alert-type.enum';
-import { IS_ROOT_WINDOW } from '../../utils/window';
 
 describe('AlertService', () => {
     let service: AlertService;
-    beforeEach(() =>
-        TestBed.configureTestingModule({
-            providers: [AlertService, { provide: IS_ROOT_WINDOW, useValue: true }]
-        })
-    );
 
     beforeEach(() => {
-        service = TestBed.inject(AlertService);
+        service = new AlertService(true);
     });
 
     it('should be created', () => {
@@ -108,6 +101,37 @@ describe('AlertService', () => {
         afterEach(() => {
             subscription.unsubscribe();
             latest = undefined;
+        });
+    });
+
+    describe('used not in the root window', () => {
+        beforeEach(() => (service = new AlertService(false)));
+
+        it('should dispatch an event to the parent window to add an alert', () => {
+            spyOn(window.parent.window, 'dispatchEvent');
+            const msg: string = 'my message';
+            service.info(msg);
+            expect(window.parent.window.dispatchEvent).toHaveBeenCalledWith(
+                jasmine.objectContaining({
+                    type: service.addEvent,
+                    detail: jasmine.objectContaining({
+                        msg: msg,
+                        type: AlertType.info
+                    })
+                })
+            );
+        });
+
+        it('should dispatch an event to the parent window to close an alert', () => {
+            spyOn(window.parent.window, 'dispatchEvent');
+            const identifier: string = 'myId';
+            service.close(identifier);
+            expect(window.parent.window.dispatchEvent).toHaveBeenCalledWith(
+                jasmine.objectContaining({
+                    type: service.closeEvent,
+                    detail: identifier
+                })
+            );
         });
     });
 });
