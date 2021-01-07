@@ -8,6 +8,8 @@ import { RequestParameterInterface } from './request-parameter.interface';
 import { TerraFilter } from './filter';
 import { TerraPagerInterface } from '../pager/data/terra-pager.interface';
 
+type RequestFn<T> = (params: RequestParameterInterface) => Observable<Array<T> | TerraPagerInterface<T>>;
+
 /**
  * @experimental
  *
@@ -18,15 +20,6 @@ import { TerraPagerInterface } from '../pager/data/terra-pager.interface';
  *
  * @example
  * ```typescript
- * class MyDataSource extends TerraTableDataSource<MyData>
- * {
- *     constructor(private service:MyDataService) {}
- *
- *     public request():Observable<Array<MyData> | TerraPagerInterface<MyData>> {
- *         return this.service.getData();
- *     }
- * }
- *
  * @Component({
  *     template: `
  *        <mat-paginator></mat-paginator>
@@ -35,7 +28,9 @@ import { TerraPagerInterface } from '../pager/data/terra-pager.interface';
  * })
  * class MyComponent implements OnInit
  * {
- *     public dataSource:MyDataSource = new MyDataSource(this.service);
+ *     public dataSource:TerraDataSource<MyData> = new TerraDataSource(
+ *         params => this.service.getData(params)
+ *     );
  *     public filter:TerraFilter<any> = new TerraFilter();
  *     @ViewChild(MatPaginator, {static: true})
  *     public paginator:MatPaginator;
@@ -53,7 +48,7 @@ import { TerraPagerInterface } from '../pager/data/terra-pager.interface';
  * }
  * ```
  */
-export abstract class TerraTableDataSource<T> extends DataSource<T> {
+export class TerraTableDataSource<T> extends DataSource<T> {
     /** Snapshot of the currently displayed data. */
     public get data(): Array<T> {
         return this._data.value;
@@ -105,16 +100,16 @@ export abstract class TerraTableDataSource<T> extends DataSource<T> {
     /** Reference to the latest subscription to update the table's data. */
     private _subscription: Subscription = Subscription.EMPTY;
 
-    constructor() {
+    constructor(
+        /**
+         * The request to get the data. Either paginated or a plain list.
+         * @returns Observable<Array<T> | TerraPagerInterface<T>>
+         */
+        public request: RequestFn<T>
+    ) {
         super();
         this._updateSubscription(); // initially subscribe to any change to be able to search even if no filter, paging or sorting is applied.
     }
-
-    /**
-     * The request to get the data. Either paginated or a plain list.
-     * @returns Observable<Array<T> | TerraPagerInterface<T>>
-     */
-    public abstract request(requestParams: RequestParameterInterface): Observable<Array<T> | TerraPagerInterface<T>>;
 
     /** Initiates a request that fetches data from the server */
     public search(): void {

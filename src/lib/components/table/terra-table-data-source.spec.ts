@@ -4,21 +4,16 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { Observable, of } from 'rxjs';
 import { TerraTableDataSource } from './terra-table-data-source';
-import { RequestParameterInterface } from './request-parameter.interface';
 import { TerraFilter } from './filter';
 import { TerraPagerInterface } from '../pager/data/terra-pager.interface';
 
-class ConcreteTableDataSource extends TerraTableDataSource<{}> {
-    public request(requestParams: RequestParameterInterface): Observable<Array<{}> | TerraPagerInterface<{}>> {
-        return of([{}]);
-    }
-}
-
 // tslint:disable:max-function-line-count
 describe('TerraTableDataSource', () => {
-    let dataSource: ConcreteTableDataSource;
+    let dataSource: TerraTableDataSource<{}>;
 
-    beforeEach(() => (dataSource = new ConcreteTableDataSource()));
+    beforeEach(() => {
+        dataSource = new TerraTableDataSource((): Observable<Array<{}>> => of([{}]));
+    });
 
     it('should create', () => {
         expect(dataSource).toBeTruthy();
