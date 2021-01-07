@@ -4,12 +4,11 @@ export * from './helpers';
 export * from './models';
 export * from './components/editors/ck-editor/presets';
 export * from './utils';
+
 export * from './components/table';
+export * from './components/alert';
 
 export { TerraComponentsModule } from './terra-components.module';
-
-export { TerraAlertPanelComponent } from './components/alert/terra-alert-panel.component';
-export { TerraAlertComponent } from './components/alert/terra-alert.component';
 
 export { TerraButtonInterface } from './components/buttons/button/data/terra-button.interface';
 export { TerraButtonComponent } from './components/buttons/button/terra-button.component';
@@ -182,7 +181,6 @@ export { TerraTagSelectComponent } from './components/forms/tag-select/terra-tag
 export { TerraGroupFunctionComponent } from './components/tables/group-function/terra-group-function.component';
 export { TerraDataTableBaseService } from './components/tables/data-table/terra-data-table-base.service';
 export { TableRowComponent } from './components/tables/data-table/table-row/table-row.component';
-export { AlertService } from './components/alert/alert.service';
 export { CKEditorDirective } from './components/editors/ck-editor/ck-editor.directive';
 export { TooltipDirective } from './components/tooltip/tooltip.directive';
 export { SelectSortPipe } from './pipes/select-sort.pipe';
