@@ -34,18 +34,18 @@ export class TerraBreadcrumbsService {
                 filter((event: RouterEvent) => {
                     return (
                         event instanceof NavigationEnd && // navigation is done
-                        !isNullOrUndefined(this._initialPath) && // initialPath is set
+                        !(this._initialPath === null || this._initialPath === undefined) && // initialPath is set
                         event.urlAfterRedirects.startsWith(this._initialPath)
                     ); // url starts with the initial path
                 })
             )
             .subscribe((event: NavigationEnd) => {
-                if (!isNullOrUndefined(this._initialRoute.children)) {
-                    let cleanEventUrl: string = '/' + UrlHelper.getCleanUrl(event.urlAfterRedirects);
-                    let shortUrl: string = cleanEventUrl.replace(this._initialPath, '');
+                if (!(this._initialRoute.children === null || this._initialRoute.children === undefined)) {
+                    const cleanEventUrl: string = '/' + UrlHelper.getCleanUrl(event.urlAfterRedirects);
+                    const shortUrl: string = cleanEventUrl.replace(this._initialPath, '');
 
-                    let urlParts: Array<string> = shortUrl.split('/');
-                    let urls: Array<string> = urlParts.map((urlPart: string, index: number) =>
+                    const urlParts: Array<string> = shortUrl.split('/');
+                    const urls: Array<string> = urlParts.map((urlPart: string, index: number) =>
                         urlParts.slice(0, index + 1).join('/')
                     );
                     urls.forEach((url: string) => {
@@ -79,7 +79,7 @@ export class TerraBreadcrumbsService {
         let breadcrumbUrl: string = breadcrumb.routerLink;
 
         if (
-            !isNullOrUndefined(breadcrumb.queryParams) &&
+            !(breadcrumb.queryParams === null || breadcrumb.queryParams === undefined) &&
             Object.getOwnPropertyNames(breadcrumb.queryParams).length > 0
         ) {
             breadcrumbUrl = this._urlSerializer.serialize(
@@ -97,10 +97,10 @@ export class TerraBreadcrumbsService {
      * @param url Url to close the breadcrumb.
      */
     public closeBreadcrumbByUrl(url: string): void {
-        let breadcrumb: TerraBreadcrumb = this._findBreadcrumbByUrl(url);
-        let container: TerraBreadcrumbContainer = this._findBreadcrumbContainerByUrl(url);
+        const breadcrumb: TerraBreadcrumb = this._findBreadcrumbByUrl(url);
+        const container: TerraBreadcrumbContainer = this._findBreadcrumbContainerByUrl(url);
 
-        if (!isNullOrUndefined(breadcrumb)) {
+        if (!(breadcrumb === null || breadcrumb === undefined)) {
             this.closeBreadcrumb(container, breadcrumb);
         }
     }
@@ -111,19 +111,19 @@ export class TerraBreadcrumbsService {
      * @param name If not given, it will be automatically update the name by the label of the route data.
      */
     public updateBreadcrumbNameByUrl(url: string, name?: string): void {
-        let breadcrumb: TerraBreadcrumb = this._findBreadcrumbByUrl(url);
+        const breadcrumb: TerraBreadcrumb = this._findBreadcrumbByUrl(url);
 
-        let shortUrlWithoutLeadingSlash: string = UrlHelper.removeLeadingSlash(url);
-        let route: Route = this._findRoute(shortUrlWithoutLeadingSlash, this._initialRoute.children);
+        const shortUrlWithoutLeadingSlash: string = UrlHelper.removeLeadingSlash(url);
+        const route: Route = this._findRoute(shortUrlWithoutLeadingSlash, this._initialRoute.children);
 
-        if (!isNullOrUndefined(route) && !isNullOrUndefined(route.data) && !isNullOrUndefined(breadcrumb)) {
+        if (!isNullOrUndefined(route?.data) && !(breadcrumb === null || breadcrumb === undefined)) {
             // you can set a name to update the breadcrumb name
-            if (!isNullOrUndefined(name)) {
+            if (!(name === null || name === undefined)) {
                 breadcrumb.name = this._translation.translate(name);
             }
             // or it will be updated automatically from it's route data
             else {
-                let activatedSnapshot: ActivatedRouteSnapshot = this._findActivatedRouteSnapshot(
+                const activatedSnapshot: ActivatedRouteSnapshot = this._findActivatedRouteSnapshot(
                     this._router.routerState.snapshot.root
                 );
 
@@ -133,14 +133,14 @@ export class TerraBreadcrumbsService {
     }
 
     public closeBreadcrumb(breadcrumbContainer: TerraBreadcrumbContainer, breadcrumb: TerraBreadcrumb): void {
-        let breadcrumbList: Array<TerraBreadcrumb> = breadcrumbContainer.breadcrumbList;
-        let breadcrumbIndex: number = breadcrumbList.indexOf(breadcrumb);
+        const breadcrumbList: Array<TerraBreadcrumb> = breadcrumbContainer.breadcrumbList;
+        const breadcrumbIndex: number = breadcrumbList.indexOf(breadcrumb);
 
         // current selected breadcrumb should be closed?
         if (breadcrumbContainer.currentSelectedBreadcrumb === breadcrumb) {
-            let currentUrl: string = this._router.url;
+            const currentUrl: string = this._router.url;
 
-            let currentSelectedContainer: TerraBreadcrumbContainer = this._containers.find(
+            const currentSelectedContainer: TerraBreadcrumbContainer = this._containers.find(
                 (bcc: TerraBreadcrumbContainer) => {
                     return bcc.currentSelectedBreadcrumb.routerLink === currentUrl;
                 }
@@ -150,11 +150,14 @@ export class TerraBreadcrumbsService {
             breadcrumbContainer.currentSelectedBreadcrumb =
                 breadcrumbIndex === 0 ? breadcrumbList[1] : breadcrumbList[0];
 
-            let currentSelectedIndex: number = this._containers.indexOf(currentSelectedContainer);
-            let breadcrumbContainerIndex: number = this._containers.indexOf(breadcrumbContainer);
+            const currentSelectedIndex: number = this._containers.indexOf(currentSelectedContainer);
+            const breadcrumbContainerIndex: number = this._containers.indexOf(breadcrumbContainer);
 
             // container has no more breadcrumbs
-            if (isNullOrUndefined(breadcrumbContainer.currentSelectedBreadcrumb)) {
+            if (
+                breadcrumbContainer.currentSelectedBreadcrumb === null ||
+                breadcrumbContainer.currentSelectedBreadcrumb === undefined
+            ) {
                 this._removeBreadcrumbContainer(breadcrumbContainer);
             }
             // check indexes to start routing
@@ -163,28 +166,28 @@ export class TerraBreadcrumbsService {
             }
         }
 
-        // delete all related breadcrumbs
-        let currentContainerIndex: number = this._containers.indexOf(breadcrumbContainer);
-        let nextContainer: TerraBreadcrumbContainer = this._containers[currentContainerIndex + 1];
+        // deconste all related breadcrumbs
+        const currentContainerIndex: number = this._containers.indexOf(breadcrumbContainer);
+        const nextContainer: TerraBreadcrumbContainer = this._containers[currentContainerIndex + 1];
         this._removeBreadcrumbsByParent(nextContainer, breadcrumb);
 
-        // finally delete breadcrumb
+        // finally deconste breadcrumb
         breadcrumbList.splice(breadcrumbIndex, 1);
     }
 
     private _handleBreadcrumbForUrl(shortUrl: string, fullUrl: string, cleanEventUrl: string): void {
-        let route: Route = this._findRoute(shortUrl, this._initialRoute.children);
+        const route: Route = this._findRoute(shortUrl, this._initialRoute.children);
         this._handleBreadcrumb(route, fullUrl, cleanEventUrl, shortUrl.split('/').length - 1);
     }
 
     private _handleBreadcrumb(route: Route, url: string, cleanEventUrl: string, urlPartsCount: number): void {
-        if (isNullOrUndefined(route)) {
+        if (route === null || route === undefined) {
             return;
         }
 
         // search for existing container - create new container if not existing
         let container: TerraBreadcrumbContainer = this._containers[urlPartsCount];
-        if (isNullOrUndefined(container)) {
+        if (container === null || container === undefined) {
             container = new TerraBreadcrumbContainer();
             this._containers.push(container);
         }
@@ -195,16 +198,17 @@ export class TerraBreadcrumbsService {
         });
 
         // breadcrumb not found
-        if (isNullOrUndefined(breadcrumb)) {
-            let activatedSnapshot: ActivatedRouteSnapshot = this._findActivatedRouteSnapshot(
+        if (breadcrumb === null || breadcrumb === undefined) {
+            const activatedSnapshot: ActivatedRouteSnapshot = this._findActivatedRouteSnapshot(
                 this._router.routerState.snapshot.root
             );
-            let label: string = this._getBreadcrumbLabel(route, activatedSnapshot);
-            let currentContainerIndex: number = this._containers.indexOf(container);
-            let previousContainer: TerraBreadcrumbContainer = this._containers[currentContainerIndex - 1];
-            let parentBreadcrumb: TerraBreadcrumb = isNullOrUndefined(previousContainer)
-                ? undefined
-                : previousContainer.currentSelectedBreadcrumb;
+            const label: string = this._getBreadcrumbLabel(route, activatedSnapshot);
+            const currentContainerIndex: number = this._containers.indexOf(container);
+            const previousContainer: TerraBreadcrumbContainer = this._containers[currentContainerIndex - 1];
+            const parentBreadcrumb: TerraBreadcrumb =
+                previousContainer === null || previousContainer === undefined
+                    ? undefined
+                    : previousContainer.currentSelectedBreadcrumb;
 
             if (UrlHelper.getCleanUrl(cleanEventUrl) === UrlHelper.getCleanUrl(url)) {
                 breadcrumb = new TerraBreadcrumb(label, parentBreadcrumb, url, activatedSnapshot.queryParams);
@@ -253,7 +257,7 @@ export class TerraBreadcrumbsService {
         // is the current selected breadcrumb now hidden?
         if (breadcrumbContainer.currentSelectedBreadcrumb.isHidden) {
             // search for another breadcrumb to be selected that is not hidden
-            let foundBreadcrumb: TerraBreadcrumb = breadcrumbContainer.breadcrumbList.find(
+            const foundBreadcrumb: TerraBreadcrumb = breadcrumbContainer.breadcrumbList.find(
                 (bc: TerraBreadcrumb) => !bc.isHidden
             );
             if (!isNullOrUndefined(foundBreadcrumb)) {
@@ -272,7 +276,7 @@ export class TerraBreadcrumbsService {
     }
 
     private _findRoute(url: string, routeConfig: Routes): Route {
-        let urlParts: Array<string> = UrlHelper.removeLeadingSlash(url).split('/');
+        const urlParts: Array<string> = UrlHelper.removeLeadingSlash(url).split('/');
         let urlPart: string = urlParts.shift();
 
         let routes: Routes = routeConfig;
@@ -285,15 +289,15 @@ export class TerraBreadcrumbsService {
                 routes = route.children;
                 urlPart = urlParts.shift();
             } else {
-                urlPart = urlPart + '/' + urlParts.shift();
+                urlPart = `${urlPart} / ${urlParts.shift()}`;
             }
 
             route = routes.find((routeToFind: Route) => {
-                let splittedRoutePath: Array<string> = routeToFind.path.split('/');
+                const splittedRoutePath: Array<string> = routeToFind.path.split('/');
 
-                let parameterisedRoutes: { [key: string]: number } = {};
+                const parameterisedRoutes: { [key: string]: number } = {};
 
-                let splittedFlatPath: Array<string> = urlPart.split('/');
+                const splittedFlatPath: Array<string> = urlPart.split('/');
 
                 splittedRoutePath.forEach((path: string, index: number) => {
                     if (path.startsWith(':')) {
@@ -305,7 +309,7 @@ export class TerraBreadcrumbsService {
                     splittedRoutePath[index] = splittedFlatPath[index];
                 });
 
-                let gluedRoutePath: string = splittedRoutePath.join('/');
+                const gluedRoutePath: string = splittedRoutePath.join('/');
 
                 return !StringHelper.isNullUndefinedOrEmpty(routeToFind.path) && urlPart === gluedRoutePath;
             });
@@ -315,9 +319,9 @@ export class TerraBreadcrumbsService {
     }
 
     private _findBreadcrumbContainerByUrl(url: string): TerraBreadcrumbContainer {
-        let urlPartsCount: number = url.split('/').length - 1;
+        const urlPartsCount: number = url.split('/').length - 1;
 
-        let container: TerraBreadcrumbContainer = this._containers[urlPartsCount];
+        const container: TerraBreadcrumbContainer = this._containers[urlPartsCount];
 
         if (isNullOrUndefined(container)) {
             console.error('No existing breadcrumb container found.');
@@ -327,9 +331,9 @@ export class TerraBreadcrumbsService {
     }
 
     private _findBreadcrumbByUrl(url: string): TerraBreadcrumb {
-        let container: TerraBreadcrumbContainer = this._findBreadcrumbContainerByUrl(url);
+        const container: TerraBreadcrumbContainer = this._findBreadcrumbContainerByUrl(url);
 
-        let routerLink: string = this._initialPath + url;
+        const routerLink: string = this._initialPath + url;
 
         if (
             !isNullOrUndefined(container) &&
@@ -345,18 +349,18 @@ export class TerraBreadcrumbsService {
     }
 
     private _removeBreadcrumbContainer(breadcrumbContainer: TerraBreadcrumbContainer): void {
-        let index: number = this._containers.indexOf(breadcrumbContainer);
+        const index: number = this._containers.indexOf(breadcrumbContainer);
 
         if (index >= 0) {
-            // delete current breadcrumb container
+            // deconste current breadcrumb container
             this._containers.splice(index, 1);
 
             // get next breadcrumb container with the same index
-            let nextContainer: TerraBreadcrumbContainer = this._containers[index];
+            const nextContainer: TerraBreadcrumbContainer = this._containers[index];
 
             // if no more next container, select previous container and route to breadcrumb
             if (isNullOrUndefined(nextContainer)) {
-                let previousContainer: TerraBreadcrumbContainer = this._containers[index - 1];
+                const previousContainer: TerraBreadcrumbContainer = this._containers[index - 1];
 
                 if (
                     !isNullOrUndefined(previousContainer) &&
@@ -375,15 +379,17 @@ export class TerraBreadcrumbsService {
             return;
         }
 
-        let currentContainerIndex: number = this._containers.indexOf(container);
-        let nextContainer: TerraBreadcrumbContainer = this._containers[currentContainerIndex + 1];
-        let filteredBreadcrumbList: Array<TerraBreadcrumb> = container.breadcrumbList.filter((bc: TerraBreadcrumb) => {
-            if (bc.parent === parent && !isNullOrUndefined(nextContainer)) {
-                this._removeBreadcrumbsByParent(nextContainer, bc);
-            }
+        const currentContainerIndex: number = this._containers.indexOf(container);
+        const nextContainer: TerraBreadcrumbContainer = this._containers[currentContainerIndex + 1];
+        const filteredBreadcrumbList: Array<TerraBreadcrumb> = container.breadcrumbList.filter(
+            (bc: TerraBreadcrumb) => {
+                if (bc.parent === parent && !isNullOrUndefined(nextContainer)) {
+                    this._removeBreadcrumbsByParent(nextContainer, bc);
+                }
 
-            return bc.parent !== parent;
-        });
+                return bc.parent !== parent;
+            }
+        );
 
         if (filteredBreadcrumbList.length === 0) {
             // remove container
