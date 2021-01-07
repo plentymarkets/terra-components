@@ -25,9 +25,9 @@ export class TerraBreadcrumbsService {
     private _initialRoute: Route;
 
     constructor(
-        private _router: Router,
-        private _translation: L10nTranslationService,
-        private _urlSerializer: UrlSerializer
+        private readonly _router: Router,
+        private readonly _translation: L10nTranslationService,
+        private readonly _urlSerializer: UrlSerializer
     ) {
         this._router.events
             .pipe(

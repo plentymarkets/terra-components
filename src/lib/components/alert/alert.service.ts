@@ -19,7 +19,7 @@ export class AlertService {
 
     private readonly defaultTimeout: number = 5000;
 
-    constructor(@Inject(IS_ROOT_WINDOW) private isRootWindow: boolean) {}
+    constructor(@Inject(IS_ROOT_WINDOW) private readonly isRootWindow: boolean) {}
 
     /**
      * add a success alert
@@ -67,7 +67,7 @@ export class AlertService {
     }
 
     private _add(msg: string, type: AlertType, timeout: number, identifier?: string): void {
-        let alert: TerraAlertInterface = {
+        const alert: TerraAlertInterface = {
             msg: msg,
             type: type,
             dismissOnTimeout: timeout,
