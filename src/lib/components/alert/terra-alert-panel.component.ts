@@ -9,8 +9,7 @@ import { AlertService } from './alert.service';
  */
 @Component({
     selector: 'terra-alert-panel',
-    templateUrl: './terra-alert-panel.component.html',
-    styleUrls: ['./terra-alert-panel.component.scss']
+    templateUrl: './terra-alert-panel.component.html'
 })
 export class TerraAlertPanelComponent implements OnInit, OnDestroy {
     /** List of alerts that are currently shown in the panel. */
@@ -33,7 +32,7 @@ export class TerraAlertPanelComponent implements OnInit, OnDestroy {
         );
         merge(this._service.closeAlert, closeEvent$)
             .pipe(takeUntil(this._destroyed))
-            .subscribe((identifier: string) => this.closeAlertByIdentifier(identifier));
+            .subscribe((identifier: string) => this._closeAlertByIdentifier(identifier));
     }
 
     public ngOnDestroy(): void {
@@ -43,31 +42,33 @@ export class TerraAlertPanelComponent implements OnInit, OnDestroy {
     }
 
     /**
-     * @description Closes the alert at the given index.
-     * @internal
+     * Closes the alert at the given index.
+     * @private
      */
     public _closeAlertByIndex(index: number): void {
         this._alerts.splice(index, 1);
     }
 
-    /** @description Closes the first alert that matches the given identifier. */
-    private closeAlertByIdentifier(identifier: string): void {
+    /** Closes the first alert that matches the given identifier. */
+    private _closeAlertByIdentifier(identifier: string): void {
         const index: number = this._alerts.findIndex((alert: TerraAlertInterface) => alert.identifier === identifier);
         this._closeAlertByIndex(index);
     }
 
-    /** @description Closes a given alert reference. */
+    /** Closes a given alert reference. */
     private _closeAlert(alert: TerraAlertInterface): void {
         const index: number = this._alerts.indexOf(alert);
         this._closeAlertByIndex(index);
     }
 
+    /** Adds an alert and sets up a timeout to dismiss the alert automatically if needed. */
     private _add(alert: TerraAlertInterface): void {
         // add the alert
         this._alerts.unshift(alert);
 
-        // close the alert automatically after the given period of time
+        // alert should be dismissed automatically?
         if (alert.dismissOnTimeout > 0) {
+            // close the alert automatically after the given period of time
             setTimeout(() => this._closeAlert(alert), alert.dismissOnTimeout);
         }
     }

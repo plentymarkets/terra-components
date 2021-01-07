@@ -4,18 +4,12 @@ import { AlertType } from './alert-type.enum';
 import { IS_ROOT_WINDOW } from '../../utils/window';
 
 @Injectable({
-    providedIn: 'root' // TODO: We may change this to platform in Angular v9!?
+    providedIn: 'root' // TODO: We may change this to 'platform' if we want to globally manage alerts here in the future.
 })
 export class AlertService {
-    /**
-     * Notifies that an alert is supposed to be added
-     * @deprecated since v6. Will be removed in a future major release.
-     */
+    /** Notifies that an alert is supposed to be added. */
     public addAlert: EventEmitter<TerraAlertInterface> = new EventEmitter<TerraAlertInterface>();
-    /**
-     * Notifies that an alert is supposed to be closed.
-     * @deprecated since v6. Will be removed in a future major release.
-     */
+    /** Notifies that an alert is supposed to be closed. */
     public closeAlert: EventEmitter<string> = new EventEmitter<string>();
 
     /** Name of the CustomEvent that is dispatched to the parent window to add an alert. */
@@ -83,7 +77,10 @@ export class AlertService {
         this.notifyOnAdd(alert);
     }
 
-    /** Dispatches event to the parent window indicating that an alert should be added. */
+    /**
+     * Dispatches event to the parent window indicating that an alert should be added.
+     * @param alert
+     */
     private addAlertForPlugin(alert: TerraAlertInterface): void {
         const event: CustomEvent<TerraAlertInterface> = new CustomEvent<TerraAlertInterface>(this.addEvent, {
             detail: alert,
@@ -92,7 +89,10 @@ export class AlertService {
         window.parent.window.dispatchEvent(event);
     }
 
-    /** Dispatches event to the parent window indicating that an alert should be closed. */
+    /**
+     * Dispatches event to the parent window indicating that an alert should be closed.
+     * @param identifier
+     */
     private closeAlertForPlugin(identifier: string): void {
         const event: CustomEvent<string> = new CustomEvent<string>(this.closeEvent, {
             detail: identifier,
@@ -101,7 +101,10 @@ export class AlertService {
         window.parent.window.dispatchEvent(event);
     }
 
-    /** Notifies whenever an alert has been added. */
+    /**
+     * Notifies whenever an alert should be added.
+     * @param alert
+     */
     private notifyOnAdd(alert: TerraAlertInterface): void {
         // check whether the service is used in the root window or in an iframe
         if (this.isRootWindow) {
@@ -113,7 +116,10 @@ export class AlertService {
         }
     }
 
-    /** Notifies whenever an alert has been closed. */
+    /**
+     * Notifies whenever an alert should be closed.
+     * @param identifier
+     */
     private notifyOnClose(identifier: string): void {
         // check whether the service is used in the root window or in an iframe
         if (this.isRootWindow) {

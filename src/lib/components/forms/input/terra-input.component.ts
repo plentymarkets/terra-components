@@ -1,6 +1,5 @@
 import { Input, Directive } from '@angular/core';
 import { ControlValueAccessor, FormControl } from '@angular/forms';
-import { isNullOrUndefined } from 'util';
 import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum';
 import { noop } from 'rxjs';
 
@@ -140,40 +139,6 @@ export class TerraInputComponent implements ControlValueAccessor {
         } else {
             if (!this.isDisabled) {
                 this.isValid = false;
-
-                if (this.inputIsRequired && (isNullOrUndefined(this.value) || this.value.length === 0)) {
-                    let emptyMessage: string;
-
-                    if (!this.inputEmptyMessage || this.inputEmptyMessage.length === 0) {
-                        // TODO i18n
-                        // emptyMessage = 'Mach eine Eingabe!';
-                    } else {
-                        emptyMessage = this.inputEmptyMessage;
-
-                        // TODO: is this really needed????
-                        // this._alert.addAlert({
-                        //     msg:              emptyMessage,
-                        //     type:             'danger',
-                        //     dismissOnTimeout: 0
-                        // });
-                    }
-                } else if (!isNullOrUndefined(this.value) && this.value.length > 0) {
-                    let invalidMessage: string;
-
-                    if (!this.inputInvalidMessage || this.inputInvalidMessage.length === 0) {
-                        // TODO i18n
-                        // invalidMessage = 'Eingabe ungültig!';
-                    } else {
-                        invalidMessage = this.inputInvalidMessage;
-
-                        // TODO: is this really needed???
-                        // this._alert.addAlert({
-                        //     msg:              invalidMessage,
-                        //     type:             'danger',
-                        //     dismissOnTimeout: 0
-                        // });
-                    }
-                }
             }
         }
     }

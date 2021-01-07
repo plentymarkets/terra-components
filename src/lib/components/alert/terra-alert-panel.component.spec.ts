@@ -80,8 +80,7 @@ describe('TerraAlertPanelComponent: ', () => {
     it('should dismiss an alert automatically after the given #dismissOnTimeout amount of time', fakeAsync(() => {
         spyOn(component, '_closeAlertByIndex');
         service.info('my message');
-        tick(1000);
-        service.info('another info');
+        service.error('an error');
         expect(component._alerts.length).toBe(2);
 
         tick(service['defaultTimeout']);

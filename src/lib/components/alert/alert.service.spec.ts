@@ -103,4 +103,35 @@ describe('AlertService', () => {
             latest = undefined;
         });
     });
+
+    describe('used not in the root window', () => {
+        beforeEach(() => (service = new AlertService(false)));
+
+        it('should dispatch an event to the parent window to add an alert', () => {
+            spyOn(window.parent.window, 'dispatchEvent');
+            const msg: string = 'my message';
+            service.info(msg);
+            expect(window.parent.window.dispatchEvent).toHaveBeenCalledWith(
+                jasmine.objectContaining({
+                    type: service.addEvent,
+                    detail: jasmine.objectContaining({
+                        msg: msg,
+                        type: AlertType.info
+                    })
+                })
+            );
+        });
+
+        it('should dispatch an event to the parent window to close an alert', () => {
+            spyOn(window.parent.window, 'dispatchEvent');
+            const identifier: string = 'myId';
+            service.close(identifier);
+            expect(window.parent.window.dispatchEvent).toHaveBeenCalledWith(
+                jasmine.objectContaining({
+                    type: service.closeEvent,
+                    detail: identifier
+                })
+            );
+        });
+    });
 });
