@@ -8,7 +8,7 @@
 -   **terra-checkbox** removed getter and setter for `value` and `valueChange` emitter. Use `ngModel` and `ngModelChange` instead.
 -   **alert** removed `TerraAlertComponent`. Use `AlertService` instead.
 -   **input** `TerraInputComponent`'s `validate()` method no longer shows error alerts when the input is invalid.
--   **styles** removed styles for `mat-tab-nav-bar` since they were not generally applicable.
+-   **styles** removed styles for material tabs since they were not generally applicable. Falling back to the default material styles.
 
 ### Features
 
