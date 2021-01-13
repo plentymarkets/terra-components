@@ -74,8 +74,9 @@ export class TerraAlertPanelComponent implements OnInit, OnDestroy {
      * @param eventName
      */
     private _createEventObservable<T>(obs: Observable<T>, eventName: string): Observable<T> {
-        return merge(obs, fromEvent(window, eventName).pipe(map((event: CustomEvent<T>) => event.detail))).pipe(
-            takeUntil(this._destroyed)
+        const windowEvent: Observable<T> = fromEvent(window, eventName).pipe(
+            map((event: CustomEvent<T>) => event.detail)
         );
+        return merge(obs, windowEvent).pipe(takeUntil(this._destroyed));
     }
 }
