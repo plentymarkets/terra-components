@@ -9,30 +9,21 @@ import { TerraPortletComponent } from './terra-portlet.component';
 import { TerraButtonComponent } from '../../buttons/button/terra-button.component';
 import { TerraButtonInterface } from '../../buttons/button/data/terra-button.interface';
 import { TerraInfoComponent } from '../../info/terra-info.component';
-import { TooltipDirective } from '../../tooltip/tooltip.directive';
-import { Router } from '@angular/router';
-import { MockRouter } from '../../../testing/mock-router';
-import Spy = jasmine.Spy;
 import { mockL10nConfig } from '../../../testing/mock-l10n-config';
+import { MockTooltipDirective } from '../../../testing/mock-tooltip.directive';
+import Spy = jasmine.Spy;
 
 describe('TerraPortletComponent', () => {
     let component: TerraPortletComponent;
     let fixture: ComponentFixture<TerraPortletComponent>;
     let debugElement: DebugElement;
-    const router: MockRouter = new MockRouter();
 
     const portletHeader: string = 'What is my purpose?';
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            declarations: [TooltipDirective, TerraPortletComponent, TerraButtonComponent, TerraInfoComponent],
-            imports: [FormsModule, NoopAnimationsModule, L10nTranslationModule.forRoot(mockL10nConfig)],
-            providers: [
-                {
-                    provide: Router,
-                    useValue: router
-                }
-            ]
+            declarations: [MockTooltipDirective, TerraPortletComponent, TerraButtonComponent, TerraInfoComponent],
+            imports: [FormsModule, NoopAnimationsModule, L10nTranslationModule.forRoot(mockL10nConfig)]
         });
     });
 
