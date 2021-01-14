@@ -1,6 +1,5 @@
 module.exports = function () {
     const fileSelectors = {
-        allFonts: './src/assets/fonts/**/*',
         allLang: './src/assets/lang/**/*'
     };
 
@@ -16,7 +15,6 @@ module.exports = function () {
 
     const destinations = {
         tsOutputPath: './dist/',
-        fontsOutputPath: './dist/assets/fonts/',
         langOutputPath: './dist/assets/lang/',
         styles: './dist/styles/',
 
