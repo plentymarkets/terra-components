@@ -69,8 +69,8 @@ function copyReadme() {
     return src(config.sources.readme).pipe(dest(config.destinations.tsOutputPath));
 }
 
-function copyIconsScss() {
-    return src('src/lib/styles/icons.scss').pipe(dest(config.destinations.styles));
+function copyFunctionGroupsScss() {
+    return src('src/lib/styles/function-groups.scss').pipe(dest(config.destinations.styles));
 }
 
 function copyVariablesScss() {
@@ -106,7 +106,7 @@ function copyButtonScss() {
 }
 
 const copySassFiles = parallel(
-    copyIconsScss,
+    copyFunctionGroupsScss,
     copyVariablesScss,
     copyCustomDataTableScss,
     copyNodeTreeScss,
