@@ -1,4 +1,4 @@
-# 6.0.0-alpha.X (DD.MM.YYYY)
+# 6.0.0-beta.0 (11.01.2021)
 
 ### Breaking Changes
 
