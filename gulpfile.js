@@ -49,7 +49,7 @@ function compileGlobalStyles() {
                 outputStyle: 'compressed'
             }).on('error', sass.logError)
         )
-        .pipe(dest('dist/styles'));
+        .pipe(dest(config.destinations.styles));
 }
 const compileStyles = compileGlobalStyles;
 exports.compileStyles = compileStyles;
