@@ -1,3 +1,13 @@
+# 6.0.0-beta.1 (XX.XX.XXXX)
+
+### Breakung Changes
+
+-   **terra-node-tree** removed dependency to `TranslationService` from `TerraNodeTreeConfig`.
+-   **terra-nested-data-picker** removed dependency to `TranslationService` from `NestedDataTreeConfig`.
+-   **terra-category-picker**
+    -   `CategoryTreeConfig` is deprecated now.
+    -   removed dependency to `TranslationService` from `CategoryTreeConfig`.
+
 # 6.0.0-beta.0 (11.01.2021)
 
 ### Breaking Changes
