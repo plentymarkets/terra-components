@@ -1,3 +1,9 @@
+# 6.0.0-beta.1 (XX.XX.XXXX)
+
+### Breaking Changes
+
+-   **styles** removed styles for material tabs since they were not generally applicable. Falling back to the default material styles.
+
 # 6.0.0-beta.0 (11.01.2021)
 
 ### Breaking Changes
@@ -8,7 +14,6 @@
 -   **terra-checkbox** removed getter and setter for `value` and `valueChange` emitter. Use `ngModel` and `ngModelChange` instead.
 -   **alert** removed `TerraAlertComponent`. Use `AlertService` instead.
 -   **input** `TerraInputComponent`'s `validate()` method no longer shows error alerts when the input is invalid.
--   **styles** removed styles for material tabs since they were not generally applicable. Falling back to the default material styles.
 
 ### Features
 
