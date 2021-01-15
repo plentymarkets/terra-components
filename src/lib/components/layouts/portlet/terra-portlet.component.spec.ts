@@ -1,61 +1,33 @@
-import {
-    async,
-    ComponentFixture,
-    TestBed
-} from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
-import { LocalizationModule } from 'angular-l10n';
-import { l10nConfig } from '../../../../app/translation/l10n.config';
-import {
-    DebugElement,
-    SimpleChange
-} from '@angular/core';
-import { TerraLabelTooltipDirective } from '../../../helpers/terra-label-tooltip.directive';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { L10nTranslationModule } from 'angular-l10n';
+import { DebugElement, SimpleChange } from '@angular/core';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
 import { buttonList } from '../../../testing/mock-buttons';
 import { TerraPortletComponent } from './terra-portlet.component';
 import { TerraButtonComponent } from '../../buttons/button/terra-button.component';
 import { TerraButtonInterface } from '../../buttons/button/data/terra-button.interface';
 import { TerraInfoComponent } from '../../info/terra-info.component';
-import { TooltipDirective } from '../../tooltip/tooltip.directive';
-import { Router } from '@angular/router';
-import { MockRouter } from '../../../testing/mock-router';
+import { mockL10nConfig } from '../../../testing/mock-l10n-config';
+import { MockTooltipDirective } from '../../../testing/mock-tooltip.directive';
 import Spy = jasmine.Spy;
 
-describe('TerraPortletComponent', () =>
-{
-    let component:TerraPortletComponent;
-    let fixture:ComponentFixture<TerraPortletComponent>;
-    let debugElement:DebugElement;
-    const router:MockRouter = new MockRouter();
+describe('TerraPortletComponent', () => {
+    let component: TerraPortletComponent;
+    let fixture: ComponentFixture<TerraPortletComponent>;
+    let debugElement: DebugElement;
 
-    const portletHeader:string = 'What is my purpose?';
+    const portletHeader: string = 'What is my purpose?';
 
-    beforeEach(async(() =>
-    {
+    beforeEach(() => {
         TestBed.configureTestingModule({
-            declarations: [TooltipDirective,
-                           TerraPortletComponent,
-                           TerraButtonComponent,
-                           TerraLabelTooltipDirective,
-                           TerraInfoComponent
-            ],
-            imports:      [
-                FormsModule,
-                BrowserAnimationsModule,
-                LocalizationModule.forRoot(l10nConfig)
-            ],
-            providers:    [
-                {
-                    provide:  Router,
-                    useValue: router
-                }]
-        }).compileComponents();
-    }));
+            declarations: [MockTooltipDirective, TerraPortletComponent, TerraButtonComponent, TerraInfoComponent],
+            imports: [FormsModule, NoopAnimationsModule, L10nTranslationModule.forRoot(mockL10nConfig)]
+        });
+    });
 
-    beforeEach(() =>
-    {
+    beforeEach(() => {
         fixture = TestBed.createComponent(TerraPortletComponent);
         component = fixture.componentInstance;
         debugElement = fixture.debugElement;
@@ -63,13 +35,11 @@ describe('TerraPortletComponent', () =>
         fixture.detectChanges();
     });
 
-    it(`should create an instance`, () =>
-    {
+    it(`should create an instance`, () => {
         expect(component).toBeTruthy();
     });
 
-    it(`should initialize with the correct values`, () =>
-    {
+    it(`should initialize with the correct values`, () => {
         expect(component.inputHighlightPortlet).toBe(false);
         expect(component.inputPortletHeader).toBeUndefined();
         expect(component.inputIsCollapsable).toBe(false);
@@ -79,9 +49,8 @@ describe('TerraPortletComponent', () =>
         expect(component.infoText).toBeUndefined();
     });
 
-    it(`should set classes accordingly to 'inputIsCollapsable', 'inputHighlightPortlet' and 'inputIsDisabled'`, () =>
-    {
-        const portletDiv:DebugElement = debugElement.query(By.css('div.portlet'));
+    it(`should set classes accordingly to 'inputIsCollapsable', 'inputHighlightPortlet' and 'inputIsDisabled'`, () => {
+        const portletDiv: DebugElement = debugElement.query(By.css('div.portlet'));
 
         component.inputIsCollapsable = true;
         fixture.detectChanges();
@@ -96,8 +65,7 @@ describe('TerraPortletComponent', () =>
         expect(portletDiv.classes['disabled']).toBe(true);
     });
 
-    it(`should have a visible header after 'inputPortletHeader' is set`, () =>
-    {
+    it(`should have a visible header after 'inputPortletHeader' is set`, () => {
         expect(debugElement.query(By.css('div.portlet-head'))).toBeFalsy();
 
         component.inputPortletHeader = portletHeader;
@@ -106,37 +74,34 @@ describe('TerraPortletComponent', () =>
         expect(debugElement.query(By.css('div.portlet-head'))).toBeTruthy();
     });
 
-    it(`should have his header unfolded/folded according 'inputCollapsed = false' or 'inputCollapsed = true'`, () =>
-    {
+    it(`should have his header unfolded/folded according 'inputCollapsed = false' or 'inputCollapsed = true'`, () => {
         component.inputPortletHeader = portletHeader;
         component.inputIsCollapsable = true;
         fixture.detectChanges();
 
-        let portletHead:DebugElement = debugElement.query(By.css('div.portlet-head'));
+        let portletHead: DebugElement = debugElement.query(By.css('div.portlet-head'));
 
         expect(portletHead.classes['unfolded']).toBe(true);
 
         component.inputCollapsed = true;
         fixture.detectChanges();
 
-        expect(portletHead.classes['unfolded']).toBe(false);
+        expect(portletHead.classes['unfolded']).toBeFalsy();
     });
 
-    it(`should call #toggleCollapse() if his header is clicked`, () =>
-    {
+    it(`should call #toggleCollapse() if his header is clicked`, () => {
         component.inputPortletHeader = portletHeader;
         component.inputIsCollapsable = true;
         fixture.detectChanges();
 
-        let onHeaderClick:Spy = spyOn(component, 'toggleCollapse');
+        let onHeaderClick: Spy = spyOn(component, 'toggleCollapse');
 
         debugElement.query(By.css('div.portlet-head')).triggerEventHandler('click', null);
 
         expect(onHeaderClick).toHaveBeenCalled();
     });
 
-    it(`should show the correct collapse icon depending on 'inputCollapsed' state`, () =>
-    {
+    it(`should show the correct collapse icon depending on 'inputCollapsed' state`, () => {
         component.inputPortletHeader = portletHeader;
         component.inputIsCollapsable = true;
         fixture.detectChanges();
@@ -153,14 +118,13 @@ describe('TerraPortletComponent', () =>
         expect(debugElement.query(By.css('span.icon-collapse_up'))).toBeFalsy();
     });
 
-    it(`should keep the collapse state when disabled`, () =>
-    {
+    it(`should keep the collapse state when disabled`, () => {
         component.inputPortletHeader = portletHeader;
         component.inputIsCollapsable = true;
         component.inputIsDisabled = true;
         fixture.detectChanges();
 
-        let onHeaderClick:Spy = spyOn(component, 'toggleCollapse');
+        let onHeaderClick: Spy = spyOn(component, 'toggleCollapse');
 
         expect(component.inputCollapsed).toBe(false);
         expect(debugElement.query(By.css('span.icon-collapse_down'))).toBeFalsy();
@@ -175,8 +139,7 @@ describe('TerraPortletComponent', () =>
         expect(debugElement.query(By.css('span.icon-collapse_up'))).toBeTruthy();
     });
 
-    it(`should show collapse icon only if 'inputIsCollapsable' is set to true`, () =>
-    {
+    it(`should show collapse icon only if 'inputIsCollapsable' is set to true`, () => {
         component.inputPortletHeader = portletHeader;
         fixture.detectChanges();
 
@@ -188,13 +151,12 @@ describe('TerraPortletComponent', () =>
         expect(debugElement.query(By.css('span.icon-collapse_up'))).toBeTruthy();
     });
 
-    it(`should set classes on portlet-body depending on it's #collapsedState()`, () =>
-    {
+    it(`should set classes on portlet-body depending on it's #collapsedState()`, () => {
         component.inputPortletHeader = portletHeader;
         component.inputIsCollapsable = true;
         fixture.detectChanges();
 
-        expect(debugElement.query(By.css('div.portlet-body')).classes['collapsed']).toBe(false);
+        expect(debugElement.query(By.css('div.portlet-body')).classes['collapsed']).toBeFalsy();
 
         debugElement.query(By.css('div.portlet-head')).triggerEventHandler('click', null);
         fixture.detectChanges();
@@ -204,49 +166,45 @@ describe('TerraPortletComponent', () =>
         debugElement.query(By.css('div.portlet-head')).triggerEventHandler('click', null);
         fixture.detectChanges();
 
-        expect(debugElement.query(By.css('div.portlet-body')).classes['collapsed']).toBe(false);
+        expect(debugElement.query(By.css('div.portlet-body')).classes['collapsed']).toBeFalsy();
     });
 
-    it(`should update view correctly if 'inputIsCollapsable' is changed`, () =>
-    {
+    it(`should update view correctly if 'inputIsCollapsable' is changed`, () => {
         component.inputPortletHeader = portletHeader;
         component.inputIsCollapsable = true;
         fixture.detectChanges();
 
         component.inputIsCollapsable = false;
-        component.inputCollapsedChange.subscribe((value:boolean) => expect(value).toBe(false));
+        component.inputCollapsedChange.subscribe((value: boolean) => expect(value).toBe(false));
 
-        component.ngOnChanges({inputIsCollapsable: new SimpleChange(true, false, true)});
+        component.ngOnChanges({ inputIsCollapsable: new SimpleChange(true, false, true) });
 
         expect(component.inputCollapsed).toBe(false);
     });
 
     /* tslint:disable:max-line-length */
-    it(`[NEED BETTER EXPECTATION] should toggle 'inputCollapsed' and emits 'inputCollapsedChange' if 'inputIsCollapsable is true and #toggleCollapse() is called`,
-        () =>
-        {
-            let inputCollapsedChangeEmit:Spy = spyOn(component.inputCollapsedChange, 'emit');
+    it(`[NEED BETTER EXPECTATION] should toggle 'inputCollapsed' and emits 'inputCollapsedChange' if 'inputIsCollapsable is true and #toggleCollapse() is called`, () => {
+        let inputCollapsedChangeEmit: Spy = spyOn(component.inputCollapsedChange, 'emit');
 
-            component.inputPortletHeader = portletHeader;
-            component.inputIsCollapsable = true;
-            component.inputCollapsed = false;
-            fixture.detectChanges();
+        component.inputPortletHeader = portletHeader;
+        component.inputIsCollapsable = true;
+        component.inputCollapsed = false;
+        fixture.detectChanges();
 
-            expect(component.inputCollapsed).toBe(false);
+        expect(component.inputCollapsed).toBe(false);
 
-            component.toggleCollapse();
+        component.toggleCollapse();
 
-            expect(component.inputCollapsed).toBe(true);
-            expect(inputCollapsedChangeEmit).toHaveBeenCalledWith(true);
+        expect(component.inputCollapsed).toBe(true);
+        expect(inputCollapsedChangeEmit).toHaveBeenCalledWith(true);
 
-            component.toggleCollapse();
+        component.toggleCollapse();
 
-            expect(component.inputCollapsed).toBe(false);
-            expect(inputCollapsedChangeEmit).toHaveBeenCalledWith(false);
-        });
+        expect(component.inputCollapsed).toBe(false);
+        expect(inputCollapsedChangeEmit).toHaveBeenCalledWith(false);
+    });
 
-    it(`should set'inputCollapsed' to false when #toggleCollapse() is called and 'inputIsCollapsable is false`, () =>
-    {
+    it(`should set'inputCollapsed' to false when #toggleCollapse() is called and 'inputIsCollapsable is false`, () => {
         component.inputPortletHeader = portletHeader;
         component.inputIsCollapsable = true;
         component.inputCollapsed = true;
@@ -261,26 +219,25 @@ describe('TerraPortletComponent', () =>
         expect(component.inputCollapsed).toBe(false);
     });
 
-    it(`should render a given 'inputButtonList' correctly`, () =>
-    {
+    it(`should render a given 'inputButtonList' correctly`, () => {
         component.inputPortletHeader = portletHeader;
         component.inputButtonList = buttonList;
         fixture.detectChanges();
 
-        let htmlButtonDebugElements:Array<DebugElement> = debugElement.queryAll(By.css('div.header-buttons terra-button'));
+        let htmlButtonDebugElements: Array<DebugElement> = debugElement.queryAll(
+            By.css('div.header-buttons terra-button')
+        );
 
         expect(htmlButtonDebugElements.length).toBe(buttonList.length);
 
-        htmlButtonDebugElements.forEach((button:DebugElement, index:number) =>
-        {
+        htmlButtonDebugElements.forEach((button: DebugElement, index: number) => {
             testButton(button.componentInstance, buttonList[index]);
             testButtonClickFunction(button.componentInstance, buttonList[index]);
         });
     });
 
-    it(`should render the info component if 'infoText' is set`, () =>
-    {
-        let infoElement:DebugElement;
+    it(`should render the info component if 'infoText' is set`, () => {
+        let infoElement: DebugElement;
         component.inputPortletHeader = 'Test header';
         fixture.detectChanges();
 
@@ -294,8 +251,7 @@ describe('TerraPortletComponent', () =>
         expect(infoElement).toBeTruthy();
     });
 
-    function testButton(button:TerraButtonComponent, buttonInterface:TerraButtonInterface):void
-    {
+    function testButton(button: TerraButtonComponent, buttonInterface: TerraButtonInterface): void {
         expect(button.inputCaption).toBe(buttonInterface.caption);
         expect(button.inputIcon).toBe(buttonInterface.icon);
         expect(button.inputTooltipText).toBe(buttonInterface.tooltipText);
@@ -308,9 +264,8 @@ describe('TerraPortletComponent', () =>
         expect(button.inputIsSmall).toBe(true);
     }
 
-    function testButtonClickFunction(button:TerraButtonComponent, buttonInterface:TerraButtonInterface):void
-    {
-        let buttonClickFunction:Spy = spyOn(buttonInterface, 'clickFunction');
+    function testButtonClickFunction(button: TerraButtonComponent, buttonInterface: TerraButtonInterface): void {
+        let buttonClickFunction: Spy = spyOn(buttonInterface, 'clickFunction');
 
         button.outputClicked.emit();
         expect(buttonClickFunction).toHaveBeenCalled();

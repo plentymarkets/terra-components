@@ -1,8 +1,4 @@
 <terra-portlet>
-    <terra-color-picker
-        inputName="Color-Picker"
-        [(ngModel)]="_color">
-    </terra-color-picker>
+    <terra-color-picker inputName="Color-Picker" [(ngModel)]="_color"> </terra-color-picker>
 </terra-portlet>
-<terra-tag inputColor="{{_color}}" inputBadge="Color"></terra-tag>
-
+<terra-tag inputColor="{{_color}}" [name]="'Color'"></terra-tag>

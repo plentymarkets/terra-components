@@ -1,11 +1,5 @@
-import {
-    Component,
-    EventEmitter,
-    Input,
-    Output,
-    ViewChild
-} from '@angular/core';
-import { TranslationService } from 'angular-l10n';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { L10nTranslationService } from 'angular-l10n';
 import { isNullOrUndefined } from 'util';
 import { TerraFileBrowserComponent } from '../../file-browser/terra-file-browser.component';
 import { TerraButtonComponent } from '../button/terra-button.component';
@@ -15,22 +9,18 @@ import { TerraOverlayComponent } from '../../layouts/overlay/terra-overlay.compo
 import { TerraOverlayButtonInterface } from '../../layouts/overlay/data/terra-overlay-button.interface';
 
 @Component({
-    selector:    'terra-file-chooser',
+    selector: 'terra-file-chooser',
     templateUrl: './terra-file-chooser.component.html',
-    styleUrls:   ['./terra-file-chooser.component.scss']
+    styleUrls: ['./terra-file-chooser.component.scss']
 })
-export class TerraFileChooserComponent extends TerraButtonComponent
-{
+export class TerraFileChooserComponent extends TerraButtonComponent {
     @Input()
-    public set inputPrimaryBrowserButtonCaption(value:string)
-    {
+    public set inputPrimaryBrowserButtonCaption(value: string) {
         this._primaryBrowserButtonCaption = value;
     }
 
-    public get inputPrimaryBrowserButtonCaption():string
-    {
-        if(!isNullOrUndefined(this._primaryBrowserButtonCaption) && this._primaryBrowserButtonCaption.length > 0)
-        {
+    public get inputPrimaryBrowserButtonCaption(): string {
+        if (!isNullOrUndefined(this._primaryBrowserButtonCaption) && this._primaryBrowserButtonCaption.length > 0) {
             return this._primaryBrowserButtonCaption;
         }
 
@@ -38,15 +28,12 @@ export class TerraFileChooserComponent extends TerraButtonComponent
     }
 
     @Input()
-    public set inputSecondaryBrowserButtonCaption(value:string)
-    {
+    public set inputSecondaryBrowserButtonCaption(value: string) {
         this._primaryBrowserButtonCaption = value;
     }
 
-    public get inputSecondaryBrowserButtonCaption():string
-    {
-        if(!isNullOrUndefined(this._secondaryBrowserButtonCaption) && this._secondaryBrowserButtonCaption.length > 0)
-        {
+    public get inputSecondaryBrowserButtonCaption(): string {
+        if (!isNullOrUndefined(this._secondaryBrowserButtonCaption) && this._secondaryBrowserButtonCaption.length > 0) {
             return this._secondaryBrowserButtonCaption;
         }
 
@@ -54,107 +41,99 @@ export class TerraFileChooserComponent extends TerraButtonComponent
     }
 
     @Input()
-    public inputAllowedExtensions:Array<string> = [];
+    public inputAllowedExtensions: Array<string> = [];
 
     @Input()
-    public inputAllowFolders:boolean = true;
+    public inputAllowFolders: boolean = true;
 
     @Input()
-    public set inputStorageServices(services:Array<TerraBaseStorageService>)
-    {
+    public set inputStorageServices(services: Array<TerraBaseStorageService>) {
         this._storageServices = services;
     }
 
-    public get inputStorageServices():Array<TerraBaseStorageService>
-    {
+    public get inputStorageServices(): Array<TerraBaseStorageService> {
         return this._storageServices;
     }
 
     @Output()
-    public outputSelected:EventEmitter<TerraStorageObject> = new EventEmitter<TerraStorageObject>();
+    public outputSelected: EventEmitter<TerraStorageObject> = new EventEmitter<TerraStorageObject>();
 
     @Output()
-    public outputCancelled:EventEmitter<void> = new EventEmitter<void>();
+    public outputCancelled: EventEmitter<void> = new EventEmitter<void>();
 
     @Output()
-    public outputFileBrowserShow:EventEmitter<TerraFileBrowserComponent> = new EventEmitter<TerraFileBrowserComponent>();
+    public outputFileBrowserShow: EventEmitter<TerraFileBrowserComponent> = new EventEmitter<
+        TerraFileBrowserComponent
+    >();
 
     @Output()
-    public outputFileBrowserHide:EventEmitter<TerraFileBrowserComponent> = new EventEmitter<TerraFileBrowserComponent>();
+    public outputFileBrowserHide: EventEmitter<TerraFileBrowserComponent> = new EventEmitter<
+        TerraFileBrowserComponent
+    >();
 
     @ViewChild('overlay', { static: true })
-    public overlay:TerraOverlayComponent;
+    public overlay: TerraOverlayComponent;
 
     @ViewChild('fileBrowser', { static: true })
-    public fileBrowser:TerraFileBrowserComponent;
+    public fileBrowser: TerraFileBrowserComponent;
 
-    public primaryOverlayButton:TerraOverlayButtonInterface;
+    public primaryOverlayButton: TerraOverlayButtonInterface;
 
-    public secondaryOverlayButton:TerraOverlayButtonInterface;
+    public secondaryOverlayButton: TerraOverlayButtonInterface;
 
-    private _translationPrefix:string = 'terraFileInput';
+    private _translationPrefix: string = 'terraFileInput';
 
-    private _primaryBrowserButtonCaption:string = '';
+    private _primaryBrowserButtonCaption: string = '';
 
-    private _secondaryBrowserButtonCaption:string = '';
+    private _secondaryBrowserButtonCaption: string = '';
 
-    private _selectedObject:TerraStorageObject;
+    private _selectedObject: TerraStorageObject;
 
-    private _storageServices:Array<TerraBaseStorageService>;
+    private _storageServices: Array<TerraBaseStorageService>;
 
-    constructor(private _translation:TranslationService)
-    {
+    constructor(private _translation: L10nTranslationService) {
         super();
 
         this.primaryOverlayButton = {
-            icon:          'icon-success',
-            caption:       this.inputPrimaryBrowserButtonCaption,
-            isDisabled:    true,
-            clickFunction: ():void =>
-                           {
-                               this.outputSelected.emit(this._selectedObject);
-                               this.overlay.hideOverlay();
-                           }
+            icon: 'icon-success',
+            caption: this.inputPrimaryBrowserButtonCaption,
+            isDisabled: true,
+            clickFunction: (): void => {
+                this.outputSelected.emit(this._selectedObject);
+                this.overlay.hideOverlay();
+            }
         };
 
         this.secondaryOverlayButton = {
-            icon:          'icon-close',
-            caption:       this.inputSecondaryBrowserButtonCaption,
-            isDisabled:    false,
-            clickFunction: ():void =>
-                           {
-                               this.outputCancelled.emit();
-                               this.overlay.hideOverlay();
-                           }
+            icon: 'icon-close',
+            caption: this.inputSecondaryBrowserButtonCaption,
+            isDisabled: false,
+            clickFunction: (): void => {
+                this.outputCancelled.emit();
+                this.overlay.hideOverlay();
+            }
         };
     }
 
-    public onClick(event:Event):void
-    {
+    public onClick(event: Event): void {
         this.outputClicked.emit(event);
         this.overlay.showOverlay();
     }
 
-    public onSelectedObjectChange(selectedObject:TerraStorageObject):void
-    {
-        if(isNullOrUndefined(selectedObject) || selectedObject.isDirectory)
-        {
+    public onSelectedObjectChange(selectedObject: TerraStorageObject): void {
+        if (isNullOrUndefined(selectedObject) || selectedObject.isDirectory) {
             this.primaryOverlayButton.isDisabled = true;
-        }
-        else
-        {
+        } else {
             this.primaryOverlayButton.isDisabled = false;
             this._selectedObject = selectedObject;
         }
     }
 
-    public onBrowserShow():void
-    {
+    public onBrowserShow(): void {
         this.outputFileBrowserShow.emit(this.fileBrowser);
     }
 
-    public onBrowserHide():void
-    {
+    public onBrowserHide(): void {
         this.outputFileBrowserHide.emit(this.fileBrowser);
     }
 }

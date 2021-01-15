@@ -1,10 +1,8 @@
-mat-dialog-container.mat-dialog-container
-{
+mat-dialog-container.mat-dialog-container {
     padding: 0;
     border-radius: var(--border-radius);
-    
-    .mat-dialog-title
-    {
+
+    .mat-dialog-title {
         padding: var(--space-md) var(--space-lg);
         --btn-padding: 0;
         line-height: var(--height-md);
@@ -13,16 +11,14 @@ mat-dialog-container.mat-dialog-container
         font-size: var(--font-size-5);
         margin: 0;
     }
-    
-    .mat-dialog-content
-    {
+
+    .mat-dialog-content {
         margin: 0;
         padding: calc(var(--space-lg) + var(--space-md)) var(--space-lg);
-        background-color: var(--modal-body-background-color,var(--color-structure-2));
+        background-color: var(--modal-body-background-color, var(--color-structure-2));
     }
-    
-    .mat-dialog-actions
-    {
+
+    .mat-dialog-actions {
         margin: 0;
         padding: var(--space-md) var(--space-lg);
         display: -webkit-box;
@@ -35,5 +31,3 @@ mat-dialog-container.mat-dialog-container
         min-height: 0;
     }
 }
-
-

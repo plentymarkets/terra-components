@@ -1,17 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
-import {
-    FormsModule,
-    ReactiveFormsModule
-} from '@angular/forms';
-import {
-    async,
-    ComponentFixture,
-    TestBed
-} from '@angular/core/testing';
-import { ModalModule } from 'ngx-bootstrap';
-import { LocalizationModule } from 'angular-l10n';
-import { l10nConfig } from '../../../../../app/translation/l10n.config';
-import { TerraLabelTooltipDirective } from '../../../../helpers/terra-label-tooltip.directive';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { L10nIntlModule, L10nTranslationModule } from 'angular-l10n';
 import { TerraFileInputComponent } from './terra-file-input.component';
 import { TerraThreeColumnsContainerComponent } from '../../../layouts/column-container/three-columns/terra-three-columns-container.component';
 import { TerraNodeTreeComponent } from '../../../tree/node-tree/terra-node-tree.component';
@@ -36,127 +26,112 @@ import { TerraLoadingSpinnerService } from '../../../loading-spinner/service/ter
 import { TerraFileBrowserService } from '../../../file-browser/terra-file-browser.service';
 import { TerraStorageObject } from '../../../file-browser/model/terra-storage-object';
 import { TerraInfoComponent } from '../../../info/terra-info.component';
-import { TooltipDirective } from '../../../tooltip/tooltip.directive';
-import { Router } from '@angular/router';
-import { MockRouter } from '../../../../testing/mock-router';
-import Spy = jasmine.Spy;
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { mockL10nConfig } from '../../../../testing/mock-l10n-config';
+import { MockTooltipDirective } from '../../../../testing/mock-tooltip.directive';
 
-describe('TerraFileInputComponent', () =>
-{
-    let component:TerraFileInputComponent;
-    let fixture:ComponentFixture<TerraFileInputComponent>;
+describe('TerraFileInputComponent', () => {
+    let component: TerraFileInputComponent;
+    let fixture: ComponentFixture<TerraFileInputComponent>;
 
-    const jpgFileName:string = 'a-total-NewFile_name.jpg';
-    const folderName:string = 'i-amYour_folder/';
-    const router:MockRouter = new MockRouter();
+    const jpgFileName: string = 'a-total-NewFile_name.jpg';
+    const folderName: string = 'i-amYour_folder/';
 
-    beforeEach(async(() =>
-    {
+    beforeEach(() => {
         TestBed.configureTestingModule({
-            declarations: [TooltipDirective,
-                           TerraFileListComponent,
-                           TerraFileBrowserComponent,
-                           TerraFileChooserComponent,
-                           TerraFileInputComponent,
-                           TerraImagePreviewComponent,
-                           TerraButtonComponent,
-                           TerraOverlayComponent,
-                           TerraThreeColumnsContainerComponent,
-                           TerraSimpleTableComponent,
-                           TerraPortletComponent,
-                           TerraInfoComponent,
-                           TerraTextInputComponent,
-                           TerraCheckboxComponent,
-                           TerraBaseToolbarComponent,
-                           TerraNodeComponent,
-                           TerraNodeTreeComponent,
-                           TerraLabelTooltipDirective
+            declarations: [
+                MockTooltipDirective,
+                TerraFileListComponent,
+                TerraFileBrowserComponent,
+                TerraFileChooserComponent,
+                TerraFileInputComponent,
+                TerraImagePreviewComponent,
+                TerraButtonComponent,
+                TerraOverlayComponent,
+                TerraThreeColumnsContainerComponent,
+                TerraSimpleTableComponent,
+                TerraPortletComponent,
+                TerraInfoComponent,
+                TerraTextInputComponent,
+                TerraCheckboxComponent,
+                TerraBaseToolbarComponent,
+                TerraNodeComponent,
+                TerraNodeTreeComponent
             ],
-            imports:      [
+            imports: [
                 ModalModule.forRoot(),
                 FormsModule,
                 ReactiveFormsModule,
                 HttpClientModule,
-                LocalizationModule.forRoot(l10nConfig)
+                L10nTranslationModule.forRoot(mockL10nConfig),
+                L10nIntlModule,
+                MatDialogModule
             ],
-            providers:    [
+            providers: [
                 {
-                    provide:  Router,
-                    useValue: router
-                },
-                {
-                    provide:  TerraFrontendStorageService,
+                    provide: TerraFrontendStorageService,
                     useValue: terraFrontendStorageServiceStub
                 },
                 TerraLoadingSpinnerService,
                 TerraFileBrowserService
             ]
-        }).compileComponents();
-    }));
+        });
+    });
 
-    beforeEach(() =>
-    {
+    beforeEach(() => {
         fixture = TestBed.createComponent(TerraFileInputComponent);
         component = fixture.componentInstance;
 
         fixture.detectChanges();
     });
 
-    it('should create', () =>
-    {
+    it('should create', () => {
         expect(component).toBeTruthy();
     });
 
-    it('should accept TerraRegex.MIXED by default', () =>
-    {
+    it('should accept TerraRegex.MIXED by default', () => {
         expect(component.regex).toBe(TerraRegex.MIXED);
     });
 
-    it('should have inputShowPreview false by default', () =>
-    {
+    it('should have inputShowPreview false by default', () => {
         expect(component.inputShowPreview).toBe(false);
     });
 
-    it('should have inputAllowFolders true by default', () =>
-    {
+    it('should have inputAllowFolders true by default', () => {
         expect(component.inputAllowFolders).toBe(true);
     });
 
-    it('should be a webImage if the extension is .jpg', () =>
-    {
+    it('should be a webImage if the extension is .jpg', () => {
         expect(component.isWebImage(jpgFileName)).toBe(true);
     });
 
-    it('should have publicUrl as value after selection', () =>
-    {
+    it('should have publicUrl as value after selection', () => {
         component.onObjectSelected(new TerraStorageObject(fileData.objects[0]));
 
         expect(component.value).toEqual(fileData.objects[0].publicUrl);
     });
 
-    it('should have a icon class `jpg` if the file has a jpg extension', () =>
-    {
+    it('should have a icon class `jpg` if the file has a jpg extension', () => {
         expect(component.getIconClass(jpgFileName)).toBe('icon-file_extension_jpg');
     });
 
-    it('should have a icon class `folder` if the file is a folder', () =>
-    {
+    it('should have a icon class `folder` if the file is a folder', () => {
         expect(component.getIconClass(folderName)).toBe('icon-folder');
     });
 
-    it('should call `resetValue` on button click', () =>
-    {
-        const resetValue:Spy = spyOn(component, 'resetValue');
-        const button:TerraButtonComponent =
-            fixture.debugElement.query(By.css('terra-button.input-group-btn.margin-left')).componentInstance as TerraButtonComponent;
+    it('should call `resetValue` on button click', () => {
+        spyOn(component, 'resetValue');
+        const button: TerraButtonComponent = fixture.debugElement.query(
+            By.css('terra-button.input-group-btn.margin-left')
+        ).componentInstance as TerraButtonComponent;
 
         button.outputClicked.emit();
 
-        expect(resetValue).toHaveBeenCalled();
+        expect(component.resetValue).toHaveBeenCalled();
     });
 
-    it('should have a value after selection and after reset the value should be an empty string', () =>
-    {
+    it('should have a value after selection and after reset the value should be an empty string', () => {
         component.onObjectSelected(new TerraStorageObject(fileData.objects[1]));
 
         expect(component.value).toEqual(fileData.objects[1].publicUrl);
@@ -166,51 +141,69 @@ describe('TerraFileInputComponent', () =>
         expect(component.value).toBe('');
     });
 
-    it('should call `onPreviewClicked` on file preview click', () =>
-    {
+    it('should call `onPreviewClicked` on file preview click', () => {
         component.inputShowPreview = true;
         fixture.detectChanges();
 
-        const onPreviewClicked:Spy = spyOn(component, 'onPreviewClicked');
-        const divFilePreview:HTMLDivElement =
-            fixture.debugElement.query(By.css('div.file-preview')).nativeElement;
+        spyOn(component, 'onPreviewClicked');
+        const divFilePreview: HTMLDivElement = fixture.debugElement.query(By.css('div.file-preview')).nativeElement;
 
         divFilePreview.click();
 
-        expect(onPreviewClicked).toHaveBeenCalled();
+        expect(component.onPreviewClicked).toHaveBeenCalled();
     });
 
-    it('should call `isWebImage` after value changed', () =>
-    {
-        const isWebImage:Spy = spyOn(component, 'isWebImage');
+    it('should open a preview dialog when clicking on the file preview', () => {
+        component.inputShowPreview = true;
+        fixture.detectChanges();
+
+        const dialog: MatDialog = TestBed.inject(MatDialog);
+        spyOn(dialog, 'open');
+        // ensure that the dialog can be opened by emulating that the selected file is a web image
+        spyOn(component, 'isWebImage').and.returnValue(true);
+
+        const divFilePreview: HTMLDivElement = fixture.debugElement.query(By.css('div.file-preview')).nativeElement;
+
+        divFilePreview.click();
+
+        const data: any = {
+            filepath: component.value,
+            filename: component.getFilename(component.value)
+        };
+        expect(dialog.open).toHaveBeenCalledWith(component._imagePreviewDialog, { data: data });
+    });
+
+    it('should call `isWebImage` after value changed', () => {
+        spyOn(component, 'isWebImage');
 
         component.inputShowPreview = true;
         component.onObjectSelected(new TerraStorageObject(fileData.objects[1]));
 
         fixture.detectChanges();
 
-        expect(isWebImage).toHaveBeenCalled();
+        expect(component.isWebImage).toHaveBeenCalled();
     });
 
-    it('should have a span with an image equal to the value as background-image when the image is a web image', () =>
-    {
+    it('should have a span with an image equal to the value as background-image when the image is a web image', () => {
         component.inputShowPreview = true;
         component.onObjectSelected(new TerraStorageObject(fileData.objects[1]));
 
         fixture.detectChanges();
 
-        const spanElement:HTMLSpanElement = fixture.debugElement.query(By.css('div.file-preview span:first-child')).nativeElement;
+        const spanElement: HTMLSpanElement = fixture.debugElement.query(By.css('div.file-preview span:first-child'))
+            .nativeElement;
 
         expect(spanElement.style.backgroundImage).toContain('url("' + component.value + '")');
     });
 
-    it('should have a span with a span that has the value as class in it when the image is not a web image', () =>
-    {
+    it('should have a span with a span that has the value as class in it when the image is not a web image', () => {
         component.inputShowPreview = true;
 
         fixture.detectChanges();
 
-        const spanElement:HTMLSpanElement = fixture.debugElement.query(By.css('div.file-preview span:first-child span:first-child')).nativeElement;
+        const spanElement: HTMLSpanElement = fixture.debugElement.query(
+            By.css('div.file-preview span:first-child span:first-child')
+        ).nativeElement;
 
         expect(spanElement.className).toBe('');
     });

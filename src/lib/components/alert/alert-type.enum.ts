@@ -1,5 +1,4 @@
-export enum AlertType
-{
+export enum AlertType {
     info = 'info',
     warning = 'warning',
     error = 'danger',

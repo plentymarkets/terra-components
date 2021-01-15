@@ -1,54 +1,28 @@
 import { TerraTextInputComponent } from './terra-text-input.component';
-import {
-    ComponentFixture,
-    fakeAsync,
-    flush,
-    TestBed
-} from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, flush, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
-import { LocalizationModule } from 'angular-l10n';
-import { l10nConfig } from '../../../../../app/translation/l10n.config';
-import { TerraLabelTooltipDirective } from '../../../../helpers/terra-label-tooltip.directive';
-import { HttpClientModule } from '@angular/common/http';
+import { L10nTranslationModule } from 'angular-l10n';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
-import { TooltipDirective } from '../../../tooltip/tooltip.directive';
-import { Router } from '@angular/router';
-import { MockRouter } from '../../../../testing/mock-router';
+import { mockL10nConfig } from '../../../../testing/mock-l10n-config';
+import { MockTooltipDirective } from '../../../../testing/mock-tooltip.directive';
 import Spy = jasmine.Spy;
 
-describe('Component: TerraTextInputComponent', () =>
-{
-    let component:TerraTextInputComponent;
-    let fixture:ComponentFixture<TerraTextInputComponent>;
-    let inputElement:HTMLInputElement;
-    let inputDebugElement:DebugElement;
-    const testString:string = 'test';
-    const router:MockRouter = new MockRouter();
+describe('Component: TerraTextInputComponent', () => {
+    let component: TerraTextInputComponent;
+    let fixture: ComponentFixture<TerraTextInputComponent>;
+    let inputElement: HTMLInputElement;
+    let inputDebugElement: DebugElement;
+    const testString: string = 'test';
 
-    beforeEach(() =>
-    {
-        TestBed.configureTestingModule(
-            {
-                declarations: [TerraTextInputComponent,
-                               TooltipDirective,
-                               TerraLabelTooltipDirective],
-                imports:      [
-                    HttpClientModule,
-                    FormsModule,
-                    LocalizationModule.forRoot(l10nConfig)
-                ],
-                providers:    [
-                    {
-                        provide:  Router,
-                        useValue: router
-                    }]
-            }
-        ).compileComponents();
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            declarations: [TerraTextInputComponent, MockTooltipDirective],
+            imports: [FormsModule, L10nTranslationModule.forRoot(mockL10nConfig)]
+        });
     });
 
-    beforeEach(() =>
-    {
+    beforeEach(() => {
         fixture = TestBed.createComponent(TerraTextInputComponent);
         component = fixture.componentInstance;
         inputDebugElement = fixture.debugElement.query(By.css('input'));
@@ -57,13 +31,11 @@ describe('Component: TerraTextInputComponent', () =>
         fixture.detectChanges();
     });
 
-    it('should create an instance', () =>
-    {
+    it('should create an instance', () => {
         expect(component).toBeTruthy();
     });
 
-    it(`should initialise it's inputs and outputs`, () =>
-    {
+    it(`should initialise it's inputs and outputs`, () => {
         // #inputIsReadonly
         expect(component.inputIsReadonly).toBe(false);
         expect(inputElement.readOnly).toBeFalsy();
@@ -79,22 +51,19 @@ describe('Component: TerraTextInputComponent', () =>
         expect(component.outputOnInput).toBeDefined();
     });
 
-    it(`should set the input element's readonly property according to the state of #inputIsReadonly`, () =>
-    {
+    it(`should set the input element's readonly property according to the state of #inputIsReadonly`, () => {
         component.inputIsReadonly = true;
         fixture.detectChanges();
         expect(inputElement.readOnly).toBe(true);
     });
 
-    it(`should set the input element's type property to 'password' if #inputIsPassword is set`, () =>
-    {
+    it(`should set the input element's type property to 'password' if #inputIsPassword is set`, () => {
         component.inputIsPassword = true;
         fixture.detectChanges();
         expect(inputElement.type).toEqual('password');
     });
 
-    it(`should NOT validate the entered text if #inputIsIban is not set`, () =>
-    {
+    it(`should NOT validate the entered text if #inputIsIban is not set`, () => {
         expect(component.isValid).toBe(true);
         expect(component.inputIsIban).toBe(false);
 
@@ -104,8 +73,7 @@ describe('Component: TerraTextInputComponent', () =>
         expect(component.isValid).toBe(true);
     });
 
-    it(`should validate the entered text whether it is a valid IBAN if #inputIsIban is set`, () =>
-    {
+    it(`should validate the entered text whether it is a valid IBAN if #inputIsIban is set`, () => {
         expect(component.isValid).toBeTruthy();
 
         component.inputIsIban = true;
@@ -123,43 +91,38 @@ describe('Component: TerraTextInputComponent', () =>
         expect(component.isValid).toBe(false);
     });
 
-    it(`should call #onInput method if something is typed in`, () =>
-    {
-        let onInputSpy:Spy = spyOn(component, 'onInput');
+    it(`should call #onInput method if something is typed in`, () => {
+        let onInputSpy: Spy = spyOn(component, 'onInput');
         inputElement.dispatchEvent(new Event('input'));
 
         expect(onInputSpy).toHaveBeenCalled();
     });
 
-    it(`should emit a value on #ouputOnInput if #onInput is called`, () =>
-    {
-        let called:boolean = false;
-        component.outputOnInput.subscribe(() => called = true);
+    it(`should emit a value on #ouputOnInput if #onInput is called`, () => {
+        let called: boolean = false;
+        component.outputOnInput.subscribe(() => (called = true));
         component.onInput();
 
         expect(called).toBe(true);
     });
 
-    it(`should emit the value on #outputOnInput that has just been entered`, () =>
-    {
-        let value:string = '';
-        component.outputOnInput.subscribe((enteredValue:string) => value = enteredValue);
+    it(`should emit the value on #outputOnInput that has just been entered`, () => {
+        let value: string = '';
+        component.outputOnInput.subscribe((enteredValue: string) => (value = enteredValue));
         inputElement.value = testString;
         inputElement.dispatchEvent(new Event('input'));
         expect(value).toEqual(testString);
     });
 
-    it(`should focus the input element if #focusNativeInput method is called`, fakeAsync(() =>
-    {
+    it(`should focus the input element if #focusNativeInput method is called`, fakeAsync(() => {
         expect(document.activeElement).not.toEqual(inputElement);
         component.focusNativeInput();
         flush();
         expect(document.activeElement).toEqual(inputElement);
     }));
 
-    it(`should select the text of the input if #selectNativeInput method is called`, fakeAsync(() =>
-    {
-        let spy:Spy = spyOn(inputElement, 'select').and.callThrough();
+    it(`should select the text of the input if #selectNativeInput method is called`, fakeAsync(() => {
+        let spy: Spy = spyOn(inputElement, 'select').and.callThrough();
         inputElement.value = testString;
         expect(inputElement.selectionStart).toEqual(inputElement.selectionEnd); // nothing selected
         component.selectNativeInput();

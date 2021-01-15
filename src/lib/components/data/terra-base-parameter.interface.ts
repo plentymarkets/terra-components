@@ -1,6 +1,5 @@
 /**
  * @author mfrank
  */
-export interface TerraBaseParameterInterface
-{
-}
+/** @deprecated since v5. Please use an object instead */
+export interface TerraBaseParameterInterface {}
