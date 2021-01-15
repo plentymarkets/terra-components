@@ -3,5 +3,4 @@ import { TerraNodeTreeConfig } from '../../../tree/node-tree/data/terra-node-tre
 import { NestedDataInterface } from '../data/nested-data.interface';
 
 @Injectable()
-export class NestedDataTreeConfig<T> extends TerraNodeTreeConfig<NestedDataInterface<T>>
-{}
+export class NestedDataTreeConfig<T> extends TerraNodeTreeConfig<NestedDataInterface<T>> {}
