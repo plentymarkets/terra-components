@@ -1,3 +1,9 @@
+# Not released
+
+### Bug Fixes
+
+-   **terra-form-helper** fix parsing list ranges including whitespaces.
+
 # 6.0.0-beta.0 (11.01.2021)
 
 ### Breaking Changes
@@ -13,10 +19,6 @@
 
 -   **dependencies** updated all `jasmine` and `karma` packages to the latest compatible versions.
 -   **string-helper** changed deprecated util function to plain js in method `isNullUndefinedOrEmpty`.
-
-### Bug Fixes
-
--   **terra-form-helper** fix parsing list ranges including whitespaces.
 
 # 6.0.0-alpha.5 (21.12.2020)
 

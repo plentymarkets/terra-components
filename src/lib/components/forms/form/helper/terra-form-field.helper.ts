@@ -221,8 +221,7 @@ export class TerraFormFieldHelper {
         let max: number;
 
         if (isString(range)) {
-            const trimmedRange: string = (range as string).replace(/\s/g, '');
-            let match: RegExpExecArray = /^\[(\d*)\s*,\s*(\d*)]$/.exec(trimmedRange as string);
+            const match: RegExpExecArray = /^\s*\[\s*(\d*)\s*,\s*(\d*)\s*]\s*$/.exec(range as string);
             if (match !== null) {
                 min = parseInt(match[1], 10);
                 max = parseInt(match[2], 10);
