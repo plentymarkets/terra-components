@@ -7,11 +7,9 @@ import { MockElementRef } from '../../../testing/mock-element-ref';
 import { By } from '@angular/platform-browser';
 import { TerraSuggestionBoxValueInterface } from './data/terra-suggestion-box.interface';
 import { TerraTextInputComponent } from '../input/text-input/terra-text-input.component';
-import { TooltipDirective } from '../../tooltip/tooltip.directive';
-import { Router } from '@angular/router';
-import { MockRouter } from '../../../testing/mock-router';
-import Spy = jasmine.Spy;
 import { mockL10nConfig } from '../../../testing/mock-l10n-config';
+import { MockTooltipDirective } from '../../../testing/mock-tooltip.directive';
+import Spy = jasmine.Spy;
 
 describe('TerraSuggestionBoxComponent', () => {
     let component: TerraSuggestionBoxComponent;
@@ -20,17 +18,12 @@ describe('TerraSuggestionBoxComponent', () => {
         caption: '1',
         value: 1
     };
-    const router: MockRouter = new MockRouter();
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            declarations: [TooltipDirective, TerraSuggestionBoxComponent, TerraTextInputComponent],
+            declarations: [MockTooltipDirective, TerraSuggestionBoxComponent, TerraTextInputComponent],
             imports: [FormsModule, L10nTranslationModule.forRoot(mockL10nConfig)],
             providers: [
-                {
-                    provide: Router,
-                    useValue: router
-                },
                 {
                     provide: ElementRef,
                     useClass: MockElementRef
