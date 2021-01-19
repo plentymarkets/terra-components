@@ -1,8 +1,4 @@
 module.exports = function () {
-    const fileSelectors = {
-        allLang: './src/assets/lang/**/*'
-    };
-
     const sources = {
         dist: 'dist/**/*.*',
         scss: [
@@ -15,14 +11,12 @@ module.exports = function () {
 
     const destinations = {
         tsOutputPath: './dist/',
-        langOutputPath: './dist/assets/lang/',
         styles: './dist/styles/',
 
         terra: '../terra/node_modules/@plentymarkets/terra-components/'
     };
 
     return {
-        fileSelectors: fileSelectors,
         sources: sources,
         destinations: destinations
     };

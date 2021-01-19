@@ -54,11 +54,6 @@ function compileGlobalStyles() {
 const compileStyles = compileGlobalStyles;
 exports.compileStyles = compileStyles;
 
-//copy lang to dist
-function copyLang() {
-    return src(config.fileSelectors.allLang).pipe(dest(config.destinations.langOutputPath));
-}
-
 //copy README to dist
 function copyReadme() {
     return src(config.sources.readme).pipe(dest(config.destinations.tsOutputPath));
@@ -109,7 +104,7 @@ const copySassFiles = parallel(
     copyTagListScss,
     copyButtonScss
 );
-const copyFilesToDist = parallel(copyLang, copyReadme, copySassFiles);
+const copyFilesToDist = parallel(copyReadme, copySassFiles);
 
 //delete terra-components folder in terra
 function cleanUpTerra() {
