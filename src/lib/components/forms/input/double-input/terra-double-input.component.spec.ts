@@ -6,10 +6,8 @@ import { TerraDoubleInputComponent } from './terra-double-input.component';
 import { TerraButtonComponent } from '../../../buttons/button/terra-button.component';
 import { TerraRegex } from '../../../../helpers/regex/terra-regex';
 import { By } from '@angular/platform-browser';
-import { TooltipDirective } from '../../../tooltip/tooltip.directive';
-import { Router } from '@angular/router';
-import { MockRouter } from '../../../../testing/mock-router';
 import { mockL10nConfig } from '../../../../testing/mock-l10n-config';
+import { MockTooltipDirective } from '../../../../testing/mock-tooltip.directive';
 
 describe('TerraDoubleInputComponent', () => {
     let component: TerraDoubleInputComponent;
@@ -17,18 +15,11 @@ describe('TerraDoubleInputComponent', () => {
     let debugElement: DebugElement;
     let inputElement: HTMLInputElement;
     const testValue: number = 3.2;
-    const router: MockRouter = new MockRouter();
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            declarations: [TooltipDirective, TerraDoubleInputComponent, TerraButtonComponent],
-            imports: [FormsModule, L10nTranslationModule.forRoot(mockL10nConfig)],
-            providers: [
-                {
-                    provide: Router,
-                    useValue: router
-                }
-            ]
+            declarations: [MockTooltipDirective, TerraDoubleInputComponent, TerraButtonComponent],
+            imports: [FormsModule, L10nTranslationModule.forRoot(mockL10nConfig)]
         });
     });
 

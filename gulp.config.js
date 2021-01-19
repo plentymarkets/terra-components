@@ -1,7 +1,6 @@
 module.exports = function () {
     const fileSelectors = {
-        allFonts: './src/assets/fonts/**/*',
-        allLang: './src/assets/lang/**/*'
+        allFonts: './src/assets/fonts/**/*'
     };
 
     const sources = {
@@ -13,7 +12,6 @@ module.exports = function () {
     const destinations = {
         tsOutputPath: './dist/',
         fontsOutputPath: './dist/assets/fonts/',
-        langOutputPath: './dist/assets/lang/',
         styles: './dist/styles/',
 
         terra: '../terra/node_modules/@plentymarkets/terra-components/'
