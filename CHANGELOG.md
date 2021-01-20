@@ -4,6 +4,10 @@
 
 -   **assets** removed language assets `locale-de.json` and `locale-en.json` in favour of a single typescript constant (`l10nTerraComponents`) exported in our main entry point (`@plentymarkets/terra-components`). Visit the [angular-l10n docs](https://robisim74.github.io/angular-l10n/#usage) to see how to configure the library to use this typescript constant.
 
+### Bug Fixes
+
+-   **file-browser** Assign empty object when `metadata` is null.
+
 # 6.0.0-beta.0 (11.01.2021)
 
 ### Breaking Changes
