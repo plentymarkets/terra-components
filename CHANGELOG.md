@@ -7,6 +7,11 @@
     -   removed plentymarkets icon font. It has been moved to [terra-icons npm package](https://www.npmjs.com/package/@plentymarkets/terra-icons).
 -   **styles** renamed `icons.scss` to `function-groups.scss`
 
+### Bug Fixes
+
+-   **terra-form-helper** fix parsing list ranges including whitespaces.
+-   **file-browser** Assign empty object when `metadata` is null.
+
 # 6.0.0-beta.0 (11.01.2021)
 
 ### Breaking Changes
