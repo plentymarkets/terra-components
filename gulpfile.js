@@ -49,31 +49,22 @@ function compileGlobalStyles() {
                 outputStyle: 'compressed'
             }).on('error', sass.logError)
         )
-        .pipe(dest('dist/styles'));
+        .pipe(dest(config.destinations.styles));
 }
 const compileStyles = compileGlobalStyles;
 exports.compileStyles = compileStyles;
-
-//copy fonts to dist
-function copyFonts() {
-    return src(config.fileSelectors.allFonts).pipe(dest(config.destinations.fontsOutputPath));
-}
 
 //copy README to dist
 function copyReadme() {
     return src(config.sources.readme).pipe(dest(config.destinations.tsOutputPath));
 }
 
-function copyIconsScss() {
-    return src('src/lib/styles/icons.scss').pipe(dest(config.destinations.styles));
+function copyFunctionGroupsScss() {
+    return src('src/lib/styles/function-groups.scss').pipe(dest(config.destinations.styles));
 }
 
 function copyVariablesScss() {
     return src('src/lib/styles/_variables.scss').pipe(dest(config.destinations.styles));
-}
-
-function copyPlentyIconsScss() {
-    return src('src/lib/styles/fonts/plentyicons.scss').pipe(dest(config.destinations.styles + 'fonts'));
 }
 
 function copyCustomDataTableScss() {
@@ -105,16 +96,15 @@ function copyButtonScss() {
 }
 
 const copySassFiles = parallel(
-    copyIconsScss,
+    copyFunctionGroupsScss,
     copyVariablesScss,
-    copyPlentyIconsScss,
     copyCustomDataTableScss,
     copyNodeTreeScss,
     copyTagScss,
     copyTagListScss,
     copyButtonScss
 );
-const copyFilesToDist = parallel(copyFonts, copyReadme, copySassFiles);
+const copyFilesToDist = parallel(copyReadme, copySassFiles);
 
 //delete terra-components folder in terra
 function cleanUpTerra() {
