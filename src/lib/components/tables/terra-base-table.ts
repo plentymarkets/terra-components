@@ -1,10 +1,5 @@
 import { TerraDataTableRowInterface } from './data-table/interfaces/terra-data-table-row.interface';
-import {
-    EventEmitter,
-    Output,
-    Directive,
-    ChangeDetectorRef
-} from '@angular/core';
+import { EventEmitter, Output, Directive, ChangeDetectorRef } from '@angular/core';
 import { isNullOrUndefined } from 'util';
 
 /** @deprecated since v5.0. Please use mat-table instead. */
