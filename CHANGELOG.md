@@ -6,6 +6,7 @@
 
 ### Bug Fixes
 
+-   **terra-form-helper** fix parsing list ranges including whitespaces.
 -   **file-browser** Assign empty object when `metadata` is null.
 
 # 6.0.0-beta.0 (11.01.2021)
