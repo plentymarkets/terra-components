@@ -1,3 +1,9 @@
+# 6.0.0-beta.2 (XX.XX.XXXX)
+
+### Breaking Changes
+
+-   **styles** removed styles for material tabs since they were not generally applicable. Falling back to the default material styles.
+
 # 6.0.0-beta.1 (20.01.2021)
 
 ### Breaking Changes
