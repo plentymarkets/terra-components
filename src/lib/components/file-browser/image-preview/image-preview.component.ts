@@ -31,7 +31,7 @@ export class TerraImagePreviewComponent {
             this.inputStorageService instanceof TerraBaseMetadataStorageService
         ) {
             this.inputStorageService.getMetadata(object.key).subscribe((data: TerraImageMetadata) => {
-                this._metadata = data;
+                this._metadata = data || {};
                 this._isLoading = false;
                 this._changeDetector.detectChanges();
             });

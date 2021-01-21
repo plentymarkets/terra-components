@@ -1,8 +1,22 @@
-# 6.0.0-beta.1 (XX.XX.XXXX)
+# 6.0.0-beta.2 (XX.XX.XXXX)
 
 ### Breaking Changes
 
 -   **styles** removed styles for material tabs since they were not generally applicable. Falling back to the default material styles.
+
+# 6.0.0-beta.1 (20.01.2021)
+
+### Breaking Changes
+
+-   **assets**
+    -   removed language assets `locale-de.json` and `locale-en.json` in favour of a single typescript constant (`l10nTerraComponents`) exported in our main entry point (`@plentymarkets/terra-components`). Visit the [angular-l10n docs](https://robisim74.github.io/angular-l10n/#usage) to see how to configure the library to use this typescript constant.
+    -   removed plentymarkets icon font. It has been moved to [terra-icons npm package](https://www.npmjs.com/package/@plentymarkets/terra-icons).
+-   **styles** renamed `icons.scss` to `function-groups.scss`
+
+### Bug Fixes
+
+-   **terra-form-helper** fix parsing list ranges including whitespaces.
+-   **file-browser** Assign empty object when `metadata` is null.
 
 # 6.0.0-beta.0 (11.01.2021)
 
