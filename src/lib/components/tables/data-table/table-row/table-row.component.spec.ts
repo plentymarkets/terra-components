@@ -113,7 +113,7 @@ describe('Component: TableRowComponent', () => {
     it('should call #_onRowCheckboxChange() when checkbox changes', () => {
         dataTable.inputHasCheckboxes = true;
 
-        let rowData: TerraDataTableRowInterface<any> = {
+        const rowData: TerraDataTableRowInterface<any> = {
             isActive: false,
             selected: false,
             disabled: false
@@ -125,9 +125,9 @@ describe('Component: TableRowComponent', () => {
 
         fixture.detectChanges();
 
-        let checkbox: DebugElement = fixture.debugElement.query(By.css('terra-checkbox'));
+        const checkbox: DebugElement = fixture.debugElement.query(By.css('terra-checkbox'));
 
-        checkbox.triggerEventHandler('change', {});
+        checkbox.triggerEventHandler('ngModelChange', {});
 
         fixture.detectChanges();
 

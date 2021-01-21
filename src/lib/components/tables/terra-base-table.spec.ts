@@ -1,7 +1,9 @@
 import { TerraBaseTable } from './terra-base-table';
+import { ChangeDetectorRef } from '@angular/core';
 
 describe('TerraBaseTable', () => {
-    let baseTable: TerraBaseTable<any> = new TerraBaseTable<any>();
+    let cdr: ChangeDetectorRef;
+    const baseTable: TerraBaseTable<any> = new TerraBaseTable<any>(cdr);
 
     it('should create', () => {
         expect(baseTable).toBeTruthy();
