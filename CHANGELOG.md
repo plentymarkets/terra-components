@@ -4,6 +4,10 @@
 
 -   **styles** removed styles for material tabs since they were not generally applicable. Falling back to the default material styles.
 
+### Bug Fixes
+
+-   **dependencies** adjusted required version of `@plentymarkets/terra-icons`.
+
 # 6.0.0-beta.1 (20.01.2021)
 
 ### Breaking Changes
