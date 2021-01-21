@@ -1,3 +1,9 @@
+# 6.0.0-beta.0-fixes (21.01.2021)
+
+### Bug Fixes
+
+-   **terra-data-table** change detection have not been triggered properly.
+
 # 6.0.0-beta.0 (11.01.2021)
 
 ### Breaking Changes
