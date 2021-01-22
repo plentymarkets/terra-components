@@ -8,6 +8,12 @@
 
 -   **dependencies** adjusted required version of `@plentymarkets/terra-icons`.
 
+# 6.0.0-beta.0-fixes1 (22.01.2021)
+
+### Bug Fixes
+
+-   **terra-data-table** ngModel was not used properly.
+
 # 6.0.0-beta.0-fixes (21.01.2021)
 
 ### Bug Fixes
