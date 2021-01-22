@@ -4,9 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { L10nTranslationModule } from 'angular-l10n';
 import { By } from '@angular/platform-browser';
 import { TerraRegex } from '../../../../helpers/regex/terra-regex';
+import { TooltipDirective } from '../../../tooltip/tooltip.directive';
+import { Router } from '@angular/router';
+import { MockRouter } from '../../../../testing/mock-router';
 import { mockL10nConfig } from '../../../../testing/mock-l10n-config';
 import { Color, ColorRGB } from '../../../../helpers';
-import { MockTooltipDirective } from '../../../../testing/mock-tooltip.directive';
 
 describe('Component: TerraColorPickerComponent', () => {
     let component: TerraColorPickerComponent;
@@ -14,11 +16,18 @@ describe('Component: TerraColorPickerComponent', () => {
 
     const white: string = '#ffffff';
     const testColor: string = '#123456';
+    const router: MockRouter = new MockRouter();
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            declarations: [MockTooltipDirective, TerraColorPickerComponent],
-            imports: [FormsModule, L10nTranslationModule.forRoot(mockL10nConfig)]
+            declarations: [TooltipDirective, TerraColorPickerComponent],
+            imports: [FormsModule, L10nTranslationModule.forRoot(mockL10nConfig)],
+            providers: [
+                {
+                    provide: Router,
+                    useValue: router
+                }
+            ]
         });
     });
 

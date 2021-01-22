@@ -26,10 +26,12 @@ import { TerraLoadingSpinnerService } from '../../../loading-spinner/service/ter
 import { TerraFileBrowserService } from '../../../file-browser/terra-file-browser.service';
 import { TerraStorageObject } from '../../../file-browser/model/terra-storage-object';
 import { TerraInfoComponent } from '../../../info/terra-info.component';
+import { TooltipDirective } from '../../../tooltip/tooltip.directive';
+import { Router } from '@angular/router';
+import { MockRouter } from '../../../../testing/mock-router';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { mockL10nConfig } from '../../../../testing/mock-l10n-config';
-import { MockTooltipDirective } from '../../../../testing/mock-tooltip.directive';
 
 describe('TerraFileInputComponent', () => {
     let component: TerraFileInputComponent;
@@ -37,11 +39,12 @@ describe('TerraFileInputComponent', () => {
 
     const jpgFileName: string = 'a-total-NewFile_name.jpg';
     const folderName: string = 'i-amYour_folder/';
+    const router: MockRouter = new MockRouter();
 
     beforeEach(() => {
         TestBed.configureTestingModule({
             declarations: [
-                MockTooltipDirective,
+                TooltipDirective,
                 TerraFileListComponent,
                 TerraFileBrowserComponent,
                 TerraFileChooserComponent,
@@ -69,6 +72,10 @@ describe('TerraFileInputComponent', () => {
                 MatDialogModule
             ],
             providers: [
+                {
+                    provide: Router,
+                    useValue: router
+                },
                 {
                     provide: TerraFrontendStorageService,
                     useValue: terraFrontendStorageServiceStub

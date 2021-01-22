@@ -6,9 +6,11 @@ import { TerraNumberInputComponent } from './terra-number-input.component';
 import { By } from '@angular/platform-browser';
 import { TerraButtonComponent } from '../../../buttons/button/terra-button.component';
 import { TerraRegex } from '../../../../helpers/regex/terra-regex';
-import { mockL10nConfig } from '../../../../testing/mock-l10n-config';
-import { MockTooltipDirective } from '../../../../testing/mock-tooltip.directive';
+import { TooltipDirective } from '../../../tooltip/tooltip.directive';
+import { Router } from '@angular/router';
+import { MockRouter } from '../../../../testing/mock-router';
 import Spy = jasmine.Spy;
+import { mockL10nConfig } from '../../../../testing/mock-l10n-config';
 
 describe('TerraNumberInputComponent', () => {
     let component: TerraNumberInputComponent;
@@ -16,11 +18,18 @@ describe('TerraNumberInputComponent', () => {
     let debugElement: DebugElement;
     let inputElement: HTMLInputElement;
     const testValue: number = 3;
+    const router: MockRouter = new MockRouter();
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            declarations: [MockTooltipDirective, TerraNumberInputComponent, TerraButtonComponent],
-            imports: [FormsModule, L10nTranslationModule.forRoot(mockL10nConfig)]
+            declarations: [TooltipDirective, TerraNumberInputComponent, TerraButtonComponent],
+            imports: [FormsModule, L10nTranslationModule.forRoot(mockL10nConfig)],
+            providers: [
+                {
+                    provide: Router,
+                    useValue: router
+                }
+            ]
         });
     });
 

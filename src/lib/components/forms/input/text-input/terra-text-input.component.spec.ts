@@ -4,9 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { L10nTranslationModule } from 'angular-l10n';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
-import { mockL10nConfig } from '../../../../testing/mock-l10n-config';
-import { MockTooltipDirective } from '../../../../testing/mock-tooltip.directive';
+import { TooltipDirective } from '../../../tooltip/tooltip.directive';
+import { Router } from '@angular/router';
+import { MockRouter } from '../../../../testing/mock-router';
 import Spy = jasmine.Spy;
+import { mockL10nConfig } from '../../../../testing/mock-l10n-config';
 
 describe('Component: TerraTextInputComponent', () => {
     let component: TerraTextInputComponent;
@@ -14,11 +16,18 @@ describe('Component: TerraTextInputComponent', () => {
     let inputElement: HTMLInputElement;
     let inputDebugElement: DebugElement;
     const testString: string = 'test';
+    const router: MockRouter = new MockRouter();
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            declarations: [TerraTextInputComponent, MockTooltipDirective],
-            imports: [FormsModule, L10nTranslationModule.forRoot(mockL10nConfig)]
+            declarations: [TerraTextInputComponent, TooltipDirective],
+            imports: [FormsModule, L10nTranslationModule.forRoot(mockL10nConfig)],
+            providers: [
+                {
+                    provide: Router,
+                    useValue: router
+                }
+            ]
         });
     });
 

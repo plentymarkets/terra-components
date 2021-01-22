@@ -6,8 +6,10 @@ import { L10nTranslationModule } from 'angular-l10n';
 import { TerraMultiCheckBoxComponent } from '../multi-check-box/terra-multi-check-box.component';
 import { TerraMultiCheckBoxValueInterface } from '../multi-check-box/data/terra-multi-check-box-value.interface';
 import { TerraCheckboxComponent } from '../checkbox/terra-checkbox.component';
+import { TooltipDirective } from '../../tooltip/tooltip.directive';
+import { Router } from '@angular/router';
+import { MockRouter } from '../../../testing/mock-router';
 import { mockL10nConfig } from '../../../testing/mock-l10n-config';
-import { MockTooltipDirective } from '../../../testing/mock-tooltip.directive';
 import Spy = jasmine.Spy;
 
 describe('Component: CheckboxGroupComponent', () => {
@@ -29,15 +31,23 @@ describe('Component: CheckboxGroupComponent', () => {
             value: 2
         }
     ];
+    const router: MockRouter = new MockRouter();
+
     beforeEach(() => {
         TestBed.configureTestingModule({
             declarations: [
-                MockTooltipDirective,
+                TooltipDirective,
                 CheckboxGroupComponent,
                 TerraMultiCheckBoxComponent,
                 TerraCheckboxComponent
             ],
-            imports: [FormsModule, L10nTranslationModule.forRoot(mockL10nConfig)]
+            imports: [FormsModule, L10nTranslationModule.forRoot(mockL10nConfig)],
+            providers: [
+                {
+                    provide: Router,
+                    useValue: router
+                }
+            ]
         });
     });
 
