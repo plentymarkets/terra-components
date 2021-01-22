@@ -6,22 +6,31 @@ import { FormsModule } from '@angular/forms';
 import { L10nTranslationModule } from 'angular-l10n';
 import { By } from '@angular/platform-browser';
 import { DebugElement, EventEmitter } from '@angular/core';
+import { TooltipDirective } from '../../tooltip/tooltip.directive';
+import { Router } from '@angular/router';
+import { MockRouter } from '../../../testing/mock-router';
 import { mockL10nConfig } from '../../../testing/mock-l10n-config';
-import { MockTooltipDirective } from '../../../testing/mock-tooltip.directive';
 
 describe('TerraMultiCheckBoxComponent:', () => {
     let component: TerraMultiCheckBoxComponent;
     let fixture: ComponentFixture<TerraMultiCheckBoxComponent>;
+    const router: MockRouter = new MockRouter();
 
     beforeEach(() => {
         TestBed.configureTestingModule({
             declarations: [
-                MockTooltipDirective,
+                TooltipDirective,
                 CheckboxGroupComponent,
                 TerraCheckboxComponent,
                 TerraMultiCheckBoxComponent
             ],
-            imports: [FormsModule, L10nTranslationModule.forRoot(mockL10nConfig)]
+            imports: [FormsModule, L10nTranslationModule.forRoot(mockL10nConfig)],
+            providers: [
+                {
+                    provide: Router,
+                    useValue: router
+                }
+            ]
         });
     });
 

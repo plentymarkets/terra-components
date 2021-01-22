@@ -85,18 +85,6 @@ describe(`TerraFormFieldHelper:`, () => {
             expect(composedArrayDefault).toEqual(Array(min).fill(groupDefaultValue));
         });
 
-        it(`should parse #isList correctly`, () => {
-            expect(TerraFormFieldHelper.getListRange(false)).toEqual([0, Infinity]);
-            expect(TerraFormFieldHelper.getListRange(true)).toEqual([0, Infinity]);
-            expect(TerraFormFieldHelper.getListRange('')).toEqual([0, Infinity]);
-            expect(TerraFormFieldHelper.getListRange(' [ 1 , 2 ] ')).toEqual([1, 2]);
-            expect(TerraFormFieldHelper.getListRange('[1,]')).toEqual([1, Infinity]);
-            expect(TerraFormFieldHelper.getListRange('[1, ]')).toEqual([1, Infinity]);
-            expect(TerraFormFieldHelper.getListRange('[1,2]')).toEqual([1, 2]);
-            expect(TerraFormFieldHelper.getListRange('[ 1 , 2 ]')).toEqual([1, 2]);
-            expect(TerraFormFieldHelper.getListRange('[  , 2 ]')).toEqual([0, 2]);
-        });
-
         it(`must not return a list at any time if #skipList is set`, () => {
             const formField: TerraFormFieldInterface = { ...listWithChildren };
             let defaultValue: any = TerraFormFieldHelper.parseDefaultValue(formField, true);

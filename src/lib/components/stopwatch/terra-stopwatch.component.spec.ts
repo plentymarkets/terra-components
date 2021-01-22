@@ -3,20 +3,29 @@ import { ComponentFixture, discardPeriodicTasks, fakeAsync, TestBed, tick } from
 import { TerraButtonComponent } from '../buttons/button/terra-button.component';
 import { FormsModule } from '@angular/forms';
 import { L10nTranslationModule } from 'angular-l10n';
-import { mockL10nConfig } from '../../testing/mock-l10n-config';
-import { MockTooltipDirective } from '../../testing/mock-tooltip.directive';
+import { TooltipDirective } from '../tooltip/tooltip.directive';
+import { Router } from '@angular/router';
+import { MockRouter } from '../../testing/mock-router';
 import Spy = jasmine.Spy;
+import { mockL10nConfig } from '../../testing/mock-l10n-config';
 
 describe('Component: TerraStopwatchComponent', () => {
     let component: TerraStopwatchComponent;
     let fixture: ComponentFixture<TerraStopwatchComponent>;
     const ticks: number = 2;
     const ticksInMilliseconds: number = ticks * 1000 + 1;
+    const router: MockRouter = new MockRouter();
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            declarations: [TerraStopwatchComponent, TerraButtonComponent, MockTooltipDirective],
-            imports: [FormsModule, L10nTranslationModule.forRoot(mockL10nConfig)]
+            declarations: [TerraStopwatchComponent, TerraButtonComponent, TooltipDirective],
+            imports: [FormsModule, L10nTranslationModule.forRoot(mockL10nConfig)],
+            providers: [
+                {
+                    provide: Router,
+                    useValue: router
+                }
+            ]
         });
     });
 

@@ -1,0 +1,137 @@
+nav.mat-tab-nav-bar {
+    border-bottom: none;
+
+    .mat-tab-links {
+        background-color: var(--tabs-background-color);
+        border-bottom: 2px solid var(--color-active);
+        padding: 0 2px;
+
+        a.mat-tab-link {
+            background-color: var(--tabs-nav-item);
+            box-shadow: var(--tabs-nav-item-box-shadow);
+            color: var(--tabs-nav-item-color);
+            font-size: var(--font-size-2);
+            font-weight: var(--font-weight-2);
+            height: var(
+                --tabs-nav-item-height,
+                (calc(var(--tabbar-height) - var(--space-sm) - var(--tabs-border-bottom-width)))
+            );
+            line-height: var(
+                --tabs-nav-item-height,
+                (calc(var(--tabbar-height) - var(--space-sm) - var(--tabs-border-bottom-width)))
+            );
+            margin: var(--tabs-nav-item-margin, var(--space-sm) var(--space-xs) 0 var(--space-xs));
+            opacity: 1;
+            min-width: var(--height-md-fix);
+            padding: 0 8px 0 8px;
+            user-select: none;
+            @include font-rendering();
+
+            span {
+                &.caret {
+                    padding: 2px 0 2px 0;
+                    overflow: hidden;
+
+                    &:hover {
+                        color: var(--color-structure-0);
+                    }
+
+                    &::before {
+                        display: inline-block;
+                        width: 0;
+                        height: 0;
+                        margin-right: 9px;
+                        vertical-align: middle;
+                        content: '';
+                        border-top: 0.3em solid;
+                        border-right: 0.3em solid transparent;
+                        border-left: 0.3em solid transparent;
+                        overflow: hidden;
+                        margin-left: 6px;
+                    }
+                }
+
+                &[class^='icon-'],
+                &[class*=' icon-'] {
+                    font-size: var(--font-size-5);
+                }
+            }
+
+            button.close {
+                text-shadow: none;
+                padding: var(--space-md) 0 var(--space-md) var(--space-md);
+                opacity: 1;
+
+                &:focus {
+                    outline: none;
+                }
+
+                span.icon-cancel {
+                    color: var(--color-structure-5);
+                    user-select: none;
+                }
+            }
+
+            &.mat-tab-label-active,
+            &:hover {
+                text-decoration: none;
+                background-color: var(--color-active);
+                color: var(--color-structure-0);
+
+                button.close {
+                    span.icon-cancel {
+                        color: var(--color-structure-0);
+                    }
+                }
+            }
+
+            &.mat-tab-disabled {
+                background-color: var(--tab-disabled-background-color);
+                color: var(--tab-disabled-color);
+                cursor: not-allowed;
+                pointer-events: initial;
+            }
+        }
+    }
+
+    mat-ink-bar.mat-ink-bar {
+        height: 0;
+    }
+}
+
+mat-tab-group {
+    mat-tab-header {
+        border-bottom: 1px solid var(--color-structure-2);
+
+        .mat-tab-label-container {
+            .mat-tab-list {
+                .mat-tab-labels {
+                    .mat-tab-label {
+                        opacity: 1;
+                        color: var(--color-structure-8);
+                        flex-grow: 1;
+                        height: calc(var(--height-md) + var(--space-md));
+
+                        &:not(:last-child) {
+                            border-right: 1px solid var(--color-structure-2);
+                        }
+
+                        &.mat-tab-label-active {
+                            color: var(--color-active);
+                        }
+                    }
+                }
+
+                mat-ink-bar {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    .mat-tab-body-wrapper {
+        mat-tab-body {
+            padding: var(--space-xl);
+        }
+    }
+}

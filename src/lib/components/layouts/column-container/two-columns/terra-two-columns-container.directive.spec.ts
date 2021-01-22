@@ -1,11 +1,11 @@
 import { TerraTwoColumnsContainerDirective } from './terra-two-columns-container.directive';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ActivatedRoute, NavigationEnd, Router, Event } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { MockRouter } from '../../../../testing/mock-router';
 import { TerraTwoColumnsContainerComponent } from './terra-two-columns-container.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { MockActivatedRoute } from '../../../../testing/mock-activated-route';
-import { Subject } from 'rxjs';
 
 @Component({
     template: `<terra-2-col mobileRouting>
@@ -20,11 +20,7 @@ describe('TerraTwoColumnsContainerDirective', () => {
     let component: TwoColumnsContainerDirectiveTestComponent;
     let directive: TerraTwoColumnsContainerDirective;
     let twoColComponent: TerraTwoColumnsContainerComponent;
-    const routerEvents: Subject<Event> = new Subject();
-    const router: Partial<Router> = {
-        url: 'start/dashboard',
-        events: routerEvents.asObservable()
-    };
+    const router: MockRouter = new MockRouter();
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -64,13 +60,13 @@ describe('TerraTwoColumnsContainerDirective', () => {
     });
 
     it(`should hide left but show right column on small devices if routed to a route that is not redirected`, () => {
-        routerEvents.next(new NavigationEnd(1, 'start/dashboard', 'start/dashboard'));
+        router.sendEvent(new NavigationEnd(1, 'start/dashboard', 'start/dashboard'));
         expect(twoColComponent._leftColumn).toContain('hidden-xs');
         expect(twoColComponent._rightColumn).not.toContain('hidden-xs');
     });
 
     it(`should hide right but show left column on small devices if routed to a redirected route`, () => {
-        routerEvents.next(new NavigationEnd(1, 'start', 'start/dashboard'));
+        router.sendEvent(new NavigationEnd(1, 'start', 'start/dashboard'));
         expect(twoColComponent._leftColumn).not.toContain('hidden-xs');
         expect(twoColComponent._rightColumn).toContain('hidden-xs');
     });
@@ -79,7 +75,7 @@ describe('TerraTwoColumnsContainerDirective', () => {
         const leftColumn: string = twoColComponent._leftColumn;
         const rightColumn: string = twoColComponent._rightColumn;
 
-        routerEvents.next(new NavigationEnd(1, 'dummy', 'dummy'));
+        router.sendEvent(new NavigationEnd(1, 'dummy', 'dummy'));
 
         // nothing has changed
         expect(twoColComponent._leftColumn).toEqual(leftColumn);

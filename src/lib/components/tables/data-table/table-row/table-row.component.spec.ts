@@ -6,8 +6,10 @@ import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { TerraDataTableRowInterface } from '../interfaces/terra-data-table-row.interface';
 import { Component, DebugElement } from '@angular/core';
+import { TooltipDirective } from '../../../tooltip/tooltip.directive';
+import { Router } from '@angular/router';
+import { MockRouter } from '../../../../testing/mock-router';
 import { noop } from 'rxjs';
-import { MockTooltipDirective } from '../../../../testing/mock-tooltip.directive';
 
 export const dataTableStub: Partial<TerraDataTableComponent<any, any>> = {
     rowClicked: noop,
@@ -32,11 +34,18 @@ describe('Component: TableRowComponent', () => {
     let fixture: ComponentFixture<HostComponent>;
     let component: TableRowComponent;
     let dataTable: TerraDataTableComponent<any, any>;
+    const router: MockRouter = new MockRouter();
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            declarations: [MockTooltipDirective, TableRowComponent, TerraCheckboxComponent, HostComponent],
-            imports: [FormsModule]
+            declarations: [TooltipDirective, TableRowComponent, TerraCheckboxComponent, HostComponent],
+            imports: [FormsModule],
+            providers: [
+                {
+                    provide: Router,
+                    useValue: router
+                }
+            ]
         });
     });
 

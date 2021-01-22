@@ -1,0 +1,143 @@
+{
+    "terraDataTable": {
+        "groupFunction": "Group function"
+    },
+    "terraMultiSelectBox": {
+        "selectAll": "All"
+    },
+    "terraMultiCheckBox": {
+        "selectAll": "All"
+    },
+    "terraFileBrowser": {
+        "error": {
+            "tooLargePayload": "This file is too large to upload.",
+            "tooManyFiles": "Max. {{ max }} files can be uploaded at once."
+        },
+        "cancel": "Cancel",
+        "create": "Create",
+        "delete": "Delete",
+        "myFiles": "My files",
+        "createFolder": "Create folder",
+        "confirmDelete": "Delete this file?",
+        "confirmDeleteMany": "Really delete {{ count }} files?",
+        "deleteFolder": "Delete folder",
+        "deleteFile": "Delete file",
+        "deleteSelectedFiles": "Delete selected files",
+        "folderName": "Folder name",
+        "folderIsEmpty": "Folder is empty.",
+        "uploadFile": "Upload file",
+        "fileURL": "File URL",
+        "copyToClipboard": "Copy to clipboard",
+        "saveMetadata": "Save metadata",
+        "altText": "Alternative text",
+        "imageSize": "Size",
+        "fileSize": "File size",
+        "fileName": "File name",
+        "lastChange": "Last change",
+        "loadingFiles": "Loading files",
+        "noFiles": "No files",
+        "downloadFile": "Download file",
+        "uploadProgress": "Uploading files: {{ filesUploaded }}/{{ filesTotal }} ({{ sizeUploaded }}/{{ sizeTotal }})",
+        "metadataUpdated": "Metadata updated."
+    },
+    "terraFileInput": {
+        "choose": "Select",
+        "cancel": "Cancel",
+        "reset": "Reset",
+        "chooseFile": "Select file"
+    },
+    "terraSuggestionBox": {
+        "suggestions": "Suggestions",
+        "recentlyUsed": "Recently used",
+        "noSuggestions": "No suggestions",
+        "noRecentlyUsed": "No recently used elements"
+    },
+    "terraNavigator": {
+        "search": "Search"
+    },
+    "terraPager": {
+        "page": "Page",
+        "of": "of"
+    },
+    "terraNoteEditor": {
+        "insertText": "Insert text."
+    },
+    "terraCodeEditor": {
+        "changeViewOverlay": {
+            "title": "Unknown code formatting",
+            "text": "Switching to editor view will cause unknown markup formatting to be lost. Are you sure you want to change the view?",
+            "primaryButton": "Switch to editor view",
+            "secondaryButton": "cancel"
+        },
+        "linterMessage": "Error in line {{ line }}, column {{ col }}: {{ message }}",
+        "linterRules": {
+            "tagname-lowercase": "Tagname must be lowercase",
+            "attr-lowercase": "Attribute name must be lowercase.",
+            "attr-value-double-quotes": "Attribute value must be closed by double quotes.",
+            "attr-value-not-empty": "Attribute must set a value.",
+            "attr-no-duplication": "The same attribute can't be specified twice.",
+            "doctype-first": "DOCTYPE must be first.",
+            "tag-pair": "Tag is not closed correctly.",
+            "tag-self-close": "Empty tag must be closed by self.",
+            "spec-char-escape": "Special characters must be escaped.",
+            "id-unique": "ID attributes must be unique in the document.",
+            "src-not-empty": "src of img(script,link) must set value.",
+            "title-require": "&lt;title> must be present in &lt;head> tag.",
+            "doctype-html5": "DOCTYPE must be html5.",
+            "style-disabled": "&lt;style>-tag can not be use.",
+            "inline-style-disabled": "Inline style cannot be use.",
+            "inline-script-disabled": "Inline script cannot be use.",
+            "href-abs-or-rel": "Link target (href) must be absolute or relative.",
+            "attr-unsafe-chars": "Attribute value cannot use unsafe chars.",
+            "head-script-disabled": "The script tag can not be used in &lt;head>."
+        }
+    },
+    "terraTextInput": {
+        "invalidIban": "IBAN is not valid."
+    },
+    "terraNodeTree": {
+        "search": "Search"
+    },
+    "timepicker": {
+        "minutes": "Minutes",
+        "hours": "Hours"
+    },
+    "terraCategoryPicker": {
+        "select": "Select",
+        "category": "Category",
+        "reset": "Reset"
+    },
+    "terraNestedDataPicker": {
+        "select": "Select",
+        "nested": "Nested",
+        "reset": "Reset"
+    },
+    "terraDynamicForm": {
+        "addListEntry": "Add new entry",
+        "removeListEntry": "Remove entry",
+        "deprecated": "Toggle deprecated entries"
+    },
+    "terraStopwatch": {
+        "start": "Start",
+        "pause": "Pause",
+        "reset": "Reset"
+    },
+    "tcFilter": {
+        "search": "Search",
+        "reset": "Reset"
+    },
+    "errorInterceptor": {
+        "unauthorized": "Unauthorized",
+        "missingPermission": "Missing permissions for:",
+        "forbidden": "Forbidden"
+    },
+    "terraMatPaginatorIntl": {
+        "itemsPerPage": "Results per page",
+        "ofLabel": "of"
+    },
+    "tableSettings": {
+        "confirm": "Confirm",
+        "cancel": "Cancel",
+        "configColumns": "Configure columns"
+    }
+}

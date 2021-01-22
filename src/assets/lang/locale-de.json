@@ -1,0 +1,143 @@
+{
+    "terraDataTable": {
+        "groupFunction": "Gruppenfunktion"
+    },
+    "terraMultiSelectBox": {
+        "selectAll": "Alle"
+    },
+    "terraMultiCheckBox": {
+        "selectAll": "Alle"
+    },
+    "terraFileBrowser": {
+        "error": {
+            "tooLargePayload": "Diese Datei ist zu groß.",
+            "tooManyFiles": "Es können max. {{ max }} Dateien zeitgleich hochgeladen werden."
+        },
+        "cancel": "Abbrechen",
+        "create": "Erstellen",
+        "delete": "Löschen",
+        "myFiles": "Meine Dateien",
+        "createFolder": "Ordner erstellen",
+        "confirmDelete": "Datei löschen?",
+        "confirmDeleteMany": "{{ count }} Dateien wirklich löschen?",
+        "deleteFolder": "Ordner löschen",
+        "deleteFile": "Datei löschen",
+        "deleteSelectedFiles": "Ausgewählte Dateien löschen",
+        "folderName": "Ordnername",
+        "folderIsEmpty": "Der Ordner ist leer.",
+        "uploadFile": "Datei hochladen",
+        "fileURL": "Datei-URL",
+        "copyToClipboard": "In Zwischenablage kopieren",
+        "saveMetadata": "Metadaten speichern",
+        "altText": "Alternativtext",
+        "imageSize": "Größe",
+        "fileSize": "Dateigröße",
+        "fileName": "Dateiname",
+        "lastChange": "Letzte Änderung",
+        "loadingFiles": "Dateien werden geladen",
+        "noFiles": "Keine Dateien",
+        "downloadFile": "Datei herunterladen",
+        "uploadProgress": "Dateien werden hochgeladen: {{ filesUploaded }}/{{ filesTotal }} ({{ sizeUploaded }}/{{ sizeTotal }})",
+        "metadataUpdated": "Metadaten aktualisiert."
+    },
+    "terraFileInput": {
+        "choose": "Wählen",
+        "cancel": "Abbrechen",
+        "reset": "Zurücksetzen",
+        "chooseFile": "Datei wählen"
+    },
+    "terraSuggestionBox": {
+        "suggestions": "Vorschläge",
+        "recentlyUsed": "Zuletzt verwendet",
+        "noSuggestions": "Keine Vorschläge",
+        "noRecentlyUsed": "Keine zuletzt verwendeten Elemente"
+    },
+    "terraNavigator": {
+        "search": "Suche"
+    },
+    "terraPager": {
+        "page": "Seite",
+        "of": "von"
+    },
+    "terraNoteEditor": {
+        "insertText": "Text eingeben."
+    },
+    "terraCodeEditor": {
+        "changeViewOverlay": {
+            "title": "Unbekannte Formatierung",
+            "text": "Durch den Wechsel in die Editor-Ansicht gehen unbekannte Formatierungen im Markup verloren. Sind Sie sicher, dass sie die Ansicht wechseln möchten?",
+            "primaryButton": "Zu Editor-Ansicht wechseln",
+            "secondaryButton": "Abbrechen"
+        },
+        "linterMessage": "Fehler in Zeile {{ line }}, Spalte {{ col }}: {{ message }}",
+        "linterRules": {
+            "tagname-lowercase": "Tag-Name enthält Großbuchstaben.",
+            "attr-lowercase": "Attribute-Name enthält Großbbuchstaben.",
+            "attr-value-double-quotes": "Attribut-Wert muss in doppelten Anführungszeichen angegeben sein.",
+            "attr-value-not-empty": "Attribut muss einen Wert definieren.",
+            "attr-no-duplication": "Ein Attribut kann nicht mehrfach definiert werden.",
+            "doctype-first": "DOCTYPE muss die erste Angabe sein.",
+            "tag-pair": "Tag nicht korrekt geschlossen.",
+            "tag-self-close": "Leeres Tag muss sich selbst schließen.",
+            "spec-char-escape": "Sonderzeichen müssen escaped werden.",
+            "id-unique": "ID muss eindeutig sein.",
+            "src-not-empty": "src (img, script, link) muss definiert sein.",
+            "title-require": "&lt;title> muss innerhalb von &lt;head> definiert werden.",
+            "doctype-html5": "DOCTYPE muss html5 sein.",
+            "style-disabled": "&lt;style>-Tag darf nicht verwendet werden.",
+            "inline-style-disabled": "Inline-Styles dürfen nicht verwendet werden.",
+            "inline-script-disabled": "Inline-Scripts dürfen nicht verwendet werden.",
+            "href-abs-or-rel": "Link-Ziel (href) muss absolut oder relativ sein.",
+            "attr-unsafe-chars": "Attribute-Wert darf keine unsicheren Zeichen enthalten.",
+            "head-script-disabled": "&lt;script>-Tag innerhalb von &lt;head> ist nicht erlaubt."
+        }
+    },
+    "terraTextInput": {
+        "invalidIban": "IBAN ist ungültig."
+    },
+    "terraNodeTree": {
+        "search": "Suche"
+    },
+    "timepicker": {
+        "minutes": "Minuten",
+        "hours": "Stunden"
+    },
+    "terraCategoryPicker": {
+        "select": "Auswählen",
+        "category": "Kategorie",
+        "reset": "Reset"
+    },
+    "terraNestedDataPicker": {
+        "select": "Auswählen",
+        "nested": "Verschachtelt",
+        "reset": "Reset"
+    },
+    "terraDynamicForm": {
+        "addListEntry": "Neuen Eintrag hinzufügen",
+        "removeListEntry": "Eintrag entfernen",
+        "deprecated": "Veraltete Einträge zeigen/verstecken"
+    },
+    "terraStopwatch": {
+        "start": "Start",
+        "pause": "Pause",
+        "reset": "Zurücksetzen"
+    },
+    "tcFilter": {
+        "search": "Suchen",
+        "reset": "Zurücksetzen"
+    },
+    "errorInterceptor": {
+        "unauthorized": "Nicht autorisiert",
+        "missingPermissions": "Fehlende Berechtigungen für:",
+        "forbidden": "Keine Berechtigung"
+    },
+    "terraMatPaginatorIntl": {
+        "itemsPerPage": "Ergebnisse pro Seite",
+        "ofLabel": "von"
+    },
+    "tableSettings": {
+        "confirm": "Bestätigen",
+        "cancel": "Abbrechen",
+        "configColumns": "Spalten konfigurieren"
+    }
+}
