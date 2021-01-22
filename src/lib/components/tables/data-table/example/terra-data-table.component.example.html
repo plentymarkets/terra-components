@@ -1,16 +1,14 @@
 <terra-base-toolbar>
     <div class="btn-group" role="group">
-        <terra-button [inputIcon]="'icon-add'"
-                      [inputTooltipText]="'New entry'"
-                      (outputClicked)="_addEntry()">
+        <terra-button [inputIcon]="'icon-add'" [inputTooltipText]="'New entry'" (outputClicked)="_addEntry()">
         </terra-button>
-        <terra-button [inputIcon]="'icon-settings_transfer'"
-                      [inputTooltipText]="'Group function'"
-                      (outputClicked)="showGroupFunction = !showGroupFunction">
+        <terra-button
+            [inputIcon]="'icon-settings_transfer'"
+            [inputTooltipText]="'Group function'"
+            (outputClicked)="showGroupFunction = !showGroupFunction"
+        >
         </terra-button>
-        <terra-button [inputIcon]="'icon-reset'"
-                      [inputTooltipText]="'Reset sorting'"
-                      (outputClicked)="_resetSorting()">
+        <terra-button [inputIcon]="'icon-reset'" [inputTooltipText]="'Reset sorting'" (outputClicked)="_resetSorting()">
         </terra-button>
     </div>
 </terra-base-toolbar>
@@ -20,17 +18,20 @@
     [inputService]="_service"
     [inputHasCheckboxes]="true"
     [inputHeaderList]="_headerList"
-    [inputContextMenu]="_contextMenu">
-
-    <terra-group-function [show]="showGroupFunction"
-                          [disableExecution]="false"
-                          (executeGroupFunction)="_executeGroupFunction(table.selectedRowList)">
+    [inputContextMenu]="_contextMenu"
+>
+    <terra-group-function
+        [show]="showGroupFunction"
+        [disableExecution]="false"
+        (executeGroupFunction)="_executeGroupFunction(table.selectedRowList)"
+    >
         <terra-text-input [inputName]="'Text'"></terra-text-input>
     </terra-group-function>
 
     <terra-no-result-notice
         [inputButtons]="_noResultButtons"
         [inputTextPrimary]="_noResultTextPrimary"
-        [inputTextSecondary]="_noResultTextSecondary">
+        [inputTextSecondary]="_noResultTextSecondary"
+    >
     </terra-no-result-notice>
 </terra-data-table>

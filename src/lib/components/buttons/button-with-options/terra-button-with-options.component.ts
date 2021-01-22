@@ -1,60 +1,52 @@
-import {
-    Component,
-    ElementRef,
-    EventEmitter,
-    Input,
-    OnInit,
-    Output,
-    ViewChild
-} from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { TerraButtonInterface } from '../button/data/terra-button.interface';
 import { isNullOrUndefined } from 'util';
 import { TerraButtonComponent } from '../button/terra-button.component';
 import { TerraTextAlignEnum } from '../../tables/data-table/enums/terra-text-align.enum';
 import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum';
 
+/** @deprecated since v5. Please use mat-button with mat-menu instead */
 @Component({
-    selector:    'terra-button-with-options',
+    selector: 'terra-button-with-options',
     templateUrl: './terra-button-with-options.component.html',
-    styleUrls:   ['./terra-button-with-options.component.scss']
+    styleUrls: ['./terra-button-with-options.component.scss']
 })
-export class TerraButtonWithOptionsComponent implements OnInit
-{
+export class TerraButtonWithOptionsComponent implements OnInit {
     // terra button inputs
     /**
      * @description Set the caption.
      */
     @Input()
-    public inputCaption:string;
+    public inputCaption: string;
 
     /**
      * @description Set an icon (e.g. icon-save).
      */
     @Input()
-    public inputIcon:string;
+    public inputIcon: string;
 
     /**
      * @description If true, the button will be small. Default false.
      */
     @Input()
-    public inputIsSmall:boolean;
+    public inputIsSmall: boolean;
 
     /**
      * @description If true, the button will be disabled. Default false.
      */
     @Input()
-    public inputIsDisabled:boolean;
+    public inputIsDisabled: boolean;
 
     /**
      * @description Set the tooltip.
      */
     @Input()
-    public inputTooltipText:string;
+    public inputTooltipText: string;
     /**
      * @description Set the tooltip placement (bottom, top, left, right). Default top.
      */
     @Input()
-    public inputTooltipPlacement:TerraPlacementEnum; // top, bottom, left, right
+    public inputTooltipPlacement: TerraPlacementEnum; // top, bottom, left, right
 
     // new inputs
     /**
@@ -62,37 +54,34 @@ export class TerraButtonWithOptionsComponent implements OnInit
      *     the menu.
      */
     @Input()
-    public inputOptions:Array<TerraButtonInterface>;
+    public inputOptions: Array<TerraButtonInterface>;
 
     /**
      * @description Set the alignment of the context menu. Default right.
      */
     @Input()
-    public inputOptionsAlignment:TerraTextAlignEnum;
+    public inputOptionsAlignment: TerraTextAlignEnum;
 
     /**
      * @description Emits the state of the button options each time the options are toggled.
      */
     @Output()
-    public optionsToggled:EventEmitter<boolean> = new EventEmitter<boolean>();
+    public optionsToggled: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-    public _optionsToggle:boolean;
-    public _alignRight:boolean;
+    public _optionsToggle: boolean;
+    public _alignRight: boolean;
 
     // view children
     @ViewChild(TerraButtonComponent, { static: true })
-    private _toggleButton:TerraButtonComponent;
+    private _toggleButton: TerraButtonComponent;
 
-    private readonly _clickListener:(event:Event) => void;
+    private readonly _clickListener: (event: Event) => void;
 
-    constructor(private _elementRef:ElementRef)
-    {
+    constructor(private _elementRef: ElementRef) {
         // define click listener
-        this._clickListener = (event:Event):void =>
-        {
+        this._clickListener = (event: Event): void => {
             // check if it has been clicked elsewhere
-            if(!this._elementRef.nativeElement.contains(event.target))
-            {
+            if (!this._elementRef.nativeElement.contains(event.target)) {
                 this._optionsToggle = false;
                 this.optionsToggled.emit(false);
             }
@@ -102,38 +91,30 @@ export class TerraButtonWithOptionsComponent implements OnInit
         this._alignRight = true;
     }
 
-    public ngOnInit():void
-    {
+    public ngOnInit(): void {
         // handle undefined input error
-        if(isNullOrUndefined(this.inputOptions))
-        {
+        if (isNullOrUndefined(this.inputOptions)) {
             this.inputOptions = [];
         }
 
-        switch(this.inputOptionsAlignment)
-        {
-            case TerraTextAlignEnum.LEFT:
-            {
+        switch (this.inputOptionsAlignment) {
+            case TerraTextAlignEnum.LEFT: {
                 this._alignRight = false;
                 break;
             }
-            case TerraTextAlignEnum.RIGHT:
-            {
+            case TerraTextAlignEnum.RIGHT: {
                 this._alignRight = true;
                 break;
             }
-            case TerraTextAlignEnum.CENTER:
-            {
+            case TerraTextAlignEnum.CENTER: {
                 this._alignRight = false;
                 break;
             }
         }
     }
 
-    public _optionsClick(option:TerraButtonInterface):void
-    {
-        if(!option.isDisabled)
-        {
+    public _optionsClick(option: TerraButtonInterface): void {
+        if (!option.isDisabled) {
             // execute click function of the option
             option.clickFunction();
 
@@ -142,19 +123,14 @@ export class TerraButtonWithOptionsComponent implements OnInit
         }
     }
 
-    public _toggleOptions(event?:Event):void
-    {
-        if(!isNullOrUndefined(event))
-        {
+    public _toggleOptions(event?: Event): void {
+        if (!isNullOrUndefined(event)) {
             event.stopPropagation();
         }
 
-        if(!this._optionsToggle)
-        {
+        if (!this._optionsToggle) {
             document.addEventListener('click', this._clickListener);
-        }
-        else
-        {
+        } else {
             document.removeEventListener('click', this._clickListener);
         }
 

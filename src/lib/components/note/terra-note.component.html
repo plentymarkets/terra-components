@@ -1,9 +1,8 @@
-<div class="note"
-     [ngClass]="{'selected': inputIsSelected}">
+<div class="note" [ngClass]="{ selected: inputIsSelected }">
     <div class="note-inner">
         <div class="note-text float-sm-left">
-            <span class="note-header">{{inputHeaderText}}</span>
-            <hr>
+            <span class="note-header">{{ inputHeaderText }}</span>
+            <hr />
             <div [innerHTML]="inputNoteText"></div>
         </div>
         <div class="note-sidebar">

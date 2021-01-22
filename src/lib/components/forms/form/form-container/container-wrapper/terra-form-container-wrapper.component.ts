@@ -21,32 +21,31 @@ import { TerraPortletComponent } from '../../../../layouts/portlet/terra-portlet
  * This enables usage of structural components to render nested forms
  */
 @Component({
-    selector:    'terra-form-container-wrapper',
+    selector: 'terra-form-container-wrapper',
     templateUrl: './terra-form-container-wrapper.component.html'
 })
-export class TerraFormContainerWrapperComponent extends TerraFormEntryBase implements OnInit, OnChanges, OnDestroy
-{
+export class TerraFormContainerWrapperComponent extends TerraFormEntryBase implements OnInit, OnChanges, OnDestroy {
     /**
      * @description The scope of the inner form elements. Will be passed through to inner form container.
      * @see TerraFormContainerComponent.inputScope
      */
     @Input()
-    public inputScope:TerraFormScope;
+    public inputScope: TerraFormScope;
 
     /**
      * @description The form group of the inner form container.
      * @see TerraFormContainerComponent.inputFormGroup
      */
     @Input()
-    public inputFormGroup:FormGroup;
+    public inputFormGroup: FormGroup;
 
-    private innerComponentRef:ComponentRef<TerraFormContainerComponent>;
+    private innerComponentRef: ComponentRef<TerraFormContainerComponent>;
 
     constructor(
-        private injector:Injector,
-        private app:ApplicationRef,
-        componentFactoryResolver:ComponentFactoryResolver)
-    {
+        private injector: Injector,
+        private app: ApplicationRef,
+        componentFactoryResolver: ComponentFactoryResolver
+    ) {
         super(componentFactoryResolver);
     }
 
@@ -54,12 +53,11 @@ export class TerraFormContainerWrapperComponent extends TerraFormEntryBase imple
      * Implementation of the OnInit life cycle hook.
      * @description Create instance of inner form container component and wrap it in dynamic structural component
      */
-    public ngOnInit():void
-    {
+    public ngOnInit(): void {
         // create instance of nested TerraFormContainerComponent
         this.innerComponentRef = this._componentFactoryResolver
-                                  .resolveComponentFactory(TerraFormContainerComponent)
-                                  .create(this.injector);
+            .resolveComponentFactory(TerraFormContainerComponent)
+            .create(this.injector);
 
         this.app.attachView(this.innerComponentRef.hostView);
         this.passInputProperties();
@@ -71,29 +69,24 @@ export class TerraFormContainerWrapperComponent extends TerraFormEntryBase imple
      * Implementation of the OnChanges life cycle hook.
      * @description Pass input properties to inner form container component.
      */
-    public ngOnChanges(changes:SimpleChanges):void
-    {
-         this.passInputProperties();
-         super.ngOnChanges(changes);
+    public ngOnChanges(changes: SimpleChanges): void {
+        this.passInputProperties();
+        super.ngOnChanges(changes);
     }
 
     /**
      * Implementation of the OnDestroy life cycle hook.
      * @description Destroys the component that has been created dynamically.
      */
-    public ngOnDestroy():void
-    {
+    public ngOnDestroy(): void {
         super.ngOnDestroy();
-        if(this._componentRef)
-        {
+        if (this._componentRef) {
             this.innerComponentRef.destroy();
         }
     }
 
-    private passInputProperties():void
-    {
-        if(this.innerComponentRef)
-        {
+    private passInputProperties(): void {
+        if (this.innerComponentRef) {
             this.innerComponentRef.instance.inputScope = this.inputScope;
             this.innerComponentRef.instance.inputControlTypeMap = this.inputControlTypeMap;
             this.innerComponentRef.instance.inputFormGroup = this.inputFormGroup;

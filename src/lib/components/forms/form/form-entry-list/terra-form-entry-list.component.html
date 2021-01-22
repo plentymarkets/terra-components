@@ -1,16 +1,21 @@
 <div [formGroup]="inputFormGroup">
     <div class="form-list clearfix" [formArrayName]="inputFormFieldKey">
-        <div class="form-list-entry" *ngFor="let control of formArray?.controls; index as i; let first = first; let last = last">
+        <div
+            class="form-list-entry"
+            *ngFor="let control of formArray?.controls; index as i; let first = first; let last = last"
+        >
             <div class="form-list-sort">
                 <terra-button
                     [inputIcon]="'icon-collapse_up'"
                     [inputIsDisabled]="first"
-                    (outputClicked)="_moveElement(i, -1)">
+                    (outputClicked)="_moveElement(i, -1)"
+                >
                 </terra-button>
                 <terra-button
                     [inputIcon]="'icon-collapse_down'"
                     [inputIsDisabled]="last"
-                    (outputClicked)="_moveElement(i, 1)">
+                    (outputClicked)="_moveElement(i, 1)"
+                >
                 </terra-button>
             </div>
             <terra-form-entry
@@ -19,9 +24,10 @@
                 [inputFormControl]="control"
                 [inputFormField]="inputFormField"
                 [inputControlTypeMap]="inputControlTypeMap"
-                [inputIsDisabled]="inputIsDisabled">
+                [inputIsDisabled]="inputIsDisabled"
+            >
             </terra-form-entry>
-    
+
             <terra-form-container
                 *ngIf="inputFormField.children"
                 [formGroupName]="i"
@@ -33,19 +39,21 @@
                 [width]="width"
                 [horizontal]="inputFormField.type === 'horizontal'"
             ></terra-form-container>
-            
+
             <terra-button
                 [inputIcon]="'icon-delete'"
-                [inputTooltipText]="'terraDynamicForm.removeListEntry' | translate:_lang"
+                [inputTooltipText]="'terraDynamicForm.removeListEntry' | translate: _locale.language"
                 [inputIsDisabled]="!_canRemoveElement"
-                (outputClicked)="_removeElement(i)">
+                (outputClicked)="_removeElement(i)"
+            >
             </terra-button>
         </div>
         <terra-button
             [inputIcon]="'icon-add'"
-            [inputTooltipText]="'terraDynamicForm.addListEntry' | translate:_lang"
+            [inputTooltipText]="'terraDynamicForm.addListEntry' | translate: _locale.language"
             [inputIsDisabled]="!_canAddElement"
-            (outputClicked)="_addElement()">
+            (outputClicked)="_addElement()"
+        >
         </terra-button>
     </div>
 </div>

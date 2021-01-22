@@ -1,98 +1,84 @@
 import { TerraTaglistComponent } from './terra-taglist.component';
 import { tagList } from '../../../testing/mock-tags';
-import {
-    async,
-    ComponentFixture,
-    TestBed
-} from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TerraTagComponent } from '../tag/terra-tag.component';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 import { TerraTagInterface } from '../tag/data/terra-tag.interface';
-import { MockTranslationModule } from '../../../testing/mock-translation-module';
+import { L10nTranslationModule } from 'angular-l10n';
+import { mockL10nConfig } from '../../../testing/mock-l10n-config';
 
-describe('TerraTaglistComponent', () =>
-{
-    let component:TerraTaglistComponent;
-    let fixture:ComponentFixture<TerraTaglistComponent>;
+describe('TerraTaglistComponent', () => {
+    let component: TerraTaglistComponent;
+    let fixture: ComponentFixture<TerraTaglistComponent>;
 
-    beforeEach(async(() =>
-    {
+    beforeEach(() => {
         TestBed.configureTestingModule({
-            declarations: [TerraTagComponent,
-                           TerraTaglistComponent],
-            imports:      [MockTranslationModule]
-        }).compileComponents();
-    }));
+            declarations: [TerraTagComponent, TerraTaglistComponent],
+            imports: [L10nTranslationModule.forRoot(mockL10nConfig)]
+        });
+    });
 
-    beforeEach(() =>
-    {
+    beforeEach(() => {
         fixture = TestBed.createComponent(TerraTaglistComponent);
         component = fixture.componentInstance;
     });
 
-    it('should create an instance', () =>
-    {
+    it('should create an instance', () => {
         expect(component).toBeTruthy();
     });
 
-    it(`should initialize its inputs and outputs`, () =>
-    {
+    it(`should initialize its inputs and outputs`, () => {
         expect(component.inputTagList).toBeUndefined();
         expect(component.isReadOnly).toBeFalsy();
-        expect(component.onCloseTag).toBeDefined();
         expect(component.closeTag).toBeDefined();
     });
 
-    describe(`with tags`, () =>
-    {
-        let tagDebugElements:Array<DebugElement>;
-        beforeEach(() =>
-        {
+    describe(`with tags`, () => {
+        let tagDebugElements: Array<DebugElement>;
+        beforeEach(() => {
             component.inputTagList = tagList;
             fixture.detectChanges();
             tagDebugElements = fixture.debugElement.queryAll(By.css('terra-tag'));
         });
 
-        it(`should render tags defined by #inputTagList`, () =>
-        {
+        it(`should render tags defined by #inputTagList`, () => {
             expect(tagDebugElements.length).toEqual(tagList.length);
         });
 
-        it(`should set isClosable depending on the tag's isClosable property if #isReadOnly is falsy`, () =>
-        {
-            let tags:Array<TerraTagComponent> = tagDebugElements.map((debugElement:DebugElement) => debugElement.componentInstance);
+        it(`should set isClosable depending on the tag's isClosable property if #isReadOnly is falsy`, () => {
+            let tags: Array<TerraTagComponent> = tagDebugElements.map(
+                (debugElement: DebugElement) => debugElement.componentInstance
+            );
 
-            tags.forEach((tag:TerraTagComponent, index:number) =>
-            {
+            tags.forEach((tag: TerraTagComponent, index: number) => {
                 expect(tag.isClosable).toEqual(tagList[index].isClosable);
             });
         });
 
-        it(`should isClosable be falsy if #isReadOnly is true`, () =>
-        {
+        it(`should isClosable be falsy if #isReadOnly is true`, () => {
             component.isReadOnly = true;
             fixture.detectChanges();
 
             tagDebugElements = fixture.debugElement.queryAll(By.css('terra-tag'));
-            let tags:Array<TerraTagComponent> = tagDebugElements.map((debugElement:DebugElement) => debugElement.componentInstance);
+            let tags: Array<TerraTagComponent> = tagDebugElements.map(
+                (debugElement: DebugElement) => debugElement.componentInstance
+            );
 
-            tags.forEach((tag:TerraTagComponent) =>
-            {
+            tags.forEach((tag: TerraTagComponent) => {
                 expect(tag.isClosable).toBeFalsy();
             });
         });
 
-        it(`should properly map the tag interface's properties to the tag component's inputs`, () =>
-        {
-            let tags:Array<TerraTagComponent> = tagDebugElements.map((debugElement:DebugElement) => debugElement.componentInstance);
+        it(`should properly map the tag interface's properties to the tag component's inputs`, () => {
+            let tags: Array<TerraTagComponent> = tagDebugElements.map(
+                (debugElement: DebugElement) => debugElement.componentInstance
+            );
 
-            tags.forEach((tag:TerraTagComponent, index:number) =>
-            {
-                let tagInterface:TerraTagInterface = tagList[index];
+            tags.forEach((tag: TerraTagComponent, index: number) => {
+                let tagInterface: TerraTagInterface = tagList[index];
 
                 expect(tag.tagId).toEqual(tagInterface.id);
-                expect(tag.inputBadge).toEqual(tagInterface.name);
                 expect(tag.name).toEqual(tagInterface.name);
                 expect(tag.inputIsTaggable).toEqual(tagInterface.isTaggable);
                 expect(tag.inputIsTagged).toEqual(tagInterface.isTagged);
@@ -103,21 +89,17 @@ describe('TerraTaglistComponent', () =>
             });
         });
 
-        it(`should emit on #onCloseTag if a tag component emits on its #onCloseTag-Emitter`, () =>
-        {
-            let tagToCloseDeprecated:number = 0;
-            let tagToClose:number = 0;
-            component.onCloseTag.subscribe((tagId:number) => tagToCloseDeprecated = tagId);
-            component.closeTag.subscribe((tagId:number) => tagToClose = tagId);
+        it(`should emit on #closeTag if a tag component emits on its #closeTag-Emitter`, () => {
+            let tagToClose: number = 0;
+            component.closeTag.subscribe((tagId: number) => (tagToClose = tagId));
 
-            let tags:Array<TerraTagComponent> = tagDebugElements.map((debugElement:DebugElement) => debugElement.componentInstance);
-            let tagDeprecated:TerraTagComponent = tags[0];
-            let tag:TerraTagComponent = tags[0];
-            tagDeprecated.onCloseTag.emit(tagDeprecated.tagId);
+            let tags: Array<TerraTagComponent> = tagDebugElements.map(
+                (debugElement: DebugElement) => debugElement.componentInstance
+            );
+            let tagDeprecated: TerraTagComponent = tags[0];
+            let tag: TerraTagComponent = tags[0];
             tag.closeTag.emit(tag.tagId);
 
-            expect(tagToCloseDeprecated).not.toBe(0);
-            expect(tagToCloseDeprecated).toBe(tagDeprecated.tagId);
             expect(tagToClose).not.toBe(0);
             expect(tagToClose).toBe(tag.tagId);
         });

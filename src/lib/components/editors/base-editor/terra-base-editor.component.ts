@@ -1,105 +1,87 @@
 import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum';
-import {
-    Component,
-    ElementRef,
-    Input,
-    OnInit
-} from '@angular/core';
-import { TranslationService } from 'angular-l10n';
-import {
-    ControlValueAccessor,
-    NG_VALUE_ACCESSOR
-} from '@angular/forms';
+import { Component, ElementRef, Input, OnInit } from '@angular/core';
+import { L10nTranslationService } from 'angular-l10n';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { isNullOrUndefined } from 'util';
 import { noop } from 'rxjs';
 
 @Component({
-    selector:    'terra-base-editor',
+    selector: 'terra-base-editor',
     templateUrl: './terra-base-editor.component.html',
-    providers:   [{
-        provide:     NG_VALUE_ACCESSOR,
-        useExisting: TerraBaseEditorComponent,
-        multi:       true
-    }]
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: TerraBaseEditorComponent,
+            multi: true
+        }
+    ]
 })
-export class TerraBaseEditorComponent implements OnInit, ControlValueAccessor
-{
+/** @deprecated since v5. Please use ck-editor instead */
+export class TerraBaseEditorComponent implements OnInit, ControlValueAccessor {
     @Input()
-    public inputHeaderLabel:string;
+    public inputHeaderLabel: string;
 
     @Input()
-    public inputPlaceholder:string;
+    public inputPlaceholder: string;
 
     @Input()
-    public inputFixedHeight:string;
+    public inputFixedHeight: string;
 
     @Input()
-    public inputMinHeight:string;
+    public inputMinHeight: string;
 
     /** @description add validation as a required field.*/
     @Input()
-    public required:boolean;
+    public required: boolean;
 
     /** @description Set the tooltip.*/
     @Input()
-    public tooltipText:string;
+    public tooltipText: string;
 
     /**
-     * @deprecated since v4. Is replaced by the TooltipDirective and will be removed with the next major version.
      * @description Set the tooltip placement (bottom, top, left, right). Default top.
      * */
     @Input()
-    public tooltipPlacement:TerraPlacementEnum;
+    public tooltipPlacement: TerraPlacementEnum;
 
-    public _placeholder:string;
-    public _value:string;
-    public _modules:{ [index:string]:Object };
+    public _placeholder: string;
+    public _value: string;
+    public _modules: { [index: string]: Object };
 
-    public _onChangeCallback:(_:any) => void = noop;
-    public _onTouchedCallback:(_:any) => void = noop;
+    public _onChangeCallback: (_: any) => void = noop;
+    public _onTouchedCallback: (_: any) => void = noop;
 
-    constructor(protected _translation:TranslationService,
-                protected _myElement:ElementRef)
-    {
+    constructor(protected _translation: L10nTranslationService, protected _myElement: ElementRef) {
         // initialize placeholder
         this._placeholder = this._translation.translate('terraNoteEditor.insertText');
         this._modules = {
             toolbar: [
-                ['bold',
-                 'italic',
-                 'underline',
-                 'strike']        // toggled buttons
+                ['bold', 'italic', 'underline', 'strike'] // toggled buttons
             ]
         };
     }
 
-    public ngOnInit():void
-    {
+    public ngOnInit(): void {
         this.inputMinHeight = isNullOrUndefined(this.inputMinHeight) ? '100px' : this.inputMinHeight;
         // overwrite default placeholder if input is defined
-        if(this.inputPlaceholder)
-        {
+        if (this.inputPlaceholder) {
             this._placeholder = this.inputPlaceholder;
         }
     }
 
-    public writeValue(value:string):void
-    {
+    public writeValue(value: string): void {
         this._value = value;
     }
 
-    public registerOnChange(fn:(_:any) => void):void
-    {
+    public registerOnChange(fn: (_: any) => void): void {
         this._onChangeCallback = fn;
     }
 
-    public registerOnTouched(fn:() => void):void
-    {
+    public registerOnTouched(fn: () => void): void {
         this._onTouchedCallback = fn;
     }
 
-    public focus():void
-    {
+    public focus(): void {
         this._myElement.nativeElement.querySelector('.ql-editor').focus();
     }
 }

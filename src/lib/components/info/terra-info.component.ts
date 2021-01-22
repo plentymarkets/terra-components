@@ -1,30 +1,23 @@
-import {
-    Component,
-    Input
-} from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { TerraPlacementEnum } from '../../helpers/enums/terra-placement.enum';
 
 @Component({
-    selector:    'terra-info',
-    styleUrls:   ['./terra-info.component.scss'],
+    selector: 'terra-info',
+    styleUrls: ['./terra-info.component.scss'],
     templateUrl: './terra-info.component.html'
 })
-export class TerraInfoComponent
-{
-    /**
-     * @deprecated since v4. Is replaced by the TooltipDirective and will be removed with the next major version.
-     */
+/** @deprecated v5.0. Please use mat-icon or mat-button with a tooltip instead */
+export class TerraInfoComponent {
     @Input()
-    public textPlacement:TerraPlacementEnum;
+    public textPlacement: TerraPlacementEnum;
 
     @Input()
-    public isDisabled:boolean;
+    public isDisabled: boolean;
 
     @Input()
-    public text:string;
+    public text: string;
 
-    constructor()
-    {
+    constructor() {
         this.textPlacement = TerraPlacementEnum.TOP;
     }
 }

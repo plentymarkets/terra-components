@@ -4,97 +4,123 @@ const fs = require('fs');
 const semver = require('semver');
 const argv = require('yargs').argv;
 const sass = require('gulp-sass');
+const del = require('del');
 const tildeImporter = require('node-sass-tilde-importer');
 
+const badgeUrlPrefix = 'https://img.shields.io/badge/';
+const badgeUrlTemplate = new RegExp(badgeUrlPrefix + '\\w+-[0-9.%]+-\\w+');
+
+function getCoverage() {
+    const coverageSummary = fs.readFileSync('./coverage/coverage-summary.json', { encoding: 'utf8' });
+    const coverageJSON = JSON.parse(coverageSummary);
+    return coverageJSON.total.statements.pct;
+}
+
+function generateBadgeUrl(coverage) {
+    const color = coverage > 80 ? 'brightgreen' : coverage > 50 ? 'yellow' : 'red';
+    return badgeUrlPrefix + encodeURIComponent(`${'coverage'}-${coverage}%-${color}`);
+}
+
+function updateCoverageBadge(done) {
+    const coverage = getCoverage();
+    const badgeUrl = generateBadgeUrl(coverage);
+    const badge = `![code coverage](${badgeUrl})`;
+    const readme = fs.readFileSync('README.md', { encoding: 'utf8' });
+    const eol = readme.indexOf('\n');
+    const currentBadge = readme.slice(0, eol);
+    if (!badgeUrlTemplate.test(currentBadge)) {
+        throw 'Failed to update badge. No coverage badge available in line 1 of the README.md';
+    }
+    if (!badgeUrlTemplate.test(badge)) {
+        throw `Failed to update badge. New badge doesn't comply to the badge template`;
+    }
+    const newReadmeString = badge + readme.slice(eol);
+    fs.writeFileSync('README.md', newReadmeString);
+    done();
+}
+exports.updateCoverageBadge = updateCoverageBadge;
 
 // convert global scss styles to css files
 function compileGlobalStyles() {
     return src(config.sources.scss)
-        .pipe(sass({
-            importer: tildeImporter,
-            outputStyle: 'compressed'
-        }).on('error', sass.logError))
-        .pipe(dest('dist/styles'))
+        .pipe(
+            sass({
+                importer: tildeImporter,
+                outputStyle: 'compressed'
+            }).on('error', sass.logError)
+        )
+        .pipe(dest(config.destinations.styles));
 }
 const compileStyles = compileGlobalStyles;
 exports.compileStyles = compileStyles;
 
-
-//copy fonts to dist
-function copyFonts() {
-    return src(config.fileSelectors.allFonts)
-        .pipe(dest(config.destinations.fontsOutputPath));
-}
-
-//copy lang to dist
-function copyLang() {
-    return src(config.fileSelectors.allLang)
-        .pipe(dest(config.destinations.langOutputPath));
-}
-
 //copy README to dist
 function copyReadme() {
-    return src(config.sources.readme)
-        .pipe(dest(config.destinations.tsOutputPath));
+    return src(config.sources.readme).pipe(dest(config.destinations.tsOutputPath));
 }
 
-function copyIconsScss() {
-    return src('src/lib/styles/icons.scss')
-        .pipe(dest(config.destinations.styles));
+function copyFunctionGroupsScss() {
+    return src('src/lib/styles/function-groups.scss').pipe(dest(config.destinations.styles));
 }
 
 function copyVariablesScss() {
-    return src('src/lib/styles/_variables.scss')
-        .pipe(dest(config.destinations.styles))
-}
-
-function copyPlentyIconsScss() {
-    return src('src/lib/styles/fonts/plentyicons.scss')
-        .pipe(dest(config.destinations.styles + 'fonts'));
+    return src('src/lib/styles/_variables.scss').pipe(dest(config.destinations.styles));
 }
 
 function copyCustomDataTableScss() {
-    return src('src/lib/components/tables/data-table/custom-data-table.scss')
-        .pipe(dest('dist/components/tables/data-table'));
+    return src('src/lib/components/tables/data-table/custom-data-table.scss').pipe(
+        dest('dist/components/tables/data-table')
+    );
 }
 
 function copyNodeTreeScss() {
-    return src('src/lib/components/tree/node-tree/terra-node-tree.component.scss')
-        .pipe(dest('dist/components/tree/node-tree'));
+    return src('src/lib/components/tree/node-tree/terra-node-tree.component.scss').pipe(
+        dest('dist/components/tree/node-tree')
+    );
 }
 
 function copyTagScss() {
-    return src('src/lib/components/layouts/tag/terra-tag.component.scss')
-        .pipe(dest('dist/components/layouts/tag'))
+    return src('src/lib/components/layouts/tag/terra-tag.component.scss').pipe(dest('dist/components/layouts/tag'));
 }
 
 function copyTagListScss() {
-    return src('src/lib/components/layouts/taglist/terra-taglist.component.scss')
-        .pipe(dest('dist/components/layouts/taglist'))
+    return src('src/lib/components/layouts/taglist/terra-taglist.component.scss').pipe(
+        dest('dist/components/layouts/taglist')
+    );
 }
 
 function copyButtonScss() {
-    return src('src/lib/components/buttons/button/terra-button.component.scss')
-        .pipe(dest('dist/components/buttons/button'))
+    return src('src/lib/components/buttons/button/terra-button.component.scss').pipe(
+        dest('dist/components/buttons/button')
+    );
 }
 
-const copySassFiles = parallel(copyIconsScss, copyVariablesScss, copyPlentyIconsScss, copyCustomDataTableScss, copyNodeTreeScss, copyTagScss, copyTagListScss, copyButtonScss);
-const copyFilesToDist = parallel(copyFonts, copyLang, copyReadme, copySassFiles);
+const copySassFiles = parallel(
+    copyFunctionGroupsScss,
+    copyVariablesScss,
+    copyCustomDataTableScss,
+    copyNodeTreeScss,
+    copyTagScss,
+    copyTagListScss,
+    copyButtonScss
+);
+const copyFilesToDist = parallel(copyReadme, copySassFiles);
 
+//delete terra-components folder in terra
+function cleanUpTerra() {
+    return del(config.destinations.terra + '/**', { force: true });
+}
 
 //copy files from dist to terra
 function copyToTerra() {
-    return src(config.sources.dist)
-        .pipe(dest(config.destinations.terra));
+    return src(config.sources.dist).pipe(dest(config.destinations.terra));
 }
 
 /**
  * Copies all the files to the dist folder and then to the terra workspace
  **/
-const copy = series(copyFilesToDist, copyToTerra);
+const copy = series(copyFilesToDist, cleanUpTerra, copyToTerra);
 exports.copy = copy;
-
-
 
 /**
  *
@@ -127,15 +153,16 @@ function changeVersion(done) {
     console.log('--- OLD PACKAGE VERSION: ' + jsonDist.version + ' ---');
 
     const version = semver.inc(jsonDist.version, increment, preid);
-
-    console.log('--- NEW PACKAGE VERSION: ' + version + ' ---');
-    console.log('-------------------------------------------------');
-
-    jsonDist.version = version;
-    jsonLib.version = version;
-    fs.writeFileSync(libPath, JSON.stringify(jsonLib, null, '\t'));
-    fs.writeFileSync(distPath, JSON.stringify(jsonDist, null, '\t'));
+    if (version == null) {
+        console.error('! - Invalid parameter used. Changing of version aborted. Please check command - !');
+    } else {
+        console.log('--- NEW PACKAGE VERSION: ' + version + ' ---');
+        console.log('-------------------------------------------------');
+        jsonDist.version = version;
+        jsonLib.version = version;
+        fs.writeFileSync(libPath, JSON.stringify(jsonLib, null, '\t'));
+        fs.writeFileSync(distPath, JSON.stringify(jsonDist, null, '\t'));
+    }
     done();
 }
 exports.changeVersion = changeVersion;
-

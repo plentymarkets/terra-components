@@ -1,112 +1,125 @@
-import {
-    Component,
-    OnInit
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TerraSelectBoxValueInterface } from '../../select-box/data/terra-select-box.interface';
 
 @Component({
-    selector:    'terra-input-example',
-    styleUrls:   ['./terra-input.component.example.scss'],
-    templateUrl: './terra-input.component.example.html',
+    selector: 'terra-input-example',
+    styleUrls: ['./terra-input.component.example.scss'],
+    templateUrl: './terra-input.component.example.html'
 })
-export class TerraInputComponentExample implements OnInit
-{
-    public _name:string;
-    public _lastName:string;
-    public _email:string;
-    public _password:string;
-    public _passwordRepeat:string;
-    public _birthday:any;
-    public _state:Array<TerraSelectBoxValueInterface>;
-    public _address:string;
-    public _zip:number;
-    public _city:string;
-    public _newsletter:boolean;
-    public _agbs:boolean;
-    public stateSelection:Array<TerraSelectBoxValueInterface>;
+export class TerraInputComponentExample implements OnInit {
+    public _name: string;
+    public _lastName: string;
+    public _email: string;
+    public _password: string;
+    public _passwordRepeat: string;
+    public _birthday: any;
+    public _state: Array<TerraSelectBoxValueInterface>;
+    public _address: string;
+    public _zip: number;
+    public _city: string;
+    public _newsletter: boolean;
+    public _agbs: boolean;
+    public stateSelection: Array<TerraSelectBoxValueInterface>;
 
-    public ngOnInit():void
-    {
+    public ngOnInit(): void {
         this.stateSelection = [];
         this.stateSelection.push(
             {
-                value:   'hessen',
+                value: 'hessen',
                 caption: 'Hessen'
             },
             {
-                value:   'bayern',
+                value: 'bayern',
                 caption: 'Bayern'
             },
             {
-                value:   'sachsen',
+                value: 'sachsen',
                 caption: 'Sachsen'
             },
             {
-                value:   'sachsen-anhalt',
+                value: 'sachsen-anhalt',
                 caption: 'Sachsen Anhalt'
             },
             {
-                value:   'saarland',
+                value: 'saarland',
                 caption: 'Saarland'
             },
             {
-                value:   'nordrhein westfalen',
+                value: 'nordrhein westfalen',
                 caption: 'Nordrhein Westfalen'
             },
             {
-                value:   'rheinland pfalz',
+                value: 'rheinland pfalz',
                 caption: 'Rheinland Pfalz'
             },
             {
-                value:   'nordrhein westfalen',
+                value: 'nordrhein westfalen',
                 caption: 'Nordrhein Westfalen'
             },
             {
-                value:   'niedersachsen',
+                value: 'niedersachsen',
                 caption: 'Niedersachsen'
             },
             {
-                value:   'baden-württemberg',
+                value: 'baden-württemberg',
                 caption: 'Baden-Württemberg'
             },
             {
-                value:   'thüringen',
+                value: 'thüringen',
                 caption: 'Thüringen'
             },
             {
-                value:   'berlin',
+                value: 'berlin',
                 caption: 'Berlin'
             },
             {
-                value:   'brandenburg',
+                value: 'brandenburg',
                 caption: 'Brandenburg'
             },
             {
-                value:   'hamburg',
+                value: 'hamburg',
                 caption: 'Hamburg'
             },
             {
-                value:   'bremen',
+                value: 'bremen',
                 caption: 'Bremen'
             },
             {
-                value:   'schleswig-holstein',
+                value: 'schleswig-holstein',
                 caption: 'Schleswig-Holstein'
             },
             {
-                value:   'mecklenburg-vorpommern',
+                value: 'mecklenburg-vorpommern',
                 caption: 'Mecklenburg-Vorpommern'
             }
         );
     }
 
-    public _showValues():void
-    {
-        alert(this._name + ' ' + this._lastName + ' ' +
-              this._email + ' ' + this._password + ' ' +
-              this._passwordRepeat + ' ' + this._birthday + ' ' +
-              this._state + ' ' + this._address + ' ' +
-              this._zip + ' ' + this._city + ' ' +
-              this._newsletter + ' ' + this._agbs);
+    public _showValues(): void {
+        alert(
+            this._name +
+                ' ' +
+                this._lastName +
+                ' ' +
+                this._email +
+                ' ' +
+                this._password +
+                ' ' +
+                this._passwordRepeat +
+                ' ' +
+                this._birthday +
+                ' ' +
+                this._state +
+                ' ' +
+                this._address +
+                ' ' +
+                this._zip +
+                ' ' +
+                this._city +
+                ' ' +
+                this._newsletter +
+                ' ' +
+                this._agbs
+        );
     }
 }

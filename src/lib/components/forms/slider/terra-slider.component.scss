@@ -1,50 +1,42 @@
-@import "../input/terra-input.component";
+@import '../input/terra-input.component';
 
-.slider
-{
+.slider {
     width: 100%;
     position: relative;
     padding-top: 16px;
     margin-bottom: 3px;
-    
-    &.has-ticks
-    {
+
+    &.has-ticks {
         margin-bottom: 24px;
     }
-    
-    .slider-label
-    {
+
+    .slider-label {
         @extend label;
         color: var(--color-structure-8);
     }
-    
-    .slider-container
-    {
+
+    .slider-container {
         display: flex;
         flex-direction: row;
-        
-        & > span
-        {
-            font-size: .9em;
+
+        & > span {
+            font-size: 0.9em;
             line-height: 22px;
             color: var(--color-structure-8);
             padding: 0 var(--space-md);
         }
     }
-    
-    .slider-inner
-    {
+
+    .slider-inner {
         position: relative;
         width: 100%;
         padding: 0 20px;
-        
-        & > div
-        {
+
+        & > div {
             position: relative;
         }
-        
-        .slider-bar
-        {
+
+        .slider-bar {
             width: 100%;
             height: 10px;
             margin: 5px 0;
@@ -53,9 +45,8 @@
             cursor: pointer;
             background-color: var(--color-structure-0);
         }
-        
-        .slider-handle
-        {
+
+        .slider-handle {
             position: absolute;
             width: 40px;
             height: 20px;
@@ -72,29 +63,25 @@
             text-align: center;
             font-size: 0.9em;
             z-index: 1;
-            
+
             &:hover,
-            &:focus
-            {
+            &:focus {
                 background-color: var(--color-active);
             }
         }
-        
-        .slider-ticks
-        {
-            span
-            {
+
+        .slider-ticks {
+            span {
                 position: absolute;
                 bottom: -16px;
-                font-size: .8em;
+                font-size: 0.8em;
                 width: 50px;
                 margin-left: -25px;
                 text-align: center;
                 color: var(--color-structure-8);
-                
-                &:before
-                {
-                    content: "";
+
+                &:before {
+                    content: '';
                     width: 1px;
                     height: 10px;
                     background: var(--color-structure-4);
@@ -103,28 +90,25 @@
                     left: 50%;
                     top: -10px;
                 }
-                
             }
         }
     }
-    
-    &.disabled
-    {
+
+    &.disabled {
         background-color: var(--color-structure-2);
         border: 1px solid var(--color-structure-3);
-        
-        label, .slider-bar, .slider-handle
-        {
+
+        label,
+        .slider-bar,
+        .slider-handle {
             cursor: not-allowed !important;
         }
-        
-        .slider-inner
-        {
+
+        .slider-inner {
             filter: opacity(30%) !important;
         }
-        
-        .slider-handle:hover
-        {
+
+        .slider-handle:hover {
             background-color: var(--color-structure-9) !important;
         }
     }
