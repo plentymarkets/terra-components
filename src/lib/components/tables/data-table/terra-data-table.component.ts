@@ -75,8 +75,8 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
     public readonly _refType: any = TerraHrefTypeEnum;
     public readonly _checkboxColumnWidth: number = 25;
 
-    constructor(_cdr: ChangeDetectorRef) {
-        super(_cdr);
+    constructor(private _cdr: ChangeDetectorRef) {
+        super();
     }
 
     public get _rowList(): Array<TerraDataTableRowInterface<T>> {

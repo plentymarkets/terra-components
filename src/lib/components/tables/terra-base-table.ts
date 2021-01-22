@@ -1,5 +1,5 @@
 import { TerraDataTableRowInterface } from './data-table/interfaces/terra-data-table-row.interface';
-import { EventEmitter, Output, Directive, ChangeDetectorRef } from '@angular/core';
+import { Directive, EventEmitter, Output } from '@angular/core';
 import { isNullOrUndefined } from 'util';
 
 /** @deprecated since v5.0. Please use mat-table instead. */
@@ -19,7 +19,7 @@ export class TerraBaseTable<T> {
     /**
      * @description Constructor initializing the table component
      */
-    constructor(protected _cdr: ChangeDetectorRef) {
+    constructor() {
         this._headerCheckbox = {
             checked: false,
             isIndeterminate: false
@@ -108,7 +108,6 @@ export class TerraBaseTable<T> {
         else {
             this._setHeaderCheckboxIndeterminate();
         }
-        this._cdr.markForCheck();
     }
 
     private _selectAllRows(): void {
