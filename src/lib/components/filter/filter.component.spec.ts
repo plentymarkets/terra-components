@@ -1,7 +1,7 @@
 import { DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
 import { L10nTranslationModule } from 'angular-l10n';
+import { By } from '@angular/platform-browser';
 import { FilterComponent } from './filter.component';
 import { TerraButtonComponent } from '../buttons/button/terra-button.component';
 import { mockL10nConfig } from '../../testing/mock-l10n-config';
