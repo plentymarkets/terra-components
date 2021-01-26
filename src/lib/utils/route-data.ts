@@ -35,8 +35,7 @@ export function extractRouteDataFromRouterConfig(routerConfig: Routes): RouteDat
 
 export function normalizeRoutePath(routePath: string): string {
     const withoutLeadingSlash: string = routePath.startsWith('/') ? routePath.substring(1) : routePath;
-    const withoutTrailingSlash: string = withoutLeadingSlash.endsWith('/')
+    return withoutLeadingSlash.endsWith('/')
         ? withoutLeadingSlash.substring(0, withoutLeadingSlash.length - 1)
         : withoutLeadingSlash;
-    return withoutTrailingSlash;
 }
