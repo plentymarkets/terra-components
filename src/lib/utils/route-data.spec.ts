@@ -8,6 +8,10 @@ describe('extractRouteDataFromRouteConfig', () => {
         expect(extractRouteDataFromRouterConfig([])).toEqual({});
     });
 
+    it('should not throw an error if a route is accidentally null or undefined', () => {
+        expect(extractRouteDataFromRouterConfig([null, undefined])).toEqual({});
+    });
+
     it(`should NOT include a route's path and data if it has no data attached`, () => {
         expect(extractRouteDataFromRouterConfig([{ path: 'test' }])).toEqual({});
     });
