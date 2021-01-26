@@ -16,9 +16,13 @@ export interface RouteDataInterface {
 
 export type RouteData = { [path: string]: RouteDataInterface };
 
-export function extractRouteDataFromRouterConfig(routerConfig: Routes): RouteData {
+/**
+ * Extracts the data of all given #routes (including children) into a flat key-value object.
+ * @param routes
+ */
+export function extractRouteDataFromRouterConfig(routes: Routes): RouteData {
     const routeData: RouteData = {};
-    routerConfig?.forEach((route: Route) => {
+    routes?.forEach((route: Route) => {
         if (!route?.data) {
             return; // skip routes without data
         }
@@ -33,6 +37,11 @@ export function extractRouteDataFromRouterConfig(routerConfig: Routes): RouteDat
     return routeData;
 }
 
+// TODO: should it also be able to remove multiple leading/trailing slashes??
+/**
+ * Normalizes a route's path. Specifically removes a leading and/or trailing slash.
+ * @param routePath
+ */
 export function normalizeRoutePath(routePath: string): string {
     const withoutLeadingSlash: string = routePath.startsWith('/') ? routePath.substring(1) : routePath;
     return withoutLeadingSlash.endsWith('/')
