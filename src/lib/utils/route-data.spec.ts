@@ -45,4 +45,28 @@ describe('extractRouteDataFromRouteConfig', () => {
             'flat/child': flatChildData
         });
     });
+
+    it(`should be able to handle route paths with a leading or a trailing slash`, () => {
+        const routerConfig: Routes = [
+            { path: '/test', data: {} },
+            { path: '/foo/bar/', data: {} },
+            {
+                path: 'nested/',
+                data: {},
+                children: [
+                    { path: 'child1', data: {} },
+                    { path: '/child2', data: {} },
+                    { path: '/child3/', data: {} }
+                ]
+            }
+        ];
+        expect(extractRouteDataFromRouterConfig(routerConfig)).toEqual({
+            test: {},
+            'foo/bar': {},
+            nested: {},
+            'nested/child1': {},
+            'nested/child2': {},
+            'nested/child3': {}
+        });
+    });
 });
