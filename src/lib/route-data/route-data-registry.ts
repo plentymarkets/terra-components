@@ -22,7 +22,7 @@ export class RouteDataRegistry {
         // TODO
     }
 
-    public static getAll(): Readonly<RouteDataInterface> {
+    public static getAll(): Readonly<RouteData> {
         // TODO
         return null;
     }
