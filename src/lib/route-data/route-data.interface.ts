@@ -1,3 +1,3 @@
-export interface TCRouteDataInterface {
+export interface RouteDataInterface {
     label: string;
 }
