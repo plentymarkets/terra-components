@@ -34,7 +34,7 @@ export class RouteDataRegistry {
     }
 
     /**
-     * Returns the data to a certain route
+     * Returns the stored data for a given #url.
      * @param url The url that the data needs to be found to
      */
     public static get(url: string): RouteDataInterface | undefined {
