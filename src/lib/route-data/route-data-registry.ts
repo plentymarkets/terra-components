@@ -1,7 +1,7 @@
 import { RouteDataInterface } from './route-data.interface';
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
-import { compareSegments, extractRouteDataFromRouterConfig, normalizeRoutePath, RouteData } from '../utils/route-data';
+import { compareSegments, extractRouteDataFromRouterConfig, normalizeRoutePath, RouteData } from './utils';
 import { UrlHelper } from '../helpers';
 
 @Injectable({

@@ -1,4 +1,4 @@
-import { extractRouteDataFromRouterConfig, normalizeRoutePath, RouteDataInterface } from './route-data';
+import { extractRouteDataFromRouterConfig, RouteDataInterface } from './routes';
 import { Routes } from '@angular/router';
 
 describe('extractRouteDataFromRouteConfig', () => {
@@ -72,27 +72,5 @@ describe('extractRouteDataFromRouteConfig', () => {
             'nested/child2': {},
             'nested/child3': {}
         });
-    });
-});
-
-describe('normalizeRoutePath', () => {
-    it('should remove a leading slash', () => {
-        expect(normalizeRoutePath('/test')).toBe('test');
-        expect(normalizeRoutePath('/foo/bar')).toBe('foo/bar');
-    });
-
-    it('should remove a trailing slash', () => {
-        expect(normalizeRoutePath('test/')).toBe('test');
-        expect(normalizeRoutePath('foo/bar/')).toBe('foo/bar');
-    });
-
-    it('should remove both, a leading and a trailing slash', () => {
-        expect(normalizeRoutePath('/test/')).toBe('test');
-        expect(normalizeRoutePath('/foo/bar/')).toBe('foo/bar');
-    });
-
-    it('should NOT remove any character if there is no leading or trailing slash', () => {
-        expect(normalizeRoutePath('test')).toBe('test');
-        expect(normalizeRoutePath('foo/bar')).toBe('foo/bar');
     });
 });

@@ -1,33 +1,3 @@
-import { LabelFunction } from '../route-data/route-data-function-types';
-import { Route, Routes } from '@angular/router';
-
-export interface RouteDataInterface {
-    label?: string | LabelFunction; // TODO(pweyrich): shouldn't this be mandatory?
-}
-
-export type RouteData = { [path: string]: RouteDataInterface };
-
-/**
- * Extracts the data of all given #routes (including children) into a flat key-value object.
- * @param routes
- */
-export function extractRouteDataFromRouterConfig(routes: Routes): RouteData {
-    const routeData: RouteData = {};
-    routes?.forEach((route: Route) => {
-        if (!route?.data) {
-            return; // skip routes without data
-        }
-        const normalizedRoutePath: string = normalizeRoutePath(route.path);
-        routeData[normalizedRoutePath] = route.data as RouteDataInterface;
-        const nestedRouteData: RouteData = route.children ? extractRouteDataFromRouterConfig(route.children) : {};
-        Object.entries(nestedRouteData).forEach(([key, value]: [string, RouteDataInterface]) => {
-            routeData[normalizedRoutePath + '/' + key] = value;
-        });
-    });
-
-    return routeData;
-}
-
 // TODO: should it also be able to remove multiple leading/trailing slashes??
 /**
  * Normalizes a route's path. Specifically removes a leading and/or trailing slash.
@@ -47,7 +17,7 @@ export function normalizeRoutePath(routePath: string): string {
  * @param urlSegments
  */
 export function compareSegments(routePathSegments: Array<string>, urlSegments: Array<string>): boolean {
-    if (routePathSegments.length !== urlSegments.length) {
+    if (!routePathSegments || !urlSegments || routePathSegments.length !== urlSegments.length) {
         return false;
     }
 
