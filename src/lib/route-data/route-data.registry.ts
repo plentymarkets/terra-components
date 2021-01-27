@@ -22,7 +22,7 @@ export class RouteDataRegistry {
         // TODO
     }
 
-    public static getAll(): Readonly<Map<string, RouteDataInterface>> {
+    public static getAll(): ReadonlyMap<string, RouteDataInterface> {
         return this.registry;
     }
 
