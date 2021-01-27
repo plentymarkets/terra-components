@@ -19,7 +19,8 @@ export class RouteDataRegistry {
     }
 
     public static registerOne(path: string, data: RouteDataInterface): void {
-        // TODO
+        // TODO(pweyrich): we may run any tests against the path.. it may not include spaces or any other special characters
+        this.registry.set(path, data);
     }
 
     public static register(path: string, data: RouteDataInterface): void {
@@ -32,11 +33,12 @@ export class RouteDataRegistry {
     }
 
     public get(path: string): RouteDataInterface {
-        // TODO
+        // TODO: handle leading/trailing slashes
+        // TODO: handle parameterised routes (really? or should the consumer need to pass a real route path?)
         return null;
     }
 
-    public static get(path: string): RouteDataInterface {
+    public static get(path: string): RouteDataInterface | undefined {
         // TODO
         return null;
     }
