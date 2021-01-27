@@ -1,5 +1,5 @@
 import { Route, Routes } from '@angular/router';
-import { RouteDataInterface } from '../route-data/route-data.interface';
+import { RouteDataInterface } from '../route-data';
 import { RouteData } from '../route-data/route-data-types';
 
 /**
