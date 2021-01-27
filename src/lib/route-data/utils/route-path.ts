@@ -1,4 +1,3 @@
-// TODO: should it also be able to remove multiple leading/trailing slashes??
 /**
  * Normalizes a route's path. Specifically removes a leading and/or trailing slash.
  * @param routePath

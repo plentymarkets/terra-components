@@ -33,13 +33,12 @@ export class RouteDataRegistry {
         return RouteDataRegistry.get(path);
     }
 
-    // TODO: handle leading/trailing slashes
-    // TODO: handle parameterised routes (really? or should the consumer need to pass a real route path?)
     /**
      * Returns the data to a certain route
      * @param url The url that the data needs to be found to
      */
     public static get(url: string): RouteDataInterface | undefined {
+        // TODO: handle trailing slashes in another way
         const cleanUrl: string = normalizeRoutePath(UrlHelper.getCleanUrl(url));
 
         // check if the data can be found by simply looking for the route in the registry.
