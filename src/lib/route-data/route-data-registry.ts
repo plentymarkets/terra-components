@@ -1,7 +1,8 @@
 import { RouteDataInterface } from './route-data.interface';
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
-import { extractRouteDataFromRouterConfig, RouteData } from '../utils/route-data';
+import { compareSegments, extractRouteDataFromRouterConfig, normalizeRoutePath, RouteData } from '../utils/route-data';
+import { UrlHelper } from '../helpers';
 
 @Injectable({
     providedIn: 'root'
@@ -28,14 +29,45 @@ export class RouteDataRegistry {
         return null;
     }
 
-    public get(path: string): RouteDataInterface {
-        // TODO: handle leading/trailing slashes
-        // TODO: handle parameterised routes (really? or should the consumer need to pass a real route path?)
-        return null;
+    public get(path: string): RouteDataInterface | undefined {
+        return RouteDataRegistry.get(path);
     }
 
-    public static get(path: string): RouteDataInterface | undefined {
-        // TODO
-        return null;
+    // TODO: handle leading/trailing slashes
+    // TODO: handle parameterised routes (really? or should the consumer need to pass a real route path?)
+    /**
+     * Returns the data to a certain route
+     * @param url The url that the data needs to be found to
+     */
+    public static get(url: string): RouteDataInterface | undefined {
+        const cleanUrl: string = normalizeRoutePath(UrlHelper.getCleanUrl(url));
+
+        // check if the data can be found by simply looking for the route in the registry.
+        // if not the url may match any route path with parameters
+        if (this.registry.has(cleanUrl)) {
+            return this.registry.get(cleanUrl);
+        }
+
+        // split the url into its segments
+        const urlSegments: Array<string> = cleanUrl.split('/');
+
+        // get all potentially matching route paths - those must include parameters AND have the same amount of segments as the given url
+        const potentiallyMatchingRoutePaths: Array<string> = Array.from(this.registry.keys()).filter(
+            (routePath: string) => {
+                return routePath.includes(':') && routePath.split('/').length === urlSegments.length;
+            }
+        );
+
+        // scan through all potential matches to check if one of it really matches the given url
+        const matchingRoutePath: string = potentiallyMatchingRoutePaths.find((routePath: string) => {
+            // split the current route path into its segments
+            const routePathSegments: Array<string> = routePath.split('/');
+
+            // compare the segments of the route path with those of the url. do they match?
+            return compareSegments(routePathSegments, urlSegments);
+        });
+
+        // down here we've either found a matching route path or we were unable to find any match
+        return matchingRoutePath ? this.registry.get(matchingRoutePath) : undefined;
     }
 }
