@@ -1,11 +1,7 @@
 import { RouteDataInterface } from './route-data.interface';
-import { Router, Routes } from '@angular/router';
+import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
-
-function extractRouteDataFromRouterConfig(routerConfig: Routes): RouteDataInterface {
-    // TODO
-    return null;
-}
+import { extractRouteDataFromRouterConfig, RouteData } from '../utils/route-data';
 
 @Injectable({
     providedIn: 'root'
@@ -15,14 +11,14 @@ export class RouteDataRegistry {
 
     constructor(router: Router) {
         // TODO
-        RouteDataRegistry.register('', extractRouteDataFromRouterConfig([]));
+        RouteDataRegistry.register('', extractRouteDataFromRouterConfig(router.config));
     }
 
     public static registerOne(path: string, data: RouteDataInterface): void {
         // TODO
     }
 
-    public static register(path: string, data: RouteDataInterface): void {
+    public static register(path: string, data: RouteData): void {
         // TODO
     }
 
