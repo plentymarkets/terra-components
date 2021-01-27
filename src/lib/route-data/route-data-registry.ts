@@ -16,7 +16,7 @@ export class RouteDataRegistry {
     }
 
     public static registerOne(path: string, data: RouteDataInterface): void {
-        // TODO(pweyrich): we may run any tests against the path.. it may not include spaces or any other special characters
+        // TODO(pweyrich): we may run tests against the path.. it may not include spaces or any other special characters
         this.registry.set(path, data);
     }
 
