@@ -1,6 +1,6 @@
 import { Route, Routes } from '@angular/router';
 import { RouteDataInterface } from '../route-data/route-data.interface';
-import { RouteData } from '../route-data/route-data-function-types';
+import { RouteData } from '../route-data/route-data-types';
 
 /**
  * Extracts the data of all given #routes (including children) into a flat key-value object.

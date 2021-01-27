@@ -2,7 +2,7 @@ import { RouteDataInterface } from './route-data.interface';
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { extractRouteDataFromRouterConfig } from '../utils/route-data';
-import { RouteData } from './route-data-function-types';
+import { RouteData } from './route-data-types';
 
 @Injectable({
     providedIn: 'root'
