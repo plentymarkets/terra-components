@@ -22,9 +22,8 @@ export class RouteDataRegistry {
         // TODO
     }
 
-    public static getAll(): Readonly<RouteDataInterface> {
-        // TODO
-        return null;
+    public static getAll(): Readonly<Map<string, RouteDataInterface>> {
+        return this.registry;
     }
 
     public get(path: string): RouteDataInterface {
