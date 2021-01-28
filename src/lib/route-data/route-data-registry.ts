@@ -16,13 +16,27 @@ export class RouteDataRegistry {
         RouteDataRegistry.register('', extractRouteDataFromRouterConfig(router.config));
     }
 
+    // TODO: What do we do with this method??
     public static registerOne(path: string, data: RouteDataInterface): void {
         // TODO(pweyrich): we may run tests against the path.. it may not include spaces or any other special characters
         this.registry.set(path, data);
     }
 
-    public static register(path: string, data: RouteData): void {
-        // TODO
+    /**
+     * Adds a set of route data to the registry.
+     * @param basePath
+     * @param data
+     */
+    public static register(basePath: string, data: RouteData): void {
+        // TODO(pweyrich): we may run tests against the path.. it may not include spaces or any other special characters
+        Object.entries(data).forEach(([routePath, value]: [string, RouteDataInterface]) => {
+            const normalizedBasePath: string = normalizeRoutePath(basePath);
+            const normalizedRoutePath: string = normalizeRoutePath(routePath);
+            const completePath: string = normalizedBasePath
+                ? normalizedBasePath + '/' + normalizedRoutePath
+                : normalizedRoutePath;
+            this.registry.set(completePath, value);
+        });
     }
 
     public static getAll(): Readonly<RouteData> {
