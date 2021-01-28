@@ -5,24 +5,45 @@ import { RouteDataInterface } from './route-data.interface';
 describe('RouteDataRegistry', () => {
     describe('::register()', () => {
         it(`should add the given route data to the registry`, () => {
-            pending();
+            const routePath: string = 'my-path';
+            const routeData: RouteDataInterface = { label: 'my Label' };
+            const routeDataMap: RouteData = { [routePath]: routeData };
+            RouteDataRegistry.register('', routeDataMap);
+
+            expect(RouteDataRegistry.get(routePath)).toBe(routeData);
         });
 
         it(`should prepend the given path to each key of the given route data object`, () => {
             const basePath: string = 'basePath';
             const routeData: RouteData = { 'child-path': { label: 'child' } };
-            RouteDataRegistry.register('basePath', routeData);
+            RouteDataRegistry.register(basePath, routeData);
 
             const entries: Array<[string, RouteDataInterface]> = Array.from(RouteDataRegistry['registry'].entries());
             expect(entries.every(([path]: [string, RouteDataInterface]) => path.startsWith(basePath))).toBe(true);
         });
 
-        it(`should be able to handle leading/trailing slashes in the given path`, () => {
-            pending();
+        it(`should remove leading/trailing slashes from the given path`, () => {
+            const basePathWithoutSlashes: string = 'slashes';
+            const basePath: string = '/' + basePathWithoutSlashes + '/';
+            const routePath: string = 'any-path';
+            const routeData: RouteDataInterface = { label: 'label' };
+            RouteDataRegistry.register(basePath, { [routePath]: routeData });
+
+            const expectedPath: string = [basePathWithoutSlashes, routePath].join('/');
+            expect(RouteDataRegistry['registry'].has(expectedPath)).toBe(true);
+            expect(RouteDataRegistry['registry'].keys()).toContain(expectedPath);
         });
 
         it('should be able to handle leading/trailing slashes in the keys of the given route data object', () => {
-            pending();
+            const routePathWithoutSlashes: string = 'slashes';
+            const routePath: string = '/' + routePathWithoutSlashes + '/';
+            const basePath: string = 'any-path';
+            const routeData: RouteDataInterface = { label: 'label' };
+            RouteDataRegistry.register(basePath, { [routePath]: routeData });
+
+            const expectedPath: string = [basePath, routePathWithoutSlashes].join('/');
+            expect(RouteDataRegistry['registry'].has(expectedPath)).toBe(true);
+            expect(RouteDataRegistry['registry'].keys()).toContain(expectedPath);
         });
 
         it(`should not register data for an 'invalid' route path`, () => {
