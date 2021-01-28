@@ -4,16 +4,18 @@ import { RouteDataInterface } from './route-data.interface';
 
 describe('RouteDataRegistry', () => {
     describe('::register()', () => {
+        afterEach(() => RouteDataRegistry['registry'].clear());
+
         it('should ignore the basePath if it is `null` or `undefined`', () => {
             const routeDataA: RouteDataInterface = {} as RouteDataInterface;
             const routeDataB: RouteDataInterface = {} as RouteDataInterface;
             RouteDataRegistry.register(null, { a: routeDataA });
             RouteDataRegistry.register(undefined, { b: routeDataB });
 
-            expect(RouteDataRegistry['registry'].keys).toContain('a', 'b');
+            expect(Array.from(RouteDataRegistry['registry'].keys())).toContain('a', 'b');
         });
 
-        it(`should add the given route data to the registry`, () => {
+        it(`should add the given set of route data to the registry`, () => {
             const routePath: string = 'my-path';
             const routeData: RouteDataInterface = { label: 'my Label' };
             const routeDataMap: RouteData = { [routePath]: routeData };
@@ -22,9 +24,12 @@ describe('RouteDataRegistry', () => {
             expect(RouteDataRegistry.get(routePath)).toBe(routeData);
         });
 
-        it(`should prepend the given path to each key of the given route data object`, () => {
+        it(`should prepend the given basePath to each key of the given set of route data`, () => {
             const basePath: string = 'basePath';
-            const routeData: RouteData = { 'child-path': { label: 'child' } };
+            const routeData: RouteData = {
+                child1: {} as RouteDataInterface,
+                child2: {} as RouteDataInterface
+            };
             RouteDataRegistry.register(basePath, routeData);
 
             const entries: Array<[string, RouteDataInterface]> = Array.from(RouteDataRegistry['registry'].entries());
@@ -40,10 +45,9 @@ describe('RouteDataRegistry', () => {
 
             const expectedPath: string = [basePathWithoutSlashes, routePath].join('/');
             expect(RouteDataRegistry['registry'].has(expectedPath)).toBe(true);
-            expect(RouteDataRegistry['registry'].keys()).toContain(expectedPath);
         });
 
-        it('should be able to handle leading/trailing slashes in the keys of the given route data object', () => {
+        it('should be able to handle leading/trailing slashes in the keys of the given set of route data', () => {
             const routePathWithoutSlashes: string = 'slashes';
             const routePath: string = '/' + routePathWithoutSlashes + '/';
             const basePath: string = 'any-path';
@@ -52,7 +56,6 @@ describe('RouteDataRegistry', () => {
 
             const expectedPath: string = [basePath, routePathWithoutSlashes].join('/');
             expect(RouteDataRegistry['registry'].has(expectedPath)).toBe(true);
-            expect(RouteDataRegistry['registry'].keys()).toContain(expectedPath);
         });
 
         it(`should not register data for an 'invalid' route path`, () => {
@@ -61,6 +64,8 @@ describe('RouteDataRegistry', () => {
     });
 
     describe('::get()', () => {
+        afterEach(() => RouteDataRegistry['registry'].clear());
+
         it('should return `undefined` if there is no data for a given route path', () => {
             expect(RouteDataRegistry.get('pathThatDoesNotExists')).toBeUndefined();
         });
