@@ -1,7 +1,8 @@
 import { RouteDataInterface } from './route-data.interface';
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
-import { extractRouteDataFromRouterConfig, RouteData } from '../utils/route-data';
+import { extractRouteDataFromRouterConfig } from '../utils/route-data';
+import { RouteData } from './route-data-types';
 
 @Injectable({
     providedIn: 'root'
@@ -23,7 +24,7 @@ export class RouteDataRegistry {
     }
 
     public static getAll(): Readonly<RouteData> {
-        let object: RouteData = { ...this.registry } as RouteData;
+        let object: RouteData = ({ ...this.registry } as unknown) as RouteData;
 
         return Object.freeze(object);
     }
