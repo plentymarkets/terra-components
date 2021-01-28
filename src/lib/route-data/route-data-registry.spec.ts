@@ -4,6 +4,15 @@ import { RouteDataInterface } from './route-data.interface';
 
 describe('RouteDataRegistry', () => {
     describe('::register()', () => {
+        it('should ignore the basePath if it is `null` or `undefined`', () => {
+            const routeDataA: RouteDataInterface = {} as RouteDataInterface;
+            const routeDataB: RouteDataInterface = {} as RouteDataInterface;
+            RouteDataRegistry.register(null, { a: routeDataA });
+            RouteDataRegistry.register(undefined, { b: routeDataB });
+
+            expect(RouteDataRegistry['registry'].keys).toContain('a', 'b');
+        });
+
         it(`should add the given route data to the registry`, () => {
             const routePath: string = 'my-path';
             const routeData: RouteDataInterface = { label: 'my Label' };
