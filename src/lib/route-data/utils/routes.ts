@@ -1,12 +1,7 @@
-import { LabelFunction } from '../route-data-function-types';
 import { Route, Routes } from '@angular/router';
+import { RouteData } from '../route-data-types';
+import { RouteDataInterface } from '../route-data.interface';
 import { normalizeRoutePath } from './route-path';
-
-export interface RouteDataInterface {
-    label?: string | LabelFunction; // TODO(pweyrich): shouldn't this be mandatory?
-}
-
-export type RouteData = { [path: string]: RouteDataInterface };
 
 /**
  * Extracts the data of all given #routes (including children) into a flat key-value object.

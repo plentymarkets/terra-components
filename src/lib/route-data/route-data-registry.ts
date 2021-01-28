@@ -1,8 +1,9 @@
 import { RouteDataInterface } from './route-data.interface';
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
-import { compareSegments, extractRouteDataFromRouterConfig, normalizeRoutePath, RouteData } from './utils';
+import { RouteData } from './route-data-types';
 import { UrlHelper } from '../helpers';
+import { compareSegments, extractRouteDataFromRouterConfig, normalizeRoutePath } from './utils';
 
 @Injectable({
     providedIn: 'root'
@@ -24,7 +25,7 @@ export class RouteDataRegistry {
         // TODO
     }
 
-    public static getAll(): Readonly<RouteDataInterface> {
+    public static getAll(): Readonly<RouteData> {
         // TODO
         return null;
     }
