@@ -14,6 +14,6 @@ describe('RouteDataRegistry:', () => {
 
     it('should check if the returned object is readonly', () => {
         let mapObject: RouteData = RouteDataRegistry.getAll();
-        expect((mapObject['test/choom/foo/bar'] = { label: 'Test' })).toThrow(new Error(''));
+        expect(Object.isFrozen(mapObject)).toBeTrue();
     });
 });
