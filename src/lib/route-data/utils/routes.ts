@@ -1,6 +1,7 @@
 import { Route, Routes } from '@angular/router';
-import { RouteDataInterface } from '../route-data';
-import { RouteData } from '../route-data/route-data-types';
+import { RouteData } from '../route-data-types';
+import { RouteDataInterface } from '../route-data.interface';
+import { normalizeRoutePath } from './route-path';
 
 /**
  * Extracts the data of all given #routes (including children) into a flat key-value object.
@@ -21,16 +22,4 @@ export function extractRouteDataFromRouterConfig(routes: Routes): RouteData {
     });
 
     return routeData;
-}
-
-// TODO: should it also be able to remove multiple leading/trailing slashes??
-/**
- * Normalizes a route's path. Specifically removes a leading and/or trailing slash.
- * @param routePath
- */
-export function normalizeRoutePath(routePath: string): string {
-    const withoutLeadingSlash: string = routePath.startsWith('/') ? routePath.substring(1) : routePath;
-    return withoutLeadingSlash.endsWith('/')
-        ? withoutLeadingSlash.substring(0, withoutLeadingSlash.length - 1)
-        : withoutLeadingSlash;
 }
