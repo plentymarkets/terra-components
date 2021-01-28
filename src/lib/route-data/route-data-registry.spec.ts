@@ -58,6 +58,17 @@ describe('RouteDataRegistry', () => {
             expect(RouteDataRegistry['registry'].has(expectedPath)).toBe(true);
         });
 
+        it(`should freeze each route data to prevent subsequent modifications`, () => {
+            const routeData: RouteData = {
+                foo: {} as RouteDataInterface,
+                bar: {} as RouteDataInterface
+            };
+            RouteDataRegistry.register('', routeData);
+
+            const values: Array<RouteDataInterface> = Array.from(RouteDataRegistry['registry'].values());
+            expect(values.every((value: RouteDataInterface) => Object.isFrozen(value))).toBe(true);
+        });
+
         it(`should not register data for an 'invalid' route path`, () => {
             pending();
         });

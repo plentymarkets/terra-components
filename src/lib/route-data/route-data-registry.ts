@@ -9,7 +9,7 @@ import { compareSegments, extractRouteDataFromRouterConfig, normalizeRoutePath }
     providedIn: 'root'
 })
 export class RouteDataRegistry {
-    private static registry: Map<string, RouteDataInterface> = new Map();
+    private static registry: Map<string, Readonly<RouteDataInterface>> = new Map();
 
     constructor(router: Router) {
         // TODO
@@ -24,6 +24,7 @@ export class RouteDataRegistry {
 
     /**
      * Adds a set of route data to the registry.
+     * Each route data object will be frozen to prevent subsequent modifications.
      * @param basePath
      * @param data
      */
@@ -35,7 +36,7 @@ export class RouteDataRegistry {
             const completePath: string = normalizedBasePath
                 ? normalizedBasePath + '/' + normalizedRoutePath
                 : normalizedRoutePath;
-            this.registry.set(completePath, value);
+            this.registry.set(completePath, Object.freeze(value)); // freeze the data to prevent modifications
         });
     }
 
