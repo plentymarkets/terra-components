@@ -1,6 +1,11 @@
 import { compareSegments, normalizeRoutePath } from './route-path';
 
 describe('normalizeRoutePath', () => {
+    it('should return `null | undefined` when `null | undefined` is passed', () => {
+        expect(normalizeRoutePath(null)).toBeNull();
+        expect(normalizeRoutePath(undefined)).toBeUndefined();
+    });
+
     it('should remove a leading slash', () => {
         expect(normalizeRoutePath('/test')).toBe('test');
         expect(normalizeRoutePath('/foo/bar')).toBe('foo/bar');
