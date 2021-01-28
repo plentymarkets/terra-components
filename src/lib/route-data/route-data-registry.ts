@@ -37,6 +37,7 @@ export class RouteDataRegistry {
             const completePath: string = normalizedBasePath
                 ? normalizedBasePath + '/' + normalizedRoutePath
                 : normalizedRoutePath;
+            // TODO(pweyrich): we may need to "deep freeze" it, since values might be objects as well
             this.registry.set(completePath, Object.freeze(value)); // freeze the data to prevent modifications
         });
     }
