@@ -1,7 +1,7 @@
 import { RouteDataRegistry } from './route-data-registry';
 import { RouteDataInterface } from './route-data.interface';
 
-describe('TCRouteDataRegistry', () => {
+describe('RouteDataRegistry', () => {
     describe('::get()', () => {
         it('should return `undefined` if there is no data for a given route path', () => {
             expect(RouteDataRegistry.get('pathThatDoesNotExists')).toBeUndefined();
