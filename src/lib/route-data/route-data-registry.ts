@@ -43,7 +43,7 @@ export class RouteDataRegistry {
         });
     }
 
-    public static getAll(): Readonly<RouteData> {
+    public static getAll(): { [path: string]: Readonly<RouteDataInterface> } {
         // TODO
         return null;
     }
