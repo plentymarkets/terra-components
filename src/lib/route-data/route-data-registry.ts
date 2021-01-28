@@ -25,6 +25,7 @@ export class RouteDataRegistry {
     /**
      * Adds a set of route data to the registry.
      * Each route data object will be frozen to prevent subsequent modifications.
+     * If any route data needs to be modified afterwards, just re-register it!
      * @param basePath
      * @param data
      */
