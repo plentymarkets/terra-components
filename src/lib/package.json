@@ -1,7 +1,7 @@
 {
     "$schema": "../../node_modules/ng-packagr/package.schema.json",
     "name": "@plentymarkets/terra-components",
-    "version": "6.0.0-alpha.5",
+    "version": "6.0.0-beta.2",
     "homepage": "https://github.com/plentymarkets/terra-components#readme",
     "author": "plentymarkets",
     "description": "plentymarkets terra components",
@@ -34,6 +34,7 @@
         "@angular/platform-browser": "9.x",
         "@angular/platform-browser-dynamic": "9.x",
         "@angular/router": "9.x",
+        "@plentymarkets/terra-icons": ">=1.0.4-inline.0",
         "angular-l10n": "9.x",
         "rxjs": "6.x",
         "ckeditor4-angular": "^1.0.1",

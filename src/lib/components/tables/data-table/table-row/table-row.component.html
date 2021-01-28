@@ -1,8 +1,8 @@
 <td *ngIf="_dataTable.inputHasCheckboxes">
     <terra-checkbox
-        [(ngModel)]="row.selected"
+        [ngModel]="row.selected"
         [inputIsDisabled]="row.disabled"
-        (change)="_dataTable.onRowCheckboxChange(row)"
+        (ngModelChange)="_dataTable.onRowCheckboxChange(row)"
         (click)="$event.stopPropagation()"
     >
     </terra-checkbox>

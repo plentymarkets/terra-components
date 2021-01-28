@@ -17,6 +17,7 @@
     },
     "prettier": "@plentymarkets/terra-prettier-config",
     "dependencies": {
+        "@plentymarkets/terra-icons": "^1.0.4-inline.0",
         "bootstrap": "^4.4.1",
         "htmlhint": "~0.10.3",
         "iban": "~0.0.14",
