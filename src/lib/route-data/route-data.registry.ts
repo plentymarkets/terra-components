@@ -22,8 +22,10 @@ export class RouteDataRegistry {
         // TODO
     }
 
-    public static getAll(): ReadonlyMap<string, RouteDataInterface> {
-        return this.registry;
+    public static getAll(): Readonly<RouteData> {
+        let object: RouteData = { ...this.registry } as RouteData;
+
+        return Object.freeze(object);
     }
 
     public get(path: string): RouteDataInterface {
