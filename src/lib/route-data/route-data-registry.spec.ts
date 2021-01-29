@@ -1,7 +1,7 @@
 import { RouteDataRegistry } from './route-data-registry';
 import { RouteDataInterface } from './route-data.interface';
 
-fdescribe('RouteDataRegistry', () => {
+describe('RouteDataRegistry', () => {
     describe('::getAll()', () => {
         RouteDataRegistry.registerOne('test/choom/foo/bar', { label: '' });
 
