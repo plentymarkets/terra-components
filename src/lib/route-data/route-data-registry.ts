@@ -96,8 +96,8 @@ export class RouteDataRegistry<T extends RouteDataInterface> {
 }
 
 @Injectable()
-export class RouteDataRegistryInitializer {
-    constructor(router: Router, routeDataRegistry: RouteDataRegistry<any>) {
+export class RouteDataRegistryInitializer<T extends RouteDataInterface> {
+    constructor(router: Router, routeDataRegistry: RouteDataRegistry<T>) {
         routeDataRegistry.register('', extractRouteDataFromRouterConfig(router.config));
     }
 }
