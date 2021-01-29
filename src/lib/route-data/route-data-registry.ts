@@ -26,13 +26,15 @@ export class RouteDataRegistry {
     }
 
     public static getAll(): Readonly<RouteData> {
-        return Array.from(this.registry.entries()).reduce(
+        const routeData: RouteData = Array.from(this.registry.entries()).reduce(
             (accumulator: {}, [key, value]: [string, RouteDataInterface]) => ({
                 ...accumulator,
-                [key]: value
+                [key]: Object.freeze(value)
             }),
             {}
         );
+
+        return routeData;
     }
 
     public get(path: string): RouteDataInterface | undefined {
