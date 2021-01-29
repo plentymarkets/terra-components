@@ -9,20 +9,38 @@ import { compareSegments, extractRouteDataFromRouterConfig, normalizeRoutePath }
     providedIn: 'root'
 })
 export class RouteDataRegistry {
-    private static registry: Map<string, RouteDataInterface> = new Map();
+    private static registry: Map<string, Readonly<RouteDataInterface>> = new Map();
 
     constructor(router: Router) {
         // TODO
         RouteDataRegistry.register('', extractRouteDataFromRouterConfig(router.config));
     }
 
+    // TODO: What do we do with this method??
     public static registerOne(path: string, data: RouteDataInterface): void {
         // TODO(pweyrich): we may run tests against the path.. it may not include spaces or any other special characters
         this.registry.set(path, data);
     }
 
-    public static register(path: string, data: RouteData): void {
-        // TODO
+    /**
+     * Adds a set of route data to the registry.
+     * Each route data object will be frozen to prevent subsequent modifications.
+     * If any route data needs to be modified afterwards, just re-register it!
+     * @param basePath
+     * @param data
+     */
+    public static register(basePath: string, data: RouteData): void {
+        // TODO(pweyrich): we may run tests against the path.. it may not include spaces or any other special characters
+        Object.entries(data).forEach(([routePath, value]: [string, RouteDataInterface]) => {
+            const normalizedBasePath: string = normalizeRoutePath(basePath);
+            const normalizedRoutePath: string = normalizeRoutePath(routePath);
+            const completePath: string = normalizedBasePath
+                ? normalizedBasePath + '/' + normalizedRoutePath
+                : normalizedRoutePath;
+            // TODO(pweyrich): we may need to "deep freeze" it, since values might be objects as well
+            // {link} https://www.30secondsofcode.org/blog/s/javascript-deep-freeze-object
+            this.registry.set(completePath, Object.freeze(value)); // freeze the data to prevent modifications
+        });
     }
 
     public static getAll(): { [path: string]: Readonly<RouteDataInterface> } {

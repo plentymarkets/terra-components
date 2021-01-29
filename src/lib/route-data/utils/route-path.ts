@@ -2,9 +2,9 @@
  * Normalizes a route's path. Specifically removes a leading and/or trailing slash.
  * @param routePath
  */
-export function normalizeRoutePath(routePath: string): string {
-    const withoutLeadingSlash: string = routePath.startsWith('/') ? routePath.substring(1) : routePath;
-    return withoutLeadingSlash.endsWith('/')
+export function normalizeRoutePath(routePath: string | null | undefined): string | null | undefined {
+    const withoutLeadingSlash: string = routePath?.startsWith('/') ? routePath.substring(1) : routePath;
+    return withoutLeadingSlash?.endsWith('/')
         ? withoutLeadingSlash.substring(0, withoutLeadingSlash.length - 1)
         : withoutLeadingSlash;
 }
