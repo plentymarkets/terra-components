@@ -11,12 +11,6 @@ fdescribe('RouteDataRegistry', () => {
         });
 
         // TODO: Activate this test once register method is merged
-        xit('should check if the returned object is readonly', () => {
-            let mapObject: { [path: string]: Readonly<RouteDataInterface> } = RouteDataRegistry.getAll();
-            expect(Object.isFrozen(mapObject)).toBeTrue();
-        });
-
-        // TODO: Activate this test once register method is merged
         xit('should check if the nested objects of the returned objects are readonly', () => {
             let mapObject: { [path: string]: Readonly<RouteDataInterface> } = RouteDataRegistry.getAll();
             expect(Object.isFrozen(mapObject['test/choom/foo/bar'])).toBeTrue();
