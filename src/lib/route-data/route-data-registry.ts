@@ -27,7 +27,7 @@ export class RouteDataRegistry {
 
     public static getAll(): { [path: string]: Readonly<RouteDataInterface> } {
         return Array.from(this.registry.entries()).reduce(
-            (accumulator: {}, [key, value]: [string, RouteDataInterface]) => ({
+            (accumulator: {}, [key, value]: [string, Readonly<RouteDataInterface>]) => ({
                 ...accumulator,
                 [key]: value
             }),
