@@ -17,10 +17,17 @@ export class RouteDataRegistry {
     }
 
     // TODO: What do we do with this method??
+    /**
+     * Adds a single set of route data to the registry.
+     * It will freeze the data to prevent subsequent modifications.
+     * @param path
+     * @param data
+     */
     public static registerOne(path: string, data: RouteDataInterface): void {
         // TODO(pweyrich): we may run tests against the path.. it may not include spaces or any other special characters
-
-        this.register('', { [path]: data });
+        // TODO(pweyrich): we may need to "deep freeze" it, since values might be objects as well
+        // {link} https://www.30secondsofcode.org/blog/s/javascript-deep-freeze-object
+        this.registry.set(path, Object.freeze(data)); // freeze the data to prevent modifications
     }
 
     /**
@@ -38,9 +45,7 @@ export class RouteDataRegistry {
             const completePath: string = normalizedBasePath
                 ? normalizedBasePath + '/' + normalizedRoutePath
                 : normalizedRoutePath;
-            // TODO(pweyrich): we may need to "deep freeze" it, since values might be objects as well
-            // {link} https://www.30secondsofcode.org/blog/s/javascript-deep-freeze-object
-            this.registry.set(completePath, Object.freeze(value)); // freeze the data to prevent modifications
+            this.registerOne(completePath, value);
         });
     }
 
