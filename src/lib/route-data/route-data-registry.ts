@@ -49,6 +49,9 @@ export class RouteDataRegistry {
         });
     }
 
+    /**
+     * Returns the complete map of all the route paths with their corresponding data
+     */
     public static getAll(): ReadonlyRouteData {
         const routeData: RouteData = Array.from(this.registry.entries()).reduce(
             (accumulator: {}, [key, value]: [string, RouteDataInterface]) => ({
