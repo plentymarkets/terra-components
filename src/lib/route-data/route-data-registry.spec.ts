@@ -3,7 +3,7 @@ import { RouteData } from './route-data-types';
 import { RouteDataInterface } from './route-data.interface';
 
 // tslint:disable-next-line:max-function-line-count
-fdescribe('RouteDataRegistry', () => {
+describe('RouteDataRegistry', () => {
     afterEach(() => RouteDataRegistry['registry'].clear());
 
     describe('::getAll()', () => {
