@@ -33,19 +33,7 @@ export class RouteDataRegistry {
             }),
             {}
         );
-
         Object.freeze(routeData);
-
-        // Object.getOwnPropertyNames(routeData).forEach((property: string) => {
-        //    if (
-        //        routeData[property] !== null &&
-        //        (typeof routeData[property] === 'object' || typeof routeData[property] === 'function') &&
-        //        !Object.isFrozen(routeData[property])
-        //    ) {
-        //        Object.freeze(routeData[property]);
-        //    }
-        // });
-
         return routeData;
     }
 

@@ -1,8 +1,32 @@
 import { RouteDataRegistry } from './route-data-registry';
 import { RouteData } from './route-data-types';
 import { RouteDataInterface } from './route-data.interface';
+import { Router } from '@angular/router';
 
-fdescribe('RouteDataRegistry', () => {
+describe('RouteDataRegistry', () => {
+    describe('::getAll()', () => {
+        beforeEach(() => {
+            let router: Router;
+        });
+
+        RouteDataRegistry.registerOne('test/choom/foo/bar', { label: '' });
+
+        it('should get the complete registry of the RouteDataRegistry', () => {
+            let routeData: RouteData = RouteDataRegistry.getAll();
+            expect(routeData['test/choom/foo/bar'] !== undefined).toBeTrue();
+        });
+
+        it('should check if the returned object is readonly', () => {
+            let mapObject: RouteData = RouteDataRegistry.getAll();
+            expect(Object.isFrozen(mapObject)).toBeTrue();
+        });
+
+        it('should check if the nested objects of the returned objects are readonly', () => {
+            let mapObject: RouteData = RouteDataRegistry.getAll();
+            expect(Object.isFrozen(mapObject['test/choom/foo/bar'])).toBeTrue();
+        });
+    });
+
     describe('::get()', () => {
         it('should return `undefined` if there is no data for a given route path', () => {
             expect(RouteDataRegistry.get('pathThatDoesNotExists')).toBeUndefined();
@@ -29,28 +53,6 @@ fdescribe('RouteDataRegistry', () => {
             RouteDataRegistry.registerOne(path, data);
             expect(RouteDataRegistry.get('my/path/with/2')).toBe(data);
             expect(RouteDataRegistry.get('my/path/with/a-param')).toBe(data);
-        });
-    });
-
-    describe('::getAll()', () => {
-        RouteDataRegistry.registerOne('test/choom/foo/bar', { label: '' });
-
-        it('should get the complete registry of the RouteDataRegistry', () => {
-            const testObject: RouteData = {
-                'test/choom/foo/bar': { label: '' }
-            };
-
-            expect(RouteDataRegistry.getAll()).toEqual(testObject);
-        });
-
-        it('should check if the returned object is readonly', () => {
-            let mapObject: RouteData = RouteDataRegistry.getAll();
-            expect(Object.isFrozen(mapObject)).toBeTrue();
-        });
-
-        it('should check if the nested objects of the returned objects are readonly', () => {
-            let mapObject: RouteData = RouteDataRegistry.getAll();
-            expect(Object.isFrozen(mapObject['test/choom/foo/bar'])).toBeTrue();
         });
     });
 });
