@@ -36,7 +36,7 @@ export class RouteDataRegistry {
 
         Object.freeze(routeData);
 
-        //Object.getOwnPropertyNames(routeData).forEach((property: string) => {
+        // Object.getOwnPropertyNames(routeData).forEach((property: string) => {
         //    if (
         //        routeData[property] !== null &&
         //        (typeof routeData[property] === 'object' || typeof routeData[property] === 'function') &&
@@ -44,7 +44,7 @@ export class RouteDataRegistry {
         //    ) {
         //        Object.freeze(routeData[property]);
         //    }
-        //});
+        // });
 
         return routeData;
     }
