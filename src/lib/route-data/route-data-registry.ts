@@ -1,9 +1,8 @@
 import { RouteDataInterface } from './route-data.interface';
-import { Router } from '@angular/router';
-import { Injectable, Provider } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { ReadonlyRouteData, RouteData } from './route-data-types';
 import { UrlHelper } from '../helpers';
-import { compareSegments, extractRouteDataFromRouterConfig, normalizeRoutePath } from './utils';
+import { compareSegments, normalizeRoutePath } from './utils';
 
 @Injectable()
 export class RouteDataRegistry<T extends RouteDataInterface> {
@@ -93,23 +92,4 @@ export class RouteDataRegistry<T extends RouteDataInterface> {
         // down here we've either found a matching route path or we were unable to find any match
         return matchingRoutePath ? this.registry.get(matchingRoutePath) : undefined;
     }
-}
-
-@Injectable()
-export class RouteDataRegistryInitializer<T extends RouteDataInterface> {
-    constructor(router: Router, routeDataRegistry: RouteDataRegistry<T>) {
-        routeDataRegistry.register('', extractRouteDataFromRouterConfig(router.config));
-    }
-}
-
-export function createRouteDataRegistryProviders<T extends RouteDataInterface>(
-    routeDataRegistry: RouteDataRegistry<T>
-): Array<Provider> {
-    return [
-        {
-            provide: RouteDataRegistry,
-            useValue: routeDataRegistry
-        },
-        RouteDataRegistryInitializer
-    ];
 }

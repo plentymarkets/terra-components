@@ -1,3 +1,4 @@
 export { LabelFunction } from './route-data-types';
 export { RouteDataInterface } from './route-data.interface';
-export * from './route-data-registry';
+export { RouteDataRegistry } from './route-data-registry';
+export { extractRouteDataFromRouterConfig, createRouteDataRegistryProviders } from './utils';
