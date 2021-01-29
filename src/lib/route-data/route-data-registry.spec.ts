@@ -2,10 +2,25 @@ import { RouteDataRegistry } from './route-data-registry';
 import { RouteData } from './route-data-types';
 import { RouteDataInterface } from './route-data.interface';
 
+// tslint:disable-next-line:max-function-line-count
 describe('RouteDataRegistry', () => {
-    describe('::register()', () => {
-        afterEach(() => RouteDataRegistry['registry'].clear());
+    afterEach(() => RouteDataRegistry['registry'].clear());
 
+    describe('::getAll()', () => {
+        it('should get the complete registry of the RouteDataRegistry', () => {
+            RouteDataRegistry.registerOne('test/choom/foo/bar', { label: '' });
+            let routeData: { [path: string]: Readonly<RouteDataInterface> } = RouteDataRegistry.getAll();
+            expect(routeData['test/choom/foo/bar']).toEqual({ label: '' });
+        });
+
+        it('should check if the nested objects of the returned objects are readonly', () => {
+            RouteDataRegistry.registerOne('test/choom/foo/bar', { label: '' });
+            let mapObject: { [path: string]: Readonly<RouteDataInterface> } = RouteDataRegistry.getAll();
+            expect(Object.isFrozen(mapObject['test/choom/foo/bar'])).toBeTrue();
+        });
+    });
+
+    describe('::register()', () => {
         it('should ignore the basePath if it is `null` or `undefined`', () => {
             const routeDataA: RouteDataInterface = {} as RouteDataInterface;
             const routeDataB: RouteDataInterface = {} as RouteDataInterface;
@@ -75,8 +90,6 @@ describe('RouteDataRegistry', () => {
     });
 
     describe('::get()', () => {
-        afterEach(() => RouteDataRegistry['registry'].clear());
-
         it('should return `undefined` if there is no data for a given route path', () => {
             expect(RouteDataRegistry.get('pathThatDoesNotExists')).toBeUndefined();
         });

@@ -1,7 +1,7 @@
 import { RouteDataInterface } from './route-data.interface';
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
-import { RouteData } from './route-data-types';
+import { ReadonlyRouteData, RouteData } from './route-data-types';
 import { UrlHelper } from '../helpers';
 import { compareSegments, extractRouteDataFromRouterConfig, normalizeRoutePath } from './utils';
 
@@ -17,9 +17,17 @@ export class RouteDataRegistry {
     }
 
     // TODO: What do we do with this method??
+    /**
+     * Adds a single set of route data to the registry.
+     * It will freeze the data to prevent subsequent modifications.
+     * @param path
+     * @param data
+     */
     public static registerOne(path: string, data: RouteDataInterface): void {
         // TODO(pweyrich): we may run tests against the path.. it may not include spaces or any other special characters
-        this.registry.set(path, data);
+        // TODO(pweyrich): we may need to "deep freeze" it, since values might be objects as well
+        // {link} https://www.30secondsofcode.org/blog/s/javascript-deep-freeze-object
+        this.registry.set(path, Object.freeze(data)); // freeze the data to prevent modifications
     }
 
     /**
@@ -37,15 +45,23 @@ export class RouteDataRegistry {
             const completePath: string = normalizedBasePath
                 ? normalizedBasePath + '/' + normalizedRoutePath
                 : normalizedRoutePath;
-            // TODO(pweyrich): we may need to "deep freeze" it, since values might be objects as well
-            // {link} https://www.30secondsofcode.org/blog/s/javascript-deep-freeze-object
-            this.registry.set(completePath, Object.freeze(value)); // freeze the data to prevent modifications
+            this.registerOne(completePath, value);
         });
     }
 
-    public static getAll(): { [path: string]: Readonly<RouteDataInterface> } {
-        // TODO
-        return null;
+    /**
+     * Returns the complete map of all the route paths with their corresponding data
+     */
+    public static getAll(): ReadonlyRouteData {
+        const routeData: RouteData = Array.from(this.registry.entries()).reduce(
+            (accumulator: {}, [key, value]: [string, RouteDataInterface]) => ({
+                ...accumulator,
+                [key]: value
+            }),
+            {}
+        );
+
+        return routeData;
     }
 
     public get(path: string): RouteDataInterface | undefined {
