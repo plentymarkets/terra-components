@@ -1,20 +1,13 @@
 import { RouteDataInterface } from './route-data.interface';
 import { Router } from '@angular/router';
-import { Injectable } from '@angular/core';
+import { Injectable, Provider } from '@angular/core';
 import { ReadonlyRouteData, RouteData } from './route-data-types';
 import { UrlHelper } from '../helpers';
 import { compareSegments, extractRouteDataFromRouterConfig, normalizeRoutePath } from './utils';
 
-@Injectable({
-    providedIn: 'root'
-})
-export class RouteDataRegistry {
-    private static registry: Map<string, Readonly<RouteDataInterface>> = new Map();
-
-    constructor(router: Router) {
-        // TODO
-        RouteDataRegistry.register('', extractRouteDataFromRouterConfig(router.config));
-    }
+@Injectable()
+export class RouteDataRegistry<T extends RouteDataInterface> {
+    private registry: Map<string, Readonly<T>> = new Map();
 
     // TODO: What do we do with this method??
     /**
@@ -23,7 +16,7 @@ export class RouteDataRegistry {
      * @param path
      * @param data
      */
-    public static registerOne(path: string, data: RouteDataInterface): void {
+    public registerOne(path: string, data: T): void {
         // TODO(pweyrich): we may run tests against the path.. it may not include spaces or any other special characters
         // TODO(pweyrich): we may need to "deep freeze" it, since values might be objects as well
         // {link} https://www.30secondsofcode.org/blog/s/javascript-deep-freeze-object
@@ -37,9 +30,9 @@ export class RouteDataRegistry {
      * @param basePath
      * @param data
      */
-    public static register(basePath: string, data: RouteData): void {
+    public register(basePath: string, data: RouteData<T>): void {
         // TODO(pweyrich): we may run tests against the path.. it may not include spaces or any other special characters
-        Object.entries(data).forEach(([routePath, value]: [string, RouteDataInterface]) => {
+        Object.entries(data).forEach(([routePath, value]: [string, T]) => {
             const normalizedBasePath: string = normalizeRoutePath(basePath);
             const normalizedRoutePath: string = normalizeRoutePath(routePath);
             const completePath: string = normalizedBasePath
@@ -52,8 +45,8 @@ export class RouteDataRegistry {
     /**
      * Returns the complete map of all the route paths with their corresponding data
      */
-    public static getAll(): ReadonlyRouteData {
-        const routeData: RouteData = Array.from(this.registry.entries()).reduce(
+    public getAll(): ReadonlyRouteData<T> {
+        const routeData: ReadonlyRouteData<T> = Array.from(this.registry.entries()).reduce(
             (accumulator: {}, [key, value]: [string, RouteDataInterface]) => ({
                 ...accumulator,
                 [key]: value
@@ -64,15 +57,11 @@ export class RouteDataRegistry {
         return routeData;
     }
 
-    public get(path: string): RouteDataInterface | undefined {
-        return RouteDataRegistry.get(path);
-    }
-
     /**
      * Returns the stored data for a given #url.
      * @param url The url that the data needs to be found to
      */
-    public static get(url: string): RouteDataInterface | undefined {
+    public get(url: string): T | undefined {
         // TODO: handle trailing slashes in another way
         const cleanUrl: string = normalizeRoutePath(UrlHelper.getCleanUrl(url));
 
@@ -104,4 +93,23 @@ export class RouteDataRegistry {
         // down here we've either found a matching route path or we were unable to find any match
         return matchingRoutePath ? this.registry.get(matchingRoutePath) : undefined;
     }
+}
+
+@Injectable()
+export class RouteDataRegistryInitializer {
+    constructor(router: Router, routeDataRegistry: RouteDataRegistry<any>) {
+        routeDataRegistry.register('', extractRouteDataFromRouterConfig(router.config));
+    }
+}
+
+export function createRouteDataRegistryProviders<T extends RouteDataInterface>(
+    routeDataRegistry: RouteDataRegistry<T>
+): Array<Provider> {
+    return [
+        {
+            provide: RouteDataRegistry,
+            useValue: routeDataRegistry
+        },
+        RouteDataRegistryInitializer
+    ];
 }
