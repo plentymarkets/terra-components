@@ -19,7 +19,8 @@ export class RouteDataRegistry {
     // TODO: What do we do with this method??
     public static registerOne(path: string, data: RouteDataInterface): void {
         // TODO(pweyrich): we may run tests against the path.. it may not include spaces or any other special characters
-        this.registry.set(path, data);
+
+        this.register('', { [path]: data });
     }
 
     /**

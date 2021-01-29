@@ -4,6 +4,8 @@ import { RouteDataInterface } from './route-data.interface';
 
 // tslint:disable-next-line:max-function-line-count
 fdescribe('RouteDataRegistry', () => {
+    afterEach(() => RouteDataRegistry['registry'].clear());
+
     describe('::getAll()', () => {
         it('should get the complete registry of the RouteDataRegistry', () => {
             RouteDataRegistry.registerOne('test/choom/foo/bar', { label: '' });
@@ -19,8 +21,6 @@ fdescribe('RouteDataRegistry', () => {
     });
 
     describe('::register()', () => {
-        afterEach(() => RouteDataRegistry['registry'].clear());
-
         it('should ignore the basePath if it is `null` or `undefined`', () => {
             const routeDataA: RouteDataInterface = {} as RouteDataInterface;
             const routeDataB: RouteDataInterface = {} as RouteDataInterface;
@@ -90,8 +90,6 @@ fdescribe('RouteDataRegistry', () => {
     });
 
     describe('::get()', () => {
-        afterEach(() => RouteDataRegistry['registry'].clear());
-
         it('should return `undefined` if there is no data for a given route path', () => {
             expect(RouteDataRegistry.get('pathThatDoesNotExists')).toBeUndefined();
         });
