@@ -1,13 +1,13 @@
 import { RouteDataRegistry } from './route-data-registry';
 import { RouteDataInterface } from './route-data.interface';
 
-describe('RouteDataRegistry', () => {
+fdescribe('RouteDataRegistry', () => {
     describe('::getAll()', () => {
         RouteDataRegistry.registerOne('test/choom/foo/bar', { label: '' });
 
         it('should get the complete registry of the RouteDataRegistry', () => {
             let routeData: { [path: string]: Readonly<RouteDataInterface> } = RouteDataRegistry.getAll();
-            expect(routeData['test/choom/foo/bar'] !== undefined).toBeTrue();
+            expect(routeData['test/choom/foo/bar']).toEqual({ label: '' });
         });
 
         // TODO: Activate this test once register method is merged
