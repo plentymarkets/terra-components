@@ -26,21 +26,27 @@ export class RouteDataRegistry {
     }
 
     public static getAll(): Readonly<RouteData> {
-        let object: RouteData = ({ ...this.registry } as unknown) as RouteData;
+        const routeData: RouteData = Array.from(this.registry.entries()).reduce(
+            (accumulator: {}, [key, value]: [string, RouteDataInterface]) => ({
+                ...accumulator,
+                [key]: Object.freeze(value)
+            }),
+            {}
+        );
 
-        Object.freeze(object);
+        Object.freeze(routeData);
 
-        Object.getOwnPropertyNames(object).forEach((property: string) => {
-            if (
-                object[property] !== null &&
-                (typeof object[property] === 'object' || typeof object[property] === 'function') &&
-                !Object.isFrozen(object[property])
-            ) {
-                Object.freeze(object[property]);
-            }
-        });
+        //Object.getOwnPropertyNames(routeData).forEach((property: string) => {
+        //    if (
+        //        routeData[property] !== null &&
+        //        (typeof routeData[property] === 'object' || typeof routeData[property] === 'function') &&
+        //        !Object.isFrozen(routeData[property])
+        //    ) {
+        //        Object.freeze(routeData[property]);
+        //    }
+        //});
 
-        return object;
+        return routeData;
     }
 
     public get(path: string): RouteDataInterface | undefined {
