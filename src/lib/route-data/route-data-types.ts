@@ -12,3 +12,5 @@ export type LabelFunction = (
 ) => string;
 
 export type RouteData = { [path: string]: RouteDataInterface };
+
+export type ReadonlyRouteData = { [path: string]: Readonly<RouteDataInterface> };

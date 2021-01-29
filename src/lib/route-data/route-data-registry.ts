@@ -1,7 +1,7 @@
 import { RouteDataInterface } from './route-data.interface';
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
-import { RouteData } from './route-data-types';
+import { ReadonlyRouteData, RouteData } from './route-data-types';
 import { UrlHelper } from '../helpers';
 import { compareSegments, extractRouteDataFromRouterConfig, normalizeRoutePath } from './utils';
 
@@ -49,14 +49,16 @@ export class RouteDataRegistry {
         });
     }
 
-    public static getAll(): { [path: string]: Readonly<RouteDataInterface> } {
-        return Array.from(this.registry.entries()).reduce(
+    public static getAll(): ReadonlyRouteData {
+        const routeData: RouteData = Array.from(this.registry.entries()).reduce(
             (accumulator: {}, [key, value]: [string, RouteDataInterface]) => ({
                 ...accumulator,
                 [key]: value
             }),
             {}
         );
+
+        return routeData;
     }
 
     public get(path: string): RouteDataInterface | undefined {
