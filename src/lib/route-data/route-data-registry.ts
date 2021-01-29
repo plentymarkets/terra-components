@@ -29,7 +29,7 @@ export class RouteDataRegistry {
         const routeData: RouteData = Array.from(this.registry.entries()).reduce(
             (accumulator: {}, [key, value]: [string, RouteDataInterface]) => ({
                 ...accumulator,
-                [key]: Object.freeze(value)
+                [key]: value
             }),
             {}
         );
