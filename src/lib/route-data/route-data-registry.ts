@@ -26,7 +26,19 @@ export class RouteDataRegistry {
     public static getAll(): Readonly<RouteData> {
         let object: RouteData = ({ ...this.registry } as unknown) as RouteData;
 
-        return Object.freeze(object);
+        Object.freeze(object);
+
+        Object.getOwnPropertyNames(object).forEach((property: string) => {
+            if (
+                object[property] !== null &&
+                (typeof object[property] === 'object' || typeof object[property] === 'function') &&
+                !Object.isFrozen(object[property])
+            ) {
+                Object.freeze(object[property]);
+            }
+        });
+
+        return object;
     }
 
     public get(path: string): RouteDataInterface {
