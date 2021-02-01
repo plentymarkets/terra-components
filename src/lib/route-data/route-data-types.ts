@@ -11,6 +11,6 @@ export type LabelFunction = (
     queryParams: Params
 ) => string;
 
-export type RouteData = { [path: string]: RouteDataInterface };
+export type RouteData<T extends RouteDataInterface> = { [path: string]: T };
 
-export type ReadonlyRouteData = { [path: string]: Readonly<RouteDataInterface> };
+export type ReadonlyRouteData<T extends RouteDataInterface> = { [path: string]: Readonly<T> };
