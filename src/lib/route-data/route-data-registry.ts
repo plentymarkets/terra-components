@@ -19,7 +19,7 @@ export class RouteDataRegistry<T extends RouteDataInterface> {
         // TODO(pweyrich): we may run tests against the path.. it may not include spaces or any other special characters
         // TODO(pweyrich): we may need to "deep freeze" it, since values might be objects as well
         // {link} https://www.30secondsofcode.org/blog/s/javascript-deep-freeze-object
-        this.registry.set(path, Object.freeze(data)); // freeze the data to prevent modifications
+        this.registry.set(normalizeRoutePath(path), Object.freeze(data)); // freeze the data to prevent modifications
     }
 
     /**
