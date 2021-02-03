@@ -1,4 +1,4 @@
-import { compareSegments, normalizeRoutePath } from './route-path';
+import { compareSegments, findMatchingRoutePath, normalizeRoutePath } from './route-path';
 
 describe('normalizeRoutePath', () => {
     it('should return `null | undefined` when `null | undefined` is passed', () => {
@@ -42,5 +42,27 @@ describe('compareSegments', () => {
 
     it('should return true when a list of url segments matches a list of route path segments that include parameters', () => {
         expect(compareSegments(['foo', ':bar'], ['foo', 'bar'])).toBe(true);
+    });
+});
+
+describe('findMatchingRoutePath', () => {
+    it('should return undefined for an `null | undefined` url', () => {
+        expect(findMatchingRoutePath(null, [])).toBeUndefined();
+        expect(findMatchingRoutePath(undefined, [])).toBeUndefined();
+    });
+
+    it('should return undefined for an `null | undefined` list of route paths', () => {
+        const url: string = 'my/url';
+        expect(findMatchingRoutePath(url, null)).toBeUndefined();
+        expect(findMatchingRoutePath(url, undefined)).toBeUndefined();
+    });
+
+    it('should return undefined when no matching route path can be found for the given url', () => {
+        expect(findMatchingRoutePath('my-url', [])).toBeUndefined();
+    });
+
+    it('should find a matching, parameterised path to a given url', () => {
+        const path: string = 'item/list/:id';
+        expect(findMatchingRoutePath('item/list/1', [path])).toBe(path);
     });
 });

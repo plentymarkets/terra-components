@@ -32,6 +32,11 @@ export function compareSegments(routePathSegments: Array<string>, urlSegments: A
  * @param routePaths
  */
 export function findMatchingRoutePath(url: string, routePaths: Array<string>): string | undefined {
+    // check if parameters are defined
+    if (!url || !routePaths) {
+        return undefined;
+    }
+
     // split the url into its segments
     const urlSegments: Array<string> = url.split('/');
 
