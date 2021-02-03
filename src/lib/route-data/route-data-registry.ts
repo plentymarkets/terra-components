@@ -2,7 +2,7 @@ import { RouteDataInterface } from './route-data.interface';
 import { Injectable } from '@angular/core';
 import { ReadonlyRouteData, RouteData } from './route-data-types';
 import { UrlHelper } from '../helpers';
-import { compareSegments, normalizeRoutePath } from './utils';
+import { compareSegments, normalizeRoutePath, redirectedRoutePrefix } from './utils';
 
 @Injectable()
 export class RouteDataRegistry<T extends RouteDataInterface> {
@@ -59,15 +59,21 @@ export class RouteDataRegistry<T extends RouteDataInterface> {
     /**
      * Returns the stored data for a given #url.
      * @param url The url that the data needs to be found to
+     * @param redirected
      */
-    public get(url: string): T | undefined {
+    public get(url: string, redirected?: boolean): T | undefined {
         // TODO: handle trailing slashes in another way
         const cleanUrl: string = normalizeRoutePath(UrlHelper.getCleanUrl(url));
 
         // check if the data can be found by simply looking for the route in the registry.
         // if not the url may match any route path with parameters
-        if (this.registry.has(cleanUrl)) {
+        if (!redirected && this.registry.has(cleanUrl)) {
             return this.registry.get(cleanUrl);
+        }
+
+        // if a redirected route path is requested, just search for those ones
+        if (redirected && this.registry.has(redirectedRoutePrefix + cleanUrl)) {
+            return this.registry.get(redirectedRoutePrefix + cleanUrl);
         }
 
         // split the url into its segments
@@ -76,14 +82,21 @@ export class RouteDataRegistry<T extends RouteDataInterface> {
         // get all potentially matching route paths - those must include parameters AND have the same amount of segments as the given url
         const potentiallyMatchingRoutePaths: Array<string> = Array.from(this.registry.keys()).filter(
             (routePath: string) => {
-                return routePath.includes(':') && routePath.split('/').length === urlSegments.length;
+                return (
+                    (redirected ? routePath.startsWith(redirectedRoutePrefix) : true) &&
+                    routePath.includes(':') &&
+                    routePath.split('/').length === urlSegments.length
+                );
             }
         );
 
         // scan through all potential matches to check if one of it really matches the given url
         const matchingRoutePath: string = potentiallyMatchingRoutePaths.find((routePath: string) => {
             // split the current route path into its segments
-            const routePathSegments: Array<string> = routePath.split('/');
+            const routePathSegments: Array<string> = (redirected
+                ? routePath.replace(redirectedRoutePrefix, '')
+                : routePath
+            ).split('/');
 
             // compare the segments of the route path with those of the url. do they match?
             return compareSegments(routePathSegments, urlSegments);
