@@ -25,3 +25,27 @@ export function compareSegments(routePathSegments: Array<string>, urlSegments: A
         return routePathSegment === urlSegment || routePathSegment.startsWith(':');
     });
 }
+
+/**
+ * Tries to find a matching route path from a list of #routePaths to the given #url
+ * @param url
+ * @param routePaths
+ */
+export function findMatchingRoutePath(url: string, routePaths: Array<string>): string | undefined {
+    // split the url into its segments
+    const urlSegments: Array<string> = url.split('/');
+
+    // get all potentially matching route paths - those must include parameters AND have the same amount of segments as the given url
+    const potentiallyMatchingRoutePaths: Array<string> = routePaths.filter((routePath: string) => {
+        return routePath.includes(':') && routePath.split('/').length === urlSegments.length;
+    });
+
+    // scan through all potential matches to check if one of it really matches the given url
+    return potentiallyMatchingRoutePaths.find((routePath: string) => {
+        // split the current route path into its segments
+        const routePathSegments: Array<string> = routePath.split('/');
+
+        // compare the segments of the route path with those of the url. do they match?
+        return compareSegments(routePathSegments, urlSegments);
+    });
+}
