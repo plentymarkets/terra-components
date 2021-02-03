@@ -73,7 +73,7 @@ export class RouteDataRegistry<T extends RouteDataInterface> {
         // find a matching route path for the given url
         const matchingRoutePath: string | undefined = findMatchingRoutePath(cleanUrl, Array.from(this.registry.keys()));
 
-        // down here we've either found a matching route path or we were unable to find any match
+        // we've now either found a matching route path or we were unable to find any match
         return matchingRoutePath ? this.registry.get(matchingRoutePath) : undefined;
     }
 }
