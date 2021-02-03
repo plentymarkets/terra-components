@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Optional } from '@angular/core';
 import { TerraBreadcrumb } from '../terra-breadcrumb';
 import {
     ActivatedRouteSnapshot,
@@ -16,6 +16,7 @@ import { UrlHelper } from '../../../helpers/url.helper';
 import { StringHelper } from '../../../helpers/string.helper';
 import { ActivatedRouteHelper } from '../../../helpers/activated-route.helper';
 import { filter } from 'rxjs/operators';
+import { RouteDataInterface, RouteDataRegistry } from '../../../route-data';
 
 @Injectable()
 export class TerraBreadcrumbsService {
@@ -27,7 +28,8 @@ export class TerraBreadcrumbsService {
     constructor(
         private _router: Router,
         private _translation: L10nTranslationService,
-        private _urlSerializer: UrlSerializer
+        private _urlSerializer: UrlSerializer,
+        @Optional() private _routeDataRegistry: RouteDataRegistry<RouteDataInterface>
     ) {
         this._router.events
             .pipe(
@@ -115,8 +117,9 @@ export class TerraBreadcrumbsService {
 
         let shortUrlWithoutLeadingSlash: string = UrlHelper.removeLeadingSlash(url);
         let route: Route = this._findRoute(shortUrlWithoutLeadingSlash, this._initialRoute.children);
-
-        if (!isNullOrUndefined(route) && !isNullOrUndefined(route.data) && !isNullOrUndefined(breadcrumb)) {
+        const routeData: RouteDataInterface =
+            (route?.data as RouteDataInterface) || this._routeDataRegistry?.get(shortUrlWithoutLeadingSlash);
+        if (routeData && breadcrumb) {
             // you can set a name to update the breadcrumb name
             if (!isNullOrUndefined(name)) {
                 breadcrumb.name = this._translation.translate(name);
@@ -127,7 +130,7 @@ export class TerraBreadcrumbsService {
                     this._router.routerState.snapshot.root
                 );
 
-                breadcrumb.name = this._getBreadcrumbLabel(route, activatedSnapshot);
+                breadcrumb.name = this._getBreadcrumbLabel(routeData, activatedSnapshot);
             }
         }
     }
@@ -199,7 +202,9 @@ export class TerraBreadcrumbsService {
             let activatedSnapshot: ActivatedRouteSnapshot = this._findActivatedRouteSnapshot(
                 this._router.routerState.snapshot.root
             );
-            let label: string = this._getBreadcrumbLabel(route, activatedSnapshot);
+            const routeData: RouteDataInterface =
+                (route.data as RouteDataInterface) || this._routeDataRegistry?.get(url);
+            let label: string = this._getBreadcrumbLabel(routeData, activatedSnapshot);
             let currentContainerIndex: number = this._containers.indexOf(container);
             let previousContainer: TerraBreadcrumbContainer = this._containers[currentContainerIndex - 1];
             let parentBreadcrumb: TerraBreadcrumb = isNullOrUndefined(previousContainer)
@@ -212,7 +217,7 @@ export class TerraBreadcrumbsService {
                 breadcrumb = new TerraBreadcrumb(label, parentBreadcrumb, url);
             }
 
-            breadcrumb.hasRouteData = !isNullOrUndefined(route.data);
+            breadcrumb.hasRouteData = !isNullOrUndefined(routeData);
 
             container.breadcrumbList.push(breadcrumb);
         }
@@ -225,18 +230,20 @@ export class TerraBreadcrumbsService {
         this._updateBreadcrumbVisibilities(container, breadcrumb.parent);
     }
 
-    private _getBreadcrumbLabel(route: Route, activatedSnapshot: ActivatedRouteSnapshot): string {
+    // TODO: this is a copy of the TerraRouterHelper's `createLabelFromRoute` method.
+    //  Since we've moved the LabelFunction type here, we may also move this method to TC!
+    private _getBreadcrumbLabel(routeData: RouteDataInterface, activatedSnapshot: ActivatedRouteSnapshot): string {
         let label: string = '';
-        if (!isNullOrUndefined(route.data)) {
-            if (typeof route.data.label === 'function') {
-                label = route.data.label(
+        if (routeData) {
+            if (typeof routeData.label === 'function') {
+                label = routeData.label(
                     this._translation,
                     activatedSnapshot.params,
                     activatedSnapshot.data,
                     activatedSnapshot.queryParams
                 );
             } else {
-                label = this._translation.translate(route.data.label);
+                label = this._translation.translate(routeData.label);
             }
         }
         return label;
