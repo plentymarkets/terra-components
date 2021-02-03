@@ -2,7 +2,7 @@ import { RouteDataInterface } from './route-data.interface';
 import { Injectable } from '@angular/core';
 import { ReadonlyRouteData, RouteData } from './route-data-types';
 import { UrlHelper } from '../helpers';
-import { compareSegments, normalizeRoutePath } from './utils';
+import { findMatchingRoutePath, normalizeRoutePath } from './utils';
 
 @Injectable()
 export class RouteDataRegistry<T extends RouteDataInterface> {
@@ -79,24 +79,10 @@ export class RouteDataRegistry<T extends RouteDataInterface> {
             return registry.get(cleanUrl);
         }
 
-        // split the url into its segments
-        const urlSegments: Array<string> = cleanUrl.split('/');
+        // find a matching route path for the given url
+        const matchingRoutePath: string | undefined = findMatchingRoutePath(cleanUrl, Array.from(registry.keys()));
 
-        // get all potentially matching route paths - those must include parameters AND have the same amount of segments as the given url
-        const potentiallyMatchingRoutePaths: Array<string> = Array.from(registry.keys()).filter((routePath: string) => {
-            return routePath.includes(':') && routePath.split('/').length === urlSegments.length;
-        });
-
-        // scan through all potential matches to check if one of it really matches the given url
-        const matchingRoutePath: string = potentiallyMatchingRoutePaths.find((routePath: string) => {
-            // split the current route path into its segments
-            const routePathSegments: Array<string> = routePath.split('/');
-
-            // compare the segments of the route path with those of the url. do they match?
-            return compareSegments(routePathSegments, urlSegments);
-        });
-
-        // down here we've either found a matching route path or we were unable to find any match
+        // we've now either found a matching route path or we were unable to find any match
         return matchingRoutePath ? registry.get(matchingRoutePath) : undefined;
     }
 
