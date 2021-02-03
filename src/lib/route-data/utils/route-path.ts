@@ -27,7 +27,7 @@ export function compareSegments(routePathSegments: Array<string>, urlSegments: A
 }
 
 /**
- * Tries to find a matching route path from a list of #routePaths to the given #url
+ * Tries to find a matching route path to the given #url in a list of #routePaths
  * @param url
  * @param routePaths
  */
