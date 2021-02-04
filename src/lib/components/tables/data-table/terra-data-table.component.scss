@@ -34,20 +34,6 @@
     --no-result-margin: 0; //in case of a no-result page placed in a table to avoid doubled margins
 
     table {
-        ::ng-deep {
-            mat-checkbox {
-                label {
-                    margin-bottom: 0;
-                }
-                &.mat-checkbox.mat-checkbox-checked:not(.mat-checkbox-disabled).mat-accent .mat-checkbox-background {
-                    background-color: var(--color-structure-0);
-                    .mat-checkbox-checkmark-path {
-                        stroke: var(--color-structure-9) !important;
-                    }
-                }
-            }
-        }
-
         margin: 0;
 
         &.data-table {
@@ -83,18 +69,6 @@
                         span {
                             font-size: var(--font-size-3);
                             @include font-rendering;
-                        }
-
-                        ::ng-deep {
-                            mat-checkbox {
-                                label {
-                                    margin-bottom: 0;
-                                }
-
-                                .mat-checkbox-frame {
-                                    border-color: var(--color-structure-0);
-                                }
-                            }
                         }
                     }
                 }
