@@ -118,7 +118,8 @@ export class TerraBreadcrumbsService {
         let shortUrlWithoutLeadingSlash: string = UrlHelper.removeLeadingSlash(url);
         let route: Route = this._findRoute(shortUrlWithoutLeadingSlash, this._initialRoute.children);
         const routeData: RouteDataInterface =
-            (route?.data as RouteDataInterface) || this._routeDataRegistry?.get(shortUrlWithoutLeadingSlash);
+            (route?.data as RouteDataInterface) ||
+            this._routeDataRegistry?.get(shortUrlWithoutLeadingSlash, route.redirectTo && route.path === '');
         if (routeData && breadcrumb) {
             // you can set a name to update the breadcrumb name
             if (!isNullOrUndefined(name)) {
@@ -203,7 +204,8 @@ export class TerraBreadcrumbsService {
                 this._router.routerState.snapshot.root
             );
             const routeData: RouteDataInterface =
-                (route.data as RouteDataInterface) || this._routeDataRegistry?.get(url);
+                (route.data as RouteDataInterface) ||
+                this._routeDataRegistry?.get(url, route.redirectTo && route.path === '');
             let label: string = this._getBreadcrumbLabel(routeData, activatedSnapshot);
             let currentContainerIndex: number = this._containers.indexOf(container);
             let previousContainer: TerraBreadcrumbContainer = this._containers[currentContainerIndex - 1];
