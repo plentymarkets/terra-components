@@ -7,6 +7,7 @@ import { findMatchingRoutePath, normalizeRoutePath } from './utils';
 @Injectable()
 export class RouteDataRegistry<T extends RouteDataInterface> {
     private registry: Map<string, Readonly<T>> = new Map();
+    private redirectedRegistry: Map<string, Readonly<T>> = new Map();
 
     // TODO: What do we do with this method??
     /**
@@ -14,12 +15,14 @@ export class RouteDataRegistry<T extends RouteDataInterface> {
      * It will freeze the data to prevent subsequent modifications.
      * @param path
      * @param data
+     * @param redirected
      */
-    public registerOne(path: string, data: T): void {
+    public registerOne(path: string, data: T, redirected?: boolean): void {
         // TODO(pweyrich): we may run tests against the path.. it may not include spaces or any other special characters
         // TODO(pweyrich): we may need to "deep freeze" it, since values might be objects as well
         // {link} https://www.30secondsofcode.org/blog/s/javascript-deep-freeze-object
-        this.registry.set(normalizeRoutePath(path), Object.freeze(data)); // freeze the data to prevent modifications
+        const registry: Map<string, T> = this.getRegistry(redirected);
+        registry.set(normalizeRoutePath(path), Object.freeze(data)); // freeze the data to prevent modifications
     }
 
     /**
@@ -29,51 +32,66 @@ export class RouteDataRegistry<T extends RouteDataInterface> {
      * @param basePath
      * @param data
      */
-    public register(basePath: string, data: RouteData<T>): void {
+    public register(basePath: string, data: RouteData<T & { redirected?: boolean }>): void {
         // TODO(pweyrich): we may run tests against the path.. it may not include spaces or any other special characters
-        Object.entries(data).forEach(([routePath, value]: [string, T]) => {
+        Object.entries(data).forEach(([routePath, value]: [string, T & { redirected?: boolean }]) => {
             const normalizedBasePath: string = normalizeRoutePath(basePath);
             const normalizedRoutePath: string = normalizeRoutePath(routePath);
             const completePath: string = normalizedBasePath
                 ? normalizedBasePath + '/' + normalizedRoutePath
                 : normalizedRoutePath;
-            this.registerOne(completePath, value);
+            const redirected: boolean = !!value.redirected;
+            delete value.redirected;
+            this.registerOne(completePath, value, redirected);
         });
     }
 
     /**
-     * Returns the complete map of all the route paths with their corresponding data
+     * Returns the complete map of all the route paths with their corresponding data.
+     * @param redirected
      */
-    public getAll(): ReadonlyRouteData<T> {
-        const routeData: ReadonlyRouteData<T> = Array.from(this.registry.entries()).reduce(
+    public getAll(redirected?: boolean): ReadonlyRouteData<T> {
+        const registry: Map<string, T> = this.getRegistry(redirected);
+        return Array.from(registry.entries()).reduce(
             (accumulator: {}, [key, value]: [string, RouteDataInterface]) => ({
                 ...accumulator,
                 [key]: value
             }),
             {}
         );
-
-        return routeData;
     }
 
     /**
      * Returns the stored data for a given #url.
      * @param url The url that the data needs to be found to
+     * @param redirected whether to get the data of a redirected or a normal route
      */
-    public get(url: string): T | undefined {
+    public get(url: string, redirected?: boolean): T | undefined {
         // TODO: handle trailing slashes in another way
         const cleanUrl: string = normalizeRoutePath(UrlHelper.getCleanUrl(url));
 
+        // determine the relevant registry
+        const registry: Map<string, T> = this.getRegistry(redirected);
+
         // check if the data can be found by simply looking for the route in the registry.
         // if not the url may match any route path with parameters
-        if (this.registry.has(cleanUrl)) {
-            return this.registry.get(cleanUrl);
+        if (registry.has(cleanUrl)) {
+            return registry.get(cleanUrl);
         }
 
         // find a matching route path for the given url
-        const matchingRoutePath: string | undefined = findMatchingRoutePath(cleanUrl, Array.from(this.registry.keys()));
+        const matchingRoutePath: string | undefined = findMatchingRoutePath(cleanUrl, Array.from(registry.keys()));
 
         // we've now either found a matching route path or we were unable to find any match
-        return matchingRoutePath ? this.registry.get(matchingRoutePath) : undefined;
+        return matchingRoutePath ? registry.get(matchingRoutePath) : undefined;
+    }
+
+    /**
+     * Determines the relevant registry.
+     * @param redirected
+     * @private
+     */
+    private getRegistry(redirected: boolean): Map<string, T> {
+        return redirected ? this.redirectedRegistry : this.registry;
     }
 }
