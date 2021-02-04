@@ -1,13 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TableRowComponent } from './table-row.component';
 import { TerraDataTableComponent } from '../terra-data-table.component';
-import { TerraCheckboxComponent } from '../../../forms/checkbox/terra-checkbox.component';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { TerraDataTableRowInterface } from '../interfaces/terra-data-table-row.interface';
 import { Component, DebugElement } from '@angular/core';
 import { noop } from 'rxjs';
 import { MockTooltipDirective } from '../../../../testing/mock-tooltip.directive';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 export const dataTableStub: Partial<TerraDataTableComponent<any, any>> = {
     rowClicked: noop,
@@ -35,8 +35,8 @@ describe('Component: TableRowComponent', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            declarations: [MockTooltipDirective, TableRowComponent, TerraCheckboxComponent, HostComponent],
-            imports: [FormsModule]
+            declarations: [MockTooltipDirective, TableRowComponent, HostComponent],
+            imports: [FormsModule, MatCheckboxModule]
         });
     });
 
@@ -92,13 +92,13 @@ describe('Component: TableRowComponent', () => {
     });
 
     it('should toggle checkbox visibility', () => {
-        expect(fixture.debugElement.query(By.css('terra-checkbox'))).toBeTruthy();
+        expect(fixture.debugElement.query(By.css('mat-checkbox'))).toBeTruthy();
 
         dataTable.inputHasCheckboxes = false;
 
         fixture.detectChanges();
 
-        expect(fixture.debugElement.query(By.css('terra-checkbox'))).toBeFalsy();
+        expect(fixture.debugElement.query(By.css('mat-checkbox'))).toBeFalsy();
     });
 
     it('should call #_onRowCheckboxChange() when checkbox changes', () => {
@@ -116,9 +116,9 @@ describe('Component: TableRowComponent', () => {
 
         fixture.detectChanges();
 
-        const checkbox: DebugElement = fixture.debugElement.query(By.css('terra-checkbox'));
+        const checkbox: DebugElement = fixture.debugElement.query(By.css('mat-checkbox'));
 
-        checkbox.triggerEventHandler('ngModelChange', {});
+        checkbox.triggerEventHandler('change', {});
 
         fixture.detectChanges();
 

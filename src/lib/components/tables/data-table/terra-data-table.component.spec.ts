@@ -3,7 +3,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { L10nTranslationModule } from 'angular-l10n';
 import { TerraPagerComponent } from '../../pager/terra-pager.component';
 import { TerraButtonComponent } from '../../buttons/button/terra-button.component';
-import { TerraCheckboxComponent } from '../../forms/checkbox/terra-checkbox.component';
 import { TerraDataTableContextMenuComponent } from './context-menu/terra-data-table-context-menu.component';
 import { TerraNoResultNoticeComponent } from '../../no-result/terra-no-result-notice.component';
 import { TerraTaglistComponent } from '../../layouts/taglist/terra-taglist.component';
@@ -25,6 +24,7 @@ import { MockActivatedRoute } from '../../../testing/mock-activated-route';
 import { mockL10nConfig } from '../../../testing/mock-l10n-config';
 import { MockTooltipDirective } from '../../../testing/mock-tooltip.directive';
 import Spy = jasmine.Spy;
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 describe('TerraDataTableComponent', () => {
     let component: TerraDataTableComponent<any, any>;
@@ -37,7 +37,6 @@ describe('TerraDataTableComponent', () => {
                 TerraDataTableComponent,
                 TerraButtonComponent,
                 TerraPagerComponent,
-                TerraCheckboxComponent,
                 TerraDataTableContextMenuComponent,
                 TerraDataTableContextMenuDirective,
                 TerraNoResultNoticeComponent,
@@ -48,7 +47,13 @@ describe('TerraDataTableComponent', () => {
                 TerraSelectBoxComponent,
                 TableRowComponent
             ],
-            imports: [CommonModule, FormsModule, NoopAnimationsModule, L10nTranslationModule.forRoot(mockL10nConfig)],
+            imports: [
+                CommonModule,
+                FormsModule,
+                NoopAnimationsModule,
+                L10nTranslationModule.forRoot(mockL10nConfig),
+                MatCheckboxModule
+            ],
             providers: [
                 TerraDataTableServiceExample,
                 TerraLoadingSpinnerService,
