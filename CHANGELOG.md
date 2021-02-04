@@ -1,3 +1,9 @@
+# 6.0.0-beta.3 (xx.xx.2021)
+
+### Breaking Changes
+
+-   **terra-data-table** using `mat-checkbox` instead of `terra-checkbox`.
+
 # 6.0.0-beta.2 (21.01.2021)
 
 ### Breaking Changes
