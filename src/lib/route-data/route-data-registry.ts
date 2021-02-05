@@ -14,7 +14,7 @@ export class RouteDataRegistry<T extends RouteDataInterface> {
      * Adds a single set of route data to the registry.
      * It will freeze the data to prevent subsequent modifications.
      * @param path The path of the route. It shouldn't be prefixed with a slash
-     * @param data The corresponding route data of the route
+     * @param data The corresponding data of the route
      * @param redirected Whether the data belongs to a redirect route
      */
     public registerOne(path: string, data: T, redirected?: boolean): void {
