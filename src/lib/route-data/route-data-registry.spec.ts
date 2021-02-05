@@ -1,5 +1,5 @@
 import { RouteDataRegistry } from './route-data-registry';
-import { RouteData } from './route-data-types';
+import { RedirectedRoute, RouteData } from './route-data-types';
 import { RouteDataInterface } from './route-data.interface';
 
 // tslint:disable-next-line:max-function-line-count
@@ -83,6 +83,17 @@ describe('RouteDataRegistry', () => {
 
             const values: Array<RouteDataInterface> = Array.from(routeDataRegistry['registry'].values());
             expect(values.every((value: RouteDataInterface) => Object.isFrozen(value))).toBe(true);
+        });
+
+        it('should add redirected routes to the other map', () => {
+            const routeData: RouteData<RouteDataInterface> = {
+                foo: { redirected: true } as RouteDataInterface & RedirectedRoute,
+                bar: {} as RouteDataInterface
+            };
+            routeDataRegistry.register('', routeData);
+
+            expect(Array.from(routeDataRegistry['registry'].keys())).toEqual(['bar']);
+            expect(Array.from(routeDataRegistry['redirectedRegistry'].keys())).toEqual(['foo']);
         });
 
         it(`should not register data for an 'invalid' route path`, () => {
