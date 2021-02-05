@@ -13,9 +13,9 @@ export class RouteDataRegistry<T extends RouteDataInterface> {
     /**
      * Adds a single set of route data to the registry.
      * It will freeze the data to prevent subsequent modifications.
-     * @param path
-     * @param data
-     * @param redirected
+     * @param path The url of the route. It shouldn't be prefixed or suffixed with a slash
+     * @param data The corresponding route data of the route
+     * @param redirected Defines if the data comes from a redirect route
      */
     public registerOne(path: string, data: T, redirected?: boolean): void {
         // TODO(pweyrich): we may run tests against the path.. it may not include spaces or any other special characters
@@ -29,8 +29,8 @@ export class RouteDataRegistry<T extends RouteDataInterface> {
      * Adds a set of route data to the registry.
      * Each route data object will be frozen to prevent subsequent modifications.
      * If any route data needs to be modified afterwards, just re-register it!
-     * @param basePath
-     * @param data
+     * @param basePath The url of the route to be added
+     * @param data The data of the corresponding route
      */
     public register(basePath: string, data: RouteData<T & { redirected?: boolean }>): void {
         // TODO(pweyrich): we may run tests against the path.. it may not include spaces or any other special characters
@@ -48,7 +48,7 @@ export class RouteDataRegistry<T extends RouteDataInterface> {
 
     /**
      * Returns the complete map of all the route paths with their corresponding data.
-     * @param redirected
+     * @param redirected Defines if the returned data should be from the redirected route or not
      */
     public getAll(redirected?: boolean): ReadonlyRouteData<T> {
         const registry: Map<string, T> = this.getRegistry(redirected);
@@ -88,8 +88,7 @@ export class RouteDataRegistry<T extends RouteDataInterface> {
 
     /**
      * Determines the relevant registry.
-     * @param redirected
-     * @private
+     * @param redirected Defines wether the normal or the redirected registry should be returned
      */
     private getRegistry(redirected: boolean): Map<string, T> {
         return redirected ? this.redirectedRegistry : this.registry;
