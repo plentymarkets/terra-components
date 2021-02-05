@@ -128,5 +128,16 @@ describe('RouteDataRegistry', () => {
             expect(routeDataRegistry.get('my/path/with/2')).toBe(data);
             expect(routeDataRegistry.get('my/path/with/a-param')).toBe(data);
         });
+
+        it('should return the redirected instead of a usual route if requested', () => {
+            const routeData: RouteData<RouteDataInterface & RedirectedRoute> = {
+                'foo/': { label: 'foo', redirected: true },
+                foo: {} as RouteDataInterface
+            };
+            routeDataRegistry.register('', routeData);
+
+            expect(routeDataRegistry.get('foo', true)).toEqual({ label: 'foo' });
+            expect(routeDataRegistry.get('foo')).toEqual({} as RouteDataInterface);
+        });
     });
 });
