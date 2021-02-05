@@ -13,9 +13,9 @@ export class RouteDataRegistry<T extends RouteDataInterface> {
     /**
      * Adds a single set of route data to the registry.
      * It will freeze the data to prevent subsequent modifications.
-     * @param path
-     * @param data
-     * @param redirected
+     * @param path The path of the route. It shouldn't be prefixed with a slash
+     * @param data The corresponding data of the route
+     * @param redirected Whether the data belongs to a redirect route
      */
     public registerOne(path: string, data: T, redirected?: boolean): void {
         // TODO(pweyrich): we may run tests against the path.. it may not include spaces or any other special characters
@@ -29,8 +29,8 @@ export class RouteDataRegistry<T extends RouteDataInterface> {
      * Adds a set of route data to the registry.
      * Each route data object will be frozen to prevent subsequent modifications.
      * If any route data needs to be modified afterwards, just re-register it!
-     * @param basePath
-     * @param data
+     * @param basePath The basepath of the routes to be added. The last part of the path is stored in the key attribute in the data object
+     * @param data The data of the corresponding routes
      */
     public register(basePath: string, data: RouteData<T & { redirected?: boolean }>): void {
         // TODO(pweyrich): we may run tests against the path.. it may not include spaces or any other special characters
@@ -48,7 +48,7 @@ export class RouteDataRegistry<T extends RouteDataInterface> {
 
     /**
      * Returns the complete map of all the route paths with their corresponding data.
-     * @param redirected
+     * @param redirected Whether to return the data of only redirected routes
      */
     public getAll(redirected?: boolean): ReadonlyRouteData<T> {
         const registry: Map<string, T> = this.getRegistry(redirected);
@@ -64,7 +64,7 @@ export class RouteDataRegistry<T extends RouteDataInterface> {
     /**
      * Returns the stored data for a given #url.
      * @param url The url that the data needs to be found to
-     * @param redirected whether to get the data of a redirected or a normal route
+     * @param redirected Whether to return the data of a usual or redirected route with equivalent path
      */
     public get(url: string, redirected?: boolean): T | undefined {
         // TODO: handle trailing slashes in another way
@@ -88,8 +88,7 @@ export class RouteDataRegistry<T extends RouteDataInterface> {
 
     /**
      * Determines the relevant registry.
-     * @param redirected
-     * @private
+     * @param redirected Whether to return the registry for data of usual or redirected routes
      */
     private getRegistry(redirected: boolean): Map<string, T> {
         return redirected ? this.redirectedRegistry : this.registry;
