@@ -19,6 +19,16 @@ describe('RouteDataRegistry', () => {
             let mapObject: { [path: string]: Readonly<RouteDataInterface> } = routeDataRegistry.getAll();
             expect(Object.isFrozen(mapObject['test/choom/foo/bar'])).toBeTrue();
         });
+
+        it('should return the list of redirected routes if requested', () => {
+            const routeData: RouteData<RouteDataInterface> = {
+                foo: { redirected: true } as RouteDataInterface & RedirectedRoute,
+                bar: {} as RouteDataInterface
+            };
+            routeDataRegistry.register('', routeData);
+
+            expect(routeDataRegistry.getAll(true)).toEqual({ foo: {} as RouteDataInterface });
+        });
     });
 
     describe('::register()', () => {
