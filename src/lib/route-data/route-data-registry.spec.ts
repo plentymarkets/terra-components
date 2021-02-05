@@ -106,6 +106,15 @@ describe('RouteDataRegistry', () => {
             expect(Array.from(routeDataRegistry['redirectedRegistry'].keys())).toEqual(['foo']);
         });
 
+        it('should NOT store the extra redirected flag in the registry', () => {
+            const routeData: RouteData<RouteDataInterface & RedirectedRoute> = {
+                foo: { label: 'foo', redirected: true }
+            };
+            routeDataRegistry.register('', routeData);
+
+            expect(routeDataRegistry['redirectedRegistry'].get('foo')).toEqual({ label: 'foo' });
+        });
+
         it(`should not register data for an 'invalid' route path`, () => {
             pending();
         });
