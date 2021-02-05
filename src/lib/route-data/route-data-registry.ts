@@ -64,7 +64,7 @@ export class RouteDataRegistry<T extends RouteDataInterface> {
     /**
      * Returns the stored data for a given #url.
      * @param url The url that the data needs to be found to
-     * @param redirected whether to get the data of a redirected or a normal route
+     * @param redirected Whether to return the data of a usual or redirected route with equivalent path
      */
     public get(url: string, redirected?: boolean): T | undefined {
         // TODO: handle trailing slashes in another way
