@@ -13,7 +13,7 @@ export class RouteDataRegistry<T extends RouteDataInterface> {
     /**
      * Adds a single set of route data to the registry.
      * It will freeze the data to prevent subsequent modifications.
-     * @param path The url of the route. It shouldn't be prefixed or suffixed with a slash
+     * @param path The path of the route. It shouldn't be prefixed with a slash
      * @param data The corresponding route data of the route
      * @param redirected Whether the data belongs to a redirect route
      */
@@ -29,7 +29,7 @@ export class RouteDataRegistry<T extends RouteDataInterface> {
      * Adds a set of route data to the registry.
      * Each route data object will be frozen to prevent subsequent modifications.
      * If any route data needs to be modified afterwards, just re-register it!
-     * @param basePath The url of the route to be added
+     * @param basePath The basepath of the routes to be added. The last part of the path is stored in the key attribute in the data object
      * @param data The data of the corresponding routes
      */
     public register(basePath: string, data: RouteData<T & { redirected?: boolean }>): void {
