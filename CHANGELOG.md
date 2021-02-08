@@ -2,6 +2,7 @@
 
 ### Breaking Changes
 
+-   **terra-data-table** using `mat-checkbox` instead of `terra-checkbox`.
 -   **terra-node-tree** removed dependency to `TranslationService` from `TerraNodeTreeConfig`.
 -   **terra-nested-data-picker** removed dependency to `TranslationService` from `NestedDataTreeConfig`.
 -   **terra-category-picker** removed dependency to `TranslationService` from `CategoryTreeConfig`.
