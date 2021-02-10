@@ -78,4 +78,18 @@ describe('extractRouteDataFromRouteConfig', () => {
             'nested/child3': data
         });
     });
+
+    it('should attach the redirected flag to the data of redirected routes', () => {
+        const redirectedRouteData: RouteDataInterface = { label: 'redirect' };
+        const usualRouteData: RouteDataInterface = { label: 'foo' };
+        const routes: Routes = [
+            { path: '', redirectTo: 'foo', data: { label: 'redirect' } },
+            { path: 'foo', data: usualRouteData }
+        ];
+
+        expect(extractRouteDataFromRouterConfig(routes)).toEqual({
+            '': Object.assign(redirectedRouteData, { redirected: true }),
+            foo: usualRouteData
+        });
+    });
 });

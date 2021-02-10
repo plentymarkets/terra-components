@@ -11,6 +11,8 @@ export type LabelFunction = (
     queryParams: Params
 ) => string;
 
+export type RedirectedRoute = { redirected?: boolean };
+
 export type RouteData<T extends RouteDataInterface> = { [path: string]: T };
 
 export type ReadonlyRouteData<T extends RouteDataInterface> = { [path: string]: Readonly<T> };

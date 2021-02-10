@@ -1,5 +1,5 @@
 import { RouteDataRegistry } from './route-data-registry';
-import { RouteData } from './route-data-types';
+import { RedirectedRoute, RouteData } from './route-data-types';
 import { RouteDataInterface } from './route-data.interface';
 
 // tslint:disable-next-line:max-function-line-count
@@ -18,6 +18,16 @@ describe('RouteDataRegistry', () => {
             routeDataRegistry.registerOne('test/choom/foo/bar', { label: '' });
             let mapObject: { [path: string]: Readonly<RouteDataInterface> } = routeDataRegistry.getAll();
             expect(Object.isFrozen(mapObject['test/choom/foo/bar'])).toBeTrue();
+        });
+
+        it('should return the list of redirected routes if requested', () => {
+            const routeData: RouteData<RouteDataInterface> = {
+                foo: { redirected: true } as RouteDataInterface & RedirectedRoute,
+                bar: {} as RouteDataInterface
+            };
+            routeDataRegistry.register('', routeData);
+
+            expect(routeDataRegistry.getAll(true)).toEqual({ foo: {} as RouteDataInterface });
         });
     });
 
@@ -85,6 +95,26 @@ describe('RouteDataRegistry', () => {
             expect(values.every((value: RouteDataInterface) => Object.isFrozen(value))).toBe(true);
         });
 
+        it('should add redirected routes to the other map', () => {
+            const routeData: RouteData<RouteDataInterface> = {
+                foo: { redirected: true } as RouteDataInterface & RedirectedRoute,
+                bar: {} as RouteDataInterface
+            };
+            routeDataRegistry.register('', routeData);
+
+            expect(Array.from(routeDataRegistry['registry'].keys())).toEqual(['bar']);
+            expect(Array.from(routeDataRegistry['redirectedRegistry'].keys())).toEqual(['foo']);
+        });
+
+        it('should NOT store the extra redirected flag in the registry', () => {
+            const routeData: RouteData<RouteDataInterface & RedirectedRoute> = {
+                foo: { label: 'foo', redirected: true }
+            };
+            routeDataRegistry.register('', routeData);
+
+            expect(routeDataRegistry['redirectedRegistry'].get('foo')).toEqual({ label: 'foo' });
+        });
+
         it(`should not register data for an 'invalid' route path`, () => {
             pending();
         });
@@ -116,6 +146,17 @@ describe('RouteDataRegistry', () => {
             routeDataRegistry.registerOne(path, data);
             expect(routeDataRegistry.get('my/path/with/2')).toBe(data);
             expect(routeDataRegistry.get('my/path/with/a-param')).toBe(data);
+        });
+
+        it('should return the redirected instead of a usual route if requested', () => {
+            const routeData: RouteData<RouteDataInterface & RedirectedRoute> = {
+                'foo/': { label: 'foo', redirected: true },
+                foo: {} as RouteDataInterface
+            };
+            routeDataRegistry.register('', routeData);
+
+            expect(routeDataRegistry.get('foo', true)).toEqual({ label: 'foo' });
+            expect(routeDataRegistry.get('foo')).toEqual({} as RouteDataInterface);
         });
     });
 });
