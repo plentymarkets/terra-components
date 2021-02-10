@@ -1,4 +1,4 @@
-# 6.0.0-beta.3 (XX.XX.2021)
+# 6.0.0 (10.02.2021)
 
 ### Breaking Changes
 
