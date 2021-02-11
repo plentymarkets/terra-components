@@ -1,8 +1,11 @@
-# 6.0.0-beta.3 (xx.xx.2021)
+# 6.0.0 (10.02.2021)
 
 ### Breaking Changes
 
 -   **terra-data-table** using `mat-checkbox` instead of `terra-checkbox`.
+-   **terra-node-tree** removed dependency to `TranslationService` from `TerraNodeTreeConfig`.
+-   **terra-nested-data-picker** removed dependency to `TranslationService` from `NestedDataTreeConfig`.
+-   **terra-category-picker** removed dependency to `TranslationService` from `CategoryTreeConfig`.
 
 # 6.0.0-beta.2 (21.01.2021)
 
