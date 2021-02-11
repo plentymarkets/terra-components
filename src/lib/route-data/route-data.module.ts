@@ -22,7 +22,9 @@ export class RouteDataModule<T extends RouteDataInterface> {
         router: Router,
         @Inject(ROUTE_DATA) routeData: TerraKeyValueInterface<RouteData<T>>
     ) {
+        // extract the data of all routes in the router config and add it to the registry
         registry.register('', extractRouteDataFromRouterConfig(router.config));
+        // add all pre-extracted route data to the registry
         Object.entries(routeData).forEach(([basePath, data]: [string, RouteData<T>]) => {
             registry.register(basePath, data);
         });
@@ -35,7 +37,7 @@ export class RouteDataModule<T extends RouteDataInterface> {
      */
     public static forRoot<T extends RouteDataInterface>(
         routeData: TerraKeyValueInterface<RouteData<T>>,
-        registryProvider?: ExistingProvider | ValueProvider | ClassProvider | FactoryProvider // optional custom provider for the RouteDataRegistry
+        registryProvider?: ExistingProvider | ValueProvider | ClassProvider | FactoryProvider
     ): ModuleWithProviders<RouteDataModule<T>> {
         const registryProviders: Array<Provider> = registryProvider
             ? [registryProvider, { provide: RouteDataRegistry, useExisting: registryProvider.provide }]
