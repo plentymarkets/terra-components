@@ -16,6 +16,7 @@ import { extractRouteDataFromRouterConfig } from './utils';
 import { Router } from '@angular/router';
 import { TerraKeyValueInterface } from '../models';
 
+/** Injection token for the pre-extracted route data */
 export const ROUTE_DATA: InjectionToken<TerraKeyValueInterface<RouteData<RouteDataInterface>>> = new InjectionToken(
     'route data'
 );
@@ -33,6 +34,11 @@ export class RouteDataModule<T extends RouteDataInterface> {
         });
     }
 
+    /**
+     * A function that returns the RouteDataModule with providers for `RouteDataRegistry` and `ROUTE_DATA`
+     * @param routeData - The pre-extracted list of route data in the app
+     * @param registryProvider - Optional custom provider for the RouteDataRegistry
+     */
     public static forRoot<T extends RouteDataInterface>(
         routeData: TerraKeyValueInterface<RouteData<T>>,
         registryProvider?: ExistingProvider | ValueProvider | ClassProvider | FactoryProvider // optional custom provider for the RouteDataRegistry
