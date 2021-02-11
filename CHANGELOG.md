@@ -1,3 +1,9 @@
+# 6.0.1 Unreleased
+
+### Feature
+
+-   **route-children-function** implemented getChild() function which returns the children to a route with it's children
+
 # 6.0.0 (10.02.2021)
 
 ### Breaking Changes
