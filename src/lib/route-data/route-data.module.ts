@@ -3,23 +3,17 @@ import {
     ExistingProvider,
     FactoryProvider,
     Inject,
-    InjectionToken,
     ModuleWithProviders,
     NgModule,
     Provider,
     ValueProvider
 } from '@angular/core';
 import { RouteDataInterface } from './route-data.interface';
-import { RouteData } from './route-data-types';
+import { ROUTE_DATA, RouteData } from './route-data-types';
 import { RouteDataRegistry } from './route-data-registry';
 import { extractRouteDataFromRouterConfig } from './utils';
 import { Router } from '@angular/router';
 import { TerraKeyValueInterface } from '../models';
-
-/** Injection token for the pre-extracted route data */
-export const ROUTE_DATA: InjectionToken<TerraKeyValueInterface<RouteData<RouteDataInterface>>> = new InjectionToken(
-    'route data'
-);
 
 @NgModule()
 export class RouteDataModule<T extends RouteDataInterface> {
