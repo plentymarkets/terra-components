@@ -6,8 +6,12 @@ import { extractRouteDataFromRouterConfig } from './utils';
 import { Router } from '@angular/router';
 import { TerraKeyValueInterface } from '../models';
 
+/**
+ * Provides services to centrally manage extra data (such as a label) concerning routes of the app.
+ * @see RouteDataRegistry
+ */
 @NgModule()
-export class RouteDataModule<T extends RouteDataInterface> {
+export class RouteDataModule<T extends RouteDataInterface = RouteDataInterface> {
     constructor(
         registry: RouteDataRegistry<T>,
         router: Router,
@@ -22,9 +26,11 @@ export class RouteDataModule<T extends RouteDataInterface> {
     }
 
     /**
-     * A function that returns the RouteDataModule with root-level providers for `RouteDataRegistry` and `ROUTE_DATA`.
-     * @param routeData - The pre-extracted list of route data in the app
-     * @param registryProvider - Optional custom provider(s) for the RouteDataRegistry
+     * Creates and configures a module with all necessary providers to centrally manage extra data (such as a label) concerning routes of the app.
+     * @see RouteDataModule
+     * @param routeData - A set of data for certain (ideally all) routes in the app
+     * @param registryProvider - Optional custom provider(s) for the `RouteDataRegistry`
+     * @returns the `RouteDataModule` with providers for `RouteDataRegistry` and `ROUTE_DATA`
      */
     public static forRoot<T extends RouteDataInterface>(
         routeData: TerraKeyValueInterface<RouteData<T>>,
