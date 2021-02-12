@@ -20,7 +20,7 @@ export class TerraAlertPanelComponent implements OnInit, OnDestroy {
     private readonly _addAlertListener: EventListener;
     private readonly _closeAlertListener: EventListener;
 
-    constructor(private _service: AlertService) {
+    constructor(private readonly _service: AlertService) {
         // init event listeners
         this._addAlertListener = (event: CustomEvent<TerraAlertInterface>): void => this._add(event.detail);
         this._closeAlertListener = (event: CustomEvent<string>): void => this._closeAlertByIdentifier(event.detail);

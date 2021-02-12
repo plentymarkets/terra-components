@@ -7,7 +7,7 @@ import { AlertService } from '../alert.service';
     templateUrl: './terra-alert.component.example.html'
 })
 export class TerraAlertComponentExample {
-    constructor(private _alertService: AlertService) {}
+    constructor(private readonly _alertService: AlertService) {}
 
     public _showInformationAlert(): void {
         this._alertService.info('info-Alert', 'info');
