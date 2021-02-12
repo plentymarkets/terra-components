@@ -8,7 +8,9 @@ import { TerraKeyValueInterface } from '../models';
 
 /**
  * Provides services to centrally manage extra data (such as a label) concerning routes of the app.
- * @see RouteDataRegistry
+ * Should be used in conjunction with the {@link TerraBreadcrumbsComponent}.
+ *
+ * @see {@link RouteDataRegistry} for further information
  */
 @NgModule()
 export class RouteDataModule<T extends RouteDataInterface = RouteDataInterface> {
