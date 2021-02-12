@@ -2,7 +2,7 @@
 
 ### Feature
 
--   **route-children-function** implemented getChild() function which returns the children to a route with it's children
+-   **route-children-function** implemented `getChildren()` function which returns the children of a given route wether they are lazy loaded or not.
 
 # 6.0.0 (10.02.2021)
 
