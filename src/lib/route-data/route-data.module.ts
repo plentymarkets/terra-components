@@ -1,13 +1,4 @@
-import {
-    ClassProvider,
-    ExistingProvider,
-    FactoryProvider,
-    Inject,
-    ModuleWithProviders,
-    NgModule,
-    Provider,
-    ValueProvider
-} from '@angular/core';
+import { Inject, ModuleWithProviders, NgModule, Provider } from '@angular/core';
 import { RouteDataInterface } from './route-data.interface';
 import { ROUTE_DATA, RouteData } from './route-data-types';
 import { RouteDataRegistry } from './route-data-registry';
@@ -31,21 +22,17 @@ export class RouteDataModule<T extends RouteDataInterface> {
     }
 
     /**
-     * A function that returns the RouteDataModule with providers for `RouteDataRegistry` and `ROUTE_DATA`
+     * A function that returns the RouteDataModule with root-level providers for `RouteDataRegistry` and `ROUTE_DATA`.
      * @param routeData - The pre-extracted list of route data in the app
-     * @param registryProvider - Optional custom provider for the RouteDataRegistry
+     * @param registryProvider - Optional custom provider(s) for the RouteDataRegistry
      */
     public static forRoot<T extends RouteDataInterface>(
         routeData: TerraKeyValueInterface<RouteData<T>>,
-        registryProvider?: ExistingProvider | ValueProvider | ClassProvider | FactoryProvider
+        registryProvider: Array<Provider> = [RouteDataRegistry]
     ): ModuleWithProviders<RouteDataModule<T>> {
-        const registryProviders: Array<Provider> = registryProvider
-            ? [registryProvider, { provide: RouteDataRegistry, useExisting: registryProvider.provide }]
-            : [{ provide: RouteDataRegistry, useClass: RouteDataRegistry }];
-
         return {
             ngModule: RouteDataModule,
-            providers: [...registryProviders, { provide: ROUTE_DATA, useValue: routeData }]
+            providers: [registryProvider, { provide: ROUTE_DATA, useValue: routeData }]
         };
     }
 }

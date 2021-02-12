@@ -6,7 +6,7 @@ import { RouteDataModule } from './route-data.module';
 import { ROUTE_DATA, RouteData } from './route-data-types';
 import { RouteDataInterface } from './route-data.interface';
 import { TerraKeyValueInterface } from '../models';
-import { ValueProvider } from '@angular/core';
+import { ClassProvider, ExistingProvider, Injectable, ValueProvider } from '@angular/core';
 
 describe('RouteDataModule:', () => {
     let registry: RouteDataRegistry<RouteDataInterface>;
@@ -31,7 +31,7 @@ describe('RouteDataModule:', () => {
         registry = TestBed.inject(RouteDataRegistry);
     });
 
-    it('should provide an instance of the `RouteDataRegistry`', () => {
+    it('should provide an instance of the `RouteDataRegistry` by default', () => {
         expect(RouteDataRegistry).toBeTruthy();
     });
 
@@ -53,6 +53,44 @@ describe('RouteDataModule:', () => {
             Object.entries(data).forEach(([routePath, singleRouteData]: [string, RouteDataInterface]) => {
                 expect(routeDataEntries).toContain([basePath + '/' + routePath, singleRouteData]);
             });
+        });
+    });
+
+    describe('with a custom provider for the `RouteDataRegistry`', () => {
+        // reset the configuration of the TestingModule to be able to redefine the providers
+        beforeEach(() => TestBed.resetTestingModule());
+
+        it('should use a given custom ValueProvider to provide the instance of the `RouteDataRegistry`', () => {
+            const ref: RouteDataRegistry<RouteDataInterface> = new RouteDataRegistry();
+            const provider: ValueProvider = { provide: RouteDataRegistry, useValue: ref };
+            TestBed.configureTestingModule({
+                imports: [RouterTestingModule.withRoutes(routes), RouteDataModule.forRoot(routeData, [provider])]
+            });
+
+            const injectedRef: RouteDataRegistry<RouteDataInterface> = TestBed.inject(RouteDataRegistry);
+            expect(injectedRef).toBe(ref);
+        });
+
+        it('should use the given list of custom providers of the `RouteDataRegistry`', () => {
+            @Injectable()
+            class TestRouteDataRegistry extends RouteDataRegistry<RouteDataInterface> {}
+            const classProvider: ClassProvider = { provide: TestRouteDataRegistry, useClass: TestRouteDataRegistry };
+            const existingProvider: ExistingProvider = {
+                provide: RouteDataRegistry,
+                useExisting: TestRouteDataRegistry
+            };
+            TestBed.configureTestingModule({
+                imports: [
+                    RouterTestingModule.withRoutes(routes),
+                    RouteDataModule.forRoot(routeData, [classProvider, existingProvider])
+                ]
+            });
+
+            const routeDataRegistryRef: RouteDataRegistry<RouteDataInterface> = TestBed.inject(RouteDataRegistry);
+            expect(routeDataRegistryRef instanceof TestRouteDataRegistry).toBeTrue();
+
+            const testRouteDataRegistryRef: TestRouteDataRegistry = TestBed.inject(TestRouteDataRegistry);
+            expect(testRouteDataRegistryRef instanceof TestRouteDataRegistry).toBeTrue();
         });
     });
 });
