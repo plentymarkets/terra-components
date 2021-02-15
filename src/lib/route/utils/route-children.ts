@@ -5,5 +5,9 @@ import { Route, Routes } from '@angular/router';
  * @param route The route to which the children or the lazy loaded children should be returned
  */
 export function getChildren(route: Route): Routes | undefined {
-    return route.children || route['_loadedConfig']?.routes;
+    if (route) {
+        return route.children || route['_loadedConfig']?.routes;
+    }
+
+    return undefined;
 }
