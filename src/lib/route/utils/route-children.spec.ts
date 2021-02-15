@@ -27,4 +27,8 @@ describe('getChild-function', () => {
 
         expect(getChildren(route)).toBe(route['_loadedConfig'].routes);
     });
+
+    it('should return undefined if no route is given', () => {
+        expect(getChildren(undefined)).toBeUndefined();
+    });
 });
