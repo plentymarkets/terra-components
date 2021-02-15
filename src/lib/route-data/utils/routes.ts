@@ -2,6 +2,7 @@ import { Route, Routes } from '@angular/router';
 import { RouteData } from '../route-data-types';
 import { RouteDataInterface } from '../route-data.interface';
 import { normalizeRoutePath } from './route-path';
+import { getChildren } from './route-children-function';
 
 /**
  * Extracts the data of all given #routes (including children) into a flat key-value object.
@@ -20,7 +21,8 @@ export function extractRouteDataFromRouterConfig<T extends RouteDataInterface>(
             route.redirectTo && route.path === ''
                 ? Object.assign(route.data as T, { redirected: true })
                 : (route.data as T);
-        const nestedRouteData: RouteData<T> = route.children ? extractRouteDataFromRouterConfig(route.children) : {};
+        const children: Routes = getChildren(route);
+        const nestedRouteData: RouteData<T> = children ? extractRouteDataFromRouterConfig(children) : {};
         Object.entries(nestedRouteData).forEach(([key, value]: [string, T]) => {
             routeData[normalizedRoutePath + '/' + key] = value;
         });
