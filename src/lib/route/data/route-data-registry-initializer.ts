@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { RouteDataInterface } from './route-data.interface';
 import { Router } from '@angular/router';
-import { extractRouteDataFromRouterConfig } from './utils';
+import { extractRouteDataFromRouterConfig } from '../utils';
 import { RouteDataRegistry } from './route-data-registry';
 
 /**

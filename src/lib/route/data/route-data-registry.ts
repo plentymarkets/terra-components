@@ -1,8 +1,8 @@
 import { RouteDataInterface } from './route-data.interface';
 import { Injectable } from '@angular/core';
 import { ReadonlyRouteData, RouteData } from './route-data-types';
-import { UrlHelper } from '../helpers';
-import { findMatchingRoutePath, normalizeRoutePath } from './utils';
+import { UrlHelper } from '../../helpers';
+import { findMatchingRoutePath, normalizeRoutePath } from '../utils';
 
 @Injectable()
 export class RouteDataRegistry<T extends RouteDataInterface> {
