@@ -1,7 +1,7 @@
 import { Route } from '@angular/router';
 import { getChildren } from './route-children';
 
-describe('getChild-function', () => {
+fdescribe('getChild-function', () => {
     it('should return the children to a route', () => {
         const route: Route = {
             path: 'foo',
@@ -26,5 +26,9 @@ describe('getChild-function', () => {
         route['_loadedConfig'] = { routes: [{ path: 'bar', data: { label: 'bar' } }] };
 
         expect(getChildren(route)).toBe(route['_loadedConfig'].routes);
+    });
+
+    it('should return undefined if no route is given', () => {
+        expect(getChildren(undefined)).toBeUndefined();
     });
 });
