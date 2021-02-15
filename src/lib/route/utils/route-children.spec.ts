@@ -1,7 +1,7 @@
 import { Route } from '@angular/router';
 import { getChildren } from './route-children';
 
-fdescribe('getChild-function', () => {
+describe('getChild-function', () => {
     it('should return the children to a route', () => {
         const route: Route = {
             path: 'foo',
