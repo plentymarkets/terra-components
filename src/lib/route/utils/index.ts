@@ -1,3 +1,3 @@
 export * from './routes';
 export * from './route-path';
-export * from './route-children-function';
+export * from './route-children';

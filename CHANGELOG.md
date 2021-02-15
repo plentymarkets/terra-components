@@ -2,8 +2,8 @@
 
 ### Feature
 
--   **route-children-function** implemented `getChildren()` function which returns the children of a given route wether they are lazy loaded or not.
--   **get-children** replaced all `route.children` with `getChildren` method for lazy loading.
+-   **route** implemented `getChildren()` function which returns the children of a given route whether they are lazy loaded or static.
+-   **get-children** replaced all `route.children` with `getChildren()` method for lazy loading.
 
 # 6.0.0 (10.02.2021)
 

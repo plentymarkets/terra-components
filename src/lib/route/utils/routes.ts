@@ -1,6 +1,6 @@
 import { Route, Routes } from '@angular/router';
-import { RouteData } from '../route-data-types';
-import { RouteDataInterface } from '../route-data.interface';
+import { RouteData } from '../data/route-data-types';
+import { RouteDataInterface } from '../data/route-data.interface';
 import { normalizeRoutePath } from './route-path';
 import { getChildren } from './route-children-function';
 

@@ -16,7 +16,8 @@ import { UrlHelper } from '../../../helpers/url.helper';
 import { StringHelper } from '../../../helpers/string.helper';
 import { ActivatedRouteHelper } from '../../../helpers/activated-route.helper';
 import { filter } from 'rxjs/operators';
-import { getChildren, RouteDataInterface, RouteDataRegistry } from '../../../route-data';
+import { RouteDataInterface, RouteDataRegistry } from '../../../route/data';
+import { getChildren } from '../../../route/utils/route-children';
 
 @Injectable()
 export class TerraBreadcrumbsService {
