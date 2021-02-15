@@ -1,6 +1,6 @@
 import { extractRouteDataFromRouterConfig } from './routes';
 import { Routes } from '@angular/router';
-import { RouteDataInterface } from '../route-data.interface';
+import { RouteDataInterface } from '../data/route-data.interface';
 
 describe('extractRouteDataFromRouteConfig', () => {
     it(`should return an empty object if the router's config is null, undefined or an empty array`, () => {

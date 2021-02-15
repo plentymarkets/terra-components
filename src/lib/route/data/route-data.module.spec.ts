@@ -5,8 +5,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { RouteDataModule } from './route-data.module';
 import { ROUTE_DATA, RouteData } from './route-data-types';
 import { RouteDataInterface } from './route-data.interface';
-import { TerraKeyValueInterface } from '../models';
 import { ClassProvider, ExistingProvider, Injectable, ValueProvider } from '@angular/core';
+import { TerraKeyValueInterface } from '../../models';
 
 describe('RouteDataModule:', () => {
     let registry: RouteDataRegistry<RouteDataInterface>;

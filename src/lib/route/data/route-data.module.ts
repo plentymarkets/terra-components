@@ -2,9 +2,9 @@ import { Inject, ModuleWithProviders, NgModule, Provider } from '@angular/core';
 import { RouteDataInterface } from './route-data.interface';
 import { ROUTE_DATA, RouteData } from './route-data-types';
 import { RouteDataRegistry } from './route-data-registry';
-import { extractRouteDataFromRouterConfig } from './utils';
 import { Router } from '@angular/router';
-import { TerraKeyValueInterface } from '../models';
+import { extractRouteDataFromRouterConfig } from '../utils';
+import { TerraKeyValueInterface } from '../../models';
 
 /**
  * Provides services to centrally manage extra data (such as a label) concerning routes of the app.
