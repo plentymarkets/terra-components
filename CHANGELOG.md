@@ -1,4 +1,4 @@
-# 6.0.1 Unreleased
+# 6.1.0 Unreleased
 
 ### Feature
 

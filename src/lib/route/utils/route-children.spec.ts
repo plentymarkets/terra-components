@@ -7,7 +7,7 @@ describe('getChild-function', () => {
             path: 'foo',
             children: [{ path: 'bar', data: { label: 'bar' } }]
         };
-        expect(getChildren(route)).toEqual([{ path: 'bar', data: { label: 'bar' } }]);
+        expect(getChildren(route)).toBe(route.children);
     });
 
     it('should return undefined with empty children', () => {
@@ -25,6 +25,6 @@ describe('getChild-function', () => {
 
         route['_loadedConfig'] = { routes: [{ path: 'bar', data: { label: 'bar' } }] };
 
-        expect(getChildren(route)).toEqual([{ path: 'bar', data: { label: 'bar' } }]);
+        expect(getChildren(route)).toBe(route['_loadedConfig'].routes);
     });
 });
