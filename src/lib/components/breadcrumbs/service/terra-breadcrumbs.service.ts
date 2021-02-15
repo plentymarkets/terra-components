@@ -17,6 +17,7 @@ import { StringHelper } from '../../../helpers/string.helper';
 import { ActivatedRouteHelper } from '../../../helpers/activated-route.helper';
 import { filter } from 'rxjs/operators';
 import { RouteDataInterface, RouteDataRegistry } from '../../../route/data';
+import { getChildren } from '../../../route/utils/route-children';
 
 @Injectable()
 export class TerraBreadcrumbsService {
@@ -42,7 +43,7 @@ export class TerraBreadcrumbsService {
                 })
             )
             .subscribe((event: NavigationEnd) => {
-                if (!isNullOrUndefined(this._initialRoute.children)) {
+                if (getChildren(this._initialRoute)) {
                     let cleanEventUrl: string = '/' + UrlHelper.getCleanUrl(event.urlAfterRedirects);
                     let shortUrl: string = cleanEventUrl.replace(this._initialPath, '');
 
@@ -116,7 +117,7 @@ export class TerraBreadcrumbsService {
         let breadcrumb: TerraBreadcrumb = this._findBreadcrumbByUrl(url);
 
         let shortUrlWithoutLeadingSlash: string = UrlHelper.removeLeadingSlash(url);
-        let route: Route = this._findRoute(shortUrlWithoutLeadingSlash, this._initialRoute.children);
+        let route: Route = this._findRoute(shortUrlWithoutLeadingSlash, getChildren(this._initialRoute));
         const routeData: RouteDataInterface =
             (route?.data as RouteDataInterface) ||
             this._routeDataRegistry?.get(shortUrlWithoutLeadingSlash, route.redirectTo && route.path === '');
@@ -177,7 +178,7 @@ export class TerraBreadcrumbsService {
     }
 
     private _handleBreadcrumbForUrl(shortUrl: string, fullUrl: string, cleanEventUrl: string): void {
-        let route: Route = this._findRoute(shortUrl, this._initialRoute.children);
+        let route: Route = this._findRoute(shortUrl, getChildren(this._initialRoute));
         this._handleBreadcrumb(route, fullUrl, cleanEventUrl, shortUrl.split('/').length - 1);
     }
 
@@ -290,8 +291,10 @@ export class TerraBreadcrumbsService {
         });
 
         while (!isNullOrUndefined(route) && urlParts.length > 0) {
-            if (!isNullOrUndefined(route.children)) {
-                routes = route.children;
+            const children: Routes = getChildren(route);
+
+            if (children) {
+                routes = children;
                 urlPart = urlParts.shift();
             } else {
                 urlPart = urlPart + '/' + urlParts.shift();
