@@ -2,7 +2,7 @@ import { Route, Routes } from '@angular/router';
 import { RouteData } from '../data/route-data-types';
 import { RouteDataInterface } from '../data/route-data.interface';
 import { normalizeRoutePath } from './route-path';
-import { getChildren } from './route-children-function';
+import { getChildren } from './route-children';
 
 /**
  * Extracts the data of all given #routes (including children) into a flat key-value object.
