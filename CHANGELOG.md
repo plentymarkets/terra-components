@@ -4,7 +4,7 @@
 
 -   **route-data** introducing new `RouteDataModule` and `RouteDataRegistry` that provide functionality to centrally manage additional data for the app's routes.
 -   **breadcrumbs** are now able to retrieve a route's data from the `RouteDataRegistry` when it is not provided with the route itself.
--   **route** implemented `getChildren()` function which returns the children of a given route whether they are eagerly or lazy loaded.
+-   **route** implemented `getChildren()` function which returns the children of a given route regardless they are eagerly or lazy loaded.
 
 # 6.0.0 (10.02.2021)
 
