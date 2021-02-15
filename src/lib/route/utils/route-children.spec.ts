@@ -1,5 +1,5 @@
 import { Route } from '@angular/router';
-import { getChildren } from './route-children-function';
+import { getChildren } from './route-children';
 
 describe('getChild-function', () => {
     it('should return the children to a route', () => {
