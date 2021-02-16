@@ -1,3 +1,9 @@
+# 6.X.X (XX.XX.XXXX) UNRELEASED
+
+### Bug Fixes
+
+-   **terra-node-tree** fixed the horizontal scrollbar.
+
 # 6.0.0 (10.02.2021)
 
 ### Breaking Changes
@@ -6,10 +12,6 @@
 -   **terra-node-tree** removed dependency to `TranslationService` from `TerraNodeTreeConfig`.
 -   **terra-nested-data-picker** removed dependency to `TranslationService` from `NestedDataTreeConfig`.
 -   **terra-category-picker** removed dependency to `TranslationService` from `CategoryTreeConfig`.
-
-### Bug Fixes
-
--   **terra-node-tree** fixed the horizontal scrollbar.
 
 # 6.0.0-beta.2 (21.01.2021)
 
