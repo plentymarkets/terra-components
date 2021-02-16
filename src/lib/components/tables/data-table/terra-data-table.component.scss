@@ -5,6 +5,27 @@
     margin: var(--terra-data-table-margin);
 }
 
+:host ::ng-deep {
+    th {
+        mat-checkbox {
+            .mat-checkbox-frame {
+                border-color: var(--color-structure-0);
+            }
+        }
+    }
+    mat-checkbox {
+        label {
+            margin-bottom: 0;
+        }
+        &.mat-checkbox.mat-checkbox-checked:not(.mat-checkbox-disabled).mat-accent .mat-checkbox-background {
+            background-color: var(--color-structure-0);
+            .mat-checkbox-checkmark-path {
+                stroke: var(--color-structure-9) !important;
+            }
+        }
+    }
+}
+
 .table-responsive {
     margin: var(--table-responsive-margin, var(--space-container));
     box-shadow: var(--table-responsive-box-shadow, var(--box-shadow));
@@ -39,6 +60,7 @@
                         padding: var(--table-head-th-padding, var(--space-md));
                         transition: padding var(--transition-lg);
                         border: none;
+                        vertical-align: middle;
 
                         &.sortable {
                             cursor: pointer;
