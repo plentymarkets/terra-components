@@ -7,6 +7,10 @@
 -   **terra-nested-data-picker** removed dependency to `TranslationService` from `NestedDataTreeConfig`.
 -   **terra-category-picker** removed dependency to `TranslationService` from `CategoryTreeConfig`.
 
+### Bug Fixes
+
+-   **terra-node-tree** fixed the horizontal scrollbar.
+
 # 6.0.0-beta.2 (21.01.2021)
 
 ### Breaking Changes
