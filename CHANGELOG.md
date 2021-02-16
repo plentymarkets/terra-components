@@ -1,3 +1,9 @@
+# 6.1.0 (XX.XX.XXXX)
+
+### Features
+
+-   **alert** `TerraAlertPanelComponent` now listens to both window events and the `AlertService`'s event emitters utilizing [rxjs](https://rxjs-dev.firebaseapp.com/) 's Observables.
+
 # 6.0.0 (10.02.2021)
 
 ### Breaking Changes
