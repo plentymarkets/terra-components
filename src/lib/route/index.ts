@@ -1,5 +1,5 @@
 // Route-Utils
-export { findMatchingRoutePath, getChildren, extractRouteDataFromRouterConfig } from './utils';
+export { findMatchingRoutePath, getChildren, extractRouteDataFromRouterConfig, normalizeRoutePath } from './utils';
 
 // Route-Data
 export {
