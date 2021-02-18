@@ -1,5 +1,5 @@
 import { Route, Routes } from '@angular/router';
-import { RouteData } from '../data/route-data-types';
+import { RouteDataInfo } from '../data/route-data-types';
 import { RouteDataInterface } from '../data/route-data.interface';
 import { normalizeRoutePath } from './route-path';
 import { getChildren } from './route-children';
@@ -10,22 +10,30 @@ import { getChildren } from './route-children';
  */
 export function extractRouteDataFromRouterConfig<T extends RouteDataInterface>(
     routes: Routes
-): RouteData<T & { redirected?: boolean }> {
-    const routeData: RouteData<T & { redirected?: boolean }> = {};
+): Array<RouteDataInfo<T>> {
+    const routeData: Array<RouteDataInfo<T>> = [];
     routes?.forEach((route: Route) => {
         if (!route?.data) {
             return; // skip routes without data
         }
         const normalizedRoutePath: string = normalizeRoutePath(route.path);
-        routeData[normalizedRoutePath] =
-            route.redirectTo && route.path === ''
-                ? Object.assign(route.data as T, { redirected: true })
-                : (route.data as T);
+
+        const routeInfo: RouteDataInfo<T> = {
+            path: normalizedRoutePath,
+            data: route.data as T,
+            ...(!!route.redirectTo && { redirectTo: route.redirectTo }) // set redirectTo only if redirectTo is set in the route
+        };
         const children: Routes = getChildren(route);
-        const nestedRouteData: RouteData<T> = children ? extractRouteDataFromRouterConfig(children) : {};
-        Object.entries(nestedRouteData).forEach(([key, value]: [string, T]) => {
-            routeData[normalizedRoutePath + '/' + key] = value;
-        });
+        const nestedRouteData: Array<RouteDataInfo<T>> = children ? extractRouteDataFromRouterConfig(children) : [];
+        routeData.push(
+            routeInfo,
+            ...nestedRouteData.map((childData: RouteDataInfo<T>) => {
+                return {
+                    ...childData,
+                    path: normalizedRoutePath + '/' + childData.path
+                };
+            })
+        );
     });
 
     return routeData;

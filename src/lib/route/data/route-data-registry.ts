@@ -1,6 +1,6 @@
 import { RouteDataInterface } from './route-data.interface';
 import { Injectable } from '@angular/core';
-import { ReadonlyRouteData, RouteData } from './route-data-types';
+import { ReadonlyRouteData, RouteDataInfo } from './route-data-types';
 import { UrlHelper } from '../../helpers';
 import { findMatchingRoutePath, normalizeRoutePath } from '../utils';
 
@@ -31,19 +31,17 @@ export class RouteDataRegistry<T extends RouteDataInterface> {
      * Each route data object will be frozen to prevent subsequent modifications.
      * If any route data needs to be modified afterwards, just re-register it!
      * @param basePath The basepath of the routes to be added. The last part of the path is stored in the key attribute in the data object
-     * @param data The data of the corresponding routes
+     * @param routeData The data of the corresponding routes
      */
-    public register(basePath: string, data: RouteData<T & { redirected?: boolean }>): void {
-        // TODO(pweyrich): we may run tests against the path.. it may not include spaces or any other special characters
-        Object.entries(data).forEach(([routePath, value]: [string, T & { redirected?: boolean }]) => {
+    public register(basePath: string, routeData: Array<RouteDataInfo<T>>): void {
+        routeData.forEach(({ path, data, redirectTo }: RouteDataInfo<T>) => {
             const normalizedBasePath: string = normalizeRoutePath(basePath);
-            const normalizedRoutePath: string = normalizeRoutePath(routePath);
+            const normalizedRoutePath: string = normalizeRoutePath(path);
             const completePath: string = normalizedBasePath
                 ? normalizedBasePath + '/' + normalizedRoutePath
                 : normalizedRoutePath;
-            const redirected: boolean = !!value.redirected;
-            delete value.redirected;
-            this.registerOne(completePath, value, redirected);
+            const redirected: boolean = redirectTo !== null && redirectTo !== undefined;
+            this.registerOne(completePath, data, redirected);
         });
     }
 

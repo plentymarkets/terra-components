@@ -1,6 +1,6 @@
 import { Inject, ModuleWithProviders, NgModule, Provider } from '@angular/core';
 import { RouteDataInterface } from './route-data.interface';
-import { ROUTE_DATA, RouteData } from './route-data-types';
+import { ROUTE_DATA, RouteDataInfo } from './route-data-types';
 import { RouteDataRegistry } from './route-data-registry';
 import { Router } from '@angular/router';
 import { extractRouteDataFromRouterConfig } from '../utils';
@@ -17,12 +17,12 @@ export class RouteDataModule<T extends RouteDataInterface = RouteDataInterface> 
     constructor(
         registry: RouteDataRegistry<T>,
         router: Router,
-        @Inject(ROUTE_DATA) routeData: TerraKeyValueInterface<RouteData<T>>
+        @Inject(ROUTE_DATA) routeData: TerraKeyValueInterface<Array<RouteDataInfo<T>>>
     ) {
         // extract the data of all routes in the router config and add it to the registry
         registry.register('', extractRouteDataFromRouterConfig(router.config));
         // add all pre-extracted route data to the registry
-        Object.entries(routeData).forEach(([basePath, data]: [string, RouteData<T>]) => {
+        Object.entries(routeData).forEach(([basePath, data]: [string, Array<RouteDataInfo<T>>]) => {
             registry.register(basePath, data);
         });
     }
@@ -35,7 +35,7 @@ export class RouteDataModule<T extends RouteDataInterface = RouteDataInterface> 
      * @returns the `RouteDataModule` with providers for `RouteDataRegistry` and `ROUTE_DATA`
      */
     public static forRoot<T extends RouteDataInterface>(
-        routeData: TerraKeyValueInterface<RouteData<T>>,
+        routeData: TerraKeyValueInterface<Array<RouteDataInfo<T>>>,
         registryProvider: Array<Provider> = [RouteDataRegistry]
     ): ModuleWithProviders<RouteDataModule<T>> {
         return {

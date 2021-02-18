@@ -13,15 +13,17 @@ export type LabelFunction = (
     queryParams: Params
 ) => string;
 
-export type RedirectedRoute = { redirected?: boolean };
-
 /** Specifies a set of mutable data related to certain routes. */
-export type RouteData<T extends RouteDataInterface> = { [path: string]: T };
+export interface RouteDataInfo<T extends RouteDataInterface> {
+    path: string;
+    data: T;
+    redirectTo?: string;
+}
 
 /** Specifies a set of immutable data related to certain routes. */
 export type ReadonlyRouteData<T extends RouteDataInterface> = { [path: string]: Readonly<T> };
 
 /** Injection token for the pre-extracted data of routes in the app. */
-export const ROUTE_DATA: InjectionToken<TerraKeyValueInterface<RouteData<RouteDataInterface>>> = new InjectionToken(
-    'route data'
-);
+export const ROUTE_DATA: InjectionToken<TerraKeyValueInterface<
+    Array<RouteDataInfo<RouteDataInterface>>
+>> = new InjectionToken('route data');

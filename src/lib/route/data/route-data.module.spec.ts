@@ -3,7 +3,7 @@ import { Route, Routes } from '@angular/router';
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { RouteDataModule } from './route-data.module';
-import { ROUTE_DATA, RouteData } from './route-data-types';
+import { ROUTE_DATA, RouteDataInfo } from './route-data-types';
 import { RouteDataInterface } from './route-data.interface';
 import { ClassProvider, ExistingProvider, Injectable, ValueProvider } from '@angular/core';
 import { TerraKeyValueInterface } from '../../models';
@@ -16,11 +16,11 @@ describe('RouteDataModule:', () => {
         { path: '2', data: {}, children: [] }
     ];
 
-    const routeData: TerraKeyValueInterface<RouteData<RouteDataInterface>> = {
-        prefix: {
-            foo: { label: 'foo' },
-            bar: { label: 'bar' }
-        }
+    const routeData: TerraKeyValueInterface<Array<RouteDataInfo<RouteDataInterface>>> = {
+        prefix: [
+            { path: 'foo', data: { label: 'foo' } },
+            { path: 'bar', data: { label: 'bar' } }
+        ]
     };
 
     beforeEach(() => {
@@ -36,7 +36,7 @@ describe('RouteDataModule:', () => {
     });
 
     it('should provide the pre-extracted route data via the `ROUTE_DATA` injection token', () => {
-        const data: TerraKeyValueInterface<RouteData<RouteDataInterface>> = TestBed.inject(ROUTE_DATA);
+        const data: TerraKeyValueInterface<Array<RouteDataInfo<RouteDataInterface>>> = TestBed.inject(ROUTE_DATA);
         expect(data).toBe(routeData);
     });
 
@@ -49,11 +49,13 @@ describe('RouteDataModule:', () => {
 
     it('should add all pre-extracted route data to the registry', () => {
         const routeDataEntries: Array<[string, RouteDataInterface]> = Object.entries(registry.getAll());
-        Object.entries(routeData).forEach(([basePath, data]: [string, RouteData<RouteDataInterface>]) => {
-            Object.entries(data).forEach(([routePath, singleRouteData]: [string, RouteDataInterface]) => {
-                expect(routeDataEntries).toContain([basePath + '/' + routePath, singleRouteData]);
-            });
-        });
+        Object.entries(routeData).forEach(
+            ([basePath, preExtractedRouteData]: [string, Array<RouteDataInfo<RouteDataInterface>>]) => {
+                preExtractedRouteData.forEach(({ path, data }: RouteDataInfo<RouteDataInterface>) => {
+                    expect(routeDataEntries).toContain([basePath + '/' + path, data]);
+                });
+            }
+        );
     });
 
     describe('with a custom provider for the `RouteDataRegistry`', () => {
