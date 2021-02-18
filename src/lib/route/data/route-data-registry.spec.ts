@@ -1,5 +1,5 @@
 import { RouteDataRegistry } from './route-data-registry';
-import { RouteDataInfo } from './route-data-types';
+import { RouteData, RouteDataInfo } from './route-data-types';
 import { RouteDataInterface } from './route-data.interface';
 
 // tslint:disable-next-line:max-function-line-count
@@ -21,7 +21,7 @@ describe('RouteDataRegistry', () => {
         });
 
         it('should return the list of redirected routes if requested', () => {
-            const routeData: Array<RouteDataInfo<RouteDataInterface>> = [
+            const routeData: RouteData<RouteDataInterface> = [
                 { path: 'foo', data: {} as RouteDataInterface, redirectTo: 'yes' },
                 { path: 'bar', data: {} as RouteDataInterface }
             ];
@@ -51,7 +51,7 @@ describe('RouteDataRegistry', () => {
 
         it(`should prepend the given basePath to each key of the given set of route data`, () => {
             const basePath: string = 'basePath';
-            const routeData: Array<RouteDataInfo<RouteDataInterface>> = [
+            const routeData: RouteData<RouteDataInterface> = [
                 { path: 'child1', data: {} as RouteDataInterface },
                 { path: 'child2', data: {} as RouteDataInterface }
             ];
@@ -84,7 +84,7 @@ describe('RouteDataRegistry', () => {
         });
 
         it(`should freeze each route data to prevent subsequent modifications`, () => {
-            const routeData: Array<RouteDataInfo<RouteDataInterface>> = [
+            const routeData: RouteData<RouteDataInterface> = [
                 { path: 'foo', data: {} as RouteDataInterface },
                 { path: 'bar', data: {} as RouteDataInterface }
             ];
@@ -95,7 +95,7 @@ describe('RouteDataRegistry', () => {
         });
 
         it('should add redirected routes to the other map', () => {
-            const routeData: Array<RouteDataInfo<RouteDataInterface>> = [
+            const routeData: RouteData<RouteDataInterface> = [
                 { path: 'foo', data: {} as RouteDataInterface, redirectTo: 'somewhere-else' },
                 { path: 'bar', data: {} as RouteDataInterface }
             ];
@@ -150,7 +150,7 @@ describe('RouteDataRegistry', () => {
         });
 
         it('should return the redirected instead of a usual route if requested', () => {
-            const routeData: Array<RouteDataInfo<RouteDataInterface>> = [
+            const routeData: RouteData<RouteDataInterface> = [
                 { path: 'foo', data: { label: 'foo' }, redirectTo: 'yes' },
                 { path: 'foo', data: {} as RouteDataInterface }
             ];

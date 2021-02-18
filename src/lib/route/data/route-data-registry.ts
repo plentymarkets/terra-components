@@ -1,6 +1,6 @@
 import { RouteDataInterface } from './route-data.interface';
 import { Injectable } from '@angular/core';
-import { ReadonlyRouteData, RouteDataInfo } from './route-data-types';
+import { ReadonlyRouteData, RouteData, RouteDataInfo } from './route-data-types';
 import { UrlHelper } from '../../helpers';
 import { findMatchingRoutePath, normalizeRoutePath } from '../utils';
 
@@ -33,7 +33,7 @@ export class RouteDataRegistry<T extends RouteDataInterface> {
      * @param basePath The basepath of the routes to be added. The last part of the path is stored in the key attribute in the data object
      * @param routeData The data of the corresponding routes
      */
-    public register(basePath: string, routeData: Array<RouteDataInfo<T>>): void {
+    public register(basePath: string, routeData: RouteData<T>): void {
         routeData.forEach(({ path, data, redirectTo }: RouteDataInfo<T>) => {
             const normalizedBasePath: string = normalizeRoutePath(basePath);
             const normalizedRoutePath: string = normalizeRoutePath(path);

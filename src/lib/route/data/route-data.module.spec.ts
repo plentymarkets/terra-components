@@ -3,7 +3,7 @@ import { Route, Routes } from '@angular/router';
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { RouteDataModule } from './route-data.module';
-import { ROUTE_DATA, RouteDataInfo } from './route-data-types';
+import { ROUTE_DATA, RouteData, RouteDataInfo } from './route-data-types';
 import { RouteDataInterface } from './route-data.interface';
 import { ClassProvider, ExistingProvider, Injectable, ValueProvider } from '@angular/core';
 import { TerraKeyValueInterface } from '../../models';
@@ -16,7 +16,7 @@ describe('RouteDataModule:', () => {
         { path: '2', data: {}, children: [] }
     ];
 
-    const routeData: TerraKeyValueInterface<Array<RouteDataInfo<RouteDataInterface>>> = {
+    const routeData: TerraKeyValueInterface<RouteData<RouteDataInterface>> = {
         prefix: [
             { path: 'foo', data: { label: 'foo' } },
             { path: 'bar', data: { label: 'bar' } }
@@ -36,7 +36,7 @@ describe('RouteDataModule:', () => {
     });
 
     it('should provide the pre-extracted route data via the `ROUTE_DATA` injection token', () => {
-        const data: TerraKeyValueInterface<Array<RouteDataInfo<RouteDataInterface>>> = TestBed.inject(ROUTE_DATA);
+        const data: TerraKeyValueInterface<RouteData<RouteDataInterface>> = TestBed.inject(ROUTE_DATA);
         expect(data).toBe(routeData);
     });
 
@@ -50,7 +50,7 @@ describe('RouteDataModule:', () => {
     it('should add all pre-extracted route data to the registry', () => {
         const routeDataEntries: Array<[string, RouteDataInterface]> = Object.entries(registry.getAll());
         Object.entries(routeData).forEach(
-            ([basePath, preExtractedRouteData]: [string, Array<RouteDataInfo<RouteDataInterface>>]) => {
+            ([basePath, preExtractedRouteData]: [string, RouteData<RouteDataInterface>]) => {
                 preExtractedRouteData.forEach(({ path, data }: RouteDataInfo<RouteDataInterface>) => {
                     expect(routeDataEntries).toContain([basePath + '/' + path, data]);
                 });
