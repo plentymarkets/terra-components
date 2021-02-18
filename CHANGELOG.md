@@ -4,6 +4,10 @@
 
 -   **alert** `TerraAlertPanelComponent` now listens to both window events and the `AlertService`'s event emitters utilizing [rxjs](https://rxjs-dev.firebaseapp.com/) 's Observables.
 
+### Bug Fixes
+
+-   **terra-node-tree** fixed the horizontal scrollbar.
+
 # 6.0.0 (10.02.2021)
 
 ### Breaking Changes
