@@ -30,7 +30,7 @@ export function extractRouteDataFromRouterConfig<T extends RouteDataInterface>(
             ...nestedRouteData.map((childData: RouteDataInfo<T>) => {
                 return {
                     ...childData,
-                    path: normalizedRoutePath + '/' + childData.path
+                    path: normalizedRoutePath + '/' + childData.path // override with the composed path
                 };
             })
         );
