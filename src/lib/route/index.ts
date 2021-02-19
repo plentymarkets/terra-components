@@ -8,5 +8,7 @@ export {
     RouteDataRegistry,
     LabelFunction,
     ReadonlyRouteData,
+    RouteData,
+    RouteDataList,
     ROUTE_DATA
 } from './data';
