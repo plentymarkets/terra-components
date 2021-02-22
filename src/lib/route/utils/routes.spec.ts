@@ -4,22 +4,24 @@ import { RouteDataInterface } from '../data/route-data.interface';
 
 describe('extractRouteDataFromRouteConfig', () => {
     it(`should return an empty object if the router's config is null, undefined or an empty array`, () => {
-        expect(extractRouteDataFromRouterConfig(null)).toEqual({});
-        expect(extractRouteDataFromRouterConfig(undefined)).toEqual({});
-        expect(extractRouteDataFromRouterConfig([])).toEqual({});
+        expect(extractRouteDataFromRouterConfig(null)).toEqual([]);
+        expect(extractRouteDataFromRouterConfig(undefined)).toEqual([]);
+        expect(extractRouteDataFromRouterConfig([])).toEqual([]);
     });
 
     it('should not throw an error if a given route is null or undefined', () => {
-        expect(extractRouteDataFromRouterConfig([null, undefined])).toEqual({});
+        expect(extractRouteDataFromRouterConfig([null, undefined])).toEqual([]);
     });
 
     it(`should NOT include a route's path and data if it has no data attached`, () => {
-        expect(extractRouteDataFromRouterConfig([{ path: 'test' }])).toEqual({});
+        expect(extractRouteDataFromRouterConfig([{ path: 'test' }])).toEqual([]);
     });
 
     it(`should include a route's path and data if it has data attached`, () => {
         const routeData: RouteDataInterface = { label: 'test' };
-        expect(extractRouteDataFromRouterConfig([{ path: 'test', data: routeData }])).toEqual({ test: routeData });
+        expect(extractRouteDataFromRouterConfig([{ path: 'test', data: routeData }])).toEqual([
+            { path: 'test', data: routeData }
+        ]);
     });
 
     it(`should include the data of a route's children`, () => {
@@ -29,10 +31,13 @@ describe('extractRouteDataFromRouteConfig', () => {
             {
                 path: 'foo',
                 data: routeData,
-                children: [{ path: 'bar', data: { label: 'bar' } }]
+                children: [{ path: 'bar', data: childRouteData }]
             }
         ];
-        expect(extractRouteDataFromRouterConfig(routerConfig)).toEqual({ foo: routeData, 'foo/bar': childRouteData });
+        expect(extractRouteDataFromRouterConfig(routerConfig)).toEqual([
+            { path: 'foo', data: routeData },
+            { path: 'foo/bar', data: childRouteData }
+        ]);
     });
 
     it(`should be able to handle both, nested and flat routes with data`, () => {
@@ -46,12 +51,12 @@ describe('extractRouteDataFromRouteConfig', () => {
             { path: 'flat/child', data: flatChildData }
         ];
 
-        expect(extractRouteDataFromRouterConfig(routerConfig)).toEqual({
-            nested: nestedData,
-            'nested/child': nestedChildData,
-            flat: flatData,
-            'flat/child': flatChildData
-        });
+        expect(extractRouteDataFromRouterConfig(routerConfig)).toEqual([
+            { path: 'nested', data: nestedData },
+            { path: 'nested/child', data: nestedChildData },
+            { path: 'flat', data: flatData },
+            { path: 'flat/child', data: flatChildData }
+        ]);
     });
 
     it(`should be able to handle route paths with a leading or a trailing slash`, () => {
@@ -69,27 +74,27 @@ describe('extractRouteDataFromRouteConfig', () => {
                 ]
             }
         ];
-        expect(extractRouteDataFromRouterConfig(routerConfig)).toEqual({
-            test: data,
-            'foo/bar': data,
-            nested: data,
-            'nested/child1': data,
-            'nested/child2': data,
-            'nested/child3': data
-        });
+        expect(extractRouteDataFromRouterConfig(routerConfig)).toEqual([
+            { path: 'test', data: data },
+            { path: 'foo/bar', data: data },
+            { path: 'nested', data: data },
+            { path: 'nested/child1', data: data },
+            { path: 'nested/child2', data: data },
+            { path: 'nested/child3', data: data }
+        ]);
     });
 
     it('should attach the redirected flag to the data of redirected routes', () => {
         const redirectedRouteData: RouteDataInterface = { label: 'redirect' };
         const usualRouteData: RouteDataInterface = { label: 'foo' };
         const routes: Routes = [
-            { path: '', redirectTo: 'foo', data: { label: 'redirect' } },
+            { path: '', redirectTo: 'foo', data: redirectedRouteData },
             { path: 'foo', data: usualRouteData }
         ];
 
-        expect(extractRouteDataFromRouterConfig(routes)).toEqual({
-            '': Object.assign(redirectedRouteData, { redirected: true }),
-            foo: usualRouteData
-        });
+        expect(extractRouteDataFromRouterConfig(routes)).toEqual([
+            { path: '', data: redirectedRouteData, redirectTo: 'foo' },
+            { path: 'foo', data: usualRouteData }
+        ]);
     });
 });

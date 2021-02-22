@@ -1,5 +1,5 @@
 import { RouteDataRegistry } from './route-data-registry';
-import { RedirectedRoute, RouteData } from './route-data-types';
+import { RouteDataList, RouteData } from './route-data-types';
 import { RouteDataInterface } from './route-data.interface';
 
 // tslint:disable-next-line:max-function-line-count
@@ -21,10 +21,10 @@ describe('RouteDataRegistry', () => {
         });
 
         it('should return the list of redirected routes if requested', () => {
-            const routeData: RouteData<RouteDataInterface> = {
-                foo: { redirected: true } as RouteDataInterface & RedirectedRoute,
-                bar: {} as RouteDataInterface
-            };
+            const routeData: RouteDataList<RouteDataInterface> = [
+                { path: 'foo', data: {} as RouteDataInterface, redirectTo: 'yes' },
+                { path: 'bar', data: {} as RouteDataInterface }
+            ];
             routeDataRegistry.register('', routeData);
 
             expect(routeDataRegistry.getAll(true)).toEqual({ foo: {} as RouteDataInterface });
@@ -35,8 +35,8 @@ describe('RouteDataRegistry', () => {
         it('should ignore the basePath if it is `null` or `undefined`', () => {
             const routeDataA: RouteDataInterface = {} as RouteDataInterface;
             const routeDataB: RouteDataInterface = {} as RouteDataInterface;
-            routeDataRegistry.register(null, { a: routeDataA });
-            routeDataRegistry.register(undefined, { b: routeDataB });
+            routeDataRegistry.register(null, [{ path: 'a', data: routeDataA }]);
+            routeDataRegistry.register(undefined, [{ path: 'b', data: routeDataB }]);
 
             expect(Array.from(routeDataRegistry['registry'].keys())).toContain('a', 'b');
         });
@@ -44,18 +44,17 @@ describe('RouteDataRegistry', () => {
         it(`should add the given set of route data to the registry`, () => {
             const routePath: string = 'my-path';
             const routeData: RouteDataInterface = { label: 'my Label' };
-            const routeDataMap: RouteData<RouteDataInterface> = { [routePath]: routeData };
-            routeDataRegistry.register('', routeDataMap);
+            routeDataRegistry.register('', [{ path: routePath, data: routeData }]);
 
             expect(routeDataRegistry.get(routePath)).toBe(routeData);
         });
 
         it(`should prepend the given basePath to each key of the given set of route data`, () => {
             const basePath: string = 'basePath';
-            const routeData: RouteData<RouteDataInterface> = {
-                child1: {} as RouteDataInterface,
-                child2: {} as RouteDataInterface
-            };
+            const routeData: RouteDataList<RouteDataInterface> = [
+                { path: 'child1', data: {} as RouteDataInterface },
+                { path: 'child2', data: {} as RouteDataInterface }
+            ];
             routeDataRegistry.register(basePath, routeData);
 
             const entries: Array<[string, RouteDataInterface]> = Array.from(routeDataRegistry['registry'].entries());
@@ -67,7 +66,7 @@ describe('RouteDataRegistry', () => {
             const basePath: string = '/' + basePathWithoutSlashes + '/';
             const routePath: string = 'any-path';
             const routeData: RouteDataInterface = { label: 'label' };
-            routeDataRegistry.register(basePath, { [routePath]: routeData });
+            routeDataRegistry.register(basePath, [{ path: routePath, data: routeData }]);
 
             const expectedPath: string = [basePathWithoutSlashes, routePath].join('/');
             expect(routeDataRegistry['registry'].has(expectedPath)).toBe(true);
@@ -78,17 +77,17 @@ describe('RouteDataRegistry', () => {
             const routePath: string = '/' + routePathWithoutSlashes + '/';
             const basePath: string = 'any-path';
             const routeData: RouteDataInterface = { label: 'label' };
-            routeDataRegistry.register(basePath, { [routePath]: routeData });
+            routeDataRegistry.register(basePath, [{ path: routePath, data: routeData }]);
 
             const expectedPath: string = [basePath, routePathWithoutSlashes].join('/');
             expect(routeDataRegistry['registry'].has(expectedPath)).toBe(true);
         });
 
         it(`should freeze each route data to prevent subsequent modifications`, () => {
-            const routeData: RouteData<RouteDataInterface> = {
-                foo: {} as RouteDataInterface,
-                bar: {} as RouteDataInterface
-            };
+            const routeData: RouteDataList<RouteDataInterface> = [
+                { path: 'foo', data: {} as RouteDataInterface },
+                { path: 'bar', data: {} as RouteDataInterface }
+            ];
             routeDataRegistry.register('', routeData);
 
             const values: Array<RouteDataInterface> = Array.from(routeDataRegistry['registry'].values());
@@ -96,10 +95,10 @@ describe('RouteDataRegistry', () => {
         });
 
         it('should add redirected routes to the other map', () => {
-            const routeData: RouteData<RouteDataInterface> = {
-                foo: { redirected: true } as RouteDataInterface & RedirectedRoute,
-                bar: {} as RouteDataInterface
-            };
+            const routeData: RouteDataList<RouteDataInterface> = [
+                { path: 'foo', data: {} as RouteDataInterface, redirectTo: 'somewhere-else' },
+                { path: 'bar', data: {} as RouteDataInterface }
+            ];
             routeDataRegistry.register('', routeData);
 
             expect(Array.from(routeDataRegistry['registry'].keys())).toEqual(['bar']);
@@ -107,10 +106,12 @@ describe('RouteDataRegistry', () => {
         });
 
         it('should NOT store the extra redirected flag in the registry', () => {
-            const routeData: RouteData<RouteDataInterface & RedirectedRoute> = {
-                foo: { label: 'foo', redirected: true }
+            const routeData: RouteData<RouteDataInterface> = {
+                path: 'foo',
+                data: { label: 'foo' },
+                redirectTo: 'somewhere'
             };
-            routeDataRegistry.register('', routeData);
+            routeDataRegistry.register('', [routeData]);
 
             expect(routeDataRegistry['redirectedRegistry'].get('foo')).toEqual({ label: 'foo' });
         });
@@ -149,10 +150,10 @@ describe('RouteDataRegistry', () => {
         });
 
         it('should return the redirected instead of a usual route if requested', () => {
-            const routeData: RouteData<RouteDataInterface & RedirectedRoute> = {
-                'foo/': { label: 'foo', redirected: true },
-                foo: {} as RouteDataInterface
-            };
+            const routeData: RouteDataList<RouteDataInterface> = [
+                { path: 'foo', data: { label: 'foo' }, redirectTo: 'yes' },
+                { path: 'foo', data: {} as RouteDataInterface }
+            ];
             routeDataRegistry.register('', routeData);
 
             expect(routeDataRegistry.get('foo', true)).toEqual({ label: 'foo' });
