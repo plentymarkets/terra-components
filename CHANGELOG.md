@@ -3,6 +3,7 @@
 ### Features
 
 -   **alert** `TerraAlertPanelComponent` now listens to both window events and the `AlertService`'s event emitters utilizing [rxjs](https://rxjs-dev.firebaseapp.com/) 's Observables.
+-   **terra-code-editor** initializes the quill editor with small font size option
 
 ### Bug Fixes
 
