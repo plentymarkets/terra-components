@@ -46,10 +46,10 @@ export class RouteDataRegistry<T extends RouteDataInterface> {
 
     /**
      * Returns the complete map of all the route paths with their corresponding data.
-     * @param redirected Whether to return the data of only redirected routes
+     * @param emptyPath Whether to only return the data of routes with an empty path
      */
-    public getAll(redirected?: boolean): ReadonlyRouteData<T> {
-        const registry: Map<string, T> = this.getRegistry(redirected);
+    public getAll(emptyPath?: boolean): ReadonlyRouteData<T> {
+        const registry: Map<string, T> = this.getRegistry(emptyPath);
         return Array.from(registry.entries()).reduce(
             (accumulator: {}, [key, value]: [string, RouteDataInterface]) => ({
                 ...accumulator,
@@ -62,14 +62,14 @@ export class RouteDataRegistry<T extends RouteDataInterface> {
     /**
      * Returns the stored data for a given #url.
      * @param url The url that the data needs to be found to
-     * @param redirected Whether to return the data of a usual or redirected route with equivalent path
+     * @param emptyPath Whether to return the data of a route with an empty path but the equivalent url
      */
-    public get(url: string, redirected?: boolean): T | undefined {
+    public get(url: string, emptyPath?: boolean): T | undefined {
         // TODO: handle trailing slashes in another way
         const cleanUrl: string = normalizeRoutePath(UrlHelper.getCleanUrl(url));
 
         // determine the relevant registry
-        const registry: Map<string, T> = this.getRegistry(redirected);
+        const registry: Map<string, T> = this.getRegistry(emptyPath);
 
         // check if the data can be found by simply looking for the route in the registry.
         // if not the url may match any route path with parameters
