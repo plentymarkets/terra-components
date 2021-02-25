@@ -7,10 +7,8 @@ import { findMatchingRoutePath, normalizeRoutePath } from '../utils';
 /** Manages extra data (such as a label) concerning routes of the app. */
 @Injectable()
 export class RouteDataRegistry<T extends RouteDataInterface> {
-    /** Registry with data of "usual" routes */
     private registry: Map<string, Readonly<T>> = new Map();
-    /** Registry with data of routes with empty paths. */
-    private emptyPathRegistry: Map<string, Readonly<T>> = new Map();
+    private redirectedRegistry: Map<string, Readonly<T>> = new Map();
 
     // TODO: What do we do with this method??
     /**
@@ -88,9 +86,9 @@ export class RouteDataRegistry<T extends RouteDataInterface> {
 
     /**
      * Determines the relevant registry.
-     * @param emptyPath Whether to return the registry for data of routes with empty paths
+     * @param redirected Whether to return the registry for data of usual or redirected routes
      */
-    private getRegistry(emptyPath: boolean): Map<string, T> {
-        return emptyPath ? this.emptyPathRegistry : this.registry;
+    private getRegistry(redirected: boolean): Map<string, T> {
+        return redirected ? this.redirectedRegistry : this.registry;
     }
 }
