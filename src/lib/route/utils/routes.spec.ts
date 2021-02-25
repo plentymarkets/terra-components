@@ -93,7 +93,7 @@ describe('extractRouteDataFromRouteConfig', () => {
         ];
 
         expect(extractRouteDataFromRouterConfig(routes)).toEqual([
-            { path: '', data: redirectedRouteData, redirectTo: 'foo' },
+            { path: '', data: redirectedRouteData, emptyPath: 'foo' },
             { path: 'foo', data: usualRouteData }
         ]);
     });

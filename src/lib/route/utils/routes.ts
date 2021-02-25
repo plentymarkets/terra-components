@@ -19,7 +19,7 @@ export function extractRouteDataFromRouterConfig<T extends RouteDataInterface>(r
         const routeInfo: RouteData<T> = {
             path: normalizedRoutePath,
             data: route.data as T,
-            ...(route.path === '' && { redirectTo: route.redirectTo }) // set redirectTo only if path is empty
+            emptyPath: route.path === '' // set redirectTo only if path is empty
         };
         const children: Routes = getChildren(route);
         const nestedRouteData: RouteDataList<T> = children ? extractRouteDataFromRouterConfig(children) : [];

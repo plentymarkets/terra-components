@@ -22,7 +22,7 @@ describe('RouteDataRegistry', () => {
 
         it('should return the list of redirected routes if requested', () => {
             const routeData: RouteDataList<RouteDataInterface> = [
-                { path: 'foo', data: {} as RouteDataInterface, redirectTo: 'yes' },
+                { path: 'foo', data: {} as RouteDataInterface, emptyPath: 'yes' },
                 { path: 'bar', data: {} as RouteDataInterface }
             ];
             routeDataRegistry.register('', routeData);
@@ -96,7 +96,7 @@ describe('RouteDataRegistry', () => {
 
         it('should add redirected routes to the other map', () => {
             const routeData: RouteDataList<RouteDataInterface> = [
-                { path: 'foo', data: {} as RouteDataInterface, redirectTo: 'somewhere-else' },
+                { path: 'foo', data: {} as RouteDataInterface, emptyPath: 'somewhere-else' },
                 { path: 'bar', data: {} as RouteDataInterface }
             ];
             routeDataRegistry.register('', routeData);
@@ -109,7 +109,7 @@ describe('RouteDataRegistry', () => {
             const routeData: RouteData<RouteDataInterface> = {
                 path: 'foo',
                 data: { label: 'foo' },
-                redirectTo: 'somewhere'
+                emptyPath: 'somewhere'
             };
             routeDataRegistry.register('', [routeData]);
 
@@ -151,7 +151,7 @@ describe('RouteDataRegistry', () => {
 
         it('should return the redirected instead of a usual route if requested', () => {
             const routeData: RouteDataList<RouteDataInterface> = [
-                { path: 'foo', data: { label: 'foo' }, redirectTo: 'yes' },
+                { path: 'foo', data: { label: 'foo' }, emptyPath: 'yes' },
                 { path: 'foo', data: {} as RouteDataInterface }
             ];
             routeDataRegistry.register('', routeData);
