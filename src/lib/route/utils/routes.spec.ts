@@ -85,15 +85,15 @@ describe('extractRouteDataFromRouteConfig', () => {
     });
 
     it('should attach the `emptyPath` flag to the data of routes with empty paths', () => {
-        const redirectedRouteData: RouteDataInterface = { label: 'redirect' };
+        const emptyPathRouteData: RouteDataInterface = { label: 'empty path route' };
         const usualRouteData: RouteDataInterface = { label: 'foo' };
         const routes: Routes = [
-            { path: '', redirectTo: 'foo', data: redirectedRouteData },
+            { path: '', redirectTo: 'foo', data: emptyPathRouteData },
             { path: 'foo', data: usualRouteData }
         ];
 
         expect(extractRouteDataFromRouterConfig(routes)).toEqual([
-            { path: '', data: redirectedRouteData, emptyPath: true },
+            { path: '', data: emptyPathRouteData, emptyPath: true },
             { path: 'foo', data: usualRouteData }
         ]);
     });
