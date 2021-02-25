@@ -102,7 +102,7 @@ describe('RouteDataRegistry', () => {
             routeDataRegistry.register('', routeData);
 
             expect(Array.from(routeDataRegistry['registry'].keys())).toEqual(['bar']);
-            expect(Array.from(routeDataRegistry['redirectedRegistry'].keys())).toEqual(['foo']);
+            expect(Array.from(routeDataRegistry['emptyPathRegistry'].keys())).toEqual(['foo']);
         });
 
         it('should NOT store the extra `emptyPath` flag in the registry', () => {
@@ -113,7 +113,7 @@ describe('RouteDataRegistry', () => {
             };
             routeDataRegistry.register('', [routeData]);
 
-            expect(routeDataRegistry['redirectedRegistry'].get('foo')).toEqual({ label: 'foo' });
+            expect(routeDataRegistry['emptyPathRegistry'].get('foo')).toEqual({ label: 'foo' });
         });
 
         it(`should not register data for an 'invalid' route path`, () => {
