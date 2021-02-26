@@ -1,7 +1,7 @@
 {
     "$schema": "../../node_modules/ng-packagr/package.schema.json",
     "name": "@plentymarkets/terra-components",
-    "version": "6.1.0-routeData.2",
+    "version": "6.1.0-routeData.3",
     "homepage": "https://github.com/plentymarkets/terra-components#readme",
     "author": "plentymarkets",
     "description": "plentymarkets terra components",
