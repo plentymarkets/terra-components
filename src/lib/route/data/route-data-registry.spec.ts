@@ -20,9 +20,9 @@ describe('RouteDataRegistry', () => {
             expect(Object.isFrozen(mapObject['test/choom/foo/bar'])).toBeTrue();
         });
 
-        it('should return the list of redirected routes if requested', () => {
+        it('should only return the data of routes with empty paths if requested', () => {
             const routeData: RouteDataList<RouteDataInterface> = [
-                { path: 'foo', data: {} as RouteDataInterface, redirectTo: 'yes' },
+                { path: 'foo', data: {} as RouteDataInterface, emptyPath: true },
                 { path: 'bar', data: {} as RouteDataInterface }
             ];
             routeDataRegistry.register('', routeData);
@@ -94,26 +94,26 @@ describe('RouteDataRegistry', () => {
             expect(values.every((value: RouteDataInterface) => Object.isFrozen(value))).toBe(true);
         });
 
-        it('should add redirected routes to the other map', () => {
+        it('should add routes with an empty path to the other map', () => {
             const routeData: RouteDataList<RouteDataInterface> = [
-                { path: 'foo', data: {} as RouteDataInterface, redirectTo: 'somewhere-else' },
+                { path: 'foo', data: {} as RouteDataInterface, emptyPath: true },
                 { path: 'bar', data: {} as RouteDataInterface }
             ];
             routeDataRegistry.register('', routeData);
 
             expect(Array.from(routeDataRegistry['registry'].keys())).toEqual(['bar']);
-            expect(Array.from(routeDataRegistry['redirectedRegistry'].keys())).toEqual(['foo']);
+            expect(Array.from(routeDataRegistry['emptyPathRegistry'].keys())).toEqual(['foo']);
         });
 
-        it('should NOT store the extra redirected flag in the registry', () => {
+        it('should NOT store the extra `emptyPath` flag in the registry', () => {
             const routeData: RouteData<RouteDataInterface> = {
                 path: 'foo',
                 data: { label: 'foo' },
-                redirectTo: 'somewhere'
+                emptyPath: true
             };
             routeDataRegistry.register('', [routeData]);
 
-            expect(routeDataRegistry['redirectedRegistry'].get('foo')).toEqual({ label: 'foo' });
+            expect(routeDataRegistry['emptyPathRegistry'].get('foo')).toEqual({ label: 'foo' });
         });
 
         it(`should not register data for an 'invalid' route path`, () => {
@@ -149,9 +149,9 @@ describe('RouteDataRegistry', () => {
             expect(routeDataRegistry.get('my/path/with/a-param')).toBe(data);
         });
 
-        it('should return the redirected instead of a usual route if requested', () => {
+        it('should return the route originally marked with `emptyPath` instead of a usual route if requested', () => {
             const routeData: RouteDataList<RouteDataInterface> = [
-                { path: 'foo', data: { label: 'foo' }, redirectTo: 'yes' },
+                { path: 'foo', data: { label: 'foo' }, emptyPath: true },
                 { path: 'foo', data: {} as RouteDataInterface }
             ];
             routeDataRegistry.register('', routeData);

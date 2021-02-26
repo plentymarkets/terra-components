@@ -17,7 +17,7 @@ export type LabelFunction = (
 export interface RouteData<T extends RouteDataInterface> {
     path: string;
     data: T;
-    redirectTo?: string;
+    emptyPath?: boolean;
 }
 
 /** Specifies a list of data related to certain routes. */
