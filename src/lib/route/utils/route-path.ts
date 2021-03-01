@@ -1,6 +1,7 @@
 /**
  * Normalizes a route's path. Specifically removes a leading and/or trailing slash.
  * @param routePath
+ * @experimental
  */
 export function normalizeRoutePath(routePath: string | null | undefined): string | null | undefined {
     const withoutLeadingSlash: string = routePath?.startsWith('/') ? routePath.substring(1) : routePath;
@@ -14,6 +15,7 @@ export function normalizeRoutePath(routePath: string | null | undefined): string
  * A routePath segment matches a url segment if they are equal or if the routePath segment is a placeholder (starts with ':').
  * @param routePathSegments
  * @param urlSegments
+ * @experimental
  */
 export function compareSegments(routePathSegments: Array<string>, urlSegments: Array<string>): boolean {
     if (!routePathSegments || !urlSegments || routePathSegments.length !== urlSegments.length) {
@@ -30,6 +32,7 @@ export function compareSegments(routePathSegments: Array<string>, urlSegments: A
  * Tries to find a matching route path to the given #url in a list of #routePaths
  * @param url
  * @param routePaths
+ * @experimental
  */
 export function findMatchingRoutePath(url: string, routePaths: Array<string>): string | undefined {
     // check if parameters are defined

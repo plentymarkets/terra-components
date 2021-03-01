@@ -4,7 +4,10 @@ import { ReadonlyRouteData, RouteDataList, RouteData } from './route-data-types'
 import { UrlHelper } from '../../helpers';
 import { findMatchingRoutePath, normalizeRoutePath } from '../utils';
 
-/** Manages extra data (such as a label) concerning routes of the app. */
+/**
+ * Manages extra data (such as a label) concerning routes of the app.
+ * @experimental
+ */
 @Injectable()
 export class RouteDataRegistry<T extends RouteDataInterface> {
     /** Registry with data of "usual" routes */
