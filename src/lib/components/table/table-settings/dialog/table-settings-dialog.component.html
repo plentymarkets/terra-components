@@ -2,7 +2,6 @@
 <mat-dialog-content class="table-settings-dialog-content">
     <mat-selection-list
         class="table-settings-mat-selection-list"
-        (selectionChange)="_columns = _sort(_columns)"
         [(ngModel)]="_selectedColumns"
         cdkDropList
         (cdkDropListDropped)="_onDrop($event)"
