@@ -8,9 +8,9 @@ import { findMatchingRoutePath, normalizeRoutePath } from '../utils';
 @Injectable()
 export class RouteDataRegistry<T extends RouteDataInterface> {
     /** Registry with data of "usual" routes */
-    private registry: Map<string, Readonly<T>> = new Map();
+    protected registry: Map<string, Readonly<T>> = new Map();
     /** Registry with data of routes with empty paths. */
-    private emptyPathRegistry: Map<string, Readonly<T>> = new Map();
+    protected emptyPathRegistry: Map<string, Readonly<T>> = new Map();
 
     // TODO: What do we do with this method??
     /**
