@@ -7,7 +7,7 @@ import { TerraTagNameInterface } from './data/terra-tag-name.interface';
 import { L10nTranslationService, L10N_LOCALE } from 'angular-l10n';
 import { MockTranslationService } from '../../../testing/mock-translation-service';
 
-fdescribe('TerraTagComponent', () => {
+describe('TerraTagComponent', () => {
     let component: TerraTagComponent;
     let fixture: ComponentFixture<TerraTagComponent>;
     let tagDiv: DebugElement;
