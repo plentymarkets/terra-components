@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { L10nLocale, L10N_LOCALE } from 'angular-l10n';
+import { L10N_LOCALE, L10nLocale } from 'angular-l10n';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatColumnDef } from '@angular/material/table';
 import { TableSettingsDialogData } from '../interface/table-settings-dialog-data.interface';
