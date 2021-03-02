@@ -4,6 +4,7 @@ export * from './helpers';
 export * from './models';
 export * from './components/editors/ck-editor/presets';
 export * from './utils';
+export * from './route';
 
 export * from './components/table';
 export * from './components/alert';
