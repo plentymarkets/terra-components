@@ -33,19 +33,5 @@ export class TableSettingsDialogComponent implements OnInit {
             event.previousIndex,
             Math.min(event.currentIndex, this._selectedColumns.length)
         );
-
-        this._columns = this._sort(this._columns);
-    }
-
-    public _sort(cols: Array<ColumnInterface>): Array<ColumnInterface> {
-        let selectedList: Array<ColumnInterface> = this._selectedColumns.map((key: string) => {
-            return cols.find((col: ColumnInterface) => col.key === key);
-        });
-
-        let unselectedList: Array<ColumnInterface> = cols.filter((col: ColumnInterface) => {
-            return !this._selectedColumns.includes(col.key);
-        });
-
-        return selectedList.concat(unselectedList);
     }
 }
