@@ -52,11 +52,9 @@ describe('TableSettingsDialogComponent', () => {
     });
 
     it('should assign the array of selected columns and columns by `OnInit` life cycle hook', () => {
-        spyOn(component, '_sort').and.returnValue([]);
         component.ngOnInit();
         expect(component._selectedColumns).toEqual(component.data.selectedColumns);
-        expect(component._sort).toHaveBeenCalledWith(component.data.columns);
-        expect(component._columns).toEqual([]);
+        expect(component._columns).toEqual(component.data.columns);
     });
 
     it('should render list options', () => {
@@ -68,9 +66,5 @@ describe('TableSettingsDialogComponent', () => {
         const options: Array<DebugElement> = fixture.debugElement.queryAll(By.css('mat-list-option'));
         const optionTexts: Array<string> = options.map((option: DebugElement) => option.nativeElement.textContent);
         component.data.columns.forEach((column: ColumnInterface) => expect(optionTexts).toContain(column.key));
-    });
-
-    it('should sort the list of column names by selection and append unselected after selected', () => {
-        expect(component._columns).toEqual([column2, column3, column1]);
     });
 });
