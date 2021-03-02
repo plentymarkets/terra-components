@@ -1,12 +1,21 @@
-# 6.1.0-routeData.0 (15.02.2021)
+# 6.1.0 (XX.XX.XXXX)
 
 ### Features
 
--   **route-data** introducing new `RouteDataModule` and `RouteDataRegistry` that provide **experimental** functionality to centrally manage additional data for the app's routes.
+-   **alert** `TerraAlertPanelComponent` now listens to both window events and the `AlertService`'s event emitters utilizing [rxjs](https://rxjs-dev.firebaseapp.com/) 's Observables.
+-   **router**
+    -   introduce new `RouteDataModule` and `RouteDataRegistry` that provide **experimental** functionality to centrally manage additional data for the app's routes.
+    -   introduce new `extractRouteDataFromRouterConfig()` utility function which extracts the data of the routes in the router's config.
+    -   introduce new `getChildren()` utility function which returns the children of a given route regardless they are eagerly or lazy loaded.
+    -   introduce new `normalizeRoutePath()` utility function which normalizes a given route path by removing any leading and trailing slash.
+    -   introduce new `findMatchingRoutePath()` utility function that finds a matching route path to a given url in a given list of route paths.
 -   **breadcrumbs**
     -   are now able to retrieve a route's data from the `RouteDataRegistry` when it is not provided with the route itself.
     -   Replaced all `route.children` with `getChildren()` method for lazy loading
--   **route** implemented `getChildren()` function which returns the children of a given route regardless they are eagerly or lazy loaded.
+
+### Bug Fixes
+
+-   **terra-node-tree** fixed the horizontal scrollbar.
 
 # 6.0.0 (10.02.2021)
 
