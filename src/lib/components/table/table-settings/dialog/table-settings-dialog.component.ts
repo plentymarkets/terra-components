@@ -24,7 +24,7 @@ export class TableSettingsDialogComponent implements OnInit {
      */
     public ngOnInit(): void {
         this._selectedColumns = this.data.selectedColumns.slice();
-        this._columns = this._sort(this.data.columns);
+        this._columns = this.data.columns;
     }
 
     public _onDrop(event: CdkDragDrop<Array<MatColumnDef>>): void {
