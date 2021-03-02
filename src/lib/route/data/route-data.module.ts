@@ -11,6 +11,7 @@ import { TerraKeyValueInterface } from '../../models';
  * Should be used in conjunction with the {@link TerraBreadcrumbsComponent}.
  *
  * @see {@link RouteDataRegistry} for further information
+ * @experimental
  */
 @NgModule()
 export class RouteDataModule<T extends RouteDataInterface = RouteDataInterface> {

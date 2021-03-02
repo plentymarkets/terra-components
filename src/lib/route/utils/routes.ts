@@ -7,6 +7,7 @@ import { getChildren } from './route-children';
 /**
  * Extracts the data of all given #routes (including children) into a flat key-value object.
  * @param routes
+ * @experimental
  */
 export function extractRouteDataFromRouterConfig<T extends RouteDataInterface>(routes: Routes): RouteDataList<T> {
     const routeData: RouteDataList<T> = [];

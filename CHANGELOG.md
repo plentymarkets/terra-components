@@ -2,7 +2,7 @@
 
 ### Features
 
--   **route-data** introducing new `RouteDataModule` and `RouteDataRegistry` that provide functionality to centrally manage additional data for the app's routes.
+-   **route-data** introducing new `RouteDataModule` and `RouteDataRegistry` that provide **experimental** functionality to centrally manage additional data for the app's routes.
 -   **breadcrumbs**
     -   are now able to retrieve a route's data from the `RouteDataRegistry` when it is not provided with the route itself.
     -   Replaced all `route.children` with `getChildren()` method for lazy loading
