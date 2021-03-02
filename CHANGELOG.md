@@ -3,6 +3,7 @@
 ### Features
 
 -   **alert** `TerraAlertPanelComponent` now listens to both window events and the `AlertService`'s event emitters utilizing [rxjs](https://rxjs-dev.firebaseapp.com/) 's Observables.
+-   **tc-table-settings** the position of the column label in the dialog is no longer changed after deselecting the checkbox.
 
 ### Bug Fixes
 
