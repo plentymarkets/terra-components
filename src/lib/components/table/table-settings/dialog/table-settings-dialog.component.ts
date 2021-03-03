@@ -28,10 +28,9 @@ export class TableSettingsDialogComponent implements OnInit {
     }
 
     public _onDrop(event: CdkDragDrop<Array<MatColumnDef>>): void {
-        moveItemInArray(
-            this._selectedColumns,
-            event.previousIndex,
-            Math.min(event.currentIndex, this._selectedColumns.length)
-        );
+        moveItemInArray(this._columns, event.previousIndex, Math.min(event.currentIndex, this._columns.length));
+        this._selectedColumns = this._columns
+            .map((column: ColumnInterface) => column.key)
+            .filter((columnKey: string) => this._selectedColumns.includes(columnKey));
     }
 }
