@@ -27,6 +27,10 @@ export class TableSettingsDialogComponent implements OnInit {
         this._columns = this.data.columns;
     }
 
+    /**
+     * @param event CDKDragDrop. An Array of MatColumnDefs
+     * @description Moves a column from one index in an array to another. Set _selectedColumns again to have a new list for drag and drop.
+     */
     public _onDrop(event: CdkDragDrop<Array<MatColumnDef>>): void {
         moveItemInArray(this._columns, event.previousIndex, Math.min(event.currentIndex, this._columns.length));
         this._selectedColumns = this._columns
