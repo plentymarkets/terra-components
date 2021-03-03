@@ -68,10 +68,15 @@ describe('TableSettingsDialogComponent', () => {
         component.data.columns.forEach((column: ColumnInterface) => expect(optionTexts).toContain(column.key));
     });
 
-    it('should create a new list of selected columns after drop event and move column1 to the right index in array', () => {
-        const dropEvent: Partial<CdkDragDrop<Array<ColumnInterface>>> = { previousIndex: 0, currentIndex: 2 };
-        component._onDrop(dropEvent as CdkDragDrop<Array<ColumnInterface>, Array<ColumnInterface>>);
+    it('should create a new list of selected columns after drop event and move a column to the right index in array', () => {
+        const dropEvent1: Partial<CdkDragDrop<Array<ColumnInterface>>> = { previousIndex: 0, currentIndex: 2 };
+        component._onDrop(dropEvent1 as CdkDragDrop<Array<ColumnInterface>>);
         expect(component._selectedColumns).toEqual([column2.key, column3.key]);
         expect(component._columns).toEqual([column2, column3, column1]);
+
+        const dropEvent2: Partial<CdkDragDrop<Array<ColumnInterface>>> = { previousIndex: 1, currentIndex: 0 };
+        component._onDrop(dropEvent2 as CdkDragDrop<Array<ColumnInterface>>);
+        expect(component._selectedColumns).toEqual([column3.key, column2.key]);
+        expect(component._columns).toEqual([column3, column2, column1]);
     });
 });
