@@ -8,7 +8,7 @@ import { TableSettingsDialogComponent } from './table-settings-dialog.component'
 import { TableSettingsDialogData } from '../interface/table-settings-dialog-data.interface';
 import { By } from '@angular/platform-browser';
 import { MockButtonComponent } from '../../../../testing/mock-button';
-import { DragDropModule } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, DragDropModule } from '@angular/cdk/drag-drop';
 import { ColumnInterface } from '../interface/column.interface';
 import { mockL10nConfig } from '../../../../testing/mock-l10n-config';
 
@@ -66,5 +66,12 @@ describe('TableSettingsDialogComponent', () => {
         const options: Array<DebugElement> = fixture.debugElement.queryAll(By.css('mat-list-option'));
         const optionTexts: Array<string> = options.map((option: DebugElement) => option.nativeElement.textContent);
         component.data.columns.forEach((column: ColumnInterface) => expect(optionTexts).toContain(column.key));
+    });
+
+    it('should create a new list of selected columns after drop event and move column1 to the right index in array', () => {
+        const dropEvent: Partial<CdkDragDrop<Array<ColumnInterface>>> = { previousIndex: 0, currentIndex: 2 };
+        component._onDrop(dropEvent as CdkDragDrop<Array<ColumnInterface>, Array<ColumnInterface>>);
+        expect(component._selectedColumns).toEqual([column2.key, column3.key]);
+        expect(component._columns).toEqual([column2, column3, column1]);
     });
 });
