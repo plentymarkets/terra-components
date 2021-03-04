@@ -6,8 +6,10 @@
 
 ### Breaking Changes
 
--   **angular** updated to angular version 10
--   **other libraries** updated to version compatible with angular v10
+-   **dependencies**
+         - updated all angular packages to version 10
+         - updated `angular-l10n` to version 10
+         - updated `ngx-quill` to version 12
 -   **base-table** is now an abstract class with \_rowList as an abstract attribute
 
 # 6.1.0 (02.03.2021)
