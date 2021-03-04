@@ -1,9 +1,24 @@
-# 6.1.0 (XX.XX.XXXX)
+# 6.2.0 (XX.XX.2021)
+
+### Features
+
+-   **tc-table-settings** the position of the column label in the dialog is no longer changed after deselecting the checkbox.
+-   **terra-code-editor** initializes the quill editor with small font size option
+
+# 6.1.0 (02.03.2021)
 
 ### Features
 
 -   **alert** `TerraAlertPanelComponent` now listens to both window events and the `AlertService`'s event emitters utilizing [rxjs](https://rxjs-dev.firebaseapp.com/) 's Observables.
--   **terra-code-editor** initializes the quill editor with small font size option
+-   **router**
+    -   introduce new `RouteDataModule` and `RouteDataRegistry` that provide **experimental** functionality to centrally manage additional data for the app's routes.
+    -   introduce new `extractRouteDataFromRouterConfig()` utility function which extracts the data of the routes in the router's config.
+    -   introduce new `getChildren()` utility function which returns the children of a given route regardless they are eagerly or lazy loaded.
+    -   introduce new `normalizeRoutePath()` utility function which normalizes a given route path by removing any leading and trailing slash.
+    -   introduce new `findMatchingRoutePath()` utility function that finds a matching route path to a given url in a given list of route paths.
+-   **breadcrumbs**
+    -   are now able to retrieve a route's data from the `RouteDataRegistry` when it is not provided with the route itself.
+    -   Replaced all `route.children` with `getChildren()` method for lazy loading
 
 ### Bug Fixes
 
