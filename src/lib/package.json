@@ -23,6 +23,9 @@
         "copy:schema": "cp schematics/ng-update/checkbox-migration/schema.json ../../dist/schematics/ng-update/checkbox-migration/schema.json",
         "postbuild": "npm run copy:collection && npm run copy:migrations && npm run copy:schema"
     },
+    "dependencies": {
+        "tslib": "^2.0.0"
+    },
     "peerDependencies": {
         "@angular/animations": "10.x",
         "@angular/cdk": "10.x",
@@ -46,7 +49,7 @@
         "moment": "^2.24.0",
         "mydatepicker": "^9.0.2",
         "ngx-bootstrap": "^6.1.0",
-        "ngx-quill": "^11.1.0",
+        "ngx-quill": "^12.0.1",
         "reflect-metadata": "^0.1.13",
         "tippy.js": "^5.1.4",
         "ts-keycode-enum": "^1.0.6"
@@ -73,9 +76,6 @@
         "dest": "../../dist"
     },
     "schematics": "./schematics/collection.json",
-    "dependencies": {
-        "tslib": "^2.0.0"
-    },
     "ng-update": {
         "migrations": "./schematics/migration.json"
     }
