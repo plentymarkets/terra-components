@@ -1,4 +1,4 @@
-# 10.0.0 Unreleased
+# 10.0.0 (unreleased)
 
 ### Features
 
