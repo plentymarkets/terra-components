@@ -38,7 +38,6 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
         MatCheckboxModule
     ],
     declarations: [...components, ...directives, ...pipes],
-    entryComponents: [...exportedComponents],
     exports: [...exportedComponents, ...exportedDirectives, ...pipes]
 })
 export class TerraComponentsModule {}

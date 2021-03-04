@@ -33,19 +33,27 @@ export class TerraFormHelper {
         }
 
         if (formField.options.minLength >= 0) {
-            validators.push(Validators.minLength(formField.options.minLength));
+            typeof formField.options.minLength === 'number'
+                ? validators.push(Validators.minLength(formField.options.minLength))
+                : console.warn('TerraForm: minLength has to be a numeric value');
         }
 
         if (formField.options.maxLength >= 0) {
-            validators.push(Validators.maxLength(formField.options.maxLength));
+            typeof formField.options.maxLength === 'number'
+                ? validators.push(Validators.maxLength(formField.options.maxLength))
+                : console.warn('TerraForm: maxLength has to be a numeric value');
         }
 
         if (!isNullOrUndefined(formField.options.minValue)) {
-            validators.push(Validators.min(formField.options.minValue));
+            typeof formField.options.minValue === 'number'
+                ? validators.push(Validators.min(formField.options.minValue))
+                : console.warn('TerraForm: minValue has to be a numeric value');
         }
 
         if (!isNullOrUndefined(formField.options.maxValue)) {
-            validators.push(Validators.max(formField.options.maxValue));
+            typeof formField.options.maxValue === 'number'
+                ? validators.push(Validators.max(formField.options.maxValue))
+                : console.warn('TerraForm: maxValue has to be a numeric value');
         }
 
         if (
