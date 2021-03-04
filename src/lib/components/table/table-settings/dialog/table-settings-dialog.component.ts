@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { L10nLocale, L10N_LOCALE } from 'angular-l10n';
+import { L10N_LOCALE, L10nLocale } from 'angular-l10n';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatColumnDef } from '@angular/material/table';
 import { TableSettingsDialogData } from '../interface/table-settings-dialog-data.interface';
@@ -24,28 +24,17 @@ export class TableSettingsDialogComponent implements OnInit {
      */
     public ngOnInit(): void {
         this._selectedColumns = this.data.selectedColumns.slice();
-        this._columns = this._sort(this.data.columns);
+        this._columns = this.data.columns;
     }
 
-    public _onDrop(event: CdkDragDrop<Array<MatColumnDef>>): void {
-        moveItemInArray(
-            this._selectedColumns,
-            event.previousIndex,
-            Math.min(event.currentIndex, this._selectedColumns.length)
-        );
-
-        this._columns = this._sort(this._columns);
-    }
-
-    public _sort(cols: Array<ColumnInterface>): Array<ColumnInterface> {
-        let selectedList: Array<ColumnInterface> = this._selectedColumns.map((key: string) => {
-            return cols.find((col: ColumnInterface) => col.key === key);
-        });
-
-        let unselectedList: Array<ColumnInterface> = cols.filter((col: ColumnInterface) => {
-            return !this._selectedColumns.includes(col.key);
-        });
-
-        return selectedList.concat(unselectedList);
+    /**
+     * @param event CDKDragDrop. An Array of MatColumnDefs
+     * @description Moves a column from one index in an array to another. Set _selectedColumns again to have a new list for drag and drop.
+     */
+    public _onDrop(event: CdkDragDrop<Array<ColumnInterface>>): void {
+        moveItemInArray(this._columns, event.previousIndex, Math.min(event.currentIndex, this._columns.length));
+        this._selectedColumns = this._columns
+            .map((column: ColumnInterface) => column.key)
+            .filter((columnKey: string) => this._selectedColumns.includes(columnKey));
     }
 }
