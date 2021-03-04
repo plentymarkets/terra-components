@@ -8,7 +8,7 @@ import { TableSettingsDialogComponent } from './table-settings-dialog.component'
 import { TableSettingsDialogData } from '../interface/table-settings-dialog-data.interface';
 import { By } from '@angular/platform-browser';
 import { MockButtonComponent } from '../../../../testing/mock-button';
-import { DragDropModule } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, DragDropModule } from '@angular/cdk/drag-drop';
 import { ColumnInterface } from '../interface/column.interface';
 import { mockL10nConfig } from '../../../../testing/mock-l10n-config';
 
@@ -52,11 +52,9 @@ describe('TableSettingsDialogComponent', () => {
     });
 
     it('should assign the array of selected columns and columns by `OnInit` life cycle hook', () => {
-        spyOn(component, '_sort').and.returnValue([]);
         component.ngOnInit();
         expect(component._selectedColumns).toEqual(component.data.selectedColumns);
-        expect(component._sort).toHaveBeenCalledWith(component.data.columns);
-        expect(component._columns).toEqual([]);
+        expect(component._columns).toEqual(component.data.columns);
     });
 
     it('should render list options', () => {
@@ -70,7 +68,15 @@ describe('TableSettingsDialogComponent', () => {
         component.data.columns.forEach((column: ColumnInterface) => expect(optionTexts).toContain(column.key));
     });
 
-    it('should sort the list of column names by selection and append unselected after selected', () => {
+    it('should create a new list of selected columns after drop event and move a column to the right index in array', () => {
+        const dropEvent1: Partial<CdkDragDrop<Array<ColumnInterface>>> = { previousIndex: 0, currentIndex: 2 };
+        component._onDrop(dropEvent1 as CdkDragDrop<Array<ColumnInterface>>);
+        expect(component._selectedColumns).toEqual([column2.key, column3.key]);
         expect(component._columns).toEqual([column2, column3, column1]);
+
+        const dropEvent2: Partial<CdkDragDrop<Array<ColumnInterface>>> = { previousIndex: 1, currentIndex: 0 };
+        component._onDrop(dropEvent2 as CdkDragDrop<Array<ColumnInterface>>);
+        expect(component._selectedColumns).toEqual([column3.key, column2.key]);
+        expect(component._columns).toEqual([column3, column2, column1]);
     });
 });

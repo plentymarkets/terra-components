@@ -1,3 +1,4 @@
+
 # 10.0.0 (04.03.2021)
 
 ### General
@@ -7,6 +8,12 @@
 ### Breaking Changes
 
 -   **dependencies** - updated all angular packages to version 10 - updated `angular-l10n` to version 10 - updated `ngx-quill` to version 12
+
+# 6.2.0 (XX.XX.2021)
+
+### Features
+
+-   **tc-table-settings** the position of the column label in the dialog is no longer changed after deselecting the checkbox.
 
 # 6.1.0 (02.03.2021)
 
