@@ -1,3 +1,15 @@
+# 10.0.0 (04.03.2021)
+
+### General
+
+-   We changed the versioning of terra components according to the used angular version.
+
+### Breaking Changes
+
+-   **angular** updated to angular version 10
+-   **other libraries** updated to version compatible with angular v10
+-   **base-table** is now an abstract class with \_rowList as an abstract attribute
+
 # 6.1.0 (02.03.2021)
 
 ### Features
