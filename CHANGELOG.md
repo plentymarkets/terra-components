@@ -1,5 +1,13 @@
 # 10.0.0 (unreleased)
 
+### General
+
+-   We changed the versioning of terra components according to the used angular version.
+
+### Breaking Changes
+
+-   **dependencies** - updated all angular packages to version 10 - updated `angular-l10n` to version 10 - updated `ngx-quill` to version 12
+
 ### Features
 
 -   **table** added another type generic for filter parameters to `TerraTableDataSource`.
