@@ -1,4 +1,62 @@
-# 6.0.0-alpha.X (DD.MM.YYYY)
+# 6.1.0 (02.03.2021)
+
+### Features
+
+-   **alert** `TerraAlertPanelComponent` now listens to both window events and the `AlertService`'s event emitters utilizing [rxjs](https://rxjs-dev.firebaseapp.com/) 's Observables.
+-   **router**
+    -   introduce new `RouteDataModule` and `RouteDataRegistry` that provide **experimental** functionality to centrally manage additional data for the app's routes.
+    -   introduce new `extractRouteDataFromRouterConfig()` utility function which extracts the data of the routes in the router's config.
+    -   introduce new `getChildren()` utility function which returns the children of a given route regardless they are eagerly or lazy loaded.
+    -   introduce new `normalizeRoutePath()` utility function which normalizes a given route path by removing any leading and trailing slash.
+    -   introduce new `findMatchingRoutePath()` utility function that finds a matching route path to a given url in a given list of route paths.
+-   **breadcrumbs**
+    -   are now able to retrieve a route's data from the `RouteDataRegistry` when it is not provided with the route itself.
+    -   Replaced all `route.children` with `getChildren()` method for lazy loading
+
+### Bug Fixes
+
+-   **terra-node-tree** fixed the horizontal scrollbar.
+
+# 6.0.0 (10.02.2021)
+
+### Breaking Changes
+
+-   **terra-data-table** using `mat-checkbox` instead of `terra-checkbox`.
+-   **terra-node-tree** removed dependency to `TranslationService` from `TerraNodeTreeConfig`.
+-   **terra-nested-data-picker** removed dependency to `TranslationService` from `NestedDataTreeConfig`.
+-   **terra-category-picker** removed dependency to `TranslationService` from `CategoryTreeConfig`.
+
+# 6.0.0-beta.2 (21.01.2021)
+
+### Breaking Changes
+
+-   **styles** removed styles for material tabs since they were not generally applicable. Falling back to the default material styles.
+
+### Bug Fixes
+
+-   **dependencies** adjusted required version of `@plentymarkets/terra-icons`.
+
+# 6.0.0-beta.0-fixes (21.01.2021)
+
+### Bug Fixes
+
+-   **terra-data-table** change detection have not been triggered properly.
+
+# 6.0.0-beta.1 (20.01.2021)
+
+### Breaking Changes
+
+-   **assets**
+    -   removed language assets `locale-de.json` and `locale-en.json` in favour of a single typescript constant (`l10nTerraComponents`) exported in our main entry point (`@plentymarkets/terra-components`). Visit the [angular-l10n docs](https://robisim74.github.io/angular-l10n/#usage) to see how to configure the library to use this typescript constant.
+    -   removed plentymarkets icon font. It has been moved to [terra-icons npm package](https://www.npmjs.com/package/@plentymarkets/terra-icons).
+-   **styles** renamed `icons.scss` to `function-groups.scss`
+
+### Bug Fixes
+
+-   **terra-form-helper** fix parsing list ranges including whitespaces.
+-   **file-browser** Assign empty object when `metadata` is null.
+
+# 6.0.0-beta.0 (11.01.2021)
 
 ### Breaking Changes
 
@@ -6,6 +64,8 @@
 -   **terra-filter** removed deprecated `terra-filter`. Use the new `tc-filter` instead.
 -   **terra-slider** removed deprecated fields `inputValue` and `inputValueChange`.
 -   **terra-checkbox** removed getter and setter for `value` and `valueChange` emitter. Use `ngModel` and `ngModelChange` instead.
+-   **alert** removed `TerraAlertComponent`. Use `AlertService` instead.
+-   **input** `TerraInputComponent`'s `validate()` method no longer shows error alerts when the input is invalid.
 
 ### Features
 

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { TerraOverlayComponent } from '../terra-overlay.component';
 import { TerraOverlayButtonInterface } from '../data/terra-overlay-button.interface';
-import { TerraAlertComponent } from '../../../alert/terra-alert.component';
+import { AlertService } from '../../../alert';
 
 @Component({
     selector: 'terra-overlay-example',
@@ -41,7 +41,7 @@ export class TerraOverlayComponentExample implements OnInit {
     @ViewChild('viewChildOverlayStatic', { static: true })
     private _viewChildOverlayStatic: TerraOverlayComponent;
 
-    private alert: TerraAlertComponent = TerraAlertComponent.getInstance();
+    constructor(private _alertService: AlertService) {}
 
     public ngOnInit(): void {
         this._primaryButtonInterface = {
@@ -94,11 +94,7 @@ export class TerraOverlayComponentExample implements OnInit {
     }
 
     private _primaryClicked(overlay: TerraOverlayComponent): void {
-        this.alert.addAlert({
-            msg: overlay.inputOverlayTitle + ' clicked',
-            type: 'success',
-            dismissOnTimeout: 0
-        });
+        this._alertService.success(overlay.inputOverlayTitle + ' clicked');
     }
 
     private _secondaryClicked(overlay: TerraOverlayComponent): void {

@@ -3,7 +3,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { L10nTranslationModule } from 'angular-l10n';
 import { TerraPagerComponent } from '../../pager/terra-pager.component';
 import { TerraButtonComponent } from '../../buttons/button/terra-button.component';
-import { TerraCheckboxComponent } from '../../forms/checkbox/terra-checkbox.component';
 import { TerraDataTableContextMenuComponent } from './context-menu/terra-data-table-context-menu.component';
 import { TerraNoResultNoticeComponent } from '../../no-result/terra-no-result-notice.component';
 import { TerraTaglistComponent } from '../../layouts/taglist/terra-taglist.component';
@@ -20,26 +19,24 @@ import { TerraLoadingSpinnerService } from '../../loading-spinner/service/terra-
 import { ChangeDetectionStrategy, Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { TableRowComponent } from './table-row/table-row.component';
-import { MockRouter } from '../../../testing/mock-router';
-import { TooltipDirective } from '../../tooltip/tooltip.directive';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { MockActivatedRoute } from '../../../testing/mock-activated-route';
-import Spy = jasmine.Spy;
 import { mockL10nConfig } from '../../../testing/mock-l10n-config';
+import { MockTooltipDirective } from '../../../testing/mock-tooltip.directive';
+import Spy = jasmine.Spy;
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 describe('TerraDataTableComponent', () => {
     let component: TerraDataTableComponent<any, any>;
     let fixture: ComponentFixture<TerraDataTableComponent<any, any>>;
-    let router: MockRouter = new MockRouter();
 
     beforeEach(() => {
         TestBed.configureTestingModule({
             declarations: [
-                TooltipDirective,
+                MockTooltipDirective,
                 TerraDataTableComponent,
                 TerraButtonComponent,
                 TerraPagerComponent,
-                TerraCheckboxComponent,
                 TerraDataTableContextMenuComponent,
                 TerraDataTableContextMenuDirective,
                 TerraNoResultNoticeComponent,
@@ -50,14 +47,16 @@ describe('TerraDataTableComponent', () => {
                 TerraSelectBoxComponent,
                 TableRowComponent
             ],
-            imports: [CommonModule, FormsModule, NoopAnimationsModule, L10nTranslationModule.forRoot(mockL10nConfig)],
+            imports: [
+                CommonModule,
+                FormsModule,
+                NoopAnimationsModule,
+                L10nTranslationModule.forRoot(mockL10nConfig),
+                MatCheckboxModule
+            ],
             providers: [
                 TerraDataTableServiceExample,
                 TerraLoadingSpinnerService,
-                {
-                    provide: Router,
-                    useValue: router
-                },
                 {
                     provide: ActivatedRoute,
                     useClass: MockActivatedRoute

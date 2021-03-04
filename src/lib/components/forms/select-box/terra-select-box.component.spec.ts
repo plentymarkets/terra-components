@@ -3,13 +3,11 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { L10nTranslationModule } from 'angular-l10n';
 import { TerraSelectBoxValueInterface } from './data/terra-select-box.interface';
-import { TooltipDirective } from '../../tooltip/tooltip.directive';
 import { By } from '@angular/platform-browser';
 import { AllowedColors } from './data/allowed.colors.enum';
 import { DebugElement } from '@angular/core';
-import { Router } from '@angular/router';
-import { MockRouter } from '../../../testing/mock-router';
 import { mockL10nConfig } from '../../../testing/mock-l10n-config';
+import { MockTooltipDirective } from '../../../testing/mock-tooltip.directive';
 
 /**
  * @author mfrank
@@ -35,18 +33,11 @@ describe('TerraSelectBoxComponent:', () => {
     };
 
     let listBoxValues: Array<TerraSelectBoxValueInterface> = [listBoxValue1, listBoxValue2];
-    const router: MockRouter = new MockRouter();
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            declarations: [TooltipDirective, TerraSelectBoxComponent],
-            imports: [FormsModule, L10nTranslationModule.forRoot(mockL10nConfig)],
-            providers: [
-                {
-                    provide: Router,
-                    useValue: router
-                }
-            ]
+            declarations: [MockTooltipDirective, TerraSelectBoxComponent],
+            imports: [FormsModule, L10nTranslationModule.forRoot(mockL10nConfig)]
         });
     });
 

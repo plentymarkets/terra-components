@@ -1,64 +1,82 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { TerraAlertComponent } from './terra-alert.component';
+import { fromEvent, merge, Observable, Subject } from 'rxjs';
+import { map, takeUntil } from 'rxjs/operators';
 import { TerraAlertInterface } from './data/terra-alert.interface';
 import { AlertService } from './alert.service';
-import { Subscription } from 'rxjs';
 
 /**
  * @author mkunze
  */
 @Component({
     selector: 'terra-alert-panel',
-    templateUrl: './terra-alert-panel.component.html',
-    styleUrls: ['./terra-alert-panel.component.scss']
+    templateUrl: './terra-alert-panel.component.html'
 })
 export class TerraAlertPanelComponent implements OnInit, OnDestroy {
-    public _alerts: Array<TerraAlertInterface>;
-    private _alert: TerraAlertComponent = TerraAlertComponent.getInstance();
+    /** List of alerts that are currently shown in the panel. */
+    public _alerts: Array<TerraAlertInterface> = [];
+    /** A stream that emits when this component is destroyed. */
+    private _destroyed: Subject<void> = new Subject();
 
-    private _addAlertSub: Subscription;
-    private _closeAlertSub: Subscription;
-
-    private readonly _addAlertListener: EventListener;
-    private readonly _closeAlertListener: EventListener;
-
-    constructor(private _service: AlertService) {
-        this._alerts = this._alert.alerts;
-
-        // init event listeners
-        this._addAlertListener = (event: CustomEvent<TerraAlertInterface>): void => this._addAlert(event.detail);
-        this._closeAlertListener = (event: CustomEvent<string>): void => this._closeAlert(event.detail);
-    }
+    constructor(private _service: AlertService) {}
 
     public ngOnInit(): void {
-        // listen to the EventEmitters of the service
-        this._addAlertSub = this._service.addAlert.subscribe((alert: TerraAlertInterface) => this._addAlert(alert));
-        this._closeAlertSub = this._service.closeAlert.subscribe((identifier: string) => this._closeAlert(identifier));
-
-        // listen to events that concern _alerts and are dispatched to the hosting window
-        window.addEventListener(this._service.addEvent, this._addAlertListener);
-        window.addEventListener(this._service.closeEvent, this._closeAlertListener);
+        this._createEventObservable(
+            this._service.addAlert,
+            this._service.addEvent
+        ).subscribe((alert: TerraAlertInterface) => this._add(alert));
+        this._createEventObservable(
+            this._service.closeAlert,
+            this._service.closeEvent
+        ).subscribe((identifier: string) => this._closeAlertByIdentifier(identifier));
     }
 
     public ngOnDestroy(): void {
-        // unsubscribe to the EventEmitters of the service
-        this._addAlertSub.unsubscribe();
-        this._closeAlertSub.unsubscribe();
-
-        // remove listeners from the hosting window
-        window.removeEventListener(this._service.addEvent, this._addAlertListener);
-        window.removeEventListener(this._service.closeEvent, this._closeAlertListener);
+        // unsubscribe to the EventEmitters of the service and the window events
+        this._destroyed.next();
+        this._destroyed.complete();
     }
 
+    /**
+     * Closes the alert at the given index.
+     * @private
+     */
     public _closeAlertByIndex(index: number): void {
-        this._alert.closeAlertByIndex(index);
+        this._alerts.splice(index, 1);
     }
 
-    private _addAlert(alert: TerraAlertInterface): void {
-        this._alert.addAlert(alert);
+    /** Closes the first alert that matches the given identifier. */
+    private _closeAlertByIdentifier(identifier: string): void {
+        const index: number = this._alerts.findIndex((alert: TerraAlertInterface) => alert.identifier === identifier);
+        this._closeAlertByIndex(index);
     }
 
-    private _closeAlert(identifier: string): void {
-        this._alert.closeAlertByIdentifier(identifier);
+    /** Closes a given alert reference. */
+    private _closeAlert(alert: TerraAlertInterface): void {
+        const index: number = this._alerts.indexOf(alert);
+        this._closeAlertByIndex(index);
+    }
+
+    /** Adds an alert and sets up a timeout to dismiss the alert automatically if needed. */
+    private _add(alert: TerraAlertInterface): void {
+        // add the alert
+        this._alerts.unshift(alert);
+
+        // alert should be dismissed automatically?
+        if (alert.dismissOnTimeout > 0) {
+            // close the alert automatically after the given period of time
+            setTimeout(() => this._closeAlert(alert), alert.dismissOnTimeout);
+        }
+    }
+
+    /**
+     * Creates an Observable that emits whenever the given observable emits or a custom window event with the given #eventName occurs.
+     * @param obs
+     * @param eventName
+     */
+    private _createEventObservable<T>(obs: Observable<T>, eventName: string): Observable<T> {
+        const windowEvent: Observable<T> = fromEvent(window, eventName).pipe(
+            map((event: CustomEvent<T>) => event.detail)
+        );
+        return merge(obs, windowEvent).pipe(takeUntil(this._destroyed));
     }
 }
