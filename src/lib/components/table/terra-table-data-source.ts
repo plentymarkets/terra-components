@@ -55,7 +55,7 @@ import { TerraPagerInterface } from '../pager/data/terra-pager.interface';
  * }
  * ```
  */
-export abstract class TerraTableDataSource<D, F = any> extends DataSource<D> {
+export abstract class TerraTableDataSource<D, F = unknown> extends DataSource<D> {
     /** Snapshot of the currently displayed data. */
     public get data(): Array<D> {
         return this._data.value;
