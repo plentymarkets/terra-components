@@ -1,3 +1,9 @@
+# 10.0.0 Unreleased
+
+### Features
+
+-   **table** - added type generic for filters
+
 # 6.2.0 (04.03.2021)
 
 ### Features
