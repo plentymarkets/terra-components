@@ -1,8 +1,9 @@
-# 6.2.0 (XX.XX.2021)
+# 6.2.0 (04.03.2021)
 
 ### Features
 
 -   **tc-table-settings** the position of the column label in the dialog is no longer changed after deselecting the checkbox.
+-   **terra-code-editor** initializes the quill editor with small font size option
 
 # 6.1.0 (02.03.2021)
 
