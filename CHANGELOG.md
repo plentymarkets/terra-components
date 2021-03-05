@@ -8,6 +8,10 @@
 
 -   **dependencies** - updated all angular packages to version 10 - updated `angular-l10n` to version 10 - updated `ngx-quill` to version 12
 
+### Features
+
+-   **table** added another type generic for filter parameters to `TerraTableDataSource`.
+
 # 6.2.0 (04.03.2021)
 
 ### Features
