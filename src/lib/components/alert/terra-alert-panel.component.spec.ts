@@ -87,4 +87,9 @@ describe('TerraAlertPanelComponent: ', () => {
 
         expect(component._closeAlertByIndex).toHaveBeenCalledWith(1);
     }));
+
+    it('should emit `_destroyed` subject when component is destroyed', () => {
+        component.ngOnDestroy();
+        expect(component['_destroyed'].observers.length).toBe(0);
+    });
 });
