@@ -38,7 +38,7 @@
         "@angular/platform-browser-dynamic": "11.x",
         "@angular/router": "11.x",
         "@plentymarkets/terra-icons": ">=1.0.4-inline.0",
-        "angular-l10n": "10.x",
+        "angular-l10n": "11.x",
         "rxjs": "6.x",
         "ckeditor4-angular": "^1.0.1",
         "bootstrap": "^4.4.1",
@@ -49,7 +49,7 @@
         "moment": "^2.24.0",
         "mydatepicker": "^9.0.2",
         "ngx-bootstrap": "^6.1.0",
-        "ngx-quill": "^12.0.1",
+        "ngx-quill": "^13.2.0",
         "reflect-metadata": "^0.1.13",
         "tippy.js": "^5.1.4",
         "ts-keycode-enum": "^1.0.6"
