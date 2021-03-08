@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { TerraSelectBoxValueInterface } from './select-box/data/terra-select-box.interface';
-import { TerraMultiCheckBoxValueInterface } from './multi-check-box/data/terra-multi-check-box-value.interface';
+import { TerraSelectBoxValueInterface } from '../select-box/data/terra-select-box.interface';
+import { TerraMultiCheckBoxValueInterface } from '../multi-check-box/data/terra-multi-check-box-value.interface';
 
 @Component({
     selector: 'terra-forms-example',

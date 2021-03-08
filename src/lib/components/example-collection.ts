@@ -41,7 +41,7 @@ import { TerraTwoColumnContainerComponentExample } from './layouts/column-contai
 import { TerraThreeColumnContainerComponentExample } from './layouts/column-container/three-columns/example/terra-three-column-container.component.example';
 import { TerraGroupFunctionComponentExample } from './tables/group-function/example/terra-group-function.component.example';
 import { TerraInfoComponentExample } from './info/example/terra-info.component.example';
-import { TerraFormsExampleComponent } from './forms/terra-forms.example';
+import { TerraFormsExampleComponent } from './forms/example/terra-forms.example';
 import { RadioGroupComponentExample } from './forms/input/radio/example/radio-group.component.example';
 import { DataTableTemplateComponentExample } from './tables/data-table/example/data-table-template.component.example';
 import { FilterComponentExample } from './filter/example/filter.component.example';
