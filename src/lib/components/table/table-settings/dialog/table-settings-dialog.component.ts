@@ -49,4 +49,9 @@ export class TableSettingsDialogComponent implements OnInit, AfterViewInit {
             .map((column: ColumnInterface) => column.key)
             .filter((columnKey: string) => this._selectedColumns.includes(columnKey));
     }
+
+    public get columnDefs(): Map<string, CdkColumnDef> {
+        // @ts-ignore
+        return this._table._columnDefsByName;
+    }
 }

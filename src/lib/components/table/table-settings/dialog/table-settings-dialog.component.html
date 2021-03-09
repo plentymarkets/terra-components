@@ -14,11 +14,15 @@
             [value]="column.key"
             checkboxPosition="before"
             cdkDrag
-            [cdkDragDisabled]="!option.selected"
+            [cdkDragDisabled]="!option.selected || (column | isSticky: columnDefs)"
         >
             <div class="d-flex align-items-center justify-content-between">
                 <span>{{ column.label }}</span>
-                <span *ngIf="option.selected" class="icon-drag_sort_handle" cdkDragHandle></span>
+                <span
+                    *ngIf="option.selected && !(column | isSticky: columnDefs)"
+                    class="icon-drag_sort_handle"
+                    cdkDragHandle
+                ></span>
             </div>
         </mat-list-option>
     </mat-selection-list>
