@@ -11,6 +11,7 @@ import { MockButtonComponent } from '../../../../testing/mock-button';
 import { CdkDragDrop, DragDropModule } from '@angular/cdk/drag-drop';
 import { ColumnInterface } from '../interface/column.interface';
 import { mockL10nConfig } from '../../../../testing/mock-l10n-config';
+import { IsStickyPipe } from '../pipes/is-sticky.pipe';
 
 const column1: ColumnInterface = { key: 'TestName1', label: 'TestName1' };
 const column2: ColumnInterface = { key: 'TestName2', label: 'TestName2' };
@@ -26,7 +27,7 @@ describe('TableSettingsDialogComponent', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            declarations: [TableSettingsDialogComponent, MockButtonComponent],
+            declarations: [TableSettingsDialogComponent, MockButtonComponent, IsStickyPipe],
             imports: [
                 MatListModule,
                 MatDialogModule,
