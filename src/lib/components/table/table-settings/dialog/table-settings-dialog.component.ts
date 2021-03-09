@@ -1,22 +1,19 @@
-import { AfterViewInit, Component, Inject, OnInit, QueryList } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { L10N_LOCALE, L10nLocale } from 'angular-l10n';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TableSettingsDialogData } from '../interface/table-settings-dialog-data.interface';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { ColumnInterface } from '../interface/column.interface';
 import { CdkColumnDef, CdkTable } from '@angular/cdk/table';
-import { Observable } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
 
 @Component({
     selector: 'tc-table-settings-dialog',
     templateUrl: './table-settings-dialog.component.html'
 })
-export class TableSettingsDialogComponent implements OnInit, AfterViewInit {
+export class TableSettingsDialogComponent implements OnInit {
     public _columns: Array<ColumnInterface>;
     public _selectedColumns: Array<string>;
     public _table: CdkTable<any>;
-    public _columnDefs$: Observable<Array<CdkColumnDef>>;
 
     constructor(
         @Inject(L10N_LOCALE) public _locale: L10nLocale,
@@ -30,13 +27,6 @@ export class TableSettingsDialogComponent implements OnInit, AfterViewInit {
         this._selectedColumns = this.data.selectedColumns.slice();
         this._columns = this.data.columns;
         this._table = this.data.table;
-    }
-
-    public ngAfterViewInit(): void {
-        this._columnDefs$ = this._table._contentColumnDefs.changes.pipe(
-            startWith(this._table._contentColumnDefs),
-            map((ql: QueryList<CdkColumnDef>) => ql.toArray())
-        );
     }
 
     /**
