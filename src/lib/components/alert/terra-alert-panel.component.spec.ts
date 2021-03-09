@@ -91,8 +91,10 @@ describe('TerraAlertPanelComponent: ', () => {
     it('should unsubscribe `_destroyed` subject when component is destroyed', () => {
         const message: string = 'test';
         service.info(message);
-        expect(component['_destroyed'].observers.length).not.toBe(0);
+        expect(service.addAlert.observers.length).not.toBe(0);
+        expect(service.closeAlert.observers.length).not.toBe(0);
         component.ngOnDestroy();
-        expect(component['_destroyed'].observers.length).toBe(0);
+        expect(service.addAlert.observers.length).toBe(0);
+        expect(service.closeAlert.observers.length).toBe(0);
     });
 });
