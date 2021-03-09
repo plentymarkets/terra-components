@@ -1,4 +1,4 @@
-# 10.0.0 (unreleased)
+# 10.0.0 (09.03.2021)
 
 ### General
 
@@ -6,7 +6,10 @@
 
 ### Breaking Changes
 
--   **dependencies** - updated all angular packages to version 10 - updated `angular-l10n` to version 10 - updated `ngx-quill` to version 12
+-   **dependencies**
+    -   updated all angular packages to version 10
+    -   updated `angular-l10n` to version 10
+    -   updated `ngx-quill` to version 12
 
 ### Features
 
