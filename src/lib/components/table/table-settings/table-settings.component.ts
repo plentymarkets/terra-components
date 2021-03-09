@@ -3,6 +3,7 @@ import { L10nLocale, L10N_LOCALE } from 'angular-l10n';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { TableSettingsDialogComponent } from './dialog/table-settings-dialog.component';
 import { ColumnInterface } from './interface/column.interface';
+import { CdkTable } from '@angular/cdk/table';
 
 /**
  * Component that displays the settings for a MatTable
@@ -14,7 +15,7 @@ import { ColumnInterface } from './interface/column.interface';
 })
 export class TableSettingsComponent {
     /**
-     * @description The table itself.
+     * @description The array on all columns contained in the table.
      */
     @Input()
     public columns: Array<ColumnInterface>;
@@ -24,6 +25,12 @@ export class TableSettingsComponent {
      */
     @Input()
     public selectedColumns: Array<string> = [];
+
+    /**
+     * @description The table itself.
+     */
+    @Input()
+    public table: CdkTable<any>;
 
     /**
      * @description Emits the array of selected columns.
@@ -43,7 +50,8 @@ export class TableSettingsComponent {
             disableClose: true,
             data: {
                 columns: this.columns || [],
-                selectedColumns: this.selectedColumns
+                selectedColumns: this.selectedColumns,
+                table: this.table
             },
             minWidth: 220
         });
