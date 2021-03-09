@@ -13,7 +13,7 @@
         "lint": "ng lint lib",
         "prettier": "prettier --check .",
         "reinstall": "npm ci",
-        "prepare-release": "npm ci && npm run build && npm run test-once && npm start"
+        "prepare-release": "npm ci && npm run build && npm run test-headless && npm start"
     },
     "prettier": "@plentymarkets/terra-prettier-config",
     "dependencies": {
