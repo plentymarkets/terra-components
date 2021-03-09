@@ -88,9 +88,22 @@ describe('TerraAlertPanelComponent: ', () => {
         expect(component._closeAlertByIndex).toHaveBeenCalledWith(1);
     }));
 
-    it('should unsubscribe `_destroyed` subject when component is destroyed', () => {
+    it('should unsubscribe EventEmitter of service when component is destroyed', () => {
         const message: string = 'test';
         service.info(message);
+        expect(service.addAlert.observers.length).not.toBe(0);
+        expect(service.closeAlert.observers.length).not.toBe(0);
+        component.ngOnDestroy();
+        expect(service.addAlert.observers.length).toBe(0);
+        expect(service.closeAlert.observers.length).toBe(0);
+    });
+
+    it('should unsubscribe EventEmitter of service when component with alert requested via a window event is destroyed', () => {
+        const event: CustomEvent<TerraAlertInterface> = new CustomEvent<TerraAlertInterface>(service.addEvent, {
+            detail: { msg: 'my message', type: AlertType.info, dismissOnTimeout: 0 }
+        });
+        window.dispatchEvent(event);
+
         expect(service.addAlert.observers.length).not.toBe(0);
         expect(service.closeAlert.observers.length).not.toBe(0);
         component.ngOnDestroy();
