@@ -1,3 +1,9 @@
+# 6.3.0 (XX.03.2021)
+
+### Features
+
+-   **tc-table-settings** sticky columns cannot be dragged.
+
 # 6.2.0 (04.03.2021)
 
 ### Features
