@@ -41,7 +41,11 @@ export class TableSettingsDialogComponent implements OnInit {
     }
 
     public get columnDefs(): Map<string, CdkColumnDef> {
-        // @ts-ignore
-        return this._table._columnDefsByName;
+        if (this._table) {
+            // @ts-ignore
+            return this._table._columnDefsByName;
+        } else {
+            console.error('The table must be passed to tc-table-settings via input!');
+        }
     }
 }
