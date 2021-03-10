@@ -10,7 +10,7 @@ import { CdkTable } from '@angular/cdk/table';
  * @experimental
  */
 @Component({
-    selector: 'tc-table-settings',
+    selector: 'tc-table-settings, terra-table-settings',
     templateUrl: './table-settings.component.html'
 })
 export class TableSettingsComponent {
