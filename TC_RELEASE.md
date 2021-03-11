@@ -9,7 +9,7 @@ Run the following commands in your IDE's console:
 
 If this command fails (the reason could be unit test..), errors should be corrected.
 
-## 2. 'gulp changeVersion --increment (major || minor || patch) --preid (e.g. beta | alpha | rc)'
+## 2. `gulp changeVersion --increment (major || minor || patch) --preid (e.g. beta | alpha | rc)`
 
 -   we use [Semver's Versioning](https://semver.org/).
 
