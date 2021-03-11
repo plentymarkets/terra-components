@@ -14,12 +14,12 @@
             [value]="column.key"
             checkboxPosition="before"
             cdkDrag
-            [cdkDragDisabled]="!option.selected || (column | isSticky: columnDefs)"
+            [cdkDragDisabled]="!option.selected || column.sticky || column.stickyEnd"
         >
             <div class="d-flex align-items-center justify-content-between">
                 <span>{{ column.label }}</span>
                 <span
-                    *ngIf="option.selected && !(column | isSticky: columnDefs)"
+                    *ngIf="option.selected && !(column.sticky || column.stickyEnd)"
                     class="icon-drag_sort_handle"
                     cdkDragHandle
                 ></span>
