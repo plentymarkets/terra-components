@@ -4,7 +4,6 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TableSettingsDialogData } from '../interface/table-settings-dialog-data.interface';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { ColumnInterface } from '../interface/column.interface';
-import { CdkColumnDef, CdkTable } from '@angular/cdk/table';
 
 @Component({
     selector: 'tc-table-settings-dialog',
@@ -13,7 +12,6 @@ import { CdkColumnDef, CdkTable } from '@angular/cdk/table';
 export class TableSettingsDialogComponent implements OnInit {
     public _columns: Array<ColumnInterface>;
     public _selectedColumns: Array<string>;
-    public _table: CdkTable<any>;
 
     constructor(
         @Inject(L10N_LOCALE) public _locale: L10nLocale,
@@ -26,7 +24,6 @@ export class TableSettingsDialogComponent implements OnInit {
     public ngOnInit(): void {
         this._selectedColumns = this.data.selectedColumns.slice();
         this._columns = this.data.columns;
-        this._table = this.data.table;
     }
 
     /**
@@ -38,14 +35,5 @@ export class TableSettingsDialogComponent implements OnInit {
         this._selectedColumns = this._columns
             .map((column: ColumnInterface) => column.key)
             .filter((columnKey: string) => this._selectedColumns.includes(columnKey));
-    }
-
-    public get columnDefs(): Map<string, CdkColumnDef> {
-        if (this._table) {
-            // @ts-ignore
-            return this._table._columnDefsByName;
-        } else {
-            console.error('The table must be passed to tc-table-settings via input!');
-        }
     }
 }

@@ -53,8 +53,7 @@ describe('TableSettingsComponent', () => {
             disableClose: true,
             data: {
                 columns: [],
-                selectedColumns: [],
-                table: component.table
+                selectedColumns: []
             },
             minWidth: 220
         });
