@@ -2,6 +2,7 @@
 
 ### Features
 
+-   **tc-table-settings** now has a second selector `<terra-table-settings>`.
 -   **tc-table-settings** sticky columns cannot be dragged.
 
 # 6.2.0 (04.03.2021)
