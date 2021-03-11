@@ -15,6 +15,12 @@
 
 -   **table** added another type generic for filter parameters to `TerraTableDataSource`.
 
+# 6.3.0 (XX.03.2021)
+
+### Features
+
+-   **tc-table-settings** now has a second selector `<terra-table-settings>`.
+
 # 6.2.0 (04.03.2021)
 
 ### Features
