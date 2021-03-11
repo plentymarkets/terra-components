@@ -1,3 +1,12 @@
+# 11.0.0 (unreleased)
+
+### Breaking Changes
+
+-   **dependencies**
+    -   update all angular packages to version 11
+    -   update `angular-l10n` to version 11
+    -   update `ngx-quill` to version 13
+
 # 10.0.0 (09.03.2021)
 
 ### General
