@@ -18,7 +18,7 @@ If this command fails (for example due to a unit test), errors should be correct
 
 -   run `gulp changeVersion --increment <increment> --preid <preid>` in your IDE's console.
 
--   `increment` : depends on the changes that has been made. Either 'major', 'minor' or 'patch' or any pre-release.
+-   `increment` : depends on the changes that have been made. Either 'major', 'minor' or 'patch' or any pre-release.
     -   example: `gulp changeVersion --increment minor`
         -   before: v6.**0**.0 ... after: v6.**1**.0
 -   `preid` : is only necessary for a **pre-release** and sets a **subversion**.
