@@ -10,7 +10,7 @@ _**Important**_: This guide only applies to plentysystems employees.
     -   the command runs the alias: `npm ci && npm run build && npm run test-headless && npm start`
 -   the command tests and builds code.
 
-If this command fails (the reason could be unit test..), errors should be corrected!
+If this command fails (for example due to a unit test), errors should be corrected!
 
 ## 2. Change the Version of Terra-Components
 
