@@ -4,7 +4,7 @@ A guide that takes you step by step to a release of the Terra-Components.
 
 _**Important**_: This guide only applies to plentysystems employees.
 
-## 1. Prepare release
+## 1. Prepare the release
 
 -   run `npm run prepare-release` in your IDE's console.
     -   the command runs the alias: `npm ci && npm run build && npm run test-headless && npm start`
