@@ -36,7 +36,7 @@ If this command fails (for example due to a unit test), errors should be correct
     -   For pushing directly to a default branch you need **admin rights**.
         -   If you don't have admin rights, create a new pull request and merge it with your changes: (**version update + changelog**).
 
-## 4. Publish the new created version
+## 4. Publish the newly created version
 
 -   run `npm publish dist` in your IDE's console.
 -   This command creates a new release on [npm](https://www.npmjs.com/package/@plentymarkets/terra-components).
