@@ -1,6 +1,6 @@
 # Release Terra-Components
 
-A guide that takes you step by step to a release of Terra-Components.
+A guide that takes you step by step to a release of the Terra-Components.
 
 _**Important**_: The guide is only valid for plentysystems employees.
 
