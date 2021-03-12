@@ -32,7 +32,7 @@ If this command fails (for example due to a unit test), errors should be correct
 
     -   example: `# 6.1.0-rc.0 (04.03.2021)`
 
--   Push your changes directly to the Branch you would like to release!
+-   Push your changes directly to the branch that you would like to release!
     -   For pushing directly to a default branch you need **admin rights**.
         -   If you haven’t, you have to create a new pull request and merge it with your changes: (**version update + changelog**).
 
