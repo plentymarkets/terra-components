@@ -22,7 +22,7 @@ If this command fails (the reason could be unit test..), errors should be correc
     -   example: `gulp changeVersion --increment minor`
         -   before: v6.**0**.0 ... after: v6.**1**.0
 -   `preid` : is only necessary for a **pre-release** and sets a **subversion**.
-    -   example: `gulp changeVersion --increment minor --preid rc`
+    -   example: `gulp changeVersion --increment preminor --preid rc`
         -   before: v6.0.0 ... after: v6.1.0-rc.0
 -   all parameters can be found in the [gulpfile](./gulpfile.js) (Line 129).
 
