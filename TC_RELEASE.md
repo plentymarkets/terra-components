@@ -45,7 +45,7 @@ If this command fails (for example due to a unit test), errors should be correct
     -   If you haven't:
         -   create an account.
         -   get an invite from a member of Terra.
-        -   log in to npm in your IDEA’s console: `npm login`
+        -   log in to npm in your IDE’s console: `npm login`.
 
 -   Please create a new release tag on [Github](https://github.com/plentymarkets/terra-components/releases).
 
