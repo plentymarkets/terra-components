@@ -12,7 +12,7 @@ _**Important**_: This guide only applies to plentysystems employees.
 
 If this command fails (for example due to a unit test), errors should be corrected.
 
-## 2. Change the Version of Terra-Components
+## 2. Change the Terra-Components version
 
 -   We use [Semver's Versioning](https://semver.org/).
 
