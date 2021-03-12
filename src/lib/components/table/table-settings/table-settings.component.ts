@@ -9,7 +9,7 @@ import { ColumnInterface } from './interface/column.interface';
  * @experimental
  */
 @Component({
-    selector: 'tc-table-settings',
+    selector: 'tc-table-settings, terra-table-settings',
     templateUrl: './table-settings.component.html'
 })
 export class TableSettingsComponent {
