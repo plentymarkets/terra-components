@@ -5,7 +5,7 @@ import { isNullOrUndefined } from 'util';
 /** @deprecated since v5.0. Please use mat-table instead. */
 @Directive()
 // tslint:disable-next-line:directive-class-suffix
-export class TerraBaseTable<T> {
+export abstract class TerraBaseTable<T> {
     /**
      * @description EventEmitter that notifies when a row has been selected via the select box. This is enabled, only if
      *     `inputHasCheckboxes` is true.
@@ -14,7 +14,7 @@ export class TerraBaseTable<T> {
     public outputRowCheckBoxChanged: EventEmitter<TerraDataTableRowInterface<T>> = new EventEmitter();
 
     public _headerCheckbox: { checked: boolean; isIndeterminate: boolean };
-    protected readonly _rowList: Array<TerraDataTableRowInterface<T>>;
+    protected abstract readonly _rowList: Array<TerraDataTableRowInterface<T>>;
 
     /**
      * @description Constructor initializing the table component

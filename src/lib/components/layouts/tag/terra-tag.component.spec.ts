@@ -169,7 +169,7 @@ describe('TerraTagComponent', () => {
             let textElement: DebugElement = tagDiv.query(By.css('span.tag-text'));
             let text: HTMLSpanElement = textElement.nativeElement;
 
-            let translationService: MockTranslationService = TestBed.get(L10nTranslationService);
+            let translationService: L10nTranslationService = TestBed.inject(L10nTranslationService);
             let tagName: TerraTagNameInterface = tagOne.names.find(
                 (tag: TerraTagNameInterface) => tag.language === translationService.getLocale().language
             );
