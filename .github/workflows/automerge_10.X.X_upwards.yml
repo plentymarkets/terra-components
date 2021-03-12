@@ -1,7 +1,7 @@
 # The name of the action
 name: Automerge 10.X.X to main
 
-# Defines when the action should be action shall be executed
+# Defines when the action shall be executed
 on:
     # Defines that it is to be executed on the push on a branch
     push:
