@@ -87,4 +87,20 @@ describe('TerraAlertPanelComponent: ', () => {
 
         expect(component._closeAlertByIndex).toHaveBeenCalledWith(1);
     }));
+
+    it('should unsubscribe EventEmitter of service when component is destroyed', () => {
+        expect(service.addAlert.observers.length).not.toBe(0);
+        expect(service.closeAlert.observers.length).not.toBe(0);
+        component.ngOnDestroy();
+        expect(service.addAlert.observers.length).toBe(0);
+        expect(service.closeAlert.observers.length).toBe(0);
+    });
+
+    it('should unsubscribe EventEmitter of service when component with alert requested via a window event is destroyed', () => {
+        const removeEventListenerSpy: jasmine.Spy = spyOn(window, 'removeEventListener');
+        component.ngOnDestroy();
+        expect(removeEventListenerSpy).toHaveBeenCalledTimes(2);
+        expect(removeEventListenerSpy.calls.argsFor(0)[0]).toBe(service.addEvent);
+        expect(removeEventListenerSpy.calls.argsFor(1)[0]).toBe(service.closeEvent);
+    });
 });
