@@ -89,8 +89,6 @@ describe('TerraAlertPanelComponent: ', () => {
     }));
 
     it('should unsubscribe EventEmitter of service when component is destroyed', () => {
-        const message: string = 'test';
-        service.info(message);
         expect(service.addAlert.observers.length).not.toBe(0);
         expect(service.closeAlert.observers.length).not.toBe(0);
         component.ngOnDestroy();
@@ -103,11 +101,8 @@ describe('TerraAlertPanelComponent: ', () => {
             detail: { msg: 'my message', type: AlertType.info, dismissOnTimeout: 0 }
         });
         window.dispatchEvent(event);
-
-        expect(service.addAlert.observers.length).not.toBe(0);
-        expect(service.closeAlert.observers.length).not.toBe(0);
+        spyOn(window, 'removeEventListener');
         component.ngOnDestroy();
-        expect(service.addAlert.observers.length).toBe(0);
-        expect(service.closeAlert.observers.length).toBe(0);
+        expect(window.removeEventListener).toHaveBeenCalledTimes(2);
     });
 });
