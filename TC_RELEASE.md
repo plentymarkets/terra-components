@@ -1,6 +1,6 @@
-# Release Terra-Components
+# Release Terra Components
 
-A guide that takes you step by step to a release of the Terra-Components.
+A guide that takes you step by step to a release of the Terra Components.
 
 _**Important**_: This guide only applies to plentysystems employees.
 
@@ -12,7 +12,7 @@ _**Important**_: This guide only applies to plentysystems employees.
 
 If this command fails (for example due to a unit test), errors should be corrected.
 
-## 2. Change the Terra-Components version
+## 2. Change the Terra Components version
 
 -   We use [Semver's Versioning](https://semver.org/).
 
