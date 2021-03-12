@@ -97,14 +97,10 @@ describe('TerraAlertPanelComponent: ', () => {
     });
 
     it('should unsubscribe EventEmitter of service when component with alert requested via a window event is destroyed', () => {
-        const event: CustomEvent<TerraAlertInterface> = new CustomEvent<TerraAlertInterface>(service.addEvent, {
-            detail: { msg: 'my message', type: AlertType.info, dismissOnTimeout: 0 }
-        });
-        window.dispatchEvent(event);
-        spyOn(window, 'removeEventListener');
+        const removeEventListenerSpy: jasmine.Spy = spyOn(window, 'removeEventListener');
         component.ngOnDestroy();
-        expect(window.removeEventListener).toHaveBeenCalledTimes(2);
-        expect((window.removeEventListener as jasmine.Spy).calls.argsFor(0)[0]).toBe(service.addEvent);
-        expect((window.removeEventListener as jasmine.Spy).calls.argsFor(1)[0]).toBe(service.closeEvent);
+        expect(removeEventListenerSpy).toHaveBeenCalledTimes(2);
+        expect(removeEventListenerSpy.calls.argsFor(0)[0]).toBe(service.addEvent);
+        expect(removeEventListenerSpy.calls.argsFor(1)[0]).toBe(service.closeEvent);
     });
 });
