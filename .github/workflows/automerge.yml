@@ -5,7 +5,7 @@ name: Automerge 10.X.X to main
 on:
     # Defines that it is to be executed on the push on a branch
     push:
-        # Defines that the branch is 10.X.X
+        # Defines that the branch is 10.X.1
         branches:
             - feature/ci/automerge_10.X.X
 
