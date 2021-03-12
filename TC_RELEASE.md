@@ -47,6 +47,6 @@ If this command fails (for example due to a unit test), errors should be correct
         -   get an invite from a member of Terra.
         -   Log in to npm in your IDEA’s console: `npm login`
 
--   Please create a new release-tag on [Github](https://github.com/plentymarkets/terra-components/releases)!
+-   Please create a new release tag on [Github](https://github.com/plentymarkets/terra-components/releases)!
 
 You're done! 🥳
