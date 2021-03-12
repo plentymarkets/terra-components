@@ -104,5 +104,7 @@ describe('TerraAlertPanelComponent: ', () => {
         spyOn(window, 'removeEventListener');
         component.ngOnDestroy();
         expect(window.removeEventListener).toHaveBeenCalledTimes(2);
+        expect((window.removeEventListener as jasmine.Spy).calls.argsFor(0)[0]).toBe(service.addEvent);
+        expect((window.removeEventListener as jasmine.Spy).calls.argsFor(1)[0]).toBe(service.closeEvent);
     });
 });
