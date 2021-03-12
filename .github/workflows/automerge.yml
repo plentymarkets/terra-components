@@ -7,7 +7,7 @@ on:
     push:
         # Defines that the branch is 10.X.X
         branches:
-            - 10.X.X
+            - feature/ci/automerge_10.X.X
 
 # Definition of the job that is to be executed
 jobs:
@@ -28,5 +28,5 @@ jobs:
               id: merge
               with:
                   github_token: ${{ github.token }}
-                  source: 10.X.X
-                  target: main
+                  source: feature/ci/automerge_10.X.X
+                  target: feature/ci/test_automerge
