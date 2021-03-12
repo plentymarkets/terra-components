@@ -2,7 +2,7 @@
 
 A guide that takes you step by step to a release of the Terra-Components.
 
-_**Important**_: The guide is only valid for plentysystems employees.
+_**Important**_: This guide only applies to plentysystems employees.
 
 ## 1. Prepare release
 
