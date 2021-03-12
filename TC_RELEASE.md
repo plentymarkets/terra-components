@@ -28,7 +28,7 @@ If this command fails (for example due to a unit test), errors should be correct
 
 ## 3. Changelog update
 
--   Update the date in the [Changelog](./CHANGELOG.md) on which to be released!
+-   Update the date in the [Changelog](./CHANGELOG.md) on which you want it to be released!
 
     -   example: `# 6.1.0-rc.0 (04.03.2021)`
 
