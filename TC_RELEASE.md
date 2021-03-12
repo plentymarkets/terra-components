@@ -18,11 +18,10 @@ If this command fails (the reason could be unit test..), errors should be correc
 
 -   run `gulp changeVersion --increment <increment> --preid <preid>` in your IDE's console.
 
--   `increment` : the version you would like to increment:
-    -   `minor` the update brings new features, therefore it’s a _minor_ release!
-        -   example: `gulp changeVersion --increment minor`
-            -   before: v6.**0**.0 ... after: v6.**1**.0
--   `preid` : is only necessary for a **prerelease** and sets a **subversion**.
+-   `increment` : depends on the changes that has been made. Either 'major', 'minor' or 'patch' or any pre-release.
+    -   example: `gulp changeVersion --increment minor`
+        -   before: v6.**0**.0 ... after: v6.**1**.0
+-   `preid` : is only necessary for a **pre-release** and sets a **subversion**.
     -   example: `gulp changeVersion --increment minor --preid rc`
         -   before: v6.0.0 ... after: v6.1.0-rc.0
 -   all parameters can be found in the [gulpfile](./gulpfile.js) (Line 129).
