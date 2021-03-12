@@ -1,0 +1,21 @@
+name: Automerge 10.X.X to main
+
+on:
+    push:
+        branches:
+            - 10.X.X
+
+jobs:
+    automerge-10XX-to-main:
+        name: Merge branch 10.X.X to main or 11.X.X later on
+        runs-on: ubuntu-latest
+        steps:
+            - name: checkout
+              uses: actions/checkout@v2
+            - name: merge
+              uses: mtanzi/action-automerge@v1
+              id: merge
+              with:
+                  github_token: ${{ github.token }}
+                  source: 10.X.X
+                  target: main
