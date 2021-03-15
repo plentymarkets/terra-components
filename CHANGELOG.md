@@ -7,6 +7,12 @@
     -   update `angular-l10n` to version 11
     -   update `ngx-quill` to version 13
 
+# 10.1.0 (15.03.2021)
+
+### Features
+
+-   **tc-table-settings** now has a second selector `<terra-table-settings>`.
+
 # 10.0.0 (09.03.2021)
 
 ### General
@@ -23,12 +29,6 @@
 ### Features
 
 -   **table** added another type generic for filter parameters to `TerraTableDataSource`.
-
-# 6.3.0 (15.03.2021)
-
-### Features
-
--   **tc-table-settings** now has a second selector `<terra-table-settings>`.
 
 # 6.2.0 (04.03.2021)
 
