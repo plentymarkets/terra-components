@@ -1,4 +1,4 @@
-# 11.0.0 (unreleased)
+# 11.0.0 (15.03.2021)
 
 ### Breaking Changes
 
