@@ -1,7 +1,7 @@
 {
     "$schema": "../../node_modules/ng-packagr/package.schema.json",
     "name": "@plentymarkets/terra-components",
-    "version": "6.2.0",
+    "version": "6.3.0",
     "homepage": "https://github.com/plentymarkets/terra-components#readme",
     "author": "plentymarkets",
     "description": "plentymarkets terra components",
