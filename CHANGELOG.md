@@ -15,7 +15,7 @@
 
 -   **table** added another type generic for filter parameters to `TerraTableDataSource`.
 
-# 6.3.0 (XX.03.2021)
+# 6.3.0 (15.03.2021)
 
 ### Features
 
