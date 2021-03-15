@@ -1,9 +1,3 @@
-# 6.3.0 (15.03.2021)
-
-### Features
-
--   **tc-table-settings** now has a second selector `<terra-table-settings>`.
-
 # 6.2.0 (04.03.2021)
 
 ### Features
