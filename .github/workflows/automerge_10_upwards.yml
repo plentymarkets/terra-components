@@ -7,7 +7,7 @@ on:
     push:
         # Defines that the branch is 10.X.X
         branches:
-            - 10.X.X
+            - feature/new_user_for_ci
 
 # Definition of the job that is to be executed
 jobs:
@@ -27,6 +27,6 @@ jobs:
               uses: mtanzi/action-automerge@v1
               id: merge
               with:
-                  github_token: ${{ github.token }}
-                  source: 10.X.X
-                  target: main
+                  github_token: ${{ secrets.MERGE_MONKEY }}
+                  source: feature/new_user_for_ci
+                  target: feature/new_user_for_ci_test
