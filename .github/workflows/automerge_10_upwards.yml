@@ -7,7 +7,7 @@ on:
     push:
         # Defines that the branch is 10.X.X
         branches:
-            - feature/new_user_for_ci
+            - 10.X.X
 
 # Definition of the job that is to be executed
 jobs:
@@ -28,7 +28,5 @@ jobs:
               id: merge
               with:
                   github_token: ${{ secrets.MERGE_MONKEY }}
-                  source: feature/new_user_for_ci
-                  target: feature/new_user_for_ci_test
-
-                  # Test out the merge monkey
+                  source: 10.X.X
+                  target: main
