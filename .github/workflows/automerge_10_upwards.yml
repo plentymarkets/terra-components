@@ -27,6 +27,6 @@ jobs:
               uses: mtanzi/action-automerge@v1
               id: merge
               with:
-                  github_token: ${{ github.token }}
+                  github_token: ${{ secrets.MERGE_MONKEY }}
                   source: 10.X.X
                   target: main
