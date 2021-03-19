@@ -15,9 +15,18 @@ jobs:
             # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
             - uses: actions/checkout@v2
 
+            - name: Cache node modules
+              uses: actions/cache@v2
+              env:
+                  cache-name: cache-node-modules
+              with:
+                  # npm cache files are stored in `~/.npm` on Linux/macOS
+                  path: ./node_modules
+                  key: ${{ hashFiles('**/package-lock.json') }}
+
             # Clean install of the node dependencies
-            - name: Clean install
-              run: npm ci
+            - name: install dependencies
+              run: npm i
 
             - name: Check coding rules
               run: |
