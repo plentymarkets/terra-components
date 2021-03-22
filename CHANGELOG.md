@@ -1,3 +1,9 @@
+# 11.1.0 (XX.XX.2021)
+
+### Features
+
+-   **tc-table-settings** now has an animation when dragging and dropping.
+
 # 11.0.0 (15.03.2021)
 
 ### Breaking Changes
