@@ -4,6 +4,7 @@
 
 -   **dependencies**
     -   update all angular packages to the latest version of v11.
+-   **tc-table-settings** now has an animation when dragging and dropping.
 
 # 11.0.0 (15.03.2021)
 
