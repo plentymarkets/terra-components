@@ -1,3 +1,10 @@
+# 11.1.0 (XX.XX.2021)
+
+### Features
+
+-   **dependencies**
+    -   update all angular packages to the latest version of v11.
+
 # 11.0.0 (15.03.2021)
 
 ### Breaking Changes
