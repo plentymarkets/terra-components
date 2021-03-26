@@ -18,12 +18,10 @@ module.exports = function (config) {
             clearContext: false // leave Jasmine Spec Runner output visible in browser
         },
         coverageReporter: {
-            dir: require('path').join(__dirname, './coverage'),
+            dir: 'coverage',
+            subdir: '.',
             reporters: [{ type: 'html' }, { type: 'json-summary' }],
-            fixWebpackSourcePaths: true,
-            thresholds: {
-                emitWarning: false, // set to `true` to not fail the test command when thresholds are not met
-                // thresholds for all files
+            check: {
                 global: {
                     statements: 48.7,
                     lines: 0,
