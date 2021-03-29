@@ -64,6 +64,7 @@ import { TerraBaseEditorComponent } from './editors/base-editor/terra-base-edito
 import { TerraFormContainerWrapperComponent } from './forms/form/form-container/container-wrapper/terra-form-container-wrapper.component';
 import { TableSettingsComponent } from './table/table-settings/table-settings.component';
 import { TableSettingsDialogComponent } from './table/table-settings/dialog/table-settings-dialog.component';
+import { WrapMatSelectComponent } from "./forms/form/mat-wrapper-components/mat-select/wrap-mat-select.component";
 
 export const exportedComponents: Array<Type<any>> = [
     TerraAlertPanelComponent,
@@ -112,6 +113,7 @@ export const exportedComponents: Array<Type<any>> = [
     TerraCategoryPickerComponent,
     TerraTwoColumnsContainerComponent,
     TerraFormComponent,
+    WrapMatSelectComponent,
     TerraFormContainerComponent,
     TerraFormEntryComponent,
     TerraFormEntryListComponent,

@@ -86,11 +86,6 @@
         "yargs": "^15.1.0",
         "zone.js": "~0.10.2"
     },
-    "husky": {
-        "hooks": {
-            "pre-commit": "lint-staged"
-        }
-    },
     "lint-staged": {
         "**/*": "prettier --write --ignore-unknown"
     }
