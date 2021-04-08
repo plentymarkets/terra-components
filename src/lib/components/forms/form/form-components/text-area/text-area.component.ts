@@ -2,6 +2,7 @@ import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { TerraPlacementEnum } from '../../../../../helpers';
 import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { noop } from 'rxjs';
+import { TextAreaInterface } from './text-area.interface';
 
 @Component({
     selector: 'terra-text-area',
@@ -15,54 +16,54 @@ import { noop } from 'rxjs';
         }
     ]
 })
-export class TextAreaComponent implements OnChanges, ControlValueAccessor {
+export class TextAreaComponent implements OnChanges, ControlValueAccessor, TextAreaInterface {
     /**
      * @description If true, the textarea is not resizeable. Default false.
      */
-    @Input()
-    public inputHasFixedHeight: boolean = false;
+    @Input('inputHasFixedHeight')
+    public hasFixedHeight: boolean = false;
 
     /**
      * @description Sets the initial number of rows. Minimum is four.
      */
-    @Input()
-    public inputMaxRows: number;
+    @Input('inputMaxRows')
+    public maxRows: number;
 
     /**
      * @description Set the label.
      */
-    @Input()
-    public inputName: string;
+    @Input('inputName')
+    public name: string;
 
     /**
      * @description If true, a * indicates that the value is required. Default false.
      */
-    @Input()
-    public inputIsRequired: boolean;
+    @Input('inputIsRequired')
+    public isRequired: boolean;
 
     /**
      * @description Set the tooltip.
      */
-    @Input()
-    public inputTooltipText: string;
+    @Input('inputTooltipText')
+    public tooltipText: string;
 
     /**
      * @description If true, the button will be disabled. Default false.
      */
-    @Input()
-    public inputIsDisabled: boolean;
+    @Input('inputIsDisabled')
+    public isDisabled: boolean;
 
     /**
      * @description Set the tooltip placement (bottom, top, left, right). Default top.
      */
-    @Input()
-    public inputTooltipPlacement: TerraPlacementEnum;
+    @Input('inputTooltipPlacement')
+    public tooltipPlacement: TerraPlacementEnum;
 
     /**
      * @description Set a maximum number of characters allowed.
      */
-    @Input()
-    public inputMaxLength: number;
+    @Input('inputMaxLength')
+    public maxLength: number;
 
     // The internal data model
     public _innerValue: any;
@@ -75,26 +76,18 @@ export class TextAreaComponent implements OnChanges, ControlValueAccessor {
     private _onChangeCallback: (_: any) => void = noop;
 
     constructor() {
-        this.inputMaxRows = this._defaultMaxRows;
+        this.maxRows = this._defaultMaxRows;
         this.isValid = true;
     }
 
     public ngOnChanges(changes: SimpleChanges): void {
-        if (changes.hasOwnProperty('inputMaxRows') && changes?.inputMaxRows) {
-            this.inputMaxRows = Math.max(this._defaultMaxRows, changes.inputMaxRows.currentValue);
+        if (changes.hasOwnProperty('maxRows') && changes?.inputMaxRows) {
+            this.maxRows = Math.max(this._defaultMaxRows, changes.inputMaxRows.currentValue);
         }
 
-        if (changes.hasOwnProperty('inputHasFixedHeight')) {
-            this.inputHasFixedHeight = !!changes.inputHasFixedHeight.currentValue;
+        if (changes.hasOwnProperty('hasFixedHeight')) {
+            this.hasFixedHeight = !!changes.inputHasFixedHeight.currentValue;
         }
-    }
-
-    public get isDisabled(): boolean {
-        return this.inputIsDisabled;
-    }
-
-    public set isDisabled(value: boolean) {
-        this.inputIsDisabled = value;
     }
 
     // get accessor
