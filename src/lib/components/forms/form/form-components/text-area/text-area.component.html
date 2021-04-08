@@ -1,0 +1,26 @@
+<div
+    class="input-wrapper textarea-wrapper"
+    [placement]="inputTooltipPlacement"
+    [tcTooltip]="inputTooltipText"
+    [ngClass]="{ error: !isValid, disabled: inputIsDisabled }"
+>
+    <mat-form-field>
+        <mat-label tabindex="-1">
+            {{ inputName }}
+            <span *ngIf="inputIsRequired">*</span>
+        </mat-label>
+        <textarea
+            matInput
+            [(ngModel)]="value"
+            name="{{ inputName }}"
+            [maxlength]="inputMaxLength"
+            [rows]="inputMaxRows"
+            [required]="inputIsRequired"
+            autocomplete="off"
+            [disabled]="inputIsDisabled"
+            placeholder="{{ inputName }}"
+            [class.resizable]="!inputHasFixedHeight"
+        >
+        </textarea>
+    </mat-form-field>
+</div>
