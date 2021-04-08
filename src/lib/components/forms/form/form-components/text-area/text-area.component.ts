@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { TerraPlacementEnum } from '../../../../../helpers';
-import { FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { noop } from 'rxjs';
 
 @Component({
@@ -15,7 +15,7 @@ import { noop } from 'rxjs';
         }
     ]
 })
-export class TextAreaComponent implements OnChanges {
+export class TextAreaComponent implements OnChanges, ControlValueAccessor {
     /**
      * @description If true, the textarea is not resizeable. Default false.
      */
@@ -71,6 +71,7 @@ export class TextAreaComponent implements OnChanges {
 
     private readonly _defaultMaxRows: number = 4;
 
+    private _onTouchedCallback: (_: any) => void = noop;
     private _onChangeCallback: (_: any) => void = noop;
 
     constructor() {
@@ -124,5 +125,13 @@ export class TextAreaComponent implements OnChanges {
                 this.isValid = false;
             }
         }
+    }
+
+    public registerOnChange(fn: (_: any) => void): void {
+        this._onChangeCallback = fn;
+    }
+
+    public registerOnTouched(fn: () => void): void {
+        this._onTouchedCallback = fn;
     }
 }
