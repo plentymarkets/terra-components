@@ -77,11 +77,11 @@ export class TextAreaComponent implements OnChanges, ControlValueAccessor, TextA
 
     public ngOnChanges(changes: SimpleChanges): void {
         if (changes.hasOwnProperty('maxRows') && changes?.maxRows) {
-            this.maxRows = Math.max(this._defaultMaxRows, changes.inputMaxRows.currentValue);
+            this.maxRows = Math.max(this._defaultMaxRows, changes.maxRows.currentValue);
         }
 
         if (changes.hasOwnProperty('hasFixedHeight')) {
-            this.hasFixedHeight = !!changes.inputHasFixedHeight.currentValue;
+            this.hasFixedHeight = !!changes.hasFixedHeight.currentValue;
         }
     }
 
