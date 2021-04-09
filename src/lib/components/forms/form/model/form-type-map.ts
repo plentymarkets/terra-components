@@ -49,7 +49,7 @@ export class FormTypeMap {
     };
     public readonly textarea: TerraFormTypeInterface = {
         inputMap: {
-            required: 'inputIsRequired'
+            required: 'isRequired'
         },
         component: TextAreaComponent
     };
