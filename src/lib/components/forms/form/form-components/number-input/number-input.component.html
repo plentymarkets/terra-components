@@ -1,31 +1,31 @@
 <div
-        class="input-wrapper"
-        [placement]="tooltipPlacement"
-        [tcTooltip]="tooltipText"
-        [ngClass]="{ error: !isValid, disabled: isDisabled }"
+    class="input-wrapper"
+    [placement]="tooltipPlacement"
+    [tcTooltip]="tooltipText"
+    [ngClass]="{ error: !isValid, disabled: isDisabled }"
 >
     <input
-            id="{{ _id }}"
-            type="number"
-            [(ngModel)]="value"
-            name="{{ name }}"
-            (blur)="onBlur()"
-            autocomplete="off"
-            [disabled]="isDisabled"
-            pattern="{{ regex }}"
-            step="1"
-            min="{{ minValue }}"
-            max="{{ maxValue }}"
-            placeholder="{{ isRequired ? name + '*' : name }}"
-            [ngClass]="{ isEmpty: !_innerValue && _innerValue !== 0 }"
+        id="{{ _id }}"
+        type="number"
+        [(ngModel)]="value"
+        name="{{ name }}"
+        (blur)="onBlur()"
+        autocomplete="off"
+        [disabled]="isDisabled"
+        pattern="{{ regex }}"
+        step="1"
+        min="{{ minValue }}"
+        max="{{ maxValue }}"
+        placeholder="{{ isRequired ? name + '*' : name }}"
+        [ngClass]="{ isEmpty: !_innerValue && _innerValue !== 0 }"
     />
     <label
-            [tcTooltip]="name"
-            [onlyEllipsisTooltip]="true"
-            tabindex="-1"
-            *ngIf="_innerValue || _innerValue === 0"
-            htmlFor="{{ _id }}"
-    >{{ name }}
+        [tcTooltip]="name"
+        [onlyEllipsisTooltip]="true"
+        tabindex="-1"
+        *ngIf="_innerValue || _innerValue === 0"
+        htmlFor="{{ _id }}"
+        >{{ name }}
         <span *ngIf="isRequired">*</span>
     </label>
 </div>
