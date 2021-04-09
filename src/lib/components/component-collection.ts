@@ -64,6 +64,7 @@ import { TerraBaseEditorComponent } from './editors/base-editor/terra-base-edito
 import { TerraFormContainerWrapperComponent } from './forms/form/form-container/container-wrapper/terra-form-container-wrapper.component';
 import { TableSettingsComponent } from './table/table-settings/table-settings.component';
 import { TableSettingsDialogComponent } from './table/table-settings/dialog/table-settings-dialog.component';
+import { NumberInputComponent } from './forms/form/form-components/number-input/number-input.component';
 
 export const exportedComponents: Array<Type<any>> = [
     TerraAlertPanelComponent,
@@ -134,5 +135,6 @@ export const components: Array<Type<any>> = [
     TerraImagePreviewComponent,
     TerraBaseEditorComponent,
     TableSettingsDialogComponent,
-    TerraFormContainerWrapperComponent
+    TerraFormContainerWrapperComponent,
+    NumberInputComponent
 ];
