@@ -3,7 +3,7 @@
 ### Features
 
 -   **terra-form**
-    -   **text-area** removed deprecated `terra-text-area-input`. Use `mat-input` instead.
+    -   **text-area** replaced deprecated `terra-text-area-input` with a `mat-input` variant.
 
 # 11.1.0 (23.03.2021)
 
