@@ -39,7 +39,7 @@ export class TextAreaComponent implements OnChanges, ControlValueAccessor, TextA
      * @description If true, a * indicates that the value is required. Default false.
      */
     @Input('inputIsRequired')
-    public isRequired: boolean;
+    public isRequired: boolean = false;
 
     /**
      * @description Set the tooltip.
