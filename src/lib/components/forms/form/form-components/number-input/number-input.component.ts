@@ -7,6 +7,9 @@ import {
     NG_VALUE_ACCESSOR
 } from '@angular/forms';
 import { NumberInputInterface } from './number-input.interface';
+import { noop } from "rxjs";
+
+let nextId: number = 0;
 
 @Component({
     selector:    'number-input',
@@ -36,12 +39,15 @@ export class NumberInputComponent implements ControlValueAccessor, NumberInputIn
     @Input()
     public maxLength:number;
 
+    /** @description Set the maximum number value allowed. */
     @Input()
     public maxValue:number;
 
+    /**  @description Set a minimum number of characters allowed. */
     @Input()
     public minLength:number;
 
+    /** @description Set the minimum number value allowed. */
     @Input()
     public minValue:number;
 
@@ -54,25 +60,61 @@ export class NumberInputComponent implements ControlValueAccessor, NumberInputIn
     @Input()
     public tooltipText:string;
 
+    public isValid: boolean;
+    public regex: string;
+
+    // The internal data model
+    public _innerValue: any;
+
+    /** @description a unique string identifier for the specific input instance. */
+    public _id: string;
+
+    // Placeholders for the callbacks which are later provided
+    // by the Control Value Accessor
+    private _onTouchedCallback: () => void = noop;
+    private _onChangeCallback: (_: any) => void = noop;
+
     constructor(private _inputRegex:string)
     {
         this.regex = _inputRegex;
         this.isValid = true;
-        this.inputIsSmall = false;
-    }
 
+        // generate the id of the input instance
+        this._id = `number-input_#${nextId++}`;
+    }
 
     public registerOnChange(fn:any):void
     {
+        this._onChangeCallback = fn;
     }
 
     public registerOnTouched(fn:any):void
     {
+        this._onTouchedCallback = fn;
     }
 
-    public writeValue(obj:any):void
+    public writeValue(value:any):void
     {
+        if (value !== this._innerValue) {
+            this._innerValue = value;
+        }
     }
 
+    // get accessor
+    public get value(): any {
+        return this._innerValue;
+    }
 
+    // set accessor including call the onchange callback
+    public set value(v: any) {
+        if (v !== this._innerValue) {
+            this._innerValue = v;
+            this._onChangeCallback(this._innerValue);
+        }
+    }
+
+    // Set touched on blur
+    public onBlur(): void {
+        this._onTouchedCallback();
+    }
 }
