@@ -95,7 +95,7 @@ export class TextAreaComponent implements OnChanges, ControlValueAccessor, TextA
         this._onChangeCallback = fn;
     }
 
-    /** RRegisters a callback function that is called by the forms API on initialization to update the form model on blur.*/
+    /** Registers a callback function that is called by the forms API on initialization to update the form model on blur.*/
     public registerOnTouched(fn: () => void): void {
         this._onTouchedCallback = fn;
     }
