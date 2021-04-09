@@ -84,12 +84,12 @@ export class TextAreaComponent implements OnChanges, ControlValueAccessor, TextA
     }
 
     /** Sets the “value” property on the input element.*/
-    public writeValue(value: any): void {
+    public writeValue(value: string): void {
         this.valueAccessor.writeValue(value);
     }
 
     /** Registers a function called when the control value changes.*/
-    public registerOnChange(fn: (_: any) => void): void {
+    public registerOnChange(fn: (_: {}) => void): void {
         this.valueAccessor.registerOnChange(fn);
     }
 
