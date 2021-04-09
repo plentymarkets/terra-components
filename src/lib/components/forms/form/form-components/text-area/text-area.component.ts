@@ -19,57 +19,49 @@ export class TextAreaComponent implements OnChanges, ControlValueAccessor, TextA
     /**
      * @description If true, the textarea is not resizeable. Default false.
      */
-    // tslint:disable-next-line:no-input-rename
-    @Input('inputHasFixedHeight')
+    @Input()
     public hasFixedHeight: boolean = false;
 
     /**
      * @description Sets the initial number of rows. Minimum is four.
      */
-    // tslint:disable-next-line:no-input-rename
-    @Input('inputMaxRows')
+    @Input()
     public maxRows: number;
 
     /**
      * @description Set the label.
      */
-    // tslint:disable-next-line:no-input-rename
-    @Input('inputName')
+    @Input()
     public name: string;
 
     /**
      * @description If true, a * indicates that the value is required. Default false.
      */
-    // tslint:disable-next-line:no-input-rename
-    @Input('inputIsRequired')
+    @Input()
     public isRequired: boolean = false;
 
     /**
      * @description Set the tooltip.
      */
-    // tslint:disable-next-line:no-input-rename
-    @Input('inputTooltipText')
+    @Input()
     public tooltipText: string;
 
     /**
      * @description If true, the button will be disabled. Default false.
      */
-    // tslint:disable-next-line:no-input-rename
-    @Input('inputIsDisabled')
+    @Input()
     public isDisabled: boolean;
 
     /**
      * @description Set the tooltip placement (bottom, top, left, right). Default top.
      */
-    // tslint:disable-next-line:no-input-rename
-    @Input('inputTooltipPlacement')
+    @Input()
     public tooltipPlacement: TerraPlacementEnum;
 
     /**
      * @description Set a maximum number of characters allowed.
      */
-    // tslint:disable-next-line:no-input-rename
-    @Input('inputMaxLength')
+    @Input()
     public maxLength: number;
 
     @ViewChild(DefaultValueAccessor, { static: true })
