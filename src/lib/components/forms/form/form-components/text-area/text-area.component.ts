@@ -90,7 +90,7 @@ export class TextAreaComponent implements OnChanges, ControlValueAccessor, TextA
         this.value = value;
     }
 
-    /** Registers a callback function that is called when the control's value changes in the UI..*/
+    /** Registers a callback function that is called when the control's value changes in the UI.*/
     public registerOnChange(fn: (_: string) => void): void {
         this._onChangeCallback = fn;
     }
