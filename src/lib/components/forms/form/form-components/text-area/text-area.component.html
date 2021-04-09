@@ -1,5 +1,5 @@
 <mat-form-field class="w-100" [placement]="tooltipPlacement" [tcTooltip]="tooltipText">
-    <mat-label tabindex="-1">
+    <mat-label>
         {{ name }}
     </mat-label>
     <textarea
@@ -11,8 +11,7 @@
         autocomplete="off"
         [disabled]="isDisabled"
         [placeholder]="name"
-        [class.resizable]="!hasFixedHeight"
-        [ngClass]="{ error: !isValid }"
+        [style.resize]="hasFixedHeight ? 'none' : 'vertical'"
     >
     </textarea>
 </mat-form-field>

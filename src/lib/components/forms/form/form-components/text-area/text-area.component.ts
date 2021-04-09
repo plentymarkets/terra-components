@@ -1,7 +1,6 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
 import { TerraPlacementEnum } from '../../../../../helpers';
-import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { noop } from 'rxjs';
+import { ControlValueAccessor, DefaultValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TextAreaInterface } from './text-area.interface';
 
 @Component({
@@ -73,15 +72,10 @@ export class TextAreaComponent implements OnChanges, ControlValueAccessor, TextA
     @Input('inputMaxLength')
     public maxLength: number;
 
-    // The internal data model
-    public _innerValue: any;
-
-    public isValid: boolean = true;
+    @ViewChild(DefaultValueAccessor, { static: true })
+    public valueAccessor: DefaultValueAccessor;
 
     private readonly _defaultMaxRows: number = 4;
-
-    private _onTouchedCallback: (_: any) => void = noop;
-    private _onChangeCallback: (_: any) => void = noop;
 
     constructor() {
         this.maxRows = this._defaultMaxRows;
@@ -97,41 +91,20 @@ export class TextAreaComponent implements OnChanges, ControlValueAccessor, TextA
         }
     }
 
-    // get accessor
-    public get value(): any {
-        return this._innerValue;
-    }
-
-    // set accessor including call the onchange callback
-    public set value(v: any) {
-        if (v !== this._innerValue) {
-            this._innerValue = v;
-            this._onChangeCallback(this._innerValue);
-        }
-    }
-
     // From ControlValueAccessor interface
     public writeValue(value: any): void {
-        if (value !== this._innerValue) {
-            this._innerValue = value;
-        }
-    }
-
-    public validate(formControl: FormControl): void {
-        if (formControl.valid) {
-            this.isValid = true;
-        } else {
-            if (!this.isDisabled) {
-                this.isValid = false;
-            }
-        }
+        this.valueAccessor.writeValue(value);
     }
 
     public registerOnChange(fn: (_: any) => void): void {
-        this._onChangeCallback = fn;
+        this.valueAccessor.registerOnChange(fn);
     }
 
     public registerOnTouched(fn: () => void): void {
-        this._onTouchedCallback = fn;
+        this.valueAccessor.registerOnTouched(fn);
+    }
+
+    public setDisabledState(isDisabled: boolean): void {
+        this.valueAccessor.setDisabledState(isDisabled);
     }
 }
