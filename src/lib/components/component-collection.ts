@@ -126,8 +126,7 @@ export const exportedComponents: Array<Type<any>> = [
     TableRowComponent,
     FilterComponent,
     TerraInfoComponent,
-    TableSettingsComponent,
-    TextAreaComponent
+    TableSettingsComponent
 ];
 
 export const components: Array<Type<any>> = [
@@ -136,5 +135,6 @@ export const components: Array<Type<any>> = [
     TerraImagePreviewComponent,
     TerraBaseEditorComponent,
     TableSettingsDialogComponent,
-    TerraFormContainerWrapperComponent
+    TerraFormContainerWrapperComponent,
+    TextAreaComponent
 ];

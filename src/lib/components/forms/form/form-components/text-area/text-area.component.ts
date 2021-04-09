@@ -20,55 +20,63 @@ export class TextAreaComponent implements OnChanges, ControlValueAccessor, TextA
     /**
      * @description If true, the textarea is not resizeable. Default false.
      */
+    // tslint:disable-next-line:no-input-rename
     @Input('inputHasFixedHeight')
     public hasFixedHeight: boolean = false;
 
     /**
      * @description Sets the initial number of rows. Minimum is four.
      */
+    // tslint:disable-next-line:no-input-rename
     @Input('inputMaxRows')
     public maxRows: number;
 
     /**
      * @description Set the label.
      */
+    // tslint:disable-next-line:no-input-rename
     @Input('inputName')
     public name: string;
 
     /**
      * @description If true, a * indicates that the value is required. Default false.
      */
+    // tslint:disable-next-line:no-input-rename
     @Input('inputIsRequired')
     public isRequired: boolean = false;
 
     /**
      * @description Set the tooltip.
      */
+    // tslint:disable-next-line:no-input-rename
     @Input('inputTooltipText')
     public tooltipText: string;
 
     /**
      * @description If true, the button will be disabled. Default false.
      */
+    // tslint:disable-next-line:no-input-rename
     @Input('inputIsDisabled')
     public isDisabled: boolean;
 
     /**
      * @description Set the tooltip placement (bottom, top, left, right). Default top.
      */
+    // tslint:disable-next-line:no-input-rename
     @Input('inputTooltipPlacement')
     public tooltipPlacement: TerraPlacementEnum;
 
     /**
      * @description Set a maximum number of characters allowed.
      */
+    // tslint:disable-next-line:no-input-rename
     @Input('inputMaxLength')
     public maxLength: number;
 
     // The internal data model
     public _innerValue: any;
 
-    public isValid: boolean;
+    public isValid: boolean = true;
 
     private readonly _defaultMaxRows: number = 4;
 
@@ -77,11 +85,10 @@ export class TextAreaComponent implements OnChanges, ControlValueAccessor, TextA
 
     constructor() {
         this.maxRows = this._defaultMaxRows;
-        this.isValid = true;
     }
 
     public ngOnChanges(changes: SimpleChanges): void {
-        if (changes.hasOwnProperty('maxRows') && changes?.inputMaxRows) {
+        if (changes.hasOwnProperty('maxRows') && changes?.maxRows) {
             this.maxRows = Math.max(this._defaultMaxRows, changes.inputMaxRows.currentValue);
         }
 

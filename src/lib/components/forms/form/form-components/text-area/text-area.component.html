@@ -1,20 +1,18 @@
-<div [placement]="tooltipPlacement" [tcTooltip]="tooltipText" [ngClass]="{ error: !isValid, disabled: isDisabled }">
-    <mat-form-field class="w-100">
-        <mat-label tabindex="-1">
-            {{ name }}
-        </mat-label>
-        <textarea
-            matInput
-            [(ngModel)]="value"
-            name="{{ name }}"
-            [maxlength]="maxLength"
-            [rows]="maxRows"
-            [required]="isRequired"
-            autocomplete="off"
-            [disabled]="isDisabled"
-            placeholder="{{ name }}"
-            [class.resizable]="!hasFixedHeight"
-        >
-        </textarea>
-    </mat-form-field>
-</div>
+<mat-form-field class="w-100" [placement]="tooltipPlacement" [tcTooltip]="tooltipText">
+    <mat-label tabindex="-1">
+        {{ name }}
+    </mat-label>
+    <textarea
+        matInput
+        [(ngModel)]="value"
+        [maxlength]="maxLength"
+        [rows]="maxRows"
+        [required]="isRequired"
+        autocomplete="off"
+        [disabled]="isDisabled"
+        [placeholder]="name"
+        [class.resizable]="!hasFixedHeight"
+        [ngClass]="{ error: !isValid }"
+    >
+    </textarea>
+</mat-form-field>
