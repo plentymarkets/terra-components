@@ -5,7 +5,6 @@ import { TerraCheckboxComponent } from '../../checkbox/terra-checkbox.component'
 import { TerraDatePickerComponent } from '../../input/date-picker/terra-date-picker.component';
 import { TerraFileInputComponent } from '../../input/file-input/terra-file-input.component';
 import { TerraTextInputComponent } from '../../input/text-input/terra-text-input.component';
-import { TerraTextAreaInputComponent } from '../../input/text-area-input/terra-text-area-input.component';
 import { TerraNumberInputComponent } from '../../input/number-input/terra-number-input.component';
 import { TerraDoubleInputComponent } from '../../input/double-input/terra-double-input.component';
 import { TerraSelectBoxComponent } from '../../select-box/terra-select-box.component';
