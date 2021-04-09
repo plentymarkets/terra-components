@@ -57,7 +57,7 @@ export class NumberInputComponent implements ControlValueAccessor, NumberInputIn
     public regex: string;
 
     // The internal data model
-    public _innerValue: any;
+    public _innerValue: number;
 
     /** @description a unique string identifier for the specific input instance. */
     public _id: string;
@@ -83,19 +83,19 @@ export class NumberInputComponent implements ControlValueAccessor, NumberInputIn
         this._onTouchedCallback = fn;
     }
 
-    public writeValue(value: any): void {
+    public writeValue(value: number): void {
         if (value !== this._innerValue) {
             this._innerValue = value;
         }
     }
 
     // get accessor
-    public get value(): any {
+    public get value(): number {
         return this._innerValue;
     }
 
     // set accessor including call the onchange callback
-    public set value(v: any) {
+    public set value(v: number) {
         if (v !== this._innerValue) {
             this._innerValue = v;
             this._onChangeCallback(this._innerValue);
