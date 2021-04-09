@@ -1,7 +1,8 @@
-import { Component, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { TerraPlacementEnum } from '../../../../../helpers';
-import { ControlValueAccessor, DefaultValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TextAreaInterface } from './text-area.interface';
+import { noop } from 'rxjs';
 
 @Component({
     selector: 'terra-text-area',
@@ -64,8 +65,10 @@ export class TextAreaComponent implements OnChanges, ControlValueAccessor, TextA
     @Input()
     public maxLength: number;
 
-    @ViewChild(DefaultValueAccessor, { static: true })
-    public valueAccessor: DefaultValueAccessor;
+    public value: string;
+
+    public _onTouchedCallback: () => void = noop;
+    public _onChangeCallback: (_: string) => void = noop;
 
     private readonly _defaultMaxRows: number = 4;
 
@@ -85,21 +88,16 @@ export class TextAreaComponent implements OnChanges, ControlValueAccessor, TextA
 
     /** Sets the “value” property on the input element.*/
     public writeValue(value: string): void {
-        this.valueAccessor.writeValue(value);
+        this.value = value;
     }
 
     /** Registers a function called when the control value changes.*/
-    public registerOnChange(fn: (_: {}) => void): void {
-        this.valueAccessor.registerOnChange(fn);
+    public registerOnChange(fn: (_: string) => void): void {
+        this._onChangeCallback = fn;
     }
 
     /** Registers a function called when the control is touched.*/
     public registerOnTouched(fn: () => void): void {
-        this.valueAccessor.registerOnTouched(fn);
-    }
-
-    /** Sets the “disabled” property on the input element.*/
-    public setDisabledState(isDisabled: boolean): void {
-        this.valueAccessor.setDisabledState(isDisabled);
+        this._onTouchedCallback = fn;
     }
 }

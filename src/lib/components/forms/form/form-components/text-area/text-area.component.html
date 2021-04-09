@@ -4,7 +4,9 @@
     </mat-label>
     <textarea
         matInput
-        ngModel
+        [(ngModel)]="value"
+        (ngModelChange)="_onChangeCallback($event)"
+        (blur)="_onTouchedCallback()"
         [maxlength]="maxLength"
         [rows]="maxRows"
         [required]="isRequired"
