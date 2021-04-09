@@ -7,7 +7,6 @@ import { noop } from 'rxjs';
 @Component({
     selector: 'terra-text-area',
     templateUrl: './text-area.component.html',
-    styleUrls: ['./text-area.component.css'],
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,
