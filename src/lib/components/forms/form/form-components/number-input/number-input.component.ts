@@ -3,8 +3,6 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NumberInputInterface } from './number-input.interface';
 import { noop } from 'rxjs';
 
-let nextId: number = 0;
-
 @Component({
     selector: 'number-input',
     templateUrl: './number-input.component.html',
@@ -58,9 +56,6 @@ export class NumberInputComponent implements ControlValueAccessor, NumberInputIn
     // The internal data model
     public _innerValue: number;
 
-    /** @description a unique string identifier for the specific input instance. */
-    public _id: string;
-
     // Placeholders for the callbacks which are later provided
     // by the Control Value Accessor
     private _onTouchedCallback: () => void = noop;
@@ -68,9 +63,6 @@ export class NumberInputComponent implements ControlValueAccessor, NumberInputIn
 
     constructor() {
         this.isValid = true;
-
-        // generate the id of the input instance
-        this._id = `number-input_#${nextId++}`;
     }
 
     public registerOnChange(fn: any): void {

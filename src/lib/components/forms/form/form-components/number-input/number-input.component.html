@@ -8,6 +8,7 @@
         name="{{ name }}"
         (blur)="onBlur()"
         autocomplete="off"
+        [required]="isRequired"
         [disabled]="isDisabled"
         step="1"
         min="{{ minValue }}"
