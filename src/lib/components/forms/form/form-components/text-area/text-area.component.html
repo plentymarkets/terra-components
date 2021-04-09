@@ -1,10 +1,5 @@
-<div
-    class="input-wrapper textarea-wrapper"
-    [placement]="tooltipPlacement"
-    [tcTooltip]="tooltipText"
-    [ngClass]="{ error: !isValid, disabled: isDisabled }"
->
-    <mat-form-field>
+<div [placement]="tooltipPlacement" [tcTooltip]="tooltipText" [ngClass]="{ error: !isValid, disabled: isDisabled }">
+    <mat-form-field class="w-100">
         <mat-label tabindex="-1">
             {{ name }}
         </mat-label>
