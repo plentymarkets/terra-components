@@ -54,7 +54,6 @@ export class NumberInputComponent implements ControlValueAccessor, NumberInputIn
     public tooltipText: string;
 
     public isValid: boolean;
-    public regex: string;
 
     // The internal data model
     public _innerValue: number;
@@ -67,8 +66,7 @@ export class NumberInputComponent implements ControlValueAccessor, NumberInputIn
     private _onTouchedCallback: () => void = noop;
     private _onChangeCallback: (_: any) => void = noop;
 
-    constructor(private _inputRegex: string) {
-        this.regex = _inputRegex;
+    constructor() {
         this.isValid = true;
 
         // generate the id of the input instance

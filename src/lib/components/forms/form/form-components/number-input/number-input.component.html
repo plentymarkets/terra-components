@@ -1,31 +1,17 @@
-<div
-    class="input-wrapper"
-    [placement]="tooltipPlacement"
-    [tcTooltip]="tooltipText"
-    [ngClass]="{ error: !isValid, disabled: isDisabled }"
->
+<h1>ronny</h1>
+<mat-form-field [tcTooltip]="tooltipText" [placement]="tooltipPlacement" >
+    <mat-label *ngIf="_innerValue || _innerValue === 0">{{ name }}</mat-label>
     <input
-        id="{{ _id }}"
+        matInput
         type="number"
         [(ngModel)]="value"
         name="{{ name }}"
         (blur)="onBlur()"
         autocomplete="off"
         [disabled]="isDisabled"
-        pattern="{{ regex }}"
         step="1"
         min="{{ minValue }}"
         max="{{ maxValue }}"
         placeholder="{{ isRequired ? name + '*' : name }}"
-        [ngClass]="{ isEmpty: !_innerValue && _innerValue !== 0 }"
     />
-    <label
-        [tcTooltip]="name"
-        [onlyEllipsisTooltip]="true"
-        tabindex="-1"
-        *ngIf="_innerValue || _innerValue === 0"
-        htmlFor="{{ _id }}"
-        >{{ name }}
-        <span *ngIf="isRequired">*</span>
-    </label>
-</div>
+</mat-form-field>
