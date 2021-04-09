@@ -86,17 +86,17 @@ export class TextAreaComponent implements OnChanges, ControlValueAccessor, TextA
         }
     }
 
-    /** Sets the “value” property on the input element.*/
+    /** Writes a new value to the element.*/
     public writeValue(value: string): void {
         this.value = value;
     }
 
-    /** Registers a function called when the control value changes.*/
+    /** Registers a callback function that is called when the control's value changes in the UI..*/
     public registerOnChange(fn: (_: string) => void): void {
         this._onChangeCallback = fn;
     }
 
-    /** Registers a function called when the control is touched.*/
+    /** RRegisters a callback function that is called by the forms API on initialization to update the form model on blur.*/
     public registerOnTouched(fn: () => void): void {
         this._onTouchedCallback = fn;
     }
