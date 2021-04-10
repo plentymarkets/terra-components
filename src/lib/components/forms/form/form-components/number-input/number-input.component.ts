@@ -51,8 +51,6 @@ export class NumberInputComponent implements ControlValueAccessor, NumberInputIn
     @Input()
     public tooltipText: string;
 
-    public isValid: boolean;
-
     // The internal data model
     public _innerValue: number;
 
@@ -60,10 +58,6 @@ export class NumberInputComponent implements ControlValueAccessor, NumberInputIn
     // by the Control Value Accessor
     private _onTouchedCallback: () => void = noop;
     private _onChangeCallback: (_: any) => void = noop;
-
-    constructor() {
-        this.isValid = true;
-    }
 
     public registerOnChange(fn: any): void {
         this._onChangeCallback = fn;
