@@ -46,7 +46,7 @@ export class NumberInputComponent implements ControlValueAccessor, NumberInputIn
     public tooltipText: string;
 
     // The internal data model
-    public _innerValue: number;
+    public value: number;
 
     // Placeholders for the callbacks which are later provided
     // by the Control Value Accessor
@@ -62,22 +62,7 @@ export class NumberInputComponent implements ControlValueAccessor, NumberInputIn
     }
 
     public writeValue(value: number): void {
-        if (value !== this._innerValue) {
-            this._innerValue = value;
-        }
-    }
-
-    // get accessor
-    public get value(): number {
-        return this._innerValue;
-    }
-
-    // set accessor including call the onchange callback
-    public set value(v: number) {
-        if (v !== this._innerValue) {
-            this._innerValue = v;
-            this._onChangeCallback(this._innerValue);
-        }
+        this.value = value;
     }
 
     // Set touched on blur
