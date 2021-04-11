@@ -16,12 +16,6 @@ import { noop } from 'rxjs';
 })
 export class NumberInputComponent implements ControlValueAccessor, NumberInputInterface {
     @Input()
-    public emptyMessage: string;
-
-    @Input()
-    public invalidMessage: string;
-
-    @Input()
     public isDisabled: boolean;
 
     @Input()
