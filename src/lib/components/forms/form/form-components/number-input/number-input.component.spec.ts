@@ -122,7 +122,7 @@ describe('NumberInputComponent', () => {
         expect(await input.getValue()).toEqual(value.toString());
     });
 
-    xit('should call registered change callback whenever the value of the input is changed by the user', async () => {
+    it('should call registered change callback whenever the value of the input is changed by the user', async () => {
         const onChangeCallback: jasmine.Spy = jasmine.createSpy('onChange');
         component.registerOnChange(onChangeCallback);
 
