@@ -6,7 +6,7 @@ import { TerraDatePickerComponent } from '../../input/date-picker/terra-date-pic
 import { TerraFileInputComponent } from '../../input/file-input/terra-file-input.component';
 import { TerraTextInputComponent } from '../../input/text-input/terra-text-input.component';
 import { TerraTextAreaInputComponent } from '../../input/text-area-input/terra-text-area-input.component';
-import { TerraNumberInputComponent } from '../../input/number-input/terra-number-input.component';
+import { NumberInputComponent } from '../form-components/number-input/number-input.component';
 import { TerraDoubleInputComponent } from '../../input/double-input/terra-double-input.component';
 import { TerraSelectBoxComponent } from '../../select-box/terra-select-box.component';
 import { TerraCategoryPickerComponent } from '../../../data-picker/category-picker/terra-category-picker.component';
@@ -16,7 +16,6 @@ import { TerraCodeEditorComponent } from '../../../editors/code-editor/terra-cod
 import { TerraSliderComponent } from '../../slider/terra-slider.component';
 import { TerraPortletComponent } from '../../../layouts/portlet/terra-portlet.component';
 import { TerraSuggestionBoxComponent } from '../../suggestion-box/terra-suggestion-box.component';
-import { NumberInputComponent } from "../form-components/number-input/number-input.component";
 
 /**
  * @description A map of control types that may be passed to the <terra-form> in order to support those controls.
