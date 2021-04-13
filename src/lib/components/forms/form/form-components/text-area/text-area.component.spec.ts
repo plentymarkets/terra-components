@@ -71,26 +71,24 @@ describe('TextAreaComponent', () => {
     });
 
     describe('with tooltip', () => {
-        let tooltTip: MockTooltipDirective;
+        let tooltip: MockTooltipDirective;
 
         beforeEach(() => {
-            tooltTip = fixture.debugElement
-                .query(By.directive(MockTooltipDirective))
-                .injector.get(MockTooltipDirective);
+            tooltip = fixture.debugElement.query(By.directive(MockTooltipDirective)).injector.get(MockTooltipDirective);
         });
 
         it('should set tooltip placement according to #tooltipPlacement', () => {
-            expect(tooltTip.placement).toBe(TerraPlacementEnum.TOP);
+            expect(tooltip.placement).toBe(TerraPlacementEnum.TOP);
             component.tooltipPlacement = TerraPlacementEnum.RIGHT;
             fixture.detectChanges();
-            expect(tooltTip.placement).toBe(TerraPlacementEnum.RIGHT);
+            expect(tooltip.placement).toBe(TerraPlacementEnum.RIGHT);
         });
 
         it('should set tooltiptext according to #tooltipText', () => {
-            expect(tooltTip.tcTooltip).toBeFalsy();
+            expect(tooltip.tcTooltip).toBeFalsy();
             component.tooltipText = testString;
             fixture.detectChanges();
-            expect(tooltTip.tcTooltip).toBe(testString);
+            expect(tooltip.tcTooltip).toBe(testString);
         });
     });
 
