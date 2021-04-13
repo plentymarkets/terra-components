@@ -93,6 +93,26 @@ describe('NumberInputComponent', () => {
         });
     });
 
+    it('should set min value validation according to input #minValue', () => {
+        const inputElement: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
+        expect(inputElement.min).toBe('undefined');
+
+        component.minValue = 2;
+        fixture.detectChanges();
+
+        expect(+inputElement.min).toBe(component.minValue);
+    });
+
+    it('should set max value validation according to input #minValue', () => {
+        const inputElement: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
+        expect(inputElement.max).toBe('undefined');
+
+        component.maxValue = 10;
+        fixture.detectChanges();
+
+        expect(+inputElement.max).toBe(component.maxValue);
+    });
+
     it('should update the value of the input when writing a new value via `writeValue()`', async () => {
         const value: number = 4;
         component.writeValue(value);
