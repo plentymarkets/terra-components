@@ -80,7 +80,7 @@ describe('TextAreaComponent', () => {
         });
 
         it('should set tooltip placement according to #tooltipPlacement', () => {
-            expect(tooltTip.placement).toBe('top');
+            expect(tooltTip.placement).toBe(TerraPlacementEnum.TOP);
             component.tooltipPlacement = TerraPlacementEnum.RIGHT;
             fixture.detectChanges();
             expect(tooltTip.placement).toBe('right');
