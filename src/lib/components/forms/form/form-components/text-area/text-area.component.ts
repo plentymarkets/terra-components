@@ -5,7 +5,7 @@ import { TextAreaInterface } from './text-area.interface';
 import { noop } from 'rxjs';
 
 @Component({
-    selector: 'terra-text-area',
+    selector: 'tc-text-area',
     templateUrl: './text-area.component.html',
     providers: [
         {
