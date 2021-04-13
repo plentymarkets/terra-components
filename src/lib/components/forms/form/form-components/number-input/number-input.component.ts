@@ -53,7 +53,7 @@ export class NumberInputComponent implements ControlValueAccessor, NumberInputIn
     public _onChangeCallback: (_: number) => void = noop;
 
     /** @description Registers a callback function that is called when the control's value changes in the UI.*/
-    public registerOnChange(fn: () => number): void {
+    public registerOnChange(fn: (_: number) => void): void {
         this._onChangeCallback = fn;
     }
 
