@@ -70,7 +70,7 @@ describe('TextAreaComponent', () => {
         expect(await input.isDisabled()).toBe(true);
     });
 
-    describe('', () => {
+    describe('with tooltip', () => {
         let tooltTip: MockTooltipDirective;
 
         beforeEach(() => {
