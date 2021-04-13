@@ -1,8 +1,4 @@
-import {
-    Component,
-    Input,
-    OnInit
-} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TerraFormComponentBaseInterface } from '../terra-form-component-base.interface';
 
@@ -27,9 +23,9 @@ export class SelectComponent implements ControlValueAccessor, TerraFormComponent
     public writeValue(obj: any): void {}
 
     @Input()
-    public isDisabled:boolean;
-    public isRequired:boolean;
-    public name:string;
-    public tooltipPlacement:string;
-    public tooltipText:string;
+    public isDisabled: boolean;
+    public isRequired: boolean;
+    public name: string;
+    public tooltipPlacement: string;
+    public tooltipText: string;
 }
