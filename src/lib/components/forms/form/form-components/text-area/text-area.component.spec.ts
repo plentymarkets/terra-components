@@ -95,17 +95,17 @@ describe('TextAreaComponent', () => {
     });
 
     it('should have a default value of 4 for maxRows', async () => {
-        expect(+(await host.getAttribute('rows'))).toBe(4);
+        expect(await host.getProperty('rows')).toBe(4);
     });
 
     it('should set maxRows according to #maxRows but with at least 4', async () => {
         component.ngOnChanges({ maxRows: new SimpleChange(4, 2, false) });
         fixture.detectChanges();
-        expect(+(await host.getAttribute('rows'))).toBe(4);
+        expect(await host.getProperty('rows')).toBe(4);
 
         component.ngOnChanges({ maxRows: new SimpleChange(4, 6, false) });
         fixture.detectChanges();
-        expect(+(await host.getAttribute('rows'))).toBe(6);
+        expect(await host.getProperty('rows')).toBe(6);
     });
 
     it('should set resize style according to #hastFixedHeight', async () => {
@@ -117,10 +117,10 @@ describe('TextAreaComponent', () => {
     });
 
     it('should set maxlength according to #maxLength', async () => {
-        expect(+(await host.getAttribute('maxLength'))).toBe(0);
+        expect(await host.getProperty('maxLength')).toBe(-1);
         component.maxLength = 10;
         fixture.detectChanges();
-        expect(+(await host.getAttribute('maxLength'))).toBe(10);
+        expect(await host.getProperty('maxLength')).toBe(10);
     });
 
     it('should call registered change callback whenever the value of the input is changed by the user', async () => {
