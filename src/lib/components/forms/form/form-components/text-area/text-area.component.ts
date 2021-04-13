@@ -38,11 +38,11 @@ export class TextAreaComponent implements OnChanges, ControlValueAccessor, TextA
 
     /** If true, the button will be disabled. Default false. */
     @Input()
-    public isDisabled: boolean;
+    public isDisabled: boolean = false;
 
     /** Set the tooltip placement (bottom, top, left, right). Default top. */
     @Input()
-    public tooltipPlacement: TerraPlacementEnum;
+    public tooltipPlacement: TerraPlacementEnum = TerraPlacementEnum.TOP;
 
     /** Set a maximum number of characters allowed. */
     @Input()
