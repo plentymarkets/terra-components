@@ -17,11 +17,11 @@ import { noop } from 'rxjs';
 export class NumberInputComponent implements ControlValueAccessor, NumberInputInterface {
     /** @description If true, the button will be disabled. Default false. */
     @Input()
-    public isDisabled: boolean;
+    public isDisabled: boolean = false;
 
     /** @description If true, a * indicates that the value is required. Default false. */
     @Input()
-    public isRequired: boolean;
+    public isRequired: boolean = false;
 
     /** @description Set the maximum number value allowed. */
     @Input()
@@ -51,14 +51,17 @@ export class NumberInputComponent implements ControlValueAccessor, NumberInputIn
     public _onTouchedCallback: () => void = noop;
     public _onChangeCallback: (_: any) => void = noop;
 
+    /** @description Registers a callback function that is called when the control's value changes in the UI.*/
     public registerOnChange(fn: any): void {
         this._onChangeCallback = fn;
     }
 
+    /** @description Registers a callback function that is called by the forms API on initialization to update the form model on blur. */
     public registerOnTouched(fn: any): void {
         this._onTouchedCallback = fn;
     }
 
+    /** @description Writes a new value to the element.*/
     public writeValue(value: number): void {
         this.value = value;
     }
