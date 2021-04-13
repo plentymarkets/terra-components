@@ -66,6 +66,7 @@ export class TextAreaComponent implements OnChanges, ControlValueAccessor, TextA
 
     public value: string;
 
+    /** Placeholders for the callbacks which are later provided by the Control Value Accessor. */
     public _onTouchedCallback: () => void = noop;
     public _onChangeCallback: (_: string) => void = noop;
 
