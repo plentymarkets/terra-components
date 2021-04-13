@@ -10,6 +10,7 @@ import { HarnessLoader } from '@angular/cdk/testing';
 import { MatInputHarness } from '@angular/material/input/testing';
 import { MatFormFieldHarness } from '@angular/material/form-field/testing';
 import { By } from '@angular/platform-browser';
+import { TerraPlacementEnum } from '../../../../../helpers';
 
 describe('NumberInputComponent', () => {
     let fixture: ComponentFixture<NumberInputComponent>;
@@ -62,17 +63,33 @@ describe('NumberInputComponent', () => {
         expect(await formField.getLabel()).toBe(component.name);
     });
 
-    it('should apply the tcTooltip directive to the form field with the given #tooltipText', () => {
-        const tooltip: MockTooltipDirective = fixture.debugElement
-            .query(By.directive(MockTooltipDirective))
-            .injector.get(MockTooltipDirective);
-        expect(tooltip).toBeTruthy();
-        expect(tooltip.tcTooltip).toBeUndefined();
+    describe('with tooltip', () => {
+        let tooltip: MockTooltipDirective;
+        beforeEach(
+            () =>
+                (tooltip = fixture.debugElement
+                    .query(By.directive(MockTooltipDirective))
+                    .injector.get(MockTooltipDirective))
+        );
 
-        component.tooltipText = 'My tooltip';
-        fixture.detectChanges();
+        it('should apply the tcTooltip directive to the form field with the given #tooltipText', () => {
+            expect(tooltip).toBeTruthy();
+            expect(tooltip.tcTooltip).toBeUndefined();
 
-        expect(tooltip.tcTooltip).toBe(component.tooltipText);
+            component.tooltipText = 'My tooltip';
+            fixture.detectChanges();
+
+            expect(tooltip.tcTooltip).toBe(component.tooltipText);
+        });
+
+        it(`should set the tooltip's placement according to the input #tooltipPlacement`, () => {
+            expect(tooltip.placement).toBeUndefined();
+
+            component.tooltipPlacement = TerraPlacementEnum.BOTTOM;
+            fixture.detectChanges();
+
+            expect(tooltip.placement).toBe(component.tooltipPlacement);
+        });
     });
 
     it('should update the value of the input when writing a new value via `writeValue()`', async () => {
