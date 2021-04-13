@@ -9,6 +9,7 @@ import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { HarnessLoader } from '@angular/cdk/testing';
 import { MatInputHarness } from '@angular/material/input/testing';
 import { MatFormFieldHarness } from '@angular/material/form-field/testing';
+import { By } from '@angular/platform-browser';
 
 describe('NumberInputComponent', () => {
     let fixture: ComponentFixture<NumberInputComponent>;
@@ -59,6 +60,19 @@ describe('NumberInputComponent', () => {
         component.name = 'My Label';
         fixture.detectChanges();
         expect(await formField.getLabel()).toBe(component.name);
+    });
+
+    it('should apply the tcTooltip directive to the form field with the given #tooltipText', () => {
+        const tooltip: MockTooltipDirective = fixture.debugElement
+            .query(By.directive(MockTooltipDirective))
+            .injector.get(MockTooltipDirective);
+        expect(tooltip).toBeTruthy();
+        expect(tooltip.tcTooltip).toBeUndefined();
+
+        component.tooltipText = 'My tooltip';
+        fixture.detectChanges();
+
+        expect(tooltip.tcTooltip).toBe(component.tooltipText);
     });
 
     it('should update the value of the input when writing a new value via `writeValue()`', async () => {
