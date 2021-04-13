@@ -2,9 +2,10 @@ import { Component, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NumberInputInterface } from './number-input.interface';
 import { noop } from 'rxjs';
+import { TerraPlacementEnum } from '../../../../../helpers';
 
 @Component({
-    selector: 'terra-number-input',
+    selector: 'terra-number',
     templateUrl: './number-input.component.html',
     providers: [
         {
@@ -33,15 +34,15 @@ export class NumberInputComponent implements ControlValueAccessor, NumberInputIn
 
     /** @description Set the label. */
     @Input()
-    public name: string;
+    public name: string = '';
 
     /** @description Set the tooltip placement (bottom, top, left, right). Default top. */
     @Input()
-    public tooltipPlacement: string;
+    public tooltipPlacement: TerraPlacementEnum = TerraPlacementEnum.TOP;
 
     /** @description Set the tooltip. */
     @Input()
-    public tooltipText: string;
+    public tooltipText: string = '';
 
     /** @description The internal data model */
     public value: number;
