@@ -117,7 +117,7 @@ describe('TextAreaComponent', () => {
         expect(await host.getCssValue('resize')).toBe('none');
     });
 
-    it('should set maxlength according to #maxLength', async () => {
+    it('should set property `maxlength` according to input #maxLength', async () => {
         expect(await host.getProperty('maxLength')).toBe(-1);
         component.maxLength = 10;
         fixture.detectChanges();
