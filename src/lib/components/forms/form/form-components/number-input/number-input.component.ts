@@ -52,14 +52,17 @@ export class NumberInputComponent implements ControlValueAccessor, NumberInputIn
     public _onTouchedCallback: () => void = noop;
     public _onChangeCallback: (_: any) => void = noop;
 
+    /** @description Registers a callback function that is called when the control's value changes in the UI.*/
     public registerOnChange(fn: any): void {
         this._onChangeCallback = fn;
     }
 
+    /** @description Registers a callback function that is called by the forms API on initialization to update the form model on blur. */
     public registerOnTouched(fn: any): void {
         this._onTouchedCallback = fn;
     }
 
+    /** @description Writes a new value to the element.*/
     public writeValue(value: number): void {
         this.value = value;
     }
