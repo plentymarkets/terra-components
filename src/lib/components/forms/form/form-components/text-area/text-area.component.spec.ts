@@ -51,7 +51,7 @@ describe('TextAreaComponent', () => {
     it('should set name as mat-label', async () => {
         component.name = testString;
         fixture.detectChanges();
-        let formField: MatFormFieldHarness = await loader.getHarness(MatFormFieldHarness);
+        const formField: MatFormFieldHarness = await loader.getHarness(MatFormFieldHarness);
 
         expect(await formField.getLabel()).toBe(testString);
     });
