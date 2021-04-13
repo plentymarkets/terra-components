@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { By } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TerraPlacementEnum } from '../../../../../helpers';
 import { MockTooltipDirective } from '../../../../../testing/mock-tooltip.directive';
 import { TextAreaComponent } from './text-area.component';
@@ -19,7 +19,7 @@ describe('TextAreaComponent', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             declarations: [MockTooltipDirective, TextAreaComponent],
-            imports: [FormsModule, MatFormFieldModule, MatInputModule, BrowserAnimationsModule]
+            imports: [FormsModule, MatFormFieldModule, MatInputModule, NoopAnimationsModule]
         });
         fixture = TestBed.createComponent(TextAreaComponent);
         component = fixture.componentInstance;
