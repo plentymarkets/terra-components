@@ -22,7 +22,7 @@ export class NumberInputComponent implements ControlValueAccessor, NumberInputIn
 
     /** @description If true, a * indicates that the value is required. Default false. */
     @Input()
-    public isRequired: boolean;
+    public isRequired: boolean = false;
 
     /** @description Set the maximum number value allowed. */
     @Input()
