@@ -2,5 +2,6 @@ import { TerraFormComponentBaseInterface } from '../terra-form-component-base.in
 import { TerraSelectBoxValueInterface } from '../../../select-box/data/terra-select-box.interface';
 
 export interface SelectInterface extends TerraFormComponentBaseInterface {
-    listBoxValues: Array<TerraSelectBoxValueInterface>; // TODO: Maybe use an inline interface instead?
+    // NOTE: We'll continue to use `TerraSelectBoxValueInterface` internally here after it has been removed from the public API
+    listBoxValues: Array<TerraSelectBoxValueInterface>;
 }
