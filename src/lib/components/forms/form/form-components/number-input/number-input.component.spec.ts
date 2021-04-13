@@ -65,12 +65,9 @@ describe('NumberInputComponent', () => {
 
     describe('with tooltip', () => {
         let tooltip: MockTooltipDirective;
-        beforeEach(
-            () =>
-                (tooltip = fixture.debugElement
-                    .query(By.directive(MockTooltipDirective))
-                    .injector.get(MockTooltipDirective))
-        );
+        beforeEach(() => {
+            tooltip = fixture.debugElement.query(By.directive(MockTooltipDirective)).injector.get(MockTooltipDirective);
+        });
 
         it('should apply the tcTooltip directive to the form field with the given #tooltipText', () => {
             expect(tooltip).toBeTruthy();
