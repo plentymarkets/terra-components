@@ -1,3 +1,11 @@
+# 11.2.0 (XX.XX.2021)
+
+### Features
+
+-   **terra-form**
+    -   **text-number-input** replaced deprecated `terra-number-input` with a `mat-input` variant.
+
+
 # 11.1.0 (23.03.2021)
 
 ### Features
