@@ -41,14 +41,14 @@ describe('TextAreaComponent', () => {
         expect(matLabel.innerText).toBe(testString);
     });
 
-    it('should set required state accorind to #isRequired', () => {
+    it('should set required state according to #isRequired', () => {
         expect(inputElement.required).toBe(false);
         component.isRequired = true;
         fixture.detectChanges();
         expect(inputElement.required).toBe(true);
     });
 
-    it('should set disabled state accorind to #isDisabled', () => {
+    it('should set disabled state according to #isDisabled', () => {
         expect(inputElement.disabled).toBe(false);
         component.isDisabled = true;
         fixture.detectChanges();
@@ -71,7 +71,7 @@ describe('TextAreaComponent', () => {
             expect(tooltTip.placement).toBe('right');
         });
 
-        it('should set tooltiptext accoring to #tooltipText', () => {
+        it('should set tooltiptext according to #tooltipText', () => {
             expect(tooltTip.tcTooltip).toBeFalsy();
             component.tooltipText = testString;
             fixture.detectChanges();
