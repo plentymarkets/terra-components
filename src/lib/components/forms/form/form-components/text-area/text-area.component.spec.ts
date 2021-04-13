@@ -108,7 +108,7 @@ describe('TextAreaComponent', () => {
         expect(await host.getProperty('rows')).toBe(6);
     });
 
-    it('should set resize style according to #hastFixedHeight', async () => {
+    it('should set resize style according to #hasFixedHeight', async () => {
         expect(await host.getCssValue('resize')).toBe('vertical');
 
         component.ngOnChanges({ hasFixedHeight: new SimpleChange(false, true, false) });
