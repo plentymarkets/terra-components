@@ -4,7 +4,7 @@ import { NumberInputInterface } from './number-input.interface';
 import { noop } from 'rxjs';
 
 @Component({
-    selector: 'number-input',
+    selector: 'terra-number-input',
     templateUrl: './number-input.component.html',
     providers: [
         {
@@ -15,7 +15,6 @@ import { noop } from 'rxjs';
     ]
 })
 export class NumberInputComponent implements ControlValueAccessor, NumberInputInterface {
-
     /** @description If true, the button will be disabled. Default false. */
     @Input()
     public isDisabled: boolean = false;
