@@ -16,51 +16,35 @@ import { noop } from 'rxjs';
     ]
 })
 export class TextAreaComponent implements OnChanges, ControlValueAccessor, TextAreaInterface {
-    /**
-     * @description If true, the textarea is not resizeable. Default false.
-     */
+    /** If true, the textarea is not resizeable. Default false. */
     @Input()
     public hasFixedHeight: boolean = false;
 
-    /**
-     * @description Sets the initial number of rows. Minimum is four.
-     */
+    /** Sets the initial number of rows. Minimum is four. */
     @Input()
     public maxRows: number;
 
-    /**
-     * @description Set the label.
-     */
+    /** Set the label. */
     @Input()
     public name: string;
 
-    /**
-     * @description If true, a * indicates that the value is required. Default false.
-     */
+    /** If true, a * indicates that the value is required. Default false. */
     @Input()
     public isRequired: boolean = false;
 
-    /**
-     * @description Set the tooltip.
-     */
+    /** Set the tooltip. */
     @Input()
     public tooltipText: string;
 
-    /**
-     * @description If true, the button will be disabled. Default false.
-     */
+    /** If true, the button will be disabled. Default false. */
     @Input()
     public isDisabled: boolean;
 
-    /**
-     * @description Set the tooltip placement (bottom, top, left, right). Default top.
-     */
+    /** Set the tooltip placement (bottom, top, left, right). Default top. */
     @Input()
     public tooltipPlacement: TerraPlacementEnum;
 
-    /**
-     * @description Set a maximum number of characters allowed.
-     */
+    /** Set a maximum number of characters allowed. */
     @Input()
     public maxLength: number;
 
