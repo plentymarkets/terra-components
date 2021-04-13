@@ -4,7 +4,8 @@
         matInput
         type="number"
         [(ngModel)]="value"
-        (blur)="onBlur()"
+        (ngModelChange)="_onChangeCallback($event)"
+        (blur)="_onTouchedCallback()"
         autocomplete="off"
         [required]="isRequired"
         [disabled]="isDisabled"

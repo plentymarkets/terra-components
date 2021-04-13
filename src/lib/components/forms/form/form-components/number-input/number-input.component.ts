@@ -15,43 +15,42 @@ import { noop } from 'rxjs';
     ]
 })
 export class NumberInputComponent implements ControlValueAccessor, NumberInputInterface {
+
+    /** @description If true, the button will be disabled. Default false. */
     @Input()
     public isDisabled: boolean;
 
+    /** @description If true, a * indicates that the value is required. Default false. */
     @Input()
     public isRequired: boolean;
-
-    @Input()
-    public maxLength: number;
 
     /** @description Set the maximum number value allowed. */
     @Input()
     public maxValue: number;
 
-    /**  @description Set a minimum number of characters allowed. */
-    @Input()
-    public minLength: number;
-
     /** @description Set the minimum number value allowed. */
     @Input()
     public minValue: number;
 
+    /** @description Set the label. */
     @Input()
     public name: string;
 
+    /** @description Set the tooltip placement (bottom, top, left, right). Default top. */
     @Input()
     public tooltipPlacement: string;
 
+    /** @description Set the tooltip. */
     @Input()
     public tooltipText: string;
 
-    // The internal data model
+    /** @description The internal data model */
     public value: number;
 
     // Placeholders for the callbacks which are later provided
     // by the Control Value Accessor
-    private _onTouchedCallback: () => void = noop;
-    private _onChangeCallback: (_: any) => void = noop;
+    public _onTouchedCallback: () => void = noop;
+    public _onChangeCallback: (_: any) => void = noop;
 
     public registerOnChange(fn: any): void {
         this._onChangeCallback = fn;
@@ -63,10 +62,5 @@ export class NumberInputComponent implements ControlValueAccessor, NumberInputIn
 
     public writeValue(value: number): void {
         this.value = value;
-    }
-
-    // Set touched on blur
-    public onBlur(): void {
-        this._onTouchedCallback();
     }
 }
