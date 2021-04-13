@@ -122,4 +122,22 @@ describe('TextAreaComponent', () => {
         fixture.detectChanges();
         expect(+(await host.getAttribute('maxLength'))).toBe(10);
     });
+
+    it('should call registered change callback whenever the value of the input is changed by the user', async () => {
+        const onChangeCallback: jasmine.Spy = jasmine.createSpy('onChange');
+        component.registerOnChange(onChangeCallback);
+
+        await input.setValue(testString);
+
+        expect(onChangeCallback).toHaveBeenCalledWith(testString);
+    });
+
+    it('should call registered touched callback whenever the input was blurred', async () => {
+        const onTouchedCallback: jasmine.Spy = jasmine.createSpy('onTouched');
+        component.registerOnTouched(onTouchedCallback);
+
+        await input.blur();
+
+        expect(onTouchedCallback).toHaveBeenCalled();
+    });
 });
