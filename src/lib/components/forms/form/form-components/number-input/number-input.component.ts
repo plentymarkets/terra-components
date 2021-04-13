@@ -15,9 +15,12 @@ import { noop } from 'rxjs';
     ]
 })
 export class NumberInputComponent implements ControlValueAccessor, NumberInputInterface {
+
+    /** @description If true, the button will be disabled. Default false. */
     @Input()
     public isDisabled: boolean;
 
+    /** @description If true, a * indicates that the value is required. Default false. */
     @Input()
     public isRequired: boolean;
 
@@ -29,16 +32,19 @@ export class NumberInputComponent implements ControlValueAccessor, NumberInputIn
     @Input()
     public minValue: number;
 
+    /** @description Set the label. */
     @Input()
     public name: string;
 
+    /** @description Set the tooltip placement (bottom, top, left, right). Default top. */
     @Input()
     public tooltipPlacement: string;
 
+    /** @description Set the tooltip. */
     @Input()
     public tooltipText: string;
 
-    // The internal data model
+    /** @description The internal data model */
     public value: number;
 
     // Placeholders for the callbacks which are later provided
