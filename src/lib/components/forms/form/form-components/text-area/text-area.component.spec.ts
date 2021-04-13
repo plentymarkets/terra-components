@@ -95,6 +95,7 @@ describe('TextAreaComponent', () => {
     });
 
     it('should have a default value of 4 for maxRows', async () => {
+        expect(component.maxRows).toBe(4);
         expect(await host.getProperty('rows')).toBe(4);
     });
 
