@@ -38,6 +38,10 @@ describe('NumberInputComponent', () => {
         expect(input).toBeTruthy();
     });
 
+    it('should have type number', async () => {
+        expect(await input.getType()).toBe('number');
+    });
+
     it('should set required validation when #isRequired is set', async () => {
         expect(await input.isRequired()).toBe(false);
         component.isRequired = true;
