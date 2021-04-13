@@ -17,11 +17,11 @@ import { TextAreaComponent } from './text-area.component';
 describe('TextAreaComponent', () => {
     let component: TextAreaComponent;
     let fixture: ComponentFixture<TextAreaComponent>;
-    const testString: string = 'foo';
-
     let loader: HarnessLoader;
     let input: MatInputHarness;
     let host: TestElement;
+
+    const testString: string = 'foo';
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
