@@ -6,7 +6,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { MockTooltipDirective } from '../../../../../testing/mock-tooltip.directive';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
-import { HarnessLoader } from '@angular/cdk/testing';
+import { HarnessLoader, TestElement } from '@angular/cdk/testing';
 import { MatInputHarness } from '@angular/material/input/testing';
 import { MatFormFieldHarness } from '@angular/material/form-field/testing';
 import { By } from '@angular/platform-browser';
@@ -93,24 +93,24 @@ describe('NumberInputComponent', () => {
         });
     });
 
-    it('should set min value validation according to input #minValue', () => {
-        const inputElement: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
-        expect(inputElement.min).toBe('undefined');
+    it('should set min value validation according to input #minValue', async () => {
+        const inputElement: TestElement = await input.host();
+        expect(await inputElement.getProperty('min')).toBe('undefined');
 
         component.minValue = 2;
         fixture.detectChanges();
 
-        expect(+inputElement.min).toBe(component.minValue);
+        expect(+(await inputElement.getProperty('min'))).toBe(component.minValue);
     });
 
-    it('should set max value validation according to input #minValue', () => {
-        const inputElement: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
-        expect(inputElement.max).toBe('undefined');
+    it('should set max value validation according to input #minValue', async () => {
+        const inputElement: TestElement = await input.host();
+        expect(await inputElement.getProperty('max')).toBe('undefined');
 
         component.maxValue = 10;
         fixture.detectChanges();
 
-        expect(+inputElement.max).toBe(component.maxValue);
+        expect(+(await inputElement.getProperty('max'))).toBe(component.maxValue);
     });
 
     it('should update the value of the input when writing a new value via `writeValue()`', async () => {
