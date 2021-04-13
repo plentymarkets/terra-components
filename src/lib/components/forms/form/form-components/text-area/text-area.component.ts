@@ -64,10 +64,12 @@ export class TextAreaComponent implements OnChanges, ControlValueAccessor, TextA
     @Input()
     public maxLength: number;
 
+    /** Internal model. The value of the input. */
     public value: string;
 
-    /** Placeholders for the callbacks which are later provided by the Control Value Accessor. */
+    /** Stores a callback function which is executed whenever the input was blurred. */
     public _onTouchedCallback: () => void = noop;
+    /** Stores a callback function which is executed whenever the value of the input changes. */
     public _onChangeCallback: (_: string) => void = noop;
 
     private readonly _defaultMaxRows: number = 4;
