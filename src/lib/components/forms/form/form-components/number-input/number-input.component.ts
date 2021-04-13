@@ -5,7 +5,7 @@ import { noop } from 'rxjs';
 import { TerraPlacementEnum } from '../../../../../helpers';
 
 @Component({
-    selector: 'terra-number-input',
+    selector: 'terra-number',
     templateUrl: './number-input.component.html',
     providers: [
         {
