@@ -3,6 +3,10 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
+import { HarnessLoader, TestElement } from '@angular/cdk/testing';
+import { MatInputHarness } from '@angular/material/input/testing';
+import { MatFormFieldHarness } from '@angular/material/form-field/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TerraPlacementEnum } from '../../../../../helpers';
@@ -13,46 +17,57 @@ import { TextAreaComponent } from './text-area.component';
 describe('TextAreaComponent', () => {
     let component: TextAreaComponent;
     let fixture: ComponentFixture<TextAreaComponent>;
-    let inputElement: HTMLTextAreaElement;
     const testString: string = 'foo';
 
-    beforeEach(() => {
-        TestBed.configureTestingModule({
+    let loader: HarnessLoader;
+    let input: MatInputHarness;
+    let host: TestElement;
+
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
             declarations: [MockTooltipDirective, TextAreaComponent],
             imports: [FormsModule, MatFormFieldModule, MatInputModule, NoopAnimationsModule]
-        });
+        }).compileComponents();
         fixture = TestBed.createComponent(TextAreaComponent);
         component = fixture.componentInstance;
-        inputElement = fixture.debugElement.query(By.css('textarea')).nativeElement;
+
+        loader = TestbedHarnessEnvironment.loader(fixture);
+        input = await loader.getHarness(MatInputHarness);
+        host = await input.host();
 
         fixture.detectChanges();
     });
 
     it('should create', () => {
         expect(component).toBeTruthy();
+        expect(input).toBeTruthy();
     });
 
-    it('should set name as mat-label', () => {
+    it('should have type textarea', async () => {
+        expect(await input.getType()).toBe('textarea');
+        expect(await host.matchesSelector('textarea')).toBe(true);
+    });
+
+    it('should set name as mat-label', async () => {
         component.name = testString;
         fixture.detectChanges();
+        let formField: MatFormFieldHarness = await loader.getHarness(MatFormFieldHarness);
 
-        let matLabel: HTMLElement = fixture.debugElement.query(By.css('mat-label')).nativeElement;
-
-        expect(matLabel.innerText).toBe(testString);
+        expect(await formField.getLabel()).toBe(testString);
     });
 
-    it('should set required state according to #isRequired', () => {
-        expect(inputElement.required).toBe(false);
+    it('should set required state according to #isRequired', async () => {
+        expect(await input.isRequired()).toBe(false);
         component.isRequired = true;
         fixture.detectChanges();
-        expect(inputElement.required).toBe(true);
+        expect(await input.isRequired()).toBe(true);
     });
 
-    it('should set disabled state according to #isDisabled', () => {
-        expect(inputElement.disabled).toBe(false);
+    it('should set disabled state according to #isDisabled', async () => {
+        expect(await input.isDisabled()).toBe(false);
         component.isDisabled = true;
         fixture.detectChanges();
-        expect(inputElement.disabled).toBe(true);
+        expect(await input.isDisabled()).toBe(true);
     });
 
     describe('', () => {
@@ -79,32 +94,32 @@ describe('TextAreaComponent', () => {
         });
     });
 
-    it('should have a default value of 4 for maxRows', () => {
-        expect(inputElement.rows).toBe(4);
+    it('should have a default value of 4 for maxRows', async () => {
+        expect(+(await host.getAttribute('rows'))).toBe(4);
     });
 
-    it('should set maxRows according to #maxRows but with at least 4', () => {
+    it('should set maxRows according to #maxRows but with at least 4', async () => {
         component.ngOnChanges({ maxRows: new SimpleChange(4, 2, false) });
         fixture.detectChanges();
-        expect(inputElement.rows).toBe(4);
+        expect(+(await host.getAttribute('rows'))).toBe(4);
 
         component.ngOnChanges({ maxRows: new SimpleChange(4, 6, false) });
         fixture.detectChanges();
-        expect(inputElement.rows).toBe(6);
+        expect(+(await host.getAttribute('rows'))).toBe(6);
     });
 
-    it('should set resize style according to #hastFixedHeight', () => {
-        expect(inputElement.style.resize).toBe('vertical');
+    it('should set resize style according to #hastFixedHeight', async () => {
+        expect(await host.getCssValue('resize')).toBe('vertical');
 
         component.ngOnChanges({ hasFixedHeight: new SimpleChange(false, true, false) });
         fixture.detectChanges();
-        expect(inputElement.style.resize).toBe('none');
+        expect(await host.getCssValue('resize')).toBe('none');
     });
 
-    it('should set maxlength according to #maxlength', () => {
-        expect(inputElement.maxLength).toBe(-1);
+    it('should set maxlength according to #maxLength', async () => {
+        expect(+(await host.getAttribute('maxLength'))).toBe(0);
         component.maxLength = 10;
         fixture.detectChanges();
-        expect(inputElement.maxLength).toBe(10);
+        expect(+(await host.getAttribute('maxLength'))).toBe(10);
     });
 });
