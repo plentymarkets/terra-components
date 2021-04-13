@@ -18,7 +18,7 @@ export class NumberInputComponent implements ControlValueAccessor, NumberInputIn
 
     /** @description If true, the button will be disabled. Default false. */
     @Input()
-    public isDisabled: boolean;
+    public isDisabled: boolean = false;
 
     /** @description If true, a * indicates that the value is required. Default false. */
     @Input()
