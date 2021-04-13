@@ -8,12 +8,25 @@ import { MatSelectModule } from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldHarness } from '@angular/material/form-field/testing';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { TerraSelectBoxValueInterface } from '../../../select-box/data/terra-select-box.interface';
 
 fdescribe('SelectComponent', () => {
     let fixture: ComponentFixture<SelectComponent>;
     let component: SelectComponent;
     let loader: HarnessLoader;
     let input: MatSelectHarness;
+
+    let listBoxValue1: TerraSelectBoxValueInterface = {
+        caption: 'Value 01',
+        value: 1
+    };
+
+    let listBoxValue2: TerraSelectBoxValueInterface = {
+        caption: 'Value 02',
+        value: 2
+    };
+
+    let selectOptions: Array<TerraSelectBoxValueInterface> = [listBoxValue1, listBoxValue2];
 
     beforeEach(async () => {
         TestBed.configureTestingModule({
@@ -58,5 +71,13 @@ fdescribe('SelectComponent', () => {
         fixture.detectChanges();
 
         expect(await input.isRequired()).toBe(true);
+    });
+
+    it('should set listBoxValues when #listBoxValues is set', async () => {
+        expect(await input.getOptions()).toBe([]);
+        component.listBoxValues = selectOptions;
+        fixture.detectChanges();
+
+        expect(await input.getOptions()).toBe(selectOptions);
     });
 });
