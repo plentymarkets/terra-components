@@ -99,7 +99,7 @@ describe('TextAreaComponent', () => {
         expect(await host.getProperty('rows')).toBe(4);
     });
 
-    it('should set maxRows according to #maxRows but with at least 4', async () => {
+    it('should set property `rows` according to input #maxRows but with at least 4', async () => {
         component.ngOnChanges({ maxRows: new SimpleChange(4, 2, false) });
         fixture.detectChanges();
         expect(await host.getProperty('rows')).toBe(4);
