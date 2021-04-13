@@ -21,16 +21,9 @@ export class NumberInputComponent implements ControlValueAccessor, NumberInputIn
     @Input()
     public isRequired: boolean;
 
-    @Input()
-    public maxLength: number;
-
     /** @description Set the maximum number value allowed. */
     @Input()
     public maxValue: number;
-
-    /**  @description Set a minimum number of characters allowed. */
-    @Input()
-    public minLength: number;
 
     /** @description Set the minimum number value allowed. */
     @Input()
@@ -50,8 +43,8 @@ export class NumberInputComponent implements ControlValueAccessor, NumberInputIn
 
     // Placeholders for the callbacks which are later provided
     // by the Control Value Accessor
-    private _onTouchedCallback: () => void = noop;
-    private _onChangeCallback: (_: any) => void = noop;
+    public _onTouchedCallback: () => void = noop;
+    public _onChangeCallback: (_: any) => void = noop;
 
     public registerOnChange(fn: any): void {
         this._onChangeCallback = fn;
@@ -63,10 +56,5 @@ export class NumberInputComponent implements ControlValueAccessor, NumberInputIn
 
     public writeValue(value: number): void {
         this.value = value;
-    }
-
-    // Set touched on blur
-    public onBlur(): void {
-        this._onTouchedCallback();
     }
 }
