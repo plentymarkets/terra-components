@@ -75,7 +75,7 @@ describe('NumberInputComponent', () => {
 
         it('should apply the tcTooltip directive to the form field with the given #tooltipText', () => {
             expect(tooltip).toBeTruthy();
-            expect(tooltip.tcTooltip).toBeUndefined();
+            expect(tooltip.tcTooltip).toBe('');
 
             component.tooltipText = 'My tooltip';
             fixture.detectChanges();
@@ -84,7 +84,7 @@ describe('NumberInputComponent', () => {
         });
 
         it(`should set the tooltip's placement according to the input #tooltipPlacement`, () => {
-            expect(tooltip.placement).toBeUndefined();
+            expect(tooltip.placement).toBe(TerraPlacementEnum.TOP);
 
             component.tooltipPlacement = TerraPlacementEnum.BOTTOM;
             fixture.detectChanges();
