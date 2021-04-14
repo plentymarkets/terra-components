@@ -5,13 +5,12 @@
     [placement]="tooltipPlacement"
     [onlyEllipsisTooltip]="true"
 >
-    <mat-label htmlFor="{{ name }}">
+    <mat-label attr.for="{{ name }}">
         {{ name }}
-        <span *ngIf="isRequired">*</span>
     </mat-label>
     <mat-select
         [tcTooltip]="tooltipText"
-        [(ngModel)]="value"
+        [(ngModel)]="_value"
         (ngModelChange)="_onChangeCallback($event)"
         (blur)="_onTouchedCallback()"
         [required]="isRequired"
