@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { MatFormFieldHarness } from '@angular/material/form-field/testing';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { TerraSelectBoxValueInterface } from '../../../select-box/data/terra-select-box.interface';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('SelectComponent', () => {
     let fixture: ComponentFixture<SelectComponent>;
@@ -30,7 +31,7 @@ describe('SelectComponent', () => {
 
     beforeEach(async () => {
         TestBed.configureTestingModule({
-            imports: [MatSelectModule, FormsModule, MatFormFieldModule],
+            imports: [MatSelectModule, FormsModule, MatFormFieldModule, NoopAnimationsModule],
             declarations: [SelectComponent, MockTooltipDirective]
         });
 
@@ -79,5 +80,36 @@ describe('SelectComponent', () => {
         fixture.detectChanges();
 
         expect(await input.getOptions()).toBe(selectOptions);
+    });
+
+    it('should set ngModel Value to the one from writeValue()', async () => {
+        expect(await input.getOptions()).toBe([]);
+        component.listBoxValues = selectOptions;
+        component.writeValue(listBoxValue1.value);
+
+        fixture.detectChanges();
+
+        expect(await input.getValueText()).toBe(listBoxValue1.value);
+    });
+
+    it('should open select panel when opening the select', async () => {
+        expect(await input.getOptions()).toBe([]);
+        component.listBoxValues = selectOptions;
+
+        // should open the select panel
+        await input.open();
+        fixture.detectChanges();
+
+        expect(await input.isOpen()).toBe(true);
+    });
+
+    it('should call registered onTouchedCallback when the value has changed', () => {
+        const spy: jasmine.Spy = jasmine.createSpy('onTouchedCallback');
+        component.registerOnTouched(spy);
+        component.writeValue(listBoxValue1.value);
+
+        fixture.detectChanges();
+
+        expect(spy).toHaveBeenCalled();
     });
 });

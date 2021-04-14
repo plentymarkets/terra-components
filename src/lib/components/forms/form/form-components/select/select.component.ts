@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { TerraFormComponentBaseInterface } from '../terra-form-component-base.interface';
+import { SelectInterface } from './select.interface';
+import { TerraSelectBoxValueInterface } from '../../../select-box/data/terra-select-box.interface';
+import { noop } from 'rxjs';
 
 @Component({
     selector: 'tc-select',
@@ -13,7 +15,25 @@ import { TerraFormComponentBaseInterface } from '../terra-form-component-base.in
         }
     ]
 })
-export class SelectComponent implements ControlValueAccessor, TerraFormComponentBaseInterface, OnInit {
+export class SelectComponent implements ControlValueAccessor, SelectInterface, OnInit {
+    @Input()
+    public isDisabled: boolean;
+
+    @Input()
+    public isRequired: boolean;
+
+    @Input()
+    public name: string;
+
+    @Input()
+    public tooltipPlacement: string;
+
+    @Input()
+    public tooltipText: string;
+
+    @Input()
+    public listBoxValues: Array<TerraSelectBoxValueInterface>;
+
     public ngOnInit(): void {}
 
     public registerOnChange(fn: any): void {}
@@ -21,11 +41,4 @@ export class SelectComponent implements ControlValueAccessor, TerraFormComponent
     public registerOnTouched(fn: any): void {}
 
     public writeValue(obj: any): void {}
-
-    @Input()
-    public isDisabled: boolean;
-    public isRequired: boolean;
-    public name: string;
-    public tooltipPlacement: string;
-    public tooltipText: string;
 }
