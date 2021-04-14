@@ -10,7 +10,7 @@ import { MatFormFieldHarness } from '@angular/material/form-field/testing';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { TerraSelectBoxValueInterface } from '../../../select-box/data/terra-select-box.interface';
 
-fdescribe('SelectComponent', () => {
+describe('SelectComponent', () => {
     let fixture: ComponentFixture<SelectComponent>;
     let component: SelectComponent;
     let loader: HarnessLoader;
