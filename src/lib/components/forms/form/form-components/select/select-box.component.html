@@ -9,7 +9,6 @@
         {{ name }}
     </mat-label>
     <mat-select
-        [tcTooltip]="tooltipText"
         [(ngModel)]="_value"
         (ngModelChange)="_onChangeCallback($event)"
         (blur)="_onTouchedCallback()"
