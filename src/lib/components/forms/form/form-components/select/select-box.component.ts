@@ -16,7 +16,7 @@ import { TerraPlacementEnum } from '../../../../../helpers/enums/terra-placement
         }
     ]
 })
-export class SelectBoxComponent implements OnInit {
+export class SelectBoxComponent {
     /** @description The name of the select box also used to set the label. */
     @Input()
     public name: string = ' ';
@@ -37,7 +37,6 @@ export class SelectBoxComponent implements OnInit {
     @Input()
     public selectBoxValues: Array<TerraSelectBoxValueInterface>; // TODO SelectInterface
 
-    public _hasLabel: boolean;
     public _value: number | string;
 
     /**
@@ -46,10 +45,6 @@ export class SelectBoxComponent implements OnInit {
      */
     public _onTouchedCallback: () => void = noop;
     public _onChangeCallback: (_: any) => void = noop;
-
-    public ngOnInit(): void {
-        this._hasLabel = !StringHelper.isNullUndefinedOrEmpty(this.name);
-    }
 
     public registerOnChange(fn: (_: any) => void): void {
         this._onChangeCallback = fn;
