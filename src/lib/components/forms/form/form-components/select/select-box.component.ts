@@ -38,14 +38,14 @@ export class SelectBoxComponent implements OnInit {
     public selectBoxValues: Array<TerraSelectBoxValueInterface>; // TODO SelectInterface
 
     public _hasLabel: boolean;
-    private value: number | string;
+    public _value: number | string;
 
     /**
      *
      * Two way data binding by ngModel
      */
-    private _onTouchedCallback: () => void = noop;
-    private _onChangeCallback: (_: any) => void = noop;
+    public _onTouchedCallback: () => void = noop;
+    public _onChangeCallback: (_: any) => void = noop;
 
     public ngOnInit(): void {
         this._hasLabel = !StringHelper.isNullUndefinedOrEmpty(this.name);
@@ -61,6 +61,6 @@ export class SelectBoxComponent implements OnInit {
     }
 
     public writeValue(value: any): void {
-        this.value = value;
+        this._value = value;
     }
 }
