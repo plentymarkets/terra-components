@@ -1,0 +1,24 @@
+<mat-form-field
+    class="w-100"
+    appearance="standard"
+    [tcTooltip]="tooltipText"
+    [placement]="tooltipPlacement"
+    [onlyEllipsisTooltip]="true"
+>
+    <mat-label htmlFor="{{ name }}">
+        {{ name }}
+        <span *ngIf="isRequired">*</span>
+    </mat-label>
+    <mat-select
+        [tcTooltip]="tooltipText"
+        [(ngModel)]="value"
+        (ngModelChange)="_onChangeCallback($event)"
+        (blur)="_onTouchedCallback()"
+        [required]="isRequired"
+        [disabled]="isDisabled"
+    >
+        <mat-option *ngFor="let item of selectBoxValues" [value]="item.value">
+            {{ item.caption }}
+        </mat-option>
+    </mat-select>
+</mat-form-field>
