@@ -17,23 +17,27 @@ import { TerraPlacementEnum } from '../../../../../helpers';
     ]
 })
 export class SelectComponent implements ControlValueAccessor, SelectInterface {
-    /** @description The name of the select box also used to set the label. */
+    /** The name of the control which will be used as label. */
     @Input()
     public name: string = '';
 
+    /** Disables the input when set to true. Default false. */
     @Input()
     public isDisabled: boolean = false;
 
+    /** Requires the input to be filled when set to true. Default false. */
     @Input()
     public isRequired: boolean = false;
 
+    /** Text that should be shown in a tooltip on the control. */
     @Input()
     public tooltipText: string;
 
-    /** @description Set the tooltip placement (bottom, top, left, right). Default bottom. */
+    /** Set the tooltip placement (bottom, top, left, right). Default top. */
     @Input()
-    public tooltipPlacement: TerraPlacementEnum = TerraPlacementEnum.BOTTOM;
+    public tooltipPlacement: TerraPlacementEnum = TerraPlacementEnum.TOP;
 
+    /** List of options that the user can select from. */
     @Input()
     public listBoxValues: Array<TerraSelectBoxValueInterface>;
 
