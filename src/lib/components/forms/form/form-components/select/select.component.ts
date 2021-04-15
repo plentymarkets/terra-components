@@ -5,6 +5,10 @@ import { TerraSelectBoxValueInterface } from '../../../select-box/data/terra-sel
 import { noop } from 'rxjs';
 import { TerraPlacementEnum } from '../../../../../helpers';
 
+/**
+ * A component that wrap's material's select to be able to use it in the terra-form.
+ * @internal
+ */
 @Component({
     selector: 'tc-select',
     templateUrl: './select.component.html',
