@@ -3,7 +3,7 @@
 ### Features
 
 -   **terra-form**
-    -   **text-select** replaced deprecated `terra-select-box` with a `mat-select` variant.
+    -   **select** replaced deprecated `terra-select-box` with a `mat-select` variant.
 
 # 11.1.0 (23.03.2021)
 
