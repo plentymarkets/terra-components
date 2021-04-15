@@ -38,12 +38,9 @@ export class SelectComponent implements ControlValueAccessor, SelectInterface {
     public listBoxValues: Array<TerraSelectBoxValueInterface>;
 
     /** Internal model. Stores the value of the selected option. */
-    public _value: any;
+    public value: any;
 
-    /**
-     *
-     * Two way data binding by ngModel
-     */
+    /** Two way data binding by ngModel. */
     public _onTouchedCallback: () => void = noop;
     public _onChangeCallback: (_: any) => void = noop;
 
@@ -57,6 +54,6 @@ export class SelectComponent implements ControlValueAccessor, SelectInterface {
     }
 
     public writeValue(value: any): void {
-        this._value = value;
+        this.value = value;
     }
 }

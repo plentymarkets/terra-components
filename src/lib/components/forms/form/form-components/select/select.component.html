@@ -3,13 +3,13 @@
         {{ name }}
     </mat-label>
     <mat-select
-        [(ngModel)]="_value"
+        [(ngModel)]="value"
         (ngModelChange)="_onChangeCallback($event)"
         (blur)="_onTouchedCallback()"
         [required]="isRequired"
         [disabled]="isDisabled"
     >
-        <mat-option *ngFor="let item of listBoxValues" [value]="item?.value" [style.color]="item.color">
+        <mat-option *ngFor="let item of listBoxValues" [value]="item.value" [style.color]="item.color">
             <mat-icon *ngIf="item.icon" fontSet="plentyicons" [fontIcon]="item.icon"></mat-icon>
             {{ item?.caption }}
         </mat-option>
