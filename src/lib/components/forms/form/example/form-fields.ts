@@ -20,12 +20,15 @@ export const select: TerraFormFieldInterface = {
             {
                 value: 'option1',
                 caption: 'Option 1',
-                position: 0
+                position: 1,
+                color: 'green',
+                icon: 'icon-back'
             },
             {
                 value: 'option2',
                 caption: 'Option 2',
-                position: 1
+                position: 0,
+                icon: 'icon-add'
             }
         ]
     }
