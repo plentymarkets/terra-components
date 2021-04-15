@@ -11,6 +11,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { TerraSelectBoxValueInterface } from '../../../select-box/data/terra-select-box.interface';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatOptionHarness } from '@angular/material/core/testing';
+import { SelectSortPipe } from '../../../../../pipes/select-sort.pipe';
 
 describe('SelectComponent', () => {
     let fixture: ComponentFixture<SelectComponent>;
@@ -33,7 +34,7 @@ describe('SelectComponent', () => {
     beforeEach(async () => {
         TestBed.configureTestingModule({
             imports: [MatSelectModule, FormsModule, MatFormFieldModule, NoopAnimationsModule],
-            declarations: [SelectComponent, MockTooltipDirective]
+            declarations: [SelectComponent, SelectSortPipe, MockTooltipDirective]
         });
 
         fixture = TestBed.createComponent(SelectComponent);
@@ -76,17 +77,20 @@ describe('SelectComponent', () => {
     });
 
     it('should set listBoxValues when #listBoxValues is set', async () => {
-        expect(await input.getOptions()).toBe([]);
+        expect(await input.getOptions()).toEqual([]);
         component.listBoxValues = selectOptions;
         fixture.detectChanges();
 
-        expect((await input.getOptions()).every(async (option:MatOptionHarness, index:number) =>
-            await option.getText() === selectOptions[index].caption
-        )).toBe(true);
+        expect(
+            (await input.getOptions()).every(
+                async (option: MatOptionHarness, index: number) =>
+                    (await option.getText()) === selectOptions[index].caption
+            )
+        ).toBe(true);
     });
 
     it('should set ngModel Value to the one from writeValue()', async () => {
-        expect(await input.getOptions()).toBe([]);
+        expect(await input.getOptions()).toEqual([]);
         component.listBoxValues = selectOptions;
         component.writeValue(listBoxValue1.value);
 
