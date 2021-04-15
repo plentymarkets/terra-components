@@ -11,7 +11,7 @@
     >
         <mat-option *ngFor="let item of listBoxValues" [value]="item.value" [style.color]="item.color">
             <mat-icon *ngIf="item.icon" fontSet="plentyicons" [fontIcon]="item.icon"></mat-icon>
-            {{ item?.caption }}
+            {{ item.caption }}
         </mat-option>
     </mat-select>
 </mat-form-field>

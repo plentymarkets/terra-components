@@ -181,6 +181,11 @@ mat-form-field.mat-form-field {
                                     background-color: var(--color-active);
                                 }
                             }
+                            .mat-option-text {
+                                .mat-icon.plentyicons {
+                                    font-size: 24px;
+                                }
+                            }
                         }
                     }
                 }
