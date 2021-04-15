@@ -10,6 +10,7 @@ import { MatFormFieldHarness } from '@angular/material/form-field/testing';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { TerraSelectBoxValueInterface } from '../../../select-box/data/terra-select-box.interface';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { MatOptionHarness } from '@angular/material/core/testing';
 
 describe('SelectComponent', () => {
     let fixture: ComponentFixture<SelectComponent>;
@@ -79,7 +80,9 @@ describe('SelectComponent', () => {
         component.listBoxValues = selectOptions;
         fixture.detectChanges();
 
-        expect(await input.getOptions()).toBe(selectOptions);
+        expect((await input.getOptions()).every(async (option:MatOptionHarness, index:number) =>
+            await option.getText() === selectOptions[index].caption
+        )).toBe(true);
     });
 
     it('should set ngModel Value to the one from writeValue()', async () => {
@@ -89,27 +92,28 @@ describe('SelectComponent', () => {
 
         fixture.detectChanges();
 
-        expect(await input.getValueText()).toBe(listBoxValue1.value);
+        expect(await input.getValueText()).toBe(listBoxValue1.caption.toString());
     });
 
-    it('should open select panel when opening the select', async () => {
-        expect(await input.getOptions()).toBe([]);
-        component.listBoxValues = selectOptions;
-
-        // should open the select panel
-        await input.open();
-        fixture.detectChanges();
-
-        expect(await input.isOpen()).toBe(true);
-    });
-
-    it('should call registered onTouchedCallback when the value has changed', () => {
+    it('should call registered onTouchedCallback when select blur has been called', async () => {
         const spy: jasmine.Spy = jasmine.createSpy('onTouchedCallback');
         component.registerOnTouched(spy);
-        component.writeValue(listBoxValue1.value);
+        await input.blur();
 
         fixture.detectChanges();
 
         expect(spy).toHaveBeenCalled();
+    });
+
+    it('should call registered onChangeCallback when the value has changed', async () => {
+        const spy: jasmine.Spy = jasmine.createSpy('onChangeCallback');
+        component.registerOnChange(spy);
+        await input.clickOptions({
+            text: listBoxValue1.caption.toString()
+        });
+
+        fixture.detectChanges();
+
+        expect(spy).toHaveBeenCalledOnceWith(listBoxValue1.value);
     });
 });
