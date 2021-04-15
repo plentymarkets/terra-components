@@ -40,19 +40,22 @@ export class SelectComponent implements ControlValueAccessor, SelectInterface {
     /** Internal model. Stores the value of the selected option. */
     public value: any;
 
-    /** Two way data binding by ngModel. */
+    /** Stores the callback function that will be called on blur. */
     public _onTouchedCallback: () => void = noop;
+    /** Stores the callback function that will be called when the control's value changes in the UI. */
     public _onChangeCallback: (_: any) => void = noop;
 
+    /** Registers a callback function that is called when the control's value changes in the UI. */
     public registerOnChange(fn: (_: any) => void): void {
         this._onChangeCallback = fn;
     }
 
-    /** @description Registers a callback function that is called by the forms API on initialization to update the form model on blur. */
+    /** Registers a callback function that is called by the forms API on initialization to update the form model on blur. */
     public registerOnTouched(fn: () => void): void {
         this._onTouchedCallback = fn;
     }
 
+    /** Writes a new value to the input element. */
     public writeValue(value: any): void {
         this.value = value;
     }
