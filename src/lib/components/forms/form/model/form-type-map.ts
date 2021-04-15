@@ -5,7 +5,7 @@ import { TerraCheckboxComponent } from '../../checkbox/terra-checkbox.component'
 import { TerraDatePickerComponent } from '../../input/date-picker/terra-date-picker.component';
 import { TerraFileInputComponent } from '../../input/file-input/terra-file-input.component';
 import { TerraTextInputComponent } from '../../input/text-input/terra-text-input.component';
-import { TerraNumberInputComponent } from '../../input/number-input/terra-number-input.component';
+import { NumberInputComponent } from '../form-components/number-input/number-input.component';
 import { TerraDoubleInputComponent } from '../../input/double-input/terra-double-input.component';
 import { TerraSelectBoxComponent } from '../../select-box/terra-select-box.component';
 import { TerraCategoryPickerComponent } from '../../../data-picker/category-picker/terra-category-picker.component';
@@ -54,9 +54,9 @@ export class FormTypeMap {
     };
     public readonly number: TerraFormTypeInterface = {
         inputMap: {
-            required: 'inputIsRequired'
+            required: 'isRequired'
         },
-        component: TerraNumberInputComponent
+        component: NumberInputComponent
     };
     public readonly double: TerraFormTypeInterface = {
         inputMap: {
