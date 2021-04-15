@@ -80,9 +80,12 @@ describe('SelectComponent', () => {
         component.listBoxValues = selectOptions;
         fixture.detectChanges();
 
-        expect((await input.getOptions()).every(async (option:MatOptionHarness, index:number) =>
-            await option.getText() === selectOptions[index].caption
-        )).toBe(true);
+        expect(
+            (await input.getOptions()).every(
+                async (option: MatOptionHarness, index: number) =>
+                    (await option.getText()) === selectOptions[index].caption
+            )
+        ).toBe(true);
     });
 
     it('should set ngModel Value to the one from writeValue()', async () => {
@@ -115,5 +118,35 @@ describe('SelectComponent', () => {
         fixture.detectChanges();
 
         expect(spy).toHaveBeenCalledOnceWith(listBoxValue1.value);
+    });
+
+    it('should sort select options by position if given', async () => {
+        expect(await input.getOptions()).toBe([]);
+
+        component.listBoxValues = [
+            {
+                caption: 'position-3',
+                value: 3,
+                position: 3
+            },
+            {
+                caption: 'position-1',
+                value: 1,
+                position: 1
+            },
+            {
+                caption: 'position-2',
+                value: 2,
+                position: 2
+            }
+        ];
+
+        fixture.detectChanges();
+
+        expect(
+            (await input.getOptions()).every(
+                async (option: MatOptionHarness, index: number) => (await option.getText()) === 'position-' + index + 1
+            )
+        ).toBe(true);
     });
 });
