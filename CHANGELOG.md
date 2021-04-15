@@ -5,6 +5,7 @@
 -   **terra-form**
     -   **text-area** replaced deprecated `terra-text-area-input` with a `mat-input` variant.
     -   form type **number**: replaced deprecated `terra-number-input` with a `mat-input` variant.
+    -   **select** replaced deprecated `terra-select-box` with a `mat-select` variant.
 
 # 11.1.0 (23.03.2021)
 
