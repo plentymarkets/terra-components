@@ -112,17 +112,19 @@ describe('SelectComponent', () => {
     it('should call registered onChangeCallback when the value has changed', async () => {
         const spy: jasmine.Spy = jasmine.createSpy('onChangeCallback');
         component.registerOnChange(spy);
+        component.listBoxValues = selectOptions;
+
+        fixture.detectChanges();
+
         await input.clickOptions({
             text: listBoxValue1.caption.toString()
         });
-
-        fixture.detectChanges();
 
         expect(spy).toHaveBeenCalledOnceWith(listBoxValue1.value);
     });
 
     it('should sort select options by position if given', async () => {
-        expect(await input.getOptions()).toBe([]);
+        expect(await input.getOptions()).toEqual([]);
 
         component.listBoxValues = [
             {
