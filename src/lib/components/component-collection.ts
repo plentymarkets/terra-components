@@ -64,7 +64,6 @@ import { TerraBaseEditorComponent } from './editors/base-editor/terra-base-edito
 import { TerraFormContainerWrapperComponent } from './forms/form/form-container/container-wrapper/terra-form-container-wrapper.component';
 import { TableSettingsComponent } from './table/table-settings/table-settings.component';
 import { TableSettingsDialogComponent } from './table/table-settings/dialog/table-settings-dialog.component';
-import { SelectBoxComponent } from './forms/form/form-components/select/select-box.component';
 import { SelectComponent } from './forms/form/form-components/select/select.component';
 
 export const exportedComponents: Array<Type<any>> = [
@@ -137,6 +136,5 @@ export const components: Array<Type<any>> = [
     TerraBaseEditorComponent,
     TableSettingsDialogComponent,
     TerraFormContainerWrapperComponent,
-    SelectBoxComponent,
     SelectComponent
 ];

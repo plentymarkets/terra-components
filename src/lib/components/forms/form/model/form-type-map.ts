@@ -8,7 +8,7 @@ import { TerraTextInputComponent } from '../../input/text-input/terra-text-input
 import { TerraTextAreaInputComponent } from '../../input/text-area-input/terra-text-area-input.component';
 import { TerraNumberInputComponent } from '../../input/number-input/terra-number-input.component';
 import { TerraDoubleInputComponent } from '../../input/double-input/terra-double-input.component';
-import { TerraSelectBoxComponent } from '../../select-box/terra-select-box.component';
+import { SelectComponent } from '../form-components/select/select.component';
 import { TerraCategoryPickerComponent } from '../../../data-picker/category-picker/terra-category-picker.component';
 import { TerraColorPickerComponent } from '../../input/color-picker/terra-color-picker.component';
 import { TerraNoteEditorComponent } from '../../../editors/note-editor/terra-note-editor.component';
@@ -16,7 +16,6 @@ import { TerraCodeEditorComponent } from '../../../editors/code-editor/terra-cod
 import { TerraSliderComponent } from '../../slider/terra-slider.component';
 import { TerraPortletComponent } from '../../../layouts/portlet/terra-portlet.component';
 import { TerraSuggestionBoxComponent } from '../../suggestion-box/terra-suggestion-box.component';
-import { SelectBoxComponent } from '../form-components/select/select-box.component';
 
 /**
  * @description A map of control types that may be passed to the <terra-form> in order to support those controls.
@@ -69,7 +68,7 @@ export class FormTypeMap {
         inputMap: {
             required: 'isRequired'
         },
-        component: SelectBoxComponent
+        component: SelectComponent
     };
     public readonly category: Type<TerraCategoryPickerComponent> = TerraCategoryPickerComponent;
     public readonly color: TerraFormTypeInterface = {
