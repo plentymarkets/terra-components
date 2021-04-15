@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { HarnessLoader } from '@angular/cdk/testing';
+import { HarnessLoader, TestElement } from '@angular/cdk/testing';
 import { SelectComponent } from './select.component';
 import { MatSelectHarness } from '@angular/material/select/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
@@ -81,8 +81,11 @@ describe('SelectComponent', () => {
         component.listBoxValues = selectOptions;
         fixture.detectChanges();
 
+        await input.open();
+        const options: Array<MatOptionHarness> = await input.getOptions();
+        expect(options.length).toBe(selectOptions.length);
         expect(
-            (await input.getOptions()).every(
+            options.every(
                 async (option: MatOptionHarness, index: number) =>
                     (await option.getText()) === selectOptions[index].caption
             )
@@ -90,7 +93,6 @@ describe('SelectComponent', () => {
     });
 
     it('should set ngModel Value to the one from writeValue()', async () => {
-        expect(await input.getOptions()).toEqual([]);
         component.listBoxValues = selectOptions;
         component.writeValue(listBoxValue1.value);
 
@@ -146,10 +148,23 @@ describe('SelectComponent', () => {
 
         fixture.detectChanges();
 
+        await input.open();
+        const options: Array<MatOptionHarness> = await input.getOptions();
         expect(
-            (await input.getOptions()).every(
+            options.every(
                 async (option: MatOptionHarness, index: number) => (await option.getText()) === 'position-' + index + 1
             )
         ).toBe(true);
+    });
+
+    it(`should color the option's text according to the color given via 'TerraSelectBoxValueInterface'`, async () => {
+        component.listBoxValues = [{ caption: 'colored', value: 1, color: 'rgb(1, 2, 3)' as any }];
+        fixture.detectChanges();
+
+        await input.open();
+        const options: Array<MatOptionHarness> = await input.getOptions();
+        const option: MatOptionHarness = options[0];
+        const host: TestElement = await option.host();
+        expect(await host.getCssValue('color')).toBe(component.listBoxValues[0].color);
     });
 });
