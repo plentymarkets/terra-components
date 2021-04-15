@@ -17,15 +17,15 @@ import { TerraPlacementEnum } from '../../../../../helpers';
     ]
 })
 export class SelectComponent implements ControlValueAccessor, SelectInterface {
+    /** @description The name of the select box also used to set the label. */
+    @Input()
+    public name: string = ' ';
+
     @Input()
     public isDisabled: boolean;
 
     @Input()
     public isRequired: boolean;
-
-    /** @description The name of the select box also used to set the label. */
-    @Input()
-    public name: string = ' ';
 
     @Input()
     public tooltipText: string;
