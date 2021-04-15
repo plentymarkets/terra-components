@@ -1,8 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { SelectInterface } from './select.interface';
 import { TerraSelectBoxValueInterface } from '../../../select-box/data/terra-select-box.interface';
 import { noop } from 'rxjs';
+import { TerraPlacementEnum } from '../../../../../helpers';
 
 @Component({
     selector: 'tc-select',
@@ -15,30 +16,46 @@ import { noop } from 'rxjs';
         }
     ]
 })
-export class SelectComponent implements ControlValueAccessor, SelectInterface, OnInit {
+export class SelectComponent implements ControlValueAccessor, SelectInterface {
     @Input()
     public isDisabled: boolean;
 
     @Input()
     public isRequired: boolean;
 
+    /** @description The name of the select box also used to set the label. */
     @Input()
-    public name: string;
-
-    @Input()
-    public tooltipPlacement: string;
+    public name: string = ' ';
 
     @Input()
     public tooltipText: string;
 
+    /** @description Set the tooltip placement (bottom, top, left, right). Default bottom. */
     @Input()
-    public listBoxValues: Array<TerraSelectBoxValueInterface>;
+    public tooltipPlacement: TerraPlacementEnum = TerraPlacementEnum.BOTTOM;
 
-    public ngOnInit(): void {}
+    @Input()
+    public listBoxValues: Array<TerraSelectBoxValueInterface>; // TODO SelectInterface
 
-    public registerOnChange(fn: any): void {}
+    public _value: number | string;
 
-    public registerOnTouched(fn: any): void {}
+    /**
+     *
+     * Two way data binding by ngModel
+     */
+    public _onTouchedCallback: () => void = noop;
+    public _onChangeCallback: (_: any) => void = noop;
 
-    public writeValue(obj: any): void {}
+    public registerOnChange(fn: (_: any) => void): void {
+        this._onChangeCallback = fn;
+    }
+
+    /** @description Registers a callback function that is called by the forms API on initialization to update the form model on blur. */
+    public registerOnTouched(fn: () => void): void {
+        this._onTouchedCallback = fn;
+    }
+
+    public writeValue(value: any): void {
+        this._value = value;
+    }
 }
