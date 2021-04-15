@@ -19,13 +19,13 @@ import { TerraPlacementEnum } from '../../../../../helpers';
 export class SelectComponent implements ControlValueAccessor, SelectInterface {
     /** @description The name of the select box also used to set the label. */
     @Input()
-    public name: string = ' ';
+    public name: string = '';
 
     @Input()
-    public isDisabled: boolean;
+    public isDisabled: boolean = false;
 
     @Input()
-    public isRequired: boolean;
+    public isRequired: boolean = false;
 
     @Input()
     public tooltipText: string;
@@ -37,7 +37,8 @@ export class SelectComponent implements ControlValueAccessor, SelectInterface {
     @Input()
     public listBoxValues: Array<TerraSelectBoxValueInterface>; // TODO SelectInterface
 
-    public _value: number | string;
+    /** Internal model. Stores the value of the selected option. */
+    public _value: any;
 
     /**
      *
