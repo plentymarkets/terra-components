@@ -89,7 +89,7 @@ describe('SelectComponent', () => {
 
         fixture.detectChanges();
 
-        expect(await input.getValueText()).toBe(listBoxValue1.value);
+        expect(await input.getValueText()).toBe(listBoxValue1.caption);
     });
 
     it('should open select panel when opening the select', async () => {
