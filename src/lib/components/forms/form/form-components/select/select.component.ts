@@ -35,7 +35,7 @@ export class SelectComponent implements ControlValueAccessor, SelectInterface {
     public tooltipPlacement: TerraPlacementEnum = TerraPlacementEnum.BOTTOM;
 
     @Input()
-    public listBoxValues: Array<TerraSelectBoxValueInterface>; // TODO SelectInterface
+    public listBoxValues: Array<TerraSelectBoxValueInterface>;
 
     /** Internal model. Stores the value of the selected option. */
     public _value: any;
