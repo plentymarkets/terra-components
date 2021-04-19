@@ -92,7 +92,7 @@ describe('CheckboxComponent', () => {
         expect(await checkbox.getValue()).toEqual(value.toString());
     });
 
-    it('should have state inderterminate when isIndeterminate ', async () => {
+    it('should have state inderterminate when #isIndeterminate is true', async () => {
         expect(await checkbox.isIndeterminate()).toBe(false);
         component.isIndeterminate = true;
         fixture.detectChanges();
