@@ -16,7 +16,6 @@ describe('CheckboxComponent', () => {
     let fixture: ComponentFixture<CheckboxComponent>;
     let loader: HarnessLoader;
     let checkbox: MatCheckboxHarness;
-    let icon: MatIconHarness;
 
     beforeEach(async () => {
         TestBed.configureTestingModule({
@@ -31,7 +30,6 @@ describe('CheckboxComponent', () => {
         fixture.detectChanges();
 
         checkbox = await loader.getHarness(MatCheckboxHarness);
-        icon = await loader.getHarness(MatIconHarness);
     });
 
     it('should create', async () => {
@@ -105,6 +103,9 @@ describe('CheckboxComponent', () => {
     });
 
     it('should set icon as #icon', async () => {
+        let icon: MatIconHarness;
+        icon = await loader.getHarness(MatIconHarness);
+
         expect(await icon.getName()).toBe(null);
 
         const plentyIcon: string = 'icon-add';
