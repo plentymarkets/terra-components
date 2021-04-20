@@ -18,7 +18,7 @@ describe('CheckboxComponent', () => {
 
     beforeEach(async () => {
         TestBed.configureTestingModule({
-            imports: [MatCheckboxModule],
+            imports: [MatCheckboxModule, FormsModule],
             declarations: [CheckboxComponent, MockTooltipDirective]
         });
 
