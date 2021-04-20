@@ -71,7 +71,7 @@ describe('CheckboxComponent', () => {
 
         await checkbox.check();
 
-        expect(onChangeCallback).toHaveBeenCalled();
+        expect(onChangeCallback).toHaveBeenCalledWith(true);
     });
 
     it('should call the callback #registerOnTouched whenever the checkbox was blurred', async () => {
