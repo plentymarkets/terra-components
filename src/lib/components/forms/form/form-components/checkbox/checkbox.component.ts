@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { TerraPlacementEnum } from '../../../../../helpers';
 import { noop } from 'rxjs';
 
@@ -28,13 +28,13 @@ export class CheckboxComponent {
     @Input()
     public isIndeterminate: boolean;
 
-    public value: any;
+    public value: boolean;
 
     public _onTouchedCallback: () => void = noop;
 
-    public _onChangeCallback: (_: any) => void = noop;
+    public _onChangeCallback: (_: boolean) => void = noop;
 
-    public registerOnChange(fn: (_: any) => void): void {
+    public registerOnChange(fn: (_: boolean) => void): void {
         //
     }
 
@@ -42,7 +42,7 @@ export class CheckboxComponent {
         //
     }
 
-    public writeValue(value: any): void {
+    public writeValue(value: boolean): void {
         //
     }
 }
