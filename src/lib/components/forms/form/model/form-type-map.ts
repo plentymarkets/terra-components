@@ -24,9 +24,7 @@ import { CheckboxComponent } from '../form-components/checkbox/checkbox.componen
  */
 export class FormTypeMap {
     public readonly checkbox: TerraFormTypeInterface = {
-        inputMap: {
-            name: 'name'
-        },
+        inputMap: {},
         component: CheckboxComponent
     };
     public readonly date: TerraFormTypeInterface = {

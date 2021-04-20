@@ -44,20 +44,20 @@ export class CheckboxComponent implements ControlValueAccessor {
     public _onTouchedCallback: () => void = noop;
 
     /** @description Stores a callback function which is executed whenever the value of the input changes. */
-    public _onChangeCallback: (_: string) => void = noop;
+    public _onChangeCallback: (_: boolean) => void = noop;
 
     /** @description Internal model. The value of the input. */
-    public value: string;
+    public value: boolean;
 
     constructor() {}
 
     /** @description Writes a new value to the element.*/
-    public writeValue(value: string): void {
+    public writeValue(value: boolean): void {
         this.value = value;
     }
 
     /** @description Registers a callback function that is called when the control's value changes in the UI.*/
-    public registerOnChange(fn: (_: string) => void): void {
+    public registerOnChange(fn: (_: boolean) => void): void {
         this._onChangeCallback = fn;
     }
 
