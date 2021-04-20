@@ -55,10 +55,10 @@ describe('CheckboxComponent', () => {
         expect(await checkbox.isRequired()).toBe(true);
     });
 
-    it('should set #name as label', async () => {
+    it('should set #caption as label', async () => {
         expect(await checkbox.getLabelText()).toBe('');
 
-        component.name = 'My label';
+        component.caption = 'My label';
         fixture.detectChanges();
 
         expect(await checkbox.getLabelText()).toBe('My label');

@@ -8,7 +8,7 @@ import { noop } from 'rxjs';
 })
 export class CheckboxComponent {
     @Input()
-    public name: string = '';
+    public caption: string = '';
 
     @Input()
     public isDisabled: boolean = false;
