@@ -1,1 +1,11 @@
-<p>checkbox works!</p>
+<mat-checkbox
+    [disabled]="isDisabled"
+    [tcTooltip]="tooltipText"
+    [placement]="tooltipPlacement"
+    [(ngModel)]="value"
+    (ngModelChange)="_onChangeCallback($event)"
+    [(indeterminate)]="_isIndeterminate"
+    (blur)="_onTouchedCallback()"
+>
+    {{ name }}
+</mat-checkbox>

@@ -30,6 +30,14 @@ export const select: TerraFormFieldInterface = {
         ]
     }
 };
+export const checkbox: TerraFormFieldInterface = {
+    type: 'checkbox',
+    defaultValue: 'true',
+    options: {
+        required: false,
+        name: 'Checkbox'
+    }
+};
 
 export const suggestion: TerraFormFieldInterface = {
     type: 'suggestion',
@@ -105,6 +113,13 @@ export const containerCompontent: TerraFormFieldInterface = {
 };
 
 export const formFields: TerraKeyValueInterface<TerraFormFieldInterface> = {
+    checkbox: {
+        type: 'checkbox',
+        options: {
+            name: 'checkbox',
+            required: true
+        }
+    },
     text: {
         type: 'text',
         options: {
