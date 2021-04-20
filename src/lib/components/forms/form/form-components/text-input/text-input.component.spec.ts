@@ -1,7 +1,4 @@
-import {
-    ComponentFixture,
-    TestBed
-} from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TextInputComponent } from './text-input.component';
 import { HarnessLoader } from '@angular/cdk/testing';
 import { MatInputHarness } from '@angular/material/input/testing';
@@ -15,9 +12,7 @@ import { MatFormFieldHarness } from '@angular/material/form-field/testing';
 import { By } from '@angular/platform-browser';
 import { TerraPlacementEnum } from '../../../../../helpers';
 
-
-describe('TextInputComponent', () =>
-{
+describe('TextInputComponent', () => {
     let fixture: ComponentFixture<TextInputComponent>;
     let component: TextInputComponent;
     let loader: HarnessLoader;
