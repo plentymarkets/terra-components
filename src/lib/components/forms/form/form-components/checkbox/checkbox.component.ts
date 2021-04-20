@@ -21,6 +21,10 @@ export class CheckboxComponent implements ControlValueAccessor {
     @Input()
     public isDisabled: boolean = false;
 
+    /** @description If true, a * indicates that the value is required. Default false. */
+    @Input()
+    public isRequired: boolean = false;
+
     /**
      * @description Set the caption.
      */
