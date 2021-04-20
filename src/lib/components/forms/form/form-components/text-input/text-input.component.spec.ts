@@ -42,6 +42,13 @@ describe('TextInputComponent', () => {
         expect(await input.getType()).toBe('text');
     });
 
+    it('should have type password if isPassword === true', async () => {
+        component.isPassword = true;
+        fixture.detectChanges();
+
+        expect(await input.getType()).toBe('password');
+    });
+
     it('should set required validation when #isRequired is set', async () => {
         expect(await input.isRequired()).toBe(false);
         component.isRequired = true;
