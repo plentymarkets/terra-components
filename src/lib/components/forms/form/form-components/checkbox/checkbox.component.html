@@ -4,7 +4,7 @@
     [placement]="tooltipPlacement"
     [(ngModel)]="value"
     (ngModelChange)="_onChangeCallback($event)"
-    [(indeterminate)]="_isIndeterminate"
+    [(indeterminate)]="isIndeterminate"
     (blur)="_onTouchedCallback()"
 >
     <mat-icon *ngIf="icon" fontSet="plentyicons" [fontIcon]="icon"></mat-icon>

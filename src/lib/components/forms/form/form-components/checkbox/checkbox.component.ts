@@ -33,7 +33,7 @@ export class CheckboxComponent implements ControlValueAccessor {
 
     /** @description Set the state indeterminate of the checkbox.*/
     @Input()
-    public _isIndeterminate: boolean = false;
+    public isIndeterminate: boolean = false;
 
     /**
      * @description Set the tooltip placement (bottom, top, left, right). Default top.
