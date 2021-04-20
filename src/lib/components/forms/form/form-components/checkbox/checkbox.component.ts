@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { TerraPlacementEnum } from '../../../../../helpers/enums/terra-placement.enum';
 import { noop } from 'rxjs';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
     selector: 'tc-checkbox',
@@ -14,7 +14,7 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
         }
     ]
 })
-export class CheckboxComponent {
+export class CheckboxComponent implements ControlValueAccessor {
     /**
      * @description If true, the check box will be disabled. Default false.
      */
