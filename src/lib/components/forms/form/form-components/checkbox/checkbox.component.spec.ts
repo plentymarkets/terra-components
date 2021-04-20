@@ -7,6 +7,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MockTooltipDirective } from '../../../../../testing/mock-tooltip.directive';
 import { By } from '@angular/platform-browser';
 import { TerraPlacementEnum } from '../../../../../helpers';
+import { DebugElement } from '@angular/core';
 
 // tslint:disable-next-line:max-function-line-count
 describe('CheckboxComponent', () => {
@@ -125,7 +126,7 @@ describe('CheckboxComponent', () => {
     });
 
     it('should set icon as #icon', () => {
-        const icon: string = 'icon-add';
+        let icon: DebugElement = fixture.debugElement.query(By.css('.icon-add'));
         component.icon = icon;
         fixture.detectChanges();
 
