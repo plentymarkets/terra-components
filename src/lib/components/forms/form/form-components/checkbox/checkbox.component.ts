@@ -52,13 +52,13 @@ export class CheckboxComponent implements ControlValueAccessor, CheckboxInterfac
     @Input()
     public icon: string;
 
-    /** @description Stores a callback function which is executed whenever the input was blurred. */
+    /** @description Stores a callback function which is executed whenever the checkbox was blurred. */
     public _onTouchedCallback: () => void = noop;
 
-    /** @description Stores a callback function which is executed whenever the value of the input changes. */
+    /** @description Stores a callback function which is executed whenever the value of the checkbox changes. */
     public _onChangeCallback: (_: boolean) => void = noop;
 
-    /** @description Internal model. The value of the input. */
+    /** @description Internal model. The value of the checkbox. */
     public value: boolean;
 
     /** @description Writes a new value to the element.*/
