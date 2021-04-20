@@ -8,6 +8,7 @@ import { MockTooltipDirective } from '../../../../../testing/mock-tooltip.direct
 import { By } from '@angular/platform-browser';
 import { TerraPlacementEnum } from '../../../../../helpers';
 import { DebugElement } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 // tslint:disable-next-line:max-function-line-count
 describe('CheckboxComponent', () => {
