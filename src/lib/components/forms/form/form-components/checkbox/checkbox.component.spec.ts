@@ -7,8 +7,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MockTooltipDirective } from '../../../../../testing/mock-tooltip.directive';
 import { By } from '@angular/platform-browser';
 import { TerraPlacementEnum } from '../../../../../helpers';
-import { DebugElement } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { MatIconHarness } from '@angular/material/icon/testing';
 
 // tslint:disable-next-line:max-function-line-count
 describe('CheckboxComponent', () => {
@@ -16,6 +16,7 @@ describe('CheckboxComponent', () => {
     let fixture: ComponentFixture<CheckboxComponent>;
     let loader: HarnessLoader;
     let checkbox: MatCheckboxHarness;
+    let icon: MatIconHarness;
 
     beforeEach(async () => {
         TestBed.configureTestingModule({
@@ -30,6 +31,7 @@ describe('CheckboxComponent', () => {
         fixture.detectChanges();
 
         checkbox = await loader.getHarness(MatCheckboxHarness);
+        icon = await loader.getHarness(MatIconHarness);
     });
 
     it('should create', async () => {
@@ -102,6 +104,18 @@ describe('CheckboxComponent', () => {
         expect(await checkbox.isIndeterminate()).toBe(true);
     });
 
+    it('should set icon as #icon', async () => {
+        expect(await icon.getName()).toBe(null);
+
+        const plentyIcon: string = 'icon-add';
+        component.icon = plentyIcon;
+
+        fixture.detectChanges();
+
+        expect(await icon.getName()).toEqual(plentyIcon);
+        expect(await icon.getNamespace()).toEqual('plentyicons');
+    });
+
     describe('with tooltip', () => {
         let tooltip: MockTooltipDirective;
 
@@ -124,13 +138,5 @@ describe('CheckboxComponent', () => {
 
             expect(tooltip.tcTooltip).toBe('test');
         });
-    });
-
-    it('should set icon as #icon', () => {
-        let icon: DebugElement = fixture.debugElement.query(By.css('.icon-add'));
-        component.icon = icon;
-        fixture.detectChanges();
-
-        expect(component.icon).toEqual(icon);
     });
 });
