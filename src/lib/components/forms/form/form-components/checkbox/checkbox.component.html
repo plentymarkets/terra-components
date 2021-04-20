@@ -7,5 +7,6 @@
     [(indeterminate)]="_isIndeterminate"
     (blur)="_onTouchedCallback()"
 >
+    <mat-icon *ngIf="icon" fontSet="plentyicons" [fontIcon]="icon"></mat-icon>
     {{ name }}
 </mat-checkbox>

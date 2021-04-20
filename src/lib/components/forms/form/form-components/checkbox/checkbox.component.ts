@@ -41,6 +41,12 @@ export class CheckboxComponent implements ControlValueAccessor {
     @Input()
     public tooltipPlacement: TerraPlacementEnum = TerraPlacementEnum.TOP;
 
+    /**
+     * @description Set an icon (e.g. icon-save).
+     */
+    @Input()
+    public icon: string;
+
     /** @description Stores a callback function which is executed whenever the input was blurred. */
     public _onTouchedCallback: () => void = noop;
 
