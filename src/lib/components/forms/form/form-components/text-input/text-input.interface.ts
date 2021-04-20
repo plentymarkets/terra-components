@@ -1,4 +1,4 @@
-import { TerraFormComponentBaseInterface } from './terra-form-component-base.interface';
+import { TerraFormComponentBaseInterface } from '../terra-form-component-base.interface';
 
 export interface TextInputInterface extends TerraFormComponentBaseInterface {
     isPassword: boolean;
