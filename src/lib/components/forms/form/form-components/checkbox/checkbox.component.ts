@@ -60,8 +60,6 @@ export class CheckboxComponent implements ControlValueAccessor {
     /** @description Internal model. The value of the input. */
     public value: boolean;
 
-    constructor() {}
-
     /** @description Writes a new value to the element.*/
     public writeValue(value: boolean): void {
         this.value = value;
