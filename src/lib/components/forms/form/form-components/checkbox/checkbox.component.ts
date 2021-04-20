@@ -19,19 +19,20 @@ export class CheckboxComponent implements ControlValueAccessor {
      * @description If true, the check box will be disabled. Default false.
      */
     @Input()
-    public isDisabled: boolean;
+    public isDisabled: boolean = false;
 
     /**
      * @description Set the caption.
      */
     @Input()
-    public name: string;
+    public name: string = '';
 
     /** @description Set the tooltip.*/
     @Input()
-    public tooltipText: string;
+    public tooltipText: string = '';
 
     /** @description Set the state indeterminate of the checkbox.*/
+    @Input()
     public _isIndeterminate: boolean = false;
 
     /**
