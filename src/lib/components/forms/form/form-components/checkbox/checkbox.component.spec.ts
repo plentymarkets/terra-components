@@ -105,7 +105,7 @@ describe('CheckboxComponent', () => {
     it('should set icon as #icon', async () => {
         const icon: MatIconHarness = await loader.getHarness(MatIconHarness);
 
-        expect(await icon.getName()).toBe(null);
+        expect(icon).toBe(null);
 
         const plentyIcon: string = 'icon-add';
         component.icon = plentyIcon;
