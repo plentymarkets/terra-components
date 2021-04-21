@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { TerraPlacementEnum } from '../../../../../helpers/enums/terra-placement.enum';
+import { TerraPlacementEnum } from '../../../../../helpers';
 import { noop } from 'rxjs';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CheckboxInterface } from './checkbox.interface';
