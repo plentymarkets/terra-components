@@ -82,6 +82,25 @@ describe('TextInputComponent', () => {
         expect(await formField.getLabel()).toBe(component.name);
     });
 
+    it('should have iban validator when isIban', async () => {
+
+        const validIBAN: string = 'DE02370501980001802057';
+        const invalidIBAN: string = 'DE0237050198000180205'; // last number 7 is removed
+
+        const formField: MatFormFieldHarness = await loader.getHarness(MatFormFieldHarness);
+        expect(component.isIban).toBe(false);
+        component.isIban = true;
+        component.writeValue(validIBAN)
+        fixture.detectChanges();
+
+        expect(await formField.isControlValid()).toBeTruthy();
+
+        component.writeValue(invalidIBAN)
+        fixture.detectChanges();
+
+        expect(await formField.isControlValid()).toBeFalsy();
+    });
+
     describe('with tooltip', () => {
         let tooltip: MockTooltipDirective;
         beforeEach(() => {
