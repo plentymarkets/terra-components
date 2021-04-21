@@ -133,7 +133,7 @@ describe('TextInputComponent', () => {
         expect(component.value).toEqual(value);
 
         fixture.detectChanges();
-        expect(await input.getValue()).toEqual(value.toString());
+        expect(await input.getValue()).toEqual(value);
     });
 
     it('should call registered change callback whenever the value of the input is changed by the user', async () => {
