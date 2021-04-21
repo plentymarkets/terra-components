@@ -4,7 +4,7 @@ import { TextInputInterface } from './text-input.interface';
 
 @Component({
     selector: 'tc-text-input',
-    templateUrl: './text-input.component',
+    templateUrl: './text-input.component.html',
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,
