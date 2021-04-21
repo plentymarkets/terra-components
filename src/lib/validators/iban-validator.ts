@@ -19,6 +19,7 @@ export function ibanValidator(control: AbstractControl): ValidationErrors {
     providers: [{ provide: NG_VALIDATORS, useExisting: IbanValidatorDirective, multi: true }]
 })
 export class IbanValidatorDirective implements Validator {
+    /* tslint:disable-next-line:no-input-rename */
     @Input('iban')
     public shouldValidate: boolean;
 

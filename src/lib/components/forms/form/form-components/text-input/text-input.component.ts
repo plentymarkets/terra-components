@@ -85,6 +85,13 @@ export class TextInputComponent implements ControlValueAccessor, TextInputInterf
     /** Stores a callback function which is executed whenever the value of the input changes. */
     public _onChangeCallback: (_: string) => void = noop;
 
+    /** @description FormControl that validates the input */
+    public control: FormControl;
+
+    constructor(@Inject(L10N_LOCALE) public _locale: L10nLocale) {
+        this.control = new FormControl([TerraValidators.iban]);
+    }
+
     /** @description Registers a callback function that is called when the control's value changes in the UI.*/
     public registerOnChange(fn: (_: string) => void): void {
         this._onChangeCallback = fn;
@@ -98,12 +105,5 @@ export class TextInputComponent implements ControlValueAccessor, TextInputInterf
     /** @description Writes a new value to the element.*/
     public writeValue(value: string): void {
         this.value = value;
-    }
-
-    /** @description FormControl that validates the input */
-    public control: FormControl;
-
-    constructor(@Inject(L10N_LOCALE) public _locale: L10nLocale) {
-        this.control = new FormControl([TerraValidators.iban]);
     }
 }
