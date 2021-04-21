@@ -44,9 +44,6 @@ export class TextInputComponent implements ControlValueAccessor, TextInputInterf
     @Input()
     public tooltipText: string;
 
-    @Input()
-    public value: string;
-
     constructor() {}
 
     public registerOnChange(fn: any): void {}
