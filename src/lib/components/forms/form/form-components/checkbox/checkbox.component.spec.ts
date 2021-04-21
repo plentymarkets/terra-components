@@ -9,6 +9,8 @@ import { By } from '@angular/platform-browser';
 import { TerraPlacementEnum } from '../../../../../helpers';
 import { FormsModule } from '@angular/forms';
 import { MatIconHarness } from '@angular/material/icon/testing';
+import { MatIconModule } from '@angular/material/icon';
+import { A11yModule } from '@angular/cdk/a11y';
 
 // tslint:disable-next-line:max-function-line-count
 describe('CheckboxComponent', () => {
@@ -19,7 +21,7 @@ describe('CheckboxComponent', () => {
 
     beforeEach(async () => {
         TestBed.configureTestingModule({
-            imports: [MatCheckboxModule, FormsModule],
+            imports: [MatCheckboxModule, FormsModule, MatIconModule, A11yModule],
             declarations: [CheckboxComponent, MockTooltipDirective]
         });
 
@@ -91,7 +93,7 @@ describe('CheckboxComponent', () => {
 
         fixture.detectChanges();
 
-        expect(await checkbox.getValue()).toEqual(value.toString());
+        expect(await checkbox.isChecked()).toEqual(value);
     });
 
     it('should have state inderterminate when #isIndeterminate is true', async () => {
@@ -103,14 +105,12 @@ describe('CheckboxComponent', () => {
     });
 
     it('should set icon as #icon', async () => {
-        const icon: MatIconHarness = await loader.getHarness(MatIconHarness);
-
-        expect(icon).toBe(null);
-
         const plentyIcon: string = 'icon-add';
         component.icon = plentyIcon;
 
         fixture.detectChanges();
+
+        const icon: MatIconHarness = await loader.getHarness(MatIconHarness);
 
         expect(await icon.getName()).toEqual(plentyIcon);
         expect(await icon.getNamespace()).toEqual('plentyicons');

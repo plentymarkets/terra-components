@@ -3,6 +3,7 @@ import { TerraPlacementEnum } from '../../../../../helpers/enums/terra-placement
 import { noop } from 'rxjs';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CheckboxInterface } from './checkbox.interface';
+import { FocusOrigin } from '@angular/cdk/a11y';
 
 @Component({
     selector: 'tc-checkbox',
@@ -74,5 +75,12 @@ export class CheckboxComponent implements ControlValueAccessor, CheckboxInterfac
     /** @description Registers a callback function that is called by the forms API on initialization to update the form model on blur.*/
     public registerOnTouched(fn: () => void): void {
         this._onTouchedCallback = fn;
+    }
+
+    /** @description Handles focus changes to the checkbox. If checkbox is blurred, call onTouchedCallback.*/
+    public _onFocusChange(origin: FocusOrigin): void {
+        if (origin === null) {
+            this._onTouchedCallback();
+        }
     }
 }

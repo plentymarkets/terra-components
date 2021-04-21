@@ -6,7 +6,8 @@
     [(ngModel)]="value"
     (ngModelChange)="_onChangeCallback($event)"
     [(indeterminate)]="isIndeterminate"
-    (blur)="_onTouchedCallback()"
+    cdkMonitorElementFocus
+    (cdkFocusChange)="_onFocusChange($event)"
 >
     <mat-icon *ngIf="icon" fontSet="plentyicons" [fontIcon]="icon"></mat-icon>
     {{ name }}
