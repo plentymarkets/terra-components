@@ -65,6 +65,14 @@ describe('TextInputComponent', () => {
         expect(await input.isDisabled()).toBe(true);
     });
 
+    it('should mark the input readonly when #isReadonly is set', async () => {
+        expect(await input.isReadonly()).toBe(false);
+        component.isReadonly = true;
+
+        fixture.detectChanges();
+        expect(await input.isReadonly()).toEqual(true);
+    });
+
     it('should have #name as label of the input', async () => {
         const formField: MatFormFieldHarness = await loader.getHarness(MatFormFieldHarness);
         expect(await formField.getLabel()).toBe('');
