@@ -4,7 +4,6 @@
 
 -   **terra-form**
     -   form type **text**: replaced deprecated `terra-text-input` with a `mat-input` variant.
-    -   **IbanValidatorDirective** new directive to validate the input when it is IBAN
 
 # 11.1.0 (23.03.2021)
 
