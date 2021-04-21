@@ -1,9 +1,18 @@
 import { Component, Input } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import {
+    ControlValueAccessor,
+    FormControl,
+    FormGroupDirective,
+    NG_VALUE_ACCESSOR,
+    NgForm,
+    Validators
+} from '@angular/forms';
 import { TextInputInterface } from './text-input.interface';
 import { TerraPlacementEnum } from '../../../../../helpers/enums/terra-placement.enum';
 import { noop } from 'rxjs';
 import * as IBAN from 'iban';
+import { ErrorStateMatcher } from '@angular/material/core';
+import { TerraValidators } from '../../../../../validators/validators';
 
 @Component({
     selector: 'tc-text-input',
@@ -88,13 +97,4 @@ export class TextInputComponent implements ControlValueAccessor, TextInputInterf
     public writeValue(value: string): void {
         this.value = value;
     }
-
-    //public _onCustomBlur(iban: string): void {
-    //    if (this.isIban) {
-    //        this.isValid = IBAN.isValid(iban);
-    //        this.inputTooltipText = this.isValid ? null : this._translation.translate('terraTextInput.invalidIban');
-    //    }
-    //
-    //    this._onTouchedCallback();
-    //}
 }
