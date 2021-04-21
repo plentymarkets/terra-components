@@ -140,7 +140,7 @@ describe('TextInputComponent', () => {
         component.registerOnChange(onChangeCallback);
 
         const value: string = 'my test string';
-        await input.setValue(value.toString());
+        await input.setValue(value);
 
         expect(onChangeCallback).toHaveBeenCalledWith(value);
     });
