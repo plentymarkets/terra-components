@@ -1,8 +1,10 @@
-import { Component, Input } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { Component, Inject, Input } from '@angular/core';
+import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TextInputInterface } from './text-input.interface';
 import { TerraPlacementEnum } from '../../../../../helpers/enums/terra-placement.enum';
 import { noop } from 'rxjs';
+import { L10N_LOCALE, L10nLocale } from 'angular-l10n';
+import { TerraValidators } from '../../../../../public-api';
 
 @Component({
     selector: 'tc-text-input',
@@ -37,11 +39,17 @@ export class TextInputComponent implements ControlValueAccessor, TextInputInterf
     @Input()
     public isReadonly: boolean = false;
 
-    /** @description If true, the button will be disabled. Default false. */
+    /**
+     * @description If true, the button will be disabled.
+     * @Default false.
+     * */
     @Input()
     public isDisabled: boolean = false;
 
-    /** @description If true, a * indicates that the value is required. Default false. */
+    /**
+     * @description If true, a * indicates that the value is required.
+     *  @Default false.
+     *  */
     @Input()
     public isRequired: boolean = false;
 
@@ -57,20 +65,24 @@ export class TextInputComponent implements ControlValueAccessor, TextInputInterf
     @Input()
     public name: string = '';
 
-    /** @description Set the tooltip placement (bottom, top, left, right). Default top. */
-    @Input()
-    public tooltipPlacement: TerraPlacementEnum = TerraPlacementEnum.TOP;
-
     /** @description Set the tooltip. */
     @Input()
     public tooltipText: string = '';
 
+    /**
+     * @description Set the tooltip placement (bottom, top, left, right).
+     * @default top
+     * */
+    @Input()
+    public tooltipPlacement: TerraPlacementEnum = TerraPlacementEnum.TOP;
+
     /** @description The internal data model */
     public value: string;
 
-    // Placeholders for the callbacks which are later provided
-    // by the Control Value Accessor
+    /** Stores a callback function which is executed whenever the input was blurred. */
     public _onTouchedCallback: () => void = noop;
+
+    /** Stores a callback function which is executed whenever the value of the input changes. */
     public _onChangeCallback: (_: string) => void = noop;
 
     /** @description Registers a callback function that is called when the control's value changes in the UI.*/
@@ -86,5 +98,12 @@ export class TextInputComponent implements ControlValueAccessor, TextInputInterf
     /** @description Writes a new value to the element.*/
     public writeValue(value: string): void {
         this.value = value;
+    }
+
+    /** @description FormControl that validates the input */
+    public control: FormControl;
+
+    constructor(@Inject(L10N_LOCALE) public _locale: L10nLocale) {
+        this.control = new FormControl([TerraValidators.iban]);
     }
 }

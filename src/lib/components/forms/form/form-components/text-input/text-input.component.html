@@ -4,6 +4,7 @@
         matInput
         [type]="isPassword ? 'password' : 'text'"
         [(ngModel)]="value"
+        [formControl]="control"
         (ngModelChange)="_onChangeCallback($event)"
         (blur)="_onTouchedCallback()"
         autocomplete="off"
@@ -14,4 +15,7 @@
         [maxlength]="maxLength"
         [iban]="isIban"
     />
+    <mat-error *ngIf="isIban && control.hasError('iban')">
+        {{ 'terraTextInput.invalidIban' | translate: _locale.language }}
+    </mat-error>
 </mat-form-field>

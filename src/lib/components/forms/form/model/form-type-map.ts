@@ -43,7 +43,8 @@ export class FormTypeMap {
     };
     public readonly text: TerraFormTypeInterface = {
         inputMap: {
-            required: 'isRequired'
+            required: 'isRequired',
+            iban: 'isIban'
         },
         component: TextInputComponent
     };
