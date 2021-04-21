@@ -123,7 +123,7 @@ describe('CheckboxComponent', () => {
             tooltip = fixture.debugElement.query(By.directive(MockTooltipDirective)).injector.get(MockTooltipDirective);
         });
 
-        it('should set the tooltip placement as ##tooltipPlacement', () => {
+        it('should set the tooltip placement as #tooltipPlacement', () => {
             expect(tooltip.placement).toBe(TerraPlacementEnum.TOP);
             component.tooltipPlacement = TerraPlacementEnum.BOTTOM;
             fixture.detectChanges();
