@@ -37,15 +37,15 @@ export class CheckboxComponent implements ControlValueAccessor, CheckboxInterfac
     @Input()
     public tooltipText: string = '';
 
-    /** @description Set the state indeterminate of the checkbox.*/
-    @Input()
-    public isIndeterminate: boolean = false;
-
     /**
      * @description Set the tooltip placement (bottom, top, left, right). Default top.
      * */
     @Input()
     public tooltipPlacement: TerraPlacementEnum = TerraPlacementEnum.TOP;
+
+    /** @description Set the state indeterminate of the checkbox.*/
+    @Input()
+    public isIndeterminate: boolean = false;
 
     /**
      * @description Set an icon (e.g. icon-save).
