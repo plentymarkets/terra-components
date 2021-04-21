@@ -16,6 +16,7 @@ import { TerraCodeEditorComponent } from '../../../editors/code-editor/terra-cod
 import { TerraSliderComponent } from '../../slider/terra-slider.component';
 import { TerraPortletComponent } from '../../../layouts/portlet/terra-portlet.component';
 import { TerraSuggestionBoxComponent } from '../../suggestion-box/terra-suggestion-box.component';
+import { CheckboxComponent } from '../form-components/checkbox/checkbox.component';
 
 /**
  * @description A map of control types that may be passed to the <terra-form> in order to support those controls.
@@ -24,9 +25,9 @@ import { TerraSuggestionBoxComponent } from '../../suggestion-box/terra-suggesti
 export class FormTypeMap {
     public readonly checkbox: TerraFormTypeInterface = {
         inputMap: {
-            name: 'inputCaption'
+            required: 'isRequired'
         },
-        component: TerraCheckboxComponent
+        component: CheckboxComponent
     };
     public readonly date: TerraFormTypeInterface = {
         inputMap: {
