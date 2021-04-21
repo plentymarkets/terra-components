@@ -1,0 +1,16 @@
+<mat-form-field class="w-100" [tcTooltip]="tooltipText" [placement]="tooltipPlacement">
+    <mat-label>{{ name }}</mat-label>
+    <input
+        matInput
+        [type]="isPassword ? 'password' : 'text'"
+        [(ngModel)]="value"
+        (ngModelChange)="_onChangeCallback($event)"
+        (blur)="_onTouchedCallback()"
+        autocomplete="off"
+        [required]="isRequired"
+        [disabled]="isDisabled"
+        [readOnly]="isReadonly"
+        [minLength]="minLength"
+        [maxlength]="maxLength"
+    />
+</mat-form-field>
