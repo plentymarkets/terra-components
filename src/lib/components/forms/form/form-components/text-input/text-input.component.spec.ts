@@ -11,7 +11,7 @@ import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { MatFormFieldHarness } from '@angular/material/form-field/testing';
 import { By } from '@angular/platform-browser';
 import { TerraPlacementEnum } from '../../../../../helpers';
-import { L10N_LOCALE, L10nTranslationService } from 'angular-l10n';
+import { L10N_LOCALE, L10nTranslationModule, L10nTranslationService } from 'angular-l10n';
 import { MockTranslationService } from '../../../../../testing/mock-translation-service';
 import { IbanValidatorDirective } from '../../../../../validators/iban-validator';
 
@@ -24,7 +24,7 @@ describe('TextInputComponent', () => {
 
     beforeEach(async () => {
         TestBed.configureTestingModule({
-            imports: [MatFormFieldModule, MatInputModule, NoopAnimationsModule, FormsModule],
+            imports: [MatFormFieldModule, MatInputModule, NoopAnimationsModule, FormsModule, L10nTranslationModule],
             declarations: [TextInputComponent, MockTooltipDirective, IbanValidatorDirective],
             providers: [
                 {
