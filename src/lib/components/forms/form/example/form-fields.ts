@@ -124,7 +124,8 @@ export const formFields: TerraKeyValueInterface<TerraFormFieldInterface> = {
     date: {
         type: 'date',
         options: {
-            name: 'Test Datum'
+            name: 'Test Datum',
+            displayDateFormat: 'DD.MM.YYYY'
         }
     },
     listWithChildren: listWithChildren,

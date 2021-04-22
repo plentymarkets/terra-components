@@ -1,5 +1,5 @@
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { Component, Inject, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Inject, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { noop } from 'rxjs';
 import { TerraPlacementEnum } from 'src/lib/helpers/enums/terra-placement.enum';
 import * as moment from 'moment';
@@ -17,7 +17,7 @@ import { MomentDateAdapter } from '@angular/material-moment-adapter';
         }
     ]
 })
-export class DatePickerComponent implements ControlValueAccessor, OnChanges {
+export class DatePickerComponent implements ControlValueAccessor, OnInit, OnChanges {
     /** Disables the input when set to true. Default false. */
     @Input()
     public isDisabled: boolean = false;
@@ -62,6 +62,12 @@ export class DatePickerComponent implements ControlValueAccessor, OnChanges {
             dateA11yLabel: 'LL',
             monthYearA11yLabel: 'MMMM YYYY'
         };
+    }
+
+    public ngOnInit(): void {
+        if (this.displayDateFormat) {
+            this.dateFormats.display.dateInput = this.displayDateFormat;
+        }
     }
 
     public ngOnChanges(changes: SimpleChanges): void {
