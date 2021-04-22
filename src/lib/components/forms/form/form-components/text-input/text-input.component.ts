@@ -1,10 +1,9 @@
 import { Component, Inject, Input } from '@angular/core';
-import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TextInputInterface } from './text-input.interface';
 import { TerraPlacementEnum } from '../../../../../helpers/enums/terra-placement.enum';
 import { noop } from 'rxjs';
 import { L10N_LOCALE, L10nLocale } from 'angular-l10n';
-import { TerraValidators } from '../../../../../public-api';
 
 @Component({
     selector: 'tc-text-input',
@@ -85,12 +84,7 @@ export class TextInputComponent implements ControlValueAccessor, TextInputInterf
     /** Stores a callback function which is executed whenever the value of the input changes. */
     public _onChangeCallback: (_: string) => void = noop;
 
-    /** @description FormControl that validates the input */
-    public control: FormControl;
-
-    constructor(@Inject(L10N_LOCALE) public _locale: L10nLocale) {
-        this.control = new FormControl([TerraValidators.iban]);
-    }
+    constructor(@Inject(L10N_LOCALE) public _locale: L10nLocale) {}
 
     /** @description Registers a callback function that is called when the control's value changes in the UI.*/
     public registerOnChange(fn: (_: string) => void): void {

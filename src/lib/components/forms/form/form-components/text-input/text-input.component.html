@@ -4,7 +4,7 @@
         matInput
         [type]="isPassword ? 'password' : 'text'"
         [(ngModel)]="value"
-        [formControl]="control"
+        #control="ngModel"
         (ngModelChange)="_onChangeCallback($event)"
         (blur)="_onTouchedCallback()"
         autocomplete="off"
