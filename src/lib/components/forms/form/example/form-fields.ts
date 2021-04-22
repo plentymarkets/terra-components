@@ -121,6 +121,12 @@ export const formFields: TerraKeyValueInterface<TerraFormFieldInterface> = {
             minLength: 3
         }
     },
+    date:{
+      type: 'date',
+      options:{
+          name: 'Test Datum'
+      }
+    },
     listWithChildren: listWithChildren,
     wrappedContainer: containerCompontent
 };

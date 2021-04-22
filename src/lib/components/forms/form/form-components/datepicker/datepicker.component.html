@@ -1,1 +1,12 @@
-save the earth
+<mat-form-field class="w-100" [tcTooltip]="tooltipText" [placement]="tooltipPlacement">
+    <mat-label>{{ name }}</mat-label>
+    <input matInput [matDatepicker]="picker">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker
+                    [disabled]="isDisabled"
+                    [(ngModel)]="value"
+                    (ngModelChange)="_onChangeCallback($event)"
+                    (blur)="_onTouchedCallback()"
+                    [required]="isRequired">
+    </mat-datepicker>
+</mat-form-field>
