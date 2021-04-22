@@ -24,7 +24,7 @@ export class IbanValidatorDirective implements Validator {
     @Input('iban')
     public shouldValidate: boolean;
 
-    /** @description This function checks if the input should be validated. If so, then the validation error is returned. */
+    /** @description Validates the control when {@link shouldValidate} is set. */
     public validate(control: AbstractControl): ValidationErrors | null {
         return this.shouldValidate ? ibanValidator(control) : null;
     }
