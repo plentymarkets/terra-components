@@ -11,7 +11,10 @@ import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { MatFormFieldHarness } from '@angular/material/form-field/testing';
 import { By } from '@angular/platform-browser';
 import { TerraPlacementEnum } from '../../../../../helpers';
+import { L10N_LOCALE, L10nTranslationService } from 'angular-l10n';
+import { MockTranslationService } from '../../../../../testing/mock-translation-service';
 
+// tslint:disable-next-line:max-function-line-count
 describe('TextInputComponent', () => {
     let fixture: ComponentFixture<TextInputComponent>;
     let component: TextInputComponent;
@@ -21,7 +24,17 @@ describe('TextInputComponent', () => {
     beforeEach(async () => {
         TestBed.configureTestingModule({
             imports: [MatFormFieldModule, MatInputModule, NoopAnimationsModule, FormsModule],
-            declarations: [TextInputComponent, MockTooltipDirective]
+            declarations: [TextInputComponent, MockTooltipDirective],
+            providers: [
+                {
+                    provide: L10nTranslationService,
+                    useClass: MockTranslationService
+                },
+                {
+                    provide: L10N_LOCALE,
+                    useValue: { language: 'de' }
+                }
+            ]
         });
 
         fixture = TestBed.createComponent(TextInputComponent);
