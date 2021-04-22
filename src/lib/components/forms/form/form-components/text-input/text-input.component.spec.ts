@@ -13,6 +13,7 @@ import { By } from '@angular/platform-browser';
 import { TerraPlacementEnum } from '../../../../../helpers';
 import { L10N_LOCALE, L10nTranslationService } from 'angular-l10n';
 import { MockTranslationService } from '../../../../../testing/mock-translation-service';
+import { IbanValidatorDirective } from '../../../../../validators/iban-validator';
 
 // tslint:disable-next-line:max-function-line-count
 describe('TextInputComponent', () => {
@@ -24,7 +25,7 @@ describe('TextInputComponent', () => {
     beforeEach(async () => {
         TestBed.configureTestingModule({
             imports: [MatFormFieldModule, MatInputModule, NoopAnimationsModule, FormsModule],
-            declarations: [TextInputComponent, MockTooltipDirective],
+            declarations: [TextInputComponent, MockTooltipDirective, IbanValidatorDirective],
             providers: [
                 {
                     provide: L10nTranslationService,

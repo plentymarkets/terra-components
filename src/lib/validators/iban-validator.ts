@@ -13,7 +13,7 @@ export function ibanValidator(control: AbstractControl): ValidationErrors {
     return null;
 }
 
-/** @description This directive is used to validate the input when it is an IBAN */
+/** @description This directive is used to validate whether a valid IBAN has been entered. */
 @Directive({
     selector: 'input[iban][ngModel]',
     providers: [{ provide: NG_VALIDATORS, useExisting: IbanValidatorDirective, multi: true }]
@@ -23,6 +23,7 @@ export class IbanValidatorDirective implements Validator {
     @Input('iban')
     public shouldValidate: boolean;
 
+    /** @description This function checks if the input should be validated. If so, then the validation error is returned. */
     public validate(control: AbstractControl): ValidationErrors | null {
         return this.shouldValidate ? ibanValidator(control) : null;
     }
