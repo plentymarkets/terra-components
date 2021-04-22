@@ -11,7 +11,11 @@ import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { MatFormFieldHarness } from '@angular/material/form-field/testing';
 import { By } from '@angular/platform-browser';
 import { TerraPlacementEnum } from '../../../../../helpers';
+import { L10N_LOCALE, L10nTranslationModule, L10nTranslationService } from 'angular-l10n';
+import { MockTranslationService } from '../../../../../testing/mock-translation-service';
+import { IbanValidatorDirective } from '../../../../../validators/iban-validator';
 
+// tslint:disable-next-line:max-function-line-count
 describe('TextInputComponent', () => {
     let fixture: ComponentFixture<TextInputComponent>;
     let component: TextInputComponent;
@@ -20,8 +24,18 @@ describe('TextInputComponent', () => {
 
     beforeEach(async () => {
         TestBed.configureTestingModule({
-            imports: [MatFormFieldModule, MatInputModule, NoopAnimationsModule, FormsModule],
-            declarations: [TextInputComponent, MockTooltipDirective]
+            imports: [MatFormFieldModule, MatInputModule, NoopAnimationsModule, FormsModule, L10nTranslationModule],
+            declarations: [TextInputComponent, MockTooltipDirective, IbanValidatorDirective],
+            providers: [
+                {
+                    provide: L10nTranslationService,
+                    useClass: MockTranslationService
+                },
+                {
+                    provide: L10N_LOCALE,
+                    useValue: { language: 'de' }
+                }
+            ]
         });
 
         fixture = TestBed.createComponent(TextInputComponent);
@@ -83,19 +97,18 @@ describe('TextInputComponent', () => {
     });
 
     it('should have iban validator when isIban', async () => {
-
         const validIBAN: string = 'DE02370501980001802057';
         const invalidIBAN: string = 'DE0237050198000180205'; // last number 7 is removed
 
         const formField: MatFormFieldHarness = await loader.getHarness(MatFormFieldHarness);
         expect(component.isIban).toBe(false);
         component.isIban = true;
-        component.writeValue(validIBAN)
+        component.writeValue(validIBAN);
         fixture.detectChanges();
 
         expect(await formField.isControlValid()).toBeTruthy();
 
-        component.writeValue(invalidIBAN)
+        component.writeValue(invalidIBAN);
         fixture.detectChanges();
 
         expect(await formField.isControlValid()).toBeFalsy();
