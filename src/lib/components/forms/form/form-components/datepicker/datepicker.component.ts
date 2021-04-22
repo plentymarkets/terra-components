@@ -1,8 +1,10 @@
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { Component, Input } from '@angular/core';
-import { MAT_NATIVE_DATE_FORMATS } from '@angular/material/core';
+import { Component, Inject, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { noop } from 'rxjs';
 import { TerraPlacementEnum } from 'src/lib/helpers/enums/terra-placement.enum';
+import * as moment from 'moment';
+import { DateAdapter, MAT_DATE_FORMATS, MatDateFormats } from '@angular/material/core';
+import { MomentDateAdapter } from '@angular/material-moment-adapter';
 
 @Component({
     selector: 'tc-datepicker',
@@ -12,14 +14,10 @@ import { TerraPlacementEnum } from 'src/lib/helpers/enums/terra-placement.enum';
             provide: NG_VALUE_ACCESSOR,
             useExisting: DatePickerComponent,
             multi: true
-        },
-        {
-            provide: MAT_NATIVE_DATE_FORMATS,
-            useValue: {useUtc: true}
         }
     ]
 })
-export class DatePickerComponent implements ControlValueAccessor {
+export class DatePickerComponent implements ControlValueAccessor, OnChanges {
     /** Disables the input when set to true. Default false. */
     @Input()
     public isDisabled: boolean = false;
@@ -40,7 +38,11 @@ export class DatePickerComponent implements ControlValueAccessor {
     @Input()
     public tooltipText: string;
 
-    public value:any;
+    @Input()
+    public displayDateFormat: string;
+
+    /** @description The internal data model */
+    public value: any = moment();
 
     /** Stores the callback function that will be called when the control's value changes in the UI. */
     public _onChangeCallback: (_: any) => void = noop;
@@ -48,7 +50,25 @@ export class DatePickerComponent implements ControlValueAccessor {
     /** Stores the callback function that will be called on blur. */
     public _onTouchedCallback: () => void = noop;
 
-    constructor() {}
+    constructor(
+        private _adapter: DateAdapter<MomentDateAdapter>,
+        @Inject(MAT_DATE_FORMATS) private dateFormats: MatDateFormats
+    ) {
+        // this._adapter.setLocale('DE-de');
+
+        dateFormats.display = {
+            dateInput: 'DD-MM-YYYY',
+            monthYearLabel: 'YYYY',
+            dateA11yLabel: 'LL',
+            monthYearA11yLabel: 'MMMM YYYY'
+        };
+    }
+
+    public ngOnChanges(changes: SimpleChanges): void {
+        if (changes['displayDateFormat']) {
+            this.dateFormats.display.dateInput = this.displayDateFormat;
+        }
+    }
 
     /** Registers a callback function that is called when the control's value changes in the UI. */
     public registerOnChange(fn: (_: any) => void): void {
@@ -56,8 +76,10 @@ export class DatePickerComponent implements ControlValueAccessor {
     }
 
     /** Writes a new value to the input element. */
-    public writeValue(value: any): void {
-        this.value = value;
+    public writeValue(value: string): void {
+        if (value) {
+            this.value = moment(value);
+        }
     }
 
     /** Registers a callback function that is called by the forms API on initialization to update the form model on blur. */

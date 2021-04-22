@@ -20,7 +20,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
 
 @NgModule({
     imports: [
@@ -43,7 +43,7 @@ import { MatNativeDateModule } from '@angular/material/core';
         MatFormFieldModule,
         MatDatepickerModule,
         MatInputModule,
-        MatNativeDateModule
+        MatMomentDateModule
     ],
     declarations: [...components, ...directives, ...pipes],
     exports: [...exportedComponents, ...exportedDirectives, ...pipes]
