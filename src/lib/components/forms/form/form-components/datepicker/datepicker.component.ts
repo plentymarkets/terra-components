@@ -1,5 +1,6 @@
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Component, Input } from '@angular/core';
+import { DatepickerInterface } from './datepicker.interface';
 
 @Component({
     selector: 'tc-datepicker',
@@ -12,7 +13,7 @@ import { Component, Input } from '@angular/core';
         }
     ]
 })
-export class DatePickerComponent implements ControlValueAccessor {
+export class DatePickerComponent implements ControlValueAccessor, DatepickerInterface {
     @Input()
     public isDisabled: boolean;
 
@@ -30,6 +31,9 @@ export class DatePickerComponent implements ControlValueAccessor {
 
     @Input()
     public tooltipText: string;
+
+    @Input()
+    public displayDateFormat: string;
 
     constructor() {}
 
