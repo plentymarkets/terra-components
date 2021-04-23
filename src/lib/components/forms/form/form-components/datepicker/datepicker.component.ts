@@ -83,7 +83,7 @@ export class DatePickerComponent implements ControlValueAccessor, DatepickerInte
 
     /** Writes a new value to the input element. */
     public writeValue(value: string): void {
-        this.value = moment(value ?? '');
+        this.value = value ? moment(value) : null;
     }
 
     /** Registers a callback function that is called by the forms API on initialization to update the form model on blur. */
