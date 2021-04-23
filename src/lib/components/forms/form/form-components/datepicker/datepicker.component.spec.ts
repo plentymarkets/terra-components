@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DatePickerComponent } from './datepicker.component';
-import { HarnessLoader } from '@angular/cdk/testing';
+import { HarnessLoader, TestElement } from '@angular/cdk/testing';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
@@ -10,12 +10,13 @@ import { MatDatepickerInputHarness } from '@angular/material/datepicker/testing'
 import { MockTooltipDirective } from '../../../../../testing/mock-tooltip.directive';
 import { TerraPlacementEnum } from '../../../../../helpers/enums/terra-placement.enum';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
 
 // tslint:disable-next-line:max-function-line-count
-fdescribe('DatePickerComponent', () => {
+describe('DatePickerComponent', () => {
     let fixture: ComponentFixture<DatePickerComponent>;
     let component: DatePickerComponent;
     let loader: HarnessLoader;
@@ -28,7 +29,7 @@ fdescribe('DatePickerComponent', () => {
                 MatInputModule,
                 MatDatepickerModule,
                 NoopAnimationsModule,
-                MatNativeDateModule,
+                MatMomentDateModule,
                 FormsModule
             ],
             declarations: [DatePickerComponent, MockTooltipDirective],
@@ -101,8 +102,7 @@ fdescribe('DatePickerComponent', () => {
 
     fit('should update the value of the datepicker when writing a new value via `writeValue()`', async () => {
         const value: string = '03.04.2020';
-        const date: Date = new Date(2017, 1, 1);
-        component.writeValue('03.04.2020');
+        component.writeValue(value);
         fixture.detectChanges();
         expect(await datepicker.getValue()).toEqual(value);
     });
