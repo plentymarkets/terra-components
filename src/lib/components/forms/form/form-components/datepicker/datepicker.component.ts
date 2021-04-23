@@ -1,7 +1,6 @@
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Component, Inject, Input } from '@angular/core';
 import { noop } from 'rxjs';
-import { TerraPlacementEnum } from 'src/lib/helpers/enums/terra-placement.enum';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatDateFormats } from '@angular/material/core';
 import {
     MAT_MOMENT_DATE_ADAPTER_OPTIONS,
@@ -12,6 +11,7 @@ import { DatepickerInterface } from './datepicker.interface';
 import { L10N_LOCALE, L10nLocale } from 'angular-l10n';
 import * as moment from 'moment';
 import { isMoment, Moment } from 'moment';
+import { TerraPlacementEnum } from 'src/lib/helpers/enums/terra-placement.enum';
 
 @Component({
     selector: 'tc-datepicker',
