@@ -13,6 +13,10 @@ import * as moment from 'moment';
 import { isMoment, Moment } from 'moment';
 import { TerraPlacementEnum } from '../../../../../helpers';
 
+export function matDateLocaleFactory(locale: L10nLocale) {
+    return locale.language;
+}
+
 @Component({
     selector: 'tc-datepicker',
     templateUrl: './datepicker.component.html',
@@ -29,7 +33,7 @@ import { TerraPlacementEnum } from '../../../../../helpers';
         },
         {
             provide: MAT_DATE_LOCALE,
-            useFactory: (locale: L10nLocale) => locale.language,
+            useFactory: matDateLocaleFactory,
             deps: [L10N_LOCALE]
         },
         {
