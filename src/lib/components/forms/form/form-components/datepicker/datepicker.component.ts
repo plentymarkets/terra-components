@@ -66,7 +66,7 @@ export class DatePickerComponent implements ControlValueAccessor, DatepickerInte
     }
 
     /** @description The internal data model */
-    public value: Moment;
+    public value: Moment | null = null;
 
     /** Stores the callback function that will be called when the control's value changes in the UI. */
     public _onChangeCallback: (_: string) => void = noop;
