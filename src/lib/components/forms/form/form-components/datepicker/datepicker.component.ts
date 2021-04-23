@@ -1,11 +1,17 @@
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { Component, Inject, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Inject, Input } from '@angular/core';
 import { noop } from 'rxjs';
 import { TerraPlacementEnum } from 'src/lib/helpers/enums/terra-placement.enum';
-import * as moment from 'moment';
-import { DateAdapter, MAT_DATE_FORMATS, MatDateFormats } from '@angular/material/core';
-import { MomentDateAdapter } from '@angular/material-moment-adapter';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatDateFormats } from '@angular/material/core';
+import {
+    MAT_MOMENT_DATE_ADAPTER_OPTIONS,
+    MAT_MOMENT_DATE_FORMATS,
+    MomentDateAdapter
+} from '@angular/material-moment-adapter';
 import { DatepickerInterface } from './datepicker.interface';
+import { L10N_LOCALE, L10nLocale } from 'angular-l10n';
+import * as moment from 'moment';
+import { isMoment, Moment } from 'moment';
 
 @Component({
     selector: 'tc-datepicker',
@@ -15,10 +21,24 @@ import { DatepickerInterface } from './datepicker.interface';
             provide: NG_VALUE_ACCESSOR,
             useExisting: DatePickerComponent,
             multi: true
+        },
+        {
+            provide: DateAdapter,
+            useClass: MomentDateAdapter,
+            deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS]
+        },
+        {
+            provide: MAT_DATE_LOCALE,
+            useFactory: (locale: L10nLocale) => locale.language,
+            deps: [L10N_LOCALE]
+        },
+        {
+            provide: MAT_DATE_FORMATS,
+            useValue: MAT_MOMENT_DATE_FORMATS
         }
     ]
 })
-export class DatePickerComponent implements ControlValueAccessor, OnInit, OnChanges, DatepickerInterface {
+export class DatePickerComponent implements ControlValueAccessor, DatepickerInterface {
     /** Disables the input when set to true. Default false. */
     @Input()
     public isDisabled: boolean = false;
@@ -39,11 +59,14 @@ export class DatePickerComponent implements ControlValueAccessor, OnInit, OnChan
     @Input()
     public tooltipText: string;
 
+    /** Specifies the display format of the datepicker */
     @Input()
-    public displayDateFormat: string;
+    public set displayDateFormat(value: string) {
+        this.dateFormats.display.dateInput = value;
+    }
 
     /** @description The internal data model */
-    public value: any = moment();
+    public value: Moment;
 
     /** Stores the callback function that will be called when the control's value changes in the UI. */
     public _onChangeCallback: (_: any) => void = noop;
@@ -51,46 +74,24 @@ export class DatePickerComponent implements ControlValueAccessor, OnInit, OnChan
     /** Stores the callback function that will be called on blur. */
     public _onTouchedCallback: () => void = noop;
 
-    constructor(
-        private _adapter: DateAdapter<MomentDateAdapter>,
-        @Inject(MAT_DATE_FORMATS) private dateFormats: MatDateFormats
-    ) {
-        // this._adapter.setLocale('DE-de');
-
-        dateFormats.display = {
-            dateInput: 'DD-MM-YYYY',
-            monthYearLabel: 'YYYY',
-            dateA11yLabel: 'LL',
-            monthYearA11yLabel: 'MMMM YYYY'
-        };
-    }
-
-    public ngOnInit(): void {
-        if (this.displayDateFormat) {
-            this.dateFormats.display.dateInput = this.displayDateFormat;
-        }
-    }
-
-    public ngOnChanges(changes: SimpleChanges): void {
-        if (changes['displayDateFormat']) {
-            this.dateFormats.display.dateInput = this.displayDateFormat;
-        }
-    }
+    constructor(@Inject(MAT_DATE_FORMATS) private dateFormats: MatDateFormats) {}
 
     /** Registers a callback function that is called when the control's value changes in the UI. */
-    public registerOnChange(fn: (_: any) => void): void {
+    public registerOnChange(fn: (_: string) => void): void {
         this._onChangeCallback = fn;
     }
 
     /** Writes a new value to the input element. */
     public writeValue(value: string): void {
-        if (value) {
-            this.value = moment(value);
-        }
+        this.value = moment(value ?? '');
     }
 
     /** Registers a callback function that is called by the forms API on initialization to update the form model on blur. */
     public registerOnTouched(fn: () => void): void {
         this._onTouchedCallback = fn;
+    }
+
+    public _onChange(date: Moment | null): void {
+        this._onChangeCallback(isMoment(date) ? date.format() : null);
     }
 }
