@@ -11,7 +11,7 @@ import { DatepickerInterface } from './datepicker.interface';
 import { L10N_LOCALE, L10nLocale } from 'angular-l10n';
 import * as moment from 'moment';
 import { isMoment, Moment } from 'moment';
-import { TerraPlacementEnum } from 'src/lib/helpers/enums/terra-placement.enum';
+import { TerraPlacementEnum } from '../../../../../helpers';
 
 @Component({
     selector: 'tc-datepicker',
