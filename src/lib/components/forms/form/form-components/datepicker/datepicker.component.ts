@@ -69,7 +69,7 @@ export class DatePickerComponent implements ControlValueAccessor, DatepickerInte
     public value: Moment;
 
     /** Stores the callback function that will be called when the control's value changes in the UI. */
-    public _onChangeCallback: (_: any) => void = noop;
+    public _onChangeCallback: (_: string) => void = noop;
 
     /** Stores the callback function that will be called on blur. */
     public _onTouchedCallback: () => void = noop;
