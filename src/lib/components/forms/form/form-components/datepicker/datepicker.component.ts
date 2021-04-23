@@ -5,6 +5,7 @@ import { TerraPlacementEnum } from 'src/lib/helpers/enums/terra-placement.enum';
 import * as moment from 'moment';
 import { DateAdapter, MAT_DATE_FORMATS, MatDateFormats } from '@angular/material/core';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
+import { DatepickerInterface } from './datepicker.interface';
 
 @Component({
     selector: 'tc-datepicker',
@@ -17,7 +18,7 @@ import { MomentDateAdapter } from '@angular/material-moment-adapter';
         }
     ]
 })
-export class DatePickerComponent implements ControlValueAccessor, OnInit, OnChanges {
+export class DatePickerComponent implements ControlValueAccessor, OnInit, OnChanges, DatepickerInterface {
     /** Disables the input when set to true. Default false. */
     @Input()
     public isDisabled: boolean = false;
