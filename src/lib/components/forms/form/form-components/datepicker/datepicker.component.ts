@@ -57,7 +57,7 @@ export class DatePickerComponent implements ControlValueAccessor, DatepickerInte
 
     /** Text that should be shown in a tooltip on the control. */
     @Input()
-    public tooltipText: string;
+    public tooltipText: string = '';
 
     /** Specifies the display format of the datepicker */
     @Input()
