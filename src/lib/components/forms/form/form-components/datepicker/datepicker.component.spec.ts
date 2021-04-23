@@ -100,7 +100,7 @@ describe('DatePickerComponent', () => {
         });
     });
 
-    fit('should update the value of the datepicker when writing a new value via `writeValue()`', async () => {
+    it('should update the value of the datepicker when writing a new value via `writeValue()`', async () => {
         const value: string = '03.04.2020';
         component.writeValue(value);
         fixture.detectChanges();
