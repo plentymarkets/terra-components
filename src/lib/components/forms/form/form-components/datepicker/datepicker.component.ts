@@ -13,7 +13,7 @@ import * as moment from 'moment';
 import { isMoment, Moment } from 'moment';
 import { TerraPlacementEnum } from '../../../../../helpers';
 
-export function matDateLocaleFactory(locale: L10nLocale) {
+export function matDateLocaleFactory(locale: L10nLocale): string {
     return locale.language;
 }
 
