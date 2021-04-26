@@ -64,7 +64,7 @@ export class DatePickerComponent implements ControlValueAccessor, DatepickerInte
     @Input()
     public tooltipText: string = '';
 
-    /** Specifies the display format of the datepicker */
+    /** Specifies the display format of the date picker. */
     @Input()
     public set displayDateFormat(value: string) {
         this.dateFormats.display.dateInput = value;
