@@ -13,7 +13,11 @@ import * as moment from 'moment';
 import { isMoment, Moment } from 'moment';
 import { TerraPlacementEnum } from '../../../../../helpers';
 
-/** external function to get current language from L10n */
+/**
+* Determines the language specified by angular-l10n's current locale which will be used as the locale for material's date picker. 
+* @params locale angular-l10n's locale
+* @returns The language specified by angular-l10n's current locale.
+*/
 export function matDateLocaleFactory(locale: L10nLocale): string {
     return locale.language;
 }
