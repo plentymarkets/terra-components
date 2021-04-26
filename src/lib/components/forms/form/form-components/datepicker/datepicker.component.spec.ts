@@ -111,7 +111,9 @@ describe('DatePickerComponent', () => {
         const value: string = '03.04.2020';
         await datepicker.setValue(value);
 
-        expect(onChangeCallback).toHaveBeenCalledOnceWith(value);
+        expect(onChangeCallback).toHaveBeenCalled();
+        // since datePicker Harness simulates entering a date by pressing keys the change callback is called multiple times
+        expect(onChangeCallback.calls.mostRecent().args[0]).toBe('2020-04-03T00:00:00+02:00');
     });
 
     it('should call registered touched callback whenever the input was blurred', async () => {
