@@ -13,7 +13,11 @@ import * as moment from 'moment';
 import { isMoment, Moment } from 'moment';
 import { TerraPlacementEnum } from '../../../../../helpers';
 
-/** external function to get current language from L10n */
+/**
+ * Determines the language specified by angular-l10n's current locale which will be used as the locale for material's date picker.
+ * @params locale angular-l10n's locale
+ * @returns The language specified by angular-l10n's current locale.
+ */
 export function matDateLocaleFactory(locale: L10nLocale): string {
     return locale.language;
 }
@@ -56,7 +60,7 @@ export class DatePickerComponent implements ControlValueAccessor, DatepickerInte
     @Input()
     public name: string = '';
 
-    /** Set the tooltip placement (bottom, top, left, right). Default top. */
+    /** Sets the tooltip placement (bottom, top, left, right). Default top. */
     @Input()
     public tooltipPlacement: TerraPlacementEnum = TerraPlacementEnum.TOP;
 
@@ -64,7 +68,7 @@ export class DatePickerComponent implements ControlValueAccessor, DatepickerInte
     @Input()
     public tooltipText: string = '';
 
-    /** Specifies the display format of the datepicker */
+    /** Specifies the display format of the date picker. */
     @Input()
     public set displayDateFormat(value: string) {
         this.dateFormats.display.dateInput = value;
@@ -96,7 +100,11 @@ export class DatePickerComponent implements ControlValueAccessor, DatepickerInte
         this._onTouchedCallback = fn;
     }
 
-    /** internal onchange wrap method to call onChangeCallback & format date to string */
+    /**
+     * Calls registered {@link _onChangeCallback} whenever the control's value changes in the UI.
+     * The control's value is represented as ISO 8601 compliant date string.
+     * @see {@link https://momentjs.com/docs/#/displaying/format/} for further details.
+     */
     public _onChange(date: Moment | null): void {
         this._onChangeCallback(isMoment(date) ? date.format() : null);
     }
