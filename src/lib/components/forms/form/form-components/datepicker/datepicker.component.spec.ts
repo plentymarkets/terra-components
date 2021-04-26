@@ -124,4 +124,14 @@ describe('DatePickerComponent', () => {
 
         expect(onTouchedCallback).toHaveBeenCalled();
     });
+
+    it('should format displayed value according to the given displayDateFormat', async () => {
+        const value: string = '2020-04-03T00:00:00+02:00';
+        const displayFormat: string = 'YYYY-MM-DD';
+        component.displayDateFormat = displayFormat;
+        component.writeValue(value);
+        fixture.detectChanges();
+
+        expect(await datepicker.getValue()).toEqual('2020-04-03');
+    });
 });
