@@ -100,7 +100,11 @@ export class DatePickerComponent implements ControlValueAccessor, DatepickerInte
         this._onTouchedCallback = fn;
     }
 
-    /** internal onchange wrap method to call onChangeCallback & format date to string */
+    /** 
+    * Calls registered {@link _onChangeCallback} whenever the control's value changes in the UI. 
+    * The control's value is represented as ISO 8601 compliant date string. 
+    * @see {@link https://momentjs.com/docs/#/displaying/format/} for further details.
+    */
     public _onChange(date: Moment | null): void {
         this._onChangeCallback(isMoment(date) ? date.format() : null);
     }
