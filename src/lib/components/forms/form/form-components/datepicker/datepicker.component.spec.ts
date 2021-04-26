@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DatePickerComponent } from './datepicker.component';
-import { HarnessLoader, TestElement } from '@angular/cdk/testing';
+import { HarnessLoader } from '@angular/cdk/testing';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
@@ -10,10 +10,9 @@ import { MatDatepickerInputHarness } from '@angular/material/datepicker/testing'
 import { MockTooltipDirective } from '../../../../../testing/mock-tooltip.directive';
 import { TerraPlacementEnum } from '../../../../../helpers/enums/terra-placement.enum';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
-import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import { L10N_LOCALE } from 'angular-l10n';
 
 // tslint:disable-next-line:max-function-line-count
 describe('DatePickerComponent', () => {
@@ -24,16 +23,14 @@ describe('DatePickerComponent', () => {
 
     beforeEach(async () => {
         TestBed.configureTestingModule({
-            imports: [
-                MatFormFieldModule,
-                MatInputModule,
-                MatDatepickerModule,
-                NoopAnimationsModule,
-                MatMomentDateModule,
-                FormsModule
-            ],
+            imports: [MatFormFieldModule, MatInputModule, MatDatepickerModule, NoopAnimationsModule, FormsModule],
             declarations: [DatePickerComponent, MockTooltipDirective],
-            providers: [{ provide: MAT_DATE_LOCALE, useValue: 'de-DE' }]
+            providers: [
+                {
+                    provide: L10N_LOCALE,
+                    useValue: { language: 'de' }
+                }
+            ]
         });
 
         fixture = TestBed.createComponent(DatePickerComponent);
@@ -101,10 +98,10 @@ describe('DatePickerComponent', () => {
     });
 
     it('should update the value of the datepicker when writing a new value via `writeValue()`', async () => {
-        const value: string = '03.04.2020';
+        const value: string = '2020-04-03T00:00:00+02:00';
         component.writeValue(value);
         fixture.detectChanges();
-        expect(await datepicker.getValue()).toEqual(value);
+        expect(await datepicker.getValue()).toEqual('3.4.2020');
     });
 
     it('should call registered change callback whenever the value of the datepicker is changed by the user', async () => {
@@ -114,7 +111,7 @@ describe('DatePickerComponent', () => {
         const value: string = '03.04.2020';
         await datepicker.setValue(value);
 
-        expect(onChangeCallback).toHaveBeenCalledWith(value);
+        expect(onChangeCallback).toHaveBeenCalledOnceWith(value);
     });
 
     it('should call registered touched callback whenever the input was blurred', async () => {
