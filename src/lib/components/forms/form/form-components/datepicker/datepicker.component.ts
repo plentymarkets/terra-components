@@ -13,6 +13,7 @@ import * as moment from 'moment';
 import { isMoment, Moment } from 'moment';
 import { TerraPlacementEnum } from '../../../../../helpers';
 
+/** external function to get current language from L10n */
 export function matDateLocaleFactory(locale: L10nLocale): string {
     return locale.language;
 }
@@ -95,6 +96,7 @@ export class DatePickerComponent implements ControlValueAccessor, DatepickerInte
         this._onTouchedCallback = fn;
     }
 
+    /** internal onchange wrap method to call onChangeCallback & format date to string */
     public _onChange(date: Moment | null): void {
         this._onChangeCallback(isMoment(date) ? date.format() : null);
     }
