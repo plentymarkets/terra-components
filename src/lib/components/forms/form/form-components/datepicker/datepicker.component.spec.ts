@@ -8,13 +8,13 @@ import { MatFormFieldHarness } from '@angular/material/form-field/testing';
 import { By } from '@angular/platform-browser';
 import { MatDatepickerInputHarness } from '@angular/material/datepicker/testing';
 import { MockTooltipDirective } from '../../../../../testing/mock-tooltip.directive';
-import { TerraPlacementEnum } from '../../../../../helpers/enums/terra-placement.enum';
+import { TerraPlacementEnum } from '../../../../../helpers';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { L10N_LOCALE } from 'angular-l10n';
 import * as moment from 'moment';
-import { isMoment, Moment } from 'moment';
+import { Moment } from 'moment';
 import { MAT_DATE_FORMATS, MatDateFormats } from '@angular/material/core';
 import { MAT_MOMENT_DATE_FORMATS } from '@angular/material-moment-adapter';
 
