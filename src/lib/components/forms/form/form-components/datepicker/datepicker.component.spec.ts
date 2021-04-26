@@ -13,6 +13,10 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { L10N_LOCALE } from 'angular-l10n';
+import * as moment from 'moment';
+import { isMoment, Moment } from 'moment';
+import { MAT_DATE_FORMATS, MatDateFormats } from '@angular/material/core';
+import { MAT_MOMENT_DATE_FORMATS } from '@angular/material-moment-adapter';
 
 // tslint:disable-next-line:max-function-line-count
 describe('DatePickerComponent', () => {
@@ -20,6 +24,7 @@ describe('DatePickerComponent', () => {
     let component: DatePickerComponent;
     let loader: HarnessLoader;
     let datepicker: MatDatepickerInputHarness;
+    const today: Moment = moment(new Date().setHours(0, 0, 0, 0));
 
     beforeEach(async () => {
         TestBed.configureTestingModule({
@@ -98,22 +103,22 @@ describe('DatePickerComponent', () => {
     });
 
     it('should update the value of the datepicker when writing a new value via `writeValue()`', async () => {
-        const value: string = '2020-04-03T00:00:00+02:00';
+        const value: string = today.format();
+
         component.writeValue(value);
         fixture.detectChanges();
-        expect(await datepicker.getValue()).toEqual('3.4.2020');
+        expect(await datepicker.getValue()).toEqual(today.format('D.M.Y'));
     });
 
     it('should call registered change callback whenever the value of the datepicker is changed by the user', async () => {
         const onChangeCallback: jasmine.Spy = jasmine.createSpy('onChange');
         component.registerOnChange(onChangeCallback);
 
-        const value: string = '03.04.2020';
+        const value: string = today.format('D.M.Y');
         await datepicker.setValue(value);
-
         expect(onChangeCallback).toHaveBeenCalled();
         // since datePicker Harness simulates entering a date by pressing keys the change callback is called multiple times
-        expect(onChangeCallback.calls.mostRecent().args[0]).toBe('2020-04-03T00:00:00+02:00');
+        expect(onChangeCallback.calls.mostRecent().args[0]).toBe(today.format());
     });
 
     it('should call registered touched callback whenever the input was blurred', async () => {
@@ -126,12 +131,17 @@ describe('DatePickerComponent', () => {
     });
 
     it('should format displayed value according to the given displayDateFormat', async () => {
-        const value: string = '2020-04-03T00:00:00+02:00';
+        const value: string = today.format();
         const displayFormat: string = 'YYYY-MM-DD';
         component.displayDateFormat = displayFormat;
         component.writeValue(value);
         fixture.detectChanges();
 
-        expect(await datepicker.getValue()).toEqual('2020-04-03');
+        expect(await datepicker.getValue()).toEqual(today.format(displayFormat));
+    });
+
+    afterEach(() => {
+        const dateFormat: MatDateFormats = fixture.debugElement.injector.get(MAT_DATE_FORMATS);
+        dateFormat.display = MAT_MOMENT_DATE_FORMATS.display;
     });
 });
