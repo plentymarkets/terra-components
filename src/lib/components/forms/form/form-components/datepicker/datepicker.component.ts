@@ -56,7 +56,7 @@ export class DatePickerComponent implements ControlValueAccessor, DatepickerInte
     @Input()
     public name: string = '';
 
-    /** Set the tooltip placement (bottom, top, left, right). Default top. */
+    /** Sets the tooltip placement (bottom, top, left, right). Default top. */
     @Input()
     public tooltipPlacement: TerraPlacementEnum = TerraPlacementEnum.TOP;
 
