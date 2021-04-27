@@ -16,7 +16,6 @@ import { L10N_LOCALE } from 'angular-l10n';
 import * as moment from 'moment';
 import { Moment } from 'moment';
 import { MAT_DATE_FORMATS, MatDateFormats } from '@angular/material/core';
-import { MAT_MOMENT_DATE_FORMATS } from '@angular/material-moment-adapter';
 
 // tslint:disable-next-line:max-function-line-count
 describe('DatePickerComponent', () => {
@@ -142,6 +141,11 @@ describe('DatePickerComponent', () => {
 
     afterEach(() => {
         const dateFormat: MatDateFormats = fixture.debugElement.injector.get(MAT_DATE_FORMATS);
-        dateFormat.display = MAT_MOMENT_DATE_FORMATS.display;
+        dateFormat.display = {
+            dateInput: 'l',
+            monthYearLabel: 'MMM YYYY',
+            dateA11yLabel: 'LL',
+            monthYearA11yLabel: 'MMMM YYYY'
+        };
     });
 });
