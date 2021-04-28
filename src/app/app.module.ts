@@ -9,6 +9,9 @@ import { ShowcaseComponent } from './showcase/showcase.component';
 import { TerraComponentsExamplesModule } from '../lib/terra-components-examples.module';
 import { RouterModule } from '@angular/router';
 import { DefaultUserLanguage } from './translation/user-language';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
 
 export function initL10n(l10nLoader: L10nLoader): Function {
     return (): Promise<void> => l10nLoader.init();
@@ -27,7 +30,10 @@ export function initL10n(l10nLoader: L10nLoader): Function {
         HttpClientModule,
         L10nTranslationModule.forRoot(l10nConfig, { userLanguage: DefaultUserLanguage }),
         L10nIntlModule,
-        TerraComponentsExamplesModule
+        TerraComponentsExamplesModule,
+        MatDatepickerModule,
+        MatInputModule,
+        MatMomentDateModule
     ],
     declarations: [AppComponent, ShowcaseComponent],
     providers: [
