@@ -1,7 +1,4 @@
-import {
-    ComponentFixture,
-    TestBed
-} from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ColorPickerComponent } from './color-picker.component';
 import { HarnessLoader } from '@angular/cdk/testing';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -16,7 +13,6 @@ import { By } from '@angular/platform-browser';
 import { TerraPlacementEnum } from '../../../../../helpers';
 
 describe('ColorPickerComponent', () => {
-
     let fixture: ComponentFixture<ColorPickerComponent>;
     let component: ColorPickerComponent;
     let loader: HarnessLoader;
@@ -78,7 +74,7 @@ describe('ColorPickerComponent', () => {
 
     describe('with tooltip', () => {
         let tooltip: MockTooltipDirective;
-        const testToolTipCaption:string = 'testToolTip'
+        const testToolTipCaption: string = 'testToolTip';
 
         beforeEach(() => {
             tooltip = fixture.debugElement.query(By.directive(MockTooltipDirective)).injector.get(MockTooltipDirective);
