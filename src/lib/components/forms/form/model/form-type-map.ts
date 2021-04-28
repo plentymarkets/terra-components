@@ -7,7 +7,6 @@ import { TerraFileInputComponent } from '../../input/file-input/terra-file-input
 import { TerraTextInputComponent } from '../../input/text-input/terra-text-input.component';
 import { TerraTextAreaInputComponent } from '../../input/text-area-input/terra-text-area-input.component';
 import { TerraNumberInputComponent } from '../../input/number-input/terra-number-input.component';
-import { TerraDoubleInputComponent } from '../../input/double-input/terra-double-input.component';
 import { TerraSelectBoxComponent } from '../../select-box/terra-select-box.component';
 import { TerraCategoryPickerComponent } from '../../../data-picker/category-picker/terra-category-picker.component';
 import { TerraColorPickerComponent } from '../../input/color-picker/terra-color-picker.component';
@@ -16,6 +15,7 @@ import { TerraCodeEditorComponent } from '../../../editors/code-editor/terra-cod
 import { TerraSliderComponent } from '../../slider/terra-slider.component';
 import { TerraPortletComponent } from '../../../layouts/portlet/terra-portlet.component';
 import { TerraSuggestionBoxComponent } from '../../suggestion-box/terra-suggestion-box.component';
+import { DoubleInputComponent } from '../form-components/double-input/double-input.component';
 
 /**
  * @description A map of control types that may be passed to the <terra-form> in order to support those controls.
@@ -60,9 +60,9 @@ export class FormTypeMap {
     };
     public readonly double: TerraFormTypeInterface = {
         inputMap: {
-            required: 'inputIsRequired'
+            required: 'isRequired'
         },
-        component: TerraDoubleInputComponent
+        component: DoubleInputComponent
     };
     public readonly select: TerraFormTypeInterface = {
         inputMap: {
