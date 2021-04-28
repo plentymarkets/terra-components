@@ -12,14 +12,23 @@ import { L10N_LOCALE, L10nLocale } from 'angular-l10n';
 import * as moment from 'moment';
 import { isMoment, Moment } from 'moment';
 import { TerraPlacementEnum } from '../../../../../helpers';
+import * as cloneDeep from 'lodash.clonedeep';
 
 /**
  * Determines the language specified by angular-l10n's current locale which will be used as the locale for material's date picker.
  * @params locale angular-l10n's locale
- * @returns The language specified by angular-l10n's current locale.
+ * @returns {string} The language specified by angular-l10n's current locale.
  */
 export function matDateLocaleFactory(locale: L10nLocale): string {
     return locale.language;
+}
+
+/**
+ * Creates a deep clone of @angular/material-moment-adapter's `MAT_MOMENT_DATE_FORMATS`.
+ * @returns {MatDateFormats} The date formats to use for the datepicker.
+ */
+export function matDateFormatFactory(): MatDateFormats {
+    return cloneDeep(MAT_MOMENT_DATE_FORMATS);
 }
 
 @Component({
@@ -43,7 +52,7 @@ export function matDateLocaleFactory(locale: L10nLocale): string {
         },
         {
             provide: MAT_DATE_FORMATS,
-            useValue: MAT_MOMENT_DATE_FORMATS
+            useFactory: matDateFormatFactory
         }
     ]
 })
