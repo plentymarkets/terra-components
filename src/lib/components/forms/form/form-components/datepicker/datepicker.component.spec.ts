@@ -15,7 +15,6 @@ import { MatInputModule } from '@angular/material/input';
 import { L10N_LOCALE } from 'angular-l10n';
 import * as moment from 'moment';
 import { Moment } from 'moment';
-import { MAT_DATE_FORMATS, MatDateFormats } from '@angular/material/core';
 
 // tslint:disable-next-line:max-function-line-count
 describe('DatePickerComponent', () => {
