@@ -61,6 +61,13 @@ describe('ColorPickerComponent', () => {
         expect(await formField.getLabel()).toBe(component.name);
     });
 
+    it('should update the value of the input when writing a new value via `writeValue()`', async () => {
+        component.writeValue(testColor);
+
+        fixture.detectChanges();
+        expect(await input.getValue()).toEqual(testColor);
+    });
+
     it('should set required validation when #isRequired is set', async () => {
         expect(await input.isRequired()).toBe(false);
         component.isRequired = true;
