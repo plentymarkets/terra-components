@@ -139,8 +139,11 @@ describe('DatePickerComponent', () => {
         expect(await datepicker.getValue()).toEqual(today.format(displayFormat));
     });
 
+    // Workaround to restore the display format after it has been modified in the test above.
+    // Since the tests run in random order, we need to restore the format after each test.
     afterEach(() => {
         const dateFormat: MatDateFormats = fixture.debugElement.injector.get(MAT_DATE_FORMATS);
+        // make sure to assign a new reference here, since we've actually modified the `MAT_MOMENT_DATE_FORMATS` reference.
         dateFormat.display = {
             dateInput: 'l',
             monthYearLabel: 'MMM YYYY',
