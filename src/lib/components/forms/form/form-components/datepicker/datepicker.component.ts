@@ -25,7 +25,7 @@ export function matDateLocaleFactory(locale: L10nLocale): string {
 
 /**
  * Creates a deep clone of @angular/material-moment-adapter's `MAT_MOMENT_DATE_FORMATS`.
- * @returns {MatDateFormats} The date formats to use for the datepicker.
+ * @returns {MatDateFormats} The date formats to be used by the datepicker.
  */
 export function matDateFormatsFactory(): MatDateFormats {
     return cloneDeep(MAT_MOMENT_DATE_FORMATS);
