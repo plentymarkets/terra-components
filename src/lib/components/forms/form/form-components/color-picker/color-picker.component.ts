@@ -2,8 +2,13 @@ import {
     Component,
     Input
 } from '@angular/core';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import {
+    ControlValueAccessor,
+    NG_VALUE_ACCESSOR
+} from '@angular/forms';
 import { TerraFormComponentBaseInterface } from '../terra-form-component-base.interface';
+import { noop } from 'rxjs';
+import { Color } from '../../../../../helpers';
 
 @Component({
     selector: 'color-picker',
@@ -16,7 +21,7 @@ import { TerraFormComponentBaseInterface } from '../terra-form-component-base.in
         }
     ]
 })
-export class ColorPickerComponent implements TerraFormComponentBaseInterface{
+export class ColorPickerComponent implements ControlValueAccessor, TerraFormComponentBaseInterface{
     @Input()
     public isDisabled:boolean;
 
@@ -31,4 +36,23 @@ export class ColorPickerComponent implements TerraFormComponentBaseInterface{
 
     @Input()
     public tooltipText:string;
+
+    /** Stores the callback function that will be called on blur. */
+    public _onTouchedCallback: () => void = noop;
+    /** Stores the callback function that will be called when the control's value changes in the UI. */
+    public _onChangeCallback: (_: any) => void = noop;
+
+    /** Registers a callback function that is called when the control's value changes in the UI. */
+    public registerOnChange(fn: (_: any) => void): void {
+        // this._onChangeCallback = fn;
+    }
+
+    /** Registers a callback function that is called by the forms API on initialization to update the form model on blur. */
+    public registerOnTouched(fn: () => void): void {
+        // this._onTouchedCallback = fn;
+    }
+
+    /** Writes a new value to the input element. */
+    public writeValue(value: any): void {
+    }
 }

@@ -12,6 +12,8 @@ import { MockTooltipDirective } from '../../../../../testing/mock-tooltip.direct
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { MatInputHarness } from '@angular/material/input/testing';
 import { MatFormFieldHarness } from '@angular/material/form-field/testing';
+import { By } from '@angular/platform-browser';
+import { TerraPlacementEnum } from '../../../../../helpers';
 
 describe('ColorPickerComponent', () => {
 
@@ -19,6 +21,8 @@ describe('ColorPickerComponent', () => {
     let component: ColorPickerComponent;
     let loader: HarnessLoader;
     let input: MatInputHarness;
+
+    const testColor: string = 'f8f8f8';
 
     beforeEach(async () => {
         TestBed.configureTestingModule({
@@ -63,5 +67,47 @@ describe('ColorPickerComponent', () => {
         fixture.detectChanges();
 
         expect(await input.isRequired()).toBe(true);
+    });
+
+    describe('with tooltip', () => {
+        let tooltip: MockTooltipDirective;
+        const testToolTipCaption:string = 'testToolTip'
+
+        beforeEach(() => {
+            tooltip = fixture.debugElement.query(By.directive(MockTooltipDirective)).injector.get(MockTooltipDirective);
+        });
+
+        it('should set tooltip placement according to #tooltipPlacement', () => {
+            expect(tooltip.placement).toBe(TerraPlacementEnum.TOP);
+            component.tooltipPlacement = TerraPlacementEnum.RIGHT;
+            fixture.detectChanges();
+            expect(tooltip.placement).toBe(TerraPlacementEnum.RIGHT);
+        });
+
+        it('should set tooltiptext according to #tooltipText', () => {
+            expect(tooltip.tcTooltip).toBeFalsy();
+            component.tooltipText = testToolTipCaption;
+            fixture.detectChanges();
+            expect(tooltip.tcTooltip).toBe(testToolTipCaption);
+        });
+    });
+
+    it('should call registered change callback whenever the value of the input is changed by the user', async () => {
+        const onChangeCallback: jasmine.Spy = jasmine.createSpy('onChange');
+        component.registerOnChange(onChangeCallback);
+
+        await input.setValue(testColor);
+
+        expect(onChangeCallback).toHaveBeenCalledWith(testColor);
+    });
+
+    it('should call registered onTouchedCallback when select blur has been called', async () => {
+        const spy: jasmine.Spy = jasmine.createSpy('onTouchedCallback');
+        component.registerOnTouched(spy);
+        await input.blur();
+
+        fixture.detectChanges();
+
+        expect(spy).toHaveBeenCalled();
     });
 });
