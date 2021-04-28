@@ -143,7 +143,7 @@ describe('DatePickerComponent', () => {
     // Since the tests run in random order, we need to restore the format after each test.
     afterEach(() => {
         const dateFormat: MatDateFormats = fixture.debugElement.injector.get(MAT_DATE_FORMATS);
-        // make sure to assign a new reference here, since we've actually modified the `MAT_MOMENT_DATE_FORMATS` reference.
+        // make sure to assign a new reference here, since we've actually modified the original source (`MAT_MOMENT_DATE_FORMATS`).
         dateFormat.display = {
             dateInput: 'l',
             monthYearLabel: 'MMM YYYY',
