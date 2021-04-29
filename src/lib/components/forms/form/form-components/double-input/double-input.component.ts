@@ -45,7 +45,7 @@ export class DoubleInputComponent implements ControlValueAccessor, DoubleInputIn
     public decimalCount: number = 2;
 
     /** The internal data model. */
-    public value: number;
+    public _value: number;
     /** The internal regex model. */
     public _regex: string;
     /** The internal step model. */
@@ -72,6 +72,6 @@ export class DoubleInputComponent implements ControlValueAccessor, DoubleInputIn
 
     /** Writes a new value to the element. */
     public writeValue(value: number): void {
-        this.value = value;
+        this._value = value;
     }
 }
