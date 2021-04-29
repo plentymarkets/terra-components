@@ -36,7 +36,7 @@ export class DoubleInputComponent implements ControlValueAccessor, DoubleInputIn
     @Input()
     public tooltipText: string = '';
 
-    /** If true, the value will be right-aligned. */
+    /** If true, the value will be right-aligned. Default false. */
     @Input()
     public isPriceInput: boolean = false;
 
@@ -70,7 +70,7 @@ export class DoubleInputComponent implements ControlValueAccessor, DoubleInputIn
         this._onTouchedCallback = fn;
     }
 
-    /** Writes a new value to the element.*/
+    /** Writes a new value to the element. */
     public writeValue(value: number): void {
         this.value = value;
     }
