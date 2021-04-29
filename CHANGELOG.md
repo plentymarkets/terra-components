@@ -3,7 +3,11 @@
 ### Features
 
 -   **terra-form**
+<<<<<<< HEAD
     -   form type **number**: replaced deprecated `terra-number-input` with a `mat-input` variant.
+=======
+    -   **text-area** replaced deprecated `terra-text-area-input` with a `mat-input` variant.
+>>>>>>> form/terra_text_area_input
 
 # 11.1.0 (23.03.2021)
 

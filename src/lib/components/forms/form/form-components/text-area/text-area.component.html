@@ -1,0 +1,18 @@
+<mat-form-field class="w-100" [placement]="tooltipPlacement" [tcTooltip]="tooltipText">
+    <mat-label>
+        {{ name }}
+    </mat-label>
+    <textarea
+        matInput
+        [(ngModel)]="value"
+        (ngModelChange)="_onChangeCallback($event)"
+        (blur)="_onTouchedCallback()"
+        [maxlength]="maxLength"
+        [rows]="maxRows"
+        [required]="isRequired"
+        autocomplete="off"
+        [disabled]="isDisabled"
+        [style.resize]="hasFixedHeight ? 'none' : 'vertical'"
+    >
+    </textarea>
+</mat-form-field>
