@@ -128,10 +128,11 @@ describe('DoubleInputComponent', () => {
 
     it('should be invalid when #decimalCount is disregarded', async () => {
         const formField: MatFormFieldHarness = await loader.getHarness(MatFormFieldHarness);
-        component.writeValue(2.34);
         expect(await formField.isControlValid()).toBe(true);
+        component.writeValue(2.3422);
         component.decimalCount = 3;
         fixture.detectChanges();
+
         expect(await formField.isControlValid()).toBe(false);
     });
 
