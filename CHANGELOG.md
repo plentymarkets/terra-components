@@ -5,6 +5,7 @@
 -   **terra-form**
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     -   form type **number**: replaced deprecated `terra-number-input` with a `mat-input` variant.
 =======
     -   **text-area** replaced deprecated `terra-text-area-input` with a `mat-input` variant.
@@ -12,6 +13,9 @@
 =======
     -   **select** replaced deprecated `terra-select-box` with a `mat-select` variant.
 >>>>>>> form/select
+=======
+    -   **checkbox** replaced deprecated `terra-checkbox` with a `mat-checkbox` variant.
+>>>>>>> feature/form/checkbox
 
 # 11.1.0 (23.03.2021)
 

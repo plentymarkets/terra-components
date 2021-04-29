@@ -20,6 +20,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { A11yModule } from '@angular/cdk/a11y';
 
 @NgModule({
     imports: [
@@ -41,7 +42,8 @@ import { MatSelectModule } from '@angular/material/select';
         MatCheckboxModule,
         MatFormFieldModule,
         MatInputModule,
-        MatSelectModule
+        MatSelectModule,
+        A11yModule
     ],
     declarations: [...components, ...directives, ...pipes],
     exports: [...exportedComponents, ...exportedDirectives, ...pipes]

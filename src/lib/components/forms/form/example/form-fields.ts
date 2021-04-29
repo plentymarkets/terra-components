@@ -114,6 +114,13 @@ export const formFields: TerraKeyValueInterface<TerraFormFieldInterface> = {
             maxRows: 12
         }
     },
+    checkbox: {
+        type: 'checkbox',
+        options: {
+            name: 'checkbox',
+            required: true
+        }
+    },
     text: {
         type: 'text',
         options: {
