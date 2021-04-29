@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DoubleInputInterface } from './double-input.interface';
 import { TerraPlacementEnum, TerraRegex } from '../../../../../helpers';
@@ -15,7 +15,7 @@ import { noop } from 'rxjs';
         }
     ]
 })
-export class DoubleInputComponent implements ControlValueAccessor, DoubleInputInterface, OnInit {
+export class DoubleInputComponent implements ControlValueAccessor, DoubleInputInterface {
     /** If true, the input will be disabled. Default false. */
     @Input()
     public isDisabled: boolean = false;
@@ -43,22 +43,20 @@ export class DoubleInputComponent implements ControlValueAccessor, DoubleInputIn
     /** Set the decimal count. Default is 2 (0.01). */
     @Input()
     public set decimalCount(value: number) {
-        TerraRegex.getDouble(value);
+        this._regex = TerraRegex.getDouble(value);
+        this._step = 1 / Math.pow(10, value);
     }
 
-    /** The internal data model */
+    /** The internal data model. */
     public value: number;
-
+    /** The internal regex model. */
     public _regex: string;
+    /** The internal step model. */
     public _step: number;
 
     /** Placeholders for the callbacks which are later provided by the Control Value Accessor. */
     public _onTouchedCallback: () => void = noop;
     public _onChangeCallback: (_: number) => void = noop;
-
-    public ngOnInit(): void {
-        this._step = 1 / Math.pow(10, this.decimalCount);
-    }
 
     /** Registers a callback function that is called when the control's value changes in the UI.*/
     public registerOnChange(fn: (_: number) => void): void {
