@@ -36,20 +36,19 @@ export class DoubleInputComponent implements ControlValueAccessor, DoubleInputIn
     @Input()
     public tooltipText: string = '';
 
-    /** If true, the value will be right-aligned. */
+    /** If true, the value will be right-aligned. Default false. */
     @Input()
     public isPriceInput: boolean = false;
 
     /** Set the decimal count. Default is 2 (0.01). */
     @Input()
-    public set decimalCount(value: number) {
-        TerraRegex.getDouble(value);
-    }
+    public decimalCount: number = 2;
 
-    /** The internal data model */
-    public value: number;
-
+    /** The internal data model. */
+    public _value: number;
+    /** The internal regex model. */
     public _regex: string;
+    /** The internal step model. */
     public _step: number;
 
     /** Placeholders for the callbacks which are later provided by the Control Value Accessor. */
@@ -57,10 +56,11 @@ export class DoubleInputComponent implements ControlValueAccessor, DoubleInputIn
     public _onChangeCallback: (_: number) => void = noop;
 
     public ngOnInit(): void {
+        this._regex = TerraRegex.getDouble(this.decimalCount);
         this._step = 1 / Math.pow(10, this.decimalCount);
     }
 
-    /** Registers a callback function that is called when the control's value changes in the UI.*/
+    /** Registers a callback function that is called when the control's value changes in the UI. */
     public registerOnChange(fn: (_: number) => void): void {
         this._onChangeCallback = fn;
     }
@@ -70,8 +70,8 @@ export class DoubleInputComponent implements ControlValueAccessor, DoubleInputIn
         this._onTouchedCallback = fn;
     }
 
-    /** Writes a new value to the element.*/
+    /** Writes a new value to the element. */
     public writeValue(value: number): void {
-        this.value = value;
+        this._value = value;
     }
 }
