@@ -37,12 +37,14 @@ export class ColorPickerComponent implements ControlValueAccessor, TerraFormComp
     @Input()
     public tooltipText: string = '';
 
+    /** getter for internal color handling */
     public get color(): string {
         return this.value || '#ffffff';
     }
 
-    public set color(c: string) {
-        this.value = c;
+    /** setter for internal color handling */
+    public set color(color: string) {
+        this.value = color;
     }
 
     /** @description The internal data model */
