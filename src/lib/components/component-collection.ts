@@ -68,6 +68,7 @@ import { NumberInputComponent } from './forms/form/form-components/number-input/
 import { TextAreaComponent } from './forms/form/form-components/text-area/text-area.component';
 import { SelectComponent } from './forms/form/form-components/select/select.component';
 import { CheckboxComponent } from './forms/form/form-components/checkbox/checkbox.component';
+import { TextInputComponent } from './forms/form/form-components/text-input/text-input.component';
 
 export const exportedComponents: Array<Type<any>> = [
     TerraAlertPanelComponent,
@@ -142,5 +143,6 @@ export const components: Array<Type<any>> = [
     NumberInputComponent,
     TextAreaComponent,
     SelectComponent,
-    CheckboxComponent
+    CheckboxComponent,
+    TextInputComponent
 ];

@@ -17,6 +17,7 @@ import { TerraPortletComponent } from '../../../layouts/portlet/terra-portlet.co
 import { TerraSuggestionBoxComponent } from '../../suggestion-box/terra-suggestion-box.component';
 import { TextAreaComponent } from '../form-components/text-area/text-area.component';
 import { CheckboxComponent } from '../form-components/checkbox/checkbox.component';
+import { TextInputComponent } from '../form-components/text-input/text-input.component';
 
 /**
  * @description A map of control types that may be passed to the <terra-form> in order to support those controls.
@@ -43,9 +44,10 @@ export class FormTypeMap {
     };
     public readonly text: TerraFormTypeInterface = {
         inputMap: {
-            required: 'inputIsRequired'
+            required: 'isRequired',
+            iban: 'isIban'
         },
-        component: TerraTextInputComponent
+        component: TextInputComponent
     };
     public readonly textarea: TerraFormTypeInterface = {
         inputMap: {
