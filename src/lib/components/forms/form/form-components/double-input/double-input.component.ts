@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DoubleInputInterface } from './double-input.interface';
 import { TerraPlacementEnum, TerraRegex } from '../../../../../helpers';
@@ -15,7 +15,7 @@ import { noop } from 'rxjs';
         }
     ]
 })
-export class DoubleInputComponent implements ControlValueAccessor, DoubleInputInterface, OnInit {
+export class DoubleInputComponent implements ControlValueAccessor, DoubleInputInterface, OnInit, OnChanges {
     /** If true, the input will be disabled. Default false. */
     @Input()
     public isDisabled: boolean = false;
@@ -58,6 +58,13 @@ export class DoubleInputComponent implements ControlValueAccessor, DoubleInputIn
     public ngOnInit(): void {
         this._regex = TerraRegex.getDouble(this.decimalCount);
         this._step = 1 / Math.pow(10, this.decimalCount);
+    }
+
+    public ngOnChanges(changes: SimpleChanges): void {
+        if (changes.hasOwnProperty('decimalCount') && changes?.decimalCount) {
+            this._regex = TerraRegex.getDouble(this.decimalCount);
+            this._step = 1 / Math.pow(10, this.decimalCount);
+        }
     }
 
     /** Registers a callback function that is called when the control's value changes in the UI. */
