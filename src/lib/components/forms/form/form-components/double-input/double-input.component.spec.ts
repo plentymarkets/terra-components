@@ -13,6 +13,7 @@ import { MatFormFieldHarness } from '@angular/material/form-field/testing';
 import { By } from '@angular/platform-browser';
 import { TerraPlacementEnum } from '../../../../../helpers/enums/terra-placement.enum';
 import { DebugElement } from '@angular/core';
+import { TerraRegex } from '../../../../../helpers/regex/terra-regex';
 
 // tslint:disable-next-line:max-function-line-count
 describe('DoubleInputComponent', () => {
@@ -140,5 +141,21 @@ describe('DoubleInputComponent', () => {
         fixture.detectChanges();
 
         expect(debugElement.styles['text-align']).toBe('right');
+    });
+
+    it('should have the right pattern when decimalCount is set', () => {
+        expect(debugElement.nativeElement.pattern).toEqual(TerraRegex.getDouble(2));
+        component.decimalCount = 3;
+        fixture.detectChanges();
+
+        expect(debugElement.nativeElement.pattern).toEqual(TerraRegex.getDouble(3));
+    });
+
+    it('should have the right step when decimalCount is set', () => {
+        expect(debugElement.nativeElement.step).toEqual(0.01);
+        component.decimalCount = 3;
+        fixture.detectChanges();
+
+        expect(debugElement.nativeElement.step).toEqual(0.001);
     });
 });
