@@ -43,8 +43,14 @@ export class DoubleInputComponent implements ControlValueAccessor, DoubleInputIn
     /** Set the decimal count. Default is 2 (0.01). */
     @Input()
     public set decimalCount(value: number) {
-        this._regex = TerraRegex.getDouble(value);
-        this._step = 1 / Math.pow(10, value);
+        let innerValue: number;
+        if (value === null || value === undefined) {
+            innerValue = 2;
+        } else {
+            innerValue = value;
+        }
+        this._regex = TerraRegex.getDouble(innerValue);
+        this._step = 1 / Math.pow(10, innerValue);
     }
 
     /** The internal data model. */
