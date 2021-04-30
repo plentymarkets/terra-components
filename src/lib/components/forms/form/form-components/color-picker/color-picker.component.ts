@@ -41,7 +41,7 @@ export class ColorPickerComponent implements ControlValueAccessor, TerraFormComp
     public _pattern: string = TerraRegex.COLOR_HEX;
 
     /** @description The internal data model */
-    public value: string = '#ffffff';
+    public value: string;
 
     /** Stores the callback function that will be called on blur. */
     public _onTouchedCallback: () => void = noop;
@@ -60,6 +60,6 @@ export class ColorPickerComponent implements ControlValueAccessor, TerraFormComp
 
     /** Writes a new value to the input element. */
     public writeValue(value: string): void {
-        this.value = value ?? '#ffffff';
+        this.value = value;
     }
 }
