@@ -106,7 +106,7 @@ export const containerCompontent: TerraFormFieldInterface = {
 
 export const formFields: TerraKeyValueInterface<TerraFormFieldInterface> = {
     double: {
-        type: 'number',
+        type: 'double',
         options: {
             name: 'double',
             isPriceInput: true
