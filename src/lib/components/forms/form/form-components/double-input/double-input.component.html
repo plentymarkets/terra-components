@@ -10,7 +10,7 @@
         [required]="isRequired"
         [disabled]="isDisabled"
         [style.text-align]="isPriceInput ? 'right' : 'left'"
-        pattern="{{ _regex }}"
-        step="{{ _step }}"
+        [pattern]="_regex"
+        [step]="_step"
     />
 </mat-form-field>
