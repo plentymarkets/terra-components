@@ -1,6 +1,6 @@
 import { DoubleInputComponent } from './double-input.component';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { HarnessLoader } from '@angular/cdk/testing';
+import { HarnessLoader, TestElement } from '@angular/cdk/testing';
 import { MatInputHarness } from '@angular/material/input/testing';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -136,27 +136,32 @@ describe('DoubleInputComponent', () => {
         expect(await formField.isControlValid()).toBe(false);
     });
 
-    it('should be right aligned if #isPriceInput is set', () => {
-        expect(debugElement.styles['text-align']).toBe('left');
+    it('should be right aligned if #isPriceInput is set', async () => {
+        const host: TestElement = await input.host();
+        expect(await host.getCssValue('text-align')).toBe('left');
+
         component.isPriceInput = true;
         fixture.detectChanges();
 
-        expect(debugElement.styles['text-align']).toBe('right');
+        expect(await host.getCssValue('text-align')).toBe('right');
     });
 
-    it('should have the right pattern when decimalCount is set', () => {
-        expect(debugElement.nativeElement.pattern).toEqual(TerraRegex.getDouble(2));
+    it('should have the right pattern when decimalCount is set', async () => {
+        const host: TestElement = await input.host();
+        expect(await host.getProperty('pattern')).toBe(TerraRegex.getDouble(2));
+
         component.decimalCount = 3;
         fixture.detectChanges();
 
-        expect(debugElement.nativeElement.pattern).toEqual(TerraRegex.getDouble(3));
+        expect(await host.getProperty('pattern')).toBe(TerraRegex.getDouble(3));
     });
 
-    it('should have the right step when decimalCount is set', () => {
-        expect(debugElement.nativeElement.step).toEqual(0.01);
+    it('should have the right step when decimalCount is set', async () => {
+        const host: TestElement = await input.host();
+        expect(await host.getProperty('step')).toBe('0.01');
         component.decimalCount = 3;
         fixture.detectChanges();
 
-        expect(debugElement.nativeElement.step).toEqual(0.001);
+        expect(await host.getProperty('step')).toBe('0.001');
     });
 });
