@@ -3,10 +3,9 @@ input[type='color'] {
     padding: 0;
     position: absolute;
     right: 0;
-    top: calc(var(--space-lg) * -1);
-    width: var(--height-md);
-    height: var(--height-md);
-    z-index: var(--zIndex-1);
+    top: -11px;
+    width: 36px;
+    height: 36px;
     
     &:hover {
         cursor: pointer;
