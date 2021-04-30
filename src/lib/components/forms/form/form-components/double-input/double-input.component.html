@@ -4,13 +4,13 @@
         matInput
         type="number"
         autocomplete="off"
-        [(ngModel)]="_value"
+        [(ngModel)]="value"
         (ngModelChange)="_onChangeCallback($event)"
         (blur)="_onTouchedCallback()"
         [required]="isRequired"
         [disabled]="isDisabled"
         [style.text-align]="isPriceInput ? 'right' : 'left'"
-        pattern="{{ _regex }}"
-        step="{{ _step }}"
+        [pattern]="_regex"
+        [step]="_step"
     />
 </mat-form-field>
