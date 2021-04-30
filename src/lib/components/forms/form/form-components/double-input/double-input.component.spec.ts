@@ -149,7 +149,6 @@ describe('DoubleInputComponent', () => {
     it('should have the right pattern when decimalCount is set', async () => {
         const host: TestElement = await input.host();
         expect(await host.getProperty('pattern')).toBe(TerraRegex.getDouble(2));
-
         component.decimalCount = 3;
         fixture.detectChanges();
 
