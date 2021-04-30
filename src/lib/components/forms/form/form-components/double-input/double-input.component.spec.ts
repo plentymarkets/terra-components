@@ -25,7 +25,7 @@ describe('DoubleInputComponent', () => {
 
     beforeEach(async () => {
         TestBed.configureTestingModule({
-            imports: [MatFormFieldModule, MatInputModule, NoopAnimationsModule, FormsModule, L10nTranslationModule],
+            imports: [MatFormFieldModule, MatInputModule, NoopAnimationsModule, FormsModule],
             declarations: [DoubleInputComponent, MockTooltipDirective]
         });
 
