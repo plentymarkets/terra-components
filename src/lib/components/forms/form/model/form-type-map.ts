@@ -74,7 +74,7 @@ export class FormTypeMap {
     public readonly category: Type<TerraCategoryPickerComponent> = TerraCategoryPickerComponent;
     public readonly color: TerraFormTypeInterface = {
         inputMap: {
-            required: 'inputIsRequired'
+            required: 'isRequired'
         },
         component: ColorPickerComponent
     };
