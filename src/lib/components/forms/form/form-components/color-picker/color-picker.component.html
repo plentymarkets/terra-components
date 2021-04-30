@@ -4,7 +4,9 @@
     <input
         matInput
         type="text"
-        [(ngModel)]="color"
+        [pattern]="_pattern"
+        [(ngModel)]="value"
+        (ngModelChange)="_onChangeCallback($event)"
         (blur)="_onTouchedCallback()"
         autocomplete="off"
         [disabled]="isDisabled"
@@ -14,8 +16,10 @@
     <input
         matInput
         type="color"
-        [(ngModel)]="color"
+        [(ngModel)]="value"
         autocomplete="off"
+        (ngModelChange)="_onChangeCallback($event)"
+        (blur)="_onTouchedCallback()"
         [disabled]="isDisabled"
         [required]="isRequired"
     />

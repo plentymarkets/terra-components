@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TerraFormComponentBaseInterface } from '../terra-form-component-base.interface';
 import { noop } from 'rxjs';
-import { TerraPlacementEnum } from '../../../../../helpers';
+import { TerraPlacementEnum, TerraRegex } from '../../../../../helpers';
 
 @Component({
     selector: 'color-picker',
@@ -37,18 +37,11 @@ export class ColorPickerComponent implements ControlValueAccessor, TerraFormComp
     @Input()
     public tooltipText: string = '';
 
-    /** getter for internal color handling */
-    public get color(): string {
-        return this.value || '#ffffff';
-    }
-
-    /** setter for internal color handling */
-    public set color(color: string) {
-        this.value = color;
-    }
+    /** hex color pattern to validate color strings */
+    public _pattern: string = TerraRegex.COLOR_HEX;
 
     /** @description The internal data model */
-    public value: string;
+    public value: string = '#ffffff';
 
     /** Stores the callback function that will be called on blur. */
     public _onTouchedCallback: () => void = noop;
@@ -66,5 +59,7 @@ export class ColorPickerComponent implements ControlValueAccessor, TerraFormComp
     }
 
     /** Writes a new value to the input element. */
-    public writeValue(value: any): void {}
+    public writeValue(value: string): void {
+        this.value = value ?? '#ffffff';
+    }
 }
