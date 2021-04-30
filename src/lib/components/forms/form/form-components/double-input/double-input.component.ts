@@ -48,10 +48,10 @@ export class DoubleInputComponent implements ControlValueAccessor, DoubleInputIn
     }
 
     /** The internal data model. */
-    public _value: number;
-    /** The internal regex model. */
+    public value: number;
+    /** Stores the pattern for the validation. */
     public _regex: string;
-    /** The internal step model. */
+    /** Stores the step size. */
     public _step: number;
 
     /** Placeholders for the callbacks which are later provided by the Control Value Accessor. */
@@ -75,6 +75,6 @@ export class DoubleInputComponent implements ControlValueAccessor, DoubleInputIn
 
     /** Writes a new value to the element. */
     public writeValue(value: number): void {
-        this._value = value;
+        this.value = value;
     }
 }
