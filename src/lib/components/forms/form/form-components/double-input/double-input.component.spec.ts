@@ -11,14 +11,12 @@ import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { MatFormFieldHarness } from '@angular/material/form-field/testing';
 import { By } from '@angular/platform-browser';
 import { TerraPlacementEnum } from '../../../../../helpers/enums/terra-placement.enum';
-import { DebugElement } from '@angular/core';
 import { TerraRegex } from '../../../../../helpers/regex/terra-regex';
 
 // tslint:disable-next-line:max-function-line-count
 describe('DoubleInputComponent', () => {
     let component: DoubleInputComponent;
     let fixture: ComponentFixture<DoubleInputComponent>;
-    let debugElement: DebugElement;
     let loader: HarnessLoader;
     let input: MatInputHarness;
 
@@ -31,7 +29,6 @@ describe('DoubleInputComponent', () => {
         fixture = TestBed.createComponent(DoubleInputComponent);
         component = fixture.componentInstance;
         loader = TestbedHarnessEnvironment.loader(fixture);
-        debugElement = fixture.debugElement.query(By.css('input'));
         fixture.detectChanges();
 
         input = await loader.getHarness(MatInputHarness);
