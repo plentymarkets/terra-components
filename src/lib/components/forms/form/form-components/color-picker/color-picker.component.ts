@@ -5,7 +5,7 @@ import { noop } from 'rxjs';
 import { TerraPlacementEnum, TerraRegex } from '../../../../../helpers';
 
 @Component({
-    selector: 'color-picker',
+    selector: 'tc-color-picker',
     templateUrl: './color-picker.component.html',
     styleUrls: ['./color-picker.component.scss'],
     providers: [
