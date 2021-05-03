@@ -18,7 +18,7 @@ describe('ColorPickerComponent', () => {
     let loader: HarnessLoader;
     let input: MatInputHarness;
 
-    const testColor: string = 'f8f8f8';
+    const testColor: string = '#f8f8f8';
 
     beforeEach(async () => {
         TestBed.configureTestingModule({
@@ -108,8 +108,6 @@ describe('ColorPickerComponent', () => {
         const spy: jasmine.Spy = jasmine.createSpy('onTouchedCallback');
         component.registerOnTouched(spy);
         await input.blur();
-
-        fixture.detectChanges();
 
         expect(spy).toHaveBeenCalled();
     });
