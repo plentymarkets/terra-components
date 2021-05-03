@@ -104,7 +104,7 @@ describe('ColorPickerComponent', () => {
         expect(onChangeCallback).toHaveBeenCalledWith(testColor);
     });
 
-    it('should call registered onTouchedCallback when select blur has been called', async () => {
+    it('should call registered onTouchedCallback when input was blurred', async () => {
         const spy: jasmine.Spy = jasmine.createSpy('onTouchedCallback');
         component.registerOnTouched(spy);
         await input.blur();
