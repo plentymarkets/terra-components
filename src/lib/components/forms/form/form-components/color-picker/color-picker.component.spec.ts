@@ -109,7 +109,6 @@ describe('ColorPickerComponent', () => {
         component.registerOnTouched(spy);
         await input.blur();
 
-
         expect(spy).toHaveBeenCalled();
     });
 });
