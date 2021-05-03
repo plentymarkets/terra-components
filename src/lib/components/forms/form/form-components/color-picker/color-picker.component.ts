@@ -49,7 +49,7 @@ export class ColorPickerComponent implements ControlValueAccessor, TerraFormComp
     public _onChangeCallback: (_: any) => void = noop;
 
     /** Registers a callback function that is called when the control's value changes in the UI. */
-    public registerOnChange(fn: (_: any) => void): void {
+    public registerOnChange(fn: (_: string) => void): void {
         this._onChangeCallback = fn;
     }
 
