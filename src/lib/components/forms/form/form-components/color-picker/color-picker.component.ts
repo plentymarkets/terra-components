@@ -5,7 +5,7 @@ import { noop } from 'rxjs';
 import { Color } from '../../../../../helpers';
 
 @Component({
-    selector: 'color-picker',
+    selector: 'tc-color-picker',
     templateUrl: './color-picker.component',
     providers: [
         {
@@ -47,5 +47,7 @@ export class ColorPickerComponent implements ControlValueAccessor, TerraFormComp
     }
 
     /** Writes a new value to the input element. */
-    public writeValue(value: any): void {}
+    public writeValue(value: any): void {
+        // this.value = value;
+    }
 }
