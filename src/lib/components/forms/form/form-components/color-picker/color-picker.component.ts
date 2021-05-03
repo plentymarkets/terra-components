@@ -37,11 +37,11 @@ export class ColorPickerComponent implements ControlValueAccessor, TerraFormComp
     @Input()
     public tooltipText: string = '';
 
-    /** hex color pattern to validate color strings */
-    public _pattern: string = TerraRegex.COLOR_HEX;
-
     /** @description The internal data model */
     public value: string;
+
+    /** hex color pattern to validate color strings */
+    public _pattern: string = TerraRegex.COLOR_HEX;
 
     /** Stores the callback function that will be called on blur. */
     public _onTouchedCallback: () => void = noop;
