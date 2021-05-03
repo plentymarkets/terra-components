@@ -6,7 +6,7 @@ import { Color } from '../../../../../helpers';
 
 @Component({
     selector: 'tc-color-picker',
-    templateUrl: './color-picker.component',
+    templateUrl: './color-picker.component.html',
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,
