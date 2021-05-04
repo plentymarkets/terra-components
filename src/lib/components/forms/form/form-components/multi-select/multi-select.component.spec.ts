@@ -1,24 +1,169 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { MultiSelectComponent } from './multi-select.component';
+import { HarnessLoader } from '@angular/cdk/testing';
+import { FormsModule } from '@angular/forms';
+import { MockTooltipDirective } from '../../../../../testing/mock-tooltip.directive';
+import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
+import { By } from '@angular/platform-browser';
+import { TerraPlacementEnum } from '../../../../../helpers';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSelectHarness } from '@angular/material/select/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { SelectSortPipe } from '../../../../../pipes/select-sort.pipe';
+import { MatFormFieldHarness } from '@angular/material/form-field/testing';
+import { MatOptionHarness } from '@angular/material/core/testing';
+import { TerraMultiCheckBoxValueInterface } from '../../../multi-check-box/data/terra-multi-check-box-value.interface';
 
+let multiSelectOption1: TerraMultiCheckBoxValueInterface = {
+    caption: 'Value 01',
+    value: 1,
+    selected: false
+};
+
+let multiSelectOption2: TerraMultiCheckBoxValueInterface = {
+    caption: 'Value 02',
+    value: 2,
+    selected: false
+};
+
+let multiSelectOption3: TerraMultiCheckBoxValueInterface = {
+    caption: 'Value 03',
+    value: 3,
+    selected: false
+};
+
+let multiSelectOptions: Array<TerraMultiCheckBoxValueInterface> = [
+    multiSelectOption1,
+    multiSelectOption2,
+    multiSelectOption3
+];
+
+// tslint:disable-next-line:max-function-line-count
 describe('MultiSelectComponent', () => {
     let component: MultiSelectComponent;
     let fixture: ComponentFixture<MultiSelectComponent>;
+    let loader: HarnessLoader;
+    let select: MatSelectHarness;
 
     beforeEach(async () => {
-        await TestBed.configureTestingModule({
-            declarations: [MultiSelectComponent]
-        }).compileComponents();
-    });
+        TestBed.configureTestingModule({
+            imports: [MatSelectModule, FormsModule, MatFormFieldModule, NoopAnimationsModule],
+            declarations: [MultiSelectComponent, MockTooltipDirective, SelectSortPipe]
+        });
 
-    beforeEach(() => {
         fixture = TestBed.createComponent(MultiSelectComponent);
         component = fixture.componentInstance;
+        loader = TestbedHarnessEnvironment.loader(fixture);
+
         fixture.detectChanges();
+
+        select = await loader.getHarness(MatSelectHarness);
     });
 
-    it('should create', () => {
+    it('should create instances', async () => {
         expect(component).toBeTruthy();
+        expect(select).toBeTruthy();
+    });
+
+    it('should disable the checkbox when #isDisabled is set', async () => {
+        expect(await select.isDisabled()).toBe(false);
+
+        component.isDisabled = true;
+        fixture.detectChanges();
+
+        expect(await select.isDisabled()).toBe(true);
+    });
+
+    it('should set required validation when #isRequired is set', async () => {
+        expect(await select.isRequired()).toBe(false);
+
+        component.isRequired = true;
+        fixture.detectChanges();
+
+        expect(await select.isRequired()).toBe(true);
+    });
+
+    it('should set #name as label of the select', async () => {
+        const formField: MatFormFieldHarness = await loader.getHarness(MatFormFieldHarness);
+        expect(await formField.getLabel()).toBe('');
+
+        component.name = 'Ma Label';
+        fixture.detectChanges();
+
+        expect(await formField.getLabel()).toBe(component.name);
+    });
+
+    it('should call the callback #registerOnChange whenever the value is changed by the user', async () => {
+        const spy: jasmine.Spy = jasmine.createSpy('onChangeCallback');
+        component.registerOnChange(spy);
+        component.selectValues = multiSelectOptions;
+
+        fixture.detectChanges();
+
+        await select.clickOptions({
+            text: multiSelectOption1.caption.toString(),
+            isSelected: true
+        });
+
+        expect(spy).toHaveBeenCalledOnceWith(multiSelectOption1.value, true);
+    });
+
+    it('should call the callback #registerOnTouched whenever the checkbox was blurred', async () => {
+        const onTouchedCallback: jasmine.Spy = jasmine.createSpy('onTouched');
+        component.registerOnTouched(onTouchedCallback);
+
+        await select.blur();
+
+        expect(onTouchedCallback).toHaveBeenCalled();
+    });
+
+    it('should set the value as from #writeValue', async () => {
+        component.selectValues = multiSelectOptions;
+        component.writeValue([multiSelectOption1.value, multiSelectOption2.value]);
+
+        fixture.detectChanges();
+
+        expect(await select.getValueText()).toBe([multiSelectOption1.value, multiSelectOption2.value].toString());
+    });
+
+    it('should set selectValues', async () => {
+        expect(await select.getOptions()).toEqual([]);
+        component.selectValues = multiSelectOptions;
+        fixture.detectChanges();
+
+        await select.open();
+        const options: Array<MatOptionHarness> = await select.getOptions();
+        expect(options.length).toBe(multiSelectOptions.length);
+        expect(
+            options.every(
+                async (option: MatOptionHarness, index: number) =>
+                    (await option.getText()) === multiSelectOptions[index].caption
+            )
+        ).toBe(true);
+    });
+
+    describe('with tooltip', () => {
+        let tooltip: MockTooltipDirective;
+
+        beforeEach(() => {
+            tooltip = fixture.debugElement.query(By.directive(MockTooltipDirective)).injector.get(MockTooltipDirective);
+        });
+
+        it('should set the tooltip placement as ##tooltipPlacement', () => {
+            expect(tooltip.placement).toBe(TerraPlacementEnum.TOP);
+            component.tooltipPlacement = TerraPlacementEnum.BOTTOM;
+            fixture.detectChanges();
+
+            expect(tooltip.placement).toBe(TerraPlacementEnum.BOTTOM);
+        });
+
+        it('should set tooltipText as #tooltipText', () => {
+            expect(tooltip.tcTooltip).toBeFalsy();
+            component.tooltipText = 'test';
+            fixture.detectChanges();
+
+            expect(tooltip.tcTooltip).toBe('test');
+        });
     });
 });
