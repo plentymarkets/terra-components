@@ -1,9 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { TerraPlacementEnum } from '../../../../../helpers/enums/terra-placement.enum';
-import { TerraSelectBoxValueInterface } from '../../../select-box/data/terra-select-box.interface';
 import { noop } from 'rxjs';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MultiSelectInterface } from './multi-select.interface';
+import { TerraMultiCheckBoxValueInterface } from '../../../multi-check-box/data/terra-multi-check-box-value.interface';
 
 @Component({
     selector: 'tc-multi-select',
@@ -39,10 +39,10 @@ export class MultiSelectComponent implements ControlValueAccessor, MultiSelectIn
 
     /** List of options that the user can select from. */
     @Input()
-    public listBoxValues: Array<TerraSelectBoxValueInterface>;
+    public listBoxValues: Array<TerraMultiCheckBoxValueInterface>;
 
     /** Internal model. Stores the value of the selected option. */
-    public value: Array<TerraSelectBoxValueInterface>;
+    public value: Array<TerraMultiCheckBoxValueInterface>;
 
     /** Stores the callback function that will be called on blur. */
     public _onTouchedCallback: () => void = noop;
@@ -60,7 +60,7 @@ export class MultiSelectComponent implements ControlValueAccessor, MultiSelectIn
     }
 
     /** Writes a new value to the select element. */
-    public writeValue(value: Array<TerraSelectBoxValueInterface>): void {
+    public writeValue(value: Array<TerraMultiCheckBoxValueInterface>): void {
         this.value = value;
     }
 }
