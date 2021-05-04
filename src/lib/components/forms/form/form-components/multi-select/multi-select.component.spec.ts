@@ -66,11 +66,11 @@ describe('MultiSelectComponent', () => {
         expect(select).toBeTruthy();
     });
 
-    it('should be able to check whether the select is in multi-selection mode', async () => {
+    it('should check whether the select is in multi-selection mode', async () => {
         expect(await select.isMultiple()).toBe(true);
     });
 
-    it('should disable the checkbox when #isDisabled is set', async () => {
+    it('should disable the select when #isDisabled is set', async () => {
         expect(await select.isDisabled()).toBe(false);
 
         component.isDisabled = true;
@@ -98,7 +98,7 @@ describe('MultiSelectComponent', () => {
         expect(await formField.getLabel()).toBe(component.name);
     });
 
-    it('should call the callback #registerOnChange whenever the value is changed by the user', async () => {
+    it('should call the callback #registerOnChange whenever the value of an option is changed by the user', async () => {
         const spy: jasmine.Spy = jasmine.createSpy('onChangeCallback');
         component.registerOnChange(spy);
         component.listBoxValues = multiSelectOptions;
@@ -113,7 +113,7 @@ describe('MultiSelectComponent', () => {
         expect(spy).toHaveBeenCalledOnceWith(multiSelectOption1.value, true);
     });
 
-    it('should call the callback #registerOnTouched whenever the checkbox was blurred', async () => {
+    it('should call the callback #registerOnTouched whenever the select was blurred', async () => {
         const onTouchedCallback: jasmine.Spy = jasmine.createSpy('onTouched');
         component.registerOnTouched(onTouchedCallback);
 
@@ -122,7 +122,7 @@ describe('MultiSelectComponent', () => {
         expect(onTouchedCallback).toHaveBeenCalled();
     });
 
-    it('should set the value as from #writeValue', async () => {
+    it('should set the value from ngModel as from #writeValue', async () => {
         component.listBoxValues = multiSelectOptions;
         component.writeValue([multiSelectOption1.value, multiSelectOption2.value]);
 
@@ -131,7 +131,7 @@ describe('MultiSelectComponent', () => {
         expect(await select.getValueText()).toBe([multiSelectOption1.value, multiSelectOption2.value].toString());
     });
 
-    it('should set selectValues', async () => {
+    it('should set selectValues from listBoxValues', async () => {
         expect(await select.getOptions()).toEqual([]);
         component.listBoxValues = multiSelectOptions;
         fixture.detectChanges();
@@ -161,10 +161,14 @@ describe('MultiSelectComponent', () => {
 
         fixture.detectChanges();
 
-        // preselect checkbox
-        multiSelectOptions[1].selected = true;
+        // select checkbox
+        await select.open();
+        await select.clickOptions({
+            text: multiSelectOption1.caption.toString(),
+            isSelected: true
+        });
 
-        // check order of checkbox group values
+        // check order of select option values
         expect(onChangeSpy).toHaveBeenCalledWith([
             multiSelectOptions[0].value,
             multiSelectOptions[1].value,
@@ -179,7 +183,7 @@ describe('MultiSelectComponent', () => {
             tooltip = fixture.debugElement.query(By.directive(MockTooltipDirective)).injector.get(MockTooltipDirective);
         });
 
-        it('should set the tooltip placement as ##tooltipPlacement', () => {
+        it('should set the tooltip placement as #tooltipPlacement', () => {
             expect(tooltip.placement).toBe(TerraPlacementEnum.TOP);
             component.tooltipPlacement = TerraPlacementEnum.BOTTOM;
             fixture.detectChanges();
