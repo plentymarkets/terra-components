@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
 import { TerraPlacementEnum } from '../../../../../helpers';
 import { noop } from 'rxjs';
+import { TerraMultiCheckBoxValueInterface } from '../../../multi-check-box/data/terra-multi-check-box-value.interface';
 
 @Component({
     selector: 'tc-multi-select',
@@ -37,7 +38,7 @@ export class MultiSelectComponent implements ControlValueAccessor {
 
     /** @description List of available options of the select. */
     @Input()
-    public selectValues: Array<{ caption: string; value: any }> = [];
+    public listBoxValues: Array<TerraMultiCheckBoxValueInterface> = [];
 
     /** @description Stores a callback function which is executed whenever the select was blurred. */
     public _onTouchedCallback: () => void = noop;
