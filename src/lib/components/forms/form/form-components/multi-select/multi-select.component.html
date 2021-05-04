@@ -1,1 +1,22 @@
-<p>42</p>
+<mat-form-field class="w-100" [tcTooltip]="tooltipText" [placement]="tooltipPlacement">
+    <mat-label>
+        {{ name }}
+    </mat-label>
+    <mat-select
+        multiple
+        [(ngModel)]="value"
+        (ngModelChange)="_onChangeCallback($event)"
+        (blur)="_onTouchedCallback()"
+        [required]="isRequired"
+        [disabled]="isDisabled"
+    >
+        <mat-option
+            *ngFor="let item of listBoxValues | selectSort: 'asc':'position'"
+            [value]="item.value"
+            [style.color]="item.color"
+        >
+            <mat-icon *ngIf="item.icon" fontSet="plentyicons" [fontIcon]="item.icon"></mat-icon>
+            {{ item.caption }}
+        </mat-option>
+    </mat-select>
+</mat-form-field>
