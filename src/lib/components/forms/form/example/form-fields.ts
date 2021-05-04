@@ -1,5 +1,6 @@
 import { TerraKeyValueInterface } from '../../../../models';
 import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
+import { TerraSelectBoxValueInterface } from '../../select-box/data/terra-select-box.interface';
 
 export const numberControl: TerraFormFieldInterface = {
     type: 'number',
@@ -103,7 +104,6 @@ export const containerCompontent: TerraFormFieldInterface = {
         childNumber: numberControl
     }
 };
-
 export const formFields: TerraKeyValueInterface<TerraFormFieldInterface> = {
     text: {
         type: 'text',
@@ -119,6 +119,27 @@ export const formFields: TerraKeyValueInterface<TerraFormFieldInterface> = {
             name: 'Optional text',
             required: true,
             minLength: 3
+        }
+    },
+    checkboxGroup: {
+        type: 'checkboxGroup',
+        options: {
+            name: 'multiselect',
+            required: true,
+            listBoxValues: [
+                {
+                    caption: 'Checkbox A',
+                    value: 42
+                },
+                {
+                    caption: 'Checkbox B',
+                    value: 'Hello'
+                },
+                {
+                    caption: 'Checkbox C',
+                    value: 'World'
+                }
+            ]
         }
     },
     listWithChildren: listWithChildren,
