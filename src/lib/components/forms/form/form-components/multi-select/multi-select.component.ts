@@ -21,11 +21,11 @@ export class MultiSelectComponent implements ControlValueAccessor, MultiSelectIn
     @Input()
     public name: string = '';
 
-    /** Disables the input when set to true. Default false. */
+    /** Disables the select when set to true. Default false. */
     @Input()
     public isDisabled: boolean = false;
 
-    /** Requires the input to be filled when set to true. Default false. */
+    /** Requires the select to be filled when set to true. Default false. */
     @Input()
     public isRequired: boolean = false;
 
@@ -59,7 +59,7 @@ export class MultiSelectComponent implements ControlValueAccessor, MultiSelectIn
         this._onTouchedCallback = fn;
     }
 
-    /** Writes a new value to the input element. */
+    /** Writes a new value to the select element. */
     public writeValue(value: Array<TerraSelectBoxValueInterface>): void {
         this.value = value;
     }
