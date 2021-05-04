@@ -66,6 +66,10 @@ describe('MultiSelectComponent', () => {
         expect(select).toBeTruthy();
     });
 
+    it('should be able to check whether the select is in multi-selection mode', async () => {
+        expect(await select.isMultiple()).toBe(true);
+    });
+
     it('should disable the checkbox when #isDisabled is set', async () => {
         expect(await select.isDisabled()).toBe(false);
 
