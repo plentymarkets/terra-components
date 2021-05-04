@@ -8,7 +8,6 @@ import { MultiSelectInterface } from './multi-select.interface';
 @Component({
     selector: 'tc-multi-select',
     templateUrl: './multi-select.component.html',
-    styleUrls: ['./multi-select.component.scss'],
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,
