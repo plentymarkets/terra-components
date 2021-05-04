@@ -13,9 +13,9 @@ import { TerraCategoryPickerComponent } from '../../../data-picker/category-pick
 import { TerraColorPickerComponent } from '../../input/color-picker/terra-color-picker.component';
 import { TerraNoteEditorComponent } from '../../../editors/note-editor/terra-note-editor.component';
 import { TerraCodeEditorComponent } from '../../../editors/code-editor/terra-code-editor.component';
-import { TerraSliderComponent } from '../../slider/terra-slider.component';
 import { TerraPortletComponent } from '../../../layouts/portlet/terra-portlet.component';
 import { TerraSuggestionBoxComponent } from '../../suggestion-box/terra-suggestion-box.component';
+import { SliderComponent } from '../form-components/slider/slider.component';
 
 /**
  * @description A map of control types that may be passed to the <terra-form> in order to support those controls.
@@ -78,7 +78,7 @@ export class FormTypeMap {
         component: TerraColorPickerComponent
     };
     public readonly checkboxGroup: Type<CheckboxGroupComponent> = CheckboxGroupComponent;
-    public readonly slider: Type<TerraSliderComponent> = TerraSliderComponent;
+    public readonly slider: Type<SliderComponent> = SliderComponent;
     public readonly noteEditor: TerraFormTypeInterface = {
         inputMap: {
             name: 'inputHeaderLabel'
