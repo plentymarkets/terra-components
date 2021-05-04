@@ -97,7 +97,7 @@ describe('MultiSelectComponent', () => {
     it('should call the callback #registerOnChange whenever the value is changed by the user', async () => {
         const spy: jasmine.Spy = jasmine.createSpy('onChangeCallback');
         component.registerOnChange(spy);
-        component.selectValues = multiSelectOptions;
+        component.listBoxValues = multiSelectOptions;
 
         fixture.detectChanges();
 
@@ -119,7 +119,7 @@ describe('MultiSelectComponent', () => {
     });
 
     it('should set the value as from #writeValue', async () => {
-        component.selectValues = multiSelectOptions;
+        component.listBoxValues = multiSelectOptions;
         component.writeValue([multiSelectOption1.value, multiSelectOption2.value]);
 
         fixture.detectChanges();
@@ -129,7 +129,7 @@ describe('MultiSelectComponent', () => {
 
     it('should set selectValues', async () => {
         expect(await select.getOptions()).toEqual([]);
-        component.selectValues = multiSelectOptions;
+        component.listBoxValues = multiSelectOptions;
         fixture.detectChanges();
 
         await select.open();
