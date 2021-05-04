@@ -143,6 +143,31 @@ describe('MultiSelectComponent', () => {
         ).toBe(true);
     });
 
+    it('should sort order when checkboxes are selected/deselected', async () => {
+        expect(await select.getOptions()).toEqual([]);
+
+        // initialization
+        component.listBoxValues = multiSelectOptions;
+        component.writeValue([multiSelectOptions[0].value, multiSelectOptions[2].value]);
+        fixture.detectChanges();
+
+        // register spy
+        const onChangeSpy: jasmine.Spy = jasmine.createSpy('onChangeCallback');
+        component.registerOnChange(onChangeSpy);
+
+        fixture.detectChanges();
+
+        // preselect checkbox
+        multiSelectOptions[1].selected = true;
+
+        // check order of checkbox group values
+        expect(onChangeSpy).toHaveBeenCalledWith([
+            multiSelectOptions[0].value,
+            multiSelectOptions[1].value,
+            multiSelectOptions[2].value
+        ]);
+    });
+
     describe('with tooltip', () => {
         let tooltip: MockTooltipDirective;
 
