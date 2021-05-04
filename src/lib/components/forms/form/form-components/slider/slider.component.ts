@@ -15,7 +15,7 @@ import { noop } from 'rxjs';
     ]
 })
 export class SliderComponent implements ControlValueAccessor {
-    /** If true, the input will be disabled. Default false. */
+    /** If true, the slider will be disabled. Default false. */
     @Input()
     public isDisabled: boolean = false;
 
@@ -35,13 +35,39 @@ export class SliderComponent implements ControlValueAccessor {
     @Input()
     public tooltipText: string = '';
 
+    /** Lower limit of the slider. Default is 0. */
+    @Input()
+    public min: number = 0;
+
+    /** Upper limit of the slider. Default is 1. */
+    @Input()
+    public max: number = 1;
+
+    /** Step size of the slider. Default is 0. */
+    @Input()
+    public interval: number = 0;
+
+    /** Amount of digits that will be shown when displaying any values (current value, lower limit, upper limit, ticks) in the slider. */
+    @Input()
+    public precision: number = null;
+
+    /** If set to true, the upper and lower limits will be displayed. Default is false. */
+    @Input()
+    public showMinMax: boolean = false;
+
+    /** If set to true, the ticks' label will be displayed. Default is false. */
+    @Input()
+    public showTicks: boolean = false;
+
+    public _value: number;
+
     /** Stores the callback function that will be called on blur. */
     public _onTouchedCallback: () => void = noop;
     /** Stores the callback function that will be called when the control's value changes in the UI. */
     public _onChangeCallback: (_: any) => void = noop;
 
     /** Registers a callback function that is called when the control's value changes in the UI. */
-    public registerOnChange(fn: (_: string) => void): void {
+    public registerOnChange(fn: (_: number) => void): void {
         this._onChangeCallback = fn;
     }
 
@@ -50,8 +76,8 @@ export class SliderComponent implements ControlValueAccessor {
         this._onTouchedCallback = fn;
     }
 
-    /** Writes a new value to the input element. */
-    public writeValue(value: string): void {
-        // this.value = value;
+    /** Writes a new value to the select element. */
+    public writeValue(value: number): void {
+        this._value = value;
     }
 }

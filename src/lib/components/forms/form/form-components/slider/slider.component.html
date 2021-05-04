@@ -1,0 +1,13 @@
+<mat-slider
+    thumbLabel
+    [(ngModel)]="_value"
+    [disabled]="isDisabled"
+    [required]="isRequired"
+    [min]="min"
+    [max]="max"
+    [step]="interval"
+    [tickInterval]="showTicks"
+    [displayWith]="precision"
+    (ngModelChange)="_onChangeCallback($event)"
+    (blur)="_onTouchedCallback()"
+></mat-slider>
