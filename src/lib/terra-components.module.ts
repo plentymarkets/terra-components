@@ -17,6 +17,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
     imports: [
@@ -35,7 +36,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
         MatButtonModule,
         DragDropModule,
         MatIconModule,
-        MatCheckboxModule
+        MatCheckboxModule,
+        MatSelectModule
     ],
     declarations: [...components, ...directives, ...pipes],
     exports: [...exportedComponents, ...exportedDirectives, ...pipes]
