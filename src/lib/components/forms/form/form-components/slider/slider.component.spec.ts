@@ -10,6 +10,8 @@ import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { MatFormFieldHarness } from '@angular/material/form-field/testing';
 import { By } from '@angular/platform-browser';
 import { TerraPlacementEnum } from '../../../../../helpers';
+import { MatLabel } from '@angular/material/form-field';
+import { DebugElement } from '@angular/core';
 
 describe('SliderComponent', () => {
     let fixture: ComponentFixture<SliderComponent>;
@@ -46,12 +48,15 @@ describe('SliderComponent', () => {
     });
 
     it('should have #name as label of the input', async () => {
-        const formField: MatFormFieldHarness = await loader.getHarness(MatFormFieldHarness);
-        expect(await formField.getLabel()).toBe('');
+        const testLabel: string = 'My Label';
+        component.name = testLabel;
 
-        component.name = 'My Label';
         fixture.detectChanges();
-        expect(await formField.getLabel()).toBe(component.name);
+
+        const nativeElement: HTMLElement = fixture.debugElement.nativeElement;
+        const p = nativeElement.querySelector('label');
+
+        expect(p.textContent).toEqual(testLabel);
     });
 
     describe('with tooltip', () => {
