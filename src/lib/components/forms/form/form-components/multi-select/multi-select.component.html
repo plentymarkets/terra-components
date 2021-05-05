@@ -1,6 +1,6 @@
 <mat-form-field appearance="fill">
     <mat-label>Toppings</mat-label>
     <mat-select multiple>
-        <mat-option *ngFor="let value of selectValues" [value]="value">{{ value.caption }}</mat-option>
+        <mat-option *ngFor="let value of checkboxValues" [value]="value">{{ value.caption }}</mat-option>
     </mat-select>
 </mat-form-field>
