@@ -97,7 +97,7 @@ describe('SliderComponent', () => {
         expect(await slider.getMaxValue()).toEqual(maxValue);
     });
 
-    it('should format value displayed as thumb label according to given #precision, async () => {
+    it('should format value displayed as thumb label according to given #precision', async () => {
         component.precision = 2;
         component.writeValue(40.1234);
         fixture.detectChanges();
