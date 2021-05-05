@@ -1,5 +1,5 @@
 <label *ngIf="name" class="mt-2" [style.color]="'var(--color-structure-8)'">{{ name }}</label>
-<div class="w-100 d-flex">
+<div class="w-100 d-flex" [tcTooltip]="tooltipText" [placement]="tooltipPlacement">
     <span *ngIf="showMinMax" class="align-self-center">{{ min }}</span>
     <mat-slider
         thumbLabel
@@ -7,8 +7,6 @@
         [(ngModel)]="value"
         [disabled]="isDisabled"
         [required]="isRequired"
-        [tcTooltip]="tooltipText"
-        [placement]="tooltipPlacement"
         [min]="min"
         [max]="max"
         [step]="interval"
