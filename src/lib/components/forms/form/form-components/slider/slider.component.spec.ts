@@ -16,7 +16,7 @@ describe('SliderComponent', () => {
     let fixture: ComponentFixture<SliderComponent>;
     let component: SliderComponent;
     let loader: HarnessLoader;
-    let input: MatSliderHarness;
+    let slider: MatSliderHarness;
 
     beforeEach(async () => {
         TestBed.configureTestingModule({
@@ -30,20 +30,20 @@ describe('SliderComponent', () => {
 
         fixture.detectChanges();
 
-        input = await loader.getHarness(MatSliderHarness);
+        slider = await loader.getHarness(MatSliderHarness);
     });
 
     it('should create', async () => {
         expect(component).toBeTruthy();
-        expect(input).toBeTruthy();
+        expect(slider).toBeTruthy();
     });
 
     it('should disable the input when #isDisabled is set', async () => {
-        expect(await input.isDisabled()).toBe(false);
+        expect(await slider.isDisabled()).toBe(false);
         component.isDisabled = true;
         fixture.detectChanges();
 
-        expect(await input.isDisabled()).toBe(true);
+        expect(await slider.isDisabled()).toBe(true);
     });
 
     it('should have #name as label of the input', async () => {
@@ -81,7 +81,7 @@ describe('SliderComponent', () => {
     it('should call registered onTouchedCallback when input was blurred', async () => {
         const spy: jasmine.Spy = jasmine.createSpy('onTouchedCallback');
         component.registerOnTouched(spy);
-        await input.blur();
+        await slider.blur();
 
         expect(spy).toHaveBeenCalled();
     });
@@ -91,20 +91,21 @@ describe('SliderComponent', () => {
         const maxValue: number = 100;
 
         component.min = minValue;
+        component.max = maxValue;
         fixture.detectChanges();
-        expect(await input.getMinValue()).toEqual(minValue);
-        expect(await input.getMaxValue()).toEqual(maxValue);
+        expect(await slider.getMinValue()).toEqual(minValue);
+        expect(await slider.getMaxValue()).toEqual(maxValue);
     });
 
     it('should show decimal place in label when precision is set', async () => {
         component.precision = 2;
         component.writeValue(40.1234);
         fixture.detectChanges();
-        expect(await input.getDisplayValue()).toEqual('40.12');
+        expect(await slider.getDisplayValue()).toEqual('40.12');
     });
 
     it('should set `mat-slider-has-ticks` css class depending on `showTicks`', async () => {
-        const inputHost: TestElement = await input.host();
+        const inputHost: TestElement = await slider.host();
 
         expect(await inputHost.hasClass('mat-slider-has-ticks')).toBeFalse();
 
