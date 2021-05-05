@@ -1,5 +1,4 @@
 import { Type } from '@angular/core';
-import { CheckboxGroupComponent } from '../../checkbox-group/checkbox-group.component';
 import { TerraFormTypeInterface } from './terra-form-type.interface';
 import { TerraCheckboxComponent } from '../../checkbox/terra-checkbox.component';
 import { TerraDatePickerComponent } from '../../input/date-picker/terra-date-picker.component';
