@@ -1,9 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SliderComponent } from './slider.component';
-import { HarnessLoader } from '@angular/cdk/testing';
+import { HarnessLoader, TestElement } from '@angular/cdk/testing';
 import { MatSliderHarness } from '@angular/material/slider/testing';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatSliderModule } from '@angular/material/slider';
+import { MatSlider, MatSliderModule } from '@angular/material/slider';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { MockTooltipDirective } from '../../../../../testing/mock-tooltip.directive';
@@ -101,5 +101,26 @@ describe('SliderComponent', () => {
         component.writeValue(40.1234);
         fixture.detectChanges();
         expect(await input.getDisplayValue()).toEqual('40.12');
+    });
+
+    it('should set `mat-slider-has-ticks` css class depending on `showTicks`', async () => {
+        const inputHost: TestElement = await input.host();
+
+        expect(await inputHost.hasClass('mat-slider-has-ticks')).toBeFalse();
+
+        component.showTicks = true;
+        fixture.detectChanges();
+
+        expect(await inputHost.hasClass('mat-slider-has-ticks')).toBeTrue();
+    });
+
+    it('should set mat slider step when interval is set', () => {
+        const stepSize: number = 2;
+        component.interval = stepSize;
+
+        const slider: MatSlider = fixture.debugElement.query(By.directive(MatSlider)).componentInstance;
+        fixture.detectChanges();
+
+        expect(slider.step).toBe(stepSize);
     });
 });
