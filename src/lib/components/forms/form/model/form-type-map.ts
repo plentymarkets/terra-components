@@ -77,7 +77,12 @@ export class FormTypeMap {
         },
         component: TerraColorPickerComponent
     };
-    public readonly checkboxGroup: Type<MultiSelectComponent> = MultiSelectComponent;
+    public readonly checkboxGroup: TerraFormTypeInterface = {
+        inputMap: {
+            required: 'isRequired'
+        },
+        component: MultiSelectComponent
+    };
     public readonly slider: Type<TerraSliderComponent> = TerraSliderComponent;
     public readonly noteEditor: TerraFormTypeInterface = {
         inputMap: {
