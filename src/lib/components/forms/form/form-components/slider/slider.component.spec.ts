@@ -7,11 +7,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { MockTooltipDirective } from '../../../../../testing/mock-tooltip.directive';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
-import { MatFormFieldHarness } from '@angular/material/form-field/testing';
 import { By } from '@angular/platform-browser';
 import { TerraPlacementEnum } from '../../../../../helpers';
-import { MatLabel } from '@angular/material/form-field';
-import { DebugElement } from '@angular/core';
 
 describe('SliderComponent', () => {
     let fixture: ComponentFixture<SliderComponent>;
