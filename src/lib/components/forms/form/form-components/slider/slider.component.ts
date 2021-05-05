@@ -61,7 +61,7 @@ export class SliderComponent implements ControlValueAccessor {
     }
 
     /** Registers a callback function that is called by the forms API on initialization to update the form model on blur. */
-    public registerOnTouched(fn: () => number): void {
+    public registerOnTouched(fn: () => void): void {
         this._onTouchedCallback = fn;
     }
 
