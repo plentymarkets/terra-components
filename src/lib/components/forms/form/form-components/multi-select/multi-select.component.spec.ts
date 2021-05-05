@@ -49,7 +49,7 @@ describe('MultiSelectComponent', () => {
     beforeEach(async () => {
         TestBed.configureTestingModule({
             imports: [MatSelectModule, FormsModule, MatFormFieldModule, NoopAnimationsModule],
-            declarations: [MultiSelectComponent, MockTooltipDirective, SelectSortPipe]
+            declarations: [MultiSelectComponent, MockTooltipDirective]
         });
 
         fixture = TestBed.createComponent(MultiSelectComponent);
