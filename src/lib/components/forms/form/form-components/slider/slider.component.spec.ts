@@ -2,7 +2,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SliderComponent } from './slider.component';
 import { HarnessLoader, TestElement } from '@angular/cdk/testing';
 import { MatSliderHarness } from '@angular/material/slider/testing';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSlider, MatSliderModule } from '@angular/material/slider';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
@@ -20,7 +19,7 @@ describe('SliderComponent', () => {
 
     beforeEach(async () => {
         TestBed.configureTestingModule({
-            imports: [MatFormFieldModule, MatSliderModule, NoopAnimationsModule, FormsModule],
+            imports: [MatSliderModule, NoopAnimationsModule, FormsModule],
             declarations: [SliderComponent, MockTooltipDirective]
         });
 
