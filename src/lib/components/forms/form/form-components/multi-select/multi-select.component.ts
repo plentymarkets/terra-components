@@ -38,7 +38,7 @@ export class MultiSelectComponent implements ControlValueAccessor {
 
     /** @description List of available options of the select. */
     @Input()
-    public listBoxValues: Array<TerraMultiCheckBoxValueInterface> = [];
+    public checkboxValues: Array<{ caption: string; value: any }> = [];
 
     /** @description Stores a callback function which is executed whenever the select was blurred. */
     public _onTouchedCallback: () => void = noop;

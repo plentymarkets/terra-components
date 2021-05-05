@@ -10,30 +10,25 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSelectHarness } from '@angular/material/select/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { SelectSortPipe } from '../../../../../pipes/select-sort.pipe';
 import { MatFormFieldHarness } from '@angular/material/form-field/testing';
 import { MatOptionHarness } from '@angular/material/core/testing';
-import { TerraMultiCheckBoxValueInterface } from '../../../multi-check-box/data/terra-multi-check-box-value.interface';
 
-let multiSelectOption1: TerraMultiCheckBoxValueInterface = {
+let multiSelectOption1: { caption: string; value: any } = {
     caption: 'Value 01',
-    value: 1,
-    selected: false
+    value: 1
 };
 
-let multiSelectOption2: TerraMultiCheckBoxValueInterface = {
+let multiSelectOption2: { caption: string; value: any } = {
     caption: 'Value 02',
-    value: 2,
-    selected: false
+    value: 2
 };
 
-let multiSelectOption3: TerraMultiCheckBoxValueInterface = {
+let multiSelectOption3: { caption: string; value: any } = {
     caption: 'Value 03',
-    value: 3,
-    selected: false
+    value: 3
 };
 
-let multiSelectOptions: Array<TerraMultiCheckBoxValueInterface> = [
+let multiSelectOptions: Array<{ caption: string; value: any }> = [
     multiSelectOption1,
     multiSelectOption2,
     multiSelectOption3
@@ -101,16 +96,16 @@ describe('MultiSelectComponent', () => {
     it('should call the callback #registerOnChange whenever the user selects another option', async () => {
         const spy: jasmine.Spy = jasmine.createSpy('onChangeCallback');
         component.registerOnChange(spy);
-        component.listBoxValues = multiSelectOptions;
+        component.checkboxValues = multiSelectOptions;
 
         fixture.detectChanges();
 
+        await select.open();
         await select.clickOptions({
-            text: multiSelectOption1.caption.toString(),
-            isSelected: true
+            text: multiSelectOption1.caption.toString()
         });
 
-        expect(spy).toHaveBeenCalledOnceWith(multiSelectOption1.value, true);
+        expect(spy).toHaveBeenCalledOnceWith([multiSelectOption1.value]);
     });
 
     it('should call the callback #registerOnTouched whenever the select was blurred', async () => {
@@ -123,17 +118,17 @@ describe('MultiSelectComponent', () => {
     });
 
     it('should set the value from ngModel as from #writeValue', async () => {
-        component.listBoxValues = multiSelectOptions;
+        component.checkboxValues = multiSelectOptions;
         component.writeValue([multiSelectOption1.value, multiSelectOption2.value]);
 
         fixture.detectChanges();
 
-        expect(await select.getValueText()).toBe([multiSelectOption1.value, multiSelectOption2.value].toString());
+        expect(await select.getValueText()).toBe([multiSelectOption1.caption, multiSelectOption2.caption].toString());
     });
 
     it('should render options as given via the #checkboxValues input', async () => {
         expect(await select.getOptions()).toEqual([]);
-        component.listBoxValues = multiSelectOptions;
+        component.checkboxValues = multiSelectOptions;
         fixture.detectChanges();
 
         await select.open();
@@ -151,7 +146,7 @@ describe('MultiSelectComponent', () => {
         expect(await select.getOptions()).toEqual([]);
 
         // initialization
-        component.listBoxValues = multiSelectOptions;
+        component.checkboxValues = multiSelectOptions;
         component.writeValue([multiSelectOptions[0].value, multiSelectOptions[2].value]);
         fixture.detectChanges();
 
@@ -164,8 +159,7 @@ describe('MultiSelectComponent', () => {
         // select checkbox
         await select.open();
         await select.clickOptions({
-            text: multiSelectOption1.caption.toString(),
-            isSelected: true
+            text: multiSelectOption1.caption.toString()
         });
 
         // check order of select option values
