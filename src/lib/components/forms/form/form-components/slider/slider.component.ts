@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TerraPlacementEnum } from '../../../../../helpers';
 import { noop } from 'rxjs';
-import { calculatePrecision } from './precision';
+import { getNumberOfFractionalDigits } from './precision';
 
 @Component({
     selector: 'tc-slider',
@@ -70,7 +70,7 @@ export class SliderComponent implements ControlValueAccessor {
 
     /** A function that formats the display value according to the given precision. */
     public _precisionDisplayFn: (value: number) => string = (value: number) => {
-        const precision: number = this.precision || calculatePrecision(this.interval);
+        const precision: number = this.precision || getNumberOfFractionalDigits(this.interval);
         return value.toFixed(Math.min(precision, 3));
     };
 
