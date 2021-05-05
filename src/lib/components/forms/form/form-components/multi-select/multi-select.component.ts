@@ -46,10 +46,10 @@ export class MultiSelectComponent implements ControlValueAccessor, MultiSelectIn
     /** Stores the callback function that will be called on blur. */
     public _onTouchedCallback: () => void = noop;
     /** Stores the callback function that will be called when the control's value changes in the UI. */
-    public _onChangeCallback: (_: any) => void = noop;
+    public _onChangeCallback: (_: Array<any>) => void = noop;
 
     /** Registers a callback function that is called when the control's value changes in the UI. */
-    public registerOnChange(fn: (_: any) => void): void {
+    public registerOnChange(fn: (_: Array<any>) => void): void {
         this._onChangeCallback = fn;
     }
 
@@ -59,7 +59,7 @@ export class MultiSelectComponent implements ControlValueAccessor, MultiSelectIn
     }
 
     /** Writes a new value to the select element. */
-    public writeValue(value: any): void {
+    public writeValue(value: Array<any>): void {
         this.value = value;
     }
 }
