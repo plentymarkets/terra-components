@@ -123,9 +123,7 @@ describe('MultiSelectComponent', () => {
 
         fixture.detectChanges();
 
-        expect(await select.getValueText()).toBe(
-            [multiSelectOption1.caption, ' ' + multiSelectOption2.caption].toString()
-        );
+        expect(await select.getValueText()).toBe([multiSelectOption1.caption, multiSelectOption2.caption].join(', '));
     });
 
     it('should render options as given via the #checkboxValues input', async () => {
