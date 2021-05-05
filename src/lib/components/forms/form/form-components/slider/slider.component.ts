@@ -60,12 +60,12 @@ export class SliderComponent implements ControlValueAccessor {
     public showTicks: boolean = false;
 
     /** The internal data model. */
-    public _value: number;
+    public value: number;
 
     /** Stores the callback function that will be called on blur. */
     public _onTouchedCallback: () => void = noop;
     /** Stores the callback function that will be called when the control's value changes in the UI. */
-    public _onChangeCallback: (_: any) => void = noop;
+    public _onChangeCallback: (_: number) => void = noop;
 
     /** A function that formats the display value according to the given precision. */
     // ToDO: calculate fallback and limit precision to 3!
@@ -88,6 +88,6 @@ export class SliderComponent implements ControlValueAccessor {
 
     /** Writes a new value to the select element. */
     public writeValue(value: number): void {
-        this._value = value;
+        this.value = value;
     }
 }

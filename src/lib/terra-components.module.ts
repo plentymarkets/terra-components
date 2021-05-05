@@ -9,7 +9,7 @@ import { RouterModule } from '@angular/router';
 import { TerraInteractModule } from './components/interactables/interact.module';
 import { QuillModule } from 'ngx-quill';
 import { CKEditorModule } from 'ckeditor4-angular';
-import { pipes } from './pipes/pipe-collection';
+import { exportedPipes, pipes } from './pipes/pipe-collection';
 import { MatListModule } from '@angular/material/list';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
@@ -40,6 +40,6 @@ import { MatSliderModule } from '@angular/material/slider';
         MatSliderModule
     ],
     declarations: [...components, ...directives, ...pipes],
-    exports: [...exportedComponents, ...exportedDirectives, ...pipes]
+    exports: [...exportedComponents, ...exportedDirectives, ...exportedPipes]
 })
 export class TerraComponentsModule {}
