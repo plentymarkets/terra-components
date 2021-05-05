@@ -11,7 +11,7 @@
         [min]="min"
         [max]="max"
         [step]="interval"
-        [tickInterval]="getTickInterval()"
+        [tickInterval]="showTicks | tickInterval: interval"
         [displayWith]="_precisionDisplayFn"
         (ngModelChange)="_onChangeCallback($event)"
         (blur)="_onTouchedCallback()"
