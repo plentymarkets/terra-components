@@ -46,7 +46,7 @@ export class ColorPickerComponent implements ControlValueAccessor, TerraFormComp
     /** Stores the callback function that will be called on blur. */
     public _onTouchedCallback: () => void = noop;
     /** Stores the callback function that will be called when the control's value changes in the UI. */
-    public _onChangeCallback: (_: any) => void = noop;
+    public _onChangeCallback: (_: string) => void = noop;
 
     /** Registers a callback function that is called when the control's value changes in the UI. */
     public registerOnChange(fn: (_: string) => void): void {
