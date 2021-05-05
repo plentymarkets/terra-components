@@ -147,7 +147,7 @@ describe('MultiSelectComponent', () => {
         ).toBe(true);
     });
 
-    it('should sort order when checkboxes are selected/deselected', async () => {
+    it('should preserve the order of the available options in the list of selected values', async () => {
         expect(await select.getOptions()).toEqual([]);
 
         // initialization
