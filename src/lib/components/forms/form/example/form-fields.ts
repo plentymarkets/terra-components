@@ -124,7 +124,12 @@ export const formFields: TerraKeyValueInterface<TerraFormFieldInterface> = {
     slider: {
         type: 'slider',
         options: {
-            name: 'Slider'
+            name: 'Slider',
+            showMinMax: true,
+            min: 0,
+            max: 3000,
+            interval: 100,
+            showTicks: true
         }
     },
     listWithChildren: listWithChildren,
