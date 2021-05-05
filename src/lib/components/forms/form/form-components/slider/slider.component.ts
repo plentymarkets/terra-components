@@ -35,23 +35,38 @@ export class SliderComponent implements ControlValueAccessor {
     @Input()
     public tooltipText: string = '';
 
+    @Input()
+    public min: number;
+
+    @Input()
+    public max: number;
+
+    @Input()
+    public precision: number = null;
+
+    @Input()
+    public interval: number = 0;
+
+    @Input()
+    public showTicks: boolean = false;
+
     /** Stores the callback function that will be called on blur. */
     public _onTouchedCallback: () => void = noop;
     /** Stores the callback function that will be called when the control's value changes in the UI. */
-    public _onChangeCallback: (_: any) => void = noop;
+    public _onChangeCallback: (_: number) => void = noop;
 
     /** Registers a callback function that is called when the control's value changes in the UI. */
-    public registerOnChange(fn: (_: string) => void): void {
+    public registerOnChange(fn: (_: number) => void): void {
         this._onChangeCallback = fn;
     }
 
     /** Registers a callback function that is called by the forms API on initialization to update the form model on blur. */
-    public registerOnTouched(fn: () => void): void {
+    public registerOnTouched(fn: () => number): void {
         this._onTouchedCallback = fn;
     }
 
     /** Writes a new value to the input element. */
-    public writeValue(value: string): void {
+    public writeValue(value: number): void {
         // this.value = value;
     }
 }

@@ -55,14 +55,6 @@ describe('SliderComponent', () => {
         expect(await formField.getLabel()).toBe(component.name);
     });
 
-    // it('should set required validation when #isRequired is set', async () => {
-    //     expect(await input.isRequired()).toBe(false);
-    //     component.isRequired = true;
-    //     fixture.detectChanges();
-    //
-    //     expect(await input.isRequired()).toBe(true);
-    // });
-
     describe('with tooltip', () => {
         let tooltip: MockTooltipDirective;
         const testToolTipCaption: string = 'testToolTip';
@@ -92,5 +84,22 @@ describe('SliderComponent', () => {
         await input.blur();
 
         expect(spy).toHaveBeenCalled();
+    });
+
+    it('should set min/max values', async () => {
+        const minValue: number = 10;
+        const maxValue: number = 100;
+
+        component.min = minValue;
+        fixture.detectChanges();
+        expect(await input.getMinValue()).toEqual(minValue);
+        expect(await input.getMaxValue()).toEqual(maxValue);
+    });
+
+    it('should show decimal place in label when precision is set', async () => {
+        component.precision = 2;
+        component.writeValue(40.1234);
+        fixture.detectChanges();
+        expect(await input.getDisplayValue()).toEqual('40.12');
     });
 });
