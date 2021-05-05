@@ -131,7 +131,7 @@ describe('MultiSelectComponent', () => {
         expect(await select.getValueText()).toBe([multiSelectOption1.value, multiSelectOption2.value].toString());
     });
 
-    it('should set selectValues from listBoxValues', async () => {
+    it('should render options as given via the #checkboxValues input', async () => {
         expect(await select.getOptions()).toEqual([]);
         component.listBoxValues = multiSelectOptions;
         fixture.detectChanges();
