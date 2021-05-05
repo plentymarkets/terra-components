@@ -1,6 +1,5 @@
 import { TerraKeyValueInterface } from '../../../../models';
 import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
-import { TerraSelectBoxValueInterface } from '../../select-box/data/terra-select-box.interface';
 
 export const numberControl: TerraFormFieldInterface = {
     type: 'number',
@@ -104,6 +103,7 @@ export const containerCompontent: TerraFormFieldInterface = {
         childNumber: numberControl
     }
 };
+
 export const formFields: TerraKeyValueInterface<TerraFormFieldInterface> = {
     text: {
         type: 'text',
