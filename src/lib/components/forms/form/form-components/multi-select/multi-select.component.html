@@ -1,6 +1,17 @@
-<mat-form-field appearance="fill">
-    <mat-label>Toppings</mat-label>
-    <mat-select multiple>
-        <mat-option *ngFor="let value of checkboxValues" [value]="value">{{ value.caption }}</mat-option>
+<mat-form-field class="w-100" [tcTooltip]="tooltipText" [placement]="tooltipPlacement">
+    <mat-label>
+        {{ name }}
+    </mat-label>
+    <mat-select
+        multiple
+        [(ngModel)]="value"
+        (ngModelChange)="_onChangeCallback($event)"
+        (blur)="_onTouchedCallback()"
+        [required]="isRequired"
+        [disabled]="isDisabled"
+    >
+        <mat-option *ngFor="let item of checkboxValues" [value]="item.value">
+            {{ item.caption }}
+        </mat-option>
     </mat-select>
 </mat-form-field>

@@ -121,6 +121,27 @@ export const formFields: TerraKeyValueInterface<TerraFormFieldInterface> = {
             minLength: 3
         }
     },
+    checkboxGroup: {
+        type: 'checkboxGroup',
+        options: {
+            name: 'multiselect',
+            required: true,
+            checkboxValues: [
+                {
+                    caption: 'Checkbox A',
+                    value: 42
+                },
+                {
+                    caption: 'Checkbox B',
+                    value: 'Hello'
+                },
+                {
+                    caption: 'Checkbox C',
+                    value: 'World'
+                }
+            ]
+        }
+    },
     listWithChildren: listWithChildren,
     wrappedContainer: containerCompontent
 };
