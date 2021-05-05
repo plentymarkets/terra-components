@@ -154,12 +154,12 @@ describe('MultiSelectComponent', () => {
         const onChangeSpy: jasmine.Spy = jasmine.createSpy('onChangeCallback');
         component.registerOnChange(onChangeSpy);
 
-        fixture.detectChanges();
-
         // select checkbox
         await select.open();
+        expect((await select.getOptions({ isSelected: true })).length).toBe(2);
+
         await select.clickOptions({
-            text: multiSelectOption1.caption.toString()
+            text: multiSelectOptions[1].caption
         });
 
         // check order of select option values
