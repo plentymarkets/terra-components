@@ -84,7 +84,7 @@ export class SliderComponent implements ControlValueAccessor {
         this._onTouchedCallback = fn;
     }
 
-    /** Writes a new value to the select element. */
+    /** Writes a new value to the slider element. */
     public writeValue(value: number): void {
         this.value = value;
     }
