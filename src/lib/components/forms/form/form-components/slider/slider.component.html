@@ -1,13 +1,21 @@
-<mat-slider
-    thumbLabel
-    [(ngModel)]="_value"
-    [disabled]="isDisabled"
-    [required]="isRequired"
-    [min]="min"
-    [max]="max"
-    [step]="interval"
-    [tickInterval]="showTicks"
-    [displayWith]="precision"
-    (ngModelChange)="_onChangeCallback($event)"
-    (blur)="_onTouchedCallback()"
-></mat-slider>
+<div class="w-100 d-flex">
+    <span *ngIf="showMinMax">{{ min }}</span>
+    <mat-slider
+        thumbLabel
+        class="flex-grow-1"
+        [(ngModel)]="_value"
+        [disabled]="isDisabled"
+        [required]="isRequired"
+        [tcTooltip]="tooltipText"
+        [placement]="tooltipPlacement"
+        [min]="min"
+        [max]="max"
+        [step]="interval"
+        [tickInterval]="getTickInterval()"
+        [displayWith]="_precisionDisplayFn"
+        (ngModelChange)="_onChangeCallback($event)"
+        (blur)="_onTouchedCallback()"
+    >
+    </mat-slider>
+    <span *ngIf="showMinMax">{{ max }}</span>
+</div>

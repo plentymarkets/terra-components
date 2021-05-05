@@ -49,7 +49,7 @@ export class SliderComponent implements ControlValueAccessor {
 
     /** Amount of digits that will be shown when displaying any values (current value, lower limit, upper limit, ticks) in the slider. */
     @Input()
-    public precision: number = null;
+    public precision: number = 0;
 
     /** If set to true, the upper and lower limits will be displayed. Default is false. */
     @Input()
@@ -59,12 +59,22 @@ export class SliderComponent implements ControlValueAccessor {
     @Input()
     public showTicks: boolean = false;
 
+    /** The internal data model. */
     public _value: number;
 
     /** Stores the callback function that will be called on blur. */
     public _onTouchedCallback: () => void = noop;
     /** Stores the callback function that will be called when the control's value changes in the UI. */
     public _onChangeCallback: (_: any) => void = noop;
+
+    /** A function that formats the display value according to the given precision. */
+    // ToDO: calculate fallback and limit precision to 3!
+    public _precisionDisplayFn: (value: number) => string = (value: number) => value.toFixed(this.precision ?? 0);
+
+    /** .*/
+    public getTickInterval(): number | 'auto' {
+        return this.showTicks ? this.interval ?? 'auto' : 0;
+    }
 
     /** Registers a callback function that is called when the control's value changes in the UI. */
     public registerOnChange(fn: (_: number) => void): void {

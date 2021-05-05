@@ -16,6 +16,7 @@ import { TerraCodeEditorComponent } from '../../../editors/code-editor/terra-cod
 import { TerraPortletComponent } from '../../../layouts/portlet/terra-portlet.component';
 import { TerraSuggestionBoxComponent } from '../../suggestion-box/terra-suggestion-box.component';
 import { SliderComponent } from '../form-components/slider/slider.component';
+import { TerraSliderComponent } from '../../slider/terra-slider.component';
 
 /**
  * @description A map of control types that may be passed to the <terra-form> in order to support those controls.
