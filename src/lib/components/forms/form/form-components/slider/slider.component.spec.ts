@@ -115,7 +115,7 @@ describe('SliderComponent', () => {
         expect(await inputHost.hasClass('mat-slider-has-ticks')).toBeTrue();
     });
 
-    it('should set mat slider step when interval is set', () => {
+    it(`should set the slider's step property according to given #interval`, () => {
         const stepSize: number = 2;
         component.interval = stepSize;
 
