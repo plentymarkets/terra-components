@@ -1,9 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SliderComponent } from './slider.component';
-import { HarnessLoader } from '@angular/cdk/testing';
+import { HarnessLoader, TestElement } from '@angular/cdk/testing';
 import { MatSliderHarness } from '@angular/material/slider/testing';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatSliderModule } from '@angular/material/slider';
+import { MatSlider, MatSliderModule } from '@angular/material/slider';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { MockTooltipDirective } from '../../../../../testing/mock-tooltip.directive';
@@ -16,11 +15,11 @@ describe('SliderComponent', () => {
     let fixture: ComponentFixture<SliderComponent>;
     let component: SliderComponent;
     let loader: HarnessLoader;
-    let input: MatSliderHarness;
+    let slider: MatSliderHarness;
 
     beforeEach(async () => {
         TestBed.configureTestingModule({
-            imports: [MatFormFieldModule, MatSliderModule, NoopAnimationsModule, FormsModule],
+            imports: [MatSliderModule, NoopAnimationsModule, FormsModule],
             declarations: [SliderComponent, MockTooltipDirective]
         });
 
@@ -30,20 +29,20 @@ describe('SliderComponent', () => {
 
         fixture.detectChanges();
 
-        input = await loader.getHarness(MatSliderHarness);
+        slider = await loader.getHarness(MatSliderHarness);
     });
 
     it('should create', async () => {
         expect(component).toBeTruthy();
-        expect(input).toBeTruthy();
+        expect(slider).toBeTruthy();
     });
 
     it('should disable the input when #isDisabled is set', async () => {
-        expect(await input.isDisabled()).toBe(false);
+        expect(await slider.isDisabled()).toBe(false);
         component.isDisabled = true;
         fixture.detectChanges();
 
-        expect(await input.isDisabled()).toBe(true);
+        expect(await slider.isDisabled()).toBe(true);
     });
 
     it('should have #name as label of the input', async () => {
@@ -54,14 +53,6 @@ describe('SliderComponent', () => {
         fixture.detectChanges();
         expect(await formField.getLabel()).toBe(component.name);
     });
-
-    // it('should set required validation when #isRequired is set', async () => {
-    //     expect(await input.isRequired()).toBe(false);
-    //     component.isRequired = true;
-    //     fixture.detectChanges();
-    //
-    //     expect(await input.isRequired()).toBe(true);
-    // });
 
     describe('with tooltip', () => {
         let tooltip: MockTooltipDirective;
@@ -89,8 +80,47 @@ describe('SliderComponent', () => {
     it('should call registered onTouchedCallback when input was blurred', async () => {
         const spy: jasmine.Spy = jasmine.createSpy('onTouchedCallback');
         component.registerOnTouched(spy);
-        await input.blur();
+        await slider.blur();
 
         expect(spy).toHaveBeenCalled();
+    });
+
+    it('should set min/max values', async () => {
+        const minValue: number = 10;
+        const maxValue: number = 100;
+
+        component.min = minValue;
+        component.max = maxValue;
+        fixture.detectChanges();
+        expect(await slider.getMinValue()).toEqual(minValue);
+        expect(await slider.getMaxValue()).toEqual(maxValue);
+    });
+
+    it('should format value displayed as thumb label according to given #precision', async () => {
+        component.precision = 2;
+        component.writeValue(40.1234);
+        fixture.detectChanges();
+        expect(await slider.getDisplayValue()).toEqual('40.12');
+    });
+
+    it('should show ticks depending on input `showTicks`', async () => {
+        const inputHost: TestElement = await slider.host();
+
+        expect(await inputHost.hasClass('mat-slider-has-ticks')).toBeFalse();
+
+        component.showTicks = true;
+        fixture.detectChanges();
+
+        expect(await inputHost.hasClass('mat-slider-has-ticks')).toBeTrue();
+    });
+
+    it(`should set the slider's step property according to given #interval`, () => {
+        const stepSize: number = 2;
+        component.interval = stepSize;
+
+        const slider: MatSlider = fixture.debugElement.query(By.directive(MatSlider)).componentInstance;
+        fixture.detectChanges();
+
+        expect(slider.step).toBe(stepSize);
     });
 });
