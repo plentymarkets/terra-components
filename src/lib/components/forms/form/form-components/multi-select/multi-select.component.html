@@ -10,7 +10,7 @@
         [required]="isRequired"
         [disabled]="isDisabled"
     >
-        <mat-option *ngFor="let item of listBoxValues | selectSort: 'asc':'position'" [value]="item.value">
+        <mat-option *ngFor="let item of listBoxValues | selectSort: 'asc'" [value]="item.value">
             {{ item.caption }}
         </mat-option>
     </mat-select>
