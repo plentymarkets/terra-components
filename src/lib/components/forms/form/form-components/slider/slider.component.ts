@@ -56,7 +56,7 @@ export class SliderComponent implements ControlValueAccessor {
     @Input()
     public showMinMax: boolean = false;
 
-    /** If set to true, the ticks' label will be displayed. Default is false. */
+    /** If set to true, the ticks will be displayed. Default is false. */
     @Input()
     public showTicks: boolean = false;
 
