@@ -31,7 +31,7 @@ export class MultiSelectComponent implements ControlValueAccessor, MultiSelectIn
 
     /** Text that should be shown in a tooltip on the control. */
     @Input()
-    public tooltipText: string;
+    public tooltipText: string = '';
 
     /** Set the tooltip placement (bottom, top, left, right). Default top. */
     @Input()
@@ -39,7 +39,7 @@ export class MultiSelectComponent implements ControlValueAccessor, MultiSelectIn
 
     /** List of options that the user can select from. */
     @Input()
-    public listBoxValues: Array<TerraMultiCheckBoxValueInterface>;
+    public listBoxValues: Array<TerraMultiCheckBoxValueInterface> = [];
 
     /** Internal model. Stores the value of the selected option. */
     public value: Array<TerraMultiCheckBoxValueInterface>;
@@ -47,10 +47,10 @@ export class MultiSelectComponent implements ControlValueAccessor, MultiSelectIn
     /** Stores the callback function that will be called on blur. */
     public _onTouchedCallback: () => void = noop;
     /** Stores the callback function that will be called when the control's value changes in the UI. */
-    public _onChangeCallback: (_: any) => void = noop;
+    public _onChangeCallback: (_: Array<TerraMultiCheckBoxValueInterface>) => void = noop;
 
     /** Registers a callback function that is called when the control's value changes in the UI. */
-    public registerOnChange(fn: (_: any) => void): void {
+    public registerOnChange(fn: (_: Array<TerraMultiCheckBoxValueInterface>) => void): void {
         this._onChangeCallback = fn;
     }
 
