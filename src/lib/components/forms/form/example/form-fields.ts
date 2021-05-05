@@ -126,7 +126,7 @@ export const formFields: TerraKeyValueInterface<TerraFormFieldInterface> = {
         options: {
             name: 'multiselect',
             required: true,
-            listBoxValues: [
+            checkboxValues: [
                 {
                     caption: 'Checkbox A',
                     value: 42
