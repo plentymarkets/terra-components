@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-/** */
+/** @description A pipe, that returns how often to show ticks. Relative to the step so that a tick always appears on a step. */
 @Pipe({
     name: 'tickInterval'
 })
