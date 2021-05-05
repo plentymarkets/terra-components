@@ -129,7 +129,8 @@ export const formFields: TerraKeyValueInterface<TerraFormFieldInterface> = {
             min: 0,
             max: 1,
             interval: 0.1,
-            showTicks: true
+            showTicks: true,
+            precision: 2
         }
     },
     listWithChildren: listWithChildren,
