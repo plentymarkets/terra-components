@@ -1,5 +1,5 @@
 <div class="w-100 d-flex">
-    <span *ngIf="showMinMax">{{ min }}</span>
+    <span *ngIf="showMinMax" class="align-self-center">{{ min }}</span>
     <mat-slider
         thumbLabel
         class="flex-grow-1"
@@ -17,5 +17,5 @@
         (blur)="_onTouchedCallback()"
     >
     </mat-slider>
-    <span *ngIf="showMinMax">{{ max }}</span>
+    <span *ngIf="showMinMax" class="align-self-center">{{ max }}</span>
 </div>
