@@ -9,7 +9,6 @@ import { TerraPlacementEnum } from '../../../../../helpers';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSelectHarness } from '@angular/material/select/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatFormFieldHarness } from '@angular/material/form-field/testing';
 import { MatOptionHarness } from '@angular/material/core/testing';
 
@@ -43,7 +42,7 @@ describe('MultiSelectComponent', () => {
 
     beforeEach(async () => {
         TestBed.configureTestingModule({
-            imports: [MatSelectModule, FormsModule, MatFormFieldModule, NoopAnimationsModule],
+            imports: [MatSelectModule, FormsModule, NoopAnimationsModule],
             declarations: [MultiSelectComponent, MockTooltipDirective]
         });
 
