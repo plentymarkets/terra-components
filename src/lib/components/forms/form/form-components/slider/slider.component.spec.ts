@@ -104,7 +104,7 @@ describe('SliderComponent', () => {
         expect(await slider.getDisplayValue()).toEqual('40.12');
     });
 
-    it('should set `mat-slider-has-ticks` css class depending on `showTicks`', async () => {
+    it('should show ticks depending on input `showTicks`', async () => {
         const inputHost: TestElement = await slider.host();
 
         expect(await inputHost.hasClass('mat-slider-has-ticks')).toBeFalse();
