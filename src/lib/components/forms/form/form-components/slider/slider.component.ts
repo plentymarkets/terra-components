@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TerraPlacementEnum } from '../../../../../helpers';
 import { noop } from 'rxjs';
+import { calculatePrecision } from './precision';
 
 @Component({
     selector: 'tc-slider',
@@ -49,7 +50,7 @@ export class SliderComponent implements ControlValueAccessor {
 
     /** Amount of digits that will be shown when displaying any values (current value, lower limit, upper limit, ticks) in the slider. */
     @Input()
-    public precision: number = 0;
+    public precision: number = null;
 
     /** If set to true, the upper and lower limits will be displayed. Default is false. */
     @Input()
@@ -68,13 +69,10 @@ export class SliderComponent implements ControlValueAccessor {
     public _onChangeCallback: (_: number) => void = noop;
 
     /** A function that formats the display value according to the given precision. */
-    // ToDO: calculate fallback and limit precision to 3!
-    public _precisionDisplayFn: (value: number) => string = (value: number) => value.toFixed(this.precision ?? 0);
-
-    /** .*/
-    public getTickInterval(): number | 'auto' {
-        return this.showTicks ? this.interval ?? 'auto' : 0;
-    }
+    public _precisionDisplayFn: (value: number) => string = (value: number) => {
+        const precision: number = this.precision || calculatePrecision(this.interval);
+        return value.toFixed(Math.min(precision, 3));
+    };
 
     /** Registers a callback function that is called when the control's value changes in the UI. */
     public registerOnChange(fn: (_: number) => void): void {
