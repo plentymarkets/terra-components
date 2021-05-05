@@ -98,7 +98,7 @@ describe('MultiSelectComponent', () => {
         expect(await formField.getLabel()).toBe(component.name);
     });
 
-    it('should call the callback #registerOnChange whenever the value of an option is changed by the user', async () => {
+    it('should call the callback #registerOnChange whenever the user selects another option', async () => {
         const spy: jasmine.Spy = jasmine.createSpy('onChangeCallback');
         component.registerOnChange(spy);
         component.listBoxValues = multiSelectOptions;
