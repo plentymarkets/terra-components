@@ -1,6 +1,5 @@
-/** @description A function, that calculates the precision on the given interval.
- * It will be used to format the value before it is displayed in the thumb label. */
-export function calculatePrecision(interval: number): number {
+/** A function that calculates the precision (aka number of fractional digits) of the given interval. */
+export function getNumberOfFractionalDigits(interval: number): number {
     if (!interval) {
         return 0;
     }
