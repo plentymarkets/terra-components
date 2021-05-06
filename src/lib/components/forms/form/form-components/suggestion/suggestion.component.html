@@ -1,1 +1,25 @@
-<p>Peace!</p>
+<form>
+    <mat-form-field class="w-100" [tcTooltip]="tooltipText" [placement]="tooltipPlacement">
+        <mat-label>
+            {{ name }}
+        </mat-label>
+        <input
+            type="text"
+            matInput
+            [(ngModel)]="value"
+            (ngModelChange)="_onChangeCallback($event)"
+            (blur)="_onTouchedCallback()"
+            [required]="isRequired"
+            [disabled]="isDisabled"
+            [matAutocomplete]="auto"
+            [formControl]="control"
+        />
+        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option.value">
+                <mat-icon *ngIf="option.icon" fontSet="plentyicons" [fontIcon]="option.icon"></mat-icon>
+                <img *ngIf="option.imgsrc" src="{{ option.imgsrc }}" />
+                {{ option.caption }}
+            </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+</form>
