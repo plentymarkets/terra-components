@@ -36,7 +36,7 @@ describe('SliderComponent', () => {
         expect(slider).toBeTruthy();
     });
 
-    it('should disable the input when #isDisabled is set', async () => {
+    it('should disable the slider when #isDisabled is set', async () => {
         expect(await slider.isDisabled()).toBe(false);
         component.isDisabled = true;
         fixture.detectChanges();
