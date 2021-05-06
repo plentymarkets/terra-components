@@ -10,5 +10,4 @@ export interface TerraSuggestionBoxValueInterface {
     icon?: string;
     /** Optional image for suggestion value (only the src-attribute) */
     imgsrc?: string;
-    active?: boolean;
 }
