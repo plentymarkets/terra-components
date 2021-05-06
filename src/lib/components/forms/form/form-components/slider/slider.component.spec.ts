@@ -79,7 +79,7 @@ describe('SliderComponent', () => {
         });
     });
 
-    it('should call registered onTouchedCallback when input was blurred', async () => {
+    it('should call registered onTouchedCallback when slider was blurred', async () => {
         const spy: jasmine.Spy = jasmine.createSpy('onTouchedCallback');
         component.registerOnTouched(spy);
         await slider.blur();
