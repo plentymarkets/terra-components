@@ -48,7 +48,7 @@ export class SliderComponent implements ControlValueAccessor {
     @Input()
     public interval: number = 0;
 
-    /** Number of fractional digits that will be shown when displaying the current value of the slider. */
+    /** Number of fractional digits that will be shown when displaying the current value of the slider. Default is null. */
     @Input()
     public precision: number = null;
 
