@@ -44,7 +44,7 @@ describe('SliderComponent', () => {
         expect(await slider.isDisabled()).toBe(true);
     });
 
-    it('should have #name as label of the input', async () => {
+    it('should have #name as label', async () => {
         const testLabel: string = 'My Label';
         component.name = testLabel;
 
