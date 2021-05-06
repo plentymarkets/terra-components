@@ -7,7 +7,6 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { MockTooltipDirective } from '../../../../../testing/mock-tooltip.directive';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
-import { MatFormFieldHarness } from '@angular/material/form-field/testing';
 import { By } from '@angular/platform-browser';
 import { TerraPlacementEnum } from '../../../../../helpers';
 
@@ -37,7 +36,7 @@ describe('SliderComponent', () => {
         expect(slider).toBeTruthy();
     });
 
-    it('should disable the input when #isDisabled is set', async () => {
+    it('should disable the slider when #isDisabled is set', async () => {
         expect(await slider.isDisabled()).toBe(false);
         component.isDisabled = true;
         fixture.detectChanges();
@@ -45,13 +44,16 @@ describe('SliderComponent', () => {
         expect(await slider.isDisabled()).toBe(true);
     });
 
-    it('should have #name as label of the input', async () => {
-        const formField: MatFormFieldHarness = await loader.getHarness(MatFormFieldHarness);
-        expect(await formField.getLabel()).toBe('');
+    it('should have #name as label', async () => {
+        const testLabel: string = 'My Label';
+        component.name = testLabel;
 
-        component.name = 'My Label';
         fixture.detectChanges();
-        expect(await formField.getLabel()).toBe(component.name);
+
+        const nativeElement: HTMLElement = fixture.debugElement.nativeElement;
+        const p = nativeElement.querySelector('label');
+
+        expect(p.textContent).toEqual(testLabel);
     });
 
     describe('with tooltip', () => {
@@ -77,7 +79,7 @@ describe('SliderComponent', () => {
         });
     });
 
-    it('should call registered onTouchedCallback when input was blurred', async () => {
+    it('should call registered onTouchedCallback when slider was blurred', async () => {
         const spy: jasmine.Spy = jasmine.createSpy('onTouchedCallback');
         component.registerOnTouched(spy);
         await slider.blur();
