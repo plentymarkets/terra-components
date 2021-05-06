@@ -126,4 +126,23 @@ describe('SliderComponent', () => {
 
         expect(slider.step).toBe(stepSize);
     });
+
+    it(`should show min/max values in template`, () => {
+        const minValue: number = 10;
+        const maxValue: number = 100;
+
+        component.min = minValue;
+        component.max = maxValue;
+        component.showMinMax = true;
+        fixture.detectChanges();
+
+        const nativeElement: HTMLElement = fixture.debugElement.nativeElement;
+        const spanList:NodeList = nativeElement.querySelectorAll('span');
+
+        // min value
+        expect(spanList[0].textContent).toBe(minValue.toString());
+
+        // max value
+        expect(spanList[2].textContent).toBe(maxValue.toString());
+    });
 });
