@@ -3,7 +3,7 @@
 ### Features
 
 -   **terra-form**
-    -   form type **slider**: replaced deprecated `terra-slider` with a `mat-slider` variant.
+    -   form type **slider**: replaced deprecated `terra-slider` by a `mat-slider` variant.
 
 # 11.1.0 (23.03.2021)
 
