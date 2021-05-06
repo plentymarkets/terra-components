@@ -3,7 +3,8 @@ import { TerraPlacementEnum } from '../../../../../helpers';
 import { TerraSuggestionBoxValueInterface } from '../../../suggestion-box/data/terra-suggestion-box.interface';
 import { noop, Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
-import { FormControl } from '@angular/forms';
+import { ControlValueAccessor, FormControl, FormGroup } from '@angular/forms';
+import { SuggestionInterface } from './suggestion.interface';
 
 @Component({
     selector: 'tc-suggestion',
@@ -34,9 +35,9 @@ export class SuggestionComponent implements ControlValueAccessor, SuggestionInte
     public listBoxValues: Array<TerraSuggestionBoxValueInterface> = [];
 
     /** Internal model. Stores the value of the selected option. */
-    public value: any;
-    /** A formControl to listen on value changes in the autocomplete-input. */
-    public control: FormControl = new FormControl();
+    public _form: FormGroup = new FormGroup({
+        value: new FormControl()
+    });
     /** An observable of an array to map the filtered values. */
     public filteredOptions: Observable<Array<TerraSuggestionBoxValueInterface>>;
 
@@ -46,7 +47,7 @@ export class SuggestionComponent implements ControlValueAccessor, SuggestionInte
     public _onChangeCallback: (_: any) => void = noop;
 
     public ngOnInit(): void {
-        this.filteredOptions = this.control.valueChanges.pipe(
+        this.filteredOptions = this._form.get('value').valueChanges.pipe(
             startWith(''),
             map((value: any) => this._filter(value))
         );
@@ -54,7 +55,7 @@ export class SuggestionComponent implements ControlValueAccessor, SuggestionInte
 
     /** Registers a callback function that is called when the control's value changes in the UI. */
     public registerOnChange(fn: (_: any) => void): void {
-        this._onChangeCallback = fn;
+        this._form.get('value').valueChanges.subscribe(fn);
     }
 
     /** Registers a callback function that is called by the forms API on initialization to update the form model on blur. */
@@ -64,10 +65,10 @@ export class SuggestionComponent implements ControlValueAccessor, SuggestionInte
 
     /** Writes a new value to the input element. */
     public writeValue(value: any): void {
-        this.value = value;
+        this._form.get('value').setValue(value);
     }
 
-    /** The function to filter through the listBoxValues depending on the value in the autocomplete-input. */
+    /** A function to filter through the listBoxValues depending on the value in the autocomplete-input. */
     private _filter(value: any): Array<TerraSuggestionBoxValueInterface> {
         const filterValue: any = value.toLowerCase();
 

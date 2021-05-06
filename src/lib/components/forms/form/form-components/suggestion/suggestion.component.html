@@ -1,4 +1,4 @@
-<form>
+<form [formGroup]="_form">
     <mat-form-field class="w-100" [tcTooltip]="tooltipText" [placement]="tooltipPlacement">
         <mat-label>
             {{ name }}
@@ -6,13 +6,11 @@
         <input
             type="text"
             matInput
-            [(ngModel)]="value"
-            (ngModelChange)="_onChangeCallback($event)"
-            (blur)="_onTouchedCallback()"
+            (change)="_onChangeCallback($event)"
             [required]="isRequired"
             [disabled]="isDisabled"
             [matAutocomplete]="auto"
-            [formControl]="control"
+            formControlName="value"
         />
         <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
             <mat-option *ngFor="let option of filteredOptions | async" [value]="option.value">
