@@ -52,9 +52,9 @@ describe('SliderComponent', () => {
         fixture.detectChanges();
 
         const nativeElement: HTMLElement = fixture.debugElement.nativeElement;
-        const p = nativeElement.querySelector('label');
+        const label:HTMLLabelElement = nativeElement.querySelector('label');
 
-        expect(p.textContent).toEqual(testLabel);
+        expect(label.textContent).toEqual(testLabel);
     });
 
     describe('with tooltip', () => {
