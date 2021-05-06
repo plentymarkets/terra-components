@@ -1,1 +1,0 @@
-export { getNumberOfFractionalDigits } from './getNumberOfFractionalDigits';
