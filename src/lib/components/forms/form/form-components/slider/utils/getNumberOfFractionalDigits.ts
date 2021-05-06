@@ -1,4 +1,4 @@
-/** A function, that calculates the number of fractional digits of the given number. */
+/** A function that calculates the number of fractional digits of the given number. */
 export function getNumberOfFractionalDigits(num: number): number {
     if (!num) {
         return 0;
