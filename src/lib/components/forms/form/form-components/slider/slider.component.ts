@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TerraPlacementEnum } from '../../../../../helpers';
 import { noop } from 'rxjs';
+import { getNumberOfFractionalDigits } from './utils';
 
 @Component({
     selector: 'tc-slider',
@@ -15,7 +16,7 @@ import { noop } from 'rxjs';
     ]
 })
 export class SliderComponent implements ControlValueAccessor {
-    /** If true, the input will be disabled. Default false. */
+    /** If true, the slider will be disabled. Default false. */
     @Input()
     public isDisabled: boolean = false;
 
@@ -35,25 +36,43 @@ export class SliderComponent implements ControlValueAccessor {
     @Input()
     public tooltipText: string = '';
 
+    /** Lower limit of the slider. Default is 0. */
     @Input()
-    public min: number;
+    public min: number = 0;
 
+    /** Upper limit of the slider. Default is 1. */
     @Input()
-    public max: number;
+    public max: number = 1;
 
-    @Input()
-    public precision: number = null;
-
+    /** Step size of the slider. Default is 0. */
     @Input()
     public interval: number = 0;
 
+    /** Number of fractional digits that will be shown when displaying the current value of the slider. Default is null. */
+    @Input()
+    public precision: number = null;
+
+    /** If set to true, the upper and lower limits will be displayed. Default is false. */
+    @Input()
+    public showMinMax: boolean = false;
+
+    /** If set to true, the ticks will be displayed. Default is false. */
     @Input()
     public showTicks: boolean = false;
+
+    /** The internal data model. */
+    public value: number;
 
     /** Stores the callback function that will be called on blur. */
     public _onTouchedCallback: () => void = noop;
     /** Stores the callback function that will be called when the control's value changes in the UI. */
     public _onChangeCallback: (_: number) => void = noop;
+
+    /** A function that formats the display value according to the given precision. */
+    public _precisionDisplayFn: (value: number) => string = (value: number) => {
+        const precision: number = this.precision || getNumberOfFractionalDigits(this.interval);
+        return value.toFixed(Math.min(precision, 3));
+    };
 
     /** Registers a callback function that is called when the control's value changes in the UI. */
     public registerOnChange(fn: (_: number) => void): void {
@@ -65,8 +84,8 @@ export class SliderComponent implements ControlValueAccessor {
         this._onTouchedCallback = fn;
     }
 
-    /** Writes a new value to the input element. */
+    /** Writes a new value to the slider element. */
     public writeValue(value: number): void {
-        // this.value = value;
+        this.value = value;
     }
 }

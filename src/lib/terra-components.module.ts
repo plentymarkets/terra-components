@@ -9,7 +9,7 @@ import { RouterModule } from '@angular/router';
 import { TerraInteractModule } from './components/interactables/interact.module';
 import { QuillModule } from 'ngx-quill';
 import { CKEditorModule } from 'ckeditor4-angular';
-import { pipes } from './pipes/pipe-collection';
+import { exportedPipes, pipes } from './pipes/pipe-collection';
 import { MatListModule } from '@angular/material/list';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
@@ -17,6 +17,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSliderModule } from '@angular/material/slider';
 
 @NgModule({
     imports: [
@@ -35,9 +36,10 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
         MatButtonModule,
         DragDropModule,
         MatIconModule,
-        MatCheckboxModule
+        MatCheckboxModule,
+        MatSliderModule
     ],
     declarations: [...components, ...directives, ...pipes],
-    exports: [...exportedComponents, ...exportedDirectives, ...pipes]
+    exports: [...exportedComponents, ...exportedDirectives, ...exportedPipes]
 })
 export class TerraComponentsModule {}
