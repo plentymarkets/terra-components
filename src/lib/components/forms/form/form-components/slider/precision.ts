@@ -1,11 +1,11 @@
-/** A function that calculates the precision (aka number of fractional digits) of the given interval. */
-export function getNumberOfFractionalDigits(interval: number): number {
-    if (!interval) {
+/** A function that calculates the number of fractional digits of the given number. */
+export function getNumberOfFractionalDigits(num: number): number {
+    if (!num) {
         return 0;
     }
-    const intervalDigits: number = interval.toString().length;
-    const integerDigits: number = Math.trunc(interval).toString().length;
-    const fractionDigits: number = intervalDigits - integerDigits;
+    const totalDigits: number = num.toString().length;
+    const integerDigits: number = Math.trunc(num).toString().length;
+    const fractionalDigits: number = Math.max(totalDigits - integerDigits - 1, 0);
 
-    return fractionDigits === 0 ? 0 : fractionDigits - 1;
+    return fractionalDigits;
 }
