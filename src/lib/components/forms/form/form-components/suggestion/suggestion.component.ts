@@ -67,7 +67,7 @@ export class SuggestionComponent implements OnInit {
         this.value = value;
     }
 
-    /** . */
+    /** The function to filter through the listBoxValues depending on the value in the autocomplete-input. */
     private _filter(value: any): Array<TerraSuggestionBoxValueInterface> {
         const filterValue: any = value.toLowerCase();
 
