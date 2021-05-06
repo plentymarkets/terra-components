@@ -9,7 +9,7 @@ import { FormControl } from '@angular/forms';
     selector: 'tc-suggestion',
     templateUrl: './suggestion.component.html'
 })
-export class SuggestionComponent implements OnInit {
+export class SuggestionComponent implements ControlValueAccessor, SuggestionInterface, OnInit {
     /** Set the label. */
     @Input()
     public name: string;
