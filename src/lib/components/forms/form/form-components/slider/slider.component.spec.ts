@@ -52,7 +52,7 @@ describe('SliderComponent', () => {
         fixture.detectChanges();
 
         const nativeElement: HTMLElement = fixture.debugElement.nativeElement;
-        const label:HTMLLabelElement = nativeElement.querySelector('label');
+        const label: HTMLLabelElement = nativeElement.querySelector('label');
 
         expect(label.textContent).toEqual(testLabel);
     });
@@ -137,7 +137,7 @@ describe('SliderComponent', () => {
         fixture.detectChanges();
 
         const nativeElement: HTMLElement = fixture.debugElement.nativeElement;
-        const spanList:NodeList = nativeElement.querySelectorAll('span');
+        const spanList: NodeList = nativeElement.querySelectorAll('span');
 
         // min value
         expect(spanList[0].textContent).toBe(minValue.toString());
