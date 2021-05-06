@@ -5,7 +5,5 @@ export function getNumberOfFractionalDigits(num: number): number {
     }
     const totalDigits: number = num.toString().length;
     const integerDigits: number = Math.trunc(num).toString().length;
-    const fractionalDigits: number = Math.max(totalDigits - integerDigits - 1, 0);
-
-    return fractionalDigits;
+    return Math.max(totalDigits - integerDigits - 1, 0);
 }
