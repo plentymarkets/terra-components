@@ -113,11 +113,13 @@ export const formFields: TerraKeyValueInterface<TerraFormFieldInterface> = {
             listBoxValues: [
                 {
                     value: 'suggestion1',
-                    caption: 'Suggestion 1'
+                    caption: 'Suggestion 1',
+                    icon: 'icon-add'
                 },
                 {
                     value: 'suggestion2',
-                    caption: 'Suggestion 2'
+                    caption: 'Suggestion 2',
+                    icon: 'icon-delete'
                 }
             ]
         }
