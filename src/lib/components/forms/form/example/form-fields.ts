@@ -105,6 +105,23 @@ export const containerCompontent: TerraFormFieldInterface = {
 };
 
 export const formFields: TerraKeyValueInterface<TerraFormFieldInterface> = {
+    suggestion: {
+        type: 'suggestion',
+        options: {
+            name: 'Suggestion',
+            required: false,
+            listBoxValues: [
+                {
+                    value: 'suggestion1',
+                    caption: 'Suggestion 1'
+                },
+                {
+                    value: 'suggestion2',
+                    caption: 'Suggestion 2'
+                }
+            ]
+        }
+    },
     text: {
         type: 'text',
         options: {
