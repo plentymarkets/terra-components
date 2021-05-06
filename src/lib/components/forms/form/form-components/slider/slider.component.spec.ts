@@ -19,7 +19,7 @@ describe('SliderComponent', () => {
     beforeEach(async () => {
         TestBed.configureTestingModule({
             imports: [MatSliderModule, NoopAnimationsModule, FormsModule],
-            declarations: [SliderComponent, MockTooltipDirective]
+            declarations: [SliderComponent, TickIntervalPipe, MockTooltipDirective]
         });
 
         fixture = TestBed.createComponent(SliderComponent);
