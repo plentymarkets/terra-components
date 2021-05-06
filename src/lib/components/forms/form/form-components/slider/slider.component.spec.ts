@@ -9,6 +9,7 @@ import { MockTooltipDirective } from '../../../../../testing/mock-tooltip.direct
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { By } from '@angular/platform-browser';
 import { TerraPlacementEnum } from '../../../../../helpers';
+import { TickIntervalPipe } from './pipes/tick-interval.pipe';
 
 describe('SliderComponent', () => {
     let fixture: ComponentFixture<SliderComponent>;
