@@ -16,7 +16,12 @@
         />
         <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
             <mat-option *ngFor="let option of filteredOptions | async" [value]="option.value">
-                <mat-icon *ngIf="option.icon" fontSet="plentyicons" [fontIcon]="option.icon"></mat-icon>
+                <mat-icon
+                    *ngIf="option.icon"
+                    class="align-baseline"
+                    fontSet="plentyicons"
+                    [fontIcon]="option.icon"
+                ></mat-icon>
                 <img *ngIf="option.imgsrc" src="{{ option.imgsrc }}" />
                 {{ option.caption }}
             </mat-option>
