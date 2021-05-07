@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { TerraPlacementEnum } from '../../../../../helpers';
 import { TerraSuggestionBoxValueInterface } from '../../../suggestion-box/data/terra-suggestion-box.interface';
-import { noop, Observable } from 'rxjs';
+import { merge, noop, Observable, Subject } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { ControlValueAccessor, FormControl } from '@angular/forms';
 import { SuggestionInterface } from './suggestion.interface';
@@ -46,6 +46,8 @@ export class SuggestionComponent implements ControlValueAccessor, SuggestionInte
     /** An observable list of suggestions. The list will be updated whenever the user types in the input. */
     public _filteredOptions: Observable<Array<TerraSuggestionBoxValueInterface>>;
 
+    public _autoCompleteOpened: Subject<void> = new Subject();
+
     /** Stores the callback function that will be called on blur. */
     public _onTouchedCallback: () => void = noop;
     /** Stores the callback function that will be called when the control's value changes in the UI. */
@@ -57,12 +59,17 @@ export class SuggestionComponent implements ControlValueAccessor, SuggestionInte
     ) => value?.caption;
 
     public ngOnInit(): void {
-        this._filteredOptions = this._control.valueChanges.pipe(
+        const filteredOptions$: Observable<Array<TerraSuggestionBoxValueInterface>> = this._control.valueChanges.pipe(
             startWith(this._control.value ?? ''),
             map((value: TerraSuggestionBoxValueInterface | string) =>
                 isSuggestionValue(value) ? value.caption : value
             ),
             map((caption: string) => this._filter(caption))
+        );
+
+        this._filteredOptions = merge(
+            filteredOptions$,
+            this._autoCompleteOpened.pipe(map(() => this.listBoxValues.slice()))
         );
     }
 

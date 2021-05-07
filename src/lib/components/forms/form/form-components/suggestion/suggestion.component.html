@@ -17,6 +17,7 @@
         autoActiveFirstOption
         [displayWith]="_displayFn"
         (optionSelected)="_optionSelected($event)"
+        (opened)="_autoCompleteOpened.next()"
     >
         <mat-option *ngFor="let option of _filteredOptions | async" [value]="option">
             <mat-icon
