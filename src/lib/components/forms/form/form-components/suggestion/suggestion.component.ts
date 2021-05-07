@@ -17,7 +17,7 @@ export class SuggestionComponent implements ControlValueAccessor, SuggestionInte
 
     /** If true, a * indicates that the value is required. Default false. */
     @Input()
-    public isRequired: boolean;
+    public isRequired: boolean = false;
 
     /** If true, the autocomplete-input will be disabled. Default false. */
     @Input()
