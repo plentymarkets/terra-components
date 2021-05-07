@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TerraPlacementEnum } from '../../../../../helpers';
 import { noop } from 'rxjs';
-import { getNumberOfFractionalDigits } from './utils/getNumberOfFractionalDigits';
+import { getNumberOfFractionalDigits } from './utils/fractional-digits';
 
 @Component({
     selector: 'tc-slider',

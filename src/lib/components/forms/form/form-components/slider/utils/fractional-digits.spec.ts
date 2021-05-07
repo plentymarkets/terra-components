@@ -1,4 +1,4 @@
-import { getNumberOfFractionalDigits } from './getNumberOfFractionalDigits';
+import { getNumberOfFractionalDigits } from './fractional-digits';
 
 describe('getNumberOfFractionalDigits', () => {
     it('should return 0 if given number is undefined', () => {
