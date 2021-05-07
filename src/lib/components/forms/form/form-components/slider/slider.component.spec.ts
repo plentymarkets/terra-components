@@ -11,6 +11,7 @@ import { By } from '@angular/platform-browser';
 import { TerraPlacementEnum } from '../../../../../helpers';
 import { TickIntervalPipe } from './pipes/tick-interval.pipe';
 
+// tslint:disable-next-line:max-function-line-count
 describe('SliderComponent', () => {
     let fixture: ComponentFixture<SliderComponent>;
     let component: SliderComponent;
