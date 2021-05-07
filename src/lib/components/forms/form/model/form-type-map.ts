@@ -15,7 +15,7 @@ import { TerraNoteEditorComponent } from '../../../editors/note-editor/terra-not
 import { TerraCodeEditorComponent } from '../../../editors/code-editor/terra-code-editor.component';
 import { TerraSliderComponent } from '../../slider/terra-slider.component';
 import { TerraPortletComponent } from '../../../layouts/portlet/terra-portlet.component';
-import { TerraSuggestionBoxComponent } from '../../suggestion-box/terra-suggestion-box.component';
+import { SuggestionComponent } from '../form-components/suggestion/suggestion.component';
 
 /**
  * @description A map of control types that may be passed to the <terra-form> in order to support those controls.
@@ -94,9 +94,9 @@ export class FormTypeMap {
 
     public readonly suggestion: TerraFormTypeInterface = {
         inputMap: {
-            required: 'inputIsRequired'
+            required: 'isRequired'
         },
-        component: TerraSuggestionBoxComponent
+        component: SuggestionComponent
     };
 
     // CONTAINER TYPES
