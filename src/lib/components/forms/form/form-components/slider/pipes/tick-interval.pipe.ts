@@ -2,7 +2,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 /**
  * A pipe that that determines the tick interval for the material slider.
- * Depending on the given interval and the flag showTicks, 0, 1 or 'auto' is returned. */
+ * Depending on the given interval and the flag showTicks, 0, 1 or 'auto' is returned.
+ */
 @Pipe({
     name: 'tickInterval'
 })
