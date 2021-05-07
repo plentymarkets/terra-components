@@ -7,6 +7,10 @@ import { ControlValueAccessor, FormControl } from '@angular/forms';
 import { SuggestionInterface } from './suggestion.interface';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 
+export function isSuggestionValue(value: unknown): value is TerraSuggestionBoxValueInterface {
+    return typeof value === 'object' && 'caption' in value && 'value' in value;
+}
+
 @Component({
     selector: 'tc-suggestion',
     templateUrl: './suggestion.component.html'
@@ -52,7 +56,7 @@ export class SuggestionComponent implements ControlValueAccessor, SuggestionInte
     public ngOnInit(): void {
         this._filteredOptions = this._control.valueChanges.pipe(
             startWith(this._control.value ?? ''),
-            map((value: any) => (typeof value === 'object' ? value.caption : value)),
+            map((value: any) => (isSuggestionValue(value) ? value.caption : value)),
             map((caption: string) => this._filter(caption))
         );
     }
