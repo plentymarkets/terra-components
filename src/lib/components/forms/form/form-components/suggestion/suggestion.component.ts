@@ -14,7 +14,7 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 export class SuggestionComponent implements ControlValueAccessor, SuggestionInterface, OnInit {
     /** Set the label. */
     @Input()
-    public name: string;
+    public name: string = '';
 
     /** If true, a * indicates that the value is required. Default false. */
     @Input()
@@ -38,7 +38,7 @@ export class SuggestionComponent implements ControlValueAccessor, SuggestionInte
     /** Internal model. Stores the value of the selected option. */
     public _control: FormControl = new FormControl();
     /** An observable of an array to map the filtered values. */
-    public filteredOptions: Observable<Array<TerraSuggestionBoxValueInterface>>;
+    public _filteredOptions: Observable<Array<TerraSuggestionBoxValueInterface>>;
 
     /** Stores the callback function that will be called on blur. */
     public _onTouchedCallback: () => void = noop;
@@ -50,7 +50,7 @@ export class SuggestionComponent implements ControlValueAccessor, SuggestionInte
     ) => value?.caption;
 
     public ngOnInit(): void {
-        this.filteredOptions = this._control.valueChanges.pipe(
+        this._filteredOptions = this._control.valueChanges.pipe(
             startWith(this._control.value ?? ''),
             map((value: any) => (typeof value === 'object' ? value.caption : value)),
             map((caption: string) => this._filter(caption))
@@ -69,7 +69,7 @@ export class SuggestionComponent implements ControlValueAccessor, SuggestionInte
 
     /** Writes a new value to the input element. */
     public writeValue(value: any): void {
-        const selectedValue: TerraSuggestionBoxValueInterface = this.listBoxValues.find(
+        const selectedValue: TerraSuggestionBoxValueInterface | undefined = this.listBoxValues.find(
             (v: TerraSuggestionBoxValueInterface) => v.value === value
         );
         this._control.setValue(selectedValue);
