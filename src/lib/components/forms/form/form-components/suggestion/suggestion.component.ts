@@ -7,6 +7,7 @@ import { ControlValueAccessor, FormControl } from '@angular/forms';
 import { SuggestionInterface } from './suggestion.interface';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 
+/** A type guard to check if the value in the input is a value from the suggestion box. */
 export function isSuggestionValue(value: unknown): value is TerraSuggestionBoxValueInterface {
     return typeof value === 'object' && 'caption' in value && 'value' in value;
 }
@@ -36,10 +37,11 @@ export class SuggestionComponent implements ControlValueAccessor, SuggestionInte
     @Input()
     public tooltipPlacement: TerraPlacementEnum = TerraPlacementEnum.TOP;
 
+    /** A list of options that the user can select from the suggestion box. */
     @Input()
     public listBoxValues: Array<TerraSuggestionBoxValueInterface> = [];
 
-    /** Internal model. Stores the value of the selected option. */
+    /** A formControl for the handling of the value. */
     public _control: FormControl = new FormControl();
     /** An observable of an array to map the filtered values. */
     public _filteredOptions: Observable<Array<TerraSuggestionBoxValueInterface>>;
@@ -49,6 +51,7 @@ export class SuggestionComponent implements ControlValueAccessor, SuggestionInte
     /** Stores the callback function that will be called when the control's value changes in the UI. */
     public _onChangeCallback: (_: any) => void = noop;
 
+    /** Formats the value to be displayed. */
     public _displayFn: (value: TerraSuggestionBoxValueInterface) => string = (
         value: TerraSuggestionBoxValueInterface
     ) => value?.caption;
@@ -81,6 +84,7 @@ export class SuggestionComponent implements ControlValueAccessor, SuggestionInte
         this._control.setValue(selectedValue);
     }
 
+    /** Calls the onChangeCallback whenever the user selects a new option. */
     public _optionSelected(event: MatAutocompleteSelectedEvent): void {
         const selectedValue: TerraSuggestionBoxValueInterface = event.option.value;
         this._onChangeCallback(selectedValue.value);
