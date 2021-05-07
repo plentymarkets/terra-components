@@ -11,7 +11,7 @@ describe('TickIntervalPipe', () => {
         expect(pipe.transform(true, 1)).toEqual(1);
     });
 
-    it('should return auto if the interval is undefined', () => {
+    it(`should return 'auto' if the interval is undefined`, () => {
         expect(pipe.transform(true, undefined)).toEqual('auto');
     });
 
