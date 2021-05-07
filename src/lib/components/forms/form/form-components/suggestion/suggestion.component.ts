@@ -68,6 +68,8 @@ export class SuggestionComponent implements ControlValueAccessor, SuggestionInte
             map((caption: string) => this._filter(caption))
         );
 
+        // get the full list of listBoxValues if an option is selected and the panel is opened.
+        // if the value changes in the input the filter takes effect again
         this._filteredOptions = merge(
             filteredOptions$,
             this._autoCompleteOpened.pipe(map(() => this.listBoxValues.slice()))
