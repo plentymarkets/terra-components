@@ -16,7 +16,7 @@ import { MatFormFieldHarness } from '@angular/material/form-field/testing';
 import { TerraSuggestionBoxValueInterface } from '../../../suggestion-box/data/terra-suggestion-box.interface';
 import { MatInputHarness } from '@angular/material/input/testing';
 
-//tslint:disable-next-line:max-function-line-count
+// tslint:disable-next-line:max-function-line-count
 describe('SuggestionComponent', () => {
     let component: SuggestionComponent;
     let fixture: ComponentFixture<SuggestionComponent>;
