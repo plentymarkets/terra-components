@@ -59,7 +59,6 @@ import { RadioGroupComponent } from './forms/input/radio/radio-group.component';
 import { TableRowComponent } from './tables/data-table/table-row/table-row.component';
 import { FilterComponent } from './filter/filter.component';
 import { CheckboxGroupComponent } from './forms/checkbox-group/checkbox-group.component';
-import { TerraBaseEditorComponent } from './editors/base-editor/terra-base-editor.component';
 import { TerraFormContainerWrapperComponent } from './forms/form/form-container/container-wrapper/terra-form-container-wrapper.component';
 import { TableSettingsComponent } from './table/table-settings/table-settings.component';
 import { TableSettingsDialogComponent } from './table/table-settings/dialog/table-settings-dialog.component';
@@ -130,7 +129,6 @@ export const components: Array<Type<any>> = [
     ...exportedComponents,
     TerraFileListComponent,
     TerraImagePreviewComponent,
-    TerraBaseEditorComponent,
     TableSettingsDialogComponent,
     TerraFormContainerWrapperComponent
 ];
