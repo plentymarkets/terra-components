@@ -25,7 +25,7 @@ export class SuggestionComponent implements ControlValueAccessor, SuggestionInte
 
     /** Set the tooltip. */
     @Input()
-    public tooltipText: string;
+    public tooltipText: string = '';
 
     /** Set the tooltip placement (bottom, top, left, right). Default top. */
     @Input()
