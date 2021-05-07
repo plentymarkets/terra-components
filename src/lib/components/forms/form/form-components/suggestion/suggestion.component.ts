@@ -27,7 +27,9 @@ export class SuggestionComponent implements ControlValueAccessor, SuggestionInte
 
     /** If true, the autocomplete-input will be disabled. Default false. */
     @Input()
-    public isDisabled: boolean = false;
+    public set isDisabled(disabled: boolean) {
+        disabled ? this._control.disable() : this._control.enable();
+    }
 
     /** Set the tooltip. */
     @Input()
@@ -42,7 +44,7 @@ export class SuggestionComponent implements ControlValueAccessor, SuggestionInte
     public listBoxValues: Array<TerraSuggestionBoxValueInterface> = [];
 
     /** A formControl for the handling of the value. */
-    public _control: FormControl = new FormControl();
+    public _control: FormControl = new FormControl({ disabled: this.isDisabled });
     /** An observable list of suggestions. The list will be updated whenever the user types in the input. */
     public _filteredOptions: Observable<Array<TerraSuggestionBoxValueInterface>>;
 
