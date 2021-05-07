@@ -92,7 +92,7 @@ describe('SliderComponent', () => {
         const onChangeCallback: jasmine.Spy = jasmine.createSpy('onChange');
         component.registerOnChange(onChangeCallback);
 
-        const testValue: number = 2.0;
+        const testValue: number = 1.0;
         await slider.setValue(testValue);
 
         expect(onChangeCallback).toHaveBeenCalledWith(testValue);
