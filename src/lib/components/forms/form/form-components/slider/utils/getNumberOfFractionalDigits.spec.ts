@@ -1,7 +1,7 @@
 import { getNumberOfFractionalDigits } from './getNumberOfFractionalDigits';
 
 describe('getNumberOfFractionalDigits', () => {
-    it('should return 0 if the precision is undefined', () => {
+    it('should return 0 if given number is undefined', () => {
         expect(getNumberOfFractionalDigits(undefined)).toEqual(0);
     });
 
