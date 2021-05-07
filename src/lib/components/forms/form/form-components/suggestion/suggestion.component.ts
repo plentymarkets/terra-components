@@ -43,7 +43,7 @@ export class SuggestionComponent implements ControlValueAccessor, SuggestionInte
 
     /** A formControl for the handling of the value. */
     public _control: FormControl = new FormControl();
-    /** An observable of an array to map the filtered values. */
+    /** An observable list of suggestions. The list will be updated whenever the user types in the input. */
     public _filteredOptions: Observable<Array<TerraSuggestionBoxValueInterface>>;
 
     /** Stores the callback function that will be called on blur. */
