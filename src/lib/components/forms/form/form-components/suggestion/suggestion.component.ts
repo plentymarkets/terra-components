@@ -56,7 +56,9 @@ export class SuggestionComponent implements ControlValueAccessor, SuggestionInte
     public ngOnInit(): void {
         this._filteredOptions = this._control.valueChanges.pipe(
             startWith(this._control.value ?? ''),
-            map((value: any) => (isSuggestionValue(value) ? value.caption : value)),
+            map((value: TerraSuggestionBoxValueInterface | string) =>
+                isSuggestionValue(value) ? value.caption : value
+            ),
             map((caption: string) => this._filter(caption))
         );
     }
