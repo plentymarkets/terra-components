@@ -7,6 +7,7 @@ import { getNumberOfFractionalDigits } from './utils/fractional-digits';
 @Component({
     selector: 'tc-slider',
     templateUrl: './slider.component.html',
+    styleUrls: ['./slider.component.scss'],
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,
