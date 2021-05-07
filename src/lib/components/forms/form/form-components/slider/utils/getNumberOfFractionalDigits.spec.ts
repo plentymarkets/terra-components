@@ -5,7 +5,7 @@ describe('getNumberOfFractionalDigits', () => {
         expect(getNumberOfFractionalDigits(undefined)).toEqual(0);
     });
 
-    it('should return the number of fractional digits if an interval is set to 0.1', () => {
+    it('should return the number of fractional digits if a number is given', () => {
         expect(getNumberOfFractionalDigits(0.1)).toEqual(1);
     });
 });
