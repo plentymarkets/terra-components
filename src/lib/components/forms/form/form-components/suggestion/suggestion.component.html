@@ -11,10 +11,10 @@
         [formControl]="_control"
     />
     <mat-autocomplete
+        #auto="matAutocomplete"
         autoActiveFirstOption
         [displayWith]="_displayFn"
         (optionSelected)="optionSelected($event)"
-        #auto="matAutocomplete"
     >
         <mat-option *ngFor="let option of _filteredOptions | async" [value]="option">
             <mat-icon
@@ -23,7 +23,7 @@
                 fontSet="plentyicons"
                 [fontIcon]="option.icon"
             ></mat-icon>
-            <img *ngIf="option.imgsrc" src="{{ option.imgsrc }}" />
+            <img *ngIf="option.imgsrc" [src]="option.imgsrc" />
             {{ option.caption }}
         </mat-option>
     </mat-autocomplete>
