@@ -121,10 +121,10 @@ describe('SliderComponent', () => {
         const stepSize: number = 2;
         component.interval = stepSize;
 
-        const slider: MatSlider = fixture.debugElement.query(By.directive(MatSlider)).componentInstance;
+        const sliderComponent: MatSlider = fixture.debugElement.query(By.directive(MatSlider)).componentInstance;
         fixture.detectChanges();
 
-        expect(slider.step).toBe(stepSize);
+        expect(sliderComponent.step).toBe(stepSize);
     });
 
     it(`should show min/max values in template`, () => {
