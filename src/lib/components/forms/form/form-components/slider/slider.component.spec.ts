@@ -88,6 +88,16 @@ describe('SliderComponent', () => {
         expect(spy).toHaveBeenCalled();
     });
 
+    it('should call registered change callback whenever the value of the slider is changed by the user', async () => {
+        const onChangeCallback: jasmine.Spy = jasmine.createSpy('onChange');
+        component.registerOnChange(onChangeCallback);
+
+        const testValue: number = 2.0;
+        await slider.setValue(testValue);
+
+        expect(onChangeCallback).toHaveBeenCalledWith(testValue);
+    });
+
     it('should set min/max values', async () => {
         const minValue: number = 10;
         const maxValue: number = 100;
