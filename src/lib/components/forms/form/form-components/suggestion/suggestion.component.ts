@@ -46,6 +46,7 @@ export class SuggestionComponent implements ControlValueAccessor, SuggestionInte
     /** An observable list of suggestions. The list will be updated whenever the user types in the input. */
     public _filteredOptions: Observable<Array<TerraSuggestionBoxValueInterface>>;
 
+    /** A subject which emits whenever the panel is opened. */
     public _autoCompleteOpened: Subject<void> = new Subject();
 
     /** Stores the callback function that will be called on blur. */
