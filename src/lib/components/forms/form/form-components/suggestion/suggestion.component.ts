@@ -81,7 +81,7 @@ export class SuggestionComponent implements ControlValueAccessor, SuggestionInte
         this._control.setValue(selectedValue);
     }
 
-    public optionSelected(event: MatAutocompleteSelectedEvent): void {
+    public _optionSelected(event: MatAutocompleteSelectedEvent): void {
         const selectedValue: TerraSuggestionBoxValueInterface = event.option.value;
         this._onChangeCallback(selectedValue.value);
     }
