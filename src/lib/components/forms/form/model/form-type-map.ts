@@ -11,7 +11,6 @@ import { TerraDoubleInputComponent } from '../../input/double-input/terra-double
 import { TerraSelectBoxComponent } from '../../select-box/terra-select-box.component';
 import { TerraCategoryPickerComponent } from '../../../data-picker/category-picker/terra-category-picker.component';
 import { TerraColorPickerComponent } from '../../input/color-picker/terra-color-picker.component';
-import { TerraCodeEditorComponent } from '../../../editors/code-editor/terra-code-editor.component';
 import { TerraSliderComponent } from '../../slider/terra-slider.component';
 import { TerraPortletComponent } from '../../../layouts/portlet/terra-portlet.component';
 import { TerraSuggestionBoxComponent } from '../../suggestion-box/terra-suggestion-box.component';
@@ -78,12 +77,6 @@ export class FormTypeMap {
     };
     public readonly checkboxGroup: Type<CheckboxGroupComponent> = CheckboxGroupComponent;
     public readonly slider: Type<TerraSliderComponent> = TerraSliderComponent;
-    public readonly codeEditor: TerraFormTypeInterface = {
-        inputMap: {
-            name: 'inputHeaderLabel'
-        },
-        component: TerraCodeEditorComponent
-    };
 
     public readonly suggestion: TerraFormTypeInterface = {
         inputMap: {

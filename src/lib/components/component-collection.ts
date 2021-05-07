@@ -32,7 +32,6 @@ import { TerraFileInputComponent } from './forms/input/file-input/terra-file-inp
 import { TerraFileChooserComponent } from './buttons/file-chooser/terra-file-chooser.component';
 import { TerraNoResultNoticeComponent } from './no-result/terra-no-result-notice.component';
 import { TerraButtonWithOptionsComponent } from './buttons/button-with-options/terra-button-with-options.component';
-import { TerraCodeEditorComponent } from './editors/code-editor/terra-code-editor.component';
 import { TerraTimePickerComponent } from './forms/input/time-picker/terra-time-picker.component';
 import { TerraNoteComponent } from './note/terra-note.component';
 import { TerraNodeTreeComponent } from './tree/node-tree/terra-node-tree.component';
@@ -98,7 +97,6 @@ export const exportedComponents: Array<Type<any>> = [
     TerraFileChooserComponent,
     TerraNoResultNoticeComponent,
     TerraButtonWithOptionsComponent,
-    TerraCodeEditorComponent,
     TerraTimePickerComponent,
     TerraNoteComponent,
     TerraNodeTreeComponent,
