@@ -3,8 +3,9 @@ import { TerraPlacementEnum } from '../../../../../helpers';
 import { TerraSuggestionBoxValueInterface } from '../../../suggestion-box/data/terra-suggestion-box.interface';
 import { noop, Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
-import { ControlValueAccessor, FormControl, FormGroup } from '@angular/forms';
+import { ControlValueAccessor, FormControl } from '@angular/forms';
 import { SuggestionInterface } from './suggestion.interface';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 
 @Component({
     selector: 'tc-suggestion',
@@ -35,9 +36,7 @@ export class SuggestionComponent implements ControlValueAccessor, SuggestionInte
     public listBoxValues: Array<TerraSuggestionBoxValueInterface> = [];
 
     /** Internal model. Stores the value of the selected option. */
-    public _form: FormGroup = new FormGroup({
-        value: new FormControl()
-    });
+    public _control: FormControl = new FormControl();
     /** An observable of an array to map the filtered values. */
     public filteredOptions: Observable<Array<TerraSuggestionBoxValueInterface>>;
 
@@ -46,16 +45,21 @@ export class SuggestionComponent implements ControlValueAccessor, SuggestionInte
     /** Stores the callback function that will be called when the control's value changes in the UI. */
     public _onChangeCallback: (_: any) => void = noop;
 
+    public _displayFn: (value: TerraSuggestionBoxValueInterface) => string = (
+        value: TerraSuggestionBoxValueInterface
+    ) => value?.caption;
+
     public ngOnInit(): void {
-        this.filteredOptions = this._form.get('value').valueChanges.pipe(
-            startWith(''),
-            map((value: any) => this._filter(value))
+        this.filteredOptions = this._control.valueChanges.pipe(
+            startWith(this._control.value ?? ''),
+            map((value: any) => (typeof value === 'object' ? value.caption : value)),
+            map((caption: string) => this._filter(caption))
         );
     }
 
     /** Registers a callback function that is called when the control's value changes in the UI. */
     public registerOnChange(fn: (_: any) => void): void {
-        this._form.get('value').valueChanges.subscribe(fn);
+        this._onChangeCallback = fn;
     }
 
     /** Registers a callback function that is called by the forms API on initialization to update the form model on blur. */
@@ -65,13 +69,23 @@ export class SuggestionComponent implements ControlValueAccessor, SuggestionInte
 
     /** Writes a new value to the input element. */
     public writeValue(value: any): void {
-        this._form.get('value').setValue(value);
+        const selectedValue: TerraSuggestionBoxValueInterface = this.listBoxValues.find(
+            (v: TerraSuggestionBoxValueInterface) => v.value === value
+        );
+        this._control.setValue(selectedValue);
+    }
+
+    public optionSelected(event: MatAutocompleteSelectedEvent): void {
+        const selectedValue: TerraSuggestionBoxValueInterface = event.option.value;
+        this._onChangeCallback(selectedValue.value);
     }
 
     /** A function to filter through the listBoxValues depending on the value in the autocomplete-input. */
-    private _filter(value: any): Array<TerraSuggestionBoxValueInterface> {
-        const filterValue: any = value.toLowerCase();
+    private _filter(value: string): Array<TerraSuggestionBoxValueInterface> {
+        const filterValue: string = value.toLowerCase();
 
-        return this.listBoxValues.filter((option: any) => option.caption.toLowerCase().indexOf(filterValue) === 0);
+        return this.listBoxValues.filter((option: TerraSuggestionBoxValueInterface) =>
+            option.caption.toLowerCase().includes(filterValue)
+        );
     }
 }

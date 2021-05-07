@@ -107,6 +107,7 @@ export const containerCompontent: TerraFormFieldInterface = {
 export const formFields: TerraKeyValueInterface<TerraFormFieldInterface> = {
     suggestion: {
         type: 'suggestion',
+        defaultValue: 'suggestion1',
         options: {
             name: 'Suggestion',
             required: false,

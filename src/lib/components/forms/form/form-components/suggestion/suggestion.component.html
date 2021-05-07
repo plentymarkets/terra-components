@@ -1,28 +1,30 @@
-<form [formGroup]="_form">
-    <mat-form-field class="w-100" [tcTooltip]="tooltipText" [placement]="tooltipPlacement">
-        <mat-label>
-            {{ name }}
-        </mat-label>
-        <input
-            type="text"
-            matInput
-            (change)="_onChangeCallback($event)"
-            [required]="isRequired"
-            [disabled]="isDisabled"
-            [matAutocomplete]="auto"
-            formControlName="value"
-        />
-        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-            <mat-option *ngFor="let option of filteredOptions | async" [value]="option.value">
-                <mat-icon
-                    *ngIf="option.icon"
-                    class="align-baseline"
-                    fontSet="plentyicons"
-                    [fontIcon]="option.icon"
-                ></mat-icon>
-                <img *ngIf="option.imgsrc" src="{{ option.imgsrc }}" />
-                {{ option.caption }}
-            </mat-option>
-        </mat-autocomplete>
-    </mat-form-field>
-</form>
+<mat-form-field class="w-100" [tcTooltip]="tooltipText" [placement]="tooltipPlacement">
+    <mat-label>
+        {{ name }}
+    </mat-label>
+    <input
+        type="text"
+        matInput
+        [required]="isRequired"
+        [disabled]="isDisabled"
+        [matAutocomplete]="auto"
+        [formControl]="_control"
+    />
+    <mat-autocomplete
+        autoActiveFirstOption
+        [displayWith]="_displayFn"
+        (optionSelected)="optionSelected($event)"
+        #auto="matAutocomplete"
+    >
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+            <mat-icon
+                *ngIf="option.icon"
+                class="align-baseline"
+                fontSet="plentyicons"
+                [fontIcon]="option.icon"
+            ></mat-icon>
+            <img *ngIf="option.imgsrc" src="{{ option.imgsrc }}" />
+            {{ option.caption }}
+        </mat-option>
+    </mat-autocomplete>
+</mat-form-field>
