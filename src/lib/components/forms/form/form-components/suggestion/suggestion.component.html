@@ -9,6 +9,7 @@
         [disabled]="isDisabled"
         [matAutocomplete]="auto"
         [formControl]="_control"
+        (blur)="_onTouchedCallback()"
     />
     <mat-autocomplete
         #auto="matAutocomplete"
