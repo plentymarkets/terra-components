@@ -7,11 +7,11 @@ describe('TickIntervalPipe', () => {
         expect(pipe).toBeTruthy();
     });
 
-    it('should return the given interval', () => {
+    it('should return 1 when showTicks is true and any valid interval (>0) is given', () => {
         expect(pipe.transform(true, 1)).toEqual(1);
     });
 
-    it('should return auto if the interval is undefined', () => {
+    it(`should return 'auto' if the interval is undefined`, () => {
         expect(pipe.transform(true, undefined)).toEqual('auto');
     });
 
