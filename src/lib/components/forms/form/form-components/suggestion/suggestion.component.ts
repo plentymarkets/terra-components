@@ -21,7 +21,7 @@ export class SuggestionComponent implements ControlValueAccessor, SuggestionInte
 
     /** If true, the autocomplete-input will be disabled. Default false. */
     @Input()
-    public isDisabled: boolean;
+    public isDisabled: boolean = false;
 
     /** Set the tooltip. */
     @Input()
