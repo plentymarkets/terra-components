@@ -7,7 +7,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatAutocompleteModule, MatAutocompleteTrigger } from '@angular/material/autocomplete';
 import { TerraPlacementEnum } from '../../../../../helpers/enums/terra-placement.enum';
 import { By } from '@angular/platform-browser';
 import { MockTooltipDirective } from '../../../../../testing/mock-tooltip.directive';
@@ -128,17 +128,23 @@ describe('SuggestionComponent', () => {
         component.writeValue(suggestionOption1.value);
 
         fixture.detectChanges();
-        expect(await autoComplete.getValue()).toEqual(suggestionOption1.value.toString());
-        expect(await input.getValue()).toEqual(suggestionOption1.value.toString());
+        expect(await autoComplete.getValue()).toBe(suggestionOption1.caption);
     });
 
     it('should call registered change callback whenever the value of the input is changed by the user', async () => {
         const onChangeCallback: jasmine.Spy = jasmine.createSpy('onChange');
         component.registerOnChange(onChangeCallback);
+        component.listBoxValues = suggestionOptions;
+        component._autoCompleteOpened.next(); // this needs to be done in order to get the full list of options displayed..
+        fixture.detectChanges();
 
-        await input.setValue(suggestionOption1.caption);
+        const autocompleteTrigger: MatAutocompleteTrigger = fixture.debugElement
+            .query(By.directive(MatAutocompleteTrigger))
+            .injector.get(MatAutocompleteTrigger);
+        autocompleteTrigger.openPanel();
+        await autoComplete.selectOption({ text: suggestionOption1.caption });
 
-        expect(onChangeCallback).toHaveBeenCalledWith(suggestionOption1.caption);
+        expect(onChangeCallback).toHaveBeenCalledWith(suggestionOption1.value);
     });
 
     it('should call registered touched callback whenever the input was blurred', async () => {
