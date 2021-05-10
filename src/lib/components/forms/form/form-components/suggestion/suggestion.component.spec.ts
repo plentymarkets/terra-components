@@ -16,6 +16,7 @@ import { TerraSuggestionBoxValueInterface } from '../../../suggestion-box/data/t
 import { MatInputHarness } from '@angular/material/input/testing';
 import { MatOptionHarness } from '@angular/material/core/testing';
 import { MatIconModule } from '@angular/material/icon';
+import { MatIconHarness } from '@angular/material/icon/testing';
 
 // tslint:disable-next-line:max-function-line-count
 describe('SuggestionComponent', () => {
@@ -186,18 +187,21 @@ describe('SuggestionComponent', () => {
         expect(await autoComplete.isFocused()).toBe(false);
     });
 
-    //fit('should set icon', async () => {
-    //    component.listBoxValues = suggestionOptions;
-    //    fixture.detectChanges();
-    //
-    //    await autoComplete.enterText('Apple');
-    //    await autoComplete.focus();
-    //    await autoComplete.selectOption({ text: suggestionOption1.caption });
-    //    const icon: MatIconHarness = await loader.getHarness(MatIconHarness);
-    //
-    //    expect(await icon.getName()).toEqual(suggestionOption1.icon);
-    //    expect(await icon.getNamespace()).toEqual('plentyicons');
-    //});
+    fit('should set icon', async () => {
+        component.listBoxValues = suggestionOptions;
+        component._autoCompleteOpened.next();
+        fixture.detectChanges();
+
+        const autocompleteTrigger: MatAutocompleteTrigger = fixture.debugElement
+            .query(By.directive(MatAutocompleteTrigger))
+            .injector.get(MatAutocompleteTrigger);
+        autocompleteTrigger.openPanel();
+        await autoComplete.enterText('Apple');
+        const icon: MatIconHarness = await loader.getHarness(MatIconHarness);
+
+        expect(await icon.getName()).toEqual(suggestionOption1.icon);
+        expect(await icon.getNamespace()).toEqual('plentyicons');
+    });
 
     //xit('should set img', async () => {
     //    component.listBoxValues = suggestionOptions;
