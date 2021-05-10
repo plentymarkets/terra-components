@@ -29,7 +29,6 @@ import { TerraNoResultNoticeComponentExample } from './no-result/example/terra-n
 import { TerraButtonWithOptionsComponentExample } from './buttons/button-with-options/example/terra-button-with-options.component.example';
 import { TerraInputComponentExample } from './forms/input/example/terra-input.component.example';
 import { TerraDataTableContextMenuComponentExample } from './tables/data-table/context-menu/example/terra-data-table-context-menu.component.example';
-import { TerraCodeEditorComponentExample } from './editors/code-editor/example/terra-code-editor.component.example';
 import { TerraNoteComponentExample } from './note/example/terra-note.component.example';
 import { TerraNodeTreeComponentExample } from './tree/node-tree/example/terra-node-tree.component.example';
 import { TerraTimePickerComponentExample } from './forms/input/time-picker/example/terra-time-picker.component.example';
@@ -83,7 +82,6 @@ export const examples: Array<Type<any>> = [
     TerraButtonWithOptionsComponentExample,
     TerraInputComponentExample,
     TerraDataTableContextMenuComponentExample,
-    TerraCodeEditorComponentExample,
     TerraNoteComponentExample,
     TerraNodeTreeComponentExample,
     TerraTimePickerComponentExample,
