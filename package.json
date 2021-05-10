@@ -48,7 +48,6 @@
         "@angular/router": "~11.2.6",
         "@plentymarkets/terra-lint-rules": "~1.0.1",
         "@plentymarkets/terra-prettier-config": "~0.1.0",
-        "@types/htmlhint": "^0.9.1",
         "@types/jasmine": "~3.6.0",
         "@types/jasminewd2": "~2.0.8",
         "@types/node": "^12.11.1",
