@@ -1,4 +1,3 @@
-import { SimpleChange } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -93,16 +92,13 @@ describe('TextAreaComponent', () => {
     });
 
     it('should have a default value of 4 for maxRows', async () => {
-        expect(component.maxRows).toBe(4);
         expect(await host.getProperty('rows')).toBe(4);
     });
 
     it('should set property `rows` according to input #maxRows but with at least 4', async () => {
-        component.ngOnChanges({ maxRows: new SimpleChange(4, 2, false) });
-        fixture.detectChanges();
         expect(await host.getProperty('rows')).toBe(4);
 
-        component.ngOnChanges({ maxRows: new SimpleChange(4, 6, false) });
+        component.maxRows = 6;
         fixture.detectChanges();
         expect(await host.getProperty('rows')).toBe(6);
     });
@@ -110,7 +106,7 @@ describe('TextAreaComponent', () => {
     it('should set resize style according to #hasFixedHeight', async () => {
         expect(await host.getCssValue('resize')).toBe('vertical');
 
-        component.ngOnChanges({ hasFixedHeight: new SimpleChange(false, true, false) });
+        component.hasFixedHeight = true;
         fixture.detectChanges();
         expect(await host.getCssValue('resize')).toBe('none');
     });
