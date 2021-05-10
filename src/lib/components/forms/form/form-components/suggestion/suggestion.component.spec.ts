@@ -24,6 +24,7 @@ describe('SuggestionComponent', () => {
     let fixture: ComponentFixture<SuggestionComponent>;
     let loader: HarnessLoader;
     let autoComplete: MatAutocompleteHarness;
+    let autoCompleteTrigger: MatAutocompleteTrigger;
     const suggestionOption1: TerraSuggestionBoxValueInterface = {
         caption: 'Apple',
         value: 1,
@@ -63,9 +64,13 @@ describe('SuggestionComponent', () => {
         fixture = TestBed.createComponent(SuggestionComponent);
         component = fixture.componentInstance;
         loader = TestbedHarnessEnvironment.loader(fixture);
-        autoComplete = await loader.getHarness(MatAutocompleteHarness);
 
         fixture.detectChanges();
+
+        autoComplete = await loader.getHarness(MatAutocompleteHarness);
+        autoCompleteTrigger = fixture.debugElement
+            .query(By.directive(MatAutocompleteTrigger))
+            .injector.get(MatAutocompleteTrigger);
     });
 
     it('should create', () => {
@@ -140,10 +145,7 @@ describe('SuggestionComponent', () => {
         component._autoCompleteOpened.next(); // this needs to be done in order to get the full list of options displayed..
         fixture.detectChanges();
 
-        const autocompleteTrigger: MatAutocompleteTrigger = fixture.debugElement
-            .query(By.directive(MatAutocompleteTrigger))
-            .injector.get(MatAutocompleteTrigger);
-        autocompleteTrigger.openPanel();
+        autoCompleteTrigger.openPanel();
         await autoComplete.selectOption({ text: suggestionOption1.caption });
 
         expect(onChangeCallback).toHaveBeenCalledWith(suggestionOption1.value);
@@ -164,10 +166,7 @@ describe('SuggestionComponent', () => {
         component._autoCompleteOpened.next();
         fixture.detectChanges();
 
-        const autocompleteTrigger: MatAutocompleteTrigger = fixture.debugElement
-            .query(By.directive(MatAutocompleteTrigger))
-            .injector.get(MatAutocompleteTrigger);
-        autocompleteTrigger.openPanel();
+        autoCompleteTrigger.openPanel();
 
         const options: Array<MatOptionHarness> = await autoComplete.getOptions();
         expect(options.length).toBe(suggestionOptions.length);
@@ -184,10 +183,7 @@ describe('SuggestionComponent', () => {
         component._autoCompleteOpened.next();
         fixture.detectChanges();
 
-        const autocompleteTrigger: MatAutocompleteTrigger = fixture.debugElement
-            .query(By.directive(MatAutocompleteTrigger))
-            .injector.get(MatAutocompleteTrigger);
-        autocompleteTrigger.openPanel();
+        autoCompleteTrigger.openPanel();
         const icon: MatIconHarness = await loader.getHarness(MatIconHarness);
 
         expect(await icon.getName()).toEqual(suggestionOption1.icon);
