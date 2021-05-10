@@ -160,9 +160,14 @@ describe('SuggestionComponent', () => {
     it('should render options as given via the #listBoxValues input', async () => {
         expect(await autoComplete.getOptions()).toEqual([]);
         component.listBoxValues = suggestionOptions;
+        component._autoCompleteOpened.next();
         fixture.detectChanges();
 
-        await autoComplete.focus();
+        const autocompleteTrigger: MatAutocompleteTrigger = fixture.debugElement
+            .query(By.directive(MatAutocompleteTrigger))
+            .injector.get(MatAutocompleteTrigger);
+        autocompleteTrigger.openPanel();
+
         const options: Array<MatOptionHarness> = await autoComplete.getOptions();
         expect(options.length).toBe(suggestionOptions.length);
         expect(
