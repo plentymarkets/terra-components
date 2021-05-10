@@ -15,10 +15,12 @@ import { noop } from 'rxjs';
         }
     ]
 })
-export class TextAreaComponent implements OnChanges, ControlValueAccessor, TextAreaInterface {
+export class TextAreaComponent implements ControlValueAccessor, TextAreaInterface {
     /** If true, the textarea is not resizeable. Default false. */
     @Input()
-    public hasFixedHeight: boolean = false;
+    public set hasFixedHeight(fixedHeight: boolean) {
+        this._hasFixedHeight = fixedHeight;
+    }
 
     /** Sets the initial number of rows. Minimum is four. */
     @Input()
@@ -53,6 +55,7 @@ export class TextAreaComponent implements OnChanges, ControlValueAccessor, TextA
     /** Internal model. The value of the input. */
     public value: string;
     public _maxRows: number;
+    public _hasFixedHeight: boolean;
 
     /** Stores a callback function which is executed whenever the input was blurred. */
     public _onTouchedCallback: () => void = noop;
@@ -63,12 +66,7 @@ export class TextAreaComponent implements OnChanges, ControlValueAccessor, TextA
 
     constructor() {
         this.maxRows = this._defaultMaxRows;
-    }
-
-    public ngOnChanges(changes: SimpleChanges): void {
-        if (changes.hasOwnProperty('hasFixedHeight')) {
-            this.hasFixedHeight = !!changes.hasFixedHeight.currentValue;
-        }
+        this.hasFixedHeight = false;
     }
 
     /** Writes a new value to the element.*/
