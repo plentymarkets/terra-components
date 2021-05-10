@@ -8,7 +8,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatAutocompleteModule, MatAutocompleteTrigger } from '@angular/material/autocomplete';
-import { TerraPlacementEnum } from '../../../../../helpers/enums/terra-placement.enum';
+import { TerraPlacementEnum } from '../../../../../helpers';
 import { By } from '@angular/platform-browser';
 import { MockTooltipDirective } from '../../../../../testing/mock-tooltip.directive';
 import { MatFormFieldHarness } from '@angular/material/form-field/testing';
