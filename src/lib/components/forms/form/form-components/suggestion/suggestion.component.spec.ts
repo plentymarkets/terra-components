@@ -187,7 +187,7 @@ describe('SuggestionComponent', () => {
         expect(await autoComplete.isFocused()).toBe(false);
     });
 
-    fit('should set icon', async () => {
+    it('should set icon', async () => {
         component.listBoxValues = suggestionOptions;
         component._autoCompleteOpened.next();
         fixture.detectChanges();
@@ -196,7 +196,6 @@ describe('SuggestionComponent', () => {
             .query(By.directive(MatAutocompleteTrigger))
             .injector.get(MatAutocompleteTrigger);
         autocompleteTrigger.openPanel();
-        await autoComplete.enterText('Apple');
         const icon: MatIconHarness = await loader.getHarness(MatIconHarness);
 
         expect(await icon.getName()).toEqual(suggestionOption1.icon);
