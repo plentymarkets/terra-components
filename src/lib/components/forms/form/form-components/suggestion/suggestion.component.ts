@@ -9,7 +9,7 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 
 /** A type guard to check whether the given value is of type {@link TerraSuggestionBoxValueInterface}. */
 export function isSuggestionValue(value: unknown): value is TerraSuggestionBoxValueInterface {
-    return typeof value === 'object' && 'caption' in value && 'value' in value;
+    return value && typeof value === 'object' && 'caption' in value && 'value' in value;
 }
 
 @Component({
@@ -74,7 +74,7 @@ export class SuggestionComponent implements ControlValueAccessor, SuggestionInte
             map((value: TerraSuggestionBoxValueInterface | string) =>
                 isSuggestionValue(value) ? value.caption : value
             ),
-            map((caption: string) => this._filter(caption))
+            map((caption: string) => this._filter(caption ?? ''))
         );
 
         // get the full list of listBoxValues if an option is selected and the panel is opened.

@@ -15,8 +15,7 @@ import { MatFormFieldHarness } from '@angular/material/form-field/testing';
 import { TerraSuggestionBoxValueInterface } from '../../../suggestion-box/data/terra-suggestion-box.interface';
 import { MatInputHarness } from '@angular/material/input/testing';
 import { MatOptionHarness } from '@angular/material/core/testing';
-import { MatIconModule } from '@angular/material/icon';
-import { MatIconHarness } from '@angular/material/icon/testing';
+import { MatIcon, MatIconModule } from '@angular/material/icon';
 
 // tslint:disable-next-line:max-function-line-count
 describe('SuggestionComponent', () => {
@@ -184,10 +183,11 @@ describe('SuggestionComponent', () => {
         fixture.detectChanges();
 
         autoCompleteTrigger.openPanel();
-        const icon: MatIconHarness = await loader.getHarness(MatIconHarness);
 
-        expect(await icon.getName()).toEqual(suggestionOption1.icon);
-        expect(await icon.getNamespace()).toEqual('plentyicons');
+        const icon: MatIcon = fixture.debugElement.query(By.directive(MatIcon)).injector.get(MatIcon);
+
+        expect(icon.fontSet).toEqual('plentyicons');
+        expect(icon.fontIcon).toEqual(suggestionOption1.icon);
     });
 
     //xit('should set img', async () => {
