@@ -179,14 +179,6 @@ describe('SuggestionComponent', () => {
         ).toBe(true);
     });
 
-    it('should focus and blur the autocomplete', async () => {
-        expect(await autoComplete.isFocused()).toBe(false);
-        await autoComplete.focus();
-        expect(await autoComplete.isFocused()).toBe(true);
-        await autoComplete.blur();
-        expect(await autoComplete.isFocused()).toBe(false);
-    });
-
     it('should set icon', async () => {
         component.listBoxValues = suggestionOptions;
         component._autoCompleteOpened.next();
