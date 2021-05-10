@@ -14,6 +14,8 @@ import { MockTooltipDirective } from '../../../../../testing/mock-tooltip.direct
 import { MatFormFieldHarness } from '@angular/material/form-field/testing';
 import { TerraSuggestionBoxValueInterface } from '../../../suggestion-box/data/terra-suggestion-box.interface';
 import { MatInputHarness } from '@angular/material/input/testing';
+import { MatOptionHarness } from '@angular/material/core/testing';
+import { MatIconModule } from '@angular/material/icon';
 
 // tslint:disable-next-line:max-function-line-count
 describe('SuggestionComponent', () => {
@@ -21,11 +23,11 @@ describe('SuggestionComponent', () => {
     let fixture: ComponentFixture<SuggestionComponent>;
     let loader: HarnessLoader;
     let autoComplete: MatAutocompleteHarness;
-    let input: MatInputHarness;
-
     const suggestionOption1: TerraSuggestionBoxValueInterface = {
         caption: 'Apple',
-        value: 1
+        value: 1,
+        icon: 'icon-add',
+        imgsrc: 'src'
     };
 
     const suggestionOption2: TerraSuggestionBoxValueInterface = {
@@ -51,7 +53,8 @@ describe('SuggestionComponent', () => {
                 MatInputModule,
                 NoopAnimationsModule,
                 ReactiveFormsModule,
-                MatAutocompleteModule
+                MatAutocompleteModule,
+                MatIconModule
             ],
             declarations: [SuggestionComponent, MockTooltipDirective]
         });
@@ -60,7 +63,6 @@ describe('SuggestionComponent', () => {
         component = fixture.componentInstance;
         loader = TestbedHarnessEnvironment.loader(fixture);
         autoComplete = await loader.getHarness(MatAutocompleteHarness);
-        input = await loader.getHarness(MatInputHarness);
 
         fixture.detectChanges();
     });
@@ -80,6 +82,7 @@ describe('SuggestionComponent', () => {
     });
 
     it('should set required validation when #isRequired is set', async () => {
+        let input: MatInputHarness = await loader.getHarness(MatInputHarness);
         expect(await input.isRequired()).toBe(false);
         component.isRequired = true;
         fixture.detectChanges();
@@ -89,12 +92,10 @@ describe('SuggestionComponent', () => {
 
     it('should disable the input when #isDisabled is set', async () => {
         expect(await autoComplete.isDisabled()).toBe(false);
-        expect(await input.isDisabled()).toBe(false);
         component.isDisabled = true;
         fixture.detectChanges();
 
         expect(await autoComplete.isDisabled()).toBe(true);
-        expect(await input.isDisabled()).toBe(true);
     });
 
     describe('with tooltip', () => {
@@ -155,4 +156,54 @@ describe('SuggestionComponent', () => {
 
         expect(onTouchedCallback).toHaveBeenCalled();
     });
+
+    it('should render options as given via the #listBoxValues input', async () => {
+        expect(await autoComplete.getOptions()).toEqual([]);
+        component.listBoxValues = suggestionOptions;
+        fixture.detectChanges();
+
+        await autoComplete.focus();
+        const options: Array<MatOptionHarness> = await autoComplete.getOptions();
+        expect(options.length).toBe(suggestionOptions.length);
+        expect(
+            options.every(
+                async (option: MatOptionHarness, index: number) =>
+                    (await option.getText()) === suggestionOptions[index].caption
+            )
+        ).toBe(true);
+    });
+
+    it('should focus and blur the autocomplete', async () => {
+        expect(await autoComplete.isFocused()).toBe(false);
+        await autoComplete.focus();
+        expect(await autoComplete.isFocused()).toBe(true);
+        await autoComplete.blur();
+        expect(await autoComplete.isFocused()).toBe(false);
+    });
+
+    //fit('should set icon', async () => {
+    //    component.listBoxValues = suggestionOptions;
+    //    fixture.detectChanges();
+    //
+    //    await autoComplete.enterText('Apple');
+    //    await autoComplete.focus();
+    //    await autoComplete.selectOption({ text: suggestionOption1.caption });
+    //    const icon: MatIconHarness = await loader.getHarness(MatIconHarness);
+    //
+    //    expect(await icon.getName()).toEqual(suggestionOption1.icon);
+    //    expect(await icon.getNamespace()).toEqual('plentyicons');
+    //});
+
+    //xit('should set img', async () => {
+    //    component.listBoxValues = suggestionOptions;
+    //    fixture.detectChanges();
+    //
+    //    await autoComplete.enterText('Apple');
+    //    await autoComplete.focus();
+    //    await autoComplete.selectOption({ text: suggestionOption1.caption });
+    //    const img: MatIconHarness = await loader.getHarness();
+    //
+    //    expect(await icon.getName()).toEqual(suggestionOption1.icon);
+    //    expect(await icon.getNamespace()).toEqual('plentyicons');
+    //});
 });
