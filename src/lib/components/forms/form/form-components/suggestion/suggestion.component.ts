@@ -44,7 +44,7 @@ export class SuggestionComponent implements ControlValueAccessor, SuggestionInte
     public listBoxValues: Array<TerraSuggestionBoxValueInterface> = [];
 
     /** A formControl for the handling of the value. */
-    public _control: FormControl = new FormControl({ disabled: this.isDisabled });
+    public _control: FormControl = new FormControl();
     /** An observable list of suggestions. The list will be updated whenever the user types in the input. */
     public _filteredOptions: Observable<Array<TerraSuggestionBoxValueInterface>>;
 
