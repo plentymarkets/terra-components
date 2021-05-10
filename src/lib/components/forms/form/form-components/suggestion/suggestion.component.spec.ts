@@ -28,7 +28,7 @@ describe('SuggestionComponent', () => {
         caption: 'Apple',
         value: 1,
         icon: 'icon-add',
-        imgsrc: 'src'
+        imgsrc: 'http://test.com/'
     };
 
     const suggestionOption2: TerraSuggestionBoxValueInterface = {
@@ -190,16 +190,16 @@ describe('SuggestionComponent', () => {
         expect(icon.fontIcon).toEqual(suggestionOption1.icon);
     });
 
-    //xit('should set img', async () => {
-    //    component.listBoxValues = suggestionOptions;
-    //    fixture.detectChanges();
-    //
-    //    await autoComplete.enterText('Apple');
-    //    await autoComplete.focus();
-    //    await autoComplete.selectOption({ text: suggestionOption1.caption });
-    //    const img: MatIconHarness = await loader.getHarness();
-    //
-    //    expect(await icon.getName()).toEqual(suggestionOption1.icon);
-    //    expect(await icon.getNamespace()).toEqual('plentyicons');
-    //});
+    it('should set img', async () => {
+        component.listBoxValues = suggestionOptions;
+        component._autoCompleteOpened.next();
+        fixture.detectChanges();
+
+        autoCompleteTrigger.openPanel();
+
+        const img: HTMLImageElement = fixture.debugElement.query(By.css('img')).nativeElement;
+
+        expect(img).toBeTruthy();
+        expect(img.src).toBe(suggestionOption1.imgsrc);
+    });
 });
