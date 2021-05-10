@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { SuggestionComponent } from './suggestion.component';
 import { HarnessLoader } from '@angular/cdk/testing';
 import { MatAutocompleteHarness } from '@angular/material/autocomplete/testing';
