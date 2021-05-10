@@ -3,7 +3,7 @@ import { TerraPlacementEnum } from '../../../../../helpers';
 import { TerraSuggestionBoxValueInterface } from '../../../suggestion-box/data/terra-suggestion-box.interface';
 import { merge, noop, Observable, Subject } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
-import { ControlValueAccessor, FormControl } from '@angular/forms';
+import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { SuggestionInterface } from './suggestion.interface';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 
@@ -14,7 +14,14 @@ export function isSuggestionValue(value: unknown): value is TerraSuggestionBoxVa
 
 @Component({
     selector: 'tc-suggestion',
-    templateUrl: './suggestion.component.html'
+    templateUrl: './suggestion.component.html',
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: SuggestionComponent,
+            multi: true
+        }
+    ]
 })
 export class SuggestionComponent implements ControlValueAccessor, SuggestionInterface, OnInit {
     /** Set the label. */
