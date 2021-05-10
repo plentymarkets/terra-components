@@ -2,14 +2,16 @@
 
 ### Breaking Changes
 
-- **terra-note-editor** 
-    - deprecated component is removed.
+-   **terra-note-editor**
 
-- **terra-code-editor**
-    - deprecated component is removed.
+    -   deprecated component is removed.
 
-- **dependencies**
-    - packages `quill` `htmlhint` `ngx-quill` are removed.
+-   **terra-code-editor**
+
+    -   deprecated component is removed.
+
+-   **dependencies**
+    -   packages `quill` `htmlhint` `ngx-quill` are removed.
 
 # 11.1.0 (23.03.2021)
 
