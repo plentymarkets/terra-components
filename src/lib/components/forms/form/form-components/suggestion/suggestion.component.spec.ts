@@ -5,7 +5,7 @@ import { MatAutocompleteHarness } from '@angular/material/autocomplete/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { TerraPlacementEnum } from '../../../../../helpers/enums/terra-placement.enum';
@@ -46,7 +46,13 @@ describe('SuggestionComponent', () => {
 
     beforeEach(async () => {
         TestBed.configureTestingModule({
-            imports: [MatFormFieldModule, MatInputModule, NoopAnimationsModule, FormsModule, MatAutocompleteModule],
+            imports: [
+                MatFormFieldModule,
+                MatInputModule,
+                NoopAnimationsModule,
+                ReactiveFormsModule,
+                MatAutocompleteModule
+            ],
             declarations: [SuggestionComponent, MockTooltipDirective]
         });
 
