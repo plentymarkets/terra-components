@@ -58,14 +58,12 @@
             "umdModuleIds": {
                 "ts-keycode-enum": "Key",
                 "moment": "moment",
-                "htmlhint": "HTMLHint",
                 "lodash": "_",
                 "iban": "IBAN",
                 "tippy.js": "tippy",
                 "ngx-bootstrap": "ngx-bootstrap",
                 "mydatepicker": "mydatepicker",
                 "interactjs": "interact",
-                "ngx-quill": "ngx-quill",
                 "ckeditor4-angular": "ckeditor4-angular",
                 "angular-l10n": "ng.l10n",
                 "util": "util"
