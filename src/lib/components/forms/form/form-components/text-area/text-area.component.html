@@ -8,7 +8,7 @@
         (ngModelChange)="_onChangeCallback($event)"
         (blur)="_onTouchedCallback()"
         [maxlength]="maxLength"
-        [rows]="maxRows"
+        [rows]="_maxRows"
         [required]="isRequired"
         autocomplete="off"
         [disabled]="isDisabled"

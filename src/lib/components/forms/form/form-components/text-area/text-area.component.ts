@@ -22,7 +22,9 @@ export class TextAreaComponent implements OnChanges, ControlValueAccessor, TextA
 
     /** Sets the initial number of rows. Minimum is four. */
     @Input()
-    public maxRows: number;
+    public set maxRows(rows: number) {
+        this._maxRows = Math.max(this._defaultMaxRows, rows);
+    }
 
     /** Set the label. */
     @Input()
@@ -50,6 +52,7 @@ export class TextAreaComponent implements OnChanges, ControlValueAccessor, TextA
 
     /** Internal model. The value of the input. */
     public value: string;
+    public _maxRows: number;
 
     /** Stores a callback function which is executed whenever the input was blurred. */
     public _onTouchedCallback: () => void = noop;
@@ -63,10 +66,6 @@ export class TextAreaComponent implements OnChanges, ControlValueAccessor, TextA
     }
 
     public ngOnChanges(changes: SimpleChanges): void {
-        if (changes.hasOwnProperty('maxRows') && changes?.maxRows) {
-            this.maxRows = Math.max(this._defaultMaxRows, changes.maxRows.currentValue);
-        }
-
         if (changes.hasOwnProperty('hasFixedHeight')) {
             this.hasFixedHeight = !!changes.hasFixedHeight.currentValue;
         }

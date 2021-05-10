@@ -110,7 +110,7 @@ export const formFields: TerraKeyValueInterface<TerraFormFieldInterface> = {
         options: {
             name: 'Textarea',
             required: true,
-            maxRows: 12
+            maxRows: 2
         }
     },
     text: {
