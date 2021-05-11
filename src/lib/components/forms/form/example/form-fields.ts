@@ -144,6 +144,27 @@ export const formFields: TerraKeyValueInterface<TerraFormFieldInterface> = {
             minLength: 3
         }
     },
+    checkboxGroup: {
+        type: 'checkboxGroup',
+        options: {
+            name: 'multiselect',
+            required: true,
+            checkboxValues: [
+                {
+                    caption: 'Checkbox A',
+                    value: 42
+                },
+                {
+                    caption: 'Checkbox B',
+                    value: 'Hello'
+                },
+                {
+                    caption: 'Checkbox C',
+                    value: 'World'
+                }
+            ]
+        }
+    },
     date: {
         type: 'date',
         defaultValue: '2019-01-01T00:00:00+01:00',

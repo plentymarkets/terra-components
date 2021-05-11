@@ -1,5 +1,4 @@
 import { Type } from '@angular/core';
-import { CheckboxGroupComponent } from '../../checkbox-group/checkbox-group.component';
 import { TerraFormTypeInterface } from './terra-form-type.interface';
 import { TerraFileInputComponent } from '../../input/file-input/terra-file-input.component';
 import { NumberInputComponent } from '../form-components/number-input/number-input.component';
@@ -11,6 +10,7 @@ import { TerraCodeEditorComponent } from '../../../editors/code-editor/terra-cod
 import { TerraSliderComponent } from '../../slider/terra-slider.component';
 import { TerraPortletComponent } from '../../../layouts/portlet/terra-portlet.component';
 import { TerraSuggestionBoxComponent } from '../../suggestion-box/terra-suggestion-box.component';
+import { MultiSelectComponent } from '../form-components/multi-select/multi-select.component';
 import { ColorPickerComponent } from '../form-components/color-picker/color-picker.component';
 import { DatePickerComponent } from '../form-components/datepicker/datepicker.component';
 import { TextInputComponent } from '../form-components/text-input/text-input.component';
@@ -78,7 +78,12 @@ export class FormTypeMap {
         },
         component: ColorPickerComponent
     };
-    public readonly checkboxGroup: Type<CheckboxGroupComponent> = CheckboxGroupComponent;
+    public readonly checkboxGroup: TerraFormTypeInterface = {
+        inputMap: {
+            required: 'isRequired'
+        },
+        component: MultiSelectComponent
+    };
     public readonly slider: Type<TerraSliderComponent> = TerraSliderComponent;
     public readonly noteEditor: TerraFormTypeInterface = {
         inputMap: {
