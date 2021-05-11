@@ -7,7 +7,7 @@ import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/f
 import { SuggestionInterface } from './suggestion.interface';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 
-/** A type guard to check whether the given value is of type {@link TerraSuggestionBoxValueInterface}. */
+/** A type guard to check whether the given value is of the type {@link TerraSuggestionBoxValueInterface}. */
 export function isSuggestionValue(value: unknown): value is TerraSuggestionBoxValueInterface {
     return value && typeof value === 'object' && 'caption' in value && 'value' in value;
 }
