@@ -6,12 +6,12 @@ import { NumberInputComponent } from '../form-components/number-input/number-inp
 import { TerraDoubleInputComponent } from '../../input/double-input/terra-double-input.component';
 import { SelectComponent } from '../form-components/select/select.component';
 import { TerraCategoryPickerComponent } from '../../../data-picker/category-picker/terra-category-picker.component';
-import { TerraColorPickerComponent } from '../../input/color-picker/terra-color-picker.component';
 import { TerraNoteEditorComponent } from '../../../editors/note-editor/terra-note-editor.component';
 import { TerraCodeEditorComponent } from '../../../editors/code-editor/terra-code-editor.component';
 import { TerraSliderComponent } from '../../slider/terra-slider.component';
 import { TerraPortletComponent } from '../../../layouts/portlet/terra-portlet.component';
 import { TerraSuggestionBoxComponent } from '../../suggestion-box/terra-suggestion-box.component';
+import { ColorPickerComponent } from '../form-components/color-picker/color-picker.component';
 import { DatePickerComponent } from '../form-components/datepicker/datepicker.component';
 import { TextInputComponent } from '../form-components/text-input/text-input.component';
 import { CheckboxComponent } from '../form-components/checkbox/checkbox.component';
@@ -74,9 +74,9 @@ export class FormTypeMap {
     public readonly category: Type<TerraCategoryPickerComponent> = TerraCategoryPickerComponent;
     public readonly color: TerraFormTypeInterface = {
         inputMap: {
-            required: 'inputIsRequired'
+            required: 'isRequired'
         },
-        component: TerraColorPickerComponent
+        component: ColorPickerComponent
     };
     public readonly checkboxGroup: Type<CheckboxGroupComponent> = CheckboxGroupComponent;
     public readonly slider: Type<TerraSliderComponent> = TerraSliderComponent;

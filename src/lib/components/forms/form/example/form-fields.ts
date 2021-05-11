@@ -128,6 +128,13 @@ export const formFields: TerraKeyValueInterface<TerraFormFieldInterface> = {
             required: true
         }
     },
+    color: {
+        type: 'color',
+        options: {
+            name: 'Color',
+            required: true
+        }
+    },
     optionalText: {
         type: 'text',
         isVisible: 'text.length > 3',

@@ -41,6 +41,7 @@ import { MatInputModule } from '@angular/material/input';
         DragDropModule,
         MatIconModule,
         MatCheckboxModule,
+        MatFormFieldModule,
         MatDatepickerModule,
         A11yModule,
         MatFormFieldModule,
