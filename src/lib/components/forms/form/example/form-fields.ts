@@ -85,7 +85,7 @@ export const listWithChildren: TerraFormFieldInterface = {
     }
 };
 
-export const containerCompontent: TerraFormFieldInterface = {
+export const containerComponent: TerraFormFieldInterface = {
     type: 'portlet',
     options: {
         name: 'Portlet'
@@ -138,5 +138,5 @@ export const formFields: TerraKeyValueInterface<TerraFormFieldInterface> = {
         }
     },
     listWithChildren: listWithChildren,
-    wrappedContainer: containerCompontent
+    wrappedContainer: containerComponent
 };

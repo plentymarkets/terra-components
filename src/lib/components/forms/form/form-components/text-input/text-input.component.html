@@ -1,0 +1,21 @@
+<mat-form-field class="w-100" [tcTooltip]="tooltipText" [placement]="tooltipPlacement">
+    <mat-label>{{ name }}</mat-label>
+    <input
+        matInput
+        [type]="isPassword ? 'password' : 'text'"
+        [(ngModel)]="value"
+        #control="ngModel"
+        (ngModelChange)="_onChangeCallback($event)"
+        (blur)="_onTouchedCallback()"
+        autocomplete="off"
+        [required]="isRequired"
+        [disabled]="isDisabled"
+        [readonly]="isReadonly"
+        [minLength]="minLength"
+        [maxlength]="maxLength"
+        [iban]="isIban"
+    />
+    <mat-error *ngIf="isIban && control.hasError('iban')">
+        {{ 'terraTextInput.invalidIban' | translate: _locale.language }}
+    </mat-error>
+</mat-form-field>
