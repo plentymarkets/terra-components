@@ -1,0 +1,16 @@
+<mat-form-field class="w-100" [tcTooltip]="tooltipText" [placement]="tooltipPlacement">
+    <mat-label>{{ name }}</mat-label>
+    <input
+        matInput
+        type="number"
+        autocomplete="off"
+        [(ngModel)]="value"
+        (ngModelChange)="_onChangeCallback($event)"
+        (blur)="_onTouchedCallback()"
+        [required]="isRequired"
+        [disabled]="isDisabled"
+        [style.text-align]="isPriceInput ? 'right' : 'left'"
+        [pattern]="_regex"
+        [step]="_step"
+    />
+</mat-form-field>
