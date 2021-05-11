@@ -18,14 +18,15 @@ export const select: TerraFormFieldInterface = {
         name: 'Select',
         listBoxValues: [
             {
-                value: 'option1',
-                caption: 'Option 1',
-                position: 0
-            },
-            {
                 value: 'option2',
                 caption: 'Option 2',
-                position: 1
+                position: 2
+            },
+            {
+                value: 'option1',
+                caption: 'Option 1',
+                position: 1,
+                color: 'green'
             }
         ]
     }
@@ -110,6 +111,14 @@ export const formFields: TerraKeyValueInterface<TerraFormFieldInterface> = {
         options: {
             name: 'checkbox',
             required: true
+        }
+    },
+    textarea: {
+        type: 'textarea',
+        options: {
+            name: 'Textarea',
+            required: true,
+            maxRows: 2
         }
     },
     text: {

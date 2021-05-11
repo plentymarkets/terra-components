@@ -65,6 +65,9 @@ import { TerraFormContainerWrapperComponent } from './forms/form/form-container/
 import { TableSettingsComponent } from './table/table-settings/table-settings.component';
 import { TableSettingsDialogComponent } from './table/table-settings/dialog/table-settings-dialog.component';
 import { CheckboxComponent } from './forms/form/form-components/checkbox/checkbox.component';
+import { SelectComponent } from './forms/form/form-components/select/select.component';
+import { NumberInputComponent } from './forms/form/form-components/number-input/number-input.component';
+import { TextAreaComponent } from './forms/form/form-components/text-area/text-area.component';
 
 export const exportedComponents: Array<Type<any>> = [
     TerraAlertPanelComponent,
@@ -136,5 +139,8 @@ export const components: Array<Type<any>> = [
     TerraBaseEditorComponent,
     TableSettingsDialogComponent,
     TerraFormContainerWrapperComponent,
-    CheckboxComponent
+    CheckboxComponent,
+    SelectComponent,
+    NumberInputComponent,
+    TextAreaComponent
 ];
