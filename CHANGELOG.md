@@ -3,6 +3,7 @@
 ### Features
 
 -   **terra-form**
+    -   form type **checkbox** replaced deprecated `terra-checkbox` with a `mat-checkbox` variant.
     -   form type **select** replaced deprecated `terra-select-box` with a `mat-select` variant.
     -   form type **number**: replaced deprecated `terra-number-input` with a `mat-input` variant.
     -   form type **text-area** replaced deprecated `terra-text-area-input` with a `mat-input` variant.
