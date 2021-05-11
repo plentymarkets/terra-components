@@ -106,6 +106,14 @@ export const containerCompontent: TerraFormFieldInterface = {
 };
 
 export const formFields: TerraKeyValueInterface<TerraFormFieldInterface> = {
+    textarea: {
+        type: 'textarea',
+        options: {
+            name: 'Textarea',
+            required: true,
+            maxRows: 2
+        }
+    },
     text: {
         type: 'text',
         options: {

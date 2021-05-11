@@ -5,8 +5,7 @@ import { TerraCheckboxComponent } from '../../checkbox/terra-checkbox.component'
 import { TerraDatePickerComponent } from '../../input/date-picker/terra-date-picker.component';
 import { TerraFileInputComponent } from '../../input/file-input/terra-file-input.component';
 import { TerraTextInputComponent } from '../../input/text-input/terra-text-input.component';
-import { TerraTextAreaInputComponent } from '../../input/text-area-input/terra-text-area-input.component';
-import { TerraNumberInputComponent } from '../../input/number-input/terra-number-input.component';
+import { NumberInputComponent } from '../form-components/number-input/number-input.component';
 import { TerraDoubleInputComponent } from '../../input/double-input/terra-double-input.component';
 import { SelectComponent } from '../form-components/select/select.component';
 import { TerraCategoryPickerComponent } from '../../../data-picker/category-picker/terra-category-picker.component';
@@ -16,6 +15,7 @@ import { TerraCodeEditorComponent } from '../../../editors/code-editor/terra-cod
 import { TerraSliderComponent } from '../../slider/terra-slider.component';
 import { TerraPortletComponent } from '../../../layouts/portlet/terra-portlet.component';
 import { TerraSuggestionBoxComponent } from '../../suggestion-box/terra-suggestion-box.component';
+import { TextAreaComponent } from '../form-components/text-area/text-area.component';
 
 /**
  * @description A map of control types that may be passed to the <terra-form> in order to support those controls.
@@ -48,15 +48,15 @@ export class FormTypeMap {
     };
     public readonly textarea: TerraFormTypeInterface = {
         inputMap: {
-            required: 'inputIsRequired'
+            required: 'isRequired'
         },
-        component: TerraTextAreaInputComponent
+        component: TextAreaComponent
     };
     public readonly number: TerraFormTypeInterface = {
         inputMap: {
-            required: 'inputIsRequired'
+            required: 'isRequired'
         },
-        component: TerraNumberInputComponent
+        component: NumberInputComponent
     };
     public readonly double: TerraFormTypeInterface = {
         inputMap: {
