@@ -2,13 +2,13 @@ import { Type } from '@angular/core';
 import { TerraFormTypeInterface } from './terra-form-type.interface';
 import { TerraFileInputComponent } from '../../input/file-input/terra-file-input.component';
 import { NumberInputComponent } from '../form-components/number-input/number-input.component';
-import { TerraDoubleInputComponent } from '../../input/double-input/terra-double-input.component';
 import { SelectComponent } from '../form-components/select/select.component';
 import { TerraCategoryPickerComponent } from '../../../data-picker/category-picker/terra-category-picker.component';
 import { TerraNoteEditorComponent } from '../../../editors/note-editor/terra-note-editor.component';
 import { TerraCodeEditorComponent } from '../../../editors/code-editor/terra-code-editor.component';
 import { TerraPortletComponent } from '../../../layouts/portlet/terra-portlet.component';
 import { TerraSuggestionBoxComponent } from '../../suggestion-box/terra-suggestion-box.component';
+import { DoubleInputComponent } from '../form-components/double-input/double-input.component';
 import { SliderComponent } from '../form-components/slider/slider.component';
 import { MultiSelectComponent } from '../form-components/multi-select/multi-select.component';
 import { ColorPickerComponent } from '../form-components/color-picker/color-picker.component';
@@ -61,9 +61,9 @@ export class FormTypeMap {
     };
     public readonly double: TerraFormTypeInterface = {
         inputMap: {
-            required: 'inputIsRequired'
+            required: 'isRequired'
         },
-        component: TerraDoubleInputComponent
+        component: DoubleInputComponent
     };
     public readonly select: TerraFormTypeInterface = {
         inputMap: {

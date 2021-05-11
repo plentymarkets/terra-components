@@ -43,7 +43,6 @@ import { MatInputModule } from '@angular/material/input';
         MatIconModule,
         MatCheckboxModule,
         MatSliderModule,
-        MatFormFieldModule,
         MatDatepickerModule,
         A11yModule,
         MatFormFieldModule,

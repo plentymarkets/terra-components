@@ -106,6 +106,13 @@ export const containerComponent: TerraFormFieldInterface = {
 };
 
 export const formFields: TerraKeyValueInterface<TerraFormFieldInterface> = {
+    double: {
+        type: 'double',
+        options: {
+            name: 'double',
+            isPriceInput: true
+        }
+    },
     checkbox: {
         type: 'checkbox',
         options: {
