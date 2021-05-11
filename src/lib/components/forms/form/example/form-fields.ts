@@ -18,14 +18,15 @@ export const select: TerraFormFieldInterface = {
         name: 'Select',
         listBoxValues: [
             {
-                value: 'option1',
-                caption: 'Option 1',
-                position: 0
-            },
-            {
                 value: 'option2',
                 caption: 'Option 2',
-                position: 1
+                position: 2
+            },
+            {
+                value: 'option1',
+                caption: 'Option 1',
+                position: 1,
+                color: 'green'
             }
         ]
     }
@@ -84,7 +85,7 @@ export const listWithChildren: TerraFormFieldInterface = {
     }
 };
 
-export const containerCompontent: TerraFormFieldInterface = {
+export const containerComponent: TerraFormFieldInterface = {
     type: 'portlet',
     options: {
         name: 'Portlet'
@@ -105,10 +106,32 @@ export const containerCompontent: TerraFormFieldInterface = {
 };
 
 export const formFields: TerraKeyValueInterface<TerraFormFieldInterface> = {
+    checkbox: {
+        type: 'checkbox',
+        options: {
+            name: 'checkbox',
+            required: true
+        }
+    },
+    textarea: {
+        type: 'textarea',
+        options: {
+            name: 'Textarea',
+            required: true,
+            maxRows: 2
+        }
+    },
     text: {
         type: 'text',
         options: {
             name: 'Text',
+            required: true
+        }
+    },
+    color: {
+        type: 'color',
+        options: {
+            name: 'Color',
             required: true
         }
     },
@@ -133,6 +156,35 @@ export const formFields: TerraKeyValueInterface<TerraFormFieldInterface> = {
             precision: 2
         }
     },
+    checkboxGroup: {
+        type: 'checkboxGroup',
+        options: {
+            name: 'multiselect',
+            required: true,
+            checkboxValues: [
+                {
+                    caption: 'Checkbox A',
+                    value: 42
+                },
+                {
+                    caption: 'Checkbox B',
+                    value: 'Hello'
+                },
+                {
+                    caption: 'Checkbox C',
+                    value: 'World'
+                }
+            ]
+        }
+    },
+    date: {
+        type: 'date',
+        defaultValue: '2019-01-01T00:00:00+01:00',
+        options: {
+            name: 'Test date',
+            displayDateFormat: 'DD.MM.YYYY'
+        }
+    },
     listWithChildren: listWithChildren,
-    wrappedContainer: containerCompontent
+    wrappedContainer: containerComponent
 };

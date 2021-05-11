@@ -34,6 +34,7 @@
         "@angular/core": "11.x",
         "@angular/forms": "11.x",
         "@angular/material": "11.x",
+        "@angular/material-moment-adapter": "11.x",
         "@angular/platform-browser": "11.x",
         "@angular/platform-browser-dynamic": "11.x",
         "@angular/router": "11.x",

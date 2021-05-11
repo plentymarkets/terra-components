@@ -18,6 +18,11 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSliderModule } from '@angular/material/slider';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { A11yModule } from '@angular/cdk/a11y';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
     imports: [
@@ -37,7 +42,13 @@ import { MatSliderModule } from '@angular/material/slider';
         DragDropModule,
         MatIconModule,
         MatCheckboxModule,
-        MatSliderModule
+        MatSliderModule,
+        MatFormFieldModule,
+        MatDatepickerModule,
+        A11yModule,
+        MatFormFieldModule,
+        MatSelectModule,
+        MatInputModule
     ],
     declarations: [...components, ...directives, ...pipes],
     exports: [...exportedComponents, ...exportedDirectives, ...exportedPipes]
