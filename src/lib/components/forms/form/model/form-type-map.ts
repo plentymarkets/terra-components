@@ -7,7 +7,7 @@ import { TerraFileInputComponent } from '../../input/file-input/terra-file-input
 import { TerraTextInputComponent } from '../../input/text-input/terra-text-input.component';
 import { NumberInputComponent } from '../form-components/number-input/number-input.component';
 import { TerraDoubleInputComponent } from '../../input/double-input/terra-double-input.component';
-import { TerraSelectBoxComponent } from '../../select-box/terra-select-box.component';
+import { SelectComponent } from '../form-components/select/select.component';
 import { TerraCategoryPickerComponent } from '../../../data-picker/category-picker/terra-category-picker.component';
 import { TerraColorPickerComponent } from '../../input/color-picker/terra-color-picker.component';
 import { TerraNoteEditorComponent } from '../../../editors/note-editor/terra-note-editor.component';
@@ -66,9 +66,9 @@ export class FormTypeMap {
     };
     public readonly select: TerraFormTypeInterface = {
         inputMap: {
-            required: 'inputIsRequired'
+            required: 'isRequired'
         },
-        component: TerraSelectBoxComponent
+        component: SelectComponent
     };
     public readonly category: Type<TerraCategoryPickerComponent> = TerraCategoryPickerComponent;
     public readonly color: TerraFormTypeInterface = {
