@@ -1,0 +1,26 @@
+<mat-form-field class="w-100" [tcTooltip]="tooltipText" [placement]="tooltipPlacement">
+    <mat-label>{{ name }}</mat-label>
+
+    <input
+        matInput
+        type="text"
+        [pattern]="_pattern"
+        [(ngModel)]="value"
+        (ngModelChange)="_onChangeCallback($event)"
+        (blur)="_onTouchedCallback()"
+        autocomplete="off"
+        [disabled]="isDisabled"
+        [required]="isRequired"
+    />
+
+    <input
+        matInput
+        type="color"
+        [(ngModel)]="value"
+        autocomplete="off"
+        (ngModelChange)="_onChangeCallback($event)"
+        (blur)="_onTouchedCallback()"
+        [disabled]="isDisabled"
+        [required]="isRequired"
+    />
+</mat-form-field>
