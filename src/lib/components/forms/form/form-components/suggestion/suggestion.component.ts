@@ -109,7 +109,7 @@ export class SuggestionComponent implements ControlValueAccessor, SuggestionInte
         this._onChangeCallback(selectedValue.value);
     }
 
-    /** A function to filter through the listBoxValues depending on the value in the autocomplete-input. */
+    /** A function to filter the listBoxValues depending on the value in the autocomplete-input. */
     private _filter(value: string): Array<TerraSuggestionBoxValueInterface> {
         const filterValue: string = value.toLowerCase();
 
