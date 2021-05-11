@@ -7,9 +7,9 @@ import { SelectComponent } from '../form-components/select/select.component';
 import { TerraCategoryPickerComponent } from '../../../data-picker/category-picker/terra-category-picker.component';
 import { TerraNoteEditorComponent } from '../../../editors/note-editor/terra-note-editor.component';
 import { TerraCodeEditorComponent } from '../../../editors/code-editor/terra-code-editor.component';
-import { TerraSliderComponent } from '../../slider/terra-slider.component';
 import { TerraPortletComponent } from '../../../layouts/portlet/terra-portlet.component';
 import { TerraSuggestionBoxComponent } from '../../suggestion-box/terra-suggestion-box.component';
+import { SliderComponent } from '../form-components/slider/slider.component';
 import { MultiSelectComponent } from '../form-components/multi-select/multi-select.component';
 import { ColorPickerComponent } from '../form-components/color-picker/color-picker.component';
 import { DatePickerComponent } from '../form-components/datepicker/datepicker.component';
@@ -84,7 +84,7 @@ export class FormTypeMap {
         },
         component: MultiSelectComponent
     };
-    public readonly slider: Type<TerraSliderComponent> = TerraSliderComponent;
+    public readonly slider: Type<SliderComponent> = SliderComponent;
     public readonly noteEditor: TerraFormTypeInterface = {
         inputMap: {
             name: 'inputHeaderLabel'

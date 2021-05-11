@@ -64,6 +64,7 @@ import { TerraBaseEditorComponent } from './editors/base-editor/terra-base-edito
 import { TerraFormContainerWrapperComponent } from './forms/form/form-container/container-wrapper/terra-form-container-wrapper.component';
 import { TableSettingsComponent } from './table/table-settings/table-settings.component';
 import { TableSettingsDialogComponent } from './table/table-settings/dialog/table-settings-dialog.component';
+import { SliderComponent } from './forms/form/form-components/slider/slider.component';
 import { MultiSelectComponent } from './forms/form/form-components/multi-select/multi-select.component';
 import { ColorPickerComponent } from './forms/form/form-components/color-picker/color-picker.component';
 import { DatePickerComponent } from './forms/form/form-components/datepicker/datepicker.component';
@@ -143,6 +144,7 @@ export const components: Array<Type<any>> = [
     TerraBaseEditorComponent,
     TableSettingsDialogComponent,
     TerraFormContainerWrapperComponent,
+    SliderComponent,
     MultiSelectComponent,
     ColorPickerComponent,
     DatePickerComponent,
