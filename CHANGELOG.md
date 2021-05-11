@@ -3,6 +3,7 @@
 ### Features
 
 -   **terra-form**
+    -   form type **datepicker** replaced deprecated `terra-date-picker` with a `mat-datepicker` variant.
     -   form type **text**: replaced deprecated `terra-text-input` with a `mat-input` variant.
     -   form type **checkbox** replaced deprecated `terra-checkbox` with a `mat-checkbox` variant.
     -   form type **select** replaced deprecated `terra-select-box` with a `mat-select` variant.

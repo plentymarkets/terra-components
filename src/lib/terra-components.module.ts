@@ -17,8 +17,9 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { A11yModule } from '@angular/cdk/a11y';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { A11yModule } from '@angular/cdk/a11y';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 
@@ -40,6 +41,7 @@ import { MatInputModule } from '@angular/material/input';
         DragDropModule,
         MatIconModule,
         MatCheckboxModule,
+        MatDatepickerModule,
         A11yModule,
         MatFormFieldModule,
         MatSelectModule,

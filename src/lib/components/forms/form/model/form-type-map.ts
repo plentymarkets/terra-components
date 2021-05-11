@@ -1,7 +1,6 @@
 import { Type } from '@angular/core';
 import { CheckboxGroupComponent } from '../../checkbox-group/checkbox-group.component';
 import { TerraFormTypeInterface } from './terra-form-type.interface';
-import { TerraDatePickerComponent } from '../../input/date-picker/terra-date-picker.component';
 import { TerraFileInputComponent } from '../../input/file-input/terra-file-input.component';
 import { NumberInputComponent } from '../form-components/number-input/number-input.component';
 import { TerraDoubleInputComponent } from '../../input/double-input/terra-double-input.component';
@@ -13,6 +12,7 @@ import { TerraCodeEditorComponent } from '../../../editors/code-editor/terra-cod
 import { TerraSliderComponent } from '../../slider/terra-slider.component';
 import { TerraPortletComponent } from '../../../layouts/portlet/terra-portlet.component';
 import { TerraSuggestionBoxComponent } from '../../suggestion-box/terra-suggestion-box.component';
+import { DatePickerComponent } from '../form-components/datepicker/datepicker.component';
 import { TextInputComponent } from '../form-components/text-input/text-input.component';
 import { CheckboxComponent } from '../form-components/checkbox/checkbox.component';
 import { TextAreaComponent } from '../form-components/text-area/text-area.component';
@@ -32,7 +32,7 @@ export class FormTypeMap {
         inputMap: {
             required: 'inputIsRequired'
         },
-        component: TerraDatePickerComponent
+        component: DatePickerComponent
     };
     public readonly file: TerraFormTypeInterface = {
         inputMap: {
