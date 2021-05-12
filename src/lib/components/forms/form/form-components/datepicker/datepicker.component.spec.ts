@@ -108,6 +108,13 @@ describe('DatePickerComponent', () => {
         expect(await datepicker.getValue()).toEqual(today.format('D.M.Y'));
     });
 
+    it('should has the value null when writing a value null via `writeValue()`', async () => {
+        component.writeValue(null);
+        fixture.detectChanges();
+
+        expect(await datepicker.getValue()).toEqual('');
+    });
+
     it('should call registered change callback whenever the value of the datepicker is changed by the user', async () => {
         const onChangeCallback: jasmine.Spy = jasmine.createSpy('onChange');
         component.registerOnChange(onChangeCallback);
