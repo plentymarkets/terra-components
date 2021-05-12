@@ -79,7 +79,7 @@ describe('CheckboxComponent', () => {
 
     it('should not call the callback #registerOnTouched when the checkbox was not blurred', async () => {
         const onTouchedCallback: jasmine.Spy = jasmine.createSpy('onTouched');
-        component._onFocusChange('touch');
+        await checkbox.focus();
 
         expect(onTouchedCallback).not.toHaveBeenCalled();
     });
