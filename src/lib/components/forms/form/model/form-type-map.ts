@@ -84,7 +84,12 @@ export class FormTypeMap {
         },
         component: MultiSelectComponent
     };
-    public readonly slider: Type<SliderComponent> = SliderComponent;
+    public readonly slider: TerraFormTypeInterface = {
+        inputMap: {
+            required: 'isRequired'
+        },
+        component: SliderComponent
+    };
     public readonly noteEditor: TerraFormTypeInterface = {
         inputMap: {
             name: 'inputHeaderLabel'
