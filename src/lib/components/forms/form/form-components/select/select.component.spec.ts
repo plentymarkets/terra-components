@@ -98,7 +98,8 @@ describe('SelectComponent', () => {
 
         fixture.detectChanges();
 
-        expect(await input.getValueText()).toBe(listBoxValue1.caption.toString());
+        expect(await input.getValueText()).toBe(listBoxValue1.caption);
+        expect(await input.getValue()).toBe(listBoxValue1.value);
     });
 
     it('should call registered onTouchedCallback when select blur has been called', async () => {
