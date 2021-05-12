@@ -18,9 +18,7 @@ import { noop } from 'rxjs';
 export class TextAreaComponent implements ControlValueAccessor, TextAreaInterface {
     /** If true, the textarea is not resizeable. Default false. */
     @Input()
-    public set hasFixedHeight(fixedHeight: boolean) {
-        this._hasFixedHeight = fixedHeight;
-    }
+    public hasFixedHeight: boolean = false;
 
     /** Sets the initial number of rows. Minimum is four. */
     @Input()
