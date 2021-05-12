@@ -63,7 +63,6 @@ export class TextAreaComponent implements ControlValueAccessor, TextAreaInterfac
 
     constructor() {
         this.maxRows = this._defaultMaxRows;
-        this.hasFixedHeight = false;
     }
 
     /** Writes a new value to the element.*/
