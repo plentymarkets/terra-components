@@ -1,5 +1,5 @@
 import { Type } from '@angular/core';
-import { TerraAlertPanelComponent } from './alert/terra-alert-panel.component';
+import { TerraAlertPanelComponent } from './alert';
 import { TerraTextInputComponent } from './forms/input/text-input/terra-text-input.component';
 import { TerraColorPickerComponent } from './forms/input/color-picker/terra-color-picker.component';
 import { TerraNumberInputComponent } from './forms/input/number-input/terra-number-input.component';
@@ -62,19 +62,21 @@ import { FilterComponent } from './filter/filter.component';
 import { CheckboxGroupComponent } from './forms/checkbox-group/checkbox-group.component';
 import { TerraBaseEditorComponent } from './editors/base-editor/terra-base-editor.component';
 import { TerraFormContainerWrapperComponent } from './forms/form/form-container/container-wrapper/terra-form-container-wrapper.component';
-import { TableSettingsComponent } from './table/table-settings/table-settings.component';
+import { TableSettingsComponent } from './table';
 import { TableSettingsDialogComponent } from './table/table-settings/dialog/table-settings-dialog.component';
-import { SuggestionComponent } from './forms/form/form-components/suggestion/suggestion.component';
-import { DoubleInputComponent } from './forms/form/form-components/double-input/double-input.component';
-import { SliderComponent } from './forms/form/form-components/slider/slider.component';
-import { MultiSelectComponent } from './forms/form/form-components/multi-select/multi-select.component';
-import { ColorPickerComponent } from './forms/form/form-components/color-picker/color-picker.component';
-import { DatePickerComponent } from './forms/form/form-components/datepicker/datepicker.component';
-import { TextInputComponent } from './forms/form/form-components/text-input/text-input.component';
-import { CheckboxComponent } from './forms/form/form-components/checkbox/checkbox.component';
-import { SelectComponent } from './forms/form/form-components/select/select.component';
-import { NumberInputComponent } from './forms/form/form-components/number-input/number-input.component';
-import { TextAreaComponent } from './forms/form/form-components/text-area/text-area.component';
+import {
+    CheckboxComponent,
+    ColorPickerComponent,
+    DatePickerComponent,
+    DoubleInputComponent,
+    MultiSelectComponent,
+    NumberInputComponent,
+    SelectComponent,
+    SliderComponent,
+    SuggestionComponent,
+    TextAreaComponent,
+    TextInputComponent
+} from './forms/form/form-components';
 
 export const exportedComponents: Array<Type<any>> = [
     TerraAlertPanelComponent,
