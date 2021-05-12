@@ -17,7 +17,7 @@ describe('SelectComponent', () => {
     let fixture: ComponentFixture<SelectComponent>;
     let component: SelectComponent;
     let loader: HarnessLoader;
-    let input: MatSelectHarness;
+    let select: MatSelectHarness;
 
     let listBoxValue1: TerraSelectBoxValueInterface = {
         caption: 'Value 01',
@@ -43,23 +43,23 @@ describe('SelectComponent', () => {
 
         fixture.detectChanges();
 
-        input = await loader.getHarness(MatSelectHarness);
+        select = await loader.getHarness(MatSelectHarness);
     });
 
     it('should create', async () => {
         expect(component).toBeTruthy();
-        expect(input).toBeTruthy();
+        expect(select).toBeTruthy();
     });
 
-    it('should disable the input when #isDisabled is set', async () => {
-        expect(await input.isDisabled()).toBe(false);
+    it('should disable the select when #isDisabled is set', async () => {
+        expect(await select.isDisabled()).toBe(false);
         component.isDisabled = true;
         fixture.detectChanges();
 
-        expect(await input.isDisabled()).toBe(true);
+        expect(await select.isDisabled()).toBe(true);
     });
 
-    it('should have #name as label of the input', async () => {
+    it('should have #name as label of the select', async () => {
         const formField: MatFormFieldHarness = await loader.getHarness(MatFormFieldHarness);
         expect(await formField.getLabel()).toBe('');
 
@@ -69,20 +69,20 @@ describe('SelectComponent', () => {
     });
 
     it('should set required validation when #isRequired is set', async () => {
-        expect(await input.isRequired()).toBe(false);
+        expect(await select.isRequired()).toBe(false);
         component.isRequired = true;
         fixture.detectChanges();
 
-        expect(await input.isRequired()).toBe(true);
+        expect(await select.isRequired()).toBe(true);
     });
 
     it('should set listBoxValues when #listBoxValues is set', async () => {
-        expect(await input.getOptions()).toEqual([]);
+        expect(await select.getOptions()).toEqual([]);
         component.listBoxValues = selectOptions;
         fixture.detectChanges();
 
-        await input.open();
-        const options: Array<MatOptionHarness> = await input.getOptions();
+        await select.open();
+        const options: Array<MatOptionHarness> = await select.getOptions();
         expect(options.length).toBe(selectOptions.length);
         expect(
             options.every(
@@ -98,13 +98,13 @@ describe('SelectComponent', () => {
 
         fixture.detectChanges();
 
-        expect(await input.getValueText()).toBe(listBoxValue1.caption.toString());
+        expect(await select.getValueText()).toBe(listBoxValue1.caption.toString());
     });
 
     it('should call registered onTouchedCallback when select blur has been called', async () => {
         const spy: jasmine.Spy = jasmine.createSpy('onTouchedCallback');
         component.registerOnTouched(spy);
-        await input.blur();
+        await select.blur();
 
         fixture.detectChanges();
 
@@ -118,7 +118,7 @@ describe('SelectComponent', () => {
 
         fixture.detectChanges();
 
-        await input.clickOptions({
+        await select.clickOptions({
             text: listBoxValue1.caption.toString()
         });
 
@@ -126,7 +126,7 @@ describe('SelectComponent', () => {
     });
 
     it('should sort select options by position if given', async () => {
-        expect(await input.getOptions()).toEqual([]);
+        expect(await select.getOptions()).toEqual([]);
 
         component.listBoxValues = [
             {
@@ -148,8 +148,8 @@ describe('SelectComponent', () => {
 
         fixture.detectChanges();
 
-        await input.open();
-        const options: Array<MatOptionHarness> = await input.getOptions();
+        await select.open();
+        const options: Array<MatOptionHarness> = await select.getOptions();
         expect(
             options.every(
                 async (option: MatOptionHarness, index: number) => (await option.getText()) === 'position-' + index + 1
@@ -161,8 +161,8 @@ describe('SelectComponent', () => {
         component.listBoxValues = [{ caption: 'colored', value: 1, color: 'rgb(1, 2, 3)' as any }];
         fixture.detectChanges();
 
-        await input.open();
-        const options: Array<MatOptionHarness> = await input.getOptions();
+        await select.open();
+        const options: Array<MatOptionHarness> = await select.getOptions();
         const option: MatOptionHarness = options[0];
         const host: TestElement = await option.host();
         expect(await host.getCssValue('color')).toBe(component.listBoxValues[0].color);
