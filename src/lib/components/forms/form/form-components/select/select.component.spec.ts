@@ -98,8 +98,7 @@ describe('SelectComponent', () => {
 
         fixture.detectChanges();
 
-        expect(await input.getValueText()).toBe(listBoxValue1.caption);
-        expect(await input.getValue()).toBe(listBoxValue1.value);
+        expect(await input.getValueText()).toBe(listBoxValue1.caption.toString());
     });
 
     it('should call registered onTouchedCallback when select blur has been called', async () => {
@@ -120,7 +119,7 @@ describe('SelectComponent', () => {
         fixture.detectChanges();
 
         await input.clickOptions({
-            text: listBoxValue1.caption
+            text: listBoxValue1.caption.toString()
         });
 
         expect(spy).toHaveBeenCalledOnceWith(listBoxValue1.value);
