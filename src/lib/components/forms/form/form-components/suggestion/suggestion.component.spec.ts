@@ -95,7 +95,6 @@ describe('SuggestionComponent', () => {
         expect(await input.isRequired()).toBe(true);
     });
 
-
     it('should enable the input when #isDisabled is set to false', async () => {
         expect(await autoComplete.isDisabled()).toBe(false);
 
