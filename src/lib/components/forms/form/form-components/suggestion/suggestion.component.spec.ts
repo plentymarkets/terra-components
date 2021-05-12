@@ -142,7 +142,7 @@ describe('SuggestionComponent', () => {
         expect(await autoComplete.getValue()).toBe(suggestionOption1.caption);
     });
 
-    it('should call registered change callback whenever the value of the input is changed by the user', async () => {
+    it('should call registered change callback whenever selects another value', async () => {
         const onChangeCallback: jasmine.Spy = jasmine.createSpy('onChange');
         component.registerOnChange(onChangeCallback);
         component.listBoxValues = suggestionOptions;
