@@ -53,7 +53,6 @@ export class TextAreaComponent implements ControlValueAccessor, TextAreaInterfac
     /** Internal model. The value of the input. */
     public value: string;
     public _maxRows: number;
-    public _hasFixedHeight: boolean;
 
     /** Stores a callback function which is executed whenever the input was blurred. */
     public _onTouchedCallback: () => void = noop;
