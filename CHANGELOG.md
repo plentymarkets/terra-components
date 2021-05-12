@@ -6,7 +6,7 @@
     -   form type **suggestion**: replaced deprecated `terra-suggestion-box` by a `mat-autocomplete` variant.
     -   form type **double**: replaced deprecated `terra-double-input` by a `mat-input` variant.
     -   form type **slider**: replaced deprecated `terra-slider` by a `mat-slider` variant.
-    -   form type **multi select**: replaced deprecated `tc-checkbox-group` by a `mat-select` variant in the multiple mode.
+    -   form type **checkbox group**: replaced deprecated `tc-checkbox-group` by a `mat-select` variant in the multiple mode.
     -   form type **color**: replaced deprecated `terra-color-picker` by a `mat-input` variant.
     -   form type **datepicker**: replaced deprecated `terra-date-picker` by a `mat-datepicker` variant.
     -   form type **text**: replaced deprecated `terra-text-input` by a `mat-input` variant.
