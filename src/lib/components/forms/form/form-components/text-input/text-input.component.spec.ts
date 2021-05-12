@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TextInputComponent } from './text-input.component';
-import { HarnessLoader } from '@angular/cdk/testing';
+import { HarnessLoader, TestElement } from '@angular/cdk/testing';
 import { MatInputHarness } from '@angular/material/input/testing';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -165,5 +165,23 @@ describe('TextInputComponent', () => {
         await input.blur();
 
         expect(onTouchedCallback).toHaveBeenCalled();
+    });
+
+    it('should set min length validation according to input #minLength', async () => {
+        const inputElement: TestElement = await input.host();
+
+        component.minLength = 2;
+        fixture.detectChanges();
+
+        expect(await inputElement.getProperty('minLength')).toBe(component.minLength);
+    });
+
+    it('should set max length validation according to input #maxLength', async () => {
+        const inputElement: TestElement = await input.host();
+
+        component.maxLength = 10;
+        fixture.detectChanges();
+
+        expect(await inputElement.getProperty('maxLength')).toBe(component.maxLength);
     });
 });
