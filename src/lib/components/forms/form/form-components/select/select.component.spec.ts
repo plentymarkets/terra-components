@@ -120,7 +120,7 @@ describe('SelectComponent', () => {
         fixture.detectChanges();
 
         await input.clickOptions({
-            text: listBoxValue1.caption.toString()
+            text: listBoxValue1.caption
         });
 
         expect(spy).toHaveBeenCalledOnceWith(listBoxValue1.value);
