@@ -30,7 +30,7 @@ export class FormTypeMap {
     };
     public readonly date: TerraFormTypeInterface = {
         inputMap: {
-            required: 'inputIsRequired'
+            required: 'isRequired'
         },
         component: DatePickerComponent
     };
