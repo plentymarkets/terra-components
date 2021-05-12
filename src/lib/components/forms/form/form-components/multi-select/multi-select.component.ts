@@ -62,4 +62,12 @@ export class MultiSelectComponent implements ControlValueAccessor, MultiSelectIn
     public writeValue(value: Array<any>): void {
         this.value = value;
     }
+
+    /**
+     * Calls registered {@link _onChangeCallback} whenever the user has changed selections.
+     * Passes `null` instead of an empty array to the change callback if there's nothing selected.
+     */
+    public _onChange(value: Array<any>): void {
+        this._onChangeCallback(value.length === 0 ? null : value);
+    }
 }

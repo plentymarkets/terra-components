@@ -5,7 +5,7 @@
     <mat-select
         multiple
         [(ngModel)]="value"
-        (ngModelChange)="_onChangeCallback($event)"
+        (ngModelChange)="_onChange($event)"
         (blur)="_onTouchedCallback()"
         [required]="isRequired"
         [disabled]="isDisabled"

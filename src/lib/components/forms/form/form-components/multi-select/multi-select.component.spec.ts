@@ -169,6 +169,25 @@ describe('MultiSelectComponent', () => {
         ]);
     });
 
+    it(`should pass 'null' to the change callback when there's nothing selected anymore`, async () => {
+        component.checkboxValues = multiSelectOptions;
+        component.writeValue([multiSelectOption1.value]);
+        fixture.detectChanges();
+
+        await select.open();
+        expect((await select.getOptions({ isSelected: true })).length).toBe(1);
+
+        const onChangeSpy: jasmine.Spy = jasmine.createSpy('onChangeCallback');
+        component.registerOnChange(onChangeSpy);
+
+        await select.clickOptions({
+            text: multiSelectOption1.caption
+        });
+
+        expect((await select.getOptions({ isSelected: true })).length).toBe(0);
+        expect(onChangeSpy).toHaveBeenCalledWith(null);
+    });
+
     describe('with tooltip', () => {
         let tooltip: MockTooltipDirective;
 
