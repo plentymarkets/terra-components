@@ -126,6 +126,16 @@ describe('DatePickerComponent', () => {
         expect(onChangeCallback.calls.mostRecent().args[0]).toBe(today.format());
     });
 
+    it('should call registered change callback with null whenever the value of the datepicker is not a moment format', async () => {
+        const onChangeCallback: jasmine.Spy = jasmine.createSpy('onChange');
+        component.registerOnChange(onChangeCallback);
+
+        const value: string = new Date().toDateString();
+
+        await datepicker.setValue(value);
+        expect(onChangeCallback).toHaveBeenCalledWith(null);
+    });
+
     it('should call registered touched callback whenever the input was blurred', async () => {
         const onTouchedCallback: jasmine.Spy = jasmine.createSpy('onTouched');
         component.registerOnTouched(onTouchedCallback);
