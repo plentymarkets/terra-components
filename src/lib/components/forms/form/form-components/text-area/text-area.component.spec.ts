@@ -135,4 +135,12 @@ describe('TextAreaComponent', () => {
 
         expect(onTouchedCallback).toHaveBeenCalled();
     });
+
+    it('should update the value of the input when writing a new value via `writeValue()`', async () => {
+        const value: string = 'my test string';
+        component.writeValue(value);
+
+        fixture.detectChanges();
+        expect(await input.getValue()).toEqual(value);
+    });
 });
