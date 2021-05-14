@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import { isFunction, isNullOrUndefined } from 'util';
+import { isNullOrUndefined } from 'util';
 import { TerraFormFieldBaseContainer } from '../../dynamic-form/data/terra-form-field-base-container';
 import { TerraFormFieldCodeEditorOptions } from '../../dynamic-form/data/terra-form-field-code-editor';
 import { TerraFormFieldInputDouble } from '../../dynamic-form/data/terra-form-field-input-double';
@@ -126,7 +126,7 @@ export class TerraFormFieldHelper {
         };
 
         let transformFn: string = 'transform' + type.charAt(0).toUpperCase() + type.substr(1) + 'Field';
-        if (isFunction(this[transformFn])) {
+        if (typeof this[transformFn] === 'function') {
             result.field = this[transformFn](result.field, field);
         }
 
