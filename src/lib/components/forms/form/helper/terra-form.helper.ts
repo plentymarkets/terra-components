@@ -1,5 +1,5 @@
 import { AbstractControl, FormArray, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
-import { isArray, isNullOrUndefined, isObject, isString } from 'util';
+import { isNullOrUndefined, isObject, isString } from 'util';
 import { StringHelper } from '../../../../helpers/string.helper';
 import { TerraValidators } from '../../../../validators/validators';
 import { TerraFormFieldHelper } from './terra-form-field.helper';
@@ -109,7 +109,7 @@ export class TerraFormHelper {
             let defaultValue: any = TerraFormFieldHelper.parseDefaultValue(formField);
             if (formField.isList) {
                 let formControls: Array<AbstractControl> = [];
-                if (!isNullOrUndefined(values) && isArray(values[formFieldKey])) {
+                if (!isNullOrUndefined(values) && Array.isArray(values[formFieldKey])) {
                     formControls = (values[formFieldKey] as Array<any>).map((value: any, index: number) => {
                         return this.createNewControl(value || defaultValue[index], formField);
                     });

@@ -15,7 +15,7 @@ import { TerraDataTableRowInterface } from './interfaces/terra-data-table-row.in
 import { TerraDataTableSortOrderEnum } from './enums/terra-data-table-sort-order.enum';
 import { TerraButtonInterface } from '../../buttons/button/data/terra-button.interface';
 import { TerraHrefTypeInterface } from './interfaces/terra-href-type.interface';
-import { isArray, isNullOrUndefined } from 'util';
+import { isNullOrUndefined } from 'util';
 import { TerraTextAlignEnum } from './enums/terra-text-align.enum';
 import { TerraHrefTypeEnum } from './enums/terra-href-type.enum';
 import { debounceTime, filter, tap } from 'rxjs/operators';
@@ -151,7 +151,7 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
 
         function isTagArray(arg: any): arg is Array<TerraTagInterface> {
             // check if it is an array
-            if (!isArray(arg)) {
+            if (!Array.isArray(arg)) {
                 return false;
             }
 
@@ -165,7 +165,7 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
 
         function isButtonArray(arg: any): arg is Array<TerraButtonInterface> {
             // check if it is an array
-            if (!isArray(arg)) {
+            if (!Array.isArray(arg)) {
                 return false;
             }
 

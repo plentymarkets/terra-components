@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import { isArray, isFunction, isNullOrUndefined, isObject, isString } from 'util';
+import { isFunction, isNullOrUndefined, isObject, isString } from 'util';
 import { TerraFormFieldBaseContainer } from '../../dynamic-form/data/terra-form-field-base-container';
 import { TerraFormFieldCodeEditorOptions } from '../../dynamic-form/data/terra-form-field-code-editor';
 import { TerraFormFieldInputDouble } from '../../dynamic-form/data/terra-form-field-input-double';
@@ -82,7 +82,7 @@ export class TerraFormFieldHelper {
 
     public static isLegacyFormFields(formFields: { [key: string]: any } | Array<TerraFormFieldBase<any>>): boolean {
         return (
-            isArray(formFields) ||
+            Array.isArray(formFields) ||
             Object.keys(formFields).some((key: string) => !isNullOrUndefined(formFields[key].label))
         );
     }
@@ -90,7 +90,7 @@ export class TerraFormFieldHelper {
     public static detectLegacyFormFields(
         formFields: { [key: string]: any } | Array<TerraFormFieldBase<any>>
     ): { [key: string]: TerraFormFieldInterface } {
-        if (isArray(formFields)) {
+        if (Array.isArray(formFields)) {
             let transformedFields: { [key: string]: TerraFormFieldInterface } = {};
             formFields.forEach((field: TerraFormFieldBase<any>) => {
                 let transformedField: { key: string; field: TerraFormFieldInterface } = this._transformLegacyFormField(
