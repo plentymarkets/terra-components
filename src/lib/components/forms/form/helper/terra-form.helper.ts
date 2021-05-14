@@ -145,7 +145,7 @@ export class TerraFormHelper {
         formFields: { [key: string]: TerraFormFieldInterface },
         values: any
     ): any {
-        if (form instanceof FormGroup && !(typeof values === 'object')) {
+        if (form instanceof FormGroup && !(values !== null && typeof values === 'object')) {
             return;
         }
 
@@ -171,6 +171,7 @@ export class TerraFormHelper {
             } else if (
                 !isNullOrUndefined(formField.children) &&
                 control instanceof FormGroup &&
+                controlValues !== null &&
                 typeof controlValues === 'object'
             ) {
                 values[formControlKey] = this.updateFormArrays(control, formField.children, controlValues);

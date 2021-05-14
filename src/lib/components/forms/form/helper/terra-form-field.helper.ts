@@ -245,6 +245,7 @@ export class TerraFormFieldHelper {
                 (formField.isList && !skipList && Array.isArray(formField.defaultValue)) || // list expected. List given.
                 (!formField.isList &&
                     !isNullOrUndefined(formField.children) &&
+                    formField.defaultValue !== null &&
                     typeof formField.defaultValue === 'object' &&
                     !Array.isArray(formField.defaultValue)) || // object expected. Object given. No Array!
                 (!formField.isList && isNullOrUndefined(formField.children))
@@ -307,7 +308,7 @@ export class TerraFormFieldHelper {
      * @param value to clone if isObject or isArray.
      */
     private static _cloneDefaultValue(value: any): any {
-        if (typeof value === 'object' || Array.isArray(value)) {
+        if ((value !== null && typeof value === 'object') || Array.isArray(value)) {
             return cloneDeep(value);
         }
         return value;
