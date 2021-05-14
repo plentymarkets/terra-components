@@ -2,7 +2,6 @@
  * Defines RGB-formatted colors.
  * @package modules/helpers
  */
-import { isUndefined } from 'util';
 import { TerraRegex } from './regex/terra-regex';
 
 export type ColorRGB = { r: number; g: number; b: number };
@@ -169,7 +168,7 @@ export class Color {
      * @param color string|ColorRGB|ColorHSL The color
      */
     private isRGB(color: string | ColorRGB | ColorHSL): boolean {
-        return !isUndefined((<ColorRGB>color).r);
+        return (<ColorRGB>color).r !== undefined;
     }
 
     /**
@@ -177,7 +176,7 @@ export class Color {
      * @param color string|ColorRGB|ColorHSL The color
      */
     private isHSL(color: string | ColorRGB | ColorHSL): boolean {
-        return !isUndefined((<ColorHSL>color).h);
+        return (<ColorHSL>color).h !== undefined;
     }
 
     /**
