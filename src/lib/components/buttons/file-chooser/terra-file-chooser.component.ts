@@ -8,6 +8,11 @@ import { TerraStorageObject } from '../../file-browser/model/terra-storage-objec
 import { TerraOverlayComponent } from '../../layouts/overlay/terra-overlay.component';
 import { TerraOverlayButtonInterface } from '../../layouts/overlay/data/terra-overlay-button.interface';
 
+/**
+ * @deprecated since v11. Use material's [button]{@link https://material.angular.io/components/button}
+ * and [dialog]{@link https://material.angular.io/components/dialog}
+ * in conjunction with our [file-browser]{@link TerraFileBrowserComponent } instead.
+ */
 @Component({
     selector: 'terra-file-chooser',
     templateUrl: './terra-file-chooser.component.html',
