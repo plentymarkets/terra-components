@@ -1,5 +1,5 @@
 import { AbstractControl, FormArray, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
-import { isNullOrUndefined, isObject } from 'util';
+import { isNullOrUndefined } from 'util';
 import { StringHelper } from '../../../../helpers/string.helper';
 import { TerraValidators } from '../../../../validators/validators';
 import { TerraFormFieldHelper } from './terra-form-field.helper';
@@ -120,7 +120,7 @@ export class TerraFormHelper {
                 controls[formFieldKey] = new FormArray(formControls, this.generateFormArrayValidators(formField));
             } else if (!isNullOrUndefined(formField.children)) {
                 let value: Object =
-                    !isNullOrUndefined(values) && isObject(values[formFieldKey])
+                    !isNullOrUndefined(values) && typeof values[formFieldKey] === 'object'
                         ? values[formFieldKey]
                         : defaultValue || null;
                 controls[formFieldKey] = this.parseReactiveForm(formField.children, value);
@@ -145,7 +145,7 @@ export class TerraFormHelper {
         formFields: { [key: string]: TerraFormFieldInterface },
         values: any
     ): any {
-        if (form instanceof FormGroup && !isObject(values)) {
+        if (form instanceof FormGroup && !(typeof values === 'object')) {
             return;
         }
 
@@ -171,7 +171,7 @@ export class TerraFormHelper {
             } else if (
                 !isNullOrUndefined(formField.children) &&
                 control instanceof FormGroup &&
-                isObject(controlValues)
+                typeof controlValues === 'object'
             ) {
                 values[formControlKey] = this.updateFormArrays(control, formField.children, controlValues);
             }

@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import { isFunction, isNullOrUndefined, isObject } from 'util';
+import { isFunction, isNullOrUndefined } from 'util';
 import { TerraFormFieldBaseContainer } from '../../dynamic-form/data/terra-form-field-base-container';
 import { TerraFormFieldCodeEditorOptions } from '../../dynamic-form/data/terra-form-field-code-editor';
 import { TerraFormFieldInputDouble } from '../../dynamic-form/data/terra-form-field-input-double';
@@ -245,7 +245,7 @@ export class TerraFormFieldHelper {
                 (formField.isList && !skipList && Array.isArray(formField.defaultValue)) || // list expected. List given.
                 (!formField.isList &&
                     !isNullOrUndefined(formField.children) &&
-                    isObject(formField.defaultValue) &&
+                    typeof formField.defaultValue === 'object' &&
                     !Array.isArray(formField.defaultValue)) || // object expected. Object given. No Array!
                 (!formField.isList && isNullOrUndefined(formField.children))
             ) {
@@ -307,7 +307,7 @@ export class TerraFormFieldHelper {
      * @param value to clone if isObject or isArray.
      */
     private static _cloneDefaultValue(value: any): any {
-        if (isObject(value) || Array.isArray(value)) {
+        if (typeof value === 'object' || Array.isArray(value)) {
             return cloneDeep(value);
         }
         return value;
