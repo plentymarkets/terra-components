@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import { isFunction, isNullOrUndefined, isObject, isString } from 'util';
+import { isFunction, isNullOrUndefined, isObject } from 'util';
 import { TerraFormFieldBaseContainer } from '../../dynamic-form/data/terra-form-field-base-container';
 import { TerraFormFieldCodeEditorOptions } from '../../dynamic-form/data/terra-form-field-code-editor';
 import { TerraFormFieldInputDouble } from '../../dynamic-form/data/terra-form-field-input-double';
@@ -220,7 +220,7 @@ export class TerraFormFieldHelper {
         let min: number;
         let max: number;
 
-        if (isString(range)) {
+        if (typeof range === 'string') {
             const match: RegExpExecArray = /^\s*\[\s*(\d*)\s*,\s*(\d*)\s*]\s*$/.exec(range as string);
             if (match !== null) {
                 min = parseInt(match[1], 10);
