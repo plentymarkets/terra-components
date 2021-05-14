@@ -20,9 +20,9 @@ import { Subscription } from 'rxjs';
 import { TerraBaseStorageService } from '../terra-base-storage.interface';
 import { TerraFileBrowserComponent } from '../terra-file-browser.component';
 import { TerraFileBrowserService } from '../terra-file-browser.service';
-import { L10nIntlService, L10nLocale, L10nTranslationService, L10N_LOCALE } from 'angular-l10n';
+import { L10N_LOCALE, L10nIntlService, L10nLocale, L10nTranslationService } from 'angular-l10n';
 import { TerraUploadProgress } from '../model/terra-upload-progress';
-import { isNullOrUndefined, isNumber } from 'util';
+import { isNullOrUndefined } from 'util';
 import { TerraBasePrivateStorageService } from '../terra-base-private-storage.interface';
 import { TerraStorageObjectList } from '../model/terra-storage-object-list';
 import { PathHelper } from '../../../helpers/path.helper';
@@ -123,10 +123,10 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
                     this._progress = progress;
 
                     if (!isNullOrUndefined(this._progress)) {
-                        if (isNumber(this._progress.sizeUploaded)) {
+                        if (typeof this._progress.sizeUploaded === 'number') {
                             this._progress.sizeUploaded = PathHelper.sizeString(this._progress.sizeUploaded);
                         }
-                        if (isNumber(this._progress.sizeTotal)) {
+                        if (typeof this._progress.sizeTotal === 'number') {
                             this._progress.sizeTotal = PathHelper.sizeString(this._progress.sizeTotal);
                         }
 
