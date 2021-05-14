@@ -1,3 +1,9 @@
+# 11.2.0 (XX.XX.2021)
+
+### Features
+
+-   **file-chooser** has been deprecated. Use material's [button](https://material.angular.io/components/button) and [dialog](https://material.angular.io/components/dialog) in conjunction with our [file-browser](./src/lib/components/file-browser) instead.
+
 # 11.1.0 (23.03.2021)
 
 ### Features
