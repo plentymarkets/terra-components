@@ -2,7 +2,7 @@
 
 ### Features
 
--   **terra-form**
+-   **terra-form**: for some form types, deprecated variants have been replaced as follows:
     -   form type **suggestion**: replaced deprecated `terra-suggestion-box` by a `mat-autocomplete` variant.
     -   form type **double**: replaced deprecated `terra-double-input` by a `mat-input` variant.
     -   form type **slider**: replaced deprecated `terra-slider` by a `mat-slider` variant.
