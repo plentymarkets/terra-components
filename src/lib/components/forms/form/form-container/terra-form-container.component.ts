@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges, Type } from '@angular/core';
 import { TerraFormScope } from '../model/terra-form-scope.data';
-import { isNullOrUndefined, isString } from 'util';
+import { isNullOrUndefined } from 'util';
 import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
 import { TerraKeyValueInterface, TerraKeyValuePairInterface } from '../../../../models';
 import { AbstractControl, ControlValueAccessor, FormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
@@ -96,7 +96,7 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
 
     private _updateFieldVisibility(): void {
         this._formFields.forEach((field: TerraKeyValuePairInterface<TerraFormFieldInterface>) => {
-            if (isString(field.value.isVisible)) {
+            if (typeof field.value.isVisible === 'string') {
                 this._formFieldVisibility[field.key] = this.inputScope?.evaluate(field.value.isVisible as string);
             } else {
                 this._formFieldVisibility[field.key] =
