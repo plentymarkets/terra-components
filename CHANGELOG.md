@@ -1,3 +1,9 @@
+# 11.x.x (xx.05.2021)
+
+### Feature
+
+**terra-portlet** is deprecated now. Use angular material's [expansion panel](https://material.angular.io/components/expansion/overview) instead.
+
 # 11.1.0 (23.03.2021)
 
 ### Features

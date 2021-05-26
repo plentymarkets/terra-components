@@ -27,6 +27,7 @@ import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum'
         ])
     ]
 })
+/** @deprecated since v11. Please Use angular material's [expansion panel](https://material.angular.io/components/expansion/overview) instead. */
 export class TerraPortletComponent implements OnChanges {
     /**
      * @description If true, portlet gets highlighted on mouse hover.
