@@ -28,6 +28,7 @@ import { L10nLocale, L10N_LOCALE } from 'angular-l10n';
         ])
     ]
 })
+/** @deprecated since v11. Please use `terra-table-actions` instead. */
 export class TerraGroupFunctionComponent {
     /**
      * @description shows group functions container if set to true
