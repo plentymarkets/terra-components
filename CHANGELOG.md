@@ -1,6 +1,7 @@
-# 12.X.X (XX.XX.2021)
+# 11.X.X (XX.XX.2021)
 
-### Breaking Changes
+### Features
+
 -   **terra-group-function** is deprecated now.
 
 # 11.1.0 (23.03.2021)
