@@ -1,7 +1,8 @@
-# 11.2.0 (XX.XX.2021)
+# 11.2.0 (xx.xx.2021)
 
 ### Minor changes
 
+-   **terra-portlet** is deprecated now. Use angular material's [expansion panel](https://material.angular.io/components/expansion/overview) instead.
 -   **terra-radio-group** is deprecated now. Use angular material's [radio-button](https://material.angular.io/components/radio/overview) instead.
 -   **terra-radio-input** is deprecated now. Use angular material's [radio-button](https://material.angular.io/components/radio/overview) instead.
 
