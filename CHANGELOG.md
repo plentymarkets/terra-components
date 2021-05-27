@@ -1,3 +1,9 @@
+# 11.2.0 (XX.XX.2021)
+
+### Minor changes
+
+-   **terra-radio-group** is deprecated now. Use angular material's [radio-button](https://material.angular.io/components/radio/overview) instead.
+
 # 11.1.0 (23.03.2021)
 
 ### Features
