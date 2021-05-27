@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import { isArray, isFunction, isNullOrUndefined, isObject, isString } from 'util';
+import { isNullOrUndefined } from 'util';
 import { TerraFormFieldBaseContainer } from '../../dynamic-form/data/terra-form-field-base-container';
 import { TerraFormFieldCodeEditorOptions } from '../../dynamic-form/data/terra-form-field-code-editor';
 import { TerraFormFieldInputDouble } from '../../dynamic-form/data/terra-form-field-input-double';
@@ -82,7 +82,7 @@ export class TerraFormFieldHelper {
 
     public static isLegacyFormFields(formFields: { [key: string]: any } | Array<TerraFormFieldBase<any>>): boolean {
         return (
-            isArray(formFields) ||
+            Array.isArray(formFields) ||
             Object.keys(formFields).some((key: string) => !isNullOrUndefined(formFields[key].label))
         );
     }
@@ -90,7 +90,7 @@ export class TerraFormFieldHelper {
     public static detectLegacyFormFields(
         formFields: { [key: string]: any } | Array<TerraFormFieldBase<any>>
     ): { [key: string]: TerraFormFieldInterface } {
-        if (isArray(formFields)) {
+        if (Array.isArray(formFields)) {
             let transformedFields: { [key: string]: TerraFormFieldInterface } = {};
             formFields.forEach((field: TerraFormFieldBase<any>) => {
                 let transformedField: { key: string; field: TerraFormFieldInterface } = this._transformLegacyFormField(
@@ -126,7 +126,7 @@ export class TerraFormFieldHelper {
         };
 
         let transformFn: string = 'transform' + type.charAt(0).toUpperCase() + type.substr(1) + 'Field';
-        if (isFunction(this[transformFn])) {
+        if (typeof this[transformFn] === 'function') {
             result.field = this[transformFn](result.field, field);
         }
 
@@ -220,7 +220,7 @@ export class TerraFormFieldHelper {
         let min: number;
         let max: number;
 
-        if (isString(range)) {
+        if (typeof range === 'string') {
             const match: RegExpExecArray = /^\s*\[\s*(\d*)\s*,\s*(\d*)\s*]\s*$/.exec(range as string);
             if (match !== null) {
                 min = parseInt(match[1], 10);
@@ -245,7 +245,8 @@ export class TerraFormFieldHelper {
                 (formField.isList && !skipList && Array.isArray(formField.defaultValue)) || // list expected. List given.
                 (!formField.isList &&
                     !isNullOrUndefined(formField.children) &&
-                    isObject(formField.defaultValue) &&
+                    formField.defaultValue !== null &&
+                    typeof formField.defaultValue === 'object' &&
                     !Array.isArray(formField.defaultValue)) || // object expected. Object given. No Array!
                 (!formField.isList && isNullOrUndefined(formField.children))
             ) {
@@ -307,7 +308,7 @@ export class TerraFormFieldHelper {
      * @param value to clone if isObject or isArray.
      */
     private static _cloneDefaultValue(value: any): any {
-        if (isObject(value) || Array.isArray(value)) {
+        if ((value !== null && typeof value === 'object') || Array.isArray(value)) {
             return cloneDeep(value);
         }
         return value;

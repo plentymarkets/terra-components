@@ -13,6 +13,7 @@ let nextId: number = 0;
     templateUrl: './radio-input.component.html',
     styleUrls: ['./radio-input.component.scss']
 })
+/** @deprecated since v11. Use angular material's [radio-button](https://material.angular.io/components/radio/overview) instead. */
 export class RadioInputComponent {
     /**
      * The radio input's label

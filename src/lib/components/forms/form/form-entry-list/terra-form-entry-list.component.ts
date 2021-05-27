@@ -1,6 +1,6 @@
 import { Component, Inject, Input, OnChanges, SimpleChanges, Type } from '@angular/core';
 import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
-import { isArray, isNullOrUndefined } from 'util';
+import { isNullOrUndefined } from 'util';
 import { TerraFormScope } from '../model/terra-form-scope.data';
 import {
     AbstractControl,
@@ -91,7 +91,7 @@ export class TerraFormEntryListComponent implements OnChanges, ControlValueAcces
     }
 
     public writeValue(value: Array<any>): void {
-        if (isNullOrUndefined(value) || !isArray(value)) {
+        if (isNullOrUndefined(value) || !Array.isArray(value)) {
             this.formArray = new FormArray([]);
             this.formArray.setValue([]);
             this._childScopes = [];

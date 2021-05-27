@@ -1,7 +1,11 @@
-# 11.2.0 (XX.XX.2021)
+# 11.2.0 (xx.xx.2021)
 
-### Features
+### Minor changes
 
+-   **terra-portlet** is deprecated now. Use angular material's [expansion panel](https://material.angular.io/components/expansion/overview) instead.
+-   **terra-group-function** is deprecated now.
+-   **terra-stopwatch** is deprecated now.
+-   **terra-radio-group** & **terra-radio-input** are deprecated now. Use angular material's [radio-button](https://material.angular.io/components/radio/overview) instead.
 -   **file-chooser** has been deprecated. Use material's [button](https://material.angular.io/components/button) and [dialog](https://material.angular.io/components/dialog) in conjunction with our [file-browser](./src/lib/components/file-browser) instead.
 
 # 11.1.0 (23.03.2021)
