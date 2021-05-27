@@ -3,6 +3,7 @@
 ### Minor changes
 
 -   **terra-portlet** is deprecated now. Use angular material's [expansion panel](https://material.angular.io/components/expansion/overview) instead.
+-   **terra-group-function** is deprecated now.
 -   **terra-stopwatch** is deprecated now.
 
 # 11.1.0 (23.03.2021)
