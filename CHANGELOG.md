@@ -1,3 +1,9 @@
+# 11.2.0 (XX.XX.2021)
+
+### Minor changes
+
+-   **terra-stopwatch** is deprecated now.
+
 # 11.1.0 (23.03.2021)
 
 ### Features
