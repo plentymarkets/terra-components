@@ -3,6 +3,7 @@
 ### Minor changes
 
 -   **terra-portlet** is deprecated now. Use angular material's [expansion panel](https://material.angular.io/components/expansion/overview) instead.
+-   **terra-stopwatch** is deprecated now.
 -   **terra-radio-group** is deprecated now. Use angular material's [radio-button](https://material.angular.io/components/radio/overview) instead.
 -   **terra-radio-input** is deprecated now. Use angular material's [radio-button](https://material.angular.io/components/radio/overview) instead.
 
