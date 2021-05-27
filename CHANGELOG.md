@@ -1,4 +1,4 @@
-# 11.x.x (xx.xx.2021)
+# 11.2.0 (xx.xx.2021)
 
 ### Minor changes
 
