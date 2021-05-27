@@ -1,3 +1,9 @@
+# 12.X.X (XX.XX.2021)
+
+### Breaking Changes
+
+-   **terra-stopwatch** has been removed.
+
 # 11.1.0 (23.03.2021)
 
 ### Features
