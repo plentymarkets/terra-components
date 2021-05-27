@@ -6,6 +6,7 @@ import { isNullOrUndefined } from 'util';
     selector: 'terra-stopwatch',
     templateUrl: './terra-stopwatch.component.html'
 })
+/** @deprecated since v11. */
 export class TerraStopwatchComponent implements OnInit {
     /**
      * @description If true, the start, pause and reset control will show
