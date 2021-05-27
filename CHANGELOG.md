@@ -6,6 +6,7 @@
 -   **terra-group-function** is deprecated now.
 -   **terra-stopwatch** is deprecated now.
 -   **terra-radio-group** & **terra-radio-input** are deprecated now. Use angular material's [radio-button](https://material.angular.io/components/radio/overview) instead.
+-   **terra-slider** is deprecated now. Use angular material's [slider](https://material.angular.io/components/slider/overview) instead.
 
 # 11.1.0 (23.03.2021)
 
