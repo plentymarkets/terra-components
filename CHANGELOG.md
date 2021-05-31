@@ -2,12 +2,12 @@
 
 ### Minor changes
 
--   **terra-portlet** is deprecated now. Use angular material's [expansion-panel](https://material.angular.io/components/expansion/overview) instead.
--   **terra-group-function** is deprecated now.
--   **terra-stopwatch** is deprecated now.
--   **terra-radio-group** & **terra-radio-input** are deprecated now. Use angular material's [radio-button](https://material.angular.io/components/radio/overview) instead.
--   **terra-slider** is deprecated now. Use angular material's [slider](https://material.angular.io/components/slider/overview) instead.
--   **file-chooser** has been deprecated. Use material's [button](https://material.angular.io/components/button) and [dialog](https://material.angular.io/components/dialog) in conjunction with our [file-browser](./src/lib/components/file-browser) instead.
+-   The **terra-portlet** component has been deprecated. Use Angular Material's [expansion-panel](https://material.angular.io/components/expansion/overview) instead.
+-   The **terra-group-function** component has been deprecated.
+-   The **terra-stopwatch** component has been deprecated.
+-   The **terra-radio-group** & **terra-radio-input** components have been deprecated. Use Angular Material's [radio-button](https://material.angular.io/components/radio/overview) instead.
+-   The **terra-slider** component has been deprecated. Use Angular Material's [slider](https://material.angular.io/components/slider/overview) instead.
+-   The **file-chooser** component has been deprecated. Use Angular Material's [button](https://material.angular.io/components/button) and [dialog](https://material.angular.io/components/dialog) in conjunction with our [file-browser](./src/lib/components/file-browser) instead.
 -   **terra-form**: for some form types, deprecated variants have been replaced as follows:
     -   form type **suggestion**: replaced deprecated `terra-suggestion-box` by a `mat-autocomplete` variant.
     -   form type **double**: replaced deprecated `terra-double-input` by a `mat-input` variant.
