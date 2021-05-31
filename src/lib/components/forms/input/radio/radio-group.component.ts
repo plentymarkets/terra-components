@@ -19,6 +19,7 @@ let nextId: number = 0;
         }
     ]
 })
+/** @deprecated since v11. Use angular material's [radio-button](https://material.angular.io/components/radio/overview) instead. */
 export class RadioGroupComponent implements ControlValueAccessor, OnInit, OnChanges {
     /**
      * Name of the group. This is projected to the input's name property.
