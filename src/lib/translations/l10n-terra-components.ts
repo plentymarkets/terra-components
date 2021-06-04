@@ -222,7 +222,7 @@ const en: {} = {
             'attr-lowercase': 'Attribute name must be lowercase.',
             'attr-value-double-quotes': 'Attribute value must be closed by double quotes.',
             'attr-value-not-empty': 'Attribute must set a value.',
-            'attr-no-duplication': "The same attribute cannot be specified twice.",
+            'attr-no-duplication': 'The same attribute cannot be specified twice.',
             'doctype-first': 'DOCTYPE must be specified first.',
             'tag-pair': 'Tag is not closed correctly.',
             'tag-self-close': 'Empty tag must close itself.',
