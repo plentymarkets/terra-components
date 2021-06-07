@@ -1,7 +1,12 @@
 # 11.2.0 (xx.xx.2021)
 
+### Features
+
+-   **terra-filter-toolbar** has been added
+
 ### Minor changes
 
+-   **tc-filter** has been deprecated.
 -   **terra-portlet** is deprecated now. Use angular material's [expansion panel](https://material.angular.io/components/expansion/overview) instead.
 -   **terra-group-function** is deprecated now.
 -   **terra-stopwatch** is deprecated now.
