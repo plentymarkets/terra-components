@@ -2,7 +2,7 @@
 
 ### Features
 
--   **terra-filter-toolbar** has been added
+-   **filter** added new components and directives to create a filter for tables. See this [directory](./src/lib/components/filter) for more details.
 
 ### Minor changes
 
