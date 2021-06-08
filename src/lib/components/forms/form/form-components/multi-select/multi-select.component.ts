@@ -81,6 +81,11 @@ export class MultiSelectComponent implements ControlValueAccessor, MultiSelectIn
         this._onChangeCallback(value.length === 0 ? null : value);
     }
 
+    /**
+     * Selects/deselects all options depending on whether all options are selected.
+     * If all options are selected, they'll be unselected afterwards. Otherwise all options will be selected.
+     * @param select
+     */
     public _toggleAll(select: MatSelect): void {
         this.value =
             (select.selected as Array<MatOption>).length === this.checkboxValues.length
