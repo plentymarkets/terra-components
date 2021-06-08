@@ -11,6 +11,7 @@ import { MatSelectHarness } from '@angular/material/select/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldHarness } from '@angular/material/form-field/testing';
 import { MatOptionHarness } from '@angular/material/core/testing';
+import { PseudoCheckboxStatePipe } from './pipes/pseudo-checkbox-state.pipe';
 
 let multiSelectOption1: { caption: string; value: any } = {
     caption: 'Value 01',
@@ -43,7 +44,7 @@ describe('MultiSelectComponent', () => {
     beforeEach(async () => {
         TestBed.configureTestingModule({
             imports: [MatSelectModule, FormsModule, NoopAnimationsModule],
-            declarations: [MultiSelectComponent, MockTooltipDirective]
+            declarations: [MultiSelectComponent, MockTooltipDirective, PseudoCheckboxStatePipe]
         });
 
         fixture = TestBed.createComponent(MultiSelectComponent);
