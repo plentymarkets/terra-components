@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { DisplayWhenFn } from '../models';
+import { DisplayWhenFn } from '../models/display-when-function.interface';
 
 /**
  * Determines whether a chip should be displayed depending on its value and a given displayWhen-function.

@@ -1,5 +1,5 @@
 import { ChipDisplayWhenPipe } from './chip-display-when.pipe';
-import { DisplayWhenFn } from '../models';
+import { DisplayWhenFn } from '../models/display-when-function.interface';
 
 describe('ChipDisplayWhenPipe', () => {
     const pipe: ChipDisplayWhenPipe = new ChipDisplayWhenPipe();

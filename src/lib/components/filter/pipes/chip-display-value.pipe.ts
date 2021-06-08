@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { DisplayWithFn } from '../models';
+import { DisplayWithFn } from '../models/display-with-function.interface';
 
 /**
  * Transforms a value into a string using the given displayWith-function.

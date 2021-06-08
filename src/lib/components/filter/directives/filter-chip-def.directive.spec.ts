@@ -5,7 +5,7 @@ import { By } from '@angular/platform-browser';
 import { FilterChipDefDirective } from './filter-chip-def.directive';
 import { FilterChipLabelDirective } from './filter-chip-label.directive';
 import { FilterContainerDirective } from './filter-container.directive';
-import { DisplayWhenFn } from '../models';
+import { DisplayWhenFn } from '../models/display-when-function.interface';
 
 // tslint:disable:component-max-inline-declarations
 // tslint:disable:max-function-line-count

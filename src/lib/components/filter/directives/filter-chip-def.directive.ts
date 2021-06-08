@@ -1,8 +1,9 @@
 import { ContentChild, Directive, Input, OnDestroy, OnInit, Optional, Self } from '@angular/core';
 import { NgControl } from '@angular/forms';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
-import { DisplayWhenFn, DisplayWithFn } from '../models';
 import { FilterContainerDirective } from './filter-container.directive';
+import { DisplayWithFn } from '../models/display-with-function.interface';
+import { DisplayWhenFn } from '../models/display-when-function.interface';
 
 /**
  * Definition for a single chip associated with a filter.
