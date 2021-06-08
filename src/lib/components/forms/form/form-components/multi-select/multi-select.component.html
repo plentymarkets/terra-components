@@ -9,7 +9,22 @@
         (blur)="_onTouchedCallback()"
         [required]="isRequired"
         [disabled]="isDisabled"
+        #select
     >
+        <div class="mat-option" (click)="_toggleAll(select)" style="position: sticky">
+            <mat-pseudo-checkbox
+                class="mat-option-pseudo-checkbox"
+                [state]="
+                    $any(select.selected).length === checkboxValues.length
+                        ? 'checked'
+                        : $any(select.selected).length === 0
+                        ? 'unchecked'
+                        : 'indeterminate'
+                "
+            ></mat-pseudo-checkbox>
+            <span class="mat-option-text">{{ 'terraMultiSelectBox.selectAll' | translate: _lang }}</span>
+        </div>
+        <mat-divider></mat-divider>
         <mat-option *ngFor="let item of checkboxValues" [value]="item.value">
             {{ item.caption }}
         </mat-option>
