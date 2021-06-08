@@ -18,7 +18,6 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FilterModule } from './components/filter/filter.module';
-import { MatToolbarModule } from '@angular/material/toolbar';
 
 @NgModule({
     imports: [
