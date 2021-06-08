@@ -5,13 +5,14 @@ import { By } from '@angular/platform-browser';
 import { FilterChipDefDirective } from './filter-chip-def.directive';
 import { FilterChipLabelDirective } from './filter-chip-label.directive';
 import { FilterContainerDirective } from './filter-container.directive';
+import { DisplayWhenFn } from '../models';
 
 // tslint:disable:component-max-inline-declarations
 // tslint:disable:max-function-line-count
 @Component({
     template: `
         <form>
-            <div terraFilterChipDef>
+            <div terraFilterChipDef [terraFilterChipDisplayWhen]="displayAlways">
                 <label terraFilterChipLabel>Template driven</label>
                 <input ngModel name="template" />
             </div>
@@ -28,6 +29,8 @@ class HostComponent {
     public form: FormGroup = new FormGroup({
         reactive: new FormControl()
     });
+
+    public displayAlways: DisplayWhenFn = () => true;
 }
 
 describe('FilterChipDefDirective', () => {
@@ -94,6 +97,10 @@ describe('FilterChipDefDirective', () => {
 
         it('should show the label by default', () => {
             expect(directive.hideValue).toBeFalsy();
+        });
+
+        it('should store a given `DisplayWhenFn` for later evaluation when the chip should be shown', () => {
+            expect(directive.displayWhen).toBe(component.displayAlways);
         });
     });
 

@@ -7,8 +7,10 @@ describe('ChipDisplayValuePipe', () => {
     });
 
     it('should return the given value as string if no displayWith function is given', () => {
-        const value: any = 3;
-        expect(pipe.transform(value, null)).toBe(value.toString());
+        expect(pipe.transform(null)).toBe('null');
+        expect(pipe.transform(undefined)).toBe('undefined');
+        expect(pipe.transform(3)).toBe('3');
+        expect(pipe.transform({})).toBe({}.toString());
     });
 
     it('should transform the value using the given displayWith function', () => {

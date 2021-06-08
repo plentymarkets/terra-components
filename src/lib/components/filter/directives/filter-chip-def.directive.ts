@@ -1,8 +1,7 @@
 import { ContentChild, Directive, Input, OnDestroy, OnInit, Optional, Self } from '@angular/core';
 import { NgControl } from '@angular/forms';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
-import { FilterChipLabelDirective } from './filter-chip-label.directive';
-import { DisplayWithFn } from '../models';
+import { DisplayWhenFn, DisplayWithFn } from '../models';
 import { FilterContainerDirective } from './filter-container.directive';
 
 /**
@@ -24,6 +23,10 @@ export class FilterChipDefDirective implements OnInit, OnDestroy {
     /** A function to customize the display of the filter's value on the chip. */
     @Input('terraFilterChipDisplayWith')
     public displayWith: DisplayWithFn;
+
+    /** A function to customize when a chip is displayed. */
+    @Input('terraFilterChipDisplayWhen')
+    public displayWhen: DisplayWhenFn;
 
     /** Whether to hide the filter's value on the chip. By default, the value is shown. */
     @Input('terraFilterChipHideValue')

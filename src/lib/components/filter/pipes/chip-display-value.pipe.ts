@@ -9,7 +9,7 @@ import { DisplayWithFn } from '../models';
     name: 'chipDisplayValue'
 })
 export class ChipDisplayValuePipe implements PipeTransform {
-    public transform(value: unknown, displayWith: DisplayWithFn): string {
-        return displayWith ? displayWith(value) : value.toString();
+    public transform(value: unknown, displayWith?: DisplayWithFn): string {
+        return displayWith ? displayWith(value) : String(value);
     }
 }

@@ -1,21 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatChipsModule } from '@angular/material/chips';
 import {
     FilterActionsDirective,
     FilterChipDefDirective,
     FilterChipLabelDirective,
+    FilterCloseDirective,
     FilterContainerDirective,
     FilterContentDirective,
-    FilterMenuDirective,
-    FilterCloseDirective
+    FilterMenuDirective
 } from './directives';
 import { FilterToolbarComponent } from './components';
-import { ChipDisplayValuePipe } from './pipes';
-import { MatChipsModule } from '@angular/material/chips';
-import { MatToolbarModule } from '@angular/material/toolbar';
+import { ChipDisplayValuePipe, ChipDisplayWhenPipe } from './pipes';
 
 /** Exports all the functionality needed to create a filter for a table. */
 @NgModule({
@@ -29,7 +29,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
         FilterMenuDirective,
         FilterToolbarComponent,
         ChipDisplayValuePipe,
-        FilterCloseDirective
+        FilterCloseDirective,
+        ChipDisplayWhenPipe
     ],
     exports: [
         FilterActionsDirective,

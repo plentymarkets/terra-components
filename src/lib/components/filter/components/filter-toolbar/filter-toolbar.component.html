@@ -8,11 +8,12 @@
 
     <mat-chip-list>
         <ng-container *ngFor="let chip of chips$ | async">
-            <!-- we may use a different (customizable) algorithm here to determine whether a chip should be shown
-            since boolean values might be misinterpreted like this. -->
-            <mat-chip *ngIf="chip.control.valueChanges | async as value" (removed)="chip.control.reset()">
+            <mat-chip
+                *ngIf="chip.control.valueChanges | async | chipDisplayWhen: chip.displayWhen"
+                (removed)="chip.control.reset()"
+            >
                 {{ chip.label }}
-                <span *ngIf="!chip.hideValue">: {{ value | chipDisplayValue: chip.displayWith }}</span>
+                <span *ngIf="!chip.hideValue">: {{ chip.control.value | chipDisplayValue: chip.displayWith }} </span>
                 <mat-icon matChipRemove>cancel</mat-icon>
             </mat-chip>
         </ng-container>
