@@ -15,6 +15,7 @@ import { PseudoCheckboxStatePipe } from './pipes/pseudo-checkbox-state.pipe';
 import { L10nTranslationModule } from 'angular-l10n';
 import { mockL10nConfig } from '../../../../../testing/mock-l10n-config';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatPseudoCheckboxModule } from '@angular/material/core';
 
 let multiSelectOption1: { caption: string; value: any } = {
     caption: 'Value 01',
@@ -49,6 +50,7 @@ describe('MultiSelectComponent', () => {
             imports: [
                 MatSelectModule,
                 MatDividerModule,
+                MatPseudoCheckboxModule,
                 FormsModule,
                 NoopAnimationsModule,
                 L10nTranslationModule.forRoot(mockL10nConfig)
