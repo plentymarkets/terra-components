@@ -17,6 +17,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { TerraFilterModule } from './components/filter/filter.module';
 
 @NgModule({
     imports: [
@@ -35,9 +36,10 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
         MatButtonModule,
         DragDropModule,
         MatIconModule,
-        MatCheckboxModule
+        MatCheckboxModule,
+        TerraFilterModule
     ],
     declarations: [...components, ...directives, ...pipes],
-    exports: [...exportedComponents, ...exportedDirectives, ...pipes]
+    exports: [...exportedComponents, ...exportedDirectives, ...pipes, TerraFilterModule]
 })
 export class TerraComponentsModule {}

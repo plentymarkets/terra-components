@@ -8,3 +8,5 @@ export { FilterActionsDirective } from './directives/filter-actions.directive';
 export { ChipDisplayWhenPipe } from './pipes/chip-display-when.pipe';
 export { ChipDisplayValuePipe } from './pipes/chip-display-value.pipe';
 export { FilterToolbarComponent } from './components/filter-toolbar/filter-toolbar.component';
+export { DisplayWithFn } from './models/display-with-function.interface';
+export { DisplayWhenFn } from './models/display-when-function.interface';
