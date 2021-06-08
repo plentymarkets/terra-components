@@ -5,13 +5,14 @@ import { By } from '@angular/platform-browser';
 import { MatMenu } from '@angular/material/menu';
 import { FilterToolbarComponent } from './filter-toolbar.component';
 import { FilterModule } from '../../filter.module';
-import { FilterChipDefDirective, FilterMenuDirective } from '../../directives';
+import { FilterChipDefDirective } from '../../directives/filter-chip-def.directive';
 import { HarnessLoader } from '@angular/cdk/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { MatChipListHarness } from '@angular/material/chips/testing';
 import { DisplayWhenFn } from '../../models';
 import { MatMenuHarness } from '@angular/material/menu/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { FilterMenuDirective } from '../../directives/filter-menu.directive';
 
 // tslint:disable:component-max-inline-declarations
 @Component({

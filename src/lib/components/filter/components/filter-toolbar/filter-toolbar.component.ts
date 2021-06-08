@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { FilterChipDefDirective, FilterMenuDirective } from '../../directives';
+import { FilterChipDefDirective } from '../../directives/filter-chip-def.directive';
+import { FilterMenuDirective } from '../../directives/filter-menu.directive';
 import { Observable } from 'rxjs';
 import { MatMenu } from '@angular/material/menu';
 
