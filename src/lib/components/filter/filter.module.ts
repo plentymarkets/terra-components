@@ -43,4 +43,4 @@ import { ChipDisplayWhenPipe } from './pipes/chip-display-when.pipe';
         FilterCloseDirective
     ]
 })
-export class FilterModule {}
+export class TerraFilterModule {}

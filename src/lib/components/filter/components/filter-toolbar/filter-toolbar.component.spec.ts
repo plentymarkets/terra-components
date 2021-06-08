@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { MatMenu } from '@angular/material/menu';
 import { FilterToolbarComponent } from './filter-toolbar.component';
-import { FilterModule } from '../../filter.module';
+import { TerraFilterModule } from '../../filter.module';
 import { FilterChipDefDirective } from '../../directives/filter-chip-def.directive';
 import { HarnessLoader } from '@angular/cdk/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
@@ -50,7 +50,7 @@ describe('FilterToolbarComponent:', () => {
 
     beforeEach(() => {
         fixture = TestBed.configureTestingModule({
-            imports: [FilterModule, FormsModule, NoopAnimationsModule],
+            imports: [TerraFilterModule, FormsModule, NoopAnimationsModule],
             declarations: [HostComponent]
         }).createComponent(HostComponent);
         component = fixture.componentInstance;
