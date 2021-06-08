@@ -143,8 +143,9 @@ describe('MultiSelectComponent', () => {
         fixture.detectChanges();
 
         await select.open();
-        const options: Array<MatOptionHarness> = await select.getOptions();
-        expect(options.length - 1).toBe(multiSelectOptions.length);
+        // need to use a custom selector here, since the harness also recognizes the "select all" element as an option
+        const options: Array<MatOptionHarness> = await select.getOptions({ selector: '.mat-option:not(.select-all)' });
+        expect(options.length).toBe(multiSelectOptions.length);
         expect(
             options.every(
                 async (option: MatOptionHarness, index: number) =>
