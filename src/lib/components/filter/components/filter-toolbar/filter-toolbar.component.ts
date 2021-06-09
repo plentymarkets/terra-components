@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { FilterChipDefDirective } from '../../directives/filter-chip-def.directive';
 import { FilterMenuDirective } from '../../directives/filter-menu.directive';
 import { Observable } from 'rxjs';
-import { MatMenu } from '@angular/material/menu';
+import { MatMenu, MatMenuTrigger } from '@angular/material/menu';
 
 /** A toolbar providing necessary elements for applying filters to a table. */
 @Component({
@@ -18,6 +18,10 @@ export class FilterToolbarComponent {
     /** Fires when the user clicks the search button in the filter toolbar */
     @Output()
     public search: EventEmitter<void> = new EventEmitter();
+
+    /** Reference to the MatMenuTrigger */
+    @ViewChild(MatMenuTrigger)
+    public menuTrigger: MatMenuTrigger;
 
     /** List of chip definitions retrieved by the FilterContainerDirective */
     public get chips$(): Observable<Array<FilterChipDefDirective>> | undefined {
