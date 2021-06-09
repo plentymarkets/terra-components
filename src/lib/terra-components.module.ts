@@ -40,6 +40,6 @@ import { TerraFilterModule } from './components/filter/filter.module';
         TerraFilterModule
     ],
     declarations: [...components, ...directives, ...pipes],
-    exports: [...exportedComponents, ...exportedDirectives, ...pipes, TerraFilterModule]
+    exports: [...exportedComponents, ...exportedDirectives, ...pipes]
 })
 export class TerraComponentsModule {}
