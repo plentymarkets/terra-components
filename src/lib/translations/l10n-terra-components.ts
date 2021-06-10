@@ -18,8 +18,8 @@ const de: {} = {
         delete: 'Löschen',
         myFiles: 'Meine Dateien',
         createFolder: 'Ordner erstellen',
-        confirmDelete: 'Datei löschen?',
-        confirmDeleteMany: '{{ count }} Dateien wirklich löschen?',
+        confirmDelete: 'Möchtest du die Datei wirklich löschen?',
+        confirmDeleteMany: 'Möchtest du die {{ count }} Dateien wirklich löschen?',
         deleteFolder: 'Ordner löschen',
         deleteFile: 'Datei löschen',
         deleteSelectedFiles: 'Ausgewählte Dateien löschen',
@@ -39,7 +39,7 @@ const de: {} = {
         downloadFile: 'Datei herunterladen',
         uploadProgress:
             'Dateien werden hochgeladen: {{ filesUploaded }}/{{ filesTotal }} ({{ sizeUploaded }}/{{ sizeTotal }})',
-        metadataUpdated: 'Metadaten aktualisiert.'
+        metadataUpdated: 'Die Metadaten wurden aktualisiert.'
     },
     terraFileInput: {
         choose: 'Wählen',
@@ -67,14 +67,14 @@ const de: {} = {
         changeViewOverlay: {
             title: 'Unbekannte Formatierung',
             text:
-                'Durch den Wechsel in die Editor-Ansicht gehen unbekannte Formatierungen im Markup verloren. Sind Sie sicher, dass sie die Ansicht wechseln möchten?',
+                'Durch den Wechsel in die Editor-Ansicht gehen unbekannte Formatierungen im Markup verloren. Sind Sie sicher, dass Sie die Ansicht wechseln möchten?',
             primaryButton: 'Zu Editor-Ansicht wechseln',
             secondaryButton: 'Abbrechen'
         },
         linterMessage: 'Fehler in Zeile {{ line }}, Spalte {{ col }}: {{ message }}',
         linterRules: {
             'tagname-lowercase': 'Tag-Name enthält Großbuchstaben.',
-            'attr-lowercase': 'Attribute-Name enthält Großbbuchstaben.',
+            'attr-lowercase': 'Attribut-Name enthält Großbbuchstaben.',
             'attr-value-double-quotes': 'Attribut-Wert muss in doppelten Anführungszeichen angegeben sein.',
             'attr-value-not-empty': 'Attribut muss einen Wert definieren.',
             'attr-no-duplication': 'Ein Attribut kann nicht mehrfach definiert werden.',
@@ -90,7 +90,7 @@ const de: {} = {
             'inline-style-disabled': 'Inline-Styles dürfen nicht verwendet werden.',
             'inline-script-disabled': 'Inline-Scripts dürfen nicht verwendet werden.',
             'href-abs-or-rel': 'Link-Ziel (href) muss absolut oder relativ sein.',
-            'attr-unsafe-chars': 'Attribute-Wert darf keine unsicheren Zeichen enthalten.',
+            'attr-unsafe-chars': 'Attribut-Wert darf keine unsicheren Zeichen enthalten.',
             'head-script-disabled': '&lt;script>-Tag innerhalb von &lt;head> ist nicht erlaubt.'
         }
     },
@@ -117,7 +117,7 @@ const de: {} = {
     terraDynamicForm: {
         addListEntry: 'Neuen Eintrag hinzufügen',
         removeListEntry: 'Eintrag entfernen',
-        deprecated: 'Veraltete Einträge zeigen/verstecken'
+        deprecated: 'Veraltete Einträge anzeigen/ausblenden'
     },
     terraStopwatch: {
         start: 'Start',
@@ -164,8 +164,8 @@ const en: {} = {
         delete: 'Delete',
         myFiles: 'My files',
         createFolder: 'Create folder',
-        confirmDelete: 'Delete this file?',
-        confirmDeleteMany: 'Really delete {{ count }} files?',
+        confirmDelete: 'Do you really want to delete this file?',
+        confirmDeleteMany: 'Do you really want to delete the {{ count }} files?',
         deleteFolder: 'Delete folder',
         deleteFile: 'Delete file',
         deleteSelectedFiles: 'Delete selected files',
@@ -184,7 +184,7 @@ const en: {} = {
         noFiles: 'No files',
         downloadFile: 'Download file',
         uploadProgress: 'Uploading files: {{ filesUploaded }}/{{ filesTotal }} ({{ sizeUploaded }}/{{ sizeTotal }})',
-        metadataUpdated: 'Metadata updated.'
+        metadataUpdated: 'The metadata have been updated.'
     },
     terraFileInput: {
         choose: 'Select',
@@ -212,31 +212,31 @@ const en: {} = {
         changeViewOverlay: {
             title: 'Unknown code formatting',
             text:
-                'Switching to editor view will cause unknown markup formatting to be lost. Are you sure you want to change the view?',
+                'Switching to the editor view will cause unknown markup formatting to be lost. Are you sure you want to change the view?',
             primaryButton: 'Switch to editor view',
-            secondaryButton: 'cancel'
+            secondaryButton: 'Cancel'
         },
         linterMessage: 'Error in line {{ line }}, column {{ col }}: {{ message }}',
         linterRules: {
-            'tagname-lowercase': 'Tagname must be lowercase',
+            'tagname-lowercase': 'Tag name must be lowercase.',
             'attr-lowercase': 'Attribute name must be lowercase.',
             'attr-value-double-quotes': 'Attribute value must be closed by double quotes.',
             'attr-value-not-empty': 'Attribute must set a value.',
-            'attr-no-duplication': "The same attribute can't be specified twice.",
-            'doctype-first': 'DOCTYPE must be first.',
+            'attr-no-duplication': 'The same attribute cannot be specified twice.',
+            'doctype-first': 'DOCTYPE must be specified first.',
             'tag-pair': 'Tag is not closed correctly.',
-            'tag-self-close': 'Empty tag must be closed by self.',
+            'tag-self-close': 'Empty tag must close itself.',
             'spec-char-escape': 'Special characters must be escaped.',
             'id-unique': 'ID attributes must be unique in the document.',
-            'src-not-empty': 'src of img(script,link) must set value.',
+            'src-not-empty': 'src of img (script,link) must set a value.',
             'title-require': '&lt;title> must be present in &lt;head> tag.',
             'doctype-html5': 'DOCTYPE must be html5.',
-            'style-disabled': '&lt;style>-tag can not be use.',
-            'inline-style-disabled': 'Inline style cannot be use.',
-            'inline-script-disabled': 'Inline script cannot be use.',
+            'style-disabled': '&lt;style>-tag must not be used.',
+            'inline-style-disabled': 'Inline styles must not be used.',
+            'inline-script-disabled': 'Inline scripts must not be used.',
             'href-abs-or-rel': 'Link target (href) must be absolute or relative.',
-            'attr-unsafe-chars': 'Attribute value cannot use unsafe chars.',
-            'head-script-disabled': 'The script tag can not be used in &lt;head>.'
+            'attr-unsafe-chars': 'Attribute value must not contain any unsafe chars.',
+            'head-script-disabled': 'The script tag must not be used in &lt;head>.'
         }
     },
     terraTextInput: {
@@ -274,7 +274,7 @@ const en: {} = {
         reset: 'Reset'
     },
     errorInterceptor: {
-        unauthorized: 'Unauthorized',
+        unauthorized: 'Unauthorised',
         missingPermission: 'Missing permissions for:',
         forbidden: 'Forbidden'
     },

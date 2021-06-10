@@ -1,0 +1,26 @@
+<mat-form-field class="w-100" [tcTooltip]="tooltipText" [placement]="tooltipPlacement">
+    <mat-label>
+        {{ name }}
+    </mat-label>
+    <mat-select
+        multiple
+        [(ngModel)]="value"
+        (ngModelChange)="_onChange($event)"
+        (blur)="_onTouchedCallback()"
+        [required]="isRequired"
+        [disabled]="isDisabled"
+        #select
+    >
+        <div class="mat-option select-all" (click)="_toggleAll(select)">
+            <mat-pseudo-checkbox
+                class="mat-option-pseudo-checkbox"
+                [state]="select.selected | pseudoCheckboxState: checkboxValues"
+            ></mat-pseudo-checkbox>
+            <span class="mat-option-text">{{ 'terraMultiSelectBox.selectAll' | translate: _lang }}</span>
+        </div>
+        <mat-divider></mat-divider>
+        <mat-option *ngFor="let item of checkboxValues" [value]="item.value">
+            {{ item.caption }}
+        </mat-option>
+    </mat-select>
+</mat-form-field>

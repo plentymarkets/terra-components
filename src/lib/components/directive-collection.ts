@@ -5,6 +5,7 @@ import { FormEntryContainerDirective } from './forms/form/form-entry/form-entry-
 import { CKEditorDirective } from './editors/ck-editor/ck-editor.directive';
 import { TooltipDirective } from './tooltip/tooltip.directive';
 import { SelectSortDirective } from './forms/select-box/directive/select-sort.directive';
+import { IbanValidatorDirective } from '../validators/iban-validator';
 
 export const exportedDirectives: Array<Type<any>> = [
     TerraDataTableContextMenuDirective,
@@ -14,4 +15,8 @@ export const exportedDirectives: Array<Type<any>> = [
     SelectSortDirective
 ];
 
-export const directives: Array<Type<any>> = [...exportedDirectives, FormEntryContainerDirective];
+export const directives: Array<Type<any>> = [
+    ...exportedDirectives,
+    FormEntryContainerDirective,
+    IbanValidatorDirective
+];

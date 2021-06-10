@@ -1,18 +1,32 @@
-# 11.2.0 (xx.xx.2021)
+# 11.3.0 (x.x.2021)
 
 ### Features
 
 -   **filter** added new components and directives to create a filter for tables. See this [directory](./src/lib/components/filter) for more details.
+-   **tc-filter** has been deprecated.
+
+# 11.2.0 (10.06.2021)
 
 ### Minor changes
 
--   **tc-filter** has been deprecated.
--   **terra-portlet** is deprecated now. Use angular material's [expansion panel](https://material.angular.io/components/expansion/overview) instead.
--   **terra-group-function** is deprecated now.
--   **terra-stopwatch** is deprecated now.
--   **terra-radio-group** & **terra-radio-input** are deprecated now. Use angular material's [radio-button](https://material.angular.io/components/radio/overview) instead.
--   **terra-slider** is deprecated now. Use angular material's [slider](https://material.angular.io/components/slider/overview) instead.
--   **file-chooser** has been deprecated. Use material's [button](https://material.angular.io/components/button) and [dialog](https://material.angular.io/components/dialog) in conjunction with our [file-browser](./src/lib/components/file-browser) instead.
+-   The **terra-portlet** component has been deprecated. Use Angular Material's [expansion-panel](https://material.angular.io/components/expansion/overview) instead.
+-   The **terra-group-function** component has been deprecated.
+-   The **terra-stopwatch** component has been deprecated.
+-   The **terra-radio-group** & **terra-radio-input** components have been deprecated. Use Angular Material's [radio-button](https://material.angular.io/components/radio/overview) instead.
+-   The **terra-slider** component has been deprecated. Use Angular Material's [slider](https://material.angular.io/components/slider/overview) instead.
+-   The **file-chooser** component has been deprecated. Use Angular Material's [button](https://material.angular.io/components/button) and [dialog](https://material.angular.io/components/dialog) in conjunction with our [file-browser](./src/lib/components/file-browser) instead.
+-   **terra-form**: for some form types, deprecated variants have been replaced as follows:
+    -   form type **suggestion**: replaced deprecated `terra-suggestion-box` by a `mat-autocomplete` variant.
+    -   form type **double**: replaced deprecated `terra-double-input` by a `mat-input` variant.
+    -   form type **slider**: replaced deprecated `terra-slider` by a `mat-slider` variant.
+    -   form type **checkbox group**: replaced deprecated `tc-checkbox-group` by a `mat-select` variant in the multiple mode.
+    -   form type **color**: replaced deprecated `terra-color-picker` by a `mat-input` variant.
+    -   form type **date**: replaced deprecated `terra-date-picker` by a `mat-datepicker` variant.
+    -   form type **text**: replaced deprecated `terra-text-input` by a `mat-input` variant.
+    -   form type **checkbox**: replaced deprecated `terra-checkbox` by a `mat-checkbox` variant.
+    -   form type **select**: replaced deprecated `terra-select-box` by a `mat-select` variant.
+    -   form type **number**: replaced deprecated `terra-number-input` by a `mat-input` variant.
+    -   form type **text-area**: replaced deprecated `terra-text-area-input` by a `mat-input` variant.
 
 # 11.1.0 (23.03.2021)
 
