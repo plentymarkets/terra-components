@@ -211,6 +211,7 @@ describe('MultiSelectComponent', () => {
             .nativeElement;
         selectAllOption.click();
 
+        expect((await select.getOptions({ isSelected: true })).length).toBe(multiSelectOptions.length);
         expect(component.value).toEqual(
             multiSelectOptions.map((option: { caption: string; value: any }) => option.value)
         );
@@ -226,6 +227,7 @@ describe('MultiSelectComponent', () => {
             .nativeElement;
         selectAllOption.click();
 
+        expect((await select.getOptions({ isSelected: true })).length).toBe(0);
         expect(component.value).toEqual([]);
     });
 
