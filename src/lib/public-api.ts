@@ -10,7 +10,7 @@ export * from './components/table';
 export * from './components/alert';
 
 export { TerraComponentsModule } from './terra-components.module';
-export { TerraFilterModule } from './components/filter/filter.module';
+export * from './components/filter';
 
 export { TerraButtonInterface } from './components/buttons/button/data/terra-button.interface';
 export { TerraButtonComponent } from './components/buttons/button/terra-button.component';
