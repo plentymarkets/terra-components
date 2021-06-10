@@ -2,7 +2,7 @@ import { Component, DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { MatMenu } from '@angular/material/menu';
+import { MatMenu, MatMenuTrigger } from '@angular/material/menu';
 import { FilterToolbarComponent } from './filter-toolbar.component';
 import { TerraFilterModule } from '../../filter.module';
 import { FilterChipDefDirective } from '../../directives/filter-chip-def.directive';
@@ -42,6 +42,7 @@ class HostComponent {
     public displayWhenPositive: DisplayWhenFn = (value: any) => value >= 0;
 }
 
+// tslint:disable-next-line:max-function-line-count
 describe('FilterToolbarComponent:', () => {
     let fixture: ComponentFixture<HostComponent>;
     let component: HostComponent;
@@ -112,5 +113,14 @@ describe('FilterToolbarComponent:', () => {
         // set the value of the control to a negative integer, since we passed a custom displayWhenFn which should hide the chip in this case.
         chipDefs[1].control.control.setValue(-1);
         expect((await chipList.getChips()).length).toBe(0);
+    });
+
+    it('should toggle the mat menu on click', () => {
+        const menuTrigger: DebugElement = fixture.debugElement.query(By.directive(MatMenuTrigger));
+        expect(menuTrigger.injector.get(MatMenuTrigger)).toBe(toolbarComponent.menuTrigger);
+
+        spyOn(toolbarComponent.menuTrigger, 'toggleMenu');
+        menuTrigger.nativeElement.click();
+        expect(toolbarComponent.menuTrigger.toggleMenu).toHaveBeenCalled();
     });
 });
