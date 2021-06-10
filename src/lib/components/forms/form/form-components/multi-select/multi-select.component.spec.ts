@@ -11,6 +11,11 @@ import { MatSelectHarness } from '@angular/material/select/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldHarness } from '@angular/material/form-field/testing';
 import { MatOptionHarness } from '@angular/material/core/testing';
+import { PseudoCheckboxStatePipe } from './pipes/pseudo-checkbox-state.pipe';
+import { L10nTranslationModule } from 'angular-l10n';
+import { mockL10nConfig } from '../../../../../testing/mock-l10n-config';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatPseudoCheckboxModule } from '@angular/material/core';
 
 let multiSelectOption1: { caption: string; value: any } = {
     caption: 'Value 01',
@@ -42,8 +47,15 @@ describe('MultiSelectComponent', () => {
 
     beforeEach(async () => {
         TestBed.configureTestingModule({
-            imports: [MatSelectModule, FormsModule, NoopAnimationsModule],
-            declarations: [MultiSelectComponent, MockTooltipDirective]
+            imports: [
+                MatSelectModule,
+                MatDividerModule,
+                MatPseudoCheckboxModule,
+                FormsModule,
+                NoopAnimationsModule,
+                L10nTranslationModule.forRoot(mockL10nConfig)
+            ],
+            declarations: [MultiSelectComponent, MockTooltipDirective, PseudoCheckboxStatePipe]
         });
 
         fixture = TestBed.createComponent(MultiSelectComponent);
@@ -131,7 +143,8 @@ describe('MultiSelectComponent', () => {
         fixture.detectChanges();
 
         await select.open();
-        const options: Array<MatOptionHarness> = await select.getOptions();
+        // need to use a custom selector here, since the harness also recognizes the "select all" element as an option
+        const options: Array<MatOptionHarness> = await select.getOptions({ selector: '.mat-option:not(.select-all)' });
         expect(options.length).toBe(multiSelectOptions.length);
         expect(
             options.every(
@@ -186,6 +199,34 @@ describe('MultiSelectComponent', () => {
 
         expect((await select.getOptions({ isSelected: true })).length).toBe(0);
         expect(onChangeSpy).toHaveBeenCalledWith(null);
+    });
+
+    it('should select all options when clicked on the "select all" option and not all options are selected yet', async () => {
+        component.checkboxValues = multiSelectOptions;
+        component.writeValue([]);
+        fixture.detectChanges();
+
+        await select.open();
+        const selectAllOption: HTMLDivElement = fixture.debugElement.query(By.css('.mat-option.select-all'))
+            .nativeElement;
+        selectAllOption.click();
+
+        expect(component.value).toEqual(
+            multiSelectOptions.map((option: { caption: string; value: any }) => option.value)
+        );
+    });
+
+    it('should deselect all options when clicked on the "select all" option and all options are selected', async () => {
+        component.checkboxValues = multiSelectOptions;
+        component.writeValue(multiSelectOptions.map((option: { caption: string; value: any }) => option.value));
+        fixture.detectChanges();
+
+        await select.open();
+        const selectAllOption: HTMLDivElement = fixture.debugElement.query(By.css('.mat-option.select-all'))
+            .nativeElement;
+        selectAllOption.click();
+
+        expect(component.value).toEqual([]);
     });
 
     describe('with tooltip', () => {

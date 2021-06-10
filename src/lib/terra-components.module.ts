@@ -24,6 +24,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { A11yModule } from '@angular/cdk/a11y';
 import { MatInputModule } from '@angular/material/input';
+import { MatPseudoCheckboxModule } from '@angular/material/core';
 
 @NgModule({
     imports: [
@@ -49,7 +50,8 @@ import { MatInputModule } from '@angular/material/input';
         MatSliderModule,
         MatDatepickerModule,
         A11yModule,
-        MatSelectModule
+        MatSelectModule,
+        MatPseudoCheckboxModule
     ],
     declarations: [...components, ...directives, ...pipes],
     exports: [...exportedComponents, ...exportedDirectives, ...exportedPipes]
