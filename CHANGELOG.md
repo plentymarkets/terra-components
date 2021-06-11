@@ -1,3 +1,13 @@
+# 11.3.0 (x.x.2021)
+
+### Features
+
+-   **filter** added new components and directives to create a filter for tables. See this [directory](./src/lib/components/filter) for more details.
+
+### Minor changes
+
+-   **tc-filter** has been deprecated.
+
 # 11.2.0 (10.06.2021)
 
 ### Minor changes
