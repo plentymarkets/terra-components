@@ -2,7 +2,7 @@
 
 ### Features
 
--   **terra-table-data-source** now has a stream that emits whenever the data source is requested.
+-   **table** introduced `searched$` property to `TerraTableDataSource` which notifies whenever data has been requested from the server.
 
 # 11.3.0 (14.06.2021)
 
