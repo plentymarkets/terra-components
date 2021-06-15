@@ -102,7 +102,7 @@ export abstract class TerraTableDataSource<D, F = unknown> extends DataSource<D>
     }
     private _paginator: MatPaginator | undefined;
 
-    /** A stream that emits whenever the data source is requested. */
+    /** A stream that emits whenever data has been requested from the server. */
     // tslint:disable-next-line:member-ordering
     public searched$: Observable<boolean>;
     private _searched$: BehaviorSubject<boolean> = new BehaviorSubject(false);
