@@ -1,3 +1,9 @@
+# 11.4.0 (XX.06.2021)
+
+### Features
+
+-   **terra-table-data-source** now has a stream that emits whenever the data source is requested.
+
 # 11.3.0 (14.06.2021)
 
 ### Features
