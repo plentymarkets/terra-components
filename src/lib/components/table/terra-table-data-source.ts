@@ -104,8 +104,8 @@ export abstract class TerraTableDataSource<D, F = unknown> extends DataSource<D>
 
     /** A stream that emits whenever data has been requested from the server. */
     // tslint:disable-next-line:member-ordering
-    public searched$: Observable<boolean>;
-    private _searched$: BehaviorSubject<boolean> = new BehaviorSubject(false);
+    public dataRequested$: Observable<boolean>;
+    private _dataRequested$: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
     /** A stream that emits whenever a manual search is requested. */
     private _search: Subject<void> = new Subject();
@@ -116,7 +116,7 @@ export abstract class TerraTableDataSource<D, F = unknown> extends DataSource<D>
 
     constructor() {
         super();
-        this.searched$ = this._searched$.asObservable();
+        this.dataRequested$ = this._dataRequested$.asObservable();
         this._updateSubscription(); // initially subscribe to any change to be able to search even if no filter, paging or sorting is applied.
     }
 
@@ -180,7 +180,7 @@ export abstract class TerraTableDataSource<D, F = unknown> extends DataSource<D>
         const data$: Observable<Array<D>> = anyChange$.pipe(
             map(() => createRequestParams(this._filter, this._paginator, this._sort)),
             switchMap((params: RequestParameterInterface) =>
-                this.request(params).pipe(tap(() => this._searched$.next(true)))
+                this.request(params).pipe(tap(() => this._dataRequested$.next(true)))
             ),
             map((response: Array<D> | TerraPagerInterface<D>) => {
                 if (isPaginated(response)) {
