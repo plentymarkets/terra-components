@@ -141,6 +141,9 @@ const de: {} = {
         confirm: 'Bestätigen',
         cancel: 'Abbrechen',
         configColumns: 'Spalten konfigurieren'
+    },
+    validators: {
+        required: 'Dies ist ein Pflichtfeld.'
     }
 };
 
@@ -286,6 +289,9 @@ const en: {} = {
         confirm: 'Confirm',
         cancel: 'Cancel',
         configColumns: 'Configure columns'
+    },
+    validators: {
+        required: 'This is a mandatory field.'
     }
 };
 
