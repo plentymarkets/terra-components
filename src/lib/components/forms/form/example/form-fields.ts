@@ -3,10 +3,12 @@ import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
 
 export const numberControl: TerraFormFieldInterface = {
     type: 'number',
-    defaultValue: 2,
+    defaultValue: 5,
     options: {
         name: 'Number',
-        required: false
+        required: false,
+        min: 5,
+        max: 10
     }
 };
 
