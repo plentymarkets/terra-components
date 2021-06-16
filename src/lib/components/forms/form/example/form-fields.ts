@@ -37,7 +37,7 @@ export const suggestion: TerraFormFieldInterface = {
     defaultValue: 'suggestion1',
     options: {
         name: 'Suggestion',
-        required: false,
+        required: true,
         listBoxValues: [
             {
                 value: 'suggestion1',
