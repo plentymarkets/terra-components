@@ -124,6 +124,7 @@ export const formFields: TerraKeyValueInterface<TerraFormFieldInterface> = {
     },
     checkbox: {
         type: 'checkbox',
+        defaultValue: true,
         options: {
             name: 'checkbox',
             required: true
