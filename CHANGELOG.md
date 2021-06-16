@@ -1,3 +1,9 @@
+# 11.4.0 (XX.06.2021)
+
+### Features
+
+-   **table** introduced `searched$` property to `TerraTableDataSource` which notifies whenever data has been requested from the server.
+
 # 11.3.0 (14.06.2021)
 
 ### Features
