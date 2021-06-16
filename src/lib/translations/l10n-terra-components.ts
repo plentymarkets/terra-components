@@ -143,7 +143,9 @@ const de: {} = {
         configColumns: 'Spalten konfigurieren'
     },
     validators: {
-        required: 'Dies ist ein Pflichtfeld.'
+        required: 'Dies ist ein Pflichtfeld.',
+        min: 'Der Mindestwert ist überschritten.',
+        max: 'Der Maximalwert ist überschritten.'
     }
 };
 
@@ -291,7 +293,9 @@ const en: {} = {
         configColumns: 'Configure columns'
     },
     validators: {
-        required: 'This is a mandatory field.'
+        required: 'This is a mandatory field.',
+        min: 'The minimum value has been exceeded.',
+        max: 'The maximum value has been exceeded.'
     }
 };
 
