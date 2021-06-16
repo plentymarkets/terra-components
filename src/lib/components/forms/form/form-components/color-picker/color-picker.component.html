@@ -11,6 +11,7 @@
         autocomplete="off"
         [disabled]="isDisabled"
         [required]="isRequired"
+        #control="ngModel"
     />
 
     <input
@@ -23,4 +24,7 @@
         [disabled]="isDisabled"
         [required]="isRequired"
     />
+    <mat-error *ngIf="isRequired && control.hasError('required')">
+        {{ 'validators.required' | translate: _locale.language }}
+    </mat-error>
 </mat-form-field>
