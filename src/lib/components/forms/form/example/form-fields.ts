@@ -18,6 +18,11 @@ export const select: TerraFormFieldInterface = {
         name: 'Select',
         listBoxValues: [
             {
+                value: null,
+                caption: 'Option null',
+                position: 3
+            },
+            {
                 value: 'option2',
                 caption: 'Option 2',
                 position: 2
