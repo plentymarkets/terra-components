@@ -10,6 +10,8 @@ import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { By } from '@angular/platform-browser';
 import { TerraPlacementEnum } from '../../../../../helpers';
 import { TickIntervalPipe } from './pipes/tick-interval.pipe';
+import { L10N_LOCALE, L10nTranslationModule, L10nTranslationService } from 'angular-l10n';
+import { MockTranslationService } from '../../../../../testing/mock-translation-service';
 
 // tslint:disable-next-line:max-function-line-count
 describe('SliderComponent', () => {
@@ -20,7 +22,17 @@ describe('SliderComponent', () => {
 
     beforeEach(async () => {
         TestBed.configureTestingModule({
-            imports: [MatSliderModule, NoopAnimationsModule, FormsModule],
+            imports: [MatSliderModule, NoopAnimationsModule, FormsModule, L10nTranslationModule],
+            providers: [
+                {
+                    provide: L10nTranslationService,
+                    useClass: MockTranslationService
+                },
+                {
+                    provide: L10N_LOCALE,
+                    useValue: { language: 'de' }
+                }
+            ],
             declarations: [SliderComponent, TickIntervalPipe, MockTooltipDirective]
         });
 

@@ -12,9 +12,10 @@ import { TerraPlacementEnum } from '../../../../../helpers';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
-import { L10N_LOCALE } from 'angular-l10n';
+import { L10N_LOCALE, L10nTranslationModule, L10nTranslationService } from 'angular-l10n';
 import * as moment from 'moment';
 import { Moment } from 'moment';
+import { MockTranslationService } from '../../../../../testing/mock-translation-service';
 
 // tslint:disable-next-line:max-function-line-count
 describe('DatePickerComponent', () => {
@@ -26,16 +27,26 @@ describe('DatePickerComponent', () => {
 
     beforeEach(async () => {
         TestBed.configureTestingModule({
-            imports: [MatFormFieldModule, MatInputModule, MatDatepickerModule, NoopAnimationsModule, FormsModule],
+            imports: [
+                MatFormFieldModule,
+                MatInputModule,
+                MatDatepickerModule,
+                NoopAnimationsModule,
+                FormsModule,
+                L10nTranslationModule
+            ],
             declarations: [DatePickerComponent, MockTooltipDirective],
             providers: [
+                {
+                    provide: L10nTranslationService,
+                    useClass: MockTranslationService
+                },
                 {
                     provide: L10N_LOCALE,
                     useValue: { language: 'de' }
                 }
             ]
         });
-
         fixture = TestBed.createComponent(DatePickerComponent);
         component = fixture.componentInstance;
         loader = TestbedHarnessEnvironment.loader(fixture);
