@@ -1,8 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component, Inject, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DoubleInputInterface } from './double-input.interface';
 import { TerraPlacementEnum, TerraRegex } from '../../../../../helpers';
 import { noop } from 'rxjs';
+import { L10N_LOCALE, L10nLocale } from 'angular-l10n';
 
 @Component({
     selector: 'tc-double-input',
@@ -58,7 +59,7 @@ export class DoubleInputComponent implements ControlValueAccessor, DoubleInputIn
     public _onTouchedCallback: () => void = noop;
     public _onChangeCallback: (_: number) => void = noop;
 
-    constructor() {
+    constructor(@Inject(L10N_LOCALE) public _locale: L10nLocale) {
         // set default value for decimalCount (0.01).
         this.decimalCount = 2;
     }
