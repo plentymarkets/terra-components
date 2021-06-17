@@ -8,7 +8,11 @@
     [(indeterminate)]="isIndeterminate"
     cdkMonitorElementFocus
     (cdkFocusChange)="_onFocusChange($event)"
+    #control="ngModel"
 >
     <mat-icon *ngIf="icon" fontSet="plentyicons" [fontIcon]="icon"></mat-icon>
     {{ name }}
 </mat-checkbox>
+<mat-error *ngIf="control.touched && control.hasError('required')">
+    {{ 'validators.required' | translate: _lang }}
+</mat-error>
