@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { TerraPlacementEnum } from '../../../../../helpers';
 import { TerraSuggestionBoxValueInterface } from '../../../suggestion-box/data/terra-suggestion-box.interface';
 import { merge, noop, Observable, Subject } from 'rxjs';
@@ -6,6 +6,7 @@ import { map, startWith } from 'rxjs/operators';
 import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { SuggestionInterface } from './suggestion.interface';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { L10N_LOCALE, L10nLocale } from 'angular-l10n';
 
 /** A type guard to check whether the given value is of the type {@link TerraSuggestionBoxValueInterface}. */
 export function isSuggestionValue(value: unknown): value is TerraSuggestionBoxValueInterface {
@@ -62,6 +63,8 @@ export class SuggestionComponent implements ControlValueAccessor, SuggestionInte
     public _onTouchedCallback: () => void = noop;
     /** Stores the callback function that will be called when the control's value changes in the UI. */
     public _onChangeCallback: (_: any) => void = noop;
+
+    constructor(@Inject(L10N_LOCALE) public _locale: L10nLocale) {}
 
     /** Formats the value to be displayed. */
     public _displayFn: (value: TerraSuggestionBoxValueInterface) => string = (

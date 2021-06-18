@@ -1,8 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component, Inject, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TerraFormComponentBaseInterface } from '../terra-form-component-base.interface';
 import { noop } from 'rxjs';
 import { TerraPlacementEnum, TerraRegex } from '../../../../../helpers';
+import { L10N_LOCALE, L10nLocale } from 'angular-l10n';
 
 @Component({
     selector: 'tc-color-picker',
@@ -47,6 +48,8 @@ export class ColorPickerComponent implements ControlValueAccessor, TerraFormComp
     public _onTouchedCallback: () => void = noop;
     /** Stores the callback function that will be called when the control's value changes in the UI. */
     public _onChangeCallback: (_: string) => void = noop;
+
+    constructor(@Inject(L10N_LOCALE) public _locale: L10nLocale) {}
 
     /** Registers a callback function that is called when the control's value changes in the UI. */
     public registerOnChange(fn: (_: string) => void): void {

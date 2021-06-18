@@ -1,8 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component, Inject, Input } from '@angular/core';
 import { TerraPlacementEnum } from '../../../../../helpers';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TextAreaInterface } from './text-area.interface';
 import { noop } from 'rxjs';
+import { L10N_LOCALE, L10nLocale } from 'angular-l10n';
 
 @Component({
     selector: 'tc-text-area',
@@ -61,7 +62,7 @@ export class TextAreaComponent implements ControlValueAccessor, TextAreaInterfac
 
     private readonly _defaultMaxRows: number = 4;
 
-    constructor() {
+    constructor(@Inject(L10N_LOCALE) public _locale: L10nLocale) {
         this.maxRows = this._defaultMaxRows;
     }
 

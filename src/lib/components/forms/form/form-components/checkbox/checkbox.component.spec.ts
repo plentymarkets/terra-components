@@ -11,6 +11,8 @@ import { FormsModule } from '@angular/forms';
 import { MatIconHarness } from '@angular/material/icon/testing';
 import { MatIconModule } from '@angular/material/icon';
 import { A11yModule } from '@angular/cdk/a11y';
+import { L10N_LOCALE, L10nTranslationModule, L10nTranslationService } from 'angular-l10n';
+import { MockTranslationService } from '../../../../../testing/mock-translation-service';
 
 // tslint:disable-next-line:max-function-line-count
 describe('CheckboxComponent', () => {
@@ -21,7 +23,17 @@ describe('CheckboxComponent', () => {
 
     beforeEach(async () => {
         TestBed.configureTestingModule({
-            imports: [MatCheckboxModule, FormsModule, MatIconModule, A11yModule],
+            imports: [MatCheckboxModule, FormsModule, MatIconModule, A11yModule, L10nTranslationModule],
+            providers: [
+                {
+                    provide: L10nTranslationService,
+                    useClass: MockTranslationService
+                },
+                {
+                    provide: L10N_LOCALE,
+                    useValue: { language: 'de' }
+                }
+            ],
             declarations: [CheckboxComponent, MockTooltipDirective]
         });
 

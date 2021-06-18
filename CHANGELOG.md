@@ -1,3 +1,10 @@
+# 11.5.0 (XX.XX.2021)
+
+### Features
+
+-   **terra-form**: error messages have been added for the following form field validators:
+    -   validator **required**,
+
 # 11.4.0 (16.06.2021)
 
 ### Features
