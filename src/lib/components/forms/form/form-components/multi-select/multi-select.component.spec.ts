@@ -12,10 +12,10 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldHarness } from '@angular/material/form-field/testing';
 import { MatOptionHarness } from '@angular/material/core/testing';
 import { PseudoCheckboxStatePipe } from './pipes/pseudo-checkbox-state.pipe';
-import { L10nTranslationModule } from 'angular-l10n';
-import { mockL10nConfig } from '../../../../../testing/mock-l10n-config';
+import { L10N_LOCALE, L10nTranslationModule, L10nTranslationService } from 'angular-l10n';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatPseudoCheckboxModule } from '@angular/material/core';
+import { MockTranslationService } from '../../../../../testing/mock-translation-service';
 
 let multiSelectOption1: { caption: string; value: any } = {
     caption: 'Value 01',
@@ -53,7 +53,17 @@ describe('MultiSelectComponent', () => {
                 MatPseudoCheckboxModule,
                 FormsModule,
                 NoopAnimationsModule,
-                L10nTranslationModule.forRoot(mockL10nConfig)
+                L10nTranslationModule
+            ],
+            providers: [
+                {
+                    provide: L10nTranslationService,
+                    useClass: MockTranslationService
+                },
+                {
+                    provide: L10N_LOCALE,
+                    useValue: { language: 'de' }
+                }
             ],
             declarations: [MultiSelectComponent, MockTooltipDirective, PseudoCheckboxStatePipe]
         });

@@ -1,8 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component, Inject, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NumberInputInterface } from './number-input.interface';
 import { noop } from 'rxjs';
 import { TerraPlacementEnum } from '../../../../../helpers';
+import { L10N_LOCALE, L10nLocale } from 'angular-l10n';
 
 @Component({
     selector: 'tc-number-input',
@@ -51,6 +52,8 @@ export class NumberInputComponent implements ControlValueAccessor, NumberInputIn
     // by the Control Value Accessor
     public _onTouchedCallback: () => void = noop;
     public _onChangeCallback: (_: number) => void = noop;
+
+    constructor(@Inject(L10N_LOCALE) public _locale: L10nLocale) {}
 
     /** @description Registers a callback function that is called when the control's value changes in the UI.*/
     public registerOnChange(fn: (_: number) => void): void {

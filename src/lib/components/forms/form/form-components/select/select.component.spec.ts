@@ -12,6 +12,8 @@ import { TerraSelectBoxValueInterface } from '../../../select-box/data/terra-sel
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatOptionHarness } from '@angular/material/core/testing';
 import { SelectSortPipe } from '../../../../../pipes/select-sort.pipe';
+import { L10N_LOCALE, L10nTranslationModule, L10nTranslationService } from 'angular-l10n';
+import { MockTranslationService } from '../../../../../testing/mock-translation-service';
 
 describe('SelectComponent', () => {
     let fixture: ComponentFixture<SelectComponent>;
@@ -33,7 +35,17 @@ describe('SelectComponent', () => {
 
     beforeEach(async () => {
         TestBed.configureTestingModule({
-            imports: [MatSelectModule, FormsModule, MatFormFieldModule, NoopAnimationsModule],
+            imports: [MatSelectModule, FormsModule, MatFormFieldModule, NoopAnimationsModule, L10nTranslationModule],
+            providers: [
+                {
+                    provide: L10nTranslationService,
+                    useClass: MockTranslationService
+                },
+                {
+                    provide: L10N_LOCALE,
+                    useValue: { language: 'de' }
+                }
+            ],
             declarations: [SelectComponent, SelectSortPipe, MockTooltipDirective]
         });
 

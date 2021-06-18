@@ -14,5 +14,5 @@
     {{ name }}
 </mat-checkbox>
 <mat-error *ngIf="control.touched && control.hasError('required')">
-    {{ 'validators.required' | translate: _lang }}
+    {{ 'validators.required' | translate: _locale.language }}
 </mat-error>

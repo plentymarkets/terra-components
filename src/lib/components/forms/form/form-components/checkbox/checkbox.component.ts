@@ -63,12 +63,7 @@ export class CheckboxComponent implements ControlValueAccessor, CheckboxInterfac
     /** @description Internal model. The value of the checkbox. */
     public value: boolean;
 
-    /** @description Current language to be used to translate any labels. */
-    public _lang: string;
-
-    constructor(@Inject(L10N_LOCALE) locale: L10nLocale) {
-        this._lang = locale.language;
-    }
+    constructor(@Inject(L10N_LOCALE) public _locale: L10nLocale) {}
 
     /** @description Writes a new value to the element.*/
     public writeValue(value: boolean): void {
