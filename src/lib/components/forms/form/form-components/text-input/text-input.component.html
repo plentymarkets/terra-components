@@ -11,11 +11,17 @@
         [required]="isRequired"
         [disabled]="isDisabled"
         [readonly]="isReadonly"
-        [minLength]="minLength"
+        [minlength]="minLength"
         [maxlength]="maxLength"
         [iban]="isIban"
     />
     <mat-error *ngIf="isIban && control.hasError('iban')">
         {{ 'terraTextInput.invalidIban' | translate: _locale.language }}
+    </mat-error>
+    <mat-error *ngIf="control.hasError('minLength')">
+        {{ 'terra' }}
+    </mat-error>
+    <mat-error *ngIf="maxLength && control.hasError('maxLength')">
+        {{ 'terrax' }}
     </mat-error>
 </mat-form-field>

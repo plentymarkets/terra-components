@@ -4,10 +4,12 @@
     </mat-label>
     <textarea
         matInput
+        #control="ngModel"
         [(ngModel)]="value"
         (ngModelChange)="_onChangeCallback($event)"
         (blur)="_onTouchedCallback()"
         [maxlength]="maxLength"
+        [minlength]="minLength"
         [rows]="_maxRows"
         [required]="isRequired"
         autocomplete="off"
@@ -15,4 +17,10 @@
         [style.resize]="hasFixedHeight ? 'none' : 'vertical'"
     >
     </textarea>
+    <mat-error *ngIf="control.hasError('maxLength')">
+        {{ 'terrax' }}
+    </mat-error>
+    <mat-error *ngIf="control.hasError('minlength')">
+        {{ 'Mindestens ' + minLength + ' Zeichen benötigt' }}
+    </mat-error>
 </mat-form-field>

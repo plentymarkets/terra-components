@@ -50,6 +50,10 @@ export class TextAreaComponent implements ControlValueAccessor, TextAreaInterfac
     @Input()
     public maxLength: number;
 
+    /** Set a minimum number of characters allowed. */
+    @Input()
+    public minLength: number;
+
     /** Internal model. The value of the input. */
     public value: string;
     public _maxRows: number;
