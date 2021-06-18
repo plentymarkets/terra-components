@@ -24,7 +24,14 @@ describe('CheckboxComponent', () => {
 
     beforeEach(async () => {
         TestBed.configureTestingModule({
-            imports: [MatCheckboxModule, FormsModule, MatIconModule, A11yModule, L10nTranslationModule, MatFormFieldModule],
+            imports: [
+                MatCheckboxModule,
+                FormsModule,
+                MatIconModule,
+                A11yModule,
+                L10nTranslationModule,
+                MatFormFieldModule
+            ],
             providers: [
                 {
                     provide: L10nTranslationService,
