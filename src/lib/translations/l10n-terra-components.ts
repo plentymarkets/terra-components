@@ -144,7 +144,7 @@ const de: {} = {
     },
     validators: {
         required: 'Dies ist ein Pflichtfeld.',
-        min: 'Der Mindestwert ist überschritten.',
+        min: 'Der Mindestwert ist unterschritten.',
         max: 'Der Maximalwert ist überschritten.'
     }
 };
