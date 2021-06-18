@@ -13,6 +13,6 @@
     <mat-icon *ngIf="icon" fontSet="plentyicons" [fontIcon]="icon"></mat-icon>
     {{ name }}
 </mat-checkbox>
-<mat-error *ngIf="isRequired && control.hasError('required')">
+<mat-error *ngIf="control.touched && control.hasError('required')">
     {{ 'validators.required' | translate: _locale.language }}
 </mat-error>
