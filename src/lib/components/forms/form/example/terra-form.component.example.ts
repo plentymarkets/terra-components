@@ -3,6 +3,7 @@ import { FormTypeMap } from '../model/form-type-map';
 import { TerraKeyValueInterface } from '../../../../models';
 import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
 import { formFields } from './form-fields';
+import { FormGroup } from '@angular/forms';
 
 @Component({
     selector: 'terra-form-example',
@@ -20,4 +21,8 @@ export class TerraFormComponentExample {
             { childSelect: 'option1', id: 121 }
         ]
     };
+
+    onClick(form: FormGroup) {
+        form.markAllAsTouched();
+    }
 }

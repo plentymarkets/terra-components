@@ -2,6 +2,8 @@
 <terra-portlet>
     <terra-form #form [inputControlTypeMap]="_formTypeMap" [inputFormFields]="_formFields" [(ngModel)]="_formValue">
     </terra-form>
+
+    <button (click)="onClick(form.formGroup)">Submit</button>
 </terra-portlet>
 <div>FormGroup: {{ form.formGroup.value | json }}</div>
 <br />

@@ -18,4 +18,6 @@
     <mat-error *ngIf="isIban && control.hasError('iban')">
         {{ 'terraTextInput.invalidIban' | translate: _locale.language }}
     </mat-error>
+    <mat-hint>Me: {{ control.touched | json }};</mat-hint>
+    <mat-hint>My parent: {{ ngControl.touched | json }}</mat-hint>
 </mat-form-field>
