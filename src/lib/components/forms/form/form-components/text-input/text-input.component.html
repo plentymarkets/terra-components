@@ -22,4 +22,7 @@
     <mat-error *ngIf="control.hasError('email')">
         {{ 'terraTextInput.invalidEmail' | translate: _locale.language }}
     </mat-error>
+    <mat-error *ngIf="isRequired && control.hasError('required')">
+        {{ 'validators.required' | translate: _locale.language }}
+    </mat-error>
 </mat-form-field>

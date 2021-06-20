@@ -29,4 +29,7 @@
             {{ option.caption }}
         </mat-option>
     </mat-autocomplete>
+    <mat-error *ngIf="isRequired && _control.hasError('required')">
+        {{ 'validators.required' | translate: _locale.language }}
+    </mat-error>
 </mat-form-field>

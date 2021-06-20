@@ -18,6 +18,11 @@ export const select: TerraFormFieldInterface = {
         name: 'Select',
         listBoxValues: [
             {
+                value: null,
+                caption: 'Option null',
+                position: 3
+            },
+            {
                 value: 'option2',
                 caption: 'Option 2',
                 position: 2
@@ -37,7 +42,7 @@ export const suggestion: TerraFormFieldInterface = {
     defaultValue: 'suggestion1',
     options: {
         name: 'Suggestion',
-        required: false,
+        required: true,
         listBoxValues: [
             {
                 value: 'suggestion1',
@@ -119,6 +124,7 @@ export const formFields: TerraKeyValueInterface<TerraFormFieldInterface> = {
     },
     checkbox: {
         type: 'checkbox',
+        defaultValue: true,
         options: {
             name: 'checkbox',
             required: true
@@ -201,7 +207,8 @@ export const formFields: TerraKeyValueInterface<TerraFormFieldInterface> = {
         defaultValue: '2019-01-01T00:00:00+01:00',
         options: {
             name: 'Test date',
-            displayDateFormat: 'DD.MM.YYYY'
+            displayDateFormat: 'DD.MM.YYYY',
+            required: true
         }
     },
     listWithChildren: listWithChildren,
