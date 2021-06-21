@@ -144,7 +144,8 @@ const de: {} = {
     },
     validators: {
         required: 'Dies ist ein Pflichtfeld.',
-        pattern: 'Eingabe entspricht nicht dem Schema.'
+        pattern: 'Eingabe entspricht nicht dem Schema.',
+        patternDecimalCount: 'Anzahl der erforderlichen Nachkommastellen: '
     }
 };
 
@@ -293,7 +294,8 @@ const en: {} = {
     },
     validators: {
         required: 'This is a mandatory field.',
-        pattern: 'Input does not match the pattern.'
+        pattern: 'Input does not match the pattern.',
+        patternDecimalCount: 'Number of required decimal places: '
     }
 };
 
