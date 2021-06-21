@@ -131,7 +131,7 @@ export const formFields: TerraKeyValueInterface<TerraFormFieldInterface> = {
             required: true,
             maxRows: 2,
             maxLength: 10,
-            minLength: 5
+            minLength: 6
         }
     },
     text: {

@@ -69,10 +69,10 @@ describe('TextAreaComponent', () => {
         expect(await input.isDisabled()).toBe(true);
     });
 
-    it('should only accept maxLength amount of characters', async () => {
+    it('should only accept #maxLength amount of characters', async () => {
         const maxLength: number = 10;
-        const validString: string = new Array(maxLength).fill('x').join();
-        const invalidString: string = new Array(maxLength + 1).fill('x').join();
+        const validString: string = new Array(maxLength).fill('x').join('');
+        const invalidString: string = new Array(maxLength + 1).fill('x').join('');
         component.maxLength = maxLength;
         await input.setValue(validString);
         expect(await input.getValue()).toBe(validString);
@@ -129,6 +129,13 @@ describe('TextAreaComponent', () => {
         component.maxLength = 10;
         fixture.detectChanges();
         expect(await host.getProperty('maxLength')).toBe(10);
+    });
+
+    it('should set property `minLength` according to input #minLength', async () => {
+        expect(await host.getProperty('minLength')).toBe(-1);
+        component.minLength = 10;
+        fixture.detectChanges();
+        expect(await host.getProperty('minLength')).toBe(10);
     });
 
     it('should call registered change callback whenever the value of the input is changed by the user', async () => {

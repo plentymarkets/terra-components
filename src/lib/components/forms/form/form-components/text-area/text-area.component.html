@@ -17,10 +17,10 @@
         [style.resize]="hasFixedHeight ? 'none' : 'vertical'"
     >
     </textarea>
-    <mat-error *ngIf="control.hasError('maxLength')">
-        {{ 'terrax' }}
+    <mat-error *ngIf="control.hasError('maxlength')">
+        {{ 'terraTextInput.maxLength' | translate: _locale.language:{ maxLength: maxLength } }}
     </mat-error>
     <mat-error *ngIf="control.hasError('minlength')">
-        {{ 'Mindestens ' + minLength + ' Zeichen benötigt' }}
+        {{ 'terraTextInput.minLength' | translate: _locale.language:{ minLength: minLength } }}
     </mat-error>
 </mat-form-field>

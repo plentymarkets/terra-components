@@ -184,4 +184,18 @@ describe('TextInputComponent', () => {
 
         expect(await inputElement.getProperty('maxLength')).toBe(component.maxLength);
     });
+
+    it('should only accept #maxLength amount of characters', async () => {
+        const maxLength: number = 10;
+        const validString: string = new Array(maxLength).fill('x').join('');
+        const invalidString: string = new Array(maxLength + 1).fill('x').join('');
+        component.maxLength = maxLength;
+        fixture.detectChanges();
+        await input.setValue(validString);
+        expect(await input.getValue()).toBe(validString);
+
+        // all characters above the maxLength should be cut off
+        await input.setValue(invalidString);
+        expect(await input.getValue()).toBe(validString);
+    });
 });
