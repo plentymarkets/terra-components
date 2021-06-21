@@ -22,7 +22,7 @@
 <mat-error *ngIf="isRequired && control.hasError('required')">
     {{ 'validators.required' | translate: _locale.language }}
 </mat-error>
-<mat-error *ngIf="min && control.hasError('min')">
+<mat-error *ngIf="control.hasError('min')">
     {{ 'validators.min' | translate: _locale.language }}
 </mat-error>
 <mat-error *ngIf="max && control.hasError('max')">
