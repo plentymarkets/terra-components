@@ -114,6 +114,40 @@ describe('TextInputComponent', () => {
         expect(await formField.isControlValid()).toBeFalsy();
     });
 
+    it('should check whether the entered text is a valid email when input `email` is true', async () => {
+        const validEmail: string = 'test@plentymarkets.com';
+        const invalidEmail: string = 'test';
+
+        const formField: MatFormFieldHarness = await loader.getHarness(MatFormFieldHarness);
+        expect(component.email).toBe(false);
+        component.email = true;
+        await input.setValue(validEmail);
+        fixture.detectChanges();
+
+        expect(await formField.isControlValid()).toBeTruthy();
+
+        await input.setValue(invalidEmail);
+        fixture.detectChanges();
+
+        expect(await formField.isControlValid()).toBeFalsy();
+    });
+
+    it('should have the correct error message for Emails ', async () => {
+        const invalidEmail: string = 'test';
+
+        const formField: MatFormFieldHarness = await loader.getHarness(MatFormFieldHarness);
+        expect(component.email).toBe(false);
+        component.email = true;
+        await input.setValue(invalidEmail);
+        await input.blur();
+        fixture.detectChanges();
+        expect(await formField.hasErrors()).toBeTrue();
+
+        const errors: Array<string> = await formField.getTextErrors();
+        expect(errors.length).toBe(1);
+        expect(errors[0]).toBe('terraTextInput.invalidEmail');
+    });
+
     describe('with tooltip', () => {
         let tooltip: MockTooltipDirective;
         beforeEach(() => {
