@@ -13,6 +13,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { A11yModule } from '@angular/cdk/a11y';
 import { L10N_LOCALE, L10nTranslationModule, L10nTranslationService } from 'angular-l10n';
 import { MockTranslationService } from '../../../../../testing/mock-translation-service';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 // tslint:disable-next-line:max-function-line-count
 describe('CheckboxComponent', () => {
@@ -23,7 +24,14 @@ describe('CheckboxComponent', () => {
 
     beforeEach(async () => {
         TestBed.configureTestingModule({
-            imports: [MatCheckboxModule, FormsModule, MatIconModule, A11yModule, L10nTranslationModule],
+            imports: [
+                MatCheckboxModule,
+                FormsModule,
+                MatIconModule,
+                A11yModule,
+                L10nTranslationModule,
+                MatFormFieldModule
+            ],
             providers: [
                 {
                     provide: L10nTranslationService,
@@ -157,5 +165,19 @@ describe('CheckboxComponent', () => {
 
             expect(tooltip.tcTooltip).toBe('test');
         });
+    });
+
+    it('should display an error message when it is not checked, but required and touched ', async () => {
+        component.isRequired = true;
+        fixture.detectChanges();
+        expect(await checkbox.isChecked()).toBe(false);
+
+        await checkbox.focus();
+        await checkbox.blur();
+        fixture.detectChanges();
+
+        const error: HTMLElement = fixture.debugElement.query(By.css('mat-error'))?.nativeElement;
+        expect(error).toBeTruthy();
+        expect(error.textContent.trim()).toBe('validators.required');
     });
 });
