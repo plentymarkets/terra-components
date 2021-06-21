@@ -149,7 +149,6 @@ export const formFields: TerraKeyValueInterface<TerraFormFieldInterface> = {
         type: 'text',
         options: {
             name: 'Email',
-            required: true,
             email: true
         }
     },
