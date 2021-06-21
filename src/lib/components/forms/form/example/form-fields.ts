@@ -7,8 +7,8 @@ export const numberControl: TerraFormFieldInterface = {
     options: {
         name: 'Number',
         required: false,
-        min: 10,
-        max: 100
+        minValue: 10,
+        maxValue: 100
     }
 };
 
@@ -168,8 +168,8 @@ export const formFields: TerraKeyValueInterface<TerraFormFieldInterface> = {
         options: {
             name: 'Slider',
             showMinMax: true,
-            min: 0,
-            max: 1,
+            minValue: 0,
+            maxValue: 1,
             interval: 0.1,
             showTicks: true,
             precision: 2
