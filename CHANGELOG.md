@@ -4,6 +4,7 @@
 
 -   **terra-form**: error messages have been added for the following form field validators:
     -   validator **required**,
+    -   validator **pattern**
 
 # 11.4.0 (16.06.2021)
 
