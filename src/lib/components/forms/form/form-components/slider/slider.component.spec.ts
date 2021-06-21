@@ -115,8 +115,8 @@ describe('SliderComponent', () => {
         const minValue: number = 10;
         const maxValue: number = 100;
 
-        component.minValue = minValue;
-        component.maxValue = maxValue;
+        component.min = minValue;
+        component.max = maxValue;
         fixture.detectChanges();
         expect(await slider.getMinValue()).toEqual(minValue);
         expect(await slider.getMaxValue()).toEqual(maxValue);
@@ -154,8 +154,8 @@ describe('SliderComponent', () => {
         const minValue: number = 10;
         const maxValue: number = 100;
 
-        component.minValue = minValue;
-        component.maxValue = maxValue;
+        component.min = minValue;
+        component.max = maxValue;
         component.showMinMax = true;
         fixture.detectChanges();
 
