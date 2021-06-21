@@ -14,6 +14,7 @@ import { TerraPlacementEnum } from '../../../../../helpers';
 import { L10N_LOCALE, L10nTranslationModule, L10nTranslationService } from 'angular-l10n';
 import { MockTranslationService } from '../../../../../testing/mock-translation-service';
 import { IbanValidatorDirective } from '../../../../../validators/iban-validator';
+import truthy = jasmine.truthy;
 
 // tslint:disable-next-line:max-function-line-count
 describe('TextInputComponent', () => {
@@ -190,12 +191,11 @@ describe('TextInputComponent', () => {
         const validString: string = new Array(maxLength).fill('x').join('');
         const invalidString: string = new Array(maxLength + 1).fill('x').join('');
         component.maxLength = maxLength;
-        fixture.detectChanges();
-        await input.setValue(validString);
-        expect(await input.getValue()).toBe(validString);
 
-        // all characters above the maxLength should be cut off
-        await input.setValue(invalidString);
-        expect(await input.getValue()).toBe(validString);
+        const formField: MatFormFieldHarness = await loader.getHarness(MatFormFieldHarness);
+        input.setValue(validString);
+        expect(await formField.isControlValid()).toBe(true);
+        input.setValue(invalidString);
+        expect(await formField.isControlValid()).toBe(false);
     });
 });

@@ -86,12 +86,12 @@ describe('TextAreaComponent', () => {
         const validString: string = new Array(maxLength).fill('x').join('');
         const invalidString: string = new Array(maxLength + 1).fill('x').join('');
         component.maxLength = maxLength;
-        await input.setValue(validString);
-        expect(await input.getValue()).toBe(validString);
 
-        // all characters above the maxLength should be cut off
-        await input.setValue(invalidString);
-        expect(await input.getValue()).toBe(validString);
+        const formField: MatFormFieldHarness = await loader.getHarness(MatFormFieldHarness);
+        input.setValue(validString);
+        expect(await formField.isControlValid()).toBe(true);
+        input.setValue(invalidString);
+        expect(await formField.isControlValid()).toBe(false);
     });
 
     describe('with tooltip', () => {
