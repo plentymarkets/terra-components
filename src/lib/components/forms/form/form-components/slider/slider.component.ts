@@ -40,11 +40,11 @@ export class SliderComponent implements ControlValueAccessor {
 
     /** Lower limit of the slider. Default is 0. */
     @Input()
-    public minValue: number = 0;
+    public min: number = 0;
 
     /** Upper limit of the slider. Default is 1. */
     @Input()
-    public maxValue: number = 1;
+    public max: number = 1;
 
     /** Step size of the slider. Default is 0. */
     @Input()

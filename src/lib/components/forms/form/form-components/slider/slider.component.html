@@ -1,14 +1,14 @@
 <label *ngIf="name" class="slider-label">{{ name }}</label>
 <div class="w-100 d-flex" [tcTooltip]="tooltipText" [placement]="tooltipPlacement">
-    <span *ngIf="showMinMax" class="align-self-center">{{ minValue }}</span>
+    <span *ngIf="showMinMax" class="align-self-center">{{ min }}</span>
     <mat-slider
         thumbLabel
         class="flex-grow-1"
         [(ngModel)]="value"
         [disabled]="isDisabled"
         [required]="isRequired"
-        [min]="minValue"
-        [max]="maxValue"
+        [min]="min"
+        [max]="max"
         [step]="interval"
         [tickInterval]="showTicks | tickInterval: interval"
         [displayWith]="_precisionDisplayFn"
@@ -17,7 +17,7 @@
         #control="ngModel"
     >
     </mat-slider>
-    <span *ngIf="showMinMax" class="align-self-center">{{ maxValue }}</span>
+    <span *ngIf="showMinMax" class="align-self-center">{{ max }}</span>
 </div>
 <mat-error *ngIf="isRequired && control.hasError('required')">
     {{ 'validators.required' | translate: _locale.language }}
