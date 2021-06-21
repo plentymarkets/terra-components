@@ -6,6 +6,7 @@
     -   validator **required**,
     -   validator **min**,
     -   validator **max**,
+        -   Note: The validation message for min and max only takes effect from Angular v12
 
 # 11.4.0 (16.06.2021)
 
