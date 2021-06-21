@@ -19,6 +19,6 @@
     </mat-error>
 
     <mat-error *ngIf="control.hasError('pattern')">
-        {{ 'validators.patternDecimalCount' | translate: _locale.language }} {{ _decimalCount }}
+        {{ 'validators.patternDecimalCount' | translate: _locale.language:{ decimalCount: _decimalCount } }}
     </mat-error>
 </mat-form-field>
