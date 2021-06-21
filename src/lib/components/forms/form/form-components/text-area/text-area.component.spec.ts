@@ -11,6 +11,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TerraPlacementEnum } from '../../../../../helpers';
 import { MockTooltipDirective } from '../../../../../testing/mock-tooltip.directive';
 import { TextAreaComponent } from './text-area.component';
+import { L10N_LOCALE, L10nTranslationModule, L10nTranslationService } from 'angular-l10n';
+import { MockTranslationService } from '../../../../../testing/mock-translation-service';
 
 // tslint:disable-next-line: max-function-line-count
 describe('TextAreaComponent', () => {
@@ -25,7 +27,17 @@ describe('TextAreaComponent', () => {
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             declarations: [MockTooltipDirective, TextAreaComponent],
-            imports: [FormsModule, MatFormFieldModule, MatInputModule, NoopAnimationsModule]
+            providers: [
+                {
+                    provide: L10nTranslationService,
+                    useClass: MockTranslationService
+                },
+                {
+                    provide: L10N_LOCALE,
+                    useValue: { language: 'de' }
+                }
+            ],
+            imports: [FormsModule, MatFormFieldModule, MatInputModule, NoopAnimationsModule, L10nTranslationModule]
         }).compileComponents();
         fixture = TestBed.createComponent(TextAreaComponent);
         component = fixture.componentInstance;

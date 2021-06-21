@@ -17,6 +17,9 @@
         [style.resize]="hasFixedHeight ? 'none' : 'vertical'"
     >
     </textarea>
+    <mat-error *ngIf="isRequired && control.hasError('required')">
+        {{ 'validators.required' | translate: _locale.language }}
+    </mat-error>
     <mat-error *ngIf="control.hasError('maxlength')">
         {{ 'terraTextInput.maxLength' | translate: _locale.language:{ maxLength: maxLength } }}
     </mat-error>
