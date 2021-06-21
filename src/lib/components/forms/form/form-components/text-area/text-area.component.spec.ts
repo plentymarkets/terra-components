@@ -88,9 +88,9 @@ describe('TextAreaComponent', () => {
         component.maxLength = maxLength;
 
         const formField: MatFormFieldHarness = await loader.getHarness(MatFormFieldHarness);
-        input.setValue(validString);
+        await input.setValue(validString);
         expect(await formField.isControlValid()).toBe(true);
-        input.setValue(invalidString);
+        await input.setValue(invalidString);
         expect(await formField.isControlValid()).toBe(false);
     });
 
