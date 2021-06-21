@@ -114,7 +114,7 @@ describe('TextInputComponent', () => {
         expect(await formField.isControlValid()).toBeFalsy();
     });
 
-    it('should have email validate email when email is true', async () => {
+    it('should check whether the entered text is a valid email when input `email` is true', async () => {
         const validEmail: string = 'test@plentymarkets.com';
         const invalidEmail: string = 'test';
 
