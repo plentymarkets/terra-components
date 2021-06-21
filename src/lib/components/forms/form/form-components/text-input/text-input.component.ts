@@ -64,6 +64,10 @@ export class TextInputComponent implements ControlValueAccessor, TextInputInterf
     @Input()
     public name: string = '';
 
+    /** @description  whether entered text should be an email. **/
+    @Input()
+    public email: boolean = false;
+
     /** @description Set the tooltip. */
     @Input()
     public tooltipText: string = '';
