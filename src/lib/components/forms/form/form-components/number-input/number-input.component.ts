@@ -45,10 +45,6 @@ export class NumberInputComponent implements ControlValueAccessor, NumberInputIn
     @Input()
     public tooltipText: string = '';
 
-    /** Stores the pattern for the validation. */
-    @Input()
-    public pattern: string = '';
-
     /** @description The internal data model */
     public value: number;
 
