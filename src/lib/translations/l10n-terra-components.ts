@@ -95,7 +95,8 @@ const de: {} = {
         }
     },
     terraTextInput: {
-        invalidIban: 'IBAN ist ungültig.'
+        invalidIban: 'IBAN ist ungültig.',
+        invalidEmail: 'E-Mail ist ungültig.'
     },
     terraNodeTree: {
         search: 'Suche'
@@ -245,7 +246,8 @@ const en: {} = {
         }
     },
     terraTextInput: {
-        invalidIban: 'IBAN is not valid.'
+        invalidIban: 'IBAN is not valid.',
+        invalidEmail: 'Email is not valid.'
     },
     terraNodeTree: {
         search: 'Search'

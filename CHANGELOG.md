@@ -7,6 +7,7 @@
     -   validator **min**,
     -   validator **max**,
         -   Note: The validation message for min and max only takes effect from Angular v12
+    -   validator **email**,
 
 # 11.4.0 (16.06.2021)
 

@@ -147,6 +147,13 @@ export const formFields: TerraKeyValueInterface<TerraFormFieldInterface> = {
             required: true
         }
     },
+    email: {
+        type: 'text',
+        options: {
+            name: 'Email',
+            email: true
+        }
+    },
     color: {
         type: 'color',
         options: {
