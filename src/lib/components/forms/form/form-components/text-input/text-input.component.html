@@ -14,6 +14,7 @@
         [minlength]="minLength"
         [maxlength]="maxLength"
         [iban]="isIban"
+        [email]="email"
     />
     <mat-error *ngIf="isIban && control.hasError('iban')">
         {{ 'terraTextInput.invalidIban' | translate: _locale.language }}
@@ -23,6 +24,9 @@
     </mat-error>
     <mat-error *ngIf="control.hasError('minlength')">
         {{ 'terraTextInput.minLength' | translate: _locale.language:{ minLength: minLength } }}
+    </mat-error>
+    <mat-error *ngIf="control.hasError('email')">
+        {{ 'terraTextInput.invalidEmail' | translate: _locale.language }}
     </mat-error>
     <mat-error *ngIf="isRequired && control.hasError('required')">
         {{ 'validators.required' | translate: _locale.language }}

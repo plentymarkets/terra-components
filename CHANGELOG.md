@@ -6,6 +6,7 @@
     -   validator **required**,
     -   validator **minLength**,
     -   validator **maxLength**,
+    -   validator **email**,
 
 # 11.4.0 (16.06.2021)
 
