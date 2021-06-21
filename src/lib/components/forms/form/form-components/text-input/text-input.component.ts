@@ -79,6 +79,10 @@ export class TextInputComponent implements ControlValueAccessor, TextInputInterf
     @Input()
     public tooltipPlacement: TerraPlacementEnum = TerraPlacementEnum.TOP;
 
+    /** Stores the pattern for the validation. */
+    @Input()
+    public pattern: string = '';
+
     /** @description The internal data model */
     public value: string;
 
