@@ -96,8 +96,6 @@ const de: {} = {
     },
     terraTextInput: {
         invalidIban: 'IBAN ist ungültig.',
-        maxLength: 'Maximal {{maxLength}} Zeichen erlaubt.',
-        minLength: 'Mindestens {{minLength}} Zeichen benötigt.',
         invalidEmail: 'E-Mail ist ungültig.'
     },
     terraNodeTree: {
@@ -149,7 +147,9 @@ const de: {} = {
         required: 'Dies ist ein Pflichtfeld.',
         pattern: 'Eingabe entspricht nicht dem Schema: {{ pattern }}.',
         patternDecimalCount: 'Anzahl der erforderlichen Nachkommastellen: {{ decimalCount }}.',
-        patternHex: 'Ungültiger Hex-Wert'
+        patternHex: 'Ungültiger Hex-Wert',
+        maxLength: 'Maximal {{maxLength}} Zeichen erlaubt.',
+        minLength: 'Mindestens {{minLength}} Zeichen benötigt.'
     }
 };
 
@@ -250,8 +250,6 @@ const en: {} = {
     },
     terraTextInput: {
         invalidIban: 'IBAN is not valid.',
-        maxLength: 'A maximum of {{maxLength}} characters is allowed.',
-        minLength: 'A minimum of {{minLength}} characters is required.',
         invalidEmail: 'Email is not valid.'
     },
     terraNodeTree: {
@@ -303,7 +301,9 @@ const en: {} = {
         required: 'This is a mandatory field.',
         pattern: 'Input does not match the pattern: {{ pattern }}.',
         patternDecimalCount: 'Number of required decimal places: {{ decimalCount }}.',
-        patternHex: 'Invalid hex value'
+        patternHex: 'Invalid hex value',
+        maxLength: 'A maximum of {{maxLength}} characters is allowed.',
+        minLength: 'A minimum of {{minLength}} characters is required.'
     }
 };
 
