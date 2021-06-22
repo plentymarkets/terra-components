@@ -123,4 +123,24 @@ describe('ColorPickerComponent', () => {
 
         expect(spy).toHaveBeenCalled();
     });
+
+    fit('should display an error message when pattern does not match', async () => {
+        const formField: MatFormFieldHarness = await loader.getHarness(MatFormFieldHarness);
+
+        component.writeValue('#ffffff');
+        await input.blur();
+        fixture.detectChanges();
+
+        let textErrors: Array<string> = await formField.getTextErrors();
+
+        expect(textErrors.length).toBe(0);
+
+        component.writeValue('invalid stuff');
+        await input.blur();
+        fixture.detectChanges();
+
+        textErrors = await formField.getTextErrors();
+
+        expect(textErrors.includes('validators.patternHex')).toBeTrue();
+    });
 });
