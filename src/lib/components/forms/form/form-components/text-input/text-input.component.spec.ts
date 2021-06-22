@@ -227,7 +227,7 @@ describe('TextInputComponent', () => {
         expect(await inputElement.getProperty('pattern')).toBe('^[0-9]');
     });
 
-    it('should display an error message when pattern does not match', async () => {
+    it('should display an error message when input does not match the given pattern', async () => {
         component.pattern = '^[0-9]';
 
         component.writeValue('sdfsdfsdfs');
