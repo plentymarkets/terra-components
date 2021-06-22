@@ -274,7 +274,7 @@ describe('TextInputComponent', () => {
 
     it('should have the correct error message for minLength ', async () => {
         const minLength: number = 5;
-        const invalidString: string = Array(minLength - 1)
+        const invalidString: string = new Array(minLength - 1)
             .fill('x')
             .join('');
 
@@ -291,7 +291,7 @@ describe('TextInputComponent', () => {
 
     it('should have the correct error message for maxLength ', async () => {
         const maxLength: number = 5;
-        const invalidString: string = Array(maxLength + 1)
+        const invalidString: string = new Array(maxLength + 1)
             .fill('x')
             .join('');
 

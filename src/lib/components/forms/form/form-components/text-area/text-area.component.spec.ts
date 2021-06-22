@@ -126,7 +126,7 @@ describe('TextAreaComponent', () => {
 
     it('should have the correct error message for maxLength ', async () => {
         const maxLength: number = 5;
-        const invalidString: string = Array(maxLength + 1)
+        const invalidString: string = new Array(maxLength + 1)
             .fill('x')
             .join('');
 
