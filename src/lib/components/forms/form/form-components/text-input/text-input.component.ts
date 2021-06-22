@@ -52,11 +52,11 @@ export class TextInputComponent implements ControlValueAccessor, TextInputInterf
     @Input()
     public isRequired: boolean = false;
 
-    /** @description Set the maximum number value allowed. */
+    /** @description Set the maximum number of required characters. */
     @Input()
     public maxLength: number;
 
-    /** @description Set the minimum number value allowed. */
+    /** @description Set the minimum number of required characters. */
     @Input()
     public minLength: number;
 
