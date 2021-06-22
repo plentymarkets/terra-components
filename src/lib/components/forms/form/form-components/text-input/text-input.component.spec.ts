@@ -231,4 +231,53 @@ describe('TextInputComponent', () => {
         await input.setValue(invalidString);
         expect(await formField.isControlValid()).toBe(false);
     });
+
+    it('should require #minLength amount of characters', async () => {
+        const minLength: number = 5;
+        const validString: string = new Array(minLength).fill('x').join('');
+        const invalidString: string = new Array(minLength - 1).fill('x').join('');
+        component.minLength = minLength;
+
+        const formField: MatFormFieldHarness = await loader.getHarness(MatFormFieldHarness);
+        await input.setValue(validString);
+        expect(await formField.isControlValid()).toBe(true);
+        await input.setValue(invalidString);
+        expect(await formField.isControlValid()).toBe(false);
+    });
+
+    it('should have the correct error message for minLength ', async () => {
+        const minLength: number = 5;
+        const invalidString: string = Array(minLength - 1)
+            .fill('x')
+            .join('');
+
+        const formField: MatFormFieldHarness = await loader.getHarness(MatFormFieldHarness);
+        component.minLength = minLength;
+        await input.setValue(invalidString);
+        await input.blur();
+        fixture.detectChanges();
+        expect(await formField.hasErrors()).toBeTrue();
+
+        const errors: Array<string> = await formField.getTextErrors();
+        expect(errors.length).toBe(1);
+        expect(errors[0]).toBe('terraTextInput.minLength');
+    });
+
+    it('should have the correct error message for maxLength ', async () => {
+        const maxLength: number = 5;
+        const invalidString: string = Array(maxLength + 1)
+            .fill('x')
+            .join('');
+
+        const formField: MatFormFieldHarness = await loader.getHarness(MatFormFieldHarness);
+        component.maxLength = maxLength;
+        await input.setValue(invalidString);
+        await input.blur();
+        fixture.detectChanges();
+        expect(await formField.hasErrors()).toBeTrue();
+
+        const errors: Array<string> = await formField.getTextErrors();
+        expect(errors.length).toBe(1);
+        expect(errors[0]).toBe('terraTextInput.maxLength');
+    });
 });
