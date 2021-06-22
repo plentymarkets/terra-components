@@ -10,7 +10,7 @@ import { MockTooltipDirective } from '../../../../../testing/mock-tooltip.direct
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { MatFormFieldHarness } from '@angular/material/form-field/testing';
 import { By } from '@angular/platform-browser';
-import { TerraPlacementEnum } from '../../../../../helpers';
+import { TerraPlacementEnum, TerraRegex } from '../../../../../helpers';
 import { L10N_LOCALE, L10nTranslationModule, L10nTranslationService } from 'angular-l10n';
 import { MockTranslationService } from '../../../../../testing/mock-translation-service';
 import { IbanValidatorDirective } from '../../../../../validators/iban-validator';
@@ -217,5 +217,13 @@ describe('TextInputComponent', () => {
         fixture.detectChanges();
 
         expect(await inputElement.getProperty('maxLength')).toBe(component.maxLength);
+    });
+
+    fit('should set pattern to the given one.', async () => {
+        const inputElement: TestElement = await input.host();
+        component.pattern = '^[0-9]';
+        fixture.detectChanges();
+
+        expect(await inputElement.getProperty('pattern')).toBe('^[0-9]');
     });
 });
