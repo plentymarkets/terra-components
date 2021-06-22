@@ -172,7 +172,7 @@ describe('DoubleInputComponent', () => {
         expect(await host.getProperty('step')).toBe('0.001');
     });
 
-    it('should display an error message when pattern does not match', async () => {
+    it('should display an error message when input does not match the configured pattern', async () => {
         const formField: MatFormFieldHarness = await loader.getHarness(MatFormFieldHarness);
 
         component.writeValue(0.01);
