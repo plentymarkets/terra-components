@@ -127,7 +127,7 @@ describe('ColorPickerComponent', () => {
     it('should display an error message when input does not match the hex color pattern', async () => {
         const formField: MatFormFieldHarness = await loader.getHarness(MatFormFieldHarness);
 
-        component.writeValue('#ffffff');
+        await input.setValue('#ffffff');
         await input.blur();
         fixture.detectChanges();
 
