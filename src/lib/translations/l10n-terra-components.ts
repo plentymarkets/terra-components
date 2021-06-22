@@ -145,7 +145,7 @@ const de: {} = {
     },
     validators: {
         required: 'Dies ist ein Pflichtfeld.',
-        pattern: 'Eingabe entspricht nicht dem Schema: {{ pattern }}',
+        pattern: 'Eingabe entspricht nicht dem Schema: {{ pattern }}.',
         patternDecimalCount: 'Anzahl der erforderlichen Nachkommastellen: {{ decimalCount }}.',
         patternHex: 'Ungültiger Hex-Wert'
     }
