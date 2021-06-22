@@ -219,7 +219,7 @@ describe('TextInputComponent', () => {
         expect(await inputElement.getProperty('maxLength')).toBe(component.maxLength);
     });
 
-    fit('should set pattern to the given one.', async () => {
+    it('should set pattern to the given one.', async () => {
         const inputElement: TestElement = await input.host();
         component.pattern = '^[0-9]';
         fixture.detectChanges();
