@@ -236,7 +236,7 @@ describe('TextInputComponent', () => {
         fixture.detectChanges();
 
         let textErrors: Array<string> = await formField.getTextErrors();
-        expect(textErrors.includes('')).toBeTrue();
+        expect(textErrors.includes('validators.pattern')).toBeTrue();
 
         await input.setValue('3');
         await input.blur();
