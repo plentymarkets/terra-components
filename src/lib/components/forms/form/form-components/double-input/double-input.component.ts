@@ -46,8 +46,11 @@ export class DoubleInputComponent implements ControlValueAccessor, DoubleInputIn
     public set decimalCount(decimalCount: number) {
         this._regex = TerraRegex.getDouble(decimalCount);
         this._step = 1 / Math.pow(10, decimalCount);
+        this._decimalCount = decimalCount;
     }
 
+    /** Internal decimal count for error message */
+    public _decimalCount: number;
     /** The internal data model. */
     public value: number;
     /** Stores the pattern for the validation. */

@@ -8,6 +8,7 @@
         (ngModelChange)="_onChangeCallback($event)"
         (blur)="_onTouchedCallback()"
         autocomplete="off"
+        [pattern]="pattern"
         [required]="isRequired"
         [disabled]="isDisabled"
         [readonly]="isReadonly"
@@ -30,5 +31,8 @@
     </mat-error>
     <mat-error *ngIf="isRequired && control.hasError('required')">
         {{ 'validators.required' | translate: _locale.language }}
+    </mat-error>
+    <mat-error *ngIf="control.hasError('pattern')">
+        {{ 'validators.pattern' | translate: _locale.language:{ pattern: pattern } }}
     </mat-error>
 </mat-form-field>

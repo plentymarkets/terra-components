@@ -146,7 +146,10 @@ const de: {} = {
         configColumns: 'Spalten konfigurieren'
     },
     validators: {
-        required: 'Dies ist ein Pflichtfeld.'
+        required: 'Dies ist ein Pflichtfeld.',
+        pattern: 'Eingabe entspricht nicht dem Schema: {{ pattern }}.',
+        patternDecimalCount: 'Anzahl der erforderlichen Nachkommastellen: {{ decimalCount }}.',
+        patternHex: 'Ungültiger Hex-Wert'
     }
 };
 
@@ -297,7 +300,10 @@ const en: {} = {
         configColumns: 'Configure columns'
     },
     validators: {
-        required: 'This is a mandatory field.'
+        required: 'This is a mandatory field.',
+        pattern: 'Input does not match the pattern: {{ pattern }}.',
+        patternDecimalCount: 'Number of required decimal places: {{ decimalCount }}.',
+        patternHex: 'Invalid hex value'
     }
 };
 

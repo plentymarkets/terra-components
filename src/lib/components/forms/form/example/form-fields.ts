@@ -159,7 +159,7 @@ export const formFields: TerraKeyValueInterface<TerraFormFieldInterface> = {
     color: {
         type: 'color',
         options: {
-            name: 'Color',
+            name: 'Colour',
             required: true
         }
     },

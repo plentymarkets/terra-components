@@ -219,6 +219,33 @@ describe('TextInputComponent', () => {
         expect(await inputElement.getProperty('maxLength')).toBe(component.maxLength);
     });
 
+    it('should set pattern to the given one.', async () => {
+        const inputElement: TestElement = await input.host();
+        component.pattern = '^[0-9]';
+        fixture.detectChanges();
+
+        expect(await inputElement.getProperty('pattern')).toBe('^[0-9]');
+    });
+
+    it('should display an error message when input does not match the given pattern', async () => {
+        const formField: MatFormFieldHarness = await loader.getHarness(MatFormFieldHarness);
+        component.pattern = '^[0-9]';
+
+        await input.setValue('sdfsdfsdfs');
+        await input.blur();
+        fixture.detectChanges();
+
+        let textErrors: Array<string> = await formField.getTextErrors();
+        expect(textErrors.includes('validators.pattern')).toBeTrue();
+
+        await input.setValue('3');
+        await input.blur();
+        fixture.detectChanges();
+
+        textErrors = await formField.getTextErrors();
+        expect(textErrors.length).toBe(0);
+    });
+
     it('should only accept #maxLength amount of characters', async () => {
         const maxLength: number = 10;
         const validString: string = new Array(maxLength).fill('x').join('');
