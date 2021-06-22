@@ -226,4 +226,22 @@ describe('TextInputComponent', () => {
 
         expect(await inputElement.getProperty('pattern')).toBe('^[0-9]');
     });
+
+    fit('should display an error message when pattern does not match', async () => {
+        component.pattern = '^[0-9]';
+
+        component.writeValue('sdfsdfsdfs');
+        await input.blur();
+        fixture.detectChanges();
+
+        let error: HTMLElement = fixture.debugElement.query(By.css('mat-error'))?.nativeElement;
+        expect(error).toBeTruthy();
+
+        component.writeValue('3');
+        await input.blur();
+        fixture.detectChanges();
+
+        error = fixture.debugElement.query(By.css('mat-error'))?.nativeElement;
+        expect(error).toBeFalsy();
+    });
 });
