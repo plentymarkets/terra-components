@@ -171,4 +171,24 @@ describe('DoubleInputComponent', () => {
 
         expect(await host.getProperty('step')).toBe('0.001');
     });
+
+    it('should display an error message when pattern does not match', async () => {
+        const formField: MatFormFieldHarness = await loader.getHarness(MatFormFieldHarness);
+
+        component.writeValue(0.01);
+        await input.blur();
+        fixture.detectChanges();
+
+        let textErrors: Array<string> = await formField.getTextErrors();
+
+        expect(textErrors.length).toBe(0);
+
+        component.writeValue(0.0000000001);
+        await input.blur();
+        fixture.detectChanges();
+
+        textErrors = await formField.getTextErrors();
+
+        expect(textErrors.includes('validators.patternDecimalCount')).toBeTrue();
+    });
 });
