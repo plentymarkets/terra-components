@@ -274,9 +274,7 @@ describe('TextInputComponent', () => {
 
     it('should have the correct error message for minLength ', async () => {
         const minLength: number = 5;
-        const invalidString: string = new Array(minLength - 1)
-            .fill('x')
-            .join('');
+        const invalidString: string = new Array(minLength - 1).fill('x').join('');
 
         const formField: MatFormFieldHarness = await loader.getHarness(MatFormFieldHarness);
         component.minLength = minLength;
@@ -291,9 +289,7 @@ describe('TextInputComponent', () => {
 
     it('should have the correct error message for maxLength ', async () => {
         const maxLength: number = 5;
-        const invalidString: string = new Array(maxLength + 1)
-            .fill('x')
-            .join('');
+        const invalidString: string = new Array(maxLength + 1).fill('x').join('');
 
         const formField: MatFormFieldHarness = await loader.getHarness(MatFormFieldHarness);
         component.maxLength = maxLength;
