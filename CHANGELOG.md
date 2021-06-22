@@ -5,6 +5,8 @@
 -   **terra-form**: error messages have been added for the following form field validators:
     -   validator **required**,
     -   validator **pattern**,
+    -   validator **minLength**,
+    -   validator **maxLength**,
     -   validator **email**,
 
 # 11.4.0 (16.06.2021)

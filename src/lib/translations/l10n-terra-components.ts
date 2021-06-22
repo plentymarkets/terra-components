@@ -96,6 +96,8 @@ const de: {} = {
     },
     terraTextInput: {
         invalidIban: 'IBAN ist ungültig.',
+        maxLength: 'Maximal {{maxLength}} Zeichen erlaubt.',
+        minLength: 'Mindestens {{minLength}} Zeichen benötigt.',
         invalidEmail: 'E-Mail ist ungültig.'
     },
     terraNodeTree: {
@@ -248,6 +250,8 @@ const en: {} = {
     },
     terraTextInput: {
         invalidIban: 'IBAN is not valid.',
+        maxLength: 'A maximum of {{maxLength}} characters is allowed.',
+        minLength: 'A minimum of {{minLength}} characters is required.',
         invalidEmail: 'Email is not valid.'
     },
     terraNodeTree: {
