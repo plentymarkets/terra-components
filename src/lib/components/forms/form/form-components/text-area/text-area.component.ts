@@ -47,7 +47,7 @@ export class TextAreaComponent implements ControlValueAccessor, TextAreaInterfac
     @Input()
     public tooltipPlacement: TerraPlacementEnum = TerraPlacementEnum.TOP;
 
-    /** Set a maximum number of required characters. */
+    /** Set a maximum number of allowed characters. */
     @Input()
     public maxLength: number;
 
