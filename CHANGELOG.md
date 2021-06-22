@@ -2,7 +2,7 @@
 
 ### Features
 
--   **terra-form**: error messages have been added for the following form field validators:
+-   **terra-form**: Error messages have been added for the following form field validators:
     -   validator **required**,
     -   validator **pattern**,
     -   validator **minLength**,
