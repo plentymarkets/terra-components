@@ -175,7 +175,7 @@ describe('DoubleInputComponent', () => {
     it('should display an error message when input does not match the configured pattern', async () => {
         const formField: MatFormFieldHarness = await loader.getHarness(MatFormFieldHarness);
 
-        component.writeValue(0.01);
+        await input.setValue('0.01');
         await input.blur();
         fixture.detectChanges();
 
@@ -183,7 +183,7 @@ describe('DoubleInputComponent', () => {
 
         expect(textErrors.length).toBe(0);
 
-        component.writeValue(0.0000000001);
+        await input.setValue('0.0000000001');
         await input.blur();
         fixture.detectChanges();
 

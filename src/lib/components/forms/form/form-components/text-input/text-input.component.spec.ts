@@ -228,20 +228,21 @@ describe('TextInputComponent', () => {
     });
 
     it('should display an error message when input does not match the given pattern', async () => {
+        const formField: MatFormFieldHarness = await loader.getHarness(MatFormFieldHarness);
         component.pattern = '^[0-9]';
 
-        component.writeValue('sdfsdfsdfs');
+        await input.setValue('sdfsdfsdfs');
         await input.blur();
         fixture.detectChanges();
 
-        let error: HTMLElement = fixture.debugElement.query(By.css('mat-error'))?.nativeElement;
-        expect(error).toBeTruthy();
+        let textErrors: Array<string> = await formField.getTextErrors();
+        expect(textErrors.includes('')).toBeTrue();
 
-        component.writeValue('3');
+        await input.setValue('3');
         await input.blur();
         fixture.detectChanges();
 
-        error = fixture.debugElement.query(By.css('mat-error'))?.nativeElement;
-        expect(error).toBeFalsy();
+        textErrors = await formField.getTextErrors();
+        expect(textErrors.length).toBe(0);
     });
 });

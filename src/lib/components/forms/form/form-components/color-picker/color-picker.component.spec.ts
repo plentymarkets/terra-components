@@ -135,7 +135,7 @@ describe('ColorPickerComponent', () => {
 
         expect(textErrors.length).toBe(0);
 
-        component.writeValue('invalid stuff');
+        await input.setValue('invalid stuff');
         await input.blur();
         fixture.detectChanges();
 
