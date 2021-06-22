@@ -17,7 +17,6 @@
     <mat-error *ngIf="isRequired && control.hasError('required')">
         {{ 'validators.required' | translate: _locale.language }}
     </mat-error>
-
     <mat-error *ngIf="control.hasError('pattern')">
         {{ 'validators.patternDecimalCount' | translate: _locale.language:{ decimalCount: _decimalCount } }}
     </mat-error>
