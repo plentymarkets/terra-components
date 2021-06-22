@@ -299,7 +299,7 @@ const en: {} = {
         required: 'This is a mandatory field.',
         pattern: 'Input does not match the pattern: {{ pattern }}.',
         patternDecimalCount: 'Number of required decimal places: {{ decimalCount }}.',
-        patternHex: 'Invalid Hex-Value'
+        patternHex: 'Invalid hex value'
     }
 };
 
