@@ -132,7 +132,7 @@ describe('TextInputComponent', () => {
         expect(await formField.isControlValid()).toBeFalsy();
     });
 
-    it('should have the correct error message for Emails ', async () => {
+    it('should have the correct error message for emails ', async () => {
         const invalidEmail: string = 'test';
 
         const formField: MatFormFieldHarness = await loader.getHarness(MatFormFieldHarness);
