@@ -121,7 +121,7 @@ describe('TextAreaComponent', () => {
         expect(await formField.hasErrors()).toBeTrue();
 
         const errors: Array<string> = await formField.getTextErrors();
-        expect(errors.includes('terraTextInput.minLength')).toBeTrue();
+        expect(errors.includes('validators.minLength')).toBeTrue();
     });
 
     it('should have the correct error message for maxLength ', async () => {
@@ -138,7 +138,7 @@ describe('TextAreaComponent', () => {
         expect(await formField.hasErrors()).toBeTrue();
 
         const errors: Array<string> = await formField.getTextErrors();
-        expect(errors.includes('terraTextInput.maxLength')).toBeTrue();
+        expect(errors.includes('validators.maxLength')).toBeTrue();
     });
 
     describe('with tooltip', () => {
