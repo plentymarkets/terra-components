@@ -17,7 +17,7 @@
         [iban]="isIban"
         [email]="email"
     />
-    <mat-error *ngIf="isIban && control.hasError('iban')">
+    <mat-error *ngIf="control.hasError('iban')">
         {{ 'terraTextInput.invalidIban' | translate: _locale.language }}
     </mat-error>
     <mat-error *ngIf="control.hasError('maxlength')">
