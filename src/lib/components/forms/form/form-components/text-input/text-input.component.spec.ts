@@ -14,7 +14,6 @@ import { TerraPlacementEnum } from '../../../../../helpers';
 import { L10N_LOCALE, L10nTranslationModule, L10nTranslationService } from 'angular-l10n';
 import { MockTranslationService } from '../../../../../testing/mock-translation-service';
 import { IbanValidatorDirective } from '../../../../../validators/iban-validator';
-import truthy = jasmine.truthy;
 
 // tslint:disable-next-line:max-function-line-count
 describe('TextInputComponent', () => {
