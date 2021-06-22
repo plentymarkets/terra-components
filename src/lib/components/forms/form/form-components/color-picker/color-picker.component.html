@@ -24,7 +24,7 @@
         [disabled]="isDisabled"
         [required]="isRequired"
     />
-    <mat-error *ngIf="isRequired && control.hasError('required')">
+    <mat-error *ngIf="control.hasError('required')">
         {{ 'validators.required' | translate: _locale.language }}
     </mat-error>
 

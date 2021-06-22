@@ -14,7 +14,7 @@
         [step]="_step"
         #control="ngModel"
     />
-    <mat-error *ngIf="isRequired && control.hasError('required')">
+    <mat-error *ngIf="control.hasError('required')">
         {{ 'validators.required' | translate: _locale.language }}
     </mat-error>
     <mat-error *ngIf="control.hasError('pattern')">

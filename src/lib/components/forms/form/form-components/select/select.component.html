@@ -19,7 +19,7 @@
             {{ item.caption }}
         </mat-option>
     </mat-select>
-    <mat-error *ngIf="isRequired && control.hasError('required')">
+    <mat-error *ngIf="control.hasError('required')">
         {{ 'validators.required' | translate: _locale.language }}
     </mat-error>
 </mat-form-field>
