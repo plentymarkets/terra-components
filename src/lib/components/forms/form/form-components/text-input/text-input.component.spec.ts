@@ -10,7 +10,7 @@ import { MockTooltipDirective } from '../../../../../testing/mock-tooltip.direct
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { MatFormFieldHarness } from '@angular/material/form-field/testing';
 import { By } from '@angular/platform-browser';
-import { TerraPlacementEnum, TerraRegex } from '../../../../../helpers';
+import { TerraPlacementEnum } from '../../../../../helpers';
 import { L10N_LOCALE, L10nTranslationModule, L10nTranslationService } from 'angular-l10n';
 import { MockTranslationService } from '../../../../../testing/mock-translation-service';
 import { IbanValidatorDirective } from '../../../../../validators/iban-validator';
@@ -227,7 +227,7 @@ describe('TextInputComponent', () => {
         expect(await inputElement.getProperty('pattern')).toBe('^[0-9]');
     });
 
-    fit('should display an error message when pattern does not match', async () => {
+    it('should display an error message when pattern does not match', async () => {
         component.pattern = '^[0-9]';
 
         component.writeValue('sdfsdfsdfs');
