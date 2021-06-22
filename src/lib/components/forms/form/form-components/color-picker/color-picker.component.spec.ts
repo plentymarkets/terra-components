@@ -124,7 +124,7 @@ describe('ColorPickerComponent', () => {
         expect(spy).toHaveBeenCalled();
     });
 
-    fit('should display an error message when pattern does not match', async () => {
+    it('should display an error message when pattern does not match', async () => {
         const formField: MatFormFieldHarness = await loader.getHarness(MatFormFieldHarness);
 
         component.writeValue('#ffffff');
