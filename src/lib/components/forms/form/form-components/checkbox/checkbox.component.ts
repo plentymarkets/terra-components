@@ -1,9 +1,10 @@
-import { Component, Input } from '@angular/core';
+import { Component, Inject, Input } from '@angular/core';
 import { TerraPlacementEnum } from '../../../../../helpers';
 import { noop } from 'rxjs';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CheckboxInterface } from './checkbox.interface';
 import { FocusOrigin } from '@angular/cdk/a11y';
+import { L10N_LOCALE, L10nLocale } from 'angular-l10n';
 
 @Component({
     selector: 'tc-checkbox',
@@ -61,6 +62,8 @@ export class CheckboxComponent implements ControlValueAccessor, CheckboxInterfac
 
     /** @description Internal model. The value of the checkbox. */
     public value: boolean;
+
+    constructor(@Inject(L10N_LOCALE) public _locale: L10nLocale) {}
 
     /** @description Writes a new value to the element.*/
     public writeValue(value: boolean): void {

@@ -16,6 +16,8 @@ import { TerraSuggestionBoxValueInterface } from '../../../suggestion-box/data/t
 import { MatInputHarness } from '@angular/material/input/testing';
 import { MatOptionHarness } from '@angular/material/core/testing';
 import { MatIcon, MatIconModule } from '@angular/material/icon';
+import { L10N_LOCALE, L10nTranslationModule, L10nTranslationService } from 'angular-l10n';
+import { MockTranslationService } from '../../../../../testing/mock-translation-service';
 
 // tslint:disable-next-line:max-function-line-count
 describe('SuggestionComponent', () => {
@@ -55,7 +57,18 @@ describe('SuggestionComponent', () => {
                 NoopAnimationsModule,
                 ReactiveFormsModule,
                 MatAutocompleteModule,
-                MatIconModule
+                MatIconModule,
+                L10nTranslationModule
+            ],
+            providers: [
+                {
+                    provide: L10nTranslationService,
+                    useClass: MockTranslationService
+                },
+                {
+                    provide: L10N_LOCALE,
+                    useValue: { language: 'de' }
+                }
             ],
             declarations: [SuggestionComponent, MockTooltipDirective]
         });

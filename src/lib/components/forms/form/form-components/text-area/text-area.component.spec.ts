@@ -11,6 +11,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TerraPlacementEnum } from '../../../../../helpers';
 import { MockTooltipDirective } from '../../../../../testing/mock-tooltip.directive';
 import { TextAreaComponent } from './text-area.component';
+import { L10N_LOCALE, L10nTranslationModule, L10nTranslationService } from 'angular-l10n';
+import { MockTranslationService } from '../../../../../testing/mock-translation-service';
 
 // tslint:disable-next-line: max-function-line-count
 describe('TextAreaComponent', () => {
@@ -25,7 +27,17 @@ describe('TextAreaComponent', () => {
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             declarations: [MockTooltipDirective, TextAreaComponent],
-            imports: [FormsModule, MatFormFieldModule, MatInputModule, NoopAnimationsModule]
+            providers: [
+                {
+                    provide: L10nTranslationService,
+                    useClass: MockTranslationService
+                },
+                {
+                    provide: L10N_LOCALE,
+                    useValue: { language: 'de' }
+                }
+            ],
+            imports: [FormsModule, MatFormFieldModule, MatInputModule, NoopAnimationsModule, L10nTranslationModule]
         }).compileComponents();
         fixture = TestBed.createComponent(TextAreaComponent);
         component = fixture.componentInstance;
@@ -67,6 +79,62 @@ describe('TextAreaComponent', () => {
         component.isDisabled = true;
         fixture.detectChanges();
         expect(await input.isDisabled()).toBe(true);
+    });
+
+    it('should only accept #maxLength amount of characters', async () => {
+        const maxLength: number = 10;
+        const validString: string = new Array(maxLength).fill('x').join('');
+        const invalidString: string = new Array(maxLength + 1).fill('x').join('');
+        component.maxLength = maxLength;
+
+        const formField: MatFormFieldHarness = await loader.getHarness(MatFormFieldHarness);
+        await input.setValue(validString);
+        expect(await formField.isControlValid()).toBe(true);
+        await input.setValue(invalidString);
+        expect(await formField.isControlValid()).toBe(false);
+    });
+
+    it('should require #minLength amount of characters', async () => {
+        const minLength: number = 5;
+        const validString: string = new Array(minLength).fill('x').join('');
+        const invalidString: string = new Array(minLength - 1).fill('x').join('');
+        component.minLength = minLength;
+
+        const formField: MatFormFieldHarness = await loader.getHarness(MatFormFieldHarness);
+        await input.setValue(validString);
+        expect(await formField.isControlValid()).toBe(true);
+        await input.setValue(invalidString);
+        expect(await formField.isControlValid()).toBe(false);
+    });
+
+    it('should have the correct error message for minLength ', async () => {
+        const minLength: number = 5;
+        const invalidString: string = new Array(minLength - 1).fill('x').join('');
+
+        const formField: MatFormFieldHarness = await loader.getHarness(MatFormFieldHarness);
+        component.minLength = minLength;
+        await input.setValue(invalidString);
+        await input.blur();
+        fixture.detectChanges();
+        expect(await formField.hasErrors()).toBeTrue();
+
+        const errors: Array<string> = await formField.getTextErrors();
+        expect(errors.includes('validators.minLength')).toBeTrue();
+    });
+
+    it('should have the correct error message for maxLength ', async () => {
+        const maxLength: number = 5;
+        const invalidString: string = new Array(maxLength + 1).fill('x').join('');
+
+        const formField: MatFormFieldHarness = await loader.getHarness(MatFormFieldHarness);
+        component.maxLength = maxLength;
+        await input.setValue(invalidString);
+        await input.blur();
+        fixture.detectChanges();
+        expect(await formField.hasErrors()).toBeTrue();
+
+        const errors: Array<string> = await formField.getTextErrors();
+        expect(errors.includes('validators.maxLength')).toBeTrue();
     });
 
     describe('with tooltip', () => {
@@ -115,7 +183,14 @@ describe('TextAreaComponent', () => {
         expect(await host.getProperty('maxLength')).toBe(-1);
         component.maxLength = 10;
         fixture.detectChanges();
-        expect(await host.getProperty('maxLength')).toBe(10);
+        expect(await host.getProperty('maxLength')).toBe(component.maxLength);
+    });
+
+    it('should set property `minLength` according to input #minLength', async () => {
+        expect(await host.getProperty('minLength')).toBe(-1);
+        component.minLength = 10;
+        fixture.detectChanges();
+        expect(await host.getProperty('minLength')).toBe(component.minLength);
     });
 
     it('should call registered change callback whenever the value of the input is changed by the user', async () => {

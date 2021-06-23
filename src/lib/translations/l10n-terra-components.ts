@@ -95,7 +95,8 @@ const de: {} = {
         }
     },
     terraTextInput: {
-        invalidIban: 'IBAN ist ungültig.'
+        invalidIban: 'IBAN ist ungültig.',
+        invalidEmail: 'E-Mail ist ungültig.'
     },
     terraNodeTree: {
         search: 'Suche'
@@ -141,6 +142,14 @@ const de: {} = {
         confirm: 'Bestätigen',
         cancel: 'Abbrechen',
         configColumns: 'Spalten konfigurieren'
+    },
+    validators: {
+        required: 'Dies ist ein Pflichtfeld.',
+        pattern: 'Eingabe entspricht nicht dem Schema: {{ pattern }}.',
+        patternDecimalCount: 'Anzahl der erforderlichen Nachkommastellen: {{ decimalCount }}.',
+        patternHex: 'Ungültiger Hex-Wert',
+        maxLength: 'Maximal {{maxLength}} Zeichen erlaubt.',
+        minLength: 'Mindestens {{minLength}} Zeichen benötigt.'
     }
 };
 
@@ -240,7 +249,8 @@ const en: {} = {
         }
     },
     terraTextInput: {
-        invalidIban: 'IBAN is not valid.'
+        invalidIban: 'IBAN is not valid.',
+        invalidEmail: 'Email is not valid.'
     },
     terraNodeTree: {
         search: 'Search'
@@ -286,6 +296,14 @@ const en: {} = {
         confirm: 'Confirm',
         cancel: 'Cancel',
         configColumns: 'Configure columns'
+    },
+    validators: {
+        required: 'This is a mandatory field.',
+        pattern: 'Input does not match the pattern: {{ pattern }}.',
+        patternDecimalCount: 'Number of required decimal places: {{ decimalCount }}.',
+        patternHex: 'Invalid hex value',
+        maxLength: 'A maximum of {{maxLength}} characters is allowed.',
+        minLength: 'A minimum of {{minLength}} characters is required.'
     }
 };
 

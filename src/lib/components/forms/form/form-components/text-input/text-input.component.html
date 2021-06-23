@@ -8,14 +8,31 @@
         (ngModelChange)="_onChangeCallback($event)"
         (blur)="_onTouchedCallback()"
         autocomplete="off"
+        [pattern]="pattern"
         [required]="isRequired"
         [disabled]="isDisabled"
         [readonly]="isReadonly"
-        [minLength]="minLength"
+        [minlength]="minLength"
         [maxlength]="maxLength"
         [iban]="isIban"
+        [email]="email"
     />
-    <mat-error *ngIf="isIban && control.hasError('iban')">
+    <mat-error *ngIf="control.hasError('iban')">
         {{ 'terraTextInput.invalidIban' | translate: _locale.language }}
+    </mat-error>
+    <mat-error *ngIf="control.hasError('maxlength')">
+        {{ 'validators.maxLength' | translate: _locale.language:{ maxLength: maxLength } }}
+    </mat-error>
+    <mat-error *ngIf="control.hasError('minlength')">
+        {{ 'validators.minLength' | translate: _locale.language:{ minLength: minLength } }}
+    </mat-error>
+    <mat-error *ngIf="control.hasError('email')">
+        {{ 'terraTextInput.invalidEmail' | translate: _locale.language }}
+    </mat-error>
+    <mat-error *ngIf="control.hasError('required')">
+        {{ 'validators.required' | translate: _locale.language }}
+    </mat-error>
+    <mat-error *ngIf="control.hasError('pattern')">
+        {{ 'validators.pattern' | translate: _locale.language:{ pattern: pattern } }}
     </mat-error>
 </mat-form-field>

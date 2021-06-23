@@ -114,6 +114,40 @@ describe('TextInputComponent', () => {
         expect(await formField.isControlValid()).toBeFalsy();
     });
 
+    it('should check whether the entered text is a valid email when input `email` is true', async () => {
+        const validEmail: string = 'test@plentymarkets.com';
+        const invalidEmail: string = 'test';
+
+        const formField: MatFormFieldHarness = await loader.getHarness(MatFormFieldHarness);
+        expect(component.email).toBe(false);
+        component.email = true;
+        await input.setValue(validEmail);
+        fixture.detectChanges();
+
+        expect(await formField.isControlValid()).toBeTruthy();
+
+        await input.setValue(invalidEmail);
+        fixture.detectChanges();
+
+        expect(await formField.isControlValid()).toBeFalsy();
+    });
+
+    it('should have the correct error message for emails ', async () => {
+        const invalidEmail: string = 'test';
+
+        const formField: MatFormFieldHarness = await loader.getHarness(MatFormFieldHarness);
+        expect(component.email).toBe(false);
+        component.email = true;
+        await input.setValue(invalidEmail);
+        await input.blur();
+        fixture.detectChanges();
+        expect(await formField.hasErrors()).toBeTrue();
+
+        const errors: Array<string> = await formField.getTextErrors();
+        expect(errors.length).toBe(1);
+        expect(errors[0]).toBe('terraTextInput.invalidEmail');
+    });
+
     describe('with tooltip', () => {
         let tooltip: MockTooltipDirective;
         beforeEach(() => {
@@ -183,5 +217,88 @@ describe('TextInputComponent', () => {
         fixture.detectChanges();
 
         expect(await inputElement.getProperty('maxLength')).toBe(component.maxLength);
+    });
+
+    it('should set pattern to the given one.', async () => {
+        const inputElement: TestElement = await input.host();
+        component.pattern = '^[0-9]';
+        fixture.detectChanges();
+
+        expect(await inputElement.getProperty('pattern')).toBe('^[0-9]');
+    });
+
+    it('should display an error message when input does not match the given pattern', async () => {
+        const formField: MatFormFieldHarness = await loader.getHarness(MatFormFieldHarness);
+        component.pattern = '^[0-9]';
+
+        await input.setValue('sdfsdfsdfs');
+        await input.blur();
+        fixture.detectChanges();
+
+        let textErrors: Array<string> = await formField.getTextErrors();
+        expect(textErrors.includes('validators.pattern')).toBeTrue();
+
+        await input.setValue('3');
+        await input.blur();
+        fixture.detectChanges();
+
+        textErrors = await formField.getTextErrors();
+        expect(textErrors.length).toBe(0);
+    });
+
+    it('should only accept #maxLength amount of characters', async () => {
+        const maxLength: number = 10;
+        const validString: string = new Array(maxLength).fill('x').join('');
+        const invalidString: string = new Array(maxLength + 1).fill('x').join('');
+        component.maxLength = maxLength;
+
+        const formField: MatFormFieldHarness = await loader.getHarness(MatFormFieldHarness);
+        await input.setValue(validString);
+        expect(await formField.isControlValid()).toBe(true);
+        await input.setValue(invalidString);
+        expect(await formField.isControlValid()).toBe(false);
+    });
+
+    it('should require #minLength amount of characters', async () => {
+        const minLength: number = 5;
+        const validString: string = new Array(minLength).fill('x').join('');
+        const invalidString: string = new Array(minLength - 1).fill('x').join('');
+        component.minLength = minLength;
+
+        const formField: MatFormFieldHarness = await loader.getHarness(MatFormFieldHarness);
+        await input.setValue(validString);
+        expect(await formField.isControlValid()).toBe(true);
+        await input.setValue(invalidString);
+        expect(await formField.isControlValid()).toBe(false);
+    });
+
+    it('should have the correct error message for minLength ', async () => {
+        const minLength: number = 5;
+        const invalidString: string = new Array(minLength - 1).fill('x').join('');
+
+        const formField: MatFormFieldHarness = await loader.getHarness(MatFormFieldHarness);
+        component.minLength = minLength;
+        await input.setValue(invalidString);
+        await input.blur();
+        fixture.detectChanges();
+        expect(await formField.hasErrors()).toBeTrue();
+
+        const errors: Array<string> = await formField.getTextErrors();
+        expect(errors.includes('validators.minLength')).toBeTrue();
+    });
+
+    it('should have the correct error message for maxLength ', async () => {
+        const maxLength: number = 5;
+        const invalidString: string = new Array(maxLength + 1).fill('x').join('');
+
+        const formField: MatFormFieldHarness = await loader.getHarness(MatFormFieldHarness);
+        component.maxLength = maxLength;
+        await input.setValue(invalidString);
+        await input.blur();
+        fixture.detectChanges();
+        expect(await formField.hasErrors()).toBeTrue();
+
+        const errors: Array<string> = await formField.getTextErrors();
+        expect(errors.includes('validators.maxLength')).toBeTrue();
     });
 });

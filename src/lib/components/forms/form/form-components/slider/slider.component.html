@@ -14,7 +14,11 @@
         [displayWith]="_precisionDisplayFn"
         (ngModelChange)="_onChangeCallback($event)"
         (blur)="_onTouchedCallback()"
+        #control="ngModel"
     >
     </mat-slider>
     <span *ngIf="showMinMax" class="align-self-center">{{ max }}</span>
 </div>
+<mat-error *ngIf="control.hasError('required')">
+    {{ 'validators.required' | translate: _locale.language }}
+</mat-error>

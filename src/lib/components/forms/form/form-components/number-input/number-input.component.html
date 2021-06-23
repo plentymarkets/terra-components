@@ -12,5 +12,9 @@
         step="1"
         [min]="minValue"
         [max]="maxValue"
+        #control="ngModel"
     />
+    <mat-error *ngIf="control.hasError('required')">
+        {{ 'validators.required' | translate: _locale.language }}
+    </mat-error>
 </mat-form-field>

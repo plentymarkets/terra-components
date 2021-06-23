@@ -11,6 +11,8 @@ import { MatInputHarness } from '@angular/material/input/testing';
 import { MatFormFieldHarness } from '@angular/material/form-field/testing';
 import { By } from '@angular/platform-browser';
 import { TerraPlacementEnum } from '../../../../../helpers';
+import { L10N_LOCALE, L10nTranslationModule, L10nTranslationService } from 'angular-l10n';
+import { MockTranslationService } from '../../../../../testing/mock-translation-service';
 
 describe('ColorPickerComponent', () => {
     let fixture: ComponentFixture<ColorPickerComponent>;
@@ -22,7 +24,17 @@ describe('ColorPickerComponent', () => {
 
     beforeEach(async () => {
         TestBed.configureTestingModule({
-            imports: [MatFormFieldModule, MatInputModule, NoopAnimationsModule, FormsModule],
+            imports: [MatFormFieldModule, MatInputModule, NoopAnimationsModule, FormsModule, L10nTranslationModule],
+            providers: [
+                {
+                    provide: L10nTranslationService,
+                    useClass: MockTranslationService
+                },
+                {
+                    provide: L10N_LOCALE,
+                    useValue: { language: 'de' }
+                }
+            ],
             declarations: [ColorPickerComponent, MockTooltipDirective]
         });
 
@@ -110,5 +122,25 @@ describe('ColorPickerComponent', () => {
         await input.blur();
 
         expect(spy).toHaveBeenCalled();
+    });
+
+    it('should display an error message when input does not match the hex colour pattern', async () => {
+        const formField: MatFormFieldHarness = await loader.getHarness(MatFormFieldHarness);
+
+        await input.setValue('#ffffff');
+        await input.blur();
+        fixture.detectChanges();
+
+        let textErrors: Array<string> = await formField.getTextErrors();
+
+        expect(textErrors.length).toBe(0);
+
+        await input.setValue('invalid stuff');
+        await input.blur();
+        fixture.detectChanges();
+
+        textErrors = await formField.getTextErrors();
+
+        expect(textErrors.includes('validators.patternHex')).toBeTrue();
     });
 });

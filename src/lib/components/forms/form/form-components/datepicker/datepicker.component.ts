@@ -92,7 +92,10 @@ export class DatePickerComponent implements ControlValueAccessor, DatepickerInte
     /** Stores the callback function that will be called on blur. */
     public _onTouchedCallback: () => void = noop;
 
-    constructor(@Inject(MAT_DATE_FORMATS) private dateFormats: MatDateFormats) {}
+    constructor(
+        @Inject(MAT_DATE_FORMATS) private dateFormats: MatDateFormats,
+        @Inject(L10N_LOCALE) public _locale: L10nLocale
+    ) {}
 
     /** Registers a callback function that is called when the control's value changes in the UI. */
     public registerOnChange(fn: (_: string) => void): void {

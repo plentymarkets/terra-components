@@ -1,9 +1,10 @@
-import { Component, Input } from '@angular/core';
+import { Component, Inject, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { SelectInterface } from './select.interface';
 import { TerraSelectBoxValueInterface } from '../../../select-box/data/terra-select-box.interface';
 import { noop } from 'rxjs';
 import { TerraPlacementEnum } from '../../../../../helpers';
+import { L10N_LOCALE, L10nLocale } from 'angular-l10n';
 
 /**
  * A component that wrap's material's select to be able to use it in the terra-form.
@@ -52,6 +53,8 @@ export class SelectComponent implements ControlValueAccessor, SelectInterface {
     public _onTouchedCallback: () => void = noop;
     /** Stores the callback function that will be called when the control's value changes in the UI. */
     public _onChangeCallback: (_: any) => void = noop;
+
+    constructor(@Inject(L10N_LOCALE) public _locale: L10nLocale) {}
 
     /** Registers a callback function that is called when the control's value changes in the UI. */
     public registerOnChange(fn: (_: any) => void): void {

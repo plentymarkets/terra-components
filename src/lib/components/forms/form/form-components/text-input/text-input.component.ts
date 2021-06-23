@@ -52,17 +52,21 @@ export class TextInputComponent implements ControlValueAccessor, TextInputInterf
     @Input()
     public isRequired: boolean = false;
 
-    /** @description Set the maximum number value allowed. */
+    /** @description Set the maximum number of allowed characters. */
     @Input()
     public maxLength: number;
 
-    /** @description Set the minimum number value allowed. */
+    /** @description Set the minimum number of required characters. */
     @Input()
     public minLength: number;
 
     /** @description Set the label. */
     @Input()
     public name: string = '';
+
+    /** @description Whether entered text should be an email. **/
+    @Input()
+    public email: boolean = false;
 
     /** @description Set the tooltip. */
     @Input()
@@ -74,6 +78,10 @@ export class TextInputComponent implements ControlValueAccessor, TextInputInterf
      * */
     @Input()
     public tooltipPlacement: TerraPlacementEnum = TerraPlacementEnum.TOP;
+
+    /** Stores the pattern for the validation. */
+    @Input()
+    public pattern: string = '';
 
     /** @description The internal data model */
     public value: string;

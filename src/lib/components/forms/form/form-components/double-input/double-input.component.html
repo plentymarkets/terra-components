@@ -12,5 +12,12 @@
         [style.text-align]="isPriceInput ? 'right' : 'left'"
         [pattern]="_regex"
         [step]="_step"
+        #control="ngModel"
     />
+    <mat-error *ngIf="control.hasError('required')">
+        {{ 'validators.required' | translate: _locale.language }}
+    </mat-error>
+    <mat-error *ngIf="control.hasError('pattern')">
+        {{ 'validators.patternDecimalCount' | translate: _locale.language:{ decimalCount: _decimalCount } }}
+    </mat-error>
 </mat-form-field>

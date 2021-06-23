@@ -10,6 +10,7 @@
         [required]="isRequired"
         [disabled]="isDisabled"
         #select
+        #control="ngModel"
     >
         <div class="mat-option select-all" (click)="_toggleAll(select)">
             <mat-pseudo-checkbox
@@ -23,4 +24,7 @@
             {{ item.caption }}
         </mat-option>
     </mat-select>
+    <mat-error *ngIf="control.hasError('required')">
+        {{ 'validators.required' | translate: _lang }}
+    </mat-error>
 </mat-form-field>
