@@ -2,7 +2,7 @@
 
 ### Bug fixes
 
--   **terra-form** added support for legacy input names on the new form components.
+-   **terra-form** support legacy input names on the new form components.
 
 # 11.5.0 (23.06.2021)
 
