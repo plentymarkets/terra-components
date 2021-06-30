@@ -1,3 +1,9 @@
+# 11.5.1 (XX.XX.2021)
+
+### Bug fixes
+
+-   **terra-form** support legacy input names on the new form components.
+
 # 11.5.0 (23.06.2021)
 
 ### Features

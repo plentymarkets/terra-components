@@ -178,7 +178,7 @@ export const formFields: TerraKeyValueInterface<TerraFormFieldInterface> = {
             name: 'Slider',
             showMinMax: true,
             min: 0,
-            max: 1,
+            inputMax: 2, // legacy
             interval: 0.1,
             showTicks: true,
             precision: 2
