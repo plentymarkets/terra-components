@@ -8,6 +8,7 @@ export * from './route';
 
 export * from './components/table';
 export * from './components/alert';
+export * from './components/filter';
 
 export { TerraComponentsModule } from './terra-components.module';
 

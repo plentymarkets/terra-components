@@ -1,0 +1,13 @@
+input[type='color'] {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    right: 0;
+    top: -11px;
+    width: 36px;
+    height: 36px;
+
+    &:hover {
+        cursor: pointer;
+    }
+}

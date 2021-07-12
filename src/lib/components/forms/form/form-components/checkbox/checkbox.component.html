@@ -1,0 +1,18 @@
+<mat-checkbox
+    [disabled]="isDisabled"
+    [required]="isRequired"
+    [tcTooltip]="tooltipText"
+    [placement]="tooltipPlacement"
+    [(ngModel)]="value"
+    (ngModelChange)="_onChangeCallback($event)"
+    [(indeterminate)]="isIndeterminate"
+    cdkMonitorElementFocus
+    (cdkFocusChange)="_onFocusChange($event)"
+    #control="ngModel"
+>
+    <mat-icon *ngIf="icon" fontSet="plentyicons" [fontIcon]="icon"></mat-icon>
+    {{ name }}
+</mat-checkbox>
+<mat-error *ngIf="control.touched && control.hasError('required')">
+    {{ 'validators.required' | translate: _locale.language }}
+</mat-error>
