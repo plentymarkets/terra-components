@@ -1,3 +1,9 @@
+# 11.6.0 (12.07.2021)
+
+### Minor changes
+
+-   **terra-button** removed styles for `btn-group` which were no longer used.
+
 # 11.5.1 (30.06.2021)
 
 ### Bug fixes
