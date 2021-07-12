@@ -4,8 +4,6 @@ import { TerraFileInputComponent } from '../../input/file-input/terra-file-input
 import { NumberInputComponent } from '../form-components/number-input/number-input.component';
 import { SelectComponent } from '../form-components/select/select.component';
 import { TerraCategoryPickerComponent } from '../../../data-picker/category-picker/terra-category-picker.component';
-import { TerraNoteEditorComponent } from '../../../editors/note-editor/terra-note-editor.component';
-import { TerraCodeEditorComponent } from '../../../editors/code-editor/terra-code-editor.component';
 import { TerraPortletComponent } from '../../../layouts/portlet/terra-portlet.component';
 import { SuggestionComponent } from '../form-components/suggestion/suggestion.component';
 import { DoubleInputComponent } from '../form-components/double-input/double-input.component';
@@ -90,19 +88,6 @@ export class FormTypeMap {
         },
         component: SliderComponent
     };
-    public readonly noteEditor: TerraFormTypeInterface = {
-        inputMap: {
-            name: 'inputHeaderLabel'
-        },
-        component: TerraNoteEditorComponent
-    };
-    public readonly codeEditor: TerraFormTypeInterface = {
-        inputMap: {
-            name: 'inputHeaderLabel'
-        },
-        component: TerraCodeEditorComponent
-    };
-
     public readonly suggestion: TerraFormTypeInterface = {
         inputMap: {
             required: 'isRequired'

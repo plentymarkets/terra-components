@@ -145,22 +145,6 @@
                 >
                 </terra-color-picker>
 
-                <terra-note-editor
-                    *ngSwitchCase="_controlTypeEnum.NOTE_EDITOR"
-                    [formControlName]="formField.key"
-                    [inputPlaceholder]="formField.label"
-                    [(ngModel)]="formField.defaultValue"
-                >
-                </terra-note-editor>
-                <terra-code-editor
-                    *ngSwitchCase="_controlTypeEnum.CODE_EDITOR"
-                    [formControlName]="formField.key"
-                    [inputFixedHeight]="formField.fixedHeight"
-                    [inputHeaderLabel]="formField.label"
-                    [(ngModel)]="formField.defaultValue"
-                >
-                </terra-code-editor>
-
                 <ng-container *ngSwitchCase="_controlTypeEnum.HORIZONTAL_CONTAINER">
                     <div class="horizontalGroup">
                         <terra-dynamic-switch

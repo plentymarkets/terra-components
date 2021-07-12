@@ -32,8 +32,6 @@ import { TerraFileInputComponent } from './forms/input/file-input/terra-file-inp
 import { TerraFileChooserComponent } from './buttons/file-chooser/terra-file-chooser.component';
 import { TerraNoResultNoticeComponent } from './no-result/terra-no-result-notice.component';
 import { TerraButtonWithOptionsComponent } from './buttons/button-with-options/terra-button-with-options.component';
-import { TerraNoteEditorComponent } from './editors/note-editor/terra-note-editor.component';
-import { TerraCodeEditorComponent } from './editors/code-editor/terra-code-editor.component';
 import { TerraTimePickerComponent } from './forms/input/time-picker/terra-time-picker.component';
 import { TerraNoteComponent } from './note/terra-note.component';
 import { TerraNodeTreeComponent } from './tree/node-tree/terra-node-tree.component';
@@ -60,7 +58,6 @@ import { RadioGroupComponent } from './forms/input/radio/radio-group.component';
 import { TableRowComponent } from './tables/data-table/table-row/table-row.component';
 import { FilterComponent } from './filter/filter.component';
 import { CheckboxGroupComponent } from './forms/checkbox-group/checkbox-group.component';
-import { TerraBaseEditorComponent } from './editors/base-editor/terra-base-editor.component';
 import { TerraFormContainerWrapperComponent } from './forms/form/form-container/container-wrapper/terra-form-container-wrapper.component';
 import { TableSettingsComponent } from './table/table-settings/table-settings.component';
 import { TableSettingsDialogComponent } from './table/table-settings/dialog/table-settings-dialog.component';
@@ -111,8 +108,6 @@ export const exportedComponents: Array<Type<any>> = [
     TerraFileChooserComponent,
     TerraNoResultNoticeComponent,
     TerraButtonWithOptionsComponent,
-    TerraNoteEditorComponent,
-    TerraCodeEditorComponent,
     TerraTimePickerComponent,
     TerraNoteComponent,
     TerraNodeTreeComponent,
@@ -143,7 +138,6 @@ export const components: Array<Type<any>> = [
     ...exportedComponents,
     TerraFileListComponent,
     TerraImagePreviewComponent,
-    TerraBaseEditorComponent,
     TableSettingsDialogComponent,
     TerraFormContainerWrapperComponent,
     SuggestionComponent,

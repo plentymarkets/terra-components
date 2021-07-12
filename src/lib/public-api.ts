@@ -125,8 +125,6 @@ export { TerraFileBrowserComponent } from './components/file-browser/terra-file-
 export { TerraBasePrivateStorageService } from './components/file-browser/terra-base-private-storage.interface';
 
 export { TerraNoResultNoticeComponent } from './components/no-result/terra-no-result-notice.component';
-export { TerraNoteEditorComponent } from './components/editors/note-editor/terra-note-editor.component';
-export { TerraCodeEditorComponent } from './components/editors/code-editor/terra-code-editor.component';
 export { TerraNoteComponent } from './components/note/terra-note.component';
 export { TerraSliderComponent } from './components/forms/slider/terra-slider.component';
 export { TerraNodeTreeComponent } from './components/tree/node-tree/terra-node-tree.component';
