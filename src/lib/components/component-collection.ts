@@ -26,7 +26,6 @@ import { TerraDatePickerComponent } from './forms/input/date-picker/terra-date-p
 import { TerraTextAreaInputComponent } from './forms/input/text-area-input/terra-text-area-input.component';
 import { TerraCardComponent } from './layouts/card/terra-card.component';
 import { TerraToggleComponent } from './buttons/toggle/terra-toggle.component';
-import { TerraSliderComponent } from './forms/slider/terra-slider.component';
 import { TerraFileBrowserComponent } from './file-browser/terra-file-browser.component';
 import { TerraFileInputComponent } from './forms/input/file-input/terra-file-input.component';
 import { TerraFileChooserComponent } from './buttons/file-chooser/terra-file-chooser.component';
@@ -58,7 +57,6 @@ import { RadioInputComponent } from './forms/input/radio/radio-input.component';
 import { RadioGroupComponent } from './forms/input/radio/radio-group.component';
 import { TableRowComponent } from './tables/data-table/table-row/table-row.component';
 import { FilterComponent } from './filter/filter.component';
-import { CheckboxGroupComponent } from './forms/checkbox-group/checkbox-group.component';
 import { TerraBaseEditorComponent } from './editors/base-editor/terra-base-editor.component';
 import { TerraFormContainerWrapperComponent } from './forms/form/form-container/container-wrapper/terra-form-container-wrapper.component';
 import { TableSettingsComponent } from './table/table-settings/table-settings.component';
@@ -83,7 +81,6 @@ export const exportedComponents: Array<Type<any>> = [
     TerraButtonComponent,
     TerraCheckboxTreeComponent,
     TerraCheckboxComponent,
-    CheckboxGroupComponent,
     TerraSelectBoxComponent,
     TerraBaseToolbarComponent,
     TerraPagerComponent,
@@ -104,7 +101,6 @@ export const exportedComponents: Array<Type<any>> = [
     TerraTextAreaInputComponent,
     TerraCardComponent,
     TerraToggleComponent,
-    TerraSliderComponent,
     TerraFileBrowserComponent,
     TerraFileInputComponent,
     TerraFileChooserComponent,
