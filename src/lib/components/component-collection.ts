@@ -33,7 +33,6 @@ import { TerraButtonWithOptionsComponent } from './buttons/button-with-options/t
 import { TerraNoteEditorComponent } from './editors/note-editor/terra-note-editor.component';
 import { TerraCodeEditorComponent } from './editors/code-editor/terra-code-editor.component';
 import { TerraTimePickerComponent } from './forms/input/time-picker/terra-time-picker.component';
-import { TerraNoteComponent } from './note/terra-note.component';
 import { TerraNodeTreeComponent } from './tree/node-tree/terra-node-tree.component';
 import { TerraNodeComponent } from './tree/node-tree/node/terra-node.component';
 import { TerraCategoryPickerComponent } from './data-picker/category-picker/terra-category-picker.component';
@@ -107,7 +106,6 @@ export const exportedComponents: Array<Type<any>> = [
     TerraNoteEditorComponent,
     TerraCodeEditorComponent,
     TerraTimePickerComponent,
-    TerraNoteComponent,
     TerraNodeTreeComponent,
     TerraNodeComponent,
     TerraDynamicFormComponent,

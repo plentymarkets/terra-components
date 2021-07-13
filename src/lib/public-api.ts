@@ -123,7 +123,6 @@ export { TerraBasePrivateStorageService } from './components/file-browser/terra-
 export { TerraNoResultNoticeComponent } from './components/no-result/terra-no-result-notice.component';
 export { TerraNoteEditorComponent } from './components/editors/note-editor/terra-note-editor.component';
 export { TerraCodeEditorComponent } from './components/editors/code-editor/terra-code-editor.component';
-export { TerraNoteComponent } from './components/note/terra-note.component';
 export { TerraNodeTreeComponent } from './components/tree/node-tree/terra-node-tree.component';
 export { TerraNodeTreeConfig } from './components/tree/node-tree/data/terra-node-tree.config';
 export { TerraNodeInterface } from './components/tree/node-tree/data/terra-node.interface';
