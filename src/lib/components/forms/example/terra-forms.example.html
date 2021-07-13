@@ -2,7 +2,6 @@
     <form (ngSubmit)="_submit()">
         <terra-text-input [inputName]="'text'"></terra-text-input>
         <terra-number-input [inputName]="'number'"></terra-number-input>
-        <terra-slider [inputName]="'slider'" [inputInterval]="0.1" [inputPrecision]="1" [inputMax]="10"></terra-slider>
         <terra-checkbox [inputCaption]="'checkbox'"></terra-checkbox>
         <tc-radio-group name="radio" [(ngModel)]="_radioValue">
             <tc-radio-input [label]="'Option 1'" [value]="1"></tc-radio-input>
