@@ -1,4 +1,4 @@
-# X.X.X (XX.07.2021)
+# 12.0.0-next.1 (XX.07.2021)
 
 -   **terra-indicator** has been removed.
 -   **tc-checkbox-group** has been removed.
