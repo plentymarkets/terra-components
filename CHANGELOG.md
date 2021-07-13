@@ -4,6 +4,7 @@
 
 -   **terra-stopwatch** has been removed.
 -   **terra-slider** has been removed.
+-   **interactjs** has been removed. Also all interfaces from `src/lib/components/interactables/` directory has been removed.
 
 # 11.6.0 (12.07.2021)
 
