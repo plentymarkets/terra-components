@@ -3,6 +3,8 @@
 -   **terra-indicator** has been removed.
 -   **tc-checkbox-group** has been removed.
 -   **terra-slider** has been removed.
+-   **interactables** `TerraInteractModule`, `TerraDraggableDirective` and all related interfaces have been removed. See https://github.com/plentymarkets/terra-components/tree/v11.6.0/src/lib/components/interactables for reference.
+-   **dependencies** removed peer dependency `interactjs` since its no longer used.
 -   **terra-note** has been removed.
 
 # 12.0.0-next.0 (13.07.2021)
