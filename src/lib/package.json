@@ -43,7 +43,7 @@
         "rxjs": "6.x",
         "ckeditor4-angular": "^1.0.1",
         "bootstrap": "^4.4.1",
-        "htmlhint": "~0.10.3",
+        "htmlhint": "~0.15.1",
         "iban": "~0.0.14",
         "interactjs": "1.3.4",
         "lodash.clonedeep": "^4.5.0",
