@@ -63,6 +63,17 @@ import { TerraBaseEditorComponent } from './editors/base-editor/terra-base-edito
 import { TerraFormContainerWrapperComponent } from './forms/form/form-container/container-wrapper/terra-form-container-wrapper.component';
 import { TableSettingsComponent } from './table/table-settings/table-settings.component';
 import { TableSettingsDialogComponent } from './table/table-settings/dialog/table-settings-dialog.component';
+import { SuggestionComponent } from './forms/form/form-components/suggestion/suggestion.component';
+import { DoubleInputComponent } from './forms/form/form-components/double-input/double-input.component';
+import { SliderComponent } from './forms/form/form-components/slider/slider.component';
+import { MultiSelectComponent } from './forms/form/form-components/multi-select/multi-select.component';
+import { ColorPickerComponent } from './forms/form/form-components/color-picker/color-picker.component';
+import { DatePickerComponent } from './forms/form/form-components/datepicker/datepicker.component';
+import { TextInputComponent } from './forms/form/form-components/text-input/text-input.component';
+import { CheckboxComponent } from './forms/form/form-components/checkbox/checkbox.component';
+import { SelectComponent } from './forms/form/form-components/select/select.component';
+import { NumberInputComponent } from './forms/form/form-components/number-input/number-input.component';
+import { TextAreaComponent } from './forms/form/form-components/text-area/text-area.component';
 
 export const exportedComponents: Array<Type<any>> = [
     TerraAlertPanelComponent,
@@ -132,5 +143,16 @@ export const components: Array<Type<any>> = [
     TerraImagePreviewComponent,
     TerraBaseEditorComponent,
     TableSettingsDialogComponent,
-    TerraFormContainerWrapperComponent
+    TerraFormContainerWrapperComponent,
+    SuggestionComponent,
+    DoubleInputComponent,
+    SliderComponent,
+    MultiSelectComponent,
+    ColorPickerComponent,
+    DatePickerComponent,
+    TextInputComponent,
+    CheckboxComponent,
+    SelectComponent,
+    NumberInputComponent,
+    TextAreaComponent
 ];

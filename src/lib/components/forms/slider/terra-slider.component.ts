@@ -29,6 +29,10 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
         }
     ]
 })
+/**
+ *  @deprecated since v11.
+ *  Use angular material's [slider](https://material.angular.io/components/slider/overview) instead.
+ */
 export class TerraSliderComponent implements OnInit, ControlValueAccessor {
     /**
      * label text

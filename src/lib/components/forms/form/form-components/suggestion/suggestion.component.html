@@ -1,0 +1,35 @@
+<mat-form-field class="w-100" [tcTooltip]="tooltipText" [placement]="tooltipPlacement">
+    <mat-label>
+        {{ name }}
+    </mat-label>
+    <input
+        type="text"
+        matInput
+        [required]="isRequired"
+        [matAutocomplete]="auto"
+        [formControl]="_control"
+        (blur)="_onTouchedCallback()"
+        (input)="_onChangeCallback(null)"
+    />
+    <mat-autocomplete
+        #auto="matAutocomplete"
+        autoActiveFirstOption
+        [displayWith]="_displayFn"
+        (optionSelected)="_optionSelected($event)"
+        (opened)="_autoCompleteOpened.next()"
+    >
+        <mat-option *ngFor="let option of _filteredOptions | async" [value]="option">
+            <mat-icon
+                *ngIf="option.icon"
+                class="align-baseline"
+                fontSet="plentyicons"
+                [fontIcon]="option.icon"
+            ></mat-icon>
+            <img *ngIf="option.imgsrc" [src]="option.imgsrc" />
+            {{ option.caption }}
+        </mat-option>
+    </mat-autocomplete>
+    <mat-error *ngIf="_control.hasError('required')">
+        {{ 'validators.required' | translate: _locale.language }}
+    </mat-error>
+</mat-form-field>

@@ -1,7 +1,7 @@
 {
     "$schema": "../../node_modules/ng-packagr/package.schema.json",
     "name": "@plentymarkets/terra-components",
-    "version": "11.1.0",
+    "version": "11.6.0",
     "homepage": "https://github.com/plentymarkets/terra-components#readme",
     "author": "plentymarkets",
     "description": "plentymarkets terra components",
@@ -34,6 +34,7 @@
         "@angular/core": "11.x",
         "@angular/forms": "11.x",
         "@angular/material": "11.x",
+        "@angular/material-moment-adapter": "11.x",
         "@angular/platform-browser": "11.x",
         "@angular/platform-browser-dynamic": "11.x",
         "@angular/router": "11.x",

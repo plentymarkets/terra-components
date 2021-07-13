@@ -9,7 +9,7 @@ import { RouterModule } from '@angular/router';
 import { TerraInteractModule } from './components/interactables/interact.module';
 import { QuillModule } from 'ngx-quill';
 import { CKEditorModule } from 'ckeditor4-angular';
-import { pipes } from './pipes/pipe-collection';
+import { exportedPipes, pipes } from './pipes/pipe-collection';
 import { MatListModule } from '@angular/material/list';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
@@ -17,6 +17,14 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { A11yModule } from '@angular/cdk/a11y';
+import { MatInputModule } from '@angular/material/input';
+import { MatPseudoCheckboxModule } from '@angular/material/core';
 
 @NgModule({
     imports: [
@@ -35,9 +43,17 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
         MatButtonModule,
         DragDropModule,
         MatIconModule,
-        MatCheckboxModule
+        MatCheckboxModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatAutocompleteModule,
+        MatSliderModule,
+        MatDatepickerModule,
+        A11yModule,
+        MatSelectModule,
+        MatPseudoCheckboxModule
     ],
     declarations: [...components, ...directives, ...pipes],
-    exports: [...exportedComponents, ...exportedDirectives, ...pipes]
+    exports: [...exportedComponents, ...exportedDirectives, ...exportedPipes]
 })
 export class TerraComponentsModule {}
