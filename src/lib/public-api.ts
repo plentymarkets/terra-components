@@ -24,7 +24,6 @@ export { FilterComponent } from './components/filter/filter.component';
 
 // FORM ELEMENTS
 export { TerraCheckboxComponent } from './components/forms/checkbox/terra-checkbox.component';
-export { CheckboxGroupComponent } from './components/forms/checkbox-group/checkbox-group.component';
 export { TerraMultiCheckBoxValueInterface } from './components/forms/multi-check-box/data/terra-multi-check-box-value.interface';
 export { TerraMultiCheckBoxComponent } from './components/forms/multi-check-box/terra-multi-check-box.component';
 
@@ -128,7 +127,6 @@ export { TerraNoResultNoticeComponent } from './components/no-result/terra-no-re
 export { TerraNoteEditorComponent } from './components/editors/note-editor/terra-note-editor.component';
 export { TerraCodeEditorComponent } from './components/editors/code-editor/terra-code-editor.component';
 export { TerraNoteComponent } from './components/note/terra-note.component';
-export { TerraSliderComponent } from './components/forms/slider/terra-slider.component';
 export { TerraNodeTreeComponent } from './components/tree/node-tree/terra-node-tree.component';
 export { TerraNodeTreeConfig } from './components/tree/node-tree/data/terra-node-tree.config';
 export { TerraNodeInterface } from './components/tree/node-tree/data/terra-node.interface';

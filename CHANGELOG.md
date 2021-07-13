@@ -13,6 +13,8 @@
 ### Breaking Changes
 
 -   **terra-stopwatch** has been removed.
+-   **tc-checkbox-group** has been removed.
+-   **terra-slider** has been removed.
 
 # 11.6.0 (12.07.2021)
 
