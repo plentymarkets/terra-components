@@ -4,7 +4,8 @@
 
 -   **terra-stopwatch** has been removed.
 -   **terra-slider** has been removed.
--   **interactjs** has been removed. Also all interfaces from `src/lib/components/interactables/` directory has been removed.
+-   **interactables** `TerraInteractModule`, `TerraDraggableDirective` and all related interfaces have been removed. See https://github.com/plentymarkets/terra-components/tree/v11.6.0/src/lib/components/interactables for reference.
+-   **dependencies** removed peer dependency `interactjs` since its no longer used.
 
 # 11.6.0 (12.07.2021)
 
