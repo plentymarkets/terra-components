@@ -43,9 +43,6 @@ export { TerraTextAreaInputComponent } from './components/forms/input/text-area-
 export { TerraFileInputComponent } from './components/forms/input/file-input/terra-file-input.component';
 export { TerraDatePickerComponent } from './components/forms/input/date-picker/terra-date-picker.component';
 
-// Indicator
-export { TerraIndicatorComponent } from './components/indicator/terra-indicator.component';
-
 // Loading spinner
 export { TerraLoadingSpinnerService } from './components/loading-spinner/service/terra-loading-spinner.service';
 export { TerraLoadingSpinnerComponent } from './components/loading-spinner/terra-loading-spinner.component';
