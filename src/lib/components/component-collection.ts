@@ -8,7 +8,6 @@ import { TerraCheckboxTreeComponent } from './tree/checkbox-tree/terra-checkbox-
 import { TerraCheckboxComponent } from './forms/checkbox/terra-checkbox.component';
 import { TerraSelectBoxComponent } from './forms/select-box/terra-select-box.component';
 import { TerraBaseToolbarComponent } from './toolbar/base-toolbar/terra-base-toolbar.component';
-import { TerraIndicatorComponent } from './indicator/terra-indicator.component';
 import { TerraPagerComponent } from './pager/terra-pager.component';
 import { TerraInfoBoxComponent } from './layouts/info-box/terra-info-box.component';
 import { TerraTaglistComponent } from './layouts/taglist/terra-taglist.component';
@@ -84,7 +83,6 @@ export const exportedComponents: Array<Type<any>> = [
     TerraSelectBoxComponent,
     TerraBaseToolbarComponent,
     TerraPagerComponent,
-    TerraIndicatorComponent,
     TerraInfoBoxComponent,
     TerraTaglistComponent,
     TerraTagComponent,
