@@ -43,7 +43,6 @@ import { TerraFormsExampleComponent } from './forms/example/terra-forms.example'
 import { RadioGroupComponentExample } from './forms/input/radio/example/radio-group.component.example';
 import { DataTableTemplateComponentExample } from './tables/data-table/example/data-table-template.component.example';
 import { FilterComponentExample } from './filter/example/filter.component.example';
-import { CheckboxGroupComponentExample } from './forms/checkbox-group/example/checkbox-group.component.example';
 import { TerraFormComponentExample } from './forms/form/example/terra-form.component.example';
 import { CkEditorDirectiveExample } from './editors/ck-editor/example/ck-editor-directive-example.component';
 import { TerraFileBrowserComponentExample } from './file-browser/example/terra-file-browser.component.example';
@@ -96,7 +95,6 @@ export const examples: Array<Type<any>> = [
     RadioGroupComponentExample,
     DataTableTemplateComponentExample,
     FilterComponentExample,
-    CheckboxGroupComponentExample,
     TerraFormComponentExample,
     CkEditorDirectiveExample,
     TerraFileBrowserComponentExample,

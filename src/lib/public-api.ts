@@ -24,7 +24,6 @@ export { FilterComponent } from './components/filter/filter.component';
 
 // FORM ELEMENTS
 export { TerraCheckboxComponent } from './components/forms/checkbox/terra-checkbox.component';
-export { CheckboxGroupComponent } from './components/forms/checkbox-group/checkbox-group.component';
 export { TerraMultiCheckBoxValueInterface } from './components/forms/multi-check-box/data/terra-multi-check-box-value.interface';
 export { TerraMultiCheckBoxComponent } from './components/forms/multi-check-box/terra-multi-check-box.component';
 
