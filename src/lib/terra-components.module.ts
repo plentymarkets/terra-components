@@ -6,7 +6,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { L10nTranslationModule } from 'angular-l10n';
 import { MyDatePickerModule } from 'mydatepicker';
 import { RouterModule } from '@angular/router';
-import { TerraInteractModule } from './components/interactables/interact.module';
 import { QuillModule } from 'ngx-quill';
 import { CKEditorModule } from 'ckeditor4-angular';
 import { exportedPipes, pipes } from './pipes/pipe-collection';
@@ -37,7 +36,6 @@ import { MatPseudoCheckboxModule } from '@angular/material/core';
         MyDatePickerModule,
         QuillModule.forRoot(),
         CKEditorModule,
-        TerraInteractModule,
         MatListModule,
         MatDialogModule,
         MatButtonModule,
