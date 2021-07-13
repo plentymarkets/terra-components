@@ -1,3 +1,10 @@
+# 12.0.0-next.1 (13.07.2021)
+
+### Breaking Changes
+
+-   **dependencies**
+    -   updated all angular packages to version 12
+
 # 12.0.0-next.0 (13.07.2021)
 
 ### Breaking Changes
