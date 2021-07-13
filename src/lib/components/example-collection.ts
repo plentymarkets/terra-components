@@ -36,7 +36,6 @@ import { TerraNodeTreeComponentExample } from './tree/node-tree/example/terra-no
 import { TerraTimePickerComponentExample } from './forms/input/time-picker/example/terra-time-picker.component.example';
 import { TerraNestedDataPickerComponentExample } from './data-picker/nested-data-picker/example/terra-nested-data-picker.component.example';
 import { TerraTagSelectComponentExample } from './forms/tag-select/example/terra-tag-select.component.example';
-import { TerraStopwatchComponentExample } from './stopwatch/example/terra-stopwatch.component.example';
 import { TerraTwoColumnContainerComponentExample } from './layouts/column-container/two-columns/example/terra-two-column-container.component.example';
 import { TerraThreeColumnContainerComponentExample } from './layouts/column-container/three-columns/example/terra-three-column-container.component.example';
 import { TerraGroupFunctionComponentExample } from './tables/group-function/example/terra-group-function.component.example';
@@ -91,7 +90,6 @@ export const examples: Array<Type<any>> = [
     TerraTimePickerComponentExample,
     TerraNestedDataPickerComponentExample,
     TerraTagSelectComponentExample,
-    TerraStopwatchComponentExample,
     TerraTwoColumnContainerComponentExample,
     TerraThreeColumnContainerComponentExample,
     TerraGroupFunctionComponentExample,
