@@ -41,7 +41,7 @@
         "@plentymarkets/terra-icons": ">=1.0.4-inline.0",
         "angular-l10n": "12.x",
         "rxjs": "6.x",
-        "ckeditor4-angular": "^1.0.1",
+        "ckeditor4-angular": "^2.2.1",
         "bootstrap": "^4.4.1",
         "htmlhint": "~0.10.3",
         "iban": "~0.0.14",
