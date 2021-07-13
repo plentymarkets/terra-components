@@ -1,11 +1,15 @@
+# X.X.X (XX.07.2021)
+
+-   **terra-indicator** has been removed.
+-   **tc-checkbox-group** has been removed.
+-   **terra-slider** has been removed.
+-   **terra-note** has been removed.
+
 # 12.0.0-next.0 (13.07.2021)
 
 ### Breaking Changes
 
 -   **terra-stopwatch** has been removed.
--   **terra-indicator** has been removed.
--   **tc-checkbox-group** has been removed.
--   **terra-slider** has been removed.
 
 # 11.6.0 (12.07.2021)
 
