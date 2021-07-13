@@ -26,7 +26,6 @@ import { TerraDatePickerComponent } from './forms/input/date-picker/terra-date-p
 import { TerraTextAreaInputComponent } from './forms/input/text-area-input/terra-text-area-input.component';
 import { TerraCardComponent } from './layouts/card/terra-card.component';
 import { TerraToggleComponent } from './buttons/toggle/terra-toggle.component';
-import { TerraSliderComponent } from './forms/slider/terra-slider.component';
 import { TerraFileBrowserComponent } from './file-browser/terra-file-browser.component';
 import { TerraFileInputComponent } from './forms/input/file-input/terra-file-input.component';
 import { TerraFileChooserComponent } from './buttons/file-chooser/terra-file-chooser.component';
@@ -102,7 +101,6 @@ export const exportedComponents: Array<Type<any>> = [
     TerraTextAreaInputComponent,
     TerraCardComponent,
     TerraToggleComponent,
-    TerraSliderComponent,
     TerraFileBrowserComponent,
     TerraFileInputComponent,
     TerraFileChooserComponent,

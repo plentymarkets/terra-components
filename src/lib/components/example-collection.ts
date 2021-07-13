@@ -15,7 +15,6 @@ import { TerraTextInputComponentExample } from './forms/input/text-input/example
 import { TerraCheckboxComponentExample } from './forms/checkbox/example/terra-checkbox.component.example';
 import { TerraMultiCheckBoxComponentExample } from './forms/multi-check-box/example/terra-multi-check-box.component.example';
 import { TerraSelectBoxComponentExample } from './forms/select-box/example/terra-select-box.component.example';
-import { TerraSliderComponentExample } from './forms/slider/example/terra-slider.component.example';
 import { TerraSuggestionBoxComponentExample } from './forms/suggestion-box/example/terra-suggestion-box.component.example';
 import { TerraDataTableComponentExample } from './tables/data-table/example/terra-data-table.component.example';
 import { TerraTagComponentExample } from './layouts/tag/example/terra-tag.component.example';
@@ -68,7 +67,6 @@ export const examples: Array<Type<any>> = [
     TerraCheckboxComponentExample,
     TerraMultiCheckBoxComponentExample,
     TerraSelectBoxComponentExample,
-    TerraSliderComponentExample,
     TerraSuggestionBoxComponentExample,
     TerraDataTableComponentExample,
     TerraTagComponentExample,
