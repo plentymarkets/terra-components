@@ -4,6 +4,8 @@
 
 -   **dependencies**
     -   updated all angular packages to version 12
+    -   update `angular-l10n` to version 12
+    -   update `ngx-quill` to version 14
 
 # 12.0.0-next.0 (13.07.2021)
 

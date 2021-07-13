@@ -58,7 +58,7 @@
         "@types/jasminewd2": "~2.0.8",
         "@types/node": "^12.11.1",
         "@types/parse5": "5.0.3",
-        "angular-l10n": "^11.0.0",
+        "angular-l10n": "^12.0.0",
         "ckeditor4-angular": "^1.0.1",
         "codelyzer": "^6.0.1",
         "del": "^6.0.0",
