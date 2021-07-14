@@ -8,6 +8,7 @@
     -   update `ngx-quill` to version 14
     -   update `ngx-bootstrap` to version 6.2.0
     -   update `ckeditor4-angular` to version 2
+    -   update `tslib` to version 2.3.0
 
 # 12.0.0-next.0 (13.07.2021)
 
