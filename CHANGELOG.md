@@ -1,3 +1,15 @@
+# 12.0.0-next.2 (XX.07.2021)
+
+### Breaking Changes
+
+-   **dependencies**
+    -   updated all angular packages to version 12
+    -   update `angular-l10n` to version 12
+    -   update `ngx-quill` to version 14
+    -   update `ngx-bootstrap` to version 6.2.0
+    -   update `ckeditor4-angular` to version 2
+    -   update `tslib` to version 2.3.0
+
 # 12.0.0-next.1 (14.07.2021)
 
 ### Breaking Changes

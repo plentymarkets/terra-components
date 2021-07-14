@@ -107,7 +107,7 @@ describe('NumberInputComponent', () => {
 
     it('should set min value validation according to input #minValue', async () => {
         const inputElement: TestElement = await input.host();
-        expect(await inputElement.getProperty('min')).toBe('undefined');
+        expect(await inputElement.getProperty('min')).toBe('');
 
         component.minValue = 2;
         fixture.detectChanges();
@@ -115,9 +115,9 @@ describe('NumberInputComponent', () => {
         expect(+(await inputElement.getProperty('min'))).toBe(component.minValue);
     });
 
-    it('should set max value validation according to input #minValue', async () => {
+    it('should set max value validation according to input #maxValue', async () => {
         const inputElement: TestElement = await input.host();
-        expect(await inputElement.getProperty('max')).toBe('undefined');
+        expect(await inputElement.getProperty('max')).toBe('');
 
         component.maxValue = 10;
         fixture.detectChanges();
