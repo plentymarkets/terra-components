@@ -8,7 +8,6 @@ import { TerraCheckboxTreeComponent } from './tree/checkbox-tree/terra-checkbox-
 import { TerraCheckboxComponent } from './forms/checkbox/terra-checkbox.component';
 import { TerraSelectBoxComponent } from './forms/select-box/terra-select-box.component';
 import { TerraBaseToolbarComponent } from './toolbar/base-toolbar/terra-base-toolbar.component';
-import { TerraIndicatorComponent } from './indicator/terra-indicator.component';
 import { TerraPagerComponent } from './pager/terra-pager.component';
 import { TerraInfoBoxComponent } from './layouts/info-box/terra-info-box.component';
 import { TerraTaglistComponent } from './layouts/taglist/terra-taglist.component';
@@ -26,7 +25,6 @@ import { TerraDatePickerComponent } from './forms/input/date-picker/terra-date-p
 import { TerraTextAreaInputComponent } from './forms/input/text-area-input/terra-text-area-input.component';
 import { TerraCardComponent } from './layouts/card/terra-card.component';
 import { TerraToggleComponent } from './buttons/toggle/terra-toggle.component';
-import { TerraSliderComponent } from './forms/slider/terra-slider.component';
 import { TerraFileBrowserComponent } from './file-browser/terra-file-browser.component';
 import { TerraFileInputComponent } from './forms/input/file-input/terra-file-input.component';
 import { TerraFileChooserComponent } from './buttons/file-chooser/terra-file-chooser.component';
@@ -35,7 +33,6 @@ import { TerraButtonWithOptionsComponent } from './buttons/button-with-options/t
 import { TerraNoteEditorComponent } from './editors/note-editor/terra-note-editor.component';
 import { TerraCodeEditorComponent } from './editors/code-editor/terra-code-editor.component';
 import { TerraTimePickerComponent } from './forms/input/time-picker/terra-time-picker.component';
-import { TerraNoteComponent } from './note/terra-note.component';
 import { TerraNodeTreeComponent } from './tree/node-tree/terra-node-tree.component';
 import { TerraNodeComponent } from './tree/node-tree/node/terra-node.component';
 import { TerraCategoryPickerComponent } from './data-picker/category-picker/terra-category-picker.component';
@@ -49,7 +46,6 @@ import { TerraFormEntryComponent } from './forms/form/form-entry/terra-form-entr
 import { TerraFormEntryListComponent } from './forms/form/form-entry-list/terra-form-entry-list.component';
 import { TerraBreadcrumbsComponent } from './breadcrumbs/terra-breadcrumbs.component';
 import { TerraTagSelectComponent } from './forms/tag-select/terra-tag-select.component';
-import { TerraStopwatchComponent } from './stopwatch/terra-stopwatch.component';
 import { TerraFileListComponent } from './file-browser/file-list/file-list.component';
 import { TerraImagePreviewComponent } from './file-browser/image-preview/image-preview.component';
 import { TerraThreeColumnsContainerComponent } from './layouts/column-container/three-columns/terra-three-columns-container.component';
@@ -59,7 +55,6 @@ import { RadioInputComponent } from './forms/input/radio/radio-input.component';
 import { RadioGroupComponent } from './forms/input/radio/radio-group.component';
 import { TableRowComponent } from './tables/data-table/table-row/table-row.component';
 import { FilterComponent } from './filter/filter.component';
-import { CheckboxGroupComponent } from './forms/checkbox-group/checkbox-group.component';
 import { TerraBaseEditorComponent } from './editors/base-editor/terra-base-editor.component';
 import { TerraFormContainerWrapperComponent } from './forms/form/form-container/container-wrapper/terra-form-container-wrapper.component';
 import { TableSettingsComponent } from './table/table-settings/table-settings.component';
@@ -84,11 +79,9 @@ export const exportedComponents: Array<Type<any>> = [
     TerraButtonComponent,
     TerraCheckboxTreeComponent,
     TerraCheckboxComponent,
-    CheckboxGroupComponent,
     TerraSelectBoxComponent,
     TerraBaseToolbarComponent,
     TerraPagerComponent,
-    TerraIndicatorComponent,
     TerraInfoBoxComponent,
     TerraTaglistComponent,
     TerraTagComponent,
@@ -105,7 +98,6 @@ export const exportedComponents: Array<Type<any>> = [
     TerraTextAreaInputComponent,
     TerraCardComponent,
     TerraToggleComponent,
-    TerraSliderComponent,
     TerraFileBrowserComponent,
     TerraFileInputComponent,
     TerraFileChooserComponent,
@@ -114,7 +106,6 @@ export const exportedComponents: Array<Type<any>> = [
     TerraNoteEditorComponent,
     TerraCodeEditorComponent,
     TerraTimePickerComponent,
-    TerraNoteComponent,
     TerraNodeTreeComponent,
     TerraNodeComponent,
     TerraDynamicFormComponent,
@@ -128,7 +119,6 @@ export const exportedComponents: Array<Type<any>> = [
     TerraFormEntryListComponent,
     TerraBreadcrumbsComponent,
     TerraTagSelectComponent,
-    TerraStopwatchComponent,
     TerraThreeColumnsContainerComponent,
     TerraGroupFunctionComponent,
     RadioInputComponent,

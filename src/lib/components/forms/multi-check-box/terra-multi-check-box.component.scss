@@ -1,5 +1,5 @@
-// Invalid handling for appearance in a terra-form, tc-checkbox-group or as terra-multi-check-box
-:host-context(terra-form-entry.ng-invalid, tc-checkbox-group.ng-invalid, terra-multi-check-box.ng-invalid) {
+// Invalid handling for appearance in a terra-form or as terra-multi-check-box
+:host-context(terra-form-entry.ng-invalid, terra-multi-check-box.ng-invalid) {
     .multiselect-container .multiselect-element .multiselect .multiselect-header {
         background-color: var(--color-alert);
     }
