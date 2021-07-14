@@ -24,7 +24,7 @@
         "postbuild": "npm run copy:collection && npm run copy:migrations && npm run copy:schema"
     },
     "dependencies": {
-        "tslib": "^2.0.0"
+        "tslib": "^2.3.0"
     },
     "peerDependencies": {
         "@angular/animations": "12.x",
