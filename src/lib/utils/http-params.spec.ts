@@ -27,7 +27,7 @@ describe(`httpParams:`, () => {
             type: array
         };
         let httpParams: HttpParams = createHttpParams(params, false);
-        expect(httpParams.get('type')).toEqual(array.toString());
+        expect(httpParams.get('type')).toEqual(array);
     });
 
     it(`should return httpParams in the form list[]=a&list[]=b&list[]=c' `, () => {
