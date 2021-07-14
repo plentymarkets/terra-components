@@ -1,12 +1,24 @@
-# 11.5.0 (XX.XX.2021)
+# 11.6.0 (12.07.2021)
+
+### Minor changes
+
+-   **terra-button** removed styles for `btn-group` which were no longer used.
+
+# 11.5.1 (30.06.2021)
+
+### Bug fixes
+
+-   **terra-form** support legacy input names on the new form components.
+
+# 11.5.0 (23.06.2021)
 
 ### Features
 
--   **terra-form**: error messages have been added for the following form field validators:
+-   **terra-form**: Error messages have been added for the following form field validators:
     -   validator **required**,
-    -   validator **min**,
-    -   validator **max**,
-        -   Note: The validation message for min and max only takes effect from Angular v12
+    -   validator **pattern**,
+    -   validator **minLength**,
+    -   validator **maxLength**,
     -   validator **email**,
 
 # 11.4.0 (16.06.2021)

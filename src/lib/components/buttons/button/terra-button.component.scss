@@ -323,23 +323,6 @@ fieldset[disabled] a.btn {
     }
 }
 
-:host-context(.btn-group :not(&):not(:first-child)) {
-    & > .btn-handler > .btn,
-    & > .btn-handler > .flag {
-        border-left: 1px solid var(--color-structure-2);
-        border-bottom-left-radius: var(--border-radius);
-        border-top-left-radius: var(--border-radius);
-    }
-}
-
-:host-context(.btn-group :not(&):last-child) {
-    & > .btn-handler > .btn,
-    & > .btn-handler > .flag {
-        border-top-right-radius: var(--border-radius) !important;
-        border-bottom-right-radius: var(--border-radius) !important;
-    }
-}
-
 ////////////// Button Group Vertical & Menu //////////////
 
 :host-context(.btn-group-vertical, .btn-group-menu),

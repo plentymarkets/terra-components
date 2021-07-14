@@ -123,4 +123,24 @@ describe('ColorPickerComponent', () => {
 
         expect(spy).toHaveBeenCalled();
     });
+
+    it('should display an error message when input does not match the hex colour pattern', async () => {
+        const formField: MatFormFieldHarness = await loader.getHarness(MatFormFieldHarness);
+
+        await input.setValue('#ffffff');
+        await input.blur();
+        fixture.detectChanges();
+
+        let textErrors: Array<string> = await formField.getTextErrors();
+
+        expect(textErrors.length).toBe(0);
+
+        await input.setValue('invalid stuff');
+        await input.blur();
+        fixture.detectChanges();
+
+        textErrors = await formField.getTextErrors();
+
+        expect(textErrors.includes('validators.patternHex')).toBeTrue();
+    });
 });

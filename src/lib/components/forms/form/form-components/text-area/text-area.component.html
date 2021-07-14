@@ -4,19 +4,26 @@
     </mat-label>
     <textarea
         matInput
+        #control="ngModel"
         [(ngModel)]="value"
         (ngModelChange)="_onChangeCallback($event)"
         (blur)="_onTouchedCallback()"
         [maxlength]="maxLength"
+        [minlength]="minLength"
         [rows]="_maxRows"
         [required]="isRequired"
         autocomplete="off"
         [disabled]="isDisabled"
         [style.resize]="hasFixedHeight ? 'none' : 'vertical'"
-        #control="ngModel"
     >
     </textarea>
-    <mat-error *ngIf="isRequired && control.hasError('required')">
+    <mat-error *ngIf="control.hasError('required')">
         {{ 'validators.required' | translate: _locale.language }}
+    </mat-error>
+    <mat-error *ngIf="control.hasError('maxlength')">
+        {{ 'validators.maxLength' | translate: _locale.language:{ maxLength: maxLength } }}
+    </mat-error>
+    <mat-error *ngIf="control.hasError('minlength')">
+        {{ 'validators.minLength' | translate: _locale.language:{ minLength: minLength } }}
     </mat-error>
 </mat-form-field>

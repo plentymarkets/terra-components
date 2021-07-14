@@ -7,4 +7,5 @@ export interface TextInputInterface extends TerraFormComponentBaseInterface {
     minLength: number;
     maxLength: number;
     email: boolean;
+    pattern: string;
 }

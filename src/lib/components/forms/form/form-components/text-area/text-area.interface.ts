@@ -4,4 +4,5 @@ export interface TextAreaInterface extends TerraFormComponentBaseInterface {
     hasFixedHeight: boolean;
     maxRows: number;
     maxLength: number;
+    minLength: number;
 }

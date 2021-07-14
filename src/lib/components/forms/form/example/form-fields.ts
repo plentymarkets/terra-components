@@ -21,8 +21,8 @@ export const select: TerraFormFieldInterface = {
         listBoxValues: [
             {
                 value: null,
-                caption: 'Option null',
-                position: 3
+                caption: '',
+                position: 0
             },
             {
                 value: 'option2',
@@ -137,14 +137,18 @@ export const formFields: TerraKeyValueInterface<TerraFormFieldInterface> = {
         options: {
             name: 'Textarea',
             required: true,
-            maxRows: 2
+            maxRows: 2,
+            maxLength: 50,
+            minLength: 2
         }
     },
     text: {
         type: 'text',
         options: {
             name: 'Text',
-            required: true
+            required: true,
+            maxLength: 10,
+            minLength: 2
         }
     },
     email: {
@@ -157,7 +161,7 @@ export const formFields: TerraKeyValueInterface<TerraFormFieldInterface> = {
     color: {
         type: 'color',
         options: {
-            name: 'Color',
+            name: 'Colour',
             required: true
         }
     },
@@ -175,8 +179,8 @@ export const formFields: TerraKeyValueInterface<TerraFormFieldInterface> = {
         options: {
             name: 'Slider',
             showMinMax: true,
-            minValue: 0,
-            maxValue: 1,
+            min: 0,
+            inputMax: 2, // legacy
             interval: 0.1,
             showTicks: true,
             precision: 2
