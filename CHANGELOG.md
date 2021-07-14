@@ -1,4 +1,4 @@
-# 12.0.0-next.1 (13.07.2021)
+# 12.0.0-next.2 (XX.07.2021)
 
 ### Breaking Changes
 
@@ -10,16 +10,22 @@
     -   update `ckeditor4-angular` to version 2
     -   update `tslib` to version 2.3.0
 
+# 12.0.0-next.1 (14.07.2021)
+
+### Breaking Changes
+
+-   **terra-indicator** has been removed.
+-   **tc-checkbox-group** has been removed.
+-   **terra-slider** has been removed.
+-   **terra-note** has been removed.
+-   **interactables** `TerraInteractModule`, `TerraDraggableDirective` and all related interfaces have been removed. See https://github.com/plentymarkets/terra-components/tree/v11.6.0/src/lib/components/interactables for reference.
+-   **dependencies** removed peer dependency `interactjs` since its no longer used.
+
 # 12.0.0-next.0 (13.07.2021)
 
 ### Breaking Changes
 
 -   **terra-stopwatch** has been removed.
--   **terra-indicator** has been removed.
--   **tc-checkbox-group** has been removed.
--   **terra-slider** has been removed.
--   **interactables** `TerraInteractModule`, `TerraDraggableDirective` and all related interfaces have been removed. See https://github.com/plentymarkets/terra-components/tree/v11.6.0/src/lib/components/interactables for reference.
--   **dependencies** removed peer dependency `interactjs` since its no longer used.
 
 # 11.6.0 (12.07.2021)
 
