@@ -3,6 +3,7 @@
 ### Breaking Changes
 
 -   **forms** removed `TerraInputComponent` from the public api since it was not intended to be part of it.
+-   **dependencies** update `ckeditor4-angular` to version pattern `>=1.1.0`.
 
 # 12.0.0-next.2 (14.07.2021)
 
