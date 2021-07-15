@@ -9,6 +9,7 @@
     -   update `ngx-bootstrap` to version 6.2.0
     -   update `ckeditor4-angular` to version 2
     -   update `tslib` to version 2.3.0
+    -   update `ckeditor4-angular` to version pattern `>=1.1.0`.
 
 # 12.0.0-next.1 (14.07.2021)
 
