@@ -30,7 +30,6 @@ export { TerraMultiCheckBoxComponent } from './components/forms/multi-check-box/
 export { RadioGroupComponent } from './components/forms/input/radio/radio-group.component';
 export { RadioInputComponent } from './components/forms/input/radio/radio-input.component';
 
-export { TerraInputComponent } from './components/forms/input/terra-input.component'; // TODO: this has to be removed from the public api
 export { TerraDoubleInputComponent } from './components/forms/input/double-input/terra-double-input.component';
 export { TerraNumberInputComponent } from './components/forms/input/number-input/terra-number-input.component';
 export { TerraTextInputComponent } from './components/forms/input/text-input/terra-text-input.component';
