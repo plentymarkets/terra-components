@@ -1,11 +1,16 @@
-# 12.0.0-next.3 (XX.07.2021)
+# 12.0.0-next.3 (XX.XX.2021)
+
+### Breaking Changes
+
+-   **forms** removed `TerraInputComponent` from the public api since it was not intended to be part of it.
+-   **dependencies** update `ckeditor4-angular` to version pattern `>=1.1.0`.
 
 ### Features
 
 -   **terra-form**: Error messages have been added for the following form field validators:
     -   validator **min**,
     -   validator **max**,
-
+   
 # 12.0.0-next.2 (14.07.2021)
 
 ### Breaking Changes
