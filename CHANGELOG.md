@@ -2,7 +2,7 @@
 
 ### Breaking Changes
 
--   **input** removed `TerraInputComponent` from the public api since it was not intended to be part of it.
+-   **forms** removed `TerraInputComponent` from the public api since it was not intended to be part of it.
 
 # 12.0.0-next.2 (14.07.2021)
 
