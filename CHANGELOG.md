@@ -1,4 +1,4 @@
-# 12.0.0-next.3 (XX.XX.2021)
+# 12.0.0-next.3 (15.07.2021)
 
 ### Breaking Changes
 
