@@ -3,10 +3,12 @@ import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
 
 export const numberControl: TerraFormFieldInterface = {
     type: 'number',
-    defaultValue: 2,
+    defaultValue: 10,
     options: {
         name: 'Number',
-        required: false
+        required: false,
+        minValue: 10,
+        maxValue: 100
     }
 };
 
@@ -178,7 +180,7 @@ export const formFields: TerraKeyValueInterface<TerraFormFieldInterface> = {
             name: 'Slider',
             showMinMax: true,
             min: 0,
-            inputMax: 2, // legacy
+            max: 2,
             interval: 0.1,
             showTicks: true,
             precision: 2

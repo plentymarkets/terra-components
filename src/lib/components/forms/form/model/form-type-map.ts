@@ -86,7 +86,9 @@ export class FormTypeMap {
     };
     public readonly slider: TerraFormTypeInterface = {
         inputMap: {
-            required: 'isRequired'
+            required: 'isRequired',
+            minValue: 'min',
+            maxValue: 'max'
         },
         component: SliderComponent
     };

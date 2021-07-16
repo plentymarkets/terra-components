@@ -1,3 +1,11 @@
+# 12.0.0-next.4 (XX.07.2021)
+
+### Features
+
+-   **terra-form**: Error messages have been added for the following form field validators:
+    -   validator **min**,
+    -   validator **max**,
+
 # 12.0.0-next.3 (15.07.2021)
 
 ### Breaking Changes
