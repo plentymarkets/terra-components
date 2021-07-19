@@ -19,10 +19,11 @@ import { isNullOrUndefined } from 'util';
 import { TerraTextAlignEnum } from './enums/terra-text-align.enum';
 import { TerraHrefTypeEnum } from './enums/terra-href-type.enum';
 import { debounceTime, filter, tap } from 'rxjs/operators';
-import { TerraBaseTable, TerraDataTableToken } from '../terra-base-table';
+import { TerraBaseTable } from '../terra-base-table';
 import { TerraDataTableTextInterface } from './interfaces/terra-data-table-text.interface';
 import { TerraTagInterface } from '../../layouts/tag/data/terra-tag.interface';
 import { TerraDataTableContextMenuEntryInterface } from './context-menu/data/terra-data-table-context-menu-entry.interface';
+import { TerraDataTableToken } from '../table-token';
 
 @Component({
     selector: 'terra-data-table',
