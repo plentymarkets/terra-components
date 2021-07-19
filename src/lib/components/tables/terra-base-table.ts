@@ -8,6 +8,7 @@ export abstract class TerraDataTableToken<T> {
     public abstract onRowCheckboxChange(row: TerraDataTableRowInterface<T>): void;
 }
 /** @deprecated since v5.0. Please use mat-table instead. */
+// tslint:disable-next-line:max-classes-per-file
 @Directive()
 // tslint:disable-next-line:directive-class-suffix
 export abstract class TerraBaseTable<T> extends TerraDataTableToken<T> {
