@@ -1,6 +1,6 @@
 import { Component, Host, HostBinding, HostListener, Input } from '@angular/core';
 import { TerraDataTableRowInterface } from '../interfaces/terra-data-table-row.interface';
-import { TerraDataTableComponent } from '../terra-data-table.component';
+import { TerraDataTableToken } from '../../terra-base-table';
 
 /* tslint:disable:component-selector */
 @Component({
@@ -14,7 +14,7 @@ export class TableRowComponent {
     @Input('tcTableRow')
     public row: TerraDataTableRowInterface<any>;
 
-    constructor(@Host() public _dataTable: TerraDataTableComponent<any, any>) {}
+    constructor(@Host() public _dataTable: TerraDataTableToken<any>) {}
 
     @HostBinding('class.selected')
     public get selected(): boolean {

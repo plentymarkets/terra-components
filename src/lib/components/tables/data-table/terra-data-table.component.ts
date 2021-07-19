@@ -19,7 +19,7 @@ import { isNullOrUndefined } from 'util';
 import { TerraTextAlignEnum } from './enums/terra-text-align.enum';
 import { TerraHrefTypeEnum } from './enums/terra-href-type.enum';
 import { debounceTime, filter, tap } from 'rxjs/operators';
-import { TerraBaseTable } from '../terra-base-table';
+import { TerraBaseTable, TerraDataTableToken } from '../terra-base-table';
 import { TerraDataTableTextInterface } from './interfaces/terra-data-table-text.interface';
 import { TerraTagInterface } from '../../layouts/tag/data/terra-tag.interface';
 import { TerraDataTableContextMenuEntryInterface } from './context-menu/data/terra-data-table-context-menu-entry.interface';
@@ -28,7 +28,10 @@ import { TerraDataTableContextMenuEntryInterface } from './context-menu/data/ter
     selector: 'terra-data-table',
     templateUrl: './terra-data-table.component.html',
     styleUrls: ['./terra-data-table.component.scss'],
-    providers: [TerraDataTableContextMenuService],
+    providers: [
+        TerraDataTableContextMenuService,
+        { provide: TerraDataTableToken, useExisting: TerraDataTableComponent }
+    ],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 /** @deprecated since v5.0. Please use mat-table instead. */
