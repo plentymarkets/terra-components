@@ -8,12 +8,19 @@ import { TerraNodeInterface } from '../tree/node-tree/data/terra-node.interface'
 import { TerraStorageObjectList } from './model/terra-storage-object-list';
 import { StringHelper } from '../../helpers/string.helper';
 
+export abstract class TerraFileBrowserToken {
+    public abstract inputAllowedExtensions: Array<string>;
+    public abstract inputAllowFolders: boolean;
+    public abstract onSelectedUrlChange: EventEmitter<string>;
+    public abstract outputSelectedChange: EventEmitter<TerraStorageObject>;
+    public abstract updatedStorageRootAndService: EventEmitter<[TerraBaseStorageService, TerraStorageObject]>;
+}
 @Component({
     selector: 'terra-file-browser',
     templateUrl: './terra-file-browser.component.html',
-    providers: [TerraNodeTreeConfig]
+    providers: [TerraNodeTreeConfig, { provide: TerraFileBrowserToken, useExisting: TerraFileBrowserComponent }]
 })
-export class TerraFileBrowserComponent implements OnChanges, OnInit {
+export class TerraFileBrowserComponent extends TerraFileBrowserToken implements OnChanges, OnInit {
     @Input()
     public set inputAllowedExtensions(extensions: Array<string>) {
         this._allowedExtensions = extensions.map((extension: string) => extension.toUpperCase());
@@ -59,6 +66,7 @@ export class TerraFileBrowserComponent implements OnChanges, OnInit {
     }
 
     constructor(frontendStorageService: TerraFrontendStorageService, public _nodeTreeConfig: TerraNodeTreeConfig<{}>) {
+        super();
         this._defaultStorageServices = [frontendStorageService];
     }
 
