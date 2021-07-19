@@ -1,6 +1,6 @@
 import { Component, Host, HostBinding, HostListener, Input } from '@angular/core';
 import { TerraDataTableRowInterface } from '../interfaces/terra-data-table-row.interface';
-import { TerraDataTableToken } from '../../terra-base-table';
+import { TerraDataTableToken } from '../../table-token';
 
 /* tslint:disable:component-selector */
 @Component({

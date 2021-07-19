@@ -18,7 +18,7 @@ import {
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { TerraBaseStorageService } from '../terra-base-storage.interface';
-import { TerraFileBrowserToken } from '../terra-file-browser.component';
+import { TerraFileBrowserToken } from '../terra-file-browser-token';
 import { TerraFileBrowserService } from '../terra-file-browser.service';
 import { L10N_LOCALE, L10nIntlService, L10nLocale, L10nTranslationService } from 'angular-l10n';
 import { TerraUploadProgress } from '../model/terra-upload-progress';

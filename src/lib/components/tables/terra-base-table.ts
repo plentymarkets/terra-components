@@ -1,14 +1,9 @@
 import { TerraDataTableRowInterface } from './data-table/interfaces/terra-data-table-row.interface';
 import { EventEmitter, Output, Directive, ChangeDetectorRef } from '@angular/core';
 import { isNullOrUndefined } from 'util';
+import { TerraDataTableToken } from './table-token';
 
-export abstract class TerraDataTableToken<T> {
-    public abstract inputHasCheckboxes: boolean;
-    public abstract rowClicked(row: TerraDataTableRowInterface<T>): void;
-    public abstract onRowCheckboxChange(row: TerraDataTableRowInterface<T>): void;
-}
 /** @deprecated since v5.0. Please use mat-table instead. */
-// tslint:disable-next-line:max-classes-per-file
 @Directive()
 // tslint:disable-next-line:directive-class-suffix
 export abstract class TerraBaseTable<T> extends TerraDataTableToken<T> {

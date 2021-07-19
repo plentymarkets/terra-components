@@ -7,14 +7,8 @@ import { TerraNodeTreeConfig } from '../tree/node-tree/data/terra-node-tree.conf
 import { TerraNodeInterface } from '../tree/node-tree/data/terra-node.interface';
 import { TerraStorageObjectList } from './model/terra-storage-object-list';
 import { StringHelper } from '../../helpers/string.helper';
+import { TerraFileBrowserToken } from './terra-file-browser-token';
 
-export abstract class TerraFileBrowserToken {
-    public abstract inputAllowedExtensions: Array<string>;
-    public abstract inputAllowFolders: boolean;
-    public abstract onSelectedUrlChange: EventEmitter<string>;
-    public abstract outputSelectedChange: EventEmitter<TerraStorageObject>;
-    public abstract updatedStorageRootAndService: EventEmitter<[TerraBaseStorageService, TerraStorageObject]>;
-}
 @Component({
     selector: 'terra-file-browser',
     templateUrl: './terra-file-browser.component.html',
