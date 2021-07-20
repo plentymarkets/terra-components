@@ -27,18 +27,19 @@
                 [inputIsDisabled]="inputIsDisabled"
             >
             </terra-form-entry>
-
-            <terra-form-container
-                *ngIf="inputFormField.children"
-                [formGroupName]="i"
-                [inputFormFields]="inputFormField.children"
-                [inputFormGroup]="control"
-                [inputScope]="_childScopes[i]"
-                [inputControlTypeMap]="inputControlTypeMap"
-                [inputIsDisabled]="inputIsDisabled"
-                [width]="width"
-                [horizontal]="inputFormField.type === 'horizontal'"
-            ></terra-form-container>
+            <ng-container
+                *ngTemplateOutlet="
+                    containerTemplate;
+                    context: {
+                        $implicit: inputFormField,
+                        control: control,
+                        scope: _childScopes[i],
+                        controlTypeMap: inputControlTypeMap,
+                        disabled: inputIsDisabled,
+                        width: width
+                    }
+                "
+            ></ng-container>
 
             <terra-button
                 [inputIcon]="'icon-delete'"

@@ -1,4 +1,4 @@
-import { Component, Inject, Input, OnChanges, SimpleChanges, Type } from '@angular/core';
+import { Component, Inject, Input, OnChanges, SimpleChanges, TemplateRef, Type } from '@angular/core';
 import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
 import { isNullOrUndefined } from 'util';
 import { TerraFormScope } from '../model/terra-form-scope.data';
@@ -10,10 +10,11 @@ import {
     FormGroup,
     NG_VALUE_ACCESSOR
 } from '@angular/forms';
-import { L10nLocale, L10N_LOCALE } from 'angular-l10n';
+import { L10N_LOCALE, L10nLocale } from 'angular-l10n';
 import { TerraFormFieldHelper } from '../helper/terra-form-field.helper';
 import { TerraFormHelper } from '../helper/terra-form.helper';
 import { noop } from 'rxjs';
+import type { TerraFormContainerComponent } from '../form-container/terra-form-container.component';
 
 @Component({
     selector: 'terra-form-entry-list',
@@ -48,6 +49,9 @@ export class TerraFormEntryListComponent implements OnChanges, ControlValueAcces
 
     @Input()
     public width: string;
+
+    @Input()
+    public containerTemplate: TemplateRef<any>;
 
     public formArray: FormArray;
 
