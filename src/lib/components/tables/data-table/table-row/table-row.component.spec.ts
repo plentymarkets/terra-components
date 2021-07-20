@@ -26,7 +26,7 @@ class HostComponent {
     public row: TerraDataTableRowInterface<any> = {};
 }
 
-fdescribe('Component: TableRowComponent', () => {
+describe('Component: TableRowComponent', () => {
     let fixture: ComponentFixture<HostComponent>;
     let component: TableRowComponent;
     let dataTable: TerraDataTableToken<any>;
