@@ -14,7 +14,6 @@ import { L10N_LOCALE, L10nLocale } from 'angular-l10n';
 import { TerraFormFieldHelper } from '../helper/terra-form-field.helper';
 import { TerraFormHelper } from '../helper/terra-form.helper';
 import { noop } from 'rxjs';
-import type { TerraFormContainerComponent } from '../form-container/terra-form-container.component';
 
 @Component({
     selector: 'terra-form-entry-list',
