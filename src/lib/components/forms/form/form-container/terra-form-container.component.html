@@ -63,12 +63,21 @@
             <terra-form-container-wrapper
                 [formGroupName]="field.key"
                 [inputFormField]="field.value"
-                [inputFormGroup]="_formGroup.get(field.key)"
-                [inputScope]="inputScope"
                 [inputControlTypeMap]="inputControlTypeMap"
                 [inputIsDisabled]="inputIsDisabled"
+                [inputProjectedNode]="projectedContainer"
             >
             </terra-form-container-wrapper>
+
+            <ng-template #projectedContainer>
+                <terra-form-container
+                    [inputScope]="inputScope"
+                    [inputFormGroup]="_formGroup.get(field.key)"
+                    [inputControlTypeMap]="inputControlTypeMap"
+                    [inputFormFields]="field.value.children"
+                    [inputIsDisabled]="inputIsDisabled"
+                ></terra-form-container>
+            </ng-template>
         </div>
 
         <terra-form-entry-list
