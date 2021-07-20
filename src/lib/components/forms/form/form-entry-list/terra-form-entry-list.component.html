@@ -18,28 +18,32 @@
                 >
                 </terra-button>
             </div>
-            <terra-form-entry
-                *ngIf="!inputFormField.children"
-                [formControlName]="i"
-                [inputFormControl]="control"
-                [inputFormField]="inputFormField"
-                [inputControlTypeMap]="inputControlTypeMap"
-                [inputIsDisabled]="inputIsDisabled"
-            >
-            </terra-form-entry>
-            <ng-container
-                *ngTemplateOutlet="
-                    containerTemplate;
-                    context: {
-                        $implicit: inputFormField,
-                        control: control,
-                        scope: _childScopes[i],
-                        controlTypeMap: inputControlTypeMap,
-                        disabled: inputIsDisabled,
-                        width: width
-                    }
-                "
-            ></ng-container>
+            <ng-container [ngSwitch]="!!inputFormField.children">
+                <terra-form-entry
+                    *ngSwitchCase="false"
+                    [formControlName]="i"
+                    [inputFormControl]="control"
+                    [inputFormField]="inputFormField"
+                    [inputControlTypeMap]="inputControlTypeMap"
+                    [inputIsDisabled]="inputIsDisabled"
+                >
+                </terra-form-entry>
+                <ng-container *ngSwitchCase="true">
+                    <ng-container
+                        *ngTemplateOutlet="
+                            containerTemplate;
+                            context: {
+                                $implicit: inputFormField,
+                                control: control,
+                                scope: _childScopes[i],
+                                controlTypeMap: inputControlTypeMap,
+                                disabled: inputIsDisabled,
+                                width: width
+                            }
+                        "
+                    ></ng-container>
+                </ng-container>
+            </ng-container>
 
             <terra-button
                 [inputIcon]="'icon-delete'"
