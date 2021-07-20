@@ -22,7 +22,7 @@ import { TerraPortletComponent } from '../../../../layouts/portlet/terra-portlet
 })
 export class TerraFormContainerWrapperComponent extends TerraFormEntryBase implements OnInit, OnChanges, OnDestroy {
     @Input()
-    public inputProjectedNode: TemplateRef<any>;
+    public containerTemplate: TemplateRef<any>;
 
     constructor(componentFactoryResolver: ComponentFactoryResolver, private vc: ViewContainerRef) {
         super(componentFactoryResolver);
@@ -33,7 +33,7 @@ export class TerraFormContainerWrapperComponent extends TerraFormEntryBase imple
      * @description Create instance of inner form container component and wrap it in dynamic structural component
      */
     public ngOnInit(): void {
-        const embeddedView: EmbeddedViewRef<any> = this.vc.createEmbeddedView(this.inputProjectedNode);
+        const embeddedView: EmbeddedViewRef<any> = this.vc.createEmbeddedView(this.containerTemplate);
         this._initComponent(TerraPortletComponent, [embeddedView.rootNodes]);
     }
 }
