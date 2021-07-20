@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { FormTypeMap } from '../model/form-type-map';
 import { TerraKeyValueInterface } from '../../../../models';
 import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
-import { formFields } from './form-fields';
 
 @Component({
     selector: 'terra-form-example',
@@ -10,14 +9,30 @@ import { formFields } from './form-fields';
     styleUrls: ['./terra-form.component.example.scss']
 })
 export class TerraFormComponentExample {
-    public _formFields: TerraKeyValueInterface<TerraFormFieldInterface> = formFields;
-    public _formTypeMap: FormTypeMap = new FormTypeMap();
-    public _formValue: any = {
-        id: 1231,
-        listWithChildren: [
-            { id: 1, childSelect: 'option2', childNumber: 1232131 },
-            { childSelect: 'option1', childNumber: 12241 },
-            { childSelect: 'option1', id: 121 }
-        ]
+    public _formFields: TerraKeyValueInterface<TerraFormFieldInterface> = {
+        portlet: {
+            type: 'portlet',
+            options: {
+                name: 'Portlet'
+            },
+            children: {
+                text: {
+                    type: 'text',
+                    options: {
+                        name: 'Text',
+                        required: true
+                    }
+                },
+                number: {
+                    type: 'number',
+                    options: {
+                        name: 'Number',
+                        min: 3
+                    }
+                }
+            }
+        }
     };
+    public _formTypeMap: FormTypeMap = new FormTypeMap();
+    public _formValue: any = {};
 }
