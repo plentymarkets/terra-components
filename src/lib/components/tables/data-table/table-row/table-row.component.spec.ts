@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TableRowComponent } from './table-row.component';
-import { TerraDataTableComponent } from '../terra-data-table.component';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { TerraDataTableRowInterface } from '../interfaces/terra-data-table-row.interface';
@@ -8,19 +7,18 @@ import { Component, DebugElement } from '@angular/core';
 import { noop } from 'rxjs';
 import { MockTooltipDirective } from '../../../../testing/mock-tooltip.directive';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-
-export const dataTableStub: Partial<TerraDataTableComponent<any, any>> = {
-    rowClicked: noop,
-    onRowCheckboxChange: noop,
-    inputHasCheckboxes: true
-};
+import { TerraDataTableToken } from '../../table-token';
 
 @Component({
     template: `<tr [tcTableRow]="row"></tr>`,
     viewProviders: [
         {
-            provide: TerraDataTableComponent,
-            useValue: dataTableStub
+            provide: TerraDataTableToken,
+            useValue: {
+                rowClicked: noop,
+                onRowCheckboxChange: noop,
+                inputHasCheckboxes: true
+            }
         }
     ]
 })
@@ -28,10 +26,10 @@ class HostComponent {
     public row: TerraDataTableRowInterface<any> = {};
 }
 
-describe('Component: TableRowComponent', () => {
+fdescribe('Component: TableRowComponent', () => {
     let fixture: ComponentFixture<HostComponent>;
     let component: TableRowComponent;
-    let dataTable: TerraDataTableComponent<any, any>;
+    let dataTable: TerraDataTableToken<any>;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -43,7 +41,7 @@ describe('Component: TableRowComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(HostComponent);
         component = fixture.debugElement.query(By.directive(TableRowComponent)).componentInstance;
-        dataTable = fixture.debugElement.injector.get(TerraDataTableComponent);
+        dataTable = fixture.debugElement.injector.get(TerraDataTableToken);
         fixture.detectChanges();
     });
 
