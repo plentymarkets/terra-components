@@ -2,7 +2,8 @@ import { EventEmitter } from '@angular/core';
 import { TerraStorageObject } from './model/terra-storage-object';
 import { TerraBaseStorageService } from './terra-base-storage.interface';
 
-export abstract class TerraFileBrowserToken {
+/** Interface that acts as a lightweight injection token for the {@link TerraFileBrowserComponent}. */
+export abstract class TerraFileBrowser {
     public abstract inputAllowedExtensions: Array<string>;
     public abstract inputAllowFolders: boolean;
     public abstract onSelectedUrlChange: EventEmitter<string>;

@@ -7,14 +7,14 @@ import { TerraNodeTreeConfig } from '../tree/node-tree/data/terra-node-tree.conf
 import { TerraNodeInterface } from '../tree/node-tree/data/terra-node.interface';
 import { TerraStorageObjectList } from './model/terra-storage-object-list';
 import { StringHelper } from '../../helpers/string.helper';
-import { TerraFileBrowserToken } from './terra-file-browser-token';
+import { TerraFileBrowser } from './terra-file-browser';
 
 @Component({
     selector: 'terra-file-browser',
     templateUrl: './terra-file-browser.component.html',
-    providers: [TerraNodeTreeConfig, { provide: TerraFileBrowserToken, useExisting: TerraFileBrowserComponent }]
+    providers: [TerraNodeTreeConfig, { provide: TerraFileBrowser, useExisting: TerraFileBrowserComponent }]
 })
-export class TerraFileBrowserComponent extends TerraFileBrowserToken implements OnChanges, OnInit {
+export class TerraFileBrowserComponent extends TerraFileBrowser implements OnChanges, OnInit {
     @Input()
     public set inputAllowedExtensions(extensions: Array<string>) {
         this._allowedExtensions = extensions.map((extension: string) => extension.toUpperCase());
