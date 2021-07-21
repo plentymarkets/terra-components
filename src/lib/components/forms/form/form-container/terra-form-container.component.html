@@ -63,12 +63,21 @@
             <terra-form-container-wrapper
                 [formGroupName]="field.key"
                 [inputFormField]="field.value"
-                [inputFormGroup]="_formGroup.get(field.key)"
-                [inputScope]="inputScope"
                 [inputControlTypeMap]="inputControlTypeMap"
                 [inputIsDisabled]="inputIsDisabled"
+                [containerTemplate]="wrappedContainerTemplate"
             >
             </terra-form-container-wrapper>
+
+            <ng-template #wrappedContainerTemplate>
+                <terra-form-container
+                    [inputScope]="inputScope"
+                    [inputFormGroup]="_formGroup.get(field.key)"
+                    [inputControlTypeMap]="inputControlTypeMap"
+                    [inputFormFields]="field.value.children"
+                    [inputIsDisabled]="inputIsDisabled"
+                ></terra-form-container>
+            </ng-template>
         </div>
 
         <terra-form-entry-list
@@ -81,7 +90,29 @@
             [inputScope]="inputScope"
             [inputControlTypeMap]="inputControlTypeMap"
             [width]="width"
+            [containerTemplate]="listContainerTemplate"
         >
         </terra-form-entry-list>
+
+        <ng-template
+            #listContainerTemplate
+            let-formField
+            let-control="control"
+            let-width="width"
+            let-disabled="disabled"
+            let-controlTypeMap="controlTypeMap"
+            let-scope="scope"
+        >
+            <terra-form-container
+                [formGroup]="control"
+                [inputFormGroup]="control"
+                [inputFormFields]="formField.children"
+                [inputScope]="scope"
+                [inputControlTypeMap]="controlTypeMap"
+                [inputIsDisabled]="disabled"
+                [width]="width"
+                [horizontal]="formField.type === 'horizontal'"
+            ></terra-form-container>
+        </ng-template>
     </div>
 </ng-template>

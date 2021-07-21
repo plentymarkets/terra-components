@@ -1,4 +1,4 @@
-import { Component, Inject, Input, OnChanges, SimpleChanges, Type } from '@angular/core';
+import { Component, Inject, Input, OnChanges, SimpleChanges, TemplateRef, Type } from '@angular/core';
 import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
 import { isNullOrUndefined } from 'util';
 import { TerraFormScope } from '../model/terra-form-scope.data';
@@ -10,7 +10,7 @@ import {
     FormGroup,
     NG_VALUE_ACCESSOR
 } from '@angular/forms';
-import { L10nLocale, L10N_LOCALE } from 'angular-l10n';
+import { L10N_LOCALE, L10nLocale } from 'angular-l10n';
 import { TerraFormFieldHelper } from '../helper/terra-form-field.helper';
 import { TerraFormHelper } from '../helper/terra-form.helper';
 import { noop } from 'rxjs';
@@ -48,6 +48,10 @@ export class TerraFormEntryListComponent implements OnChanges, ControlValueAcces
 
     @Input()
     public width: string;
+
+    /** The template of the form-container, that should be rendered when the given {@link inputFormField} has children. */
+    @Input()
+    public containerTemplate: TemplateRef<any>;
 
     public formArray: FormArray;
 
