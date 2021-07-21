@@ -7,13 +7,13 @@ import { Component, DebugElement } from '@angular/core';
 import { noop } from 'rxjs';
 import { MockTooltipDirective } from '../../../../testing/mock-tooltip.directive';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { TerraDataTableToken } from '../../table-token';
+import { TerraDataTable } from '../../terra-data-table';
 
 @Component({
     template: `<tr [tcTableRow]="row"></tr>`,
     viewProviders: [
         {
-            provide: TerraDataTableToken,
+            provide: TerraDataTable,
             useValue: {
                 rowClicked: noop,
                 onRowCheckboxChange: noop,
@@ -29,7 +29,7 @@ class HostComponent {
 describe('Component: TableRowComponent', () => {
     let fixture: ComponentFixture<HostComponent>;
     let component: TableRowComponent;
-    let dataTable: TerraDataTableToken<any>;
+    let dataTable: TerraDataTable<any>;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -41,7 +41,7 @@ describe('Component: TableRowComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(HostComponent);
         component = fixture.debugElement.query(By.directive(TableRowComponent)).componentInstance;
-        dataTable = fixture.debugElement.injector.get(TerraDataTableToken);
+        dataTable = fixture.debugElement.injector.get(TerraDataTable);
         fixture.detectChanges();
     });
 

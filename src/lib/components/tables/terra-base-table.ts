@@ -1,12 +1,12 @@
 import { TerraDataTableRowInterface } from './data-table/interfaces/terra-data-table-row.interface';
 import { EventEmitter, Output, Directive, ChangeDetectorRef } from '@angular/core';
 import { isNullOrUndefined } from 'util';
-import { TerraDataTableToken } from './table-token';
+import { TerraDataTable } from './terra-data-table';
 
 /** @deprecated since v5.0. Please use mat-table instead. */
 @Directive()
 // tslint:disable-next-line:directive-class-suffix
-export abstract class TerraBaseTable<T> extends TerraDataTableToken<T> {
+export abstract class TerraBaseTable<T> extends TerraDataTable<T> {
     /**
      * @description EventEmitter that notifies when a row has been selected via the select box. This is enabled, only if
      *     `inputHasCheckboxes` is true.

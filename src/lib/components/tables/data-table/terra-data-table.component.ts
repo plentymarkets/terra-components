@@ -23,16 +23,13 @@ import { TerraBaseTable } from '../terra-base-table';
 import { TerraDataTableTextInterface } from './interfaces/terra-data-table-text.interface';
 import { TerraTagInterface } from '../../layouts/tag/data/terra-tag.interface';
 import { TerraDataTableContextMenuEntryInterface } from './context-menu/data/terra-data-table-context-menu-entry.interface';
-import { TerraDataTableToken } from '../table-token';
+import { TerraDataTable } from '../terra-data-table';
 
 @Component({
     selector: 'terra-data-table',
     templateUrl: './terra-data-table.component.html',
     styleUrls: ['./terra-data-table.component.scss'],
-    providers: [
-        TerraDataTableContextMenuService,
-        { provide: TerraDataTableToken, useExisting: TerraDataTableComponent }
-    ],
+    providers: [TerraDataTableContextMenuService, { provide: TerraDataTable, useExisting: TerraDataTableComponent }],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 /** @deprecated since v5.0. Please use mat-table instead. */
