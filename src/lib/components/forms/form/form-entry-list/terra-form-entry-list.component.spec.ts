@@ -65,7 +65,7 @@ class HostComponent {
     public width: string;
 }
 
-fdescribe('TerraFormEntryListComponent: ', () => {
+describe('TerraFormEntryListComponent: ', () => {
     let fixture: ComponentFixture<HostComponent>;
     let hostComponent: HostComponent;
     let formEntryListComponent: TerraFormEntryListComponent;
