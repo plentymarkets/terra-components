@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NO_ERRORS_SCHEMA, SimpleChange } from '@angular/core';
+import { Component, NO_ERRORS_SCHEMA, SimpleChange } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { L10nTranslationModule } from 'angular-l10n';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
@@ -7,51 +7,94 @@ import { TerraFormEntryListComponent } from './terra-form-entry-list.component';
 import { TerraFormContainerComponent } from '../form-container/terra-form-container.component';
 import { TerraFormScope } from '../model/terra-form-scope.data';
 import { mockL10nConfig } from '../../../../testing/mock-l10n-config';
+import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
 
-describe('TerraFormEntryListComponent: ', () => {
-    let fixture: ComponentFixture<TerraFormEntryListComponent>;
-    let component: TerraFormEntryListComponent;
+@Component({
+    template: `
+        <terra-form-entry-list
+            [inputFormGroup]="formGroup"
+            [inputFormFieldKey]="formFieldKey"
+            [inputFormField]="formField"
+            [inputScope]="scope"
+            [inputControlTypeMap]="{}"
+            [width]="width"
+            [containerTemplate]="listContainerTemplate"
+        >
+        </terra-form-entry-list>
+
+        <ng-template
+            #listContainerTemplate
+            let-formField
+            let-control="control"
+            let-width="width"
+            let-disabled="disabled"
+            let-controlTypeMap="controlTypeMap"
+            let-scope="scope"
+        >
+            <terra-form-container
+                [formGroup]="control"
+                [inputFormGroup]="control"
+                [inputFormFields]="formField.children"
+                [inputScope]="scope"
+                [inputControlTypeMap]="controlTypeMap"
+                [inputIsDisabled]="disabled"
+                [width]="width"
+                [horizontal]="formField.type === 'horizontal'"
+            ></terra-form-container>
+        </ng-template>
+    `
+})
+class HostComponent {
+    public formFieldKey: string = 'listTest';
+    public formField: TerraFormFieldInterface = {
+        type: 'horizontal',
+        children: {
+            test: {
+                type: 'number'
+            }
+        }
+    };
+    public formGroup: FormGroup = new FormGroup({
+        [this.formFieldKey]: new FormArray([
+            new FormGroup({
+                test: new FormControl('')
+            })
+        ])
+    });
+    public scope: TerraFormScope = new TerraFormScope();
+    public width: string;
+}
+
+fdescribe('TerraFormEntryListComponent: ', () => {
+    let fixture: ComponentFixture<HostComponent>;
+    let hostComponent: HostComponent;
+    let formEntryListComponent: TerraFormEntryListComponent;
     beforeEach(() => {
         fixture = TestBed.configureTestingModule({
             schemas: [NO_ERRORS_SCHEMA],
             imports: [L10nTranslationModule.forRoot(mockL10nConfig)],
-            declarations: [TerraFormEntryListComponent, TerraFormContainerComponent]
-        }).createComponent(TerraFormEntryListComponent);
-
-        component = fixture.componentInstance;
-    });
-
-    beforeEach(() => {
-        component.inputScope = new TerraFormScope();
+            declarations: [HostComponent, TerraFormEntryListComponent, TerraFormContainerComponent]
+        }).createComponent(HostComponent);
 
         fixture.detectChanges();
+
+        hostComponent = fixture.componentInstance;
+        formEntryListComponent = fixture.debugElement.query(By.directive(TerraFormEntryListComponent))
+            .componentInstance;
     });
 
     it('should create', () => {
-        expect(component).toBeTruthy();
+        expect(hostComponent).toBeTruthy();
+        expect(formEntryListComponent).toBeTruthy();
     });
 
     it(`should pass on the value of its #width property to the #TerraFormContainer's #width input`, () => {
         const width: string = 'col-5';
-        component.width = width;
-        component.inputFormFieldKey = 'listTest';
-        component.inputFormField = {
-            type: 'horizontal',
-            children: {
-                test: {
-                    type: 'number'
-                }
-            }
-        };
-        component.inputFormGroup = new FormGroup({
-            listTest: new FormArray([
-                new FormGroup({
-                    test: new FormControl('')
-                })
-            ])
-        });
+        formEntryListComponent.width = width;
 
-        component.ngOnChanges({ inputFormFieldKey: new SimpleChange(undefined, component.inputFormFieldKey, false) });
+        formEntryListComponent.ngOnChanges({
+            inputFormFieldKey: new SimpleChange(undefined, formEntryListComponent.inputFormFieldKey, false)
+        });
         fixture.detectChanges();
 
         const formContainer: TerraFormContainerComponent = fixture.debugElement.query(
