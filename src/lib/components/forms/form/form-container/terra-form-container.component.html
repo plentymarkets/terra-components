@@ -65,11 +65,11 @@
                 [inputFormField]="field.value"
                 [inputControlTypeMap]="inputControlTypeMap"
                 [inputIsDisabled]="inputIsDisabled"
-                [containerTemplate]="containerTemplate"
+                [containerTemplate]="wrappedContainerTemplate"
             >
             </terra-form-container-wrapper>
 
-            <ng-template #containerTemplate>
+            <ng-template #wrappedContainerTemplate>
                 <terra-form-container
                     [inputScope]="inputScope"
                     [inputFormGroup]="_formGroup.get(field.key)"
@@ -90,12 +90,12 @@
             [inputScope]="inputScope"
             [inputControlTypeMap]="inputControlTypeMap"
             [width]="width"
-            [containerTemplate]="containerTemp"
+            [containerTemplate]="listContainerTemplate"
         >
         </terra-form-entry-list>
 
         <ng-template
-            #containerTemp
+            #listContainerTemplate
             let-formField
             let-control="control"
             let-width="width"
