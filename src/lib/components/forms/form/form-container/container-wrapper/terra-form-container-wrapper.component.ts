@@ -21,6 +21,7 @@ import { TerraPortletComponent } from '../../../../layouts/portlet/terra-portlet
     templateUrl: './terra-form-container-wrapper.component.html'
 })
 export class TerraFormContainerWrapperComponent extends TerraFormEntryBase implements OnInit, OnChanges, OnDestroy {
+    /** The template of the form-container, that should be rendered inside the requested container type */
     @Input()
     public containerTemplate: TemplateRef<any>;
 

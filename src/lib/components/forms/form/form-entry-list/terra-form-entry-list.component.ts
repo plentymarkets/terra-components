@@ -49,6 +49,7 @@ export class TerraFormEntryListComponent implements OnChanges, ControlValueAcces
     @Input()
     public width: string;
 
+    /** The template of the form-container, that should be rendered when the given {@link inputFormField} has children. */
     @Input()
     public containerTemplate: TemplateRef<any>;
 
