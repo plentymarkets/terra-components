@@ -9,16 +9,18 @@ import { MockTooltipDirective } from '../../../../testing/mock-tooltip.directive
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { TerraDataTable } from '../../terra-data-table';
 
+export const dataTableStub: TerraDataTable<any> = {
+    rowClicked: noop,
+    onRowCheckboxChange: noop,
+    inputHasCheckboxes: true
+};
+
 @Component({
     template: `<tr [tcTableRow]="row"></tr>`,
     viewProviders: [
         {
             provide: TerraDataTable,
-            useValue: {
-                rowClicked: noop,
-                onRowCheckboxChange: noop,
-                inputHasCheckboxes: true
-            }
+            useValue: dataTableStub
         }
     ]
 })
