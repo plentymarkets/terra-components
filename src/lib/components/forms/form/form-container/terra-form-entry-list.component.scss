@@ -6,7 +6,7 @@
     margin-bottom: var(--space-sm);
 }
 
-:host ::ng-deep .form-list-entry {
+.form-list-entry {
     display: flex;
 
     > terra-form-container,
