@@ -32,7 +32,7 @@ jobs:
               run: |
                   npm run lint
                   npm run prettier
-                  npm run ts-strictify --targetBranch main
+                  npm run ts-strictify --targetBranch strictify
 
             - name: Perform test builds
               run: |
