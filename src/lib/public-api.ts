@@ -161,7 +161,7 @@ export { TerraFormComponent } from './components/forms/form/terra-form.component
 export {
     TerraFormContainerComponent,
     TerraFormEntryListComponent
-} from './components/forms/form/form-container/terra-form-container.component';
+} from './components/forms/form/form-container/terra-form-container--entry-list.component';
 export { TerraFormEntryComponent } from './components/forms/form/form-entry/terra-form-entry.component';
 export { TerraFormFieldHelper } from './components/forms/form/helper/terra-form-field.helper';
 export { TerraFormFieldInterface } from './components/forms/form/model/terra-form-field.interface';

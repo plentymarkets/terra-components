@@ -44,7 +44,7 @@ import { TerraFormComponent } from './forms/form/terra-form.component';
 import {
     TerraFormContainerComponent,
     TerraFormEntryListComponent
-} from './forms/form/form-container/terra-form-container.component';
+} from './forms/form/form-container/terra-form-container--entry-list.component';
 import { TerraFormEntryComponent } from './forms/form/form-entry/terra-form-entry.component';
 import { TerraBreadcrumbsComponent } from './breadcrumbs/terra-breadcrumbs.component';
 import { TerraTagSelectComponent } from './forms/tag-select/terra-tag-select.component';

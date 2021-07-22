@@ -139,6 +139,9 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
     }
 }
 
+// Due to an import cycle between the `TerraFormContainerComponent` and `TerraFormEntryListComponent`
+// which popped up during the library build with ivy, these two components have to be located in the same file.
+
 // tslint:disable-next-line:max-classes-per-file
 @Component({
     selector: 'terra-form-entry-list',
