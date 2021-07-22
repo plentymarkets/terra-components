@@ -14,10 +14,10 @@ import { L10nTranslationService } from 'angular-l10n';
 import { TerraBreadcrumbContainer } from '../terra-breadcrumb-container';
 import { UrlHelper } from '../../../helpers/url.helper';
 import { StringHelper } from '../../../helpers/string.helper';
-import { ActivatedRouteHelper } from '../../../helpers/activated-route.helper';
 import { filter } from 'rxjs/operators';
 import { RouteDataInterface, RouteDataRegistry } from '../../../route/data';
 import { getChildren } from '../../../route/utils/route-children';
+import { getBasePathForActivatedRoute } from 'src/lib/utils/base-path-for-activated-route';
 
 @Injectable()
 export class TerraBreadcrumbsService {
@@ -70,7 +70,7 @@ export class TerraBreadcrumbsService {
 
     public set activatedRoute(activatedRoute: ActivatedRouteSnapshot) {
         this._containers = [];
-        this._initialPath = ActivatedRouteHelper.getBasePathForActivatedRoute(activatedRoute);
+        this._initialPath = getBasePathForActivatedRoute(activatedRoute);
         this._initialRoute = activatedRoute.routeConfig;
     }
 

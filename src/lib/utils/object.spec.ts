@@ -1,0 +1,15 @@
+import { cloneDeep, removeBlankAttributesFromObject } from './object';
+
+describe('cloneDeep:', () => {
+    it('Method: cloneDeep() should create a deep copy of an object', () => {
+        const obj = {
+            x: 23
+        };
+        const deepCopy = cloneDeep(obj);
+        expect(deepCopy).toEqual({ x: 23 });
+        expect(obj.x).toBe(23);
+        obj.x = 10;
+        expect(deepCopy).toEqual({ x: 23 });
+        expect(obj.x).toBe(10);
+    });
+});
