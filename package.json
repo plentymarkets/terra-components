@@ -13,7 +13,8 @@
         "lint": "ng lint lib",
         "prettier": "prettier --check .",
         "reinstall": "npm ci",
-        "prepare-release": "npm ci && npm run build && npm run test-headless && npm start"
+        "prepare-release": "npm ci && npm run build && npm run test-headless && npm start",
+        "ts-strictify": "ts-strictify --targetBranch main"
     },
     "prettier": "@plentymarkets/terra-prettier-config",
     "dependencies": {
@@ -82,6 +83,7 @@
         "rxjs": "~6.5.4",
         "semver": "^7.3.2",
         "ts-node": "~7.0.0",
+        "ts-strictify": "^1.6.0",
         "tslint": "~6.1.0",
         "typescript": "~4.0.7",
         "yargs": "^15.1.0",
