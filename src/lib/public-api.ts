@@ -158,9 +158,11 @@ export { NestedValueInterface } from './components/data-picker/nested-data-picke
 export { TerraValidators } from './validators/validators';
 
 export { TerraFormComponent } from './components/forms/form/terra-form.component';
-export { TerraFormContainerComponent } from './components/forms/form/form-container/terra-form-container.component';
+export {
+    TerraFormContainerComponent,
+    TerraFormEntryListComponent
+} from './components/forms/form/form-container/terra-form-container.component';
 export { TerraFormEntryComponent } from './components/forms/form/form-entry/terra-form-entry.component';
-export { TerraFormEntryListComponent } from './components/forms/form/form-entry-list/terra-form-entry-list.component';
 export { TerraFormFieldHelper } from './components/forms/form/helper/terra-form-field.helper';
 export { TerraFormFieldInterface } from './components/forms/form/model/terra-form-field.interface';
 export { TerraFormScope } from './components/forms/form/model/terra-form-scope.data';

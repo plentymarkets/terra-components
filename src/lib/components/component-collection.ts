@@ -41,9 +41,11 @@ import { TerraDynamicSwitchComponent } from './forms/dynamic-form/dynamic-switch
 import { TerraNestedDataPickerComponent } from './data-picker/nested-data-picker/terra-nested-data-picker.component';
 import { TerraTwoColumnsContainerComponent } from './layouts/column-container/two-columns/terra-two-columns-container.component';
 import { TerraFormComponent } from './forms/form/terra-form.component';
-import { TerraFormContainerComponent } from './forms/form/form-container/terra-form-container.component';
+import {
+    TerraFormContainerComponent,
+    TerraFormEntryListComponent
+} from './forms/form/form-container/terra-form-container.component';
 import { TerraFormEntryComponent } from './forms/form/form-entry/terra-form-entry.component';
-import { TerraFormEntryListComponent } from './forms/form/form-entry-list/terra-form-entry-list.component';
 import { TerraBreadcrumbsComponent } from './breadcrumbs/terra-breadcrumbs.component';
 import { TerraTagSelectComponent } from './forms/tag-select/terra-tag-select.component';
 import { TerraFileListComponent } from './file-browser/file-list/file-list.component';

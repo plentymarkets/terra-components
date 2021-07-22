@@ -90,29 +90,7 @@
             [inputScope]="inputScope"
             [inputControlTypeMap]="inputControlTypeMap"
             [width]="width"
-            [containerTemplate]="listContainerTemplate"
         >
         </terra-form-entry-list>
-
-        <ng-template
-            #listContainerTemplate
-            let-formField
-            let-control="control"
-            let-width="width"
-            let-disabled="disabled"
-            let-controlTypeMap="controlTypeMap"
-            let-scope="scope"
-        >
-            <terra-form-container
-                [formGroup]="control"
-                [inputFormGroup]="control"
-                [inputFormFields]="formField.children"
-                [inputScope]="scope"
-                [inputControlTypeMap]="controlTypeMap"
-                [inputIsDisabled]="disabled"
-                [width]="width"
-                [horizontal]="formField.type === 'horizontal'"
-            ></terra-form-container>
-        </ng-template>
     </div>
 </ng-template>
