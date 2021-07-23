@@ -2,7 +2,6 @@ import { Directive } from '@angular/core';
 import { MatMenu } from '@angular/material/menu';
 import { FilterContainerDirective } from './filter-container.directive';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { filter } from 'rxjs/operators';
 
 /** A directive collecting references to the form, menu and the filter-container */
 @Directive({
