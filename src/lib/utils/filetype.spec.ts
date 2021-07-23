@@ -9,12 +9,17 @@ describe('Util: Filetype', () => {
     });
 
     it('Method: isWebImage() should return false if input is a directory', () => {
-        let directory = '/any/absolute/path/';
+        const directory = '/any/absolute/path/';
         expect(isWebImage(directory)).toBeFalse();
     });
 
     it('Method: mapIconClass() should map the correct icon-file-extension to a file name', () => {
-        let file = 'test.jpeg';
+        const file = 'test.jpeg';
         expect(mapIconClass(file)).toBe('icon-file_extension_jpeg');
+    });
+
+    it('Method: mapIconClass() should return `icon-file_extension_blank` if file extension is unknown', () => {
+        const file = 'test.jfif';
+        expect(mapIconClass(file)).toBe('icon-file_extension_blank');
     });
 });

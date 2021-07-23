@@ -51,5 +51,7 @@ describe('Util: Path:', () => {
         expect(sizeString(30000000)).toBe('30.00MB');
         expect(sizeString(300000000)).toBe('300.00MB');
         expect(sizeString(3000000000)).toBe('3.00GB');
+        expect(sizeString(3000000000000)).toBe('3.00TB');
+        expect(sizeString(3000000000000000000)).toBe('3000000.00TB');
     });
 });
