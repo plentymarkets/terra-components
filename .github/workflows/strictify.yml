@@ -32,5 +32,5 @@ jobs:
               run: git --version
 
             - name: Check coding rules
-              run: npm run ts-strictify -- --targetBranch="origin/main"
+              run: npm run ts-strictify -- --targetBranch="main"
               shell: sh
