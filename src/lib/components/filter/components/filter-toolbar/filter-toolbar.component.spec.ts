@@ -1,5 +1,5 @@
 import { Component, DebugElement } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, flush, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { MatMenu, MatMenuTrigger } from '@angular/material/menu';
@@ -76,14 +76,19 @@ describe('FilterToolbarComponent:', () => {
         expect(toolbarComponent.menu).toBe(filterMenu.menu);
     });
 
-    it('should provide access to the chip definitions via the chips$ getter', () => {
-        const filterMenu: FilterMenuDirective = fixture.debugElement
-            .query(By.directive(FilterMenuDirective))
-            .injector.get(FilterMenuDirective);
-        expect(toolbarComponent.chips$).toBe(filterMenu.container.chips$);
+    it('should have access to the chip definitions', async () => {
+        let chips: Array<FilterChipDefDirective>;
+        toolbarComponent._chips$.subscribe((c: Array<FilterChipDefDirective>) => (chips = c));
 
-        filterMenu.container = null;
-        expect(toolbarComponent.chips$).toBeUndefined();
+        // open the menu before querying for the chip defs
+        const menu: MatMenuHarness = await loader.getHarness(MatMenuHarness);
+        await menu.open();
+
+        const chipDefs: Array<FilterChipDefDirective> = fixture.debugElement
+            .queryAll(By.directive(FilterChipDefDirective))
+            .map((de: DebugElement) => de.injector.get(FilterChipDefDirective));
+
+        expect(chips).toEqual(chipDefs);
     });
 
     it('should call the function on the EventEmitter "search" after click on button', () => {
