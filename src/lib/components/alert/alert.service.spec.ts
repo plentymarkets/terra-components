@@ -20,8 +20,8 @@ describe('AlertService', () => {
         let defaultTimeout: number;
         let subscription: Subscription;
 
-        let text: string = 'warning';
-        let identifier: string = 'identifier';
+        const text: string = 'warning';
+        const identifier: string = 'identifier';
         beforeEach(() => {
             defaultTimeout = service['defaultTimeout']; // access private property
             subscription = service.addAlert.subscribe((alert: TerraAlertInterface) => (latest = alert));
