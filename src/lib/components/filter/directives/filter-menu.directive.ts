@@ -9,7 +9,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
     exportAs: 'terraFilterMenu'
 })
 export class FilterMenuDirective {
-    /** A Stream that emits whenever the reference to the FilterContainerDirective is set. */
+    /** A Stream that emits whenever the reference to the FilterContainerDirective is updated. */
     public container$!: Observable<FilterContainerDirective | undefined>;
 
     /** Reference to the filter container. Gives access to the chip definitions. */
