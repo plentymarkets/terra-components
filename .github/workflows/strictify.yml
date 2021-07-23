@@ -1,5 +1,5 @@
 # This is displayed in the pr check area
-name: Test Strictify
+name: Comparison to base
 
 # Controls when the action will run. Triggers the workflow on pull request events
 on: [pull_request]
@@ -26,10 +26,11 @@ jobs:
 
             # Clean install of the node dependencies
             - name: install dependencies
-              run: npm i ts-strictify
+              run: npm i
 
             - name: log git version
               run: git --version
 
             - name: Check coding rules
-              run: ts-strictify --targetBranch="origin/main"
+              run: npm run ts-strictify -- --targetBranch="origin/main"
+              shell: sh
