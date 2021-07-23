@@ -92,7 +92,7 @@
     "husky": {
         "hooks": {
             "pre-commit": "lint-staged",
-            "pre-push": "ts-strictify"
+            "pre-push": "ts-strictify --targetBranch main"
         }
     },
     "lint-staged": {
