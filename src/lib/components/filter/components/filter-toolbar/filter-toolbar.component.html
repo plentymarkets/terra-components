@@ -7,7 +7,7 @@
     </button>
 
     <mat-chip-list>
-        <ng-container *ngFor="let chip of chips$ | async">
+        <ng-container *ngFor="let chip of _chips$ | async">
             <mat-chip
                 *ngIf="chip.control.valueChanges | async | chipDisplayWhen: chip.displayWhen"
                 (removed)="chip.control.reset()"
