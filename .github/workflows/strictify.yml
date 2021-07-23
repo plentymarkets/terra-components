@@ -26,10 +26,10 @@ jobs:
 
             # Clean install of the node dependencies
             - name: install dependencies
-              run: npm i
+              run: npm i ts-strictify
 
             - name: log git version
               run: git --version
 
             - name: Check coding rules
-              run: npm run ts-strictify -- --targetBranch="origin/main"
+              run: ts-strictify --targetBranch="origin/main"
