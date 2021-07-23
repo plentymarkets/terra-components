@@ -20,7 +20,7 @@ describe('AlertService', () => {
         let defaultTimeout: number;
         let subscription: Subscription;
 
-        const text: string = 'warning';
+        let text: string = 'warning';
         let identifier: string = 'identifier';
         beforeEach(() => {
             defaultTimeout = service['defaultTimeout']; // access private property
