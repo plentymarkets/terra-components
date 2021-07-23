@@ -1,12 +1,12 @@
 # This is displayed in the pr check area
-name: Comparison to base
+name: Test Strictify
 
 # Controls when the action will run. Triggers the workflow on pull request events
 on: [pull_request]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-    check-integrity:
+    test-strictify:
         # The type of runner that the job will run on
         runs-on: ubuntu-latest
 
@@ -29,7 +29,7 @@ jobs:
               run: npm i
 
             - name: log git version
-              run: git -v
+              run: git --version
 
             - name: Check coding rules
               run: npm run ts-strictify -- --targetBranch="origin/main"
