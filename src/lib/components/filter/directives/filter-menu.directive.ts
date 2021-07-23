@@ -11,7 +11,7 @@ import { filter } from 'rxjs/operators';
 })
 export class FilterMenuDirective {
     /** A Stream that emits whenever the reference to the FilterContainerDirective is set. */
-    public container$!: Observable<FilterContainerDirective>;
+    public container$!: Observable<FilterContainerDirective | undefined>;
 
     /** Reference to the filter container. Gives access to the chip definitions. */
     public get container(): FilterContainerDirective | undefined {
@@ -28,11 +28,7 @@ export class FilterMenuDirective {
         /** Reference to the material menu. */
         public menu: MatMenu
     ) {
-        this.container$ = this._container$.asObservable().pipe(
-            filter((container: FilterContainerDirective | undefined): container is FilterContainerDirective => {
-                return container instanceof FilterContainerDirective;
-            })
-        );
+        this.container$ = this._container$.asObservable();
         // add our custom class to the menu panel
         this.menu.panelClass = 'terra-filter-menu';
     }

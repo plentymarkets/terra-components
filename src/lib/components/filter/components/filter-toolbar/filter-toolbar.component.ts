@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { FilterChipDefDirective } from '../../directives/filter-chip-def.directive';
 import { FilterMenuDirective } from '../../directives/filter-menu.directive';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { MatMenu, MatMenuTrigger } from '@angular/material/menu';
 import { switchMap } from 'rxjs/operators';
 import { FilterContainerDirective } from '../../directives/filter-container.directive';
@@ -39,8 +39,8 @@ export class FilterToolbarComponent implements OnChanges {
 
     public ngOnChanges(changes: SimpleChanges): void {
         if (changes.hasOwnProperty('filterMenu')) {
-            this._chips$ = this.filterMenu?.container$?.pipe(
-                switchMap((container: FilterContainerDirective) => container.chips$)
+            this._chips$ = this.filterMenu?.container$.pipe(
+                switchMap((container: FilterContainerDirective | undefined) => (container ? container.chips$ : of([])))
             );
         }
     }
