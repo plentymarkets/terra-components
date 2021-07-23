@@ -1,3 +1,9 @@
+# 11.7.0 (unreleased)
+
+### Features
+
+-   **filter** added property `container$` to the `FilterMenuDirective` which emits whenever the reference to the `FilterContainerDirective` is updated.
+
 # 11.6.0 (12.07.2021)
 
 ### Minor changes
