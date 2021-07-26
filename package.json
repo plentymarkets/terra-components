@@ -1,7 +1,7 @@
 {
     "scripts": {
         "start": "ng serve",
-        "build": "ng build lib --configuration production && gulp compileStyles && npm run build:schematics && gulp copy",
+        "build": "npm run build:lib && gulp compileStyles && npm run build:schematics && gulp copy",
         "build:lib": "ng build lib --configuration production",
         "build:dev-app": "ng build dev-app --aot",
         "build:schematics": "cd src/lib && npm run build",

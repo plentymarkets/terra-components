@@ -1,4 +1,8 @@
-# 12.0.0-next.4 (XX.07.2021)
+# 12.0.0-next.4 (unreleased)
+
+### Breaking Changes
+
+-   **build** this library is now build with ivy using the "partial" compilation mode.
 
 ### Features
 

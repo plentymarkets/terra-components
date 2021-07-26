@@ -3,6 +3,7 @@ import { ChangeDetectorRef } from '@angular/core';
 import { TerraDataTableRowInterface } from './data-table/interfaces/terra-data-table-row.interface';
 
 class MockBaseTable extends TerraBaseTable<any> {
+    public inputHasCheckboxes: boolean = false;
     protected _rowList: Array<TerraDataTableRowInterface<any>>;
 }
 
