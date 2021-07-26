@@ -15,14 +15,15 @@ describe('Util Object:', () => {
     });
 
     it('Method: removeBlankAttributesFromObject() should remove undefined or null attributes', () => {
-        const expectedObj = {
-            x: 23
+        const expectedObj: any = {
+            value: 23
         };
-        const obj = {
-            x: 23,
-            y: null
+        const obj: any = {
+            value: 23,
+            nullValue: null,
+            undefinedValue: undefined
         };
         removeBlankAttributesFromObject(obj);
-        expect(Object.keys(obj)).toEqual(Object.keys(expectedObj));
+        expect(obj).toEqual(expectedObj);
     });
 });
