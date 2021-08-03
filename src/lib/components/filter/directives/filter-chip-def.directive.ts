@@ -58,9 +58,9 @@ export class FilterChipDefDirective implements OnInit, OnDestroy {
 
     constructor(
         /** Reference to the parent filter container */
-        private container: FilterContainerDirective,
+        protected container: FilterContainerDirective,
         /** If this directive is used on the form control itself we access the form control via dependency injection. */
-        @Optional() @Self() private ngControl: NgControl
+        @Optional() @Self() protected ngControl: NgControl
     ) {}
 
     /** A chip must register itself in the container during initialization. */
