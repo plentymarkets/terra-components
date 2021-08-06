@@ -211,12 +211,12 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
 
     constructor(
         @Inject(L10N_LOCALE) public _locale: L10nLocale,
+        public _parentFileBrowser: TerraFileBrowser,
         private _changeDetector: ChangeDetectorRef,
         private _fileBrowserService: TerraFileBrowserService,
         private _translationService: L10nTranslationService,
         private _localeService: L10nIntlService,
         private _alertService: AlertService,
-        @Host() public _parentFileBrowser: TerraFileBrowser,
         private _dialog: MatDialog
     ) {}
 

@@ -14,7 +14,7 @@ export class TableRowComponent {
     @Input('tcTableRow')
     public row: TerraDataTableRowInterface<any>;
 
-    constructor(@Host() public _dataTable: TerraDataTable<any>) {}
+    constructor(public _dataTable: TerraDataTable<any>) {}
 
     @HostBinding('class.selected')
     public get selected(): boolean {
