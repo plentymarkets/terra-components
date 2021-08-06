@@ -1,3 +1,9 @@
+# 12.0.0-next.5 (06.08.2021)
+
+### Bug fixes
+
+-   **build** fixed a bug with our providers due to the conversion to ivy.
+
 # 12.0.0-next.4 (26.07.2021)
 
 ### Breaking Changes
