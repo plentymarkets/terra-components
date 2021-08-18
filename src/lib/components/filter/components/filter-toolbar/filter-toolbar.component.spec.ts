@@ -31,7 +31,11 @@ import { DisplayWhenFn } from '../../models/display-when-function.interface';
                 </terra-filter-content>
             </form>
         </mat-menu>
-        <terra-filter-toolbar [filterMenu]="filterMenu" (search)="search()"></terra-filter-toolbar>
+        <terra-filter-toolbar [filterMenu]="filterMenu" (search)="search()">
+            <button mat-icon-button>
+                <mat-icon>save</mat-icon>
+            </button>
+        </terra-filter-toolbar>
     `
 })
 class HostComponent {
