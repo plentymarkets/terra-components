@@ -75,6 +75,9 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges, OnIn
     @Input()
     public inputIsDisabled: boolean = false;
 
+    @Input()
+    public sortByPosition: boolean = false;
+
     /**
      * @description Scope of the form. It is used to evaluate the visibility of the form fields.
      * @readonly
