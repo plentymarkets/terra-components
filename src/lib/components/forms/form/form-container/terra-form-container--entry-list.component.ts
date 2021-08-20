@@ -37,6 +37,9 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
     public inputControlTypeMap: { [key: string]: Type<any> | TerraFormTypeInterface } = {};
 
     @Input()
+    public sortByPosition: boolean = false;
+
+    @Input()
     public set inputFormFields(fields: TerraKeyValueInterface<TerraFormFieldInterface>) {
         this._formFields = Object.keys(fields).map((key: string) => {
             return {
@@ -116,6 +119,15 @@ export class TerraFormContainerComponent implements OnInit, OnChanges, ControlVa
                 this._updateFormControlVisibility(field.key);
             }
         });
+
+        if (this.sortByPosition) {
+            this._formFields.sort(
+                (
+                    a: TerraKeyValuePairInterface<TerraFormFieldInterface>,
+                    b: TerraKeyValuePairInterface<TerraFormFieldInterface>
+                ) => a.value.position - b.value.position
+            );
+        }
     }
 
     private _updateFormControlVisibility(fieldKey: string): void {

@@ -1,3 +1,9 @@
+# 12.0.0-next.6 (unreleased)
+
+### Features
+
+-   **terra-form** added the posibility to sort form fields by its position.
+
 # 12.0.0-next.5 (06.08.2021)
 
 ### Bug fixes

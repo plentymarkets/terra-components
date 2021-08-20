@@ -32,6 +32,7 @@ describe(`TerraFormComponent:`, () => {
 
     it('should initialize its inputs', () => {
         expect(component.inputIsDisabled).toBe(false);
+        expect(component.sortByPosition).toBe(false);
         expect(component.inputFormFields).toEqual({});
         expect(component.inputControlTypeMap).toBeUndefined();
     });
