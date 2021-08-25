@@ -23,7 +23,7 @@ module.exports = function (config) {
             reporters: [{ type: 'html' }, { type: 'json-summary' }],
             check: {
                 global: {
-                    statements: 48.7,
+                    statements: 45,
                     lines: 0,
                     branches: 0,
                     functions: 0

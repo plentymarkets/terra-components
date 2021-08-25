@@ -15,7 +15,6 @@ import { TerraTextInputComponentExample } from './forms/input/text-input/example
 import { TerraCheckboxComponentExample } from './forms/checkbox/example/terra-checkbox.component.example';
 import { TerraMultiCheckBoxComponentExample } from './forms/multi-check-box/example/terra-multi-check-box.component.example';
 import { TerraSelectBoxComponentExample } from './forms/select-box/example/terra-select-box.component.example';
-import { TerraSliderComponentExample } from './forms/slider/example/terra-slider.component.example';
 import { TerraSuggestionBoxComponentExample } from './forms/suggestion-box/example/terra-suggestion-box.component.example';
 import { TerraDataTableComponentExample } from './tables/data-table/example/terra-data-table.component.example';
 import { TerraTagComponentExample } from './layouts/tag/example/terra-tag.component.example';
@@ -31,12 +30,10 @@ import { TerraInputComponentExample } from './forms/input/example/terra-input.co
 import { TerraDataTableContextMenuComponentExample } from './tables/data-table/context-menu/example/terra-data-table-context-menu.component.example';
 import { TerraNoteEditorComponentExample } from './editors/note-editor/example/terra-note-editor.component.example';
 import { TerraCodeEditorComponentExample } from './editors/code-editor/example/terra-code-editor.component.example';
-import { TerraNoteComponentExample } from './note/example/terra-note.component.example';
 import { TerraNodeTreeComponentExample } from './tree/node-tree/example/terra-node-tree.component.example';
 import { TerraTimePickerComponentExample } from './forms/input/time-picker/example/terra-time-picker.component.example';
 import { TerraNestedDataPickerComponentExample } from './data-picker/nested-data-picker/example/terra-nested-data-picker.component.example';
 import { TerraTagSelectComponentExample } from './forms/tag-select/example/terra-tag-select.component.example';
-import { TerraStopwatchComponentExample } from './stopwatch/example/terra-stopwatch.component.example';
 import { TerraTwoColumnContainerComponentExample } from './layouts/column-container/two-columns/example/terra-two-column-container.component.example';
 import { TerraThreeColumnContainerComponentExample } from './layouts/column-container/three-columns/example/terra-three-column-container.component.example';
 import { TerraGroupFunctionComponentExample } from './tables/group-function/example/terra-group-function.component.example';
@@ -45,7 +42,6 @@ import { TerraFormsExampleComponent } from './forms/example/terra-forms.example'
 import { RadioGroupComponentExample } from './forms/input/radio/example/radio-group.component.example';
 import { DataTableTemplateComponentExample } from './tables/data-table/example/data-table-template.component.example';
 import { FilterComponentExample } from './filter/example/filter.component.example';
-import { CheckboxGroupComponentExample } from './forms/checkbox-group/example/checkbox-group.component.example';
 import { TerraFormComponentExample } from './forms/form/example/terra-form.component.example';
 import { CkEditorDirectiveExample } from './editors/ck-editor/example/ck-editor-directive-example.component';
 import { TerraFileBrowserComponentExample } from './file-browser/example/terra-file-browser.component.example';
@@ -70,7 +66,6 @@ export const examples: Array<Type<any>> = [
     TerraCheckboxComponentExample,
     TerraMultiCheckBoxComponentExample,
     TerraSelectBoxComponentExample,
-    TerraSliderComponentExample,
     TerraSuggestionBoxComponentExample,
     TerraDataTableComponentExample,
     TerraTagComponentExample,
@@ -86,12 +81,10 @@ export const examples: Array<Type<any>> = [
     TerraDataTableContextMenuComponentExample,
     TerraNoteEditorComponentExample,
     TerraCodeEditorComponentExample,
-    TerraNoteComponentExample,
     TerraNodeTreeComponentExample,
     TerraTimePickerComponentExample,
     TerraNestedDataPickerComponentExample,
     TerraTagSelectComponentExample,
-    TerraStopwatchComponentExample,
     TerraTwoColumnContainerComponentExample,
     TerraThreeColumnContainerComponentExample,
     TerraGroupFunctionComponentExample,
@@ -100,7 +93,6 @@ export const examples: Array<Type<any>> = [
     RadioGroupComponentExample,
     DataTableTemplateComponentExample,
     FilterComponentExample,
-    CheckboxGroupComponentExample,
     TerraFormComponentExample,
     CkEditorDirectiveExample,
     TerraFileBrowserComponentExample,
