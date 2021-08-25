@@ -3,8 +3,7 @@ import { NO_ERRORS_SCHEMA, SimpleChange } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { L10nTranslationModule } from 'angular-l10n';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
-import { TerraFormEntryListComponent } from './terra-form-entry-list.component';
-import { TerraFormContainerComponent } from '../form-container/terra-form-container.component';
+import { TerraFormContainerComponent, TerraFormEntryListComponent } from './terra-form-container--entry-list.component';
 import { TerraFormScope } from '../model/terra-form-scope.data';
 import { mockL10nConfig } from '../../../../testing/mock-l10n-config';
 

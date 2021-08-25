@@ -149,7 +149,9 @@ const de: {} = {
         patternDecimalCount: 'Anzahl der erforderlichen Nachkommastellen: {{ decimalCount }}.',
         patternHex: 'Ungültiger Hex-Wert',
         maxLength: 'Maximal {{maxLength}} Zeichen erlaubt.',
-        minLength: 'Mindestens {{minLength}} Zeichen benötigt.'
+        minLength: 'Mindestens {{minLength}} Zeichen benötigt.',
+        min: 'Der Mindestwert ist unterschritten.',
+        max: 'Der Maximalwert ist überschritten.'
     }
 };
 
@@ -303,7 +305,9 @@ const en: {} = {
         patternDecimalCount: 'Number of required decimal places: {{ decimalCount }}.',
         patternHex: 'Invalid hex value',
         maxLength: 'A maximum of {{maxLength}} characters is allowed.',
-        minLength: 'A minimum of {{minLength}} characters is required.'
+        minLength: 'A minimum of {{minLength}} characters is required.',
+        min: 'The minimum value has been exceeded.',
+        max: 'The maximum value has been exceeded.'
     }
 };
 

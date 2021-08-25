@@ -1,3 +1,67 @@
+# 12.0.0 (24.08.2021)
+
+This release contains the same set of changes as 12.0.0-next.6
+
+# 12.0.0-next.6 (20.08.2021)
+
+### Features
+
+-   **terra-form** added the possibility to sort form fields by its position.
+
+# 12.0.0-next.5 (06.08.2021)
+
+### Bug fixes
+
+-   **build** fixed a bug with our providers due to the conversion to ivy.
+
+# 12.0.0-next.4 (26.07.2021)
+
+### Breaking Changes
+
+-   **build** this library is now build with ivy using the "partial" compilation mode.
+
+### Features
+
+-   **terra-form**: Error messages have been added for the following form field validators:
+    -   validator **min**,
+    -   validator **max**,
+
+# 12.0.0-next.3 (15.07.2021)
+
+### Breaking Changes
+
+-   **forms** removed `TerraInputComponent` from the public api since it was not intended to be part of it.
+-   **dependencies** update `ckeditor4-angular` to version pattern `>=1.1.0`.
+
+# 12.0.0-next.2 (14.07.2021)
+
+### Breaking Changes
+
+-   **dependencies**
+    -   updated all angular packages to version 12
+    -   update `angular-l10n` to version 12
+    -   update `ngx-quill` to version 14
+    -   update `ngx-bootstrap` to version 6.2.0
+    -   update `ckeditor4-angular` to version 2
+    -   update `tslib` to version 2.3.0
+
+# 12.0.0-next.1 (14.07.2021)
+
+### Breaking Changes
+
+-   **terra-indicator** has been removed.
+-   **tc-checkbox-group** has been removed.
+-   **terra-slider** has been removed.
+-   **terra-note** has been removed.
+-   **interactables** `TerraInteractModule`, `TerraDraggableDirective` and all related interfaces have been removed. See https://github.com/plentymarkets/terra-components/tree/v11.6.0/src/lib/components/interactables for reference.
+-   **dependencies** removed peer dependency `interactjs` since its no longer used.
+
+# 12.0.0-next.0 (13.07.2021)
+
+### Breaking Changes
+
+-   **terra-stopwatch** has been removed.
+
 # 11.6.0 (12.07.2021)
 
 ### Minor changes

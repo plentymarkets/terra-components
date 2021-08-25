@@ -44,16 +44,12 @@ export class TerraFormHelper {
                 : console.warn('TerraForm: maxLength has to be a numeric value');
         }
 
-        if (!isNullOrUndefined(formField.options.minValue)) {
-            typeof formField.options.minValue === 'number'
-                ? validators.push(Validators.min(formField.options.minValue))
-                : console.warn('TerraForm: minValue has to be a numeric value');
+        if (typeof formField.options.minValue === 'number' || typeof formField.options.min === 'number') {
+            validators.push(Validators.min(formField.options.minValue ?? formField.options.min));
         }
 
-        if (!isNullOrUndefined(formField.options.maxValue)) {
-            typeof formField.options.maxValue === 'number'
-                ? validators.push(Validators.max(formField.options.maxValue))
-                : console.warn('TerraForm: maxValue has to be a numeric value');
+        if (typeof formField.options.maxValue === 'number' || typeof formField.options.max === 'number') {
+            validators.push(Validators.max(formField.options.maxValue ?? formField.options.max));
         }
 
         if (
