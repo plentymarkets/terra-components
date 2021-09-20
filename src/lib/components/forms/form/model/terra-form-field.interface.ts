@@ -7,4 +7,5 @@ export interface TerraFormFieldInterface {
     options?: { [key: string]: any };
     children?: { [key: string]: TerraFormFieldInterface };
     width?: string;
+    position?: number;
 }
