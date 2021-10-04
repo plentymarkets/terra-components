@@ -19,6 +19,34 @@
             color: var(--color-structure-8);
             font-size: var(--font-size-4);
             font-weight: var(--font-weight-2);
+
+            .info-handler {
+                position: relative;
+                align-items: center;
+
+                &:hover,
+                &:active,
+                &.active {
+                    color: var(--color-group-active);
+                }
+
+                height: 100%;
+                line-height: 100%;
+                text-align: center;
+                white-space: nowrap;
+                cursor: pointer;
+                user-select: none;
+                border: 0;
+                overflow: hidden;
+                text-decoration: none;
+                padding: 0 8px;
+                border-radius: var(--border-radius);
+                font-size: var(--font-size-5);
+
+                &::before {
+                    vertical-align: middle;
+                }
+            }
         }
 
         .header-button-container {
