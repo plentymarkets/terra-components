@@ -8,7 +8,6 @@ import { buttonList } from '../../../testing/mock-buttons';
 import { TerraPortletComponent } from './terra-portlet.component';
 import { TerraButtonComponent } from '../../buttons/button/terra-button.component';
 import { TerraButtonInterface } from '../../buttons/button/data/terra-button.interface';
-import { TerraInfoComponent } from '../../info/terra-info.component';
 import { mockL10nConfig } from '../../../testing/mock-l10n-config';
 import { MockTooltipDirective } from '../../../testing/mock-tooltip.directive';
 import Spy = jasmine.Spy;
@@ -22,7 +21,7 @@ describe('TerraPortletComponent', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            declarations: [MockTooltipDirective, TerraPortletComponent, TerraButtonComponent, TerraInfoComponent],
+            declarations: [MockTooltipDirective, TerraPortletComponent, TerraButtonComponent],
             imports: [FormsModule, NoopAnimationsModule, L10nTranslationModule.forRoot(mockL10nConfig)]
         });
     });
