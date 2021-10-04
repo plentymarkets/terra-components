@@ -235,18 +235,18 @@ describe('TerraPortletComponent', () => {
         });
     });
 
-    it(`should render the info component if 'infoText' is set`, () => {
+    it(`should render the info icon if 'infoText' is set`, () => {
         let infoElement: DebugElement;
         component.inputPortletHeader = 'Test header';
         fixture.detectChanges();
 
-        infoElement = debugElement.query(By.css('terra-info'));
+        infoElement = debugElement.query(By.css('.info-handler'));
         expect(infoElement).toBeFalsy();
 
         component.infoText = 'info text';
         fixture.detectChanges();
 
-        infoElement = debugElement.query(By.css('terra-info'));
+        infoElement = debugElement.query(By.css('.info-handler'));
         expect(infoElement).toBeTruthy();
     });
 
