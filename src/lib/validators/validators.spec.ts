@@ -10,7 +10,7 @@ describe('TerraValidators', () => {
         expect(spy).toHaveBeenCalledTimes(1);
         expect(spy).toHaveBeenCalledWith(control);
         expect(control.errors).toEqual(ibanValidator(control));
-        expect(control.valid).toBe(false);
+        expect(control.valid).toBe(true);
 
         control.setValue('DE12500105170648489890');
         expect(spy).toHaveBeenCalledTimes(2);
