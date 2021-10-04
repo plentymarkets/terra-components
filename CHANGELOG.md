@@ -1,3 +1,9 @@
+# 13.0.0-next.0 (UNRELEASED)
+
+### Breaking Changes
+
+-   **terra-info** has been removed.
+
 # 12.0.0 (24.08.2021)
 
 This release contains the same set of changes as 12.0.0-next.6
