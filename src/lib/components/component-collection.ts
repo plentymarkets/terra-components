@@ -52,7 +52,6 @@ import { TerraFileListComponent } from './file-browser/file-list/file-list.compo
 import { TerraImagePreviewComponent } from './file-browser/image-preview/image-preview.component';
 import { TerraThreeColumnsContainerComponent } from './layouts/column-container/three-columns/terra-three-columns-container.component';
 import { TerraGroupFunctionComponent } from './tables/group-function/terra-group-function.component';
-import { TerraInfoComponent } from './info/terra-info.component';
 import { RadioInputComponent } from './forms/input/radio/radio-input.component';
 import { RadioGroupComponent } from './forms/input/radio/radio-group.component';
 import { TableRowComponent } from './tables/data-table/table-row/table-row.component';
@@ -127,7 +126,6 @@ export const exportedComponents: Array<Type<any>> = [
     RadioGroupComponent,
     TableRowComponent,
     FilterComponent,
-    TerraInfoComponent,
     TableSettingsComponent
 ];
 
