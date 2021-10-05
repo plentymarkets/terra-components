@@ -5,8 +5,8 @@ import { Directive, Input } from '@angular/core';
 /**
  * IBAN validation for reactive FormControls
  */
-export function ibanValidator(control: AbstractControl): ValidationErrors {
-    if (!IBAN.isValid(control.value)) {
+export function ibanValidator(control: AbstractControl): ValidationErrors | null {
+    if (control.value !== null && control.value !== undefined && control.value !== '' && !IBAN.isValid(control.value)) {
         return { iban: true };
     }
 
