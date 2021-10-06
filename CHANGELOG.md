@@ -4,6 +4,12 @@
 
 -   **terra-info** has been removed.
 
+# 12.0.1 (unreleased)
+
+### Bug fixes
+
+-   **validators** iban validator doesn't mistakenly report validation errors for `null`, `undefined` and `''` values anymore. If you still need your control to fail validation on these values, use the [required validator](https://angular.io/api/forms/RequiredValidator) in addition.
+
 # 12.0.0 (24.08.2021)
 
 This release contains the same set of changes as 12.0.0-next.6

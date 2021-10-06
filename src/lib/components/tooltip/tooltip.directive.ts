@@ -98,9 +98,7 @@ export class TooltipDirective implements OnDestroy, OnChanges, OnInit {
 
                 this._initTooltip(tooltip);
 
-                if (tooltipIsEmpty) {
-                    this.isDisabled = true;
-                }
+                this.isDisabled = tooltipIsEmpty;
             } else {
                 this.isDisabled = true;
             }
