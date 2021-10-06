@@ -1,3 +1,9 @@
+# 13.0.0-next.0 (UNRELEASED)
+
+### Breaking Changes
+
+-   **terra-info** has been removed.
+
 # 12.0.1 (unreleased)
 
 ### Bug fixes

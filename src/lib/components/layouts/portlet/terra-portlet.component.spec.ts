@@ -8,7 +8,6 @@ import { buttonList } from '../../../testing/mock-buttons';
 import { TerraPortletComponent } from './terra-portlet.component';
 import { TerraButtonComponent } from '../../buttons/button/terra-button.component';
 import { TerraButtonInterface } from '../../buttons/button/data/terra-button.interface';
-import { TerraInfoComponent } from '../../info/terra-info.component';
 import { mockL10nConfig } from '../../../testing/mock-l10n-config';
 import { MockTooltipDirective } from '../../../testing/mock-tooltip.directive';
 import Spy = jasmine.Spy;
@@ -22,7 +21,7 @@ describe('TerraPortletComponent', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            declarations: [MockTooltipDirective, TerraPortletComponent, TerraButtonComponent, TerraInfoComponent],
+            declarations: [MockTooltipDirective, TerraPortletComponent, TerraButtonComponent],
             imports: [FormsModule, NoopAnimationsModule, L10nTranslationModule.forRoot(mockL10nConfig)]
         });
     });
@@ -236,18 +235,18 @@ describe('TerraPortletComponent', () => {
         });
     });
 
-    it(`should render the info component if 'infoText' is set`, () => {
+    it(`should render the info icon if 'infoText' is set`, () => {
         let infoElement: DebugElement;
         component.inputPortletHeader = 'Test header';
         fixture.detectChanges();
 
-        infoElement = debugElement.query(By.css('terra-info'));
+        infoElement = debugElement.query(By.css('.info-handler'));
         expect(infoElement).toBeFalsy();
 
         component.infoText = 'info text';
         fixture.detectChanges();
 
-        infoElement = debugElement.query(By.css('terra-info'));
+        infoElement = debugElement.query(By.css('.info-handler'));
         expect(infoElement).toBeTruthy();
     });
 

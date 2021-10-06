@@ -37,7 +37,6 @@ import { TerraTagSelectComponentExample } from './forms/tag-select/example/terra
 import { TerraTwoColumnContainerComponentExample } from './layouts/column-container/two-columns/example/terra-two-column-container.component.example';
 import { TerraThreeColumnContainerComponentExample } from './layouts/column-container/three-columns/example/terra-three-column-container.component.example';
 import { TerraGroupFunctionComponentExample } from './tables/group-function/example/terra-group-function.component.example';
-import { TerraInfoComponentExample } from './info/example/terra-info.component.example';
 import { TerraFormsExampleComponent } from './forms/example/terra-forms.example';
 import { RadioGroupComponentExample } from './forms/input/radio/example/radio-group.component.example';
 import { DataTableTemplateComponentExample } from './tables/data-table/example/data-table-template.component.example';
@@ -88,7 +87,6 @@ export const examples: Array<Type<any>> = [
     TerraTwoColumnContainerComponentExample,
     TerraThreeColumnContainerComponentExample,
     TerraGroupFunctionComponentExample,
-    TerraInfoComponentExample,
     TerraFormsExampleComponent,
     RadioGroupComponentExample,
     DataTableTemplateComponentExample,

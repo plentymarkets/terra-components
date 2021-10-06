@@ -10,7 +10,12 @@
     >
         <span class="header-caption"
             >{{ inputPortletHeader }}
-            <terra-info *ngIf="infoText" [text]="infoText" [textPlacement]="_infoTextPlacement"></terra-info>
+            <div
+                *ngIf="infoText"
+                class="info-handler icon-icon_questionmark_bck"
+                [tcTooltip]="infoText"
+                [placement]="_infoTextPlacement"
+            ></div>
         </span>
         <div class="header-button-container">
             <div class="header-buttons btn-group" (click)="$event.stopPropagation()">

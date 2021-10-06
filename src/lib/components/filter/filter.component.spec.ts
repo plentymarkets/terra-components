@@ -7,10 +7,9 @@ import { TerraBaseToolbarComponent } from '../toolbar/base-toolbar/terra-base-to
 import { TerraButtonComponent } from '../buttons/button/terra-button.component';
 import { TerraPortletComponent } from '../layouts/portlet/terra-portlet.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { TerraInfoComponent } from '../info/terra-info.component';
 import { mockL10nConfig } from '../../testing/mock-l10n-config';
-import Spy = jasmine.Spy;
 import { MockTooltipDirective } from '../../testing/mock-tooltip.directive';
+import Spy = jasmine.Spy;
 
 describe('FilterComponent:', () => {
     let filterComponent: FilterComponent;
@@ -23,7 +22,6 @@ describe('FilterComponent:', () => {
                 MockTooltipDirective,
                 TerraButtonComponent,
                 TerraBaseToolbarComponent,
-                TerraInfoComponent,
                 TerraPortletComponent,
                 FilterComponent
             ],

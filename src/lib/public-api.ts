@@ -129,7 +129,6 @@ export { TerraNodeComponent } from './components/tree/node-tree/node/terra-node.
 export { TerraTimePickerComponent } from './components/forms/input/time-picker/terra-time-picker.component';
 export { TerraTextAlignEnum } from './components/tables/data-table/enums/terra-text-align.enum';
 export { TerraBaseParameterInterface } from './components/data/terra-base-parameter.interface';
-export { TerraInfoComponent } from './components/info/terra-info.component';
 
 // TODO dynamic form deprecated? eigene index?
 export { TerraDynamicFormComponent } from './components/forms/dynamic-form/terra-dynamic-form.component';
