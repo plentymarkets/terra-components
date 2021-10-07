@@ -1,4 +1,3 @@
-<div class="example-container" *ngFor="let example of examples">
-    <h1>{{ example.name }}</h1>
-    <ng-container *ngComponentOutlet="example"></ng-container>
-</div>
+<terra-filter-toolbar [enableSearchInput]="true" #toolbar>
+    <mat-icon> search </mat-icon>
+</terra-filter-toolbar>

@@ -19,17 +19,37 @@ export class FilterToolbarComponent {
     @Output()
     public search: EventEmitter<void> = new EventEmitter();
 
+    @Output()
+    public searchFilterInputAddition = new EventEmitter<{ chip: FilterChipDefDirective; value: any }>();
+
     /** Reference to the MatMenuTrigger */
     @ViewChild(MatMenuTrigger)
     public menuTrigger: MatMenuTrigger;
+
+    @Input()
+    public enableSearchInput: boolean;
 
     /** List of chip definitions retrieved by the FilterContainerDirective */
     public get chips$(): Observable<Array<FilterChipDefDirective>> | undefined {
         return this.filterMenu.container ? this.filterMenu.container.chips$ : undefined;
     }
 
+    public shouldDisplay(chip: FilterChipDefDirective) {
+        //TODO continue from here
+        const type = typeof chip.control.control.value;
+        return type === 'number' || type === 'string';
+    }
+
     /** Reference to the material menu containing the filter form */
     public get menu(): MatMenu {
         return this.filterMenu.menu;
+    }
+
+    public _onInputSearch() {
+        this.search.emit();
+    }
+
+    public _onSearchInputFilterAddition(event, chip: FilterChipDefDirective, value: any) {
+        this.searchFilterInputAddition.emit({ chip, value });
     }
 }

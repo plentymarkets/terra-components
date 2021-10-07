@@ -7,6 +7,7 @@ export { FilterChipDefDirective } from './directives/filter-chip-def.directive';
 export { FilterActionsDirective } from './directives/filter-actions.directive';
 export { ChipDisplayWhenPipe } from './pipes/chip-display-when.pipe';
 export { ChipDisplayValuePipe } from './pipes/chip-display-value.pipe';
+//export { FilterToolbarSearchInputComponent } from './components/filter-toolbar/filter-search-input/filter-search-input.component';
 export { FilterToolbarComponent } from './components/filter-toolbar/filter-toolbar.component';
 export { DisplayWithFn } from './models/display-with-function.interface';
 export { DisplayWhenFn } from './models/display-when-function.interface';

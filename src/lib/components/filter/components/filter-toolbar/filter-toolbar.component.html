@@ -1,12 +1,42 @@
 <mat-toolbar>
-    <button mat-icon-button (click)="search.emit()" id="searchButton">
-        <mat-icon>search</mat-icon>
-    </button>
-    <button mat-icon-button [matMenuTriggerFor]="menu">
-        <mat-icon>filter_alt</mat-icon>
-    </button>
+    <mat-form-field class="filter-search-input" floatLabel="never" *ngIf="enableSearchInput; else noSearchInput">
+        <input #input type="text" matInput [matAutocomplete]="auto" />
+        <!-- [matAutocompleteDisabled]="!input?.value" -->
+        <mat-autocomplete #auto="matAutocomplete" autoActiveFirstOption>
+            <ng-container *ngFor="let chip of chips$ | async">
+                <mat-option
+                    *ngIf="shouldDisplay(chip)"
+                    (onSelectionChange)="_onSearchInputFilterAddition($event, chip, input.value)"
+                >
+                    {{ chip.label }}: {{ input.value }}
+                </mat-option>
+            </ng-container>
+        </mat-autocomplete>
 
-    <ng-content></ng-content>
+        <button matPrefix mat-icon-button (click)="search.emit()" id="searchButton">
+            <mat-icon>search</mat-icon>
+        </button>
+        <span matSuffix>
+            <ng-container *ngTemplateOutlet="content"></ng-container>
+        </span>
+        <button matSuffix mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>tune</mat-icon>
+        </button>
+    </mat-form-field>
+
+    <ng-template #content>
+        <ng-content></ng-content>
+    </ng-template>
+
+    <ng-template #noSearchInput>
+        <button mat-icon-button (click)="search.emit()" id="searchButton">
+            <mat-icon>search</mat-icon>
+        </button>
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>filter_alt</mat-icon>
+        </button>
+        <ng-container *ngTemplateOutlet="content"></ng-container>
+    </ng-template>
 
     <mat-chip-list>
         <ng-container *ngFor="let chip of chips$ | async">
