@@ -1,8 +1,9 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { FilterChipDefDirective } from '../../directives/filter-chip-def.directive';
 import { FilterMenuDirective } from '../../directives/filter-menu.directive';
-import { Observable } from 'rxjs';
+import { Observable, timer } from 'rxjs';
 import { MatMenu, MatMenuTrigger } from '@angular/material/menu';
+import { MatAutocomplete, MatAutocompleteTrigger } from '@angular/material/autocomplete';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { FormControl } from '@angular/forms';
 
@@ -33,6 +34,9 @@ export class FilterToolbarComponent {
     @Input()
     public enableSearchInput: boolean;
 
+    @ViewChild(MatAutocompleteTrigger)
+    public matAutocompleteTrigger: MatAutocompleteTrigger;
+
     /** The list of possible labels for the autocomplete menu */
     @Input()
     public autocompleteLabels: Array<string>;
@@ -59,5 +63,12 @@ export class FilterToolbarComponent {
     public _onOptionSelected(event: MatAutocompleteSelectedEvent, value: string): void {
         this.optionSelected.emit({ event, value });
         this.searchInputControl.reset();
+    }
+
+    public closeAutocompletePanel(event: any, option: string) {
+        event.stopPropagation();
+        if (option === 'search') {
+            this.search.emit();
+        }
     }
 }
