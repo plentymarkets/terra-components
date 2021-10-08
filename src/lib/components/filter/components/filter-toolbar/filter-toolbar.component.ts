@@ -65,7 +65,7 @@ export class FilterToolbarComponent {
         this.searchInputControl.reset();
     }
 
-    public closeAutocompletePanel(event: any, option: string) {
+    public closeAutocompletePanel(event: any, option: string): void {
         event.stopPropagation();
         if (option === 'search') {
             this.search.emit();
