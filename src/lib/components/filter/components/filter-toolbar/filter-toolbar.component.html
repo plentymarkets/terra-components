@@ -1,16 +1,25 @@
 <mat-toolbar>
-    <mat-form-field class="filter-search-input" floatLabel="never" *ngIf="enableSearchInput; else noSearchInput">
-        <input #input type="text" matInput [matAutocomplete]="auto" />
-        <!-- [matAutocompleteDisabled]="!input?.value" -->
-        <mat-autocomplete #auto="matAutocomplete" autoActiveFirstOption>
-            <ng-container *ngFor="let chip of chips$ | async">
-                <mat-option
-                    *ngIf="shouldDisplay(chip)"
-                    (onSelectionChange)="_onSearchInputFilterAddition($event, chip, input.value)"
-                >
-                    {{ chip.label }}: {{ input.value }}
-                </mat-option>
-            </ng-container>
+    <mat-form-field
+        class="filter-search-input"
+        floatLabel="never"
+        *ngIf="enableSearchInput && autocompleteLabels?.length > 0; else noSearchInput"
+    >
+        <input
+            #input
+            [formControl]="searchInputControl"
+            type="text"
+            matInput
+            [matAutocomplete]="auto"
+            [matAutocompleteDisabled]="!input.value?.length"
+        />
+        <mat-autocomplete
+            (optionSelected)="_onOptionSelected($event, input.value)"
+            #auto="matAutocomplete"
+            autoActiveFirstOption
+        >
+            <mat-option *ngFor="let label of autocompleteLabels" [value]="label + ':' + input.value">
+                {{ label }}: {{ input.value }}
+            </mat-option>
         </mat-autocomplete>
 
         <button matPrefix mat-icon-button (click)="search.emit()" id="searchButton">

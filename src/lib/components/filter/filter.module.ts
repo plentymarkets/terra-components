@@ -19,6 +19,8 @@ import { ChipDisplayWhenPipe } from './pipes/chip-display-when.pipe';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatSelectModule } from '@angular/material/select';
+import { ReactiveFormsModule } from '@angular/forms';
 
 /** Exports all the functionality needed to create a filter for a table. */
 @NgModule({
@@ -29,7 +31,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
         MatIconModule,
         MatChipsModule,
         MatMenuModule,
-        MatFormFieldModule,
+        ReactiveFormsModule,
         MatInputModule,
         MatAutocompleteModule
     ],
@@ -40,7 +42,6 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
         FilterChipDefDirective,
         FilterChipLabelDirective,
         FilterMenuDirective,
-        //FilterToolbarSearchInputComponent,
         FilterToolbarComponent,
         ChipDisplayValuePipe,
         FilterCloseDirective,
@@ -53,7 +54,6 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
         FilterChipDefDirective,
         FilterChipLabelDirective,
         FilterMenuDirective,
-        //FilterToolbarSearchInputComponent,
         FilterToolbarComponent,
         MatMenuModule, // every user needs this to create the filter menu
         FilterCloseDirective
