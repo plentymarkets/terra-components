@@ -15,11 +15,8 @@ import { FilterChipLabelDirective } from './directives/filter-chip-label.directi
 import { FilterToolbarComponent } from './components/filter-toolbar/filter-toolbar.component';
 import { ChipDisplayValuePipe } from './pipes/chip-display-value.pipe';
 import { ChipDisplayWhenPipe } from './pipes/chip-display-when.pipe';
-//import { FilterToolbarSearchInputComponent } from './components/filter-toolbar/filter-search-input/filter-search-input.component';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { MatSelectModule } from '@angular/material/select';
 import { ReactiveFormsModule } from '@angular/forms';
 
 /** Exports all the functionality needed to create a filter for a table. */

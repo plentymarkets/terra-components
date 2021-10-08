@@ -23,7 +23,7 @@ export class FilterToolbarComponent {
 
     /** Fires when an option is selected from the autocomplete */
     @Output()
-    public optionSelected = new EventEmitter<{ event: MatAutocompleteSelectedEvent; value: any }>();
+    public optionSelected: EventEmitter<{ event: MatAutocompleteSelectedEvent; value: string }> = new EventEmitter();
 
     /** Reference to the MatMenuTrigger */
     @ViewChild(MatMenuTrigger)
@@ -35,10 +35,10 @@ export class FilterToolbarComponent {
 
     /** The list of possible labels for the autocomplete menu */
     @Input()
-    public autocompleteLabels: string[];
+    public autocompleteLabels: Array<string>;
 
     /** Form control for the autocomplete search input */
-    public searchInputControl = new FormControl('');
+    public searchInputControl: FormControl = new FormControl('');
 
     /** List of chip definitions retrieved by the FilterContainerDirective */
     public get chips$(): Observable<Array<FilterChipDefDirective>> | undefined {
@@ -51,12 +51,12 @@ export class FilterToolbarComponent {
     }
 
     /** Called when the search icon is clicked from the search input box */
-    public _onInputSearch() {
+    public _onInputSearch(): void {
         this.search.emit();
     }
 
     /** Called when the an option from the autocomplete menu is selected */
-    public _onOptionSelected(event: MatAutocompleteSelectedEvent, value: any) {
+    public _onOptionSelected(event: MatAutocompleteSelectedEvent, value: string): void {
         this.optionSelected.emit({ event, value });
         this.searchInputControl.reset();
     }
