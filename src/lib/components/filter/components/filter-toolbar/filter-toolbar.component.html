@@ -17,7 +17,12 @@
             </ng-container>
         </mat-autocomplete>
 
-        <button matPrefix mat-icon-button (click)="closeAutocompletePanel($event, 'search')" id="searchButton">
+        <button
+            matPrefix
+            mat-icon-button
+            (click)="closeAutocompletePanel($event, 'search')"
+            id="searchButtonAutocomplete"
+        >
             <mat-icon>search</mat-icon>
         </button>
         <span matSuffix (click)="closeAutocompletePanel($event, '')">
