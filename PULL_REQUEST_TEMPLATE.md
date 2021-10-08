@@ -36,7 +36,7 @@ Testing
 
 Information transfer
 
--   [ ] Inform Ceres about changes in `TerraFormComponent` (optional: relevant for changes in this component)
+-   [ ] Inform Team plentyShop about changes in `TerraFormComponent` (optional: relevant for changes in this component)
 
 Terra Basic Plugin
 
