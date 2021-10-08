@@ -4,22 +4,17 @@
         floatLabel="never"
         *ngIf="enableSearchInput && autocompleteLabels?.length > 0; else noSearchInput"
     >
-        <input
-            #input
-            [formControl]="searchInputControl"
-            type="text"
-            matInput
-            [matAutocomplete]="auto"
-            [matAutocompleteDisabled]="!input.value?.length"
-        />
+        <input #input [formControl]="searchInputControl" type="text" matInput [matAutocomplete]="auto" />
         <mat-autocomplete
             (optionSelected)="_onOptionSelected($event, input.value)"
             #auto="matAutocomplete"
             autoActiveFirstOption
         >
-            <mat-option *ngFor="let label of autocompleteLabels" [value]="label + ':' + input.value">
-                {{ label }}: {{ input.value }}
-            </mat-option>
+            <ng-container *ngIf="input.value">
+                <mat-option *ngFor="let label of autocompleteLabels" [value]="label + ':' + input.value">
+                    {{ label }}: {{ input.value }}
+                </mat-option>
+            </ng-container>
         </mat-autocomplete>
 
         <button matPrefix mat-icon-button (click)="search.emit()" id="searchButton">
