@@ -28,10 +28,7 @@ export function initL10n(l10nLoader: L10nLoader): Function {
         RouterModule.forRoot([]),
         HttpClientModule,
         L10nTranslationModule.forRoot(l10nConfig, { userLanguage: DefaultUserLanguage }),
-        L10nIntlModule,
-        TerraComponentsExamplesModule,
-        TerraFilterModule,
-        MatIconModule
+        L10nIntlModule
     ],
     declarations: [AppComponent, ShowcaseComponent],
     providers: [
