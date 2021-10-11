@@ -113,7 +113,7 @@ export class TooltipDirective implements OnDestroy, OnChanges, OnInit {
         }
 
         if (changes.hasOwnProperty('isDisabled')) {
-            this._handleTooltipState();
+            this.isDisabled = changes['isDisabled'].currentValue;
         }
     }
 
