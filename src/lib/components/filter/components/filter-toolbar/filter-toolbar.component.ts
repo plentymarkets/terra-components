@@ -17,11 +17,15 @@ export class FilterToolbarComponent {
     @Input()
     public filterMenu: FilterMenuDirective;
 
-    /** Fires when the user clicks the search button in the filter toolbar */
+    /** Fires when the user clicks the search button in the filter toolbar
+     * @output public API emitter to notify the user of search button clicks
+     */
     @Output()
     public search: EventEmitter<void> = new EventEmitter();
 
-    /** Fires when an option is selected from the autocomplete */
+    /** Fires when an option is selected from the autocomplete
+     * @output public API emitter to notify the user of selection events
+     */
     @Output()
     public optionSelected: EventEmitter<{ event: MatAutocompleteSelectedEvent; value: string }> = new EventEmitter();
 
@@ -29,14 +33,18 @@ export class FilterToolbarComponent {
     @ViewChild(MatMenuTrigger)
     public menuTrigger: MatMenuTrigger;
 
-    /** If set to true, then it will display the search input autocomplete */
+    /** If set to true, then it will display the search input autocomplete
+     * @input Required to enable the search input autocomplete
+     */
     @Input()
     public enableSearchInput: boolean;
 
     @ViewChild(MatAutocompleteTrigger)
     public matAutocompleteTrigger: MatAutocompleteTrigger;
 
-    /** The list of possible labels for the autocomplete menu */
+    /** The list of possible labels for the autocomplete menu
+     * @input Required if enableSearchInput is set to true in order to enable the search input autocomplete
+     */
     @Input()
     public autocompleteLabels: Array<string>;
 
@@ -53,17 +61,26 @@ export class FilterToolbarComponent {
         return this.filterMenu.menu;
     }
 
-    /** Called when the search icon is clicked from the search input box */
+    /**
+     * Called when the search icon is clicked from the search input box
+     * @internal FOR INTERNAL USE ONLY
+     */
     public _onInputSearch(): void {
         this.search.emit();
     }
 
-    /** Called when the an option from the autocomplete menu is selected */
+    /** Called when the an option from the autocomplete menu is selected
+     * @internal FOR INTERNAL USE ONLY
+     */
     public _onOptionSelected(event: MatAutocompleteSelectedEvent, value: string): void {
         this.optionSelected.emit({ event, value });
         this.searchInputControl.reset();
     }
 
+    /**
+     * Called to manually close the autocomplete panel and stop event propagation in order to only open 1 overlay element at a time
+     * @internal FOR INTERNAL USE ONLY
+     */
     public closeAutocompletePanel(event: Event, option: string): void {
         event.stopPropagation();
         if (option === 'search') {
