@@ -22,7 +22,7 @@ export interface TerraNodeInterface<D> {
     /**
      * @description The icon. Optional.
      */
-    icon?: string;
+    icon?: string | { fontSet: 'material-icons' | 'plentyicons'; fontIcon: string };
 
     /**
      * @description The children of current node. Optional.

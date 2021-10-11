@@ -6,7 +6,7 @@ export interface TerraLeafInterface {
     caption: string;
     isOpen?: boolean;
     avoidOpenOnClick?: boolean;
-    icon?: string;
+    icon?: string | { fontSet: 'material-icons' | 'plentyicons'; fontIcon: string };
     iconColor?: string;
     id?: number | string;
     isActive?: boolean;
