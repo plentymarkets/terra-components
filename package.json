@@ -5,7 +5,7 @@
         "build:lib": "ng build lib --configuration production",
         "build:dev-app": "ng build dev-app --aot",
         "build:schematics": "cd src/lib && npm run build",
-        "test": "ng test lib",
+        "test": "ng test lib --watch=false --browsers=ChromeHeadless --code-coverage",
         "test-once": "ng test lib --watch=false --browsers=Chrome,Firefox,Safari",
         "test-headless": "ng test lib --watch=false --browsers=ChromeHeadless,FirefoxHeadless",
         "test-headless-coverage": "ng test lib --watch=false --code-coverage --browsers=ChromeHeadless",
