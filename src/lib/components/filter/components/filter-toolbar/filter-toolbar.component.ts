@@ -17,6 +17,18 @@ export class FilterToolbarComponent {
     @Input()
     public filterMenu: FilterMenuDirective;
 
+    /** If set to true, then it will display the search input autocomplete
+     * @input Required to enable the search input autocomplete
+     */
+    @Input()
+    public enableSearchInput: boolean;
+
+    /** The list of possible labels for the autocomplete menu
+     * @input Required if enableSearchInput is set to true in order to enable the search input autocomplete
+     */
+    @Input()
+    public autocompleteLabels: Array<string>;
+
     /** Fires when the user clicks the search button in the filter toolbar
      * @output public API emitter to notify the user of search button clicks
      */
@@ -33,20 +45,8 @@ export class FilterToolbarComponent {
     @ViewChild(MatMenuTrigger)
     public menuTrigger: MatMenuTrigger;
 
-    /** If set to true, then it will display the search input autocomplete
-     * @input Required to enable the search input autocomplete
-     */
-    @Input()
-    public enableSearchInput: boolean;
-
     @ViewChild(MatAutocompleteTrigger)
     public matAutocompleteTrigger: MatAutocompleteTrigger;
-
-    /** The list of possible labels for the autocomplete menu
-     * @input Required if enableSearchInput is set to true in order to enable the search input autocomplete
-     */
-    @Input()
-    public autocompleteLabels: Array<string>;
 
     /** Form control for the autocomplete search input */
     public searchInputControl: FormControl = new FormControl('');
