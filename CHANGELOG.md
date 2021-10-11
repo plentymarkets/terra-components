@@ -1,3 +1,9 @@
+# 12.1.0 (XX.XX.2021) - unreleased
+
+### Features
+
+-   **terra-filter-toolbar** added an optional input to search through the table's datasource, based on the filter parameters.
+
 # 12.0.1 (06.10.2021)
 
 ### Bug fixes

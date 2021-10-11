@@ -15,10 +15,23 @@ import { FilterChipLabelDirective } from './directives/filter-chip-label.directi
 import { FilterToolbarComponent } from './components/filter-toolbar/filter-toolbar.component';
 import { ChipDisplayValuePipe } from './pipes/chip-display-value.pipe';
 import { ChipDisplayWhenPipe } from './pipes/chip-display-when.pipe';
+import { MatInputModule } from '@angular/material/input';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { ReactiveFormsModule } from '@angular/forms';
 
 /** Exports all the functionality needed to create a filter for a table. */
 @NgModule({
-    imports: [CommonModule, MatToolbarModule, MatButtonModule, MatIconModule, MatChipsModule, MatMenuModule],
+    imports: [
+        CommonModule,
+        MatToolbarModule,
+        MatButtonModule,
+        MatIconModule,
+        MatChipsModule,
+        MatMenuModule,
+        ReactiveFormsModule,
+        MatInputModule,
+        MatAutocompleteModule
+    ],
     declarations: [
         FilterActionsDirective,
         FilterContainerDirective,

@@ -1,12 +1,46 @@
 <mat-toolbar>
-    <button mat-icon-button (click)="search.emit()" id="searchButton">
-        <mat-icon>search</mat-icon>
-    </button>
-    <button mat-icon-button [matMenuTriggerFor]="menu">
-        <mat-icon>filter_alt</mat-icon>
-    </button>
+    <mat-form-field
+        class="filter-search-input"
+        floatLabel="never"
+        *ngIf="enableSearchInput && autocompleteLabels?.length > 0; else noSearchInput"
+    >
+        <input #input [formControl]="searchInputControl" type="text" matInput [matAutocomplete]="auto" />
+        <mat-autocomplete
+            (optionSelected)="_onOptionSelected($event, input.value)"
+            #auto="matAutocomplete"
+            autoActiveFirstOption
+        >
+            <ng-container *ngIf="input.value">
+                <mat-option *ngFor="let label of autocompleteLabels" [value]="label + ':' + input.value">
+                    {{ label }}: {{ input.value }}
+                </mat-option>
+            </ng-container>
+        </mat-autocomplete>
 
-    <ng-content></ng-content>
+        <button matPrefix mat-icon-button (click)="closeAutocompletePanel($event, 'search')" id="searchButton">
+            <mat-icon>search</mat-icon>
+        </button>
+        <span matSuffix (click)="closeAutocompletePanel($event, '')">
+            <ng-container *ngTemplateOutlet="content"></ng-container>
+        </span>
+        <button (click)="closeAutocompletePanel($event, '')" matSuffix mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>tune</mat-icon>
+        </button>
+    </mat-form-field>
+
+    <ng-template #content>
+        <ng-content></ng-content>
+    </ng-template>
+
+    <ng-template #noSearchInput>
+        <button mat-icon-button (click)="search.emit()" id="searchButton">
+            <mat-icon>search</mat-icon>
+        </button>
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>filter_alt</mat-icon>
+        </button>
+        <ng-container *ngTemplateOutlet="content"></ng-container>
+    </ng-template>
 
     <mat-chip-list>
         <ng-container *ngFor="let chip of chips$ | async">
