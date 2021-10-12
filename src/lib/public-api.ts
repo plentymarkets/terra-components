@@ -183,6 +183,7 @@ export { TooltipDirective } from './components/tooltip/tooltip.directive';
 export { SelectSortPipe } from './pipes/select-sort.pipe';
 export { AllowedColors } from './components/forms/select-box/data/allowed.colors.enum';
 export { SelectSortDirective } from './components/forms/select-box/directive/select-sort.directive';
+export { TerraRouteIcon } from './types/terra-route-icon.type';
 
 // l10n translations
 export { l10nTerraComponents } from './translations/l10n-terra-components';

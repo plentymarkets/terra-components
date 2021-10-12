@@ -1,4 +1,4 @@
-import { TerraRouteIcon } from '../../../types/terra-route-icon.interface';
+import { TerraRouteIcon } from '../../../types/terra-route-icon.type';
 
 /**
  * @author mkunze
