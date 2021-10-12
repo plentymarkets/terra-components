@@ -13,6 +13,7 @@ import { MatMenuHarness } from '@angular/material/menu/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { FilterMenuDirective } from '../../directives/filter-menu.directive';
 import { DisplayWhenFn } from '../../models/display-when-function.interface';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 
 // tslint:disable:component-max-inline-declarations
 @Component({
@@ -31,7 +32,12 @@ import { DisplayWhenFn } from '../../models/display-when-function.interface';
                 </terra-filter-content>
             </form>
         </mat-menu>
-        <terra-filter-toolbar [filterMenu]="filterMenu" (search)="search()"></terra-filter-toolbar>
+        <terra-filter-toolbar
+            [enableSearchInput]="true"
+            [autocompleteLabels]="['test']"
+            [filterMenu]="filterMenu"
+            (search)="search()"
+        ></terra-filter-toolbar>
     `
 })
 class HostComponent {
@@ -122,5 +128,43 @@ describe('FilterToolbarComponent:', () => {
         spyOn(toolbarComponent.menuTrigger, 'toggleMenu');
         menuTrigger.nativeElement.click();
         expect(toolbarComponent.menuTrigger.toggleMenu).toHaveBeenCalled();
+    });
+
+    it('should emit the search event when the search icon is clicked', (doneFn: Function) => {
+        const searchButton: DebugElement = fixture.debugElement.query(By.css('button#searchButton'));
+        expect(searchButton).toBeTruthy();
+        let calls = 0;
+
+        toolbarComponent.search.subscribe({
+            next: () => {
+                calls++;
+            },
+            complete: () => {
+                expect(calls).toEqual(2);
+                doneFn();
+            }
+        });
+
+        searchButton.nativeElement.click();
+        toolbarComponent._onInputSearch();
+        toolbarComponent.search.complete();
+    });
+
+    it('should emit an event and reset the autocomplete input when an option select event is fired', (doneFn: Function) => {
+        const mockEvent = jasmine.createSpyObj<MatAutocompleteSelectedEvent>('mockEvent', ['option', 'source']);
+        const resetSpy = spyOn(toolbarComponent.searchInputControl, 'reset');
+
+        toolbarComponent.optionSelected.subscribe({
+            next: (event: any) => {
+                expect(event.value).toEqual('');
+            },
+            complete: () => {
+                expect(resetSpy).toHaveBeenCalled();
+                doneFn();
+            }
+        });
+
+        toolbarComponent._onOptionSelected(mockEvent, '');
+        toolbarComponent.optionSelected.complete();
     });
 });
