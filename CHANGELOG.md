@@ -1,8 +1,9 @@
-# 12.1.0 (XX.XX.2021) - unreleased
+# 12.1.0 (12.10.2021)
 
 ### Features
 
 -   **terra-filter-toolbar** added an optional input to search through the table's datasource, based on the filter parameters.
+-   **router** - we're now supporting material icons on routes.
 
 # 12.0.1 (06.10.2021)
 
