@@ -4,6 +4,12 @@
 
 -   **terra-info** has been removed.
 
+# 12.1.1 (12.10.2021)
+
+### Bug fixes
+
+-   **router** added missing export to the public api.
+
 # 12.1.0 (12.10.2021)
 
 ### Features

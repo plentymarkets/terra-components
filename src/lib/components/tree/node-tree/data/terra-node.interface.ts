@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { TerraRouteIcon } from '../../../../types/terra-route-icon.interface';
+import { TerraRouteIcon } from '../../../../types/terra-route-icon.type';
 
 /**
  * @deprecated since v5. Use mat-tree instead.
