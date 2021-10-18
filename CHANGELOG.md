@@ -1,3 +1,9 @@
+# 12.2.0 (xx.xx.2021) - UNRELEASED
+
+### Minor changes
+
+-   **terra-no-result-notice** has been deprecated.
+
 # 12.1.1 (12.10.2021)
 
 ### Bug fixes
