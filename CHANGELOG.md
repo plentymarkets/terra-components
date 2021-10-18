@@ -3,6 +3,7 @@
 ### Minor changes
 
 -   **terra-breadcrumbs** has been deprecated.
+-   **terra-no-result-notice** has been deprecated.
 
 # 12.1.1 (12.10.2021)
 
