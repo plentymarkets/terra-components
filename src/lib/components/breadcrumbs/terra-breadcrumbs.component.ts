@@ -11,6 +11,8 @@ import { TerraBreadcrumbContainer } from './terra-breadcrumb-container';
     templateUrl: './terra-breadcrumbs.component.html',
     providers: [TerraBreadcrumbsService]
 })
+
+/** @deprecated since v12 */
 export class TerraBreadcrumbsComponent {
     public _mouseLeft: string = '0px';
 
