@@ -63,7 +63,7 @@ export function portletMigration(_options: MigratePortletSchema): Rule {
     };
 }
 
-function getHeaderHTML(title: string, infoText?: string, placement?: string) {
+function getHeaderHTML(title: string, infoText?: string, placement?: string): string {
     return `
         <mat-expansion-panel-header>
             <mat-panel-title> ${title} </mat-panel-title>
@@ -76,10 +76,11 @@ function getHeaderHTML(title: string, infoText?: string, placement?: string) {
                 }
         </mat-expansion-panel-header>
     `;
-    //TODO check if mat icon info is right
-    //TODO check if tooltip icon should be part of mat panel title
+    // TODO check if mat icon info is right
+    // TODO check if tooltip icon should be part of mat panel title
 }
 
+// tslint:disable:max-function-line-count
 function runPortletMigration(tree: Tree, tsconfigPath: string, basePath: string, pathToMigrate?: string): void {
     const program: ts.Program = createMigrationProgram(tree, tsconfigPath, basePath).program;
     let sourceFiles: Array<ts.SourceFile> = program
@@ -177,8 +178,12 @@ function isComponent(fileName: string, file: Buffer | null): boolean {
 }
 
 function migrateValueIf(doMigration: boolean, attribute: string, value: string): string {
-    if (!doMigration) return '';
-    if (value.replace('!', '') === 'true' || value.replace('!', '') === 'false') return '';
+    if (!doMigration) {
+        return '';
+    }
+    if (value.replace('!', '') === 'true' || value.replace('!', '') === 'false') {
+        return '';
+    }
     if (value.includes('!!')) {
         value = value.replace('!!', '');
     }
