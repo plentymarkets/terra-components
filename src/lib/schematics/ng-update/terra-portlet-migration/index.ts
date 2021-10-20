@@ -91,56 +91,50 @@ function runPortletMigration(tree: Tree, tsconfigPath: string, basePath: string,
         if (isComponent(fileName, tree.read(fileName))) {
             const templateFileName: string = fileName.replace('component.ts', 'component.html');
             if (tree.exists(templateFileName)) {
-                let { portletAsString, contentBuffer, start, length }: PortletBoundingInterface = getBounding(
-                    tree.read(templateFileName)
-                );
-                const fileContainsTerraPortlet: boolean = !!portletAsString;
-                while (start >= 0) {
-                    const inputPortletHeaderValue = getAttributeValue(portletAsString, 'inputPortletHeader');
-                    const inputIsCollapsableValue = getAttributeValue(portletAsString, 'inputIsCollapsable').includes(
-                        'true'
-                    )
-                        ? true
-                        : false;
-                    const inputCollapsedValue = getAttributeValue(portletAsString, 'inputCollapsed').includes('true')
-                        ? true
-                        : false;
-                    //const inputIsDisabledValue = getAttributeValue(portletAsString, 'inputIsDisabled').includes('true') ? true : false;
-                    const infoTextValue = getAttributeValue(portletAsString, 'infoText');
-                    const inputCollapsedChangeOutput = getAttributeValue(portletAsString, 'inputCollapsedChange');
+                let bounds = getBounding(tree.read(templateFileName));
+                const fileContainsTerraPortlet: boolean = bounds?.portletAsString?.length > 0;
+                if (!fileContainsTerraPortlet) {
+                    return;
+                }
+                while (bounds && bounds.start >= 0) {
+                    const inputPortletHeaderValue = getAttributeValue(bounds.portletAsString, 'inputPortletHeader');
+                    const inputIsCollapsableValue = getAttributeValue(bounds.portletAsString, 'inputIsCollapsable');
+                    const inputCollapsedValue = getAttributeValue(bounds.portletAsString, 'inputCollapsed');
+                    //const inputIsDisabledValue = getAttributeValue(bounds.portletAsString, 'inputIsDisabled');
+                    const infoTextValue = getAttributeValue(bounds.portletAsString, 'infoText');
+                    const outputCollapsedChange = getAttributeValueOutput(
+                        bounds.portletAsString,
+                        'inputCollapsedChange'
+                    );
 
                     //TODO check if inputIsCollapsable
-                    const template = `
-                        <mat-expansion-panel ${!inputCollapsedValue ? 'expanded' : ''} ${
-                        !inputIsCollapsableValue ? 'disabled' : ''
-                    }
-                                             ${
-                                                 inputCollapsedChangeOutput
-                                                     ? `(expandedChange)=${inputCollapsedChangeOutput}`
-                                                     : ''
-                                             }
-                        >
+                    const template = `<mat-expansion-panel ${migrateValueIf(
+                        inputCollapsedValue !== null,
+                        '[expanded]',
+                        '!' + inputCollapsedValue?.replace('{{', '')?.replace('}}', '')
+                    )} ${migrateValueIf(
+                        inputIsCollapsableValue !== null,
+                        '[disabled]',
+                        '!' + inputIsCollapsableValue?.replace('{{', '')?.replace('}}', '')
+                    )} ${migrateValueIf(outputCollapsedChange !== null, '(expandedChange)', outputCollapsedChange)}>
                             ${
                                 inputPortletHeaderValue || inputIsCollapsableValue
                                     ? getHeaderHTML(inputPortletHeaderValue, infoTextValue, 'right')
                                     : ''
                             }
-                            ${contentBuffer}
+                            ${bounds.contentBuffer}
                         </mat-expansion-panel>
                     `;
                     //TODO check status of custom CSS animation, do we need to migrate it as well?
 
-                    //TODO is this still useful?
-                    //checkboxAsString = doDeletions(doReplacements(handleValue(checkboxAsString)));
-
                     const update: UpdateRecorder = tree.beginUpdate(templateFileName!);
-                    update.remove(start, length);
-                    update.insertRight(start, template);
+                    update.remove(bounds.start, bounds.portletAsString.length);
+                    update.insertRight(bounds.start, template);
                     tree.commitUpdate(update);
+
+                    bounds = getBounding(tree.read(templateFileName));
                 }
-                if (fileContainsTerraPortlet) {
-                    fileNamesOfMigratedTemplates.push(fileName);
-                }
+                fileNamesOfMigratedTemplates.push(fileName);
             }
         }
         if (isModule(fileName, tree.read(fileName))) {
@@ -169,6 +163,15 @@ function isComponent(fileName: string, file: Buffer | null): boolean {
         return false;
     }
     return file.toString().match(new RegExp('@Component\\(')) !== null;
+}
+
+function migrateValueIf(doMigration: boolean, attribute: string, value: string): string {
+    if (!doMigration) return '';
+    if (value.replace('!', '') === 'true' || value.replace('!', '') === 'false') return '';
+    if (value.includes('!!')) {
+        value = value.replace('!!', '');
+    }
+    return `${attribute}='${value}'`;
 }
 
 /**
@@ -250,6 +253,11 @@ function getAttributeValue(bufferString: string, attribute: string): string {
     return value ? `${completeAttribute.startsWith('[') ? '{{' + value + '}}' : value}` : null;
 }
 
+function getAttributeValueOutput(bufferString: string, attribute: string): string {
+    const value = getOutputAttributeWithValue(bufferString, attribute)[1];
+    return value ?? null;
+}
+
 /**
  * Get the complete attribute of a given attribute.
  * @param bufferString
@@ -264,26 +272,39 @@ function getAttributeWithValue(bufferString: string, attribute: string): [string
 }
 
 /**
+ * Get the complete attribute of a given attribute.
+ * @param bufferString
+ * @param attribute
+ */
+function getOutputAttributeWithValue(bufferString: string, attribute: string): [string, string] {
+    const regExp: RegExp = new RegExp(`\\(?${attribute}\\)?="(.*?)"`);
+    let completeAttribute: string, value: string;
+    [completeAttribute, value] = bufferString.match(regExp) || ['', null];
+
+    return [completeAttribute, value];
+}
+
+/**
  * Get the bounding of the next terra-checkbox within the buffer.
  * @see PortletBoundingInterface
  * @param buffer
  */
 function getBounding(buffer: Buffer): PortletBoundingInterface {
     const bufferString: string = buffer.toString() || '';
-    const portletClosingTag: string = '</terra-portlet>';
-    const regExp: RegExp = new RegExp('<terra-portlet(\\s|>)');
-    const [start, end]: [number, number] = [bufferString.search(regExp), bufferString.indexOf(portletClosingTag)];
-    const length: number = end - start + portletClosingTag.length;
+    const regExp = /(<terra-portlet[^>]*>)([\s\S]*)(<\/terra-portlet>)/;
+    const matchGroups = bufferString.match(regExp);
+    if (!matchGroups) {
+        return null;
+    }
+    const openingTag = matchGroups[1];
+    const injectedContent = matchGroups[2];
+    const closingTag = matchGroups[3];
+    const [start, end]: [number, number] = [bufferString.indexOf(openingTag), bufferString.indexOf(closingTag)];
+    const length: number = matchGroups[0].length;
 
-    const contentBufferStart = bufferString.search('>') + 1;
-    const contentBufferEnd = bufferString.indexOf(portletClosingTag);
-    const contentBuffer = bufferString.slice(contentBufferStart, contentBufferEnd);
-
-    // get only one checkbox, otherwise we could find attributes from another
-    const portletAsString: string = bufferString.substring(start, end);
     return {
-        portletAsString,
-        contentBuffer,
+        portletAsString: matchGroups[0],
+        contentBuffer: injectedContent,
         start: start,
         end: end,
         length: length
