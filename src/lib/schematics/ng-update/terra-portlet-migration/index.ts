@@ -91,7 +91,7 @@ function runPortletMigration(tree: Tree, tsconfigPath: string, basePath: string,
             relative(basePath, f.fileName).startsWith(pathToMigrate)
         );
     }
-    // const printer = ts.createPrinter();
+
     let fileNamesOfMigratedTemplates: Array<string> = [];
     let moduleFileNames: Array<string> = [];
 
@@ -120,6 +120,10 @@ function runPortletMigration(tree: Tree, tsconfigPath: string, basePath: string,
                         ngStarDirectiveValue
                     ] = migrateNgStarDirective(bounds.openingTag);
 
+                    const [classAttributeFull, classAttribute, classAttributeValue] = migrateClassAttribute(
+                        bounds.openingTag
+                    );
+
                     const template = `<mat-expansion-panel ${migrateValueIf(
                         inputCollapsedValue !== null && inputCollapsedValue !== 'false',
                         '[expanded]',
@@ -128,7 +132,7 @@ function runPortletMigration(tree: Tree, tsconfigPath: string, basePath: string,
                         outputCollapsedChange !== null,
                         '(expandedChange)',
                         outputCollapsedChange
-                    )}
+                    )} ${migrateClassIf(classAttributeFull !== null, classAttribute, classAttributeValue)}
                        ${migrateValueIf(ngStarDirectiveFull !== null, ngStarDirectiveAttribute, ngStarDirectiveValue)}>
                             ${
                                 inputPortletHeaderValue || inputIsCollapsableValue
@@ -186,6 +190,13 @@ function migrateValueIf(doMigration: boolean, attribute: string, value: string):
     }
     if (value.includes('!!')) {
         value = value.replace('!!', '');
+    }
+    return `${attribute}="${value}"`;
+}
+
+function migrateClassIf(doMigration: boolean, attribute: string, value: string): string {
+    if (!doMigration) {
+        return '';
     }
     return `${attribute}="${value}"`;
 }
@@ -274,6 +285,16 @@ function migrateNgStarDirective(bufferString: string): [string, string, string] 
     if (!matches) {
         return [null, null, null];
     }
+    return [matches[0], matches[1], matches[2]] || [null, null, null];
+}
+
+function migrateClassAttribute(bufferString: string): [string, string, string] {
+    const regExp = /(class)="(.*?)"/;
+    const matches = bufferString.match(regExp);
+    if (!matches) {
+        return [null, null, null];
+    }
+
     return [matches[0], matches[1], matches[2]] || [null, null, null];
 }
 
