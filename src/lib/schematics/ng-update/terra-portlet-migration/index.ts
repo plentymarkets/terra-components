@@ -13,6 +13,8 @@ import { Schema as MigratePortletSchema } from './schema';
 interface PortletBoundingInterface {
     /** The terra-portlet as a plain string for replacing and deletion */
     portletAsString: string;
+    openingTag: string;
+    closingTag: string;
     /** The body of the portlet to be injected in the ng-content tag */
     contentBuffer: string;
     /** Index that determines the begin of the portlet within the file. */
@@ -65,7 +67,13 @@ function getHeaderHTML(title: string, infoText?: string, placement?: string) {
     return `
         <mat-expansion-panel-header>
             <mat-panel-title> ${title} </mat-panel-title>
-                ${infoText ? `<mat-icon [tcTooltip]=${infoText} [placement]=${placement}>info</mat-icon>` : ''}
+                ${
+                    infoText
+                        ? `<mat-icon [tcTooltip]="${infoText
+                              ?.replace('{{', '')
+                              ?.replace('}}', '')}" [placement]="'${placement}'">info</mat-icon>`
+                        : ''
+                }
         </mat-expansion-panel-header>
     `;
     //TODO check if mat icon info is right
@@ -100,23 +108,27 @@ function runPortletMigration(tree: Tree, tsconfigPath: string, basePath: string,
                     const inputPortletHeaderValue = getAttributeValue(bounds.portletAsString, 'inputPortletHeader');
                     const inputIsCollapsableValue = getAttributeValue(bounds.portletAsString, 'inputIsCollapsable');
                     const inputCollapsedValue = getAttributeValue(bounds.portletAsString, 'inputCollapsed');
-                    //const inputIsDisabledValue = getAttributeValue(bounds.portletAsString, 'inputIsDisabled');
                     const infoTextValue = getAttributeValue(bounds.portletAsString, 'infoText');
                     const outputCollapsedChange = getAttributeValueOutput(
                         bounds.portletAsString,
                         'inputCollapsedChange'
                     );
+                    const [
+                        ngStarDirectiveFull,
+                        ngStarDirectiveAttribute,
+                        ngStarDirectiveValue
+                    ] = migrateNgStarDirective(bounds.openingTag);
 
-                    //TODO check if inputIsCollapsable
                     const template = `<mat-expansion-panel ${migrateValueIf(
-                        inputCollapsedValue !== null,
+                        inputCollapsedValue !== null && inputCollapsedValue !== 'false',
                         '[expanded]',
-                        '!' + inputCollapsedValue?.replace('{{', '')?.replace('}}', '')
-                    )} ${migrateValueIf(
-                        inputIsCollapsableValue !== null,
-                        '[disabled]',
-                        '!' + inputIsCollapsableValue?.replace('{{', '')?.replace('}}', '')
-                    )} ${migrateValueIf(outputCollapsedChange !== null, '(expandedChange)', outputCollapsedChange)}>
+                        '!(' + inputCollapsedValue?.replace('{{', '')?.replace('}}', '') + ')'
+                    )} ${inputCollapsedValue === null ? 'expanded' : ''} ${migrateValueIf(
+                        outputCollapsedChange !== null,
+                        '(expandedChange)',
+                        outputCollapsedChange
+                    )}
+                       ${migrateValueIf(ngStarDirectiveFull !== null, ngStarDirectiveAttribute, ngStarDirectiveValue)}>
                             ${
                                 inputPortletHeaderValue || inputIsCollapsableValue
                                     ? getHeaderHTML(inputPortletHeaderValue, infoTextValue, 'right')
@@ -125,7 +137,6 @@ function runPortletMigration(tree: Tree, tsconfigPath: string, basePath: string,
                             ${bounds.contentBuffer}
                         </mat-expansion-panel>
                     `;
-                    //TODO check status of custom CSS animation, do we need to migrate it as well?
 
                     const update: UpdateRecorder = tree.beginUpdate(templateFileName!);
                     update.remove(bounds.start, bounds.portletAsString.length);
@@ -171,7 +182,7 @@ function migrateValueIf(doMigration: boolean, attribute: string, value: string):
     if (value.includes('!!')) {
         value = value.replace('!!', '');
     }
-    return `${attribute}='${value}'`;
+    return `${attribute}="${value}"`;
 }
 
 /**
@@ -227,7 +238,6 @@ function getReferredModule(tree: Tree, componentName: string, moduleFileNames: A
  * @param moduleFileNames
  */
 function addModuleToImports(tree: Tree, fileName: string, moduleFileNames: Array<string>): void {
-    //TODO check if expansion panel has the info text tooltip & icon, and then add the icon module
     let componentClassName: string = getComponentClassName(tree, fileName);
     let referredModule: string = getReferredModule(tree, componentClassName, moduleFileNames);
     if (referredModule !== undefined) {
@@ -251,6 +261,15 @@ function getAttributeValue(bufferString: string, attribute: string): string {
     const [completeAttribute, value]: [string, string] = getAttributeWithValue(bufferString, attribute);
 
     return value ? `${completeAttribute.startsWith('[') ? '{{' + value + '}}' : value}` : null;
+}
+
+function migrateNgStarDirective(bufferString: string): [string, string, string] {
+    const regExp = /(\*[\S]*)="(.*?)"/;
+    const matches = bufferString.match(regExp);
+    if (!matches) {
+        return [null, null, null];
+    }
+    return [matches[0], matches[1], matches[2]] || [null, null, null];
 }
 
 function getAttributeValueOutput(bufferString: string, attribute: string): string {
@@ -291,7 +310,7 @@ function getOutputAttributeWithValue(bufferString: string, attribute: string): [
  */
 function getBounding(buffer: Buffer): PortletBoundingInterface {
     const bufferString: string = buffer.toString() || '';
-    const regExp = /(<terra-portlet[^>]*>)([\s\S]*)(<\/terra-portlet>)/;
+    const regExp = /(<terra-portlet[^>]*>)([\s\S]*?)(<\/terra-portlet>)/;
     const matchGroups = bufferString.match(regExp);
     if (!matchGroups) {
         return null;
@@ -307,6 +326,8 @@ function getBounding(buffer: Buffer): PortletBoundingInterface {
         contentBuffer: injectedContent,
         start: start,
         end: end,
-        length: length
+        length: length,
+        openingTag,
+        closingTag
     };
 }
