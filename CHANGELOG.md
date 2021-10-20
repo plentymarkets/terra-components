@@ -1,3 +1,10 @@
+# 12.2.0 (?.?.2021)
+
+### Minor changes
+
+-   **terra-breadcrumbs** has been deprecated.
+-   **terra-no-result-notice** has been deprecated.
+
 # 12.1.1 (12.10.2021)
 
 ### Bug fixes
