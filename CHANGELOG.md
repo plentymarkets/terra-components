@@ -5,6 +5,10 @@
 -   **terra-breadcrumbs** has been deprecated.
 -   **terra-no-result-notice** has been deprecated.
 
+### Migrations
+
+-   **migration-portlet** was added to migrate the deprecated terra-portlet to use material expansion panels instead
+
 # 12.1.1 (12.10.2021)
 
 ### Bug fixes
