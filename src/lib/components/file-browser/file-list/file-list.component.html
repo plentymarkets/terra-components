@@ -1,33 +1,33 @@
-<terra-base-toolbar>
+<mat-toolbar>
     <div class="btn-group" role="group">
-        <terra-button
-            inputIcon="icon-upload"
-            [inputTooltipText]="_translationPrefix + '.uploadFile' | translate: _locale.language"
-            inputTooltipPlacement="right"
-            (outputClicked)="fileChooser.click()"
+        <button
+            mat-icon-button
+            [tcTooltip]="_translationPrefix + '.uploadFile' | translate: _locale.language"
+            (click)="fileChooser.click()"
         >
-        </terra-button>
-        <terra-button
-            inputIcon="icon-folder_add"
+            <mat-icon>upload</mat-icon>
+        </button>
+        <button
+            mat-icon-button
             *ngIf="_parentFileBrowser.inputAllowFolders"
-            [inputTooltipText]="_translationPrefix + '.createFolder' | translate: _locale.language"
-            inputTooltipPlacement="right"
-            (outputClicked)="_showNewDirectoryPrompt = true"
+            [tcTooltip]="_translationPrefix + '.createFolder' | translate: _locale.language"
+            (click)="_showNewDirectoryPrompt = true"
         >
-        </terra-button>
+            <mat-icon>create_new_folder</mat-icon>
+        </button>
     </div>
+    <!--TODO space between the delete and the other two buttons-->
+    <button
+        mat-icon-button
+        *ngIf="_parentFileBrowser.inputAllowFolders"
+        [disabled]="_selectedStorageObjects.length <= 0"
+        [tcTooltip]="_translationPrefix + '.deleteSelectedFiles' | translate: _locale.language"
+        (click)="_deleteSelected()"
+    >
+        <mat-icon>delete</mat-icon>
+    </button>
 
-    <div class="btn-group" role="group">
-        <terra-button
-            inputIcon="icon-delete"
-            [inputIsDisabled]="_selectedStorageObjects.length <= 0"
-            [inputTooltipText]="_translationPrefix + '.deleteSelectedFiles' | translate: _locale.language"
-            inputTooltipPlacement="right"
-            (outputClicked)="_deleteSelected()"
-        >
-        </terra-button>
-    </div>
-
+    <!--what is this label for-->
     <label style="width: 0; height: 0; visibility: hidden" #fileChooser>
         <input type="file" (change)="onFileSelect($event)" multiple="multiple" />
     </label>
@@ -37,7 +37,7 @@
     <!--<p>{{ translationPrefix + '.loadingFiles' | translate:lang }}</p>-->
     <!--<span class="icon-loading"></span>-->
     <!--</div>-->
-</terra-base-toolbar>
+</mat-toolbar>
 
 <div class="file-list-container" [class.empty]="_fileTableRowList.length <= 0">
     <div [hidden]="!_showNewDirectoryPrompt" class="prompt" [class.in]="_showNewDirectoryPrompt">
