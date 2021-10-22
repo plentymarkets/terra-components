@@ -8,7 +8,7 @@ import { addModuleImportToModule } from '@angular/cdk/schematics';
 import { Schema as MigratePortletSchema } from './schema';
 
 /**
- * Interface that represents the bounding of a terra-checkbox.
+ * Interface that represents the bounding of a terra-portlet.
  */
 interface PortletBoundingInterface {
     /** The terra-portlet as a plain string for replacing and deletion */
@@ -246,7 +246,7 @@ function getReferredModule(tree: Tree, componentName: string, moduleFileNames: A
 }
 
 /**
- * Gets the tree, a file name and all file names of modules and adds 'MatCheckboxModule' to a referred module
+ * Gets the tree, a file name and all file names of modules and adds MatIconModule and MatExpansionModule to a referred module
  * @param tree
  * @param fileName
  * @param moduleFileNames
@@ -261,7 +261,7 @@ function addModuleToImports(tree: Tree, fileName: string, moduleFileNames: Array
         logger.warn(
             'No referred module for ' +
                 fileName +
-                ' found. Import  MatCheckboxModule and MatIconModule manually if needed.'
+                ' found. Import  MatExpansionModule and MatIconModule manually if needed.'
         );
     }
 }
@@ -328,7 +328,7 @@ function getOutputAttributeWithValue(bufferString: string, attribute: string): [
 }
 
 /**
- * Get the bounding of the next terra-checkbox within the buffer.
+ * Get the bounding of the next terra-portlet within the buffer.
  * @see PortletBoundingInterface
  * @param buffer
  */
