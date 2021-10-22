@@ -1,14 +1,13 @@
 <div *ngIf="inputStorageObject && inputStorageService?.isImagePreviewEnabled">
-    <terra-base-toolbar *ngIf="_canHandleMetadata">
-        <div class="btn-group" role="group">
-            <terra-button
-                inputIcon="icon-save"
-                [inputTooltipText]="_translationPrefix + '.saveMetadata' | translate: _locale.language"
-                (outputClicked)="_updateMetadata()"
-            >
-            </terra-button>
-        </div>
-    </terra-base-toolbar>
+    <mat-toolbar *ngIf="_canHandleMetadata">
+        <button
+            mat-icon-button
+            [tcTooltip]="_translationPrefix + '.saveMetadata' | translate: _locale.language"
+            (click)="_updateMetadata()"
+        >
+            <mat-icon>save</mat-icon>
+        </button>
+    </mat-toolbar>
 
     <terra-portlet>
         <div class="image-preview">
