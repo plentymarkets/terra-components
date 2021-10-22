@@ -42,26 +42,20 @@
 <div class="file-list-container" [class.empty]="_fileTableRowList.length <= 0">
     <div [hidden]="!_showNewDirectoryPrompt" class="prompt" [class.in]="_showNewDirectoryPrompt">
         <span class="prompt-title">{{ _translationPrefix + '.createFolder' | translate: _locale.language }}</span>
-        <terra-text-input
-            [inputName]="_translationPrefix + '.folderName' | translate: _locale.language"
-            [(ngModel)]="newDirectoryName"
-        >
-        </terra-text-input>
-        <div class="float-lg-right">
-            <terra-button
-                [inputIcon]="'icon-close'"
-                [inputCaption]="_translationPrefix + '.cancel' | translate: _locale.language"
-                [inputIsSmall]="true"
-                (outputClicked)="_showNewDirectoryPrompt = false"
-            ></terra-button>
 
-            <terra-button
-                [inputIcon]="'icon-folder_add'"
-                [inputCaption]="_translationPrefix + '.create' | translate: _locale.language"
-                [inputIsSmall]="true"
-                [inputIsDisabled]="!newDirectoryName"
-                (outputClicked)="_createDirectory()"
-            ></terra-button>
+        <mat-form-field>
+            <mat-label>{{ _translationPrefix + '.folderName' | translate: _locale.language }}</mat-label>
+            <input matInput [(ngModel)]="newDirectoryName" />
+        </mat-form-field>
+        <div class="float-lg-right">
+            <button mat-button (click)="_showNewDirectoryPrompt = false">
+                {{ _translationPrefix + '.cancel' | translate: _locale.language }}
+            </button>
+
+            <button mat-button [disabled]="!newDirectoryName" (click)="_createDirectory()">
+                <mat-icon>create_new_folder</mat-icon>
+                {{ _translationPrefix + '.create' | translate: _locale.language }}
+            </button>
         </div>
     </div>
 
