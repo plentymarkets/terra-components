@@ -16,16 +16,19 @@
             </div>
 
             <div *ngIf="_canHandleMetadata">
-                <terra-text-input
-                    [inputName]="_translationPrefix + '.imageSize' | translate: _locale.language"
-                    [inputIsReadonly]="true"
-                    [ngModel]="_metadata.width ? _metadata.width + ' x ' + _metadata.height + ' px' : '-'"
-                ></terra-text-input>
+                <mat-form-field class="w-100">
+                    <mat-label>{{ _translationPrefix + '.imageSize' | translate: _locale.language }}</mat-label>
+                    <input
+                        matInput
+                        readonly
+                        [ngModel]="_metadata.width ? _metadata.width + ' x ' + _metadata.height + ' px' : '-'"
+                    />
+                </mat-form-field>
 
-                <terra-text-input
-                    [inputName]="_translationPrefix + '.altText' | translate: _locale.language"
-                    [(ngModel)]="_metadata.alttext"
-                ></terra-text-input>
+                <mat-form-field class="w-100">
+                    <mat-label>{{ _translationPrefix + '.altText' | translate: _locale.language }}</mat-label>
+                    <input matInput [(ngModel)]="_metadata.alttext" />
+                </mat-form-field>
             </div>
         </div>
 
