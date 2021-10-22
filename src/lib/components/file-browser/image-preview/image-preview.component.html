@@ -9,7 +9,7 @@
         </button>
     </mat-toolbar>
 
-    <terra-portlet>
+    <mat-expansion-panel expanded disabled>
         <div class="image-preview">
             <div class="preview-container">
                 <div [style.background-image]="'url(' + inputStorageObject.previewUrl + ')'"></div>
@@ -32,5 +32,5 @@
         <div class="loader" *ngIf="_isLoading">
             <div class="icon-loading"></div>
         </div>
-    </terra-portlet>
+    </mat-expansion-panel>
 </div>
