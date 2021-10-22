@@ -5,6 +5,10 @@
 -   **terra-breadcrumbs** has been deprecated.
 -   **terra-no-result-notice** has been deprecated.
 
+### Features
+
+-   **terra-image-preview** replace Terra components by Angular Material components.
+
 # 12.1.1 (12.10.2021)
 
 ### Bug fixes
