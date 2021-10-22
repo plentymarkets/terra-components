@@ -76,8 +76,6 @@ function getHeaderHTML(title: string, infoText?: string, placement?: string): st
                 }
         </mat-expansion-panel-header>
     `;
-    // TODO check if mat icon info is right
-    // TODO check if tooltip icon should be part of mat panel title
 }
 
 // tslint:disable:max-function-line-count
