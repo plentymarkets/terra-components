@@ -43,7 +43,7 @@
     <div [hidden]="!_showNewDirectoryPrompt" class="prompt" [class.in]="_showNewDirectoryPrompt">
         <span class="prompt-title">{{ _translationPrefix + '.createFolder' | translate: _locale.language }}</span>
 
-        <mat-form-field>
+        <mat-form-field class="w-100">
             <mat-label>{{ _translationPrefix + '.folderName' | translate: _locale.language }}</mat-label>
             <input matInput [(ngModel)]="newDirectoryName" />
         </mat-form-field>
@@ -53,7 +53,6 @@
             </button>
 
             <button mat-button [disabled]="!newDirectoryName" (click)="_createDirectory()">
-                <mat-icon>create_new_folder</mat-icon>
                 {{ _translationPrefix + '.create' | translate: _locale.language }}
             </button>
         </div>
