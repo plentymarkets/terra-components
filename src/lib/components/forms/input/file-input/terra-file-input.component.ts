@@ -1,4 +1,4 @@
-import { Component, Inject, Input, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, Inject, Input, TemplateRef, ViewChild } from '@angular/core';
 import { isNullOrUndefined } from 'util';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TerraInputComponent } from '../terra-input.component';
