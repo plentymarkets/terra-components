@@ -1,21 +1,20 @@
 <mat-toolbar>
-    <div class="btn-group" role="group">
-        <button
-            mat-icon-button
-            [tcTooltip]="_translationPrefix + '.uploadFile' | translate: _locale.language"
-            (click)="fileChooser.click()"
-        >
-            <mat-icon>upload</mat-icon>
-        </button>
-        <button
-            mat-icon-button
-            *ngIf="_parentFileBrowser.inputAllowFolders"
-            [tcTooltip]="_translationPrefix + '.createFolder' | translate: _locale.language"
-            (click)="_showNewDirectoryPrompt = true"
-        >
-            <mat-icon>create_new_folder</mat-icon>
-        </button>
-    </div>
+    <button
+        mat-icon-button
+        [tcTooltip]="_translationPrefix + '.uploadFile' | translate: _locale.language"
+        (click)="fileChooser.click()"
+    >
+        <mat-icon>upload</mat-icon>
+    </button>
+    <button
+        mat-icon-button
+        *ngIf="_parentFileBrowser.inputAllowFolders"
+        [tcTooltip]="_translationPrefix + '.createFolder' | translate: _locale.language"
+        (click)="_showNewDirectoryPrompt = true"
+    >
+        <mat-icon>create_new_folder</mat-icon>
+    </button>
+
     <!--TODO space between the delete and the other two buttons-->
     <button
         mat-icon-button
@@ -27,7 +26,6 @@
         <mat-icon>delete</mat-icon>
     </button>
 
-    <!--what is this label for-->
     <label style="width: 0; height: 0; visibility: hidden" #fileChooser>
         <input type="file" (change)="onFileSelect($event)" multiple="multiple" />
     </label>
@@ -39,6 +37,7 @@
     <!--</div>-->
 </mat-toolbar>
 
+<!--TODO Background color from the container and file chooser are the same-->
 <div class="file-list-container" [class.empty]="_fileTableRowList.length <= 0">
     <div [hidden]="!_showNewDirectoryPrompt" class="prompt" [class.in]="_showNewDirectoryPrompt">
         <span class="prompt-title">{{ _translationPrefix + '.createFolder' | translate: _locale.language }}</span>
@@ -58,7 +57,24 @@
         </div>
     </div>
 
-    <terra-simple-table
+    <table mat-table [dataSource]="_fileTableRowList">
+        <ng-container *ngFor="let column of displayedColumns" matColumnDef>
+            <th mat-header-cell *matHeaderCellDef>
+                {{ column }}
+            </th>
+            <ng-container *ngFor="let cell of _fileTableRowList">
+                <td mat-cell *matCellDef>
+                    {{ cell.value }}
+                </td>
+            </ng-container>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+
+    <!--TODO Table-->
+    <!--<terra-simple-table
         *ngIf="_fileTableRowList.length > 0"
         [hidden]="_isDragActive"
         [inputHeaderList]="_fileTableHeaderList"
@@ -71,27 +87,26 @@
         (outputHighlightedRowChange)="_onActiveRowChange($event)"
         (outputSelectedRowsChange)="onSelectionChange($event)"
     >
-    </terra-simple-table>
+    </terra-simple-table>-->
 
     <div *ngIf="_fileTableRowList.length <= 0" class="empty-directory">
         <div>
             <p>{{ _translationPrefix + '.noFiles' | translate: _locale.language }}</p>
 
             <div>
-                <terra-button
-                    inputIcon="icon-upload"
-                    [inputCaption]="_translationPrefix + '.uploadFile' | translate: _locale.language"
-                    (outputClicked)="fileChooser.click()"
-                >
-                </terra-button>
+                <!--TODO do we need just the text or the icon as well?-->
+                <button mat-raised-button (click)="fileChooser.click()">
+                    {{ _translationPrefix + '.uploadFile' | translate: _locale.language }}
+                </button>
 
-                <terra-button
-                    inputIcon="icon-folder_add"
+                <button
+                    mat-raised-button
+                    color="primary"
                     *ngIf="_parentFileBrowser.inputAllowFolders"
-                    [inputCaption]="_translationPrefix + '.createFolder' | translate: _locale.language"
-                    (outputClicked)="_showNewDirectoryPrompt = true"
+                    (click)="_showNewDirectoryPrompt = true"
                 >
-                </terra-button>
+                    {{ _translationPrefix + '.createFolder' | translate: _locale.language }}
+                </button>
             </div>
         </div>
     </div>

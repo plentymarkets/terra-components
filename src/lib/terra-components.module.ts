@@ -25,6 +25,7 @@ import { A11yModule } from '@angular/cdk/a11y';
 import { MatInputModule } from '@angular/material/input';
 import { MatPseudoCheckboxModule } from '@angular/material/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
     imports: [
@@ -51,7 +52,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
         A11yModule,
         MatSelectModule,
         MatPseudoCheckboxModule,
-        MatToolbarModule
+        MatToolbarModule,
+        MatTableModule
     ],
     declarations: [...components, ...directives, ...pipes],
     exports: [...exportedComponents, ...exportedDirectives, ...exportedPipes]
