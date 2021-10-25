@@ -59,15 +59,45 @@
 
     <table *ngIf="_fileTableRowList.length > 0" mat-table [dataSource]="_fileTableRowList">
         <ng-container *ngFor="let column of fileTableHeaderListJM" [matColumnDef]="column.columnDef">
-            <th mat-header-cell *matHeaderCellDef>
-                {{ column.caption }}
-            </th>
+            <ng-container *ngIf="column.columnDef === 'checkbox'; else noCheckbox">
+                <th mat-header-cell *matHeaderCellDef>
+                    <mat-checkbox
+                        (change)="$event ? masterToggle() : null"
+                        [checked]="selection.hasValue() && isAllSelected()"
+                        [indeterminate]="selection.hasValue() && !isAllSelected()"
+                    >
+                    </mat-checkbox>
+                </th>
+                <td mat-cell *matCellDef="let row" (click)="selection.toggle(row)">
+                    <mat-checkbox
+                        (click)="$event.stopPropagation()"
+                        (change)="$event ? selection.toggle(row) : null"
+                        [checked]="selection.isSelected(row)"
+                    >
+                    </mat-checkbox>
+                </td>
+            </ng-container>
+            <ng-template #noCheckbox>
+                <th mat-header-cell *matHeaderCellDef>
+                    {{ column.caption }}
+                </th>
+                <td mat-cell *matCellDef="let row">
+                    {{ column.cell(row) }}
+                </td>
+            </ng-template>
+        </ng-container>
+        <ng-container>
             <td mat-cell *matCellDef="let row">
-                {{ column.cell(row) }}
+                <button
+                    mat-icon-button
+                    [tcTooltip]="_translationPrefix + '.deleteSelectedFiles' | translate: _locale.language"
+                >
+                    <mat-icon>delete</mat-icon>
+                </button>
             </td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="_onRowClickJM(row)"></tr>
     </table>
 
     <!--TODO Table-->

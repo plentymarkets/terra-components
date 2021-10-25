@@ -36,6 +36,8 @@ import { TerraButtonInterface } from '../../buttons/button/data/terra-button.int
 import { TerraSimpleTableHeaderCellInterface } from '../../tables/simple/cell/terra-simple-table-header-cell.interface';
 import { AlertService } from '../../alert/alert.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { SelectionModel } from '@angular/cdk/collections';
+import { MatTableDataSource } from '@angular/material/table';
 
 const MAX_UPLOAD_COUNT: number = 10;
 
@@ -81,7 +83,15 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
 
     private _activeStorageService: TerraBaseStorageService;
 
+    dataSource = new MatTableDataSource<TerraSimpleTableRowInterface<TerraStorageObject>>(this._fileTableRowList);
+    selection = new SelectionModel<TerraSimpleTableRowInterface<TerraStorageObject>>(true, []);
+
     fileTableHeaderListJM = [
+        {
+            columnDef: 'checkbox',
+            caption: '',
+            cell: (element: TerraSimpleTableRowInterface<TerraStorageObject>) => ``
+        },
         {
             columnDef: 'fileName',
             caption: this._translationService.translate(this._translationPrefix + '.fileName'),
@@ -666,5 +676,29 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
             .reduce((sum: number, current: number) => {
                 return sum + current;
             }, 0);
+    }
+
+    /*TODO*/
+    /** Whether the number of selected elements matches the total number of rows. */
+    isAllSelected() {
+        const numSelected = this.selection.selected.length;
+        const numRows = this.dataSource.data.length;
+        return numSelected == numRows;
+    }
+
+    /** Selects all rows if they are not all selected; otherwise clear selection. */
+    masterToggle() {
+        this.isAllSelected()
+            ? this.selection.clear()
+            : this.dataSource.data.forEach((row) => this.selection.select(row));
+    }
+
+    public _onRowClickJM(row: any): void {
+        let storageObject: TerraStorageObject = row.value;
+        console.log(storageObject);
+        if (storageObject.isDirectory) {
+            this.currentStorageRoot = storageObject;
+            this.selectNode.emit(storageObject);
+        }
     }
 }
