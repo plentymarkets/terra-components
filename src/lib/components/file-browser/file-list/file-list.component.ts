@@ -36,6 +36,8 @@ import { TerraButtonInterface } from '../../buttons/button/data/terra-button.int
 import { TerraSimpleTableHeaderCellInterface } from '../../tables/simple/cell/terra-simple-table-header-cell.interface';
 import { AlertService } from '../../alert/alert.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { SelectionModel } from '@angular/cdk/collections';
+import { MatTableDataSource } from '@angular/material/table';
 
 const MAX_UPLOAD_COUNT: number = 10;
 
@@ -77,8 +79,6 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
 
     public _fileTableHeaderList: Array<TerraSimpleTableHeaderCellInterface> = [];
 
-    public displayedColumns: Array<string>;
-
     public _fileTableRowList: Array<TerraSimpleTableRowInterface<TerraStorageObject>> = [];
 
     private _activeStorageService: TerraBaseStorageService;
@@ -93,7 +93,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
             columnDef: 'fileURL',
             caption: this._translationService.translate(this._translationPrefix + '.fileURL'),
             cell: (element: TerraSimpleTableRowInterface<TerraStorageObject>) => {
-                if (element.value.isFile) {
+                if (!element.value.isFile) {
                     return ``;
                 }
                 return `${element.value.publicUrl}`;
@@ -110,20 +110,22 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
             columnDef: 'fileSize',
             caption: this._translationService.translate(this._translationPrefix + '.fileSize'),
             cell: (element: TerraSimpleTableRowInterface<TerraStorageObject>) => {
-                if (element.value.isFile) {
+                if (!element.value.isFile) {
                     return ``;
+                } else {
+                    return `${element.value.size}`;
                 }
-                return `${element.value.size}`;
             }
         },
         {
             columnDef: 'lastChange',
             caption: this._translationService.translate(this._translationPrefix + '.lastChange'),
             cell: (element: TerraSimpleTableRowInterface<TerraStorageObject>) => {
-                if (element.value.isFile) {
+                if (!element.value.isFile) {
                     return ``;
+                } else {
+                    return `${element.value.lastModified}`;
                 }
-                return `${element.value.lastModified}`;
             }
         },
         {
@@ -134,6 +136,11 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
             }
         }
     ];
+
+    /*TODO*/
+    displayedColumns = this.fileTableHeaderListJM.map((c) => c.columnDef);
+    dataSource = new MatTableDataSource<TerraSimpleTableRowInterface<TerraStorageObject>>(this._fileTableRowList);
+    selection = new SelectionModel<TerraSimpleTableRowInterface<TerraStorageObject>>(true, []);
 
     public get activeStorageService(): TerraBaseStorageService {
         if (!isNullOrUndefined(this._activeStorageService)) {
@@ -311,8 +318,6 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
                 this.currentStorageRoot = value[1];
             }
         );
-        /*TODO*/
-        this.displayedColumns = this._fileTableHeaderListJM.map((c) => c.columnDef);
     }
 
     public ngAfterViewInit(): void {
@@ -667,5 +672,32 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
             .reduce((sum: number, current: number) => {
                 return sum + current;
             }, 0);
+    }
+
+    /*TODO */
+    /** Whether the number of selected elements matches the total number of rows. */
+    isAllSelected() {
+        const numSelected = this.selection.selected.length;
+        const numRows = this.dataSource.data.length;
+        return numSelected === numRows;
+    }
+
+    /** Selects all rows if they are not all selected; otherwise clear selection. */
+    masterToggle() {
+        if (this.isAllSelected()) {
+            this.selection.clear();
+            return;
+        }
+
+        this.selection.select(...this.dataSource.data);
+    }
+
+    /** The label for the checkbox on the passed row */
+    checkboxLabel(row?: TerraSimpleTableRowInterface<TerraStorageObject>): string {
+        if (!row) {
+            return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
+        }
+        /*TODO Ist das nötig?*/
+        return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${68 + 1}`;
     }
 }
