@@ -57,10 +57,10 @@
         </div>
     </div>
 
-    <table mat-table [dataSource]="_fileTableRowList">
-        <ng-container *ngFor="let column of columns" [matColumnDef]="column.columnDef">
+    <table *ngIf="_fileTableRowList.length > 0" mat-table [dataSource]="_fileTableRowList">
+        <ng-container *ngFor="let column of fileTableHeaderListJM" [matColumnDef]="column.columnDef">
             <th mat-header-cell *matHeaderCellDef>
-                {{ column.header }}
+                {{ column.caption }}
             </th>
             <td mat-cell *matCellDef="let row">
                 {{ column.cell(row) }}

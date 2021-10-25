@@ -77,34 +77,63 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
 
     public _fileTableHeaderList: Array<TerraSimpleTableHeaderCellInterface> = [];
 
+    public displayedColumns: Array<string>;
+
     public _fileTableRowList: Array<TerraSimpleTableRowInterface<TerraStorageObject>> = [];
 
     private _activeStorageService: TerraBaseStorageService;
 
-    columns = [
+    fileTableHeaderListJM = [
         {
-            columnDef: 'dateiname',
-            header: 'Dateiname',
+            columnDef: 'fileName',
+            caption: this._translationService.translate(this._translationPrefix + '.fileName'),
             cell: (element: TerraSimpleTableRowInterface<TerraStorageObject>) => `${element.value.name}`
         },
         {
-            columnDef: 'datei-url',
-            header: 'Datei-URL',
-            cell: (element: TerraSimpleTableRowInterface<TerraStorageObject>) => `${element.value.publicUrl}`
+            columnDef: 'fileURL',
+            caption: this._translationService.translate(this._translationPrefix + '.fileURL'),
+            cell: (element: TerraSimpleTableRowInterface<TerraStorageObject>) => {
+                if (element.value.isFile) {
+                    return ``;
+                }
+                return `${element.value.publicUrl}`;
+            }
         },
         {
-            columnDef: 'dateigröße',
-            header: 'Dateigröße',
-            cell: (element: TerraSimpleTableRowInterface<TerraStorageObject>) => `${element.value.size}`
+            columnDef: 'copyIntoClipboard',
+            caption: '',
+            cell: (element: TerraSimpleTableRowInterface<TerraStorageObject>) => {
+                return ``;
+            }
         },
         {
-            columnDef: 'letzteAenderung',
-            header: 'Letzte Änderung',
-            cell: (element: TerraSimpleTableRowInterface<TerraStorageObject>) => `${element.value.lastModified}`
+            columnDef: 'fileSize',
+            caption: this._translationService.translate(this._translationPrefix + '.fileSize'),
+            cell: (element: TerraSimpleTableRowInterface<TerraStorageObject>) => {
+                if (element.value.isFile) {
+                    return ``;
+                }
+                return `${element.value.size}`;
+            }
+        },
+        {
+            columnDef: 'lastChange',
+            caption: this._translationService.translate(this._translationPrefix + '.lastChange'),
+            cell: (element: TerraSimpleTableRowInterface<TerraStorageObject>) => {
+                if (element.value.isFile) {
+                    return ``;
+                }
+                return `${element.value.lastModified}`;
+            }
+        },
+        {
+            columnDef: 'deleteBtn',
+            caption: '',
+            cell: (element: TerraSimpleTableRowInterface<TerraStorageObject>) => {
+                return ``;
+            }
         }
     ];
-
-    public displayedColumns = this.columns.map((c) => c.columnDef);
 
     public get activeStorageService(): TerraBaseStorageService {
         if (!isNullOrUndefined(this._activeStorageService)) {
@@ -282,6 +311,8 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
                 this.currentStorageRoot = value[1];
             }
         );
+        /*TODO*/
+        this.displayedColumns = this._fileTableHeaderListJM.map((c) => c.columnDef);
     }
 
     public ngAfterViewInit(): void {
