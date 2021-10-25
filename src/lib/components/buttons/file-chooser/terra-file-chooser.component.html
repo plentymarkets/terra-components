@@ -1,20 +1,23 @@
-<terra-button
-    [inputIsSmall]="inputIsSmall"
-    [inputIsLarge]="inputIsLarge"
-    [inputIsDisabled]="inputIsDisabled"
-    [inputCaption]="inputCaption"
-    [inputIcon]="inputIcon"
-    [inputType]="'button'"
-    [inputIsAlignRight]="inputIsAlignRight"
-    [inputTooltipText]="inputTooltipText"
-    [inputTooltipPlacement]="inputTooltipPlacement"
-    [inputIsActive]="inputIsActive"
-    [inputIsFlagged]="inputIsFlagged"
-    [inputIsDivider]="inputIsDivider"
-    [inputIsLink]="inputIsLink"
-    (outputClicked)="onClick($event)"
->
-</terra-button>
+<!--<terra-button-->
+<!--    [inputIsSmall]="inputIsSmall"-->
+<!--    [inputIsLarge]="inputIsLarge"-->
+<!--    [inputIsDisabled]="inputIsDisabled"-->
+<!--    [inputCaption]="inputCaption"-->
+<!--    [inputIcon]="inputIcon"-->
+<!--    [inputType]="'button'"-->
+<!--    [inputIsAlignRight]="inputIsAlignRight"-->
+<!--    [inputTooltipText]="inputTooltipText"-->
+<!--    [inputTooltipPlacement]="inputTooltipPlacement"-->
+<!--    [inputIsActive]="inputIsActive"-->
+<!--    [inputIsFlagged]="inputIsFlagged"-->
+<!--    [inputIsDivider]="inputIsDivider"-->
+<!--    [inputIsLink]="inputIsLink"-->
+<!--    (outputClicked)="onClick($event)"-->
+<!--&gt;-->
+<!--</terra-button>-->
+<button matSuffix mat-icon-button (click)="onClick($event)">
+    <mat-icon fontIcon="icon-reset"></mat-icon>
+</button>
 
 <terra-overlay
     #overlay
