@@ -138,7 +138,12 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
             columnDef: 'deleteBtn',
             caption: '',
             cell: (element: TerraSimpleTableRowInterface<TerraStorageObject>) => {
-                return ``;
+                return `<button
+                    mat-icon-button
+                    [tcTooltip]="_translationPrefix + '.deleteSelectedFiles' | translate: _locale.language"
+                >
+                    <mat-icon>delete</mat-icon>
+                </button>`;
             }
         }
     ];
