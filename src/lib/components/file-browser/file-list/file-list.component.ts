@@ -77,8 +77,6 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
 
     public _fileTableHeaderList: Array<TerraSimpleTableHeaderCellInterface> = [];
 
-    public displayedColumns: Array<string>;
-
     public _fileTableRowList: Array<TerraSimpleTableRowInterface<TerraStorageObject>> = [];
 
     private _activeStorageService: TerraBaseStorageService;
@@ -93,7 +91,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
             columnDef: 'fileURL',
             caption: this._translationService.translate(this._translationPrefix + '.fileURL'),
             cell: (element: TerraSimpleTableRowInterface<TerraStorageObject>) => {
-                if (element.value.isFile) {
+                if (!element.value.isFile) {
                     return ``;
                 }
                 return `${element.value.publicUrl}`;
@@ -110,7 +108,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
             columnDef: 'fileSize',
             caption: this._translationService.translate(this._translationPrefix + '.fileSize'),
             cell: (element: TerraSimpleTableRowInterface<TerraStorageObject>) => {
-                if (element.value.isFile) {
+                if (!element.value.isFile) {
                     return ``;
                 }
                 return `${element.value.size}`;
@@ -120,7 +118,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
             columnDef: 'lastChange',
             caption: this._translationService.translate(this._translationPrefix + '.lastChange'),
             cell: (element: TerraSimpleTableRowInterface<TerraStorageObject>) => {
-                if (element.value.isFile) {
+                if (!element.value.isFile) {
                     return ``;
                 }
                 return `${element.value.lastModified}`;
@@ -134,6 +132,9 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
             }
         }
     ];
+
+    /*TODO*/
+    displayedColumns = this.fileTableHeaderListJM.map((c) => c.columnDef);
 
     public get activeStorageService(): TerraBaseStorageService {
         if (!isNullOrUndefined(this._activeStorageService)) {
@@ -311,8 +312,6 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
                 this.currentStorageRoot = value[1];
             }
         );
-        /*TODO*/
-        this.displayedColumns = this._fileTableHeaderListJM.map((c) => c.columnDef);
     }
 
     public ngAfterViewInit(): void {
