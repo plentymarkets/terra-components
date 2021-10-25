@@ -81,7 +81,30 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
 
     private _activeStorageService: TerraBaseStorageService;
 
-    public displayedColumns = this._fileTableHeaderList.map((c) => c.caption);
+    columns = [
+        {
+            columnDef: 'dateiname',
+            header: 'Dateiname',
+            cell: (element: TerraSimpleTableRowInterface<TerraStorageObject>) => `${element.value.name}`
+        },
+        {
+            columnDef: 'datei-url',
+            header: 'Datei-URL',
+            cell: (element: TerraSimpleTableRowInterface<TerraStorageObject>) => `${element.value.publicUrl}`
+        },
+        {
+            columnDef: 'dateigröße',
+            header: 'Dateigröße',
+            cell: (element: TerraSimpleTableRowInterface<TerraStorageObject>) => `${element.value.size}`
+        },
+        {
+            columnDef: 'letzteAenderung',
+            header: 'Letzte Änderung',
+            cell: (element: TerraSimpleTableRowInterface<TerraStorageObject>) => `${element.value.lastModified}`
+        }
+    ];
+
+    public displayedColumns = this.columns.map((c) => c.columnDef);
 
     public get activeStorageService(): TerraBaseStorageService {
         if (!isNullOrUndefined(this._activeStorageService)) {
