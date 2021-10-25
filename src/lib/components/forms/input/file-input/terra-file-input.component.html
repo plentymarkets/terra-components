@@ -12,60 +12,44 @@
             </span>
         </span>
     </div>
-    <mat-form-field class="w-25 form-field-custom">
-        <div class="input-group">
-            <div class="input-group-text">
-                <div
-                    class="input-wrapper"
-                    [placement]="inputTooltipPlacement"
-                    [tcTooltip]="inputTooltipText"
-                    [ngClass]="{ error: !isValid, disabled: isDisabled }"
-                >
-                    <input
-                        #valueInput
-                        matInput
-                        id="{{ _id }}"
-                        type="text"
-                        [(ngModel)]="value"
-                        name="{{ inputName }}"
-                        (blur)="onBlur()"
-                        autocomplete="off"
-                        [disabled]="isDisabled"
-                        pattern="{{ regex }}"
-                        readonly
-                        placeholder="{{ inputName }}"
-                        required
-                        (click)="valueInput.select()"
-                    />
-                </div>
-                <!--                <label [tcTooltip]="inputName" tabindex="-1" [onlyEllipsisTooltip]="true" htmlFor="{{ _id }}"-->
-                <!--                >{{ inputName }}-->
-                <!--                    <span *ngIf="inputIsRequired">*</span>-->
-                <!--                </label>-->
-            </div>
-            <terra-file-chooser
-                matSuffix
-                class="input-group-btn"
-                [inputIcon]="'icon-more'"
-                [inputTooltipText]="_translationPrefix + '.chooseFile' | translate: _locale.language"
-                [inputTooltipPlacement]="'left'"
-                [inputAllowedExtensions]="inputAllowedExtensions"
-                [inputAllowFolders]="inputAllowFolders"
-                [inputStorageServices]="inputStorageServices"
-                (outputSelected)="onObjectSelected($event)"
-                (outputFileBrowserShow)="$event.selectUrl(value)"
-            >
-            </terra-file-chooser>
-            <button
-                matSuffix
-                mat-icon-button
-                [tcTooltip]="_translationPrefix + '.reset' | translate: _locale.language"
-                [placement]="'left'"
-                (click)="resetValue()"
-            >
-                <mat-icon fontIcon="icon-reset"></mat-icon>
-            </button>
-        </div>
+    <mat-form-field class="w-25" [placement]="inputTooltipPlacement" [tcTooltip]="inputTooltipText">
+        <input
+            #valueInput
+            matInput
+            id="{{ _id }}"
+            type="text"
+            [(ngModel)]="value"
+            name="{{ inputName }}"
+            (blur)="onBlur()"
+            autocomplete="off"
+            [disabled]="isDisabled"
+            pattern="{{ regex }}"
+            readonly
+            placeholder="{{ inputName }}"
+            required
+            (click)="valueInput.select()"
+        />
+        <terra-file-chooser
+            matSuffix
+            [inputIcon]="'icon-more'"
+            [inputTooltipText]="_translationPrefix + '.chooseFile' | translate: _locale.language"
+            [inputTooltipPlacement]="'left'"
+            [inputAllowedExtensions]="inputAllowedExtensions"
+            [inputAllowFolders]="inputAllowFolders"
+            [inputStorageServices]="inputStorageServices"
+            (outputSelected)="onObjectSelected($event)"
+            (outputFileBrowserShow)="$event.selectUrl(value)"
+        >
+        </terra-file-chooser>
+        <button
+            matSuffix
+            mat-icon-button
+            [tcTooltip]="_translationPrefix + '.reset' | translate: _locale.language"
+            [placement]="'left'"
+            (click)="resetValue()"
+        >
+            <mat-icon fontIcon="icon-reset"></mat-icon>
+        </button>
     </mat-form-field>
 
     <ng-template let-data #imagePreviewDialog>

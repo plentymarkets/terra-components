@@ -23,8 +23,7 @@ let nextId: number = 0;
             useExisting: TerraFileInputComponent,
             multi: true
         }
-    ],
-    encapsulation: ViewEncapsulation.None
+    ]
 })
 export class TerraFileInputComponent extends TerraInputComponent {
     @Input()
