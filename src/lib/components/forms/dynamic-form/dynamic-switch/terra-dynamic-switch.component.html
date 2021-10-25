@@ -31,18 +31,18 @@
                 >
                 </terra-text-input>
 
-                <!--                <terra-file-input-->
-                <!--                    *ngSwitchCase="_controlTypeEnum.INPUT_FILE"-->
-                <!--                    [ngClass]="{ horizontalGroupEntry: inputSubSwitch }"-->
-                <!--                    [formControlName]="formField.key"-->
-                <!--                    [inputName]="formField.label | translate: _locale.language"-->
-                <!--                    [inputIsRequired]="formField.required"-->
-                <!--                    [inputAllowedExtensions]="formField.inputAllowedExtensions"-->
-                <!--                    [inputIsDisabled]="inputIsDisabled"-->
-                <!--                    [inputTooltipText]="formField.tooltip"-->
-                <!--                    [inputTooltipPlacement]="formField.tooltipPlacement"-->
-                <!--                >-->
-                <!--                </terra-file-input>-->
+                <terra-file-input
+                    *ngSwitchCase="_controlTypeEnum.INPUT_FILE"
+                    [ngClass]="{ horizontalGroupEntry: inputSubSwitch }"
+                    [formControlName]="formField.key"
+                    [inputName]="formField.label | translate: _locale.language"
+                    [inputIsRequired]="formField.required"
+                    [inputAllowedExtensions]="formField.inputAllowedExtensions"
+                    [inputIsDisabled]="inputIsDisabled"
+                    [inputTooltipText]="formField.tooltip"
+                    [inputTooltipPlacement]="formField.tooltipPlacement"
+                >
+                </terra-file-input>
 
                 <terra-text-area-input
                     *ngSwitchCase="_controlTypeEnum.INPUT_TEXT_AREA"
