@@ -16,16 +16,16 @@
         <input
             #valueInput
             matInput
-            id="{{ _id }}"
+            [id]="_id"
             type="text"
             [(ngModel)]="value"
-            name="{{ inputName }}"
+            [name]="inputName"
             (blur)="onBlur()"
             autocomplete="off"
             [disabled]="isDisabled"
-            pattern="{{ regex }}"
+            [pattern]="regex"
             readonly
-            placeholder="{{ inputName }}"
+            [placeholder]="inputName"
             required
             (click)="valueInput.select()"
         />
