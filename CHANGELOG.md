@@ -7,7 +7,7 @@
 
 ### Features
 
--   **terra-image-preview** replace Terra components by Angular Material components.
+-   **terra-image-preview** use components from `@angular/material` instead of our own deprecated ones.
 
 # 12.1.1 (12.10.2021)
 
