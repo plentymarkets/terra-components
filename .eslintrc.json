@@ -1,0 +1,39 @@
+{
+    "root": true,
+    "env": {
+        "jasmine": true
+    },
+    "ignorePatterns": ["projects/**/*", "src/assets/lang"],
+    "overrides": [
+        {
+            "files": ["*.ts"],
+            "parserOptions": {
+                "project": ["tsconfig.json", "e2e/tsconfig.json"],
+                "createDefaultProgram": true
+            },
+            "extends": [
+                "eslint:recommended",
+                "plugin:@angular-eslint/ng-cli-compat",
+                "plugin:@angular-eslint/ng-cli-compat--formatting-add-on",
+                "plugin:@angular-eslint/template/process-inline-templates",
+                "./node_modules/@plentymarkets/terra-lint-rules/eslint-rules.json"
+            ],
+            "rules": {
+                "@angular-eslint/component-class-suffix": [
+                    "error",
+                    {
+                        "suffixes": ["Component", "ComponentExample", "DirectiveExample"]
+                    }
+                ]
+            }
+        },
+        {
+            "files": ["*.html"],
+            "extends": ["plugin:@angular-eslint/template/recommended"],
+            "rules": {},
+            "env": {
+                "jasmine": true
+            }
+        }
+    ]
+}
