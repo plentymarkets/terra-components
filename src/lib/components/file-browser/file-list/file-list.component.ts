@@ -81,10 +81,13 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
 
     public _fileTableRowList: Array<TerraSimpleTableRowInterface<TerraStorageObject>> = [];
 
-    private _activeStorageService: TerraBaseStorageService;
+    public dataSource = new MatTableDataSource<TerraSimpleTableRowInterface<TerraStorageObject>>(
+        this._fileTableRowList
+    );
 
-    dataSource = new MatTableDataSource<TerraSimpleTableRowInterface<TerraStorageObject>>(this._fileTableRowList);
-    selection = new SelectionModel<TerraSimpleTableRowInterface<TerraStorageObject>>(true, []);
+    public selection = new SelectionModel<TerraSimpleTableRowInterface<TerraStorageObject>>(true, []);
+
+    private _activeStorageService: TerraBaseStorageService;
 
     fileTableHeaderListJM = [
         {
@@ -95,7 +98,9 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         {
             columnDef: 'fileName',
             caption: this._translationService.translate(this._translationPrefix + '.fileName'),
-            cell: (element: TerraSimpleTableRowInterface<TerraStorageObject>) => `${element.value.name}`
+            cell: (element: TerraSimpleTableRowInterface<TerraStorageObject>) => {
+                return `${element.value.name}`;
+            }
         },
         {
             columnDef: 'fileURL',
@@ -111,7 +116,9 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
             columnDef: 'copyIntoClipboard',
             caption: '',
             cell: (element: TerraSimpleTableRowInterface<TerraStorageObject>) => {
-                return ``;
+                if (element.value.isFile) {
+                    return true;
+                }
             }
         },
         {
@@ -121,7 +128,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
                 if (!element.value.isFile) {
                     return ``;
                 }
-                return `${element.value.size}`;
+                return `${element.value.sizeString}`;
             }
         },
         {
@@ -138,12 +145,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
             columnDef: 'deleteBtn',
             caption: '',
             cell: (element: TerraSimpleTableRowInterface<TerraStorageObject>) => {
-                return `<button
-                    mat-icon-button
-                    [tcTooltip]="_translationPrefix + '.deleteSelectedFiles' | translate: _locale.language"
-                >
-                    <mat-icon>delete</mat-icon>
-                </button>`;
+                return ``;
             }
         }
     ];
@@ -693,9 +695,11 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
 
     /** Selects all rows if they are not all selected; otherwise clear selection. */
     masterToggle() {
-        this.isAllSelected()
-            ? this.selection.clear()
-            : this.dataSource.data.forEach((row) => this.selection.select(row));
+        if (this.isAllSelected()) {
+            this.selection.clear();
+            return;
+        }
+        this.selection.select(...this.dataSource.data);
     }
 
     public _onRowClickJM(row: any): void {

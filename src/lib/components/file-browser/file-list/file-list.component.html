@@ -59,8 +59,8 @@
 
     <table *ngIf="_fileTableRowList.length > 0" mat-table [dataSource]="_fileTableRowList">
         <ng-container *ngFor="let column of fileTableHeaderListJM" [matColumnDef]="column.columnDef">
-            <ng-container *ngSwitch="column.columnDef">
-                <ng-template *ngSwitchCase="'checkbox'">
+            <ng-container [ngSwitch]="column.columnDef">
+                <ng-container *ngSwitchCase="'checkbox'">
                     <th mat-header-cell *matHeaderCellDef>
                         <mat-checkbox
                             (change)="$event ? masterToggle() : null"
@@ -77,15 +77,57 @@
                         >
                         </mat-checkbox>
                     </td>
-                </ng-template>
-                <ng-template ngSwitchDefault>
+                </ng-container>
+                <ng-container *ngSwitchCase="'fileName'">
+                    <th mat-header-cell *matHeaderCellDef>
+                        {{ column.caption }}
+                    </th>
+                    <td mat-cell *matCellDef="let row">
+                        <button
+                            mat-icon-button
+                            [tcTooltip]="_translationPrefix + '.copyToClipboard' | translate: _locale.language"
+                        >
+                            <mat-icon>folder</mat-icon>
+                        </button>
+                        {{ column.cell(row) }}
+                    </td>
+                </ng-container>
+                <ng-container *ngSwitchCase="'copyIntoClipboard'">
+                    <th mat-header-cell *matHeaderCellDef>
+                        {{ column.caption }}
+                    </th>
+                    <td mat-cell *matCellDef="let row">
+                        <ng-container *ngIf="column.cell(row)">
+                            <button
+                                mat-icon-button
+                                [tcTooltip]="_translationPrefix + '.copyToClipboard' | translate: _locale.language"
+                            >
+                                <mat-icon>content_copy</mat-icon>
+                            </button>
+                        </ng-container>
+                    </td>
+                </ng-container>
+                <ng-container *ngSwitchCase="'deleteBtn'">
+                    <th mat-header-cell *matHeaderCellDef>
+                        {{ column.caption }}
+                    </th>
+                    <td mat-cell *matCellDef="let row">
+                        <button
+                            mat-icon-button
+                            [tcTooltip]="_translationPrefix + '.deleteSelectedFiles' | translate: _locale.language"
+                        >
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </td>
+                </ng-container>
+                <ng-container *ngSwitchDefault>
                     <th mat-header-cell *matHeaderCellDef>
                         {{ column.caption }}
                     </th>
                     <td mat-cell *matCellDef="let row">
                         {{ column.cell(row) }}
                     </td>
-                </ng-template>
+                </ng-container>
             </ng-container>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
