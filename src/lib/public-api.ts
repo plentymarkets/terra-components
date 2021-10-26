@@ -118,7 +118,6 @@ export { TerraFrontendStorageService } from './components/file-browser/terra-fro
 export { TerraFileBrowserService } from './components/file-browser/terra-file-browser.service';
 export { TerraFileBrowserComponent } from './components/file-browser/terra-file-browser.component';
 export { TerraBasePrivateStorageService } from './components/file-browser/terra-base-private-storage.interface';
-export { FileChooserDialogComponent } from './components/buttons/file-chooser/file-chooser-dialog/file-chooser-dialog.component';
 
 export { TerraNoResultNoticeComponent } from './components/no-result/terra-no-result-notice.component';
 export { TerraNoteEditorComponent } from './components/editors/note-editor/terra-note-editor.component';

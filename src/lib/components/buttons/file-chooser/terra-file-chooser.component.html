@@ -8,6 +8,31 @@
     <mat-icon fontSet="plentyicons" [fontIcon]="inputIcon"></mat-icon>
 </button>
 
+<ng-template>
+    <mat-dialog-content>
+        <terra-file-browser
+            #fileBrowser
+            [inputAllowedExtensions]="inputAllowedExtensions"
+            [inputAllowFolders]="inputAllowFolders"
+            [inputStorageServices]="inputStorageServices"
+            (outputSelectedChange)="onSelectedObjectChange($event)"
+        >
+        </terra-file-browser>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button mat-flat-button mat-dialog-close>
+            {{ inputSecondaryBrowserButtonCaption }}
+        </button>
+        <button
+            mat-flat-button
+            class="terra-color-active"
+            [disabled]="_selectedObject ? _selectedObject.isDirectory : true"
+            [mat-dialog-close]="_selectedObject"
+        >
+            {{ inputPrimaryBrowserButtonCaption }}
+        </button>
+    </mat-dialog-actions>
+</ng-template>
 <!--<terra-overlay-->
 <!--    #overlay-->
 <!--    [inputPrimaryButtonInterface]="primaryOverlayButton"-->

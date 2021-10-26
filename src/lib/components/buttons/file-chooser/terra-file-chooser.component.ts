@@ -1,11 +1,10 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, TemplateRef, ViewChild } from '@angular/core';
 import { L10nTranslationService } from 'angular-l10n';
 import { TerraFileBrowserComponent } from '../../file-browser/terra-file-browser.component';
 import { TerraButtonComponent } from '../button/terra-button.component';
 import { TerraBaseStorageService } from '../../file-browser/terra-base-storage.interface';
 import { TerraStorageObject } from '../../file-browser/model/terra-storage-object';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { FileChooserDialogComponent } from './file-chooser-dialog/file-chooser-dialog.component';
 
 /**
  * @deprecated since v11. Use material's [button]{@link https://material.angular.io/components/button}
@@ -24,14 +23,7 @@ export class TerraFileChooserComponent extends TerraButtonComponent {
     }
 
     public get inputPrimaryBrowserButtonCaption(): string {
-        if (
-            (!(this._primaryBrowserButtonCaption === null) || this._primaryBrowserButtonCaption === undefined) &&
-            this._primaryBrowserButtonCaption.length > 0
-        ) {
-            return this._primaryBrowserButtonCaption;
-        }
-
-        return this._translation.translate(this._translationPrefix + '.choose');
+        return this._primaryBrowserButtonCaption ?? this._translation.translate(this._translationPrefix + '.choose');
     }
 
     @Input()
@@ -40,14 +32,7 @@ export class TerraFileChooserComponent extends TerraButtonComponent {
     }
 
     public get inputSecondaryBrowserButtonCaption(): string {
-        if (
-            (!(this._secondaryBrowserButtonCaption === null) || this._secondaryBrowserButtonCaption === undefined) &&
-            this._secondaryBrowserButtonCaption.length > 0
-        ) {
-            return this._secondaryBrowserButtonCaption;
-        }
-
-        return this._translation.translate(this._translationPrefix + '.cancel');
+        return this._secondaryBrowserButtonCaption ?? this._translation.translate(this._translationPrefix + '.cancel');
     }
 
     @Input()
@@ -68,23 +53,32 @@ export class TerraFileChooserComponent extends TerraButtonComponent {
     @Output()
     public outputSelected: EventEmitter<TerraStorageObject> = new EventEmitter<TerraStorageObject>();
 
-    // @Output()
-    // public outputFileBrowserShow: EventEmitter<TerraFileBrowserComponent> = new EventEmitter<
-    //     TerraFileBrowserComponent
-    // >();
-    //
-    // @Output()
-    // public outputFileBrowserHide: EventEmitter<TerraFileBrowserComponent> = new EventEmitter<
-    //     TerraFileBrowserComponent
-    // >();
+    @Output()
+    public outputCancelled: EventEmitter<void> = new EventEmitter<void>();
+
+    @Output()
+    public outputFileBrowserShow: EventEmitter<TerraFileBrowserComponent> = new EventEmitter<
+        TerraFileBrowserComponent
+    >();
+
+    @Output()
+    public outputFileBrowserHide: EventEmitter<TerraFileBrowserComponent> = new EventEmitter<
+        TerraFileBrowserComponent
+    >();
+
+    @ViewChild('fileBrowser', { static: true })
+    public fileBrowser: TerraFileBrowserComponent;
+
+    @ViewChild(TemplateRef, { static: true })
+    public dialogTemplateRef: TemplateRef<any>;
+
+    public _selectedObject: TerraStorageObject;
 
     private _translationPrefix: string = 'terraFileInput';
 
     private _primaryBrowserButtonCaption: string = '';
 
     private _secondaryBrowserButtonCaption: string = '';
-
-    private _selectedObject: TerraStorageObject;
 
     private _storageServices: Array<TerraBaseStorageService>;
 
@@ -94,27 +88,25 @@ export class TerraFileChooserComponent extends TerraButtonComponent {
 
     public onClick(event: Event): void {
         this.outputClicked.emit(event);
-        const dialogRef: MatDialogRef<FileChooserDialogComponent> = this._dialog.open(FileChooserDialogComponent, {
-            // disableClose: true,
-            autoFocus: false,
-            data: {
-                primaryBrowserButtonCaption: this._primaryBrowserButtonCaption,
-                secondaryBrowserButtonCaption: this._secondaryBrowserButtonCaption,
-                inputAllowedExtensions: this.inputAllowedExtensions,
-                inputAllowFolders: this.inputAllowFolders,
-                inputStorageServices: this.inputStorageServices,
-                onSelectedObjectChange: () => this.onSelectedObjectChange(this._selectedObject)
-            }
+        const dialogRef: MatDialogRef<any> = this._dialog.open(this.dialogTemplateRef, {
+            // autoFocus: false
         });
-
+        this.onBrowserShow();
         dialogRef.afterClosed().subscribe((result: TerraStorageObject) => {
-            if (result) {
-                this.outputSelected.emit(this._selectedObject);
-            }
+            result ? this.outputSelected.emit(this._selectedObject) : this.outputCancelled.emit();
+            this.onBrowserHide();
         });
     }
 
     public onSelectedObjectChange(selectedObject: TerraStorageObject): void {
         this._selectedObject = selectedObject;
+    }
+
+    public onBrowserShow(): void {
+        this.outputFileBrowserShow.emit(this.fileBrowser);
+    }
+
+    public onBrowserHide(): void {
+        this.outputFileBrowserHide.emit(this.fileBrowser);
     }
 }
