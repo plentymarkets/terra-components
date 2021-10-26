@@ -26,7 +26,7 @@
             [pattern]="regex"
             readonly
             [placeholder]="inputName"
-            required
+            [required]="inputIsRequired"
             (click)="valueInput.select()"
         />
         <terra-file-chooser
@@ -48,7 +48,7 @@
             [placement]="'left'"
             (click)="resetValue()"
         >
-            <mat-icon fontIcon="icon-reset"></mat-icon>
+            <mat-icon>clear</mat-icon>
         </button>
     </mat-form-field>
 
