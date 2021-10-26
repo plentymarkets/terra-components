@@ -81,82 +81,20 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
 
     public _fileTableRowList: Array<TerraSimpleTableRowInterface<TerraStorageObject>> = [];
 
-    public dataSource = new MatTableDataSource<TerraSimpleTableRowInterface<TerraStorageObject>>(
-        this._fileTableRowList
-    );
-
     public selection = new SelectionModel<TerraSimpleTableRowInterface<TerraStorageObject>>(true, []);
 
     private _activeStorageService: TerraBaseStorageService;
 
-    fileTableHeaderListJM = [
-        {
-            columnDef: 'checkbox',
-            caption: '',
-            cell: (element: TerraSimpleTableRowInterface<TerraStorageObject>) => ``
-        },
-        {
-            columnDef: 'fileName',
-            caption: this._translationService.translate(this._translationPrefix + '.fileName'),
-            cell: (element: TerraSimpleTableRowInterface<TerraStorageObject>) => {
-                return `${element.value.name}`;
-            },
-            isFile: (element: TerraSimpleTableRowInterface<TerraStorageObject>) => {
-                if (!element.value.isFile) {
-                    return true;
-                }
-            }
-        },
-        {
-            columnDef: 'fileURL',
-            caption: this._translationService.translate(this._translationPrefix + '.fileURL'),
-            cell: (element: TerraSimpleTableRowInterface<TerraStorageObject>) => {
-                if (!element.value.isFile) {
-                    return ``;
-                }
-                return `${element.value.publicUrl}`;
-            }
-        },
-        {
-            columnDef: 'copyIntoClipboard',
-            caption: '',
-            cell: (element: TerraSimpleTableRowInterface<TerraStorageObject>) => {
-                if (element.value.isFile) {
-                    return true;
-                }
-            }
-        },
-        {
-            columnDef: 'fileSize',
-            caption: this._translationService.translate(this._translationPrefix + '.fileSize'),
-            cell: (element: TerraSimpleTableRowInterface<TerraStorageObject>) => {
-                if (!element.value.isFile) {
-                    return ``;
-                }
-                return `${element.value.sizeString}`;
-            }
-        },
-        {
-            columnDef: 'lastModified',
-            caption: this._translationService.translate(this._translationPrefix + '.lastChange'),
-            cell: (element: TerraSimpleTableRowInterface<TerraStorageObject>) => {
-                if (!element.value.isFile) {
-                    return ``;
-                }
-                return `${element.value.lastModified} `;
-            }
-        },
-        {
-            columnDef: 'deleteBtn',
-            caption: '',
-            cell: (element: TerraSimpleTableRowInterface<TerraStorageObject>) => {
-                return ``;
-            }
-        }
-    ];
-
     /*TODO*/
-    displayedColumns = this.fileTableHeaderListJM.map((c) => c.columnDef);
+    displayedColumns = [
+        'checkbox',
+        'fileName',
+        'fileURL',
+        'copyIntoClipboard',
+        'fileSize',
+        'lastModified',
+        'deleteBtn'
+    ];
 
     public get activeStorageService(): TerraBaseStorageService {
         if (!isNullOrUndefined(this._activeStorageService)) {
@@ -291,7 +229,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         public _parentFileBrowser: TerraFileBrowser,
         private _changeDetector: ChangeDetectorRef,
         private _fileBrowserService: TerraFileBrowserService,
-        private _translationService: L10nTranslationService,
+        public _translationService: L10nTranslationService,
         private _localeService: L10nIntlService,
         private _alertService: AlertService,
         private _dialog: MatDialog
@@ -694,9 +632,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
     /** Whether the number of selected elements matches the total number of rows. */
     isAllSelected() {
         const numSelected = this.selection.selected.length;
-        console.log('selection' + numSelected);
-        const numRows = this.dataSource.data.length;
-        console.log('datasource' + numRows);
+        const numRows = this._fileTableRowList.length;
         return numSelected == numRows;
     }
 
@@ -706,24 +642,19 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
             this.selection.clear();
             return;
         }
-        this.selection.select(...this.dataSource.data);
+        this.selection.select(...this._fileTableRowList);
     }
 
-    /** The label for the checkbox on the passed row */
-    checkboxLabel(row?: TerraSimpleTableRowInterface<TerraStorageObject>): string {
-        if (!row) {
-            return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
-        }
-        return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${1 + 1}`;
-    }
-
+    /*
     public _onRowClickJM(row: any): void {
         let storageObject: TerraStorageObject = row.value;
         if (storageObject.isDirectory) {
             this.currentStorageRoot = storageObject;
             this.selectNode.emit(storageObject);
+        }else {
+            this._showOrHideImagePreview(row.value);
         }
-    }
+    }*/
 
     public _clipBoardButtonListener(event: MouseEvent, row) {
         ClipboardHelper.copyText(row.value.publicUrl);

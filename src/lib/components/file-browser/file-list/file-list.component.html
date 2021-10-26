@@ -58,89 +58,98 @@
     </div>
 
     <table *ngIf="_fileTableRowList.length > 0" mat-table [dataSource]="_fileTableRowList">
-        <ng-container *ngFor="let column of fileTableHeaderListJM" [matColumnDef]="column.columnDef">
-            <ng-container [ngSwitch]="column.columnDef">
-                <ng-container *ngSwitchCase="'checkbox'">
-                    <th mat-header-cell *matHeaderCellDef>
-                        <mat-checkbox
-                            (change)="$event ? masterToggle() : null"
-                            [checked]="selection.hasValue() && isAllSelected()"
-                            [indeterminate]="selection.hasValue() && !isAllSelected()"
-                            [aria-label]="checkboxLabel()"
-                        >
-                        </mat-checkbox>
-                    </th>
-                    <td mat-cell *matCellDef="let row" (click)="selection.toggle(row)">
-                        <mat-checkbox
-                            (click)="$event.stopPropagation()"
-                            (change)="$event ? selection.toggle(row) : null"
-                            [checked]="selection.isSelected(row)"
-                            [aria-label]="checkboxLabel(row)"
-                        >
-                        </mat-checkbox>
-                    </td>
+        <ng-container matColumnDef="checkbox">
+            <th mat-header-cell *matHeaderCellDef>
+                <mat-checkbox
+                    (change)="$event ? masterToggle() : null"
+                    [checked]="selection.hasValue() && isAllSelected()"
+                    [indeterminate]="selection.hasValue() && !isAllSelected()"
+                >
+                </mat-checkbox>
+            </th>
+            <td mat-cell *matCellDef="let row" (click)="selection.toggle(row)">
+                <mat-checkbox
+                    (click)="$event.stopPropagation()"
+                    (change)="$event ? selection.toggle(row) : null"
+                    [checked]="selection.isSelected(row)"
+                >
+                </mat-checkbox>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="fileName">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ this._translationService.translate(this._translationPrefix + '.fileName') }}
+            </th>
+            <td mat-cell *matCellDef="let row">
+                <ng-container *ngIf="row.value.isDirectory">
+                    <mat-icon>folder</mat-icon>
                 </ng-container>
-                <ng-container *ngSwitchCase="'fileName'">
-                    <th mat-header-cell *matHeaderCellDef>
-                        {{ column.caption }}
-                    </th>
-                    <td mat-cell *matCellDef="let row">
-                        <ng-container *ngIf="column.isFile(row)">
-                            <mat-icon>folder</mat-icon>
-                        </ng-container>
-                        {{ column.cell(row) }}
-                    </td>
+                {{ row.value.name }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="fileURL">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ this._translationService.translate(this._translationPrefix + '.fileURL') }}
+            </th>
+            <td mat-cell *matCellDef="let row">
+                <ng-container *ngIf="row.value.isFile">
+                    {{ row.value.publicUrl }}
                 </ng-container>
-                <ng-container *ngSwitchCase="'copyIntoClipboard'">
-                    <th mat-header-cell *matHeaderCellDef>
-                        {{ column.caption }}
-                    </th>
-                    <td mat-cell *matCellDef="let row">
-                        <ng-container *ngIf="column.cell(row)">
-                            <button
-                                mat-icon-button
-                                [tcTooltip]="_translationPrefix + '.copyToClipboard' | translate: _locale.language"
-                                (click)="_clipBoardButtonListener($event, row)"
-                            >
-                                <mat-icon>content_copy</mat-icon>
-                            </button>
-                        </ng-container>
-                    </td>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="copyIntoClipboard">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let row">
+                <ng-container *ngIf="row.value.isFile">
+                    <button
+                        mat-icon-button
+                        [tcTooltip]="_translationPrefix + '.copyToClipboard' | translate: _locale.language"
+                        (click)="_clipBoardButtonListener($event, row)"
+                    >
+                        <mat-icon>content_copy</mat-icon>
+                    </button>
                 </ng-container>
-                <ng-container *ngSwitchCase="'lastModified'">
-                    <th mat-header-cell *matHeaderCellDef>
-                        {{ column.caption }}
-                    </th>
-                    <td mat-cell *matCellDef="let row">
-                        {{ column.cell(row) | date: 'medium' }}
-                    </td>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="fileSize">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ this._translationService.translate(this._translationPrefix + '.fileSize') }}
+            </th>
+            <td mat-cell *matCellDef="let row">
+                <ng-container *ngIf="row.value.isFile">
+                    {{ row.value.sizeString }}
                 </ng-container>
-                <ng-container *ngSwitchCase="'deleteBtn'">
-                    <th mat-header-cell *matHeaderCellDef>
-                        {{ column.caption }}
-                    </th>
-                    <td mat-cell *matCellDef="let row">
-                        <button
-                            mat-icon-button
-                            [tcTooltip]="_translationPrefix + '.deleteSelectedFiles' | translate: _locale.language"
-                            (click)="_deleteButtonListener($event, row)"
-                        >
-                            <mat-icon>delete</mat-icon>
-                        </button>
-                    </td>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="lastModified">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ this._translationService.translate(this._translationPrefix + '.lastChange') }}
+            </th>
+            <td mat-cell *matCellDef="let row">
+                <ng-container *ngIf="row.value.isFile">
+                    {{ row.value.lastModified | date: 'medium' }}
                 </ng-container>
-                <ng-container *ngSwitchDefault>
-                    <th mat-header-cell *matHeaderCellDef>
-                        {{ column.caption }}
-                    </th>
-                    <td mat-cell *matCellDef="let row">
-                        {{ column.cell(row) }}
-                    </td>
-                </ng-container>
-            </ng-container>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="deleteBtn">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let row">
+                <button
+                    mat-icon-button
+                    [tcTooltip]="_translationPrefix + '.deleteSelectedFiles' | translate: _locale.language"
+                    (click)="_deleteButtonListener($event, row)"
+                >
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="_onRowClickJM(row)"></tr>
+        <tr
+            mat-row
+            *matRowDef="let row; columns: displayedColumns"
+            (click)="_onRowClick(row)"
+            (click)="_onActiveRowChange(row)"
+        ></tr>
     </table>
 
     <!--TODO Table-->
