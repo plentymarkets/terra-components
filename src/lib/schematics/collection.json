@@ -13,6 +13,11 @@
             "description": "Migrates TerraCheckbox to MatCheckbox.",
             "factory": "./ng-update/checkbox-migration/index#checkboxMigration",
             "schema": "./ng-update/checkbox-migration/schema.json"
+        },
+        "migration-portlet": {
+            "description": "Migrate TerraPortlet to Material expansion panels",
+            "factory": "./ng-update/terra-portlet-migration/index#portletMigration",
+            "schema": "./ng-update/terra-portlet-migration/schema.json"
         }
     }
 }

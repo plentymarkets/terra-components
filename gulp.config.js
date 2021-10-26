@@ -12,6 +12,7 @@ module.exports = function () {
     const destinations = {
         tsOutputPath: './dist/',
         styles: './dist/styles/',
+        portletSchematicJson: './dist/schematics/ng-update/terra-portlet-migration',
 
         terra: '../terra/node_modules/@plentymarkets/terra-components/'
     };
