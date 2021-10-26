@@ -72,6 +72,7 @@ import { CheckboxComponent } from './forms/form/form-components/checkbox/checkbo
 import { SelectComponent } from './forms/form/form-components/select/select.component';
 import { NumberInputComponent } from './forms/form/form-components/number-input/number-input.component';
 import { TextAreaComponent } from './forms/form/form-components/text-area/text-area.component';
+import { FileChooserDialogComponent } from './buttons/file-chooser/file-chooser-dialog/file-chooser-dialog.component';
 
 export const exportedComponents: Array<Type<any>> = [
     TerraAlertPanelComponent,
@@ -128,7 +129,8 @@ export const exportedComponents: Array<Type<any>> = [
     TableRowComponent,
     FilterComponent,
     TerraInfoComponent,
-    TableSettingsComponent
+    TableSettingsComponent,
+    FileChooserDialogComponent
 ];
 
 export const components: Array<Type<any>> = [
