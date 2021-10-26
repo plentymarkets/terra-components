@@ -23,7 +23,7 @@ export class TerraFileChooserComponent extends TerraButtonComponent {
     }
 
     public get inputPrimaryBrowserButtonCaption(): string {
-        return this._primaryBrowserButtonCaption ?? this._translation.translate(this._translationPrefix + '.choose');
+        return this._primaryBrowserButtonCaption || this._translation.translate(this._translationPrefix + '.choose');
     }
 
     @Input()
@@ -32,7 +32,7 @@ export class TerraFileChooserComponent extends TerraButtonComponent {
     }
 
     public get inputSecondaryBrowserButtonCaption(): string {
-        return this._secondaryBrowserButtonCaption ?? this._translation.translate(this._translationPrefix + '.cancel');
+        return this._secondaryBrowserButtonCaption || this._translation.translate(this._translationPrefix + '.cancel');
     }
 
     @Input()
@@ -42,13 +42,7 @@ export class TerraFileChooserComponent extends TerraButtonComponent {
     public inputAllowFolders: boolean = true;
 
     @Input()
-    public set inputStorageServices(services: Array<TerraBaseStorageService>) {
-        this._storageServices = services;
-    }
-
-    public get inputStorageServices(): Array<TerraBaseStorageService> {
-        return this._storageServices;
-    }
+    public inputStorageServices: Array<TerraBaseStorageService>;
 
     @Output()
     public outputSelected: EventEmitter<TerraStorageObject> = new EventEmitter<TerraStorageObject>();
@@ -79,8 +73,6 @@ export class TerraFileChooserComponent extends TerraButtonComponent {
     private _primaryBrowserButtonCaption: string = '';
 
     private _secondaryBrowserButtonCaption: string = '';
-
-    private _storageServices: Array<TerraBaseStorageService>;
 
     constructor(private _translation: L10nTranslationService, private _dialog: MatDialog) {
         super();
