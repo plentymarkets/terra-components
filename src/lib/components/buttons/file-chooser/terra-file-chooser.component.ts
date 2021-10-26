@@ -66,7 +66,7 @@ export class TerraFileChooserComponent extends TerraButtonComponent {
         TerraFileBrowserComponent
     >();
 
-    @ViewChild('fileBrowser', { static: true })
+    @ViewChild('fileBrowser', { static: false })
     public fileBrowser: TerraFileBrowserComponent;
 
     @ViewChild(TemplateRef, { static: true })
@@ -89,9 +89,12 @@ export class TerraFileChooserComponent extends TerraButtonComponent {
     public onClick(event: Event): void {
         this.outputClicked.emit(event);
         const dialogRef: MatDialogRef<any> = this._dialog.open(this.dialogTemplateRef, {
-            // autoFocus: false
+            autoFocus: false
         });
-        this.onBrowserShow();
+        dialogRef.afterOpened().subscribe(() => {
+            this.onBrowserShow();
+        });
+
         dialogRef.afterClosed().subscribe((result: TerraStorageObject) => {
             result ? this.outputSelected.emit(this._selectedObject) : this.outputCancelled.emit();
             this.onBrowserHide();
