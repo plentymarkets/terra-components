@@ -1,12 +1,11 @@
-import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { L10nTranslationService } from 'angular-l10n';
-import { isNullOrUndefined } from 'util';
 import { TerraFileBrowserComponent } from '../../file-browser/terra-file-browser.component';
 import { TerraButtonComponent } from '../button/terra-button.component';
 import { TerraBaseStorageService } from '../../file-browser/terra-base-storage.interface';
 import { TerraStorageObject } from '../../file-browser/model/terra-storage-object';
-import { TerraOverlayComponent } from '../../layouts/overlay/terra-overlay.component';
-import { TerraOverlayButtonInterface } from '../../layouts/overlay/data/terra-overlay-button.interface';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { FileChooserDialogComponent } from './file-chooser-dialog/file-chooser-dialog.component';
 
 /**
  * @deprecated since v11. Use material's [button]{@link https://material.angular.io/components/button}
@@ -25,7 +24,10 @@ export class TerraFileChooserComponent extends TerraButtonComponent {
     }
 
     public get inputPrimaryBrowserButtonCaption(): string {
-        if (!isNullOrUndefined(this._primaryBrowserButtonCaption) && this._primaryBrowserButtonCaption.length > 0) {
+        if (
+            (!(this._primaryBrowserButtonCaption === null) || this._primaryBrowserButtonCaption === undefined) &&
+            this._primaryBrowserButtonCaption.length > 0
+        ) {
             return this._primaryBrowserButtonCaption;
         }
 
@@ -38,7 +40,10 @@ export class TerraFileChooserComponent extends TerraButtonComponent {
     }
 
     public get inputSecondaryBrowserButtonCaption(): string {
-        if (!isNullOrUndefined(this._secondaryBrowserButtonCaption) && this._secondaryBrowserButtonCaption.length > 0) {
+        if (
+            (!(this._secondaryBrowserButtonCaption === null) || this._secondaryBrowserButtonCaption === undefined) &&
+            this._secondaryBrowserButtonCaption.length > 0
+        ) {
             return this._secondaryBrowserButtonCaption;
         }
 
@@ -63,28 +68,15 @@ export class TerraFileChooserComponent extends TerraButtonComponent {
     @Output()
     public outputSelected: EventEmitter<TerraStorageObject> = new EventEmitter<TerraStorageObject>();
 
-    @Output()
-    public outputCancelled: EventEmitter<void> = new EventEmitter<void>();
-
-    @Output()
-    public outputFileBrowserShow: EventEmitter<TerraFileBrowserComponent> = new EventEmitter<
-        TerraFileBrowserComponent
-    >();
-
-    @Output()
-    public outputFileBrowserHide: EventEmitter<TerraFileBrowserComponent> = new EventEmitter<
-        TerraFileBrowserComponent
-    >();
-
-    @ViewChild('overlay', { static: true })
-    public overlay: TerraOverlayComponent;
-
-    @ViewChild('fileBrowser', { static: true })
-    public fileBrowser: TerraFileBrowserComponent;
-
-    public primaryOverlayButton: TerraOverlayButtonInterface;
-
-    public secondaryOverlayButton: TerraOverlayButtonInterface;
+    // @Output()
+    // public outputFileBrowserShow: EventEmitter<TerraFileBrowserComponent> = new EventEmitter<
+    //     TerraFileBrowserComponent
+    // >();
+    //
+    // @Output()
+    // public outputFileBrowserHide: EventEmitter<TerraFileBrowserComponent> = new EventEmitter<
+    //     TerraFileBrowserComponent
+    // >();
 
     private _translationPrefix: string = 'terraFileInput';
 
@@ -96,49 +88,33 @@ export class TerraFileChooserComponent extends TerraButtonComponent {
 
     private _storageServices: Array<TerraBaseStorageService>;
 
-    constructor(private _translation: L10nTranslationService) {
+    constructor(private _translation: L10nTranslationService, private _dialog: MatDialog) {
         super();
-
-        this.primaryOverlayButton = {
-            icon: 'icon-success',
-            caption: this.inputPrimaryBrowserButtonCaption,
-            isDisabled: true,
-            clickFunction: (): void => {
-                this.outputSelected.emit(this._selectedObject);
-                this.overlay.hideOverlay();
-            }
-        };
-
-        this.secondaryOverlayButton = {
-            icon: 'icon-close',
-            caption: this.inputSecondaryBrowserButtonCaption,
-            isDisabled: false,
-            clickFunction: (): void => {
-                this.outputCancelled.emit();
-                this.overlay.hideOverlay();
-            }
-        };
     }
 
     public onClick(event: Event): void {
         this.outputClicked.emit(event);
-        this.overlay.showOverlay();
+        const dialogRef: MatDialogRef<FileChooserDialogComponent> = this._dialog.open(FileChooserDialogComponent, {
+            // disableClose: true,
+            autoFocus: false,
+            data: {
+                primaryBrowserButtonCaption: this._primaryBrowserButtonCaption,
+                secondaryBrowserButtonCaption: this._secondaryBrowserButtonCaption,
+                inputAllowedExtensions: this.inputAllowedExtensions,
+                inputAllowFolders: this.inputAllowFolders,
+                inputStorageServices: this.inputStorageServices,
+                onSelectedObjectChange: () => this.onSelectedObjectChange(this._selectedObject)
+            }
+        });
+
+        dialogRef.afterClosed().subscribe((result: TerraStorageObject) => {
+            if (result) {
+                this.outputSelected.emit(this._selectedObject);
+            }
+        });
     }
 
     public onSelectedObjectChange(selectedObject: TerraStorageObject): void {
-        if (isNullOrUndefined(selectedObject) || selectedObject.isDirectory) {
-            this.primaryOverlayButton.isDisabled = true;
-        } else {
-            this.primaryOverlayButton.isDisabled = false;
-            this._selectedObject = selectedObject;
-        }
-    }
-
-    public onBrowserShow(): void {
-        this.outputFileBrowserShow.emit(this.fileBrowser);
-    }
-
-    public onBrowserHide(): void {
-        this.outputFileBrowserHide.emit(this.fileBrowser);
+        this._selectedObject = selectedObject;
     }
 }

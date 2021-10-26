@@ -1,36 +1,28 @@
-<terra-button
-    [inputIsSmall]="inputIsSmall"
-    [inputIsLarge]="inputIsLarge"
-    [inputIsDisabled]="inputIsDisabled"
-    [inputCaption]="inputCaption"
-    [inputIcon]="inputIcon"
-    [inputType]="'button'"
-    [inputIsAlignRight]="inputIsAlignRight"
-    [inputTooltipText]="inputTooltipText"
-    [inputTooltipPlacement]="inputTooltipPlacement"
-    [inputIsActive]="inputIsActive"
-    [inputIsFlagged]="inputIsFlagged"
-    [inputIsDivider]="inputIsDivider"
-    [inputIsLink]="inputIsLink"
-    (outputClicked)="onClick($event)"
+<button
+    mat-icon-button
+    [disabled]="inputIsDisabled"
+    [tcTooltip]="inputTooltipText"
+    [placement]="inputTooltipPlacement"
+    (click)="onClick($event)"
 >
-</terra-button>
+    <mat-icon fontSet="plentyicons" [fontIcon]="inputIcon"></mat-icon>
+</button>
 
-<terra-overlay
-    #overlay
-    [inputPrimaryButtonInterface]="primaryOverlayButton"
-    [inputSecondaryButtonInterface]="secondaryOverlayButton"
-    [inputIsExtraLarge]="true"
-    (outputOnShow)="onBrowserShow()"
-    (outputOnHide)="onBrowserHide()"
-    class="hasSplitView"
->
-    <terra-file-browser
-        #fileBrowser
-        [inputAllowedExtensions]="inputAllowedExtensions"
-        [inputAllowFolders]="inputAllowFolders"
-        [inputStorageServices]="inputStorageServices"
-        (outputSelectedChange)="onSelectedObjectChange($event)"
-    >
-    </terra-file-browser>
-</terra-overlay>
+<!--<terra-overlay-->
+<!--    #overlay-->
+<!--    [inputPrimaryButtonInterface]="primaryOverlayButton"-->
+<!--    [inputSecondaryButtonInterface]="secondaryOverlayButton"-->
+<!--    [inputIsExtraLarge]="true"-->
+<!--    (outputOnShow)="onBrowserShow()"-->
+<!--    (outputOnHide)="onBrowserHide()"-->
+<!--    class="hasSplitView"-->
+<!--&gt;-->
+<!--    <terra-file-browser-->
+<!--        #fileBrowser-->
+<!--        [inputAllowedExtensions]="inputAllowedExtensions"-->
+<!--        [inputAllowFolders]="inputAllowFolders"-->
+<!--        [inputStorageServices]="inputStorageServices"-->
+<!--        (outputSelectedChange)="onSelectedObjectChange($event)"-->
+<!--    >-->
+<!--    </terra-file-browser>-->
+<!--</terra-overlay>-->
