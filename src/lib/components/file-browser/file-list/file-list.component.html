@@ -66,6 +66,7 @@
                             (change)="$event ? masterToggle() : null"
                             [checked]="selection.hasValue() && isAllSelected()"
                             [indeterminate]="selection.hasValue() && !isAllSelected()"
+                            [aria-label]="checkboxLabel()"
                         >
                         </mat-checkbox>
                     </th>
@@ -74,6 +75,7 @@
                             (click)="$event.stopPropagation()"
                             (change)="$event ? selection.toggle(row) : null"
                             [checked]="selection.isSelected(row)"
+                            [aria-label]="checkboxLabel(row)"
                         >
                         </mat-checkbox>
                     </td>
@@ -83,12 +85,9 @@
                         {{ column.caption }}
                     </th>
                     <td mat-cell *matCellDef="let row">
-                        <button
-                            mat-icon-button
-                            [tcTooltip]="_translationPrefix + '.copyToClipboard' | translate: _locale.language"
-                        >
+                        <ng-container *ngIf="column.isFile(row)">
                             <mat-icon>folder</mat-icon>
-                        </button>
+                        </ng-container>
                         {{ column.cell(row) }}
                     </td>
                 </ng-container>
@@ -101,10 +100,19 @@
                             <button
                                 mat-icon-button
                                 [tcTooltip]="_translationPrefix + '.copyToClipboard' | translate: _locale.language"
+                                (click)="_clipBoardButtonListener($event, row)"
                             >
                                 <mat-icon>content_copy</mat-icon>
                             </button>
                         </ng-container>
+                    </td>
+                </ng-container>
+                <ng-container *ngSwitchCase="'lastModified'">
+                    <th mat-header-cell *matHeaderCellDef>
+                        {{ column.caption }}
+                    </th>
+                    <td mat-cell *matCellDef="let row">
+                        {{ column.cell(row) | date: 'medium' }}
                     </td>
                 </ng-container>
                 <ng-container *ngSwitchCase="'deleteBtn'">
@@ -115,6 +123,7 @@
                         <button
                             mat-icon-button
                             [tcTooltip]="_translationPrefix + '.deleteSelectedFiles' | translate: _locale.language"
+                            (click)="_deleteButtonListener($event, row)"
                         >
                             <mat-icon>delete</mat-icon>
                         </button>

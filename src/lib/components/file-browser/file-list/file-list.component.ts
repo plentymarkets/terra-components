@@ -100,6 +100,11 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
             caption: this._translationService.translate(this._translationPrefix + '.fileName'),
             cell: (element: TerraSimpleTableRowInterface<TerraStorageObject>) => {
                 return `${element.value.name}`;
+            },
+            isFile: (element: TerraSimpleTableRowInterface<TerraStorageObject>) => {
+                if (!element.value.isFile) {
+                    return true;
+                }
             }
         },
         {
@@ -132,13 +137,13 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
             }
         },
         {
-            columnDef: 'lastChange',
+            columnDef: 'lastModified',
             caption: this._translationService.translate(this._translationPrefix + '.lastChange'),
             cell: (element: TerraSimpleTableRowInterface<TerraStorageObject>) => {
                 if (!element.value.isFile) {
                     return ``;
                 }
-                return `${element.value.lastModified}`;
+                return `${element.value.lastModified} `;
             }
         },
         {
@@ -689,7 +694,9 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
     /** Whether the number of selected elements matches the total number of rows. */
     isAllSelected() {
         const numSelected = this.selection.selected.length;
+        console.log('selection' + numSelected);
         const numRows = this.dataSource.data.length;
+        console.log('datasource' + numRows);
         return numSelected == numRows;
     }
 
@@ -702,12 +709,29 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         this.selection.select(...this.dataSource.data);
     }
 
+    /** The label for the checkbox on the passed row */
+    checkboxLabel(row?: TerraSimpleTableRowInterface<TerraStorageObject>): string {
+        if (!row) {
+            return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
+        }
+        return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${1 + 1}`;
+    }
+
     public _onRowClickJM(row: any): void {
         let storageObject: TerraStorageObject = row.value;
-        console.log(storageObject);
         if (storageObject.isDirectory) {
             this.currentStorageRoot = storageObject;
             this.selectNode.emit(storageObject);
         }
+    }
+
+    public _clipBoardButtonListener(event: MouseEvent, row) {
+        ClipboardHelper.copyText(row.value.publicUrl);
+        event.stopPropagation();
+    }
+
+    public _deleteButtonListener(event: MouseEvent, row) {
+        this._openDeleteDialog([row.value]);
+        event.stopPropagation();
     }
 }
