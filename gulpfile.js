@@ -59,6 +59,12 @@ function copyReadme() {
     return src(config.sources.readme).pipe(dest(config.destinations.tsOutputPath));
 }
 
+function copySchematicsJsonFiles() {
+    return src('src/lib/schematics/ng-update/terra-portlet-migration/schema.json').pipe(
+        dest(config.destinations.portletSchematicJson)
+    );
+}
+
 function copyFunctionGroupsScss() {
     return src('src/lib/styles/function-groups.scss').pipe(dest(config.destinations.styles));
 }
@@ -104,7 +110,7 @@ const copySassFiles = parallel(
     copyTagListScss,
     copyButtonScss
 );
-const copyFilesToDist = parallel(copyReadme, copySassFiles);
+const copyFilesToDist = parallel(copyReadme, copySassFiles, copySchematicsJsonFiles);
 
 //delete terra-components folder in terra
 function cleanUpTerra() {
