@@ -4,6 +4,7 @@
 
 -   **terra-breadcrumbs** has been deprecated.
 -   **terra-no-result-notice** has been deprecated.
+-   **terra-image-preview** use components from `@angular/material` instead of our own deprecated ones.
 
 ### Migrations
 
