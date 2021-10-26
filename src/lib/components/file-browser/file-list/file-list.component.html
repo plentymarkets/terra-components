@@ -14,12 +14,10 @@
     >
         <mat-icon>create_new_folder</mat-icon>
     </button>
-
-    <!--TODO space between the delete and the other two buttons-->
     <button
         mat-icon-button
         *ngIf="_parentFileBrowser.inputAllowFolders"
-        [disabled]="_selectedStorageObjects.length <= 0"
+        [disabled]="selection.isEmpty()"
         [tcTooltip]="_translationPrefix + '.deleteSelectedFiles' | translate: _locale.language"
         (click)="_deleteSelected()"
     >
@@ -29,15 +27,8 @@
     <label style="width: 0; height: 0; visibility: hidden" #fileChooser>
         <input type="file" (change)="onFileSelect($event)" multiple="multiple" />
     </label>
-
-    <!-- TODO is this needed???? -->
-    <!--<div class="loading-placeholder" *ngIf="!storageList">-->
-    <!--<p>{{ translationPrefix + '.loadingFiles' | translate:lang }}</p>-->
-    <!--<span class="icon-loading"></span>-->
-    <!--</div>-->
 </mat-toolbar>
 
-<!--TODO Background color from the container and file chooser are the same-->
 <div class="file-list-container" [class.empty]="_fileTableRowList.length <= 0">
     <div [hidden]="!_showNewDirectoryPrompt" class="prompt" [class.in]="_showNewDirectoryPrompt">
         <span class="prompt-title">{{ _translationPrefix + '.createFolder' | translate: _locale.language }}</span>
@@ -87,7 +78,7 @@
                 {{ row.value.name }}
             </td>
         </ng-container>
-        <ng-container matColumnDef="fileURL">
+        <ng-container *ngIf="_isPublicHeaderList()" matColumnDef="fileURL">
             <th mat-header-cell *matHeaderCellDef>
                 {{ this._translationService.translate(this._translationPrefix + '.fileURL') }}
             </th>
@@ -97,7 +88,7 @@
                 </ng-container>
             </td>
         </ng-container>
-        <ng-container matColumnDef="copyIntoClipboard">
+        <ng-container *ngIf="_isPublicHeaderList()" matColumnDef="copyIntoClipboard">
             <th mat-header-cell *matHeaderCellDef></th>
             <td mat-cell *matCellDef="let row">
                 <ng-container *ngIf="row.value.isFile">
@@ -131,6 +122,18 @@
                 </ng-container>
             </td>
         </ng-container>
+        <ng-container *ngIf="!_isPublicHeaderList()" matColumnDef="downloadBtn">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let row">
+                <button
+                    mat-icon-button
+                    [tcTooltip]="_translationPrefix + '.downloadFile' | translate: _locale.language"
+                    (click)="_downloadButtonListener($event, row)"
+                >
+                    <mat-icon>file_download</mat-icon>
+                </button>
+            </td>
+        </ng-container>
         <ng-container matColumnDef="deleteBtn">
             <th mat-header-cell *matHeaderCellDef></th>
             <td mat-cell *matCellDef="let row">
@@ -147,12 +150,11 @@
         <tr
             mat-row
             *matRowDef="let row; columns: displayedColumns"
-            (click)="_onRowClick(row)"
-            (click)="_onActiveRowChange(row)"
+            (click)="_onRowClick(row); _onActiveRowChange(row)"
         ></tr>
     </table>
 
-    <!--TODO Table-->
+    <!--&lt;!&ndash;TODO Table&ndash;&gt;
     <terra-simple-table
         *ngIf="_fileTableRowList.length > 0"
         [hidden]="_isDragActive"
@@ -166,7 +168,7 @@
         (outputHighlightedRowChange)="_onActiveRowChange($event)"
         (outputSelectedRowsChange)="onSelectionChange($event)"
     >
-    </terra-simple-table>
+    </terra-simple-table>-->
 
     <div *ngIf="_fileTableRowList.length <= 0" class="empty-directory">
         <div>
