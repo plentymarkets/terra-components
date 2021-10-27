@@ -73,10 +73,10 @@ export class TerraFileInputComponent extends TerraInputComponent {
     >();
 
     @ViewChild('fileBrowser', { static: false })
-    public fileBrowser: TerraFileBrowserComponent;
+    public _fileBrowser: TerraFileBrowserComponent;
 
     @ViewChild('fileBrowserDialog', { static: true })
-    public dialogTemplateRef: TemplateRef<any>;
+    public _fileBrowserDialog: TemplateRef<any>;
 
     @ViewChild('imagePreviewDialog', { static: true })
     public _imagePreviewDialog: TemplateRef<{ filename: string; filepath: string }>;
@@ -94,8 +94,7 @@ export class TerraFileInputComponent extends TerraInputComponent {
 
     constructor(
         @Inject(L10N_LOCALE) public _locale: L10nLocale,
-        /** Instance of the dialog service */
-        private dialog: MatDialog,
+        private _dialog: MatDialog,
         private _translation: L10nTranslationService
     ) {
         super(TerraRegex.MIXED);
@@ -110,7 +109,7 @@ export class TerraFileInputComponent extends TerraInputComponent {
 
     public onPreviewClicked(): void {
         if (this.isWebImage(this.value)) {
-            this.dialog.open(this._imagePreviewDialog, {
+            this._dialog.open(this._imagePreviewDialog, {
                 data: {
                     filepath: this.value,
                     filename: this.getFilename(this.value)
@@ -145,17 +144,17 @@ export class TerraFileInputComponent extends TerraInputComponent {
         this.value = '';
     }
 
-    public onClick(): void {
-        const dialogRef: MatDialogRef<any> = this.dialog.open(this.dialogTemplateRef, {
+    public openFileBrowserDialog(): void {
+        const dialogRef: MatDialogRef<any> = this._dialog.open(this._fileBrowserDialog, {
             autoFocus: false
         });
         dialogRef.afterOpened().subscribe(() => {
-            this.onBrowserShow();
+            this.onFileBrowserShow();
         });
 
         dialogRef.afterClosed().subscribe((result: TerraStorageObject) => {
             result ? this.outputSelected.emit(this._selectedObject) : this.outputCancelled.emit();
-            this.onBrowserHide();
+            this.onFileBrowserHide();
         });
     }
 
@@ -164,11 +163,11 @@ export class TerraFileInputComponent extends TerraInputComponent {
         setTimeout(() => (this._selectedObject = selectedObject));
     }
 
-    public onBrowserShow(): void {
-        this.outputFileBrowserShow.emit(this.fileBrowser);
+    public onFileBrowserShow(): void {
+        this.outputFileBrowserShow.emit(this._fileBrowser);
     }
 
-    public onBrowserHide(): void {
-        this.outputFileBrowserHide.emit(this.fileBrowser);
+    public onFileBrowserHide(): void {
+        this.outputFileBrowserHide.emit(this._fileBrowser);
     }
 }
