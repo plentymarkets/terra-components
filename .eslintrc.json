@@ -13,7 +13,7 @@
             "extends": [
                 "plugin:@angular-eslint/recommended",
                 "plugin:@angular-eslint/template/process-inline-templates",
-                "./eslint-rules.json"
+                "./node_modules/@plentymarkets/terra-lint-rules/eslint-rules.json"
             ],
             "rules": {
                 "@angular-eslint/component-class-suffix": [
@@ -33,7 +33,8 @@
                 "prefer-const": "warn",
                 "jsdoc/newline-after-description": "off",
                 "prefer-template": "warn",
-                "no-empty-function": "warn"
+                "no-empty-function": "warn",
+                "brace-style": "warn"
             }
         },
         {
