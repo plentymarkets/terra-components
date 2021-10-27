@@ -94,7 +94,7 @@ export class TerraFileChooserComponent extends TerraButtonComponent {
     }
 
     public onSelectedObjectChange(selectedObject: TerraStorageObject): void {
-        this._selectedObject = selectedObject;
+        setTimeout(() => (this._selectedObject = selectedObject));
     }
 
     public onBrowserShow(): void {
