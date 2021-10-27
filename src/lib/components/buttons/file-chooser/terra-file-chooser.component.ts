@@ -7,9 +7,7 @@ import { TerraStorageObject } from '../../file-browser/model/terra-storage-objec
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 /**
- * @deprecated since v11. Use material's [button]{@link https://material.angular.io/components/button}
- * and [dialog]{@link https://material.angular.io/components/dialog}
- * in conjunction with our [file-browser]{@link TerraFileBrowserComponent } instead.
+ * @deprecated since v11.
  */
 @Component({
     selector: 'terra-file-chooser',
