@@ -26,6 +26,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatPseudoCheckboxModule } from '@angular/material/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTableModule } from '@angular/material/table';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
     imports: [
@@ -53,7 +54,8 @@ import { MatTableModule } from '@angular/material/table';
         MatSelectModule,
         MatPseudoCheckboxModule,
         MatToolbarModule,
-        MatTableModule
+        MatTableModule,
+        MatExpansionModule
     ],
     declarations: [...components, ...directives, ...pipes],
     exports: [...exportedComponents, ...exportedDirectives, ...exportedPipes]
