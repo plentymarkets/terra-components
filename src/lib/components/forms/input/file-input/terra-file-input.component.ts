@@ -1,12 +1,9 @@
 import { Component, EventEmitter, Inject, Input, Output, TemplateRef, ViewChild } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TerraInputComponent } from '../terra-input.component';
-import { PathHelper } from '../../../../helpers/path.helper';
-import { FileTypeHelper } from '../../../../helpers/fileType.helper';
+import { FileTypeHelper, PathHelper, StringHelper, TerraRegex } from '../../../../helpers';
 import { TerraBaseStorageService } from '../../../file-browser/terra-base-storage.interface';
-import { TerraRegex } from '../../../../helpers/regex/terra-regex';
 import { TerraStorageObject } from '../../../file-browser/model/terra-storage-object';
-import { StringHelper } from '../../../../helpers/string.helper';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { L10N_LOCALE, L10nLocale, L10nTranslationService } from 'angular-l10n';
 import { TerraFileBrowserComponent } from '../../../file-browser/terra-file-browser.component';
@@ -89,8 +86,6 @@ export class TerraFileInputComponent extends TerraInputComponent {
     private _primaryBrowserButtonCaption: string = '';
 
     private _secondaryBrowserButtonCaption: string = '';
-
-    private _storageServices: Array<TerraBaseStorageService>;
 
     constructor(
         @Inject(L10N_LOCALE) public _locale: L10nLocale,
