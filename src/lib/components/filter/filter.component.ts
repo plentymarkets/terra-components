@@ -22,6 +22,7 @@ export class FilterComponent {
      * @description Notifies when the reset button has been clicked
      */
     @Output()
+    // eslint-disable-next-line @angular-eslint/no-output-native
     public reset: EventEmitter<void> = new EventEmitter<void>();
 
     constructor(@Inject(L10N_LOCALE) public _locale: L10nLocale) {}

@@ -75,6 +75,7 @@ export class TerraUploadItem {
     public emit(event: string, ...args: Array<any>): void {
         if (['beforeUpload', 'onSuccess', 'onError', 'onCancel', 'onProgress'].indexOf(event) >= 0) {
             // TODO: this access is insecure since it breaks when the variables are renamed
+            // eslint-disable-next-line @typescript-eslint/no-shadow
             this['_' + event + 'List'].forEach((callback: (...args: Array<any>) => void) => {
                 callback(...args);
             });
