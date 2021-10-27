@@ -378,9 +378,10 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         this.selection.select(...this._fileTableRowList);
     }
 
-    public _deleteButtonListener(event: MouseEvent, row: any): void {
-        this._openDeleteDialog([row.value]);
+    public _deleteButtonListener(event: Event, row: any): void {
+        this._openDeleteDialog([row]);
         event.stopPropagation();
+        event.preventDefault();
     }
 
     public _clipBoardButtonListener(event: MouseEvent, row: any): void {
@@ -393,7 +394,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         event.stopPropagation();
     }
 
-    private _openDeleteDialog(objectsToDelete: Array<TerraSimpleTableRowInterface<TerraStorageObject>>): void {
+    public _openDeleteDialog(objectsToDelete: Array<TerraSimpleTableRowInterface<TerraStorageObject>>): void {
         const objects = objectsToDelete.map((v) => v.value);
         const deleteCount: number = this._getDeleteCount(objects);
 
