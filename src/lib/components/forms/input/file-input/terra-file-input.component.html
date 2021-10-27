@@ -29,18 +29,16 @@
             [required]="inputIsRequired"
             (click)="valueInput.select()"
         />
-        <terra-file-chooser
+        <button
             matSuffix
-            [inputIcon]="'icon-more'"
-            [inputTooltipText]="_translationPrefix + '.chooseFile' | translate: _locale.language"
-            [inputTooltipPlacement]="'left'"
-            [inputAllowedExtensions]="inputAllowedExtensions"
-            [inputAllowFolders]="inputAllowFolders"
-            [inputStorageServices]="inputStorageServices"
-            (outputSelected)="onObjectSelected($event)"
-            (outputFileBrowserShow)="$event.selectUrl(value)"
+            mat-icon-button
+            [disabled]="inputIsDisabled"
+            [tcTooltip]="inputTooltipText"
+            [placement]="inputTooltipPlacement"
+            (click)="onClick()"
         >
-        </terra-file-chooser>
+            <mat-icon>more_horiz</mat-icon>
+        </button>
         <button
             matSuffix
             mat-icon-button
@@ -57,5 +55,31 @@
         <mat-dialog-content>
             <img [src]="data.filepath" />
         </mat-dialog-content>
+    </ng-template>
+
+    <ng-template #fileBrowserDialog>
+        <mat-dialog-content>
+            <terra-file-browser
+                #fileBrowser
+                [inputAllowedExtensions]="inputAllowedExtensions"
+                [inputAllowFolders]="inputAllowFolders"
+                [inputStorageServices]="inputStorageServices"
+                (outputSelectedChange)="onSelectedObjectChange($event)"
+            >
+            </terra-file-browser>
+        </mat-dialog-content>
+        <mat-dialog-actions>
+            <button mat-flat-button mat-dialog-close>
+                {{ inputSecondaryBrowserButtonCaption }}
+            </button>
+            <button
+                mat-flat-button
+                class="terra-color-active"
+                [disabled]="_selectedObject ? _selectedObject.isDirectory : true"
+                [mat-dialog-close]="_selectedObject"
+            >
+                {{ inputPrimaryBrowserButtonCaption }}
+            </button>
+        </mat-dialog-actions>
     </ng-template>
 </div>
