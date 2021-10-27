@@ -1,5 +1,4 @@
 import { Component, Inject, Input, TemplateRef, ViewChild } from '@angular/core';
-import { isNullOrUndefined } from 'util';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TerraInputComponent } from '../terra-input.component';
 import { PathHelper } from '../../../../helpers/path.helper';
@@ -121,7 +120,7 @@ export class TerraFileInputComponent extends TerraInputComponent {
     }
 
     public getIconClass(filename: string): string {
-        if (isNullOrUndefined(filename)) {
+        if (filename === null || filename === undefined) {
             return '';
         }
 
@@ -136,7 +135,7 @@ export class TerraFileInputComponent extends TerraInputComponent {
     }
 
     public getFilename(path: string): string {
-        if (isNullOrUndefined(path)) {
+        if (path === null || path === undefined) {
             return '';
         }
         return PathHelper.basename(path);
