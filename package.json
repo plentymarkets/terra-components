@@ -11,7 +11,6 @@
         "test-headless-coverage": "ng test lib --watch=false --code-coverage --browsers=ChromeHeadless",
         "badge:coverage": "npm run test-headless-coverage && gulp updateCoverageBadge",
         "lint": "ng lint",
-        "lint-diff": "eslint $(git diff --name-only origin/${DEST:-main}...HEAD | grep '\\.ts$') -- 'src/main.ts'",
         "prettier": "prettier --check .",
         "reinstall": "npm ci",
         "prepare-release": "npm ci && npm run build && npm run test-headless && npm start"
