@@ -148,7 +148,12 @@ export class TerraFileInputComponent extends TerraInputComponent {
         });
 
         dialogRef.afterClosed().subscribe((result: TerraStorageObject) => {
-            result ? this.outputSelected.emit(this._selectedObject) : this.outputCancelled.emit();
+            if (result) {
+                this.outputSelected.emit(this._selectedObject);
+                this.onObjectSelected(this._selectedObject);
+            } else {
+                this.outputCancelled.emit();
+            }
             this.onFileBrowserHide();
         });
     }
