@@ -1,0 +1,5 @@
+terra-file-browser {
+    display: block;
+    height: 60vh; // set to 60 since max-height of mat-dialog is 65vh
+    width: 1140px; // workaround fixed with
+}
