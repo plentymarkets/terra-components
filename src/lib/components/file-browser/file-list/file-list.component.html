@@ -154,28 +154,11 @@
         ></tr>
     </table>
 
-    <!--&lt;!&ndash;TODO Table&ndash;&gt;
-    <terra-simple-table
-        *ngIf="_fileTableRowList.length > 0"
-        [hidden]="_isDragActive"
-        [inputHeaderList]="_fileTableHeaderList"
-        [inputRowList]="_fileTableRowList"
-        [inputIsStriped]="true"
-        [inputUseHighlighting]="true"
-        [inputHasCheckboxes]="true"
-        [inputEnableHotkeys]="true"
-        (outputRowClicked)="_onRowClick($event)"
-        (outputHighlightedRowChange)="_onActiveRowChange($event)"
-        (outputSelectedRowsChange)="onSelectionChange($event)"
-    >
-    </terra-simple-table>-->
-
     <div *ngIf="_fileTableRowList.length <= 0" class="empty-directory">
         <div>
             <p>{{ _translationPrefix + '.noFiles' | translate: _locale.language }}</p>
 
             <div>
-                <!--TODO do we need just the text or the icon as well?-->
                 <button mat-raised-button (click)="fileChooser.click()">
                     {{ _translationPrefix + '.uploadFile' | translate: _locale.language }}
                 </button>
