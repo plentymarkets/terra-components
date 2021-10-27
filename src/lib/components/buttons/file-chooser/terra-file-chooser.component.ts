@@ -94,6 +94,7 @@ export class TerraFileChooserComponent extends TerraButtonComponent {
     }
 
     public onSelectedObjectChange(selectedObject: TerraStorageObject): void {
+        // workaround since change detection is not finished when selectedObject is set
         setTimeout(() => (this._selectedObject = selectedObject));
     }
 
