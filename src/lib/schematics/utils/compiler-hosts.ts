@@ -22,8 +22,8 @@ export function createMigrationProgram(
     tsconfigPath: string,
     basePath: string,
     fakeFileRead?: FakeReadFileFn,
-    additionalFiles?: string[]
-) {
+    additionalFiles?: Array<string>
+): any {
     // Resolve the tsconfig path to an absolute path. This is needed as TypeScript otherwise
     // is not able to resolve root directories in the given tsconfig. More details can be found
     // in the following issue: https://github.com/microsoft/TypeScript/issues/37731.
@@ -50,7 +50,7 @@ export function createMigrationCompilerHost(
     // program to be based on the file contents in the virtual file tree. Otherwise
     // if we run multiple migrations we might have intersecting changes and
     // source files.
-    host.readFile = (fileName) => {
+    host.readFile = (fileName: string) => {
         const treeRelativePath = relative(basePath, fileName);
         const fakeOutput = fakeRead ? fakeRead(treeRelativePath) : null;
         const buffer = fakeOutput === null ? tree.read(treeRelativePath) : fakeOutput;
