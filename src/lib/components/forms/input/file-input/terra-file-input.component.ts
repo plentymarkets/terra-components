@@ -97,7 +97,7 @@ export class TerraFileInputComponent extends TerraInputComponent {
         this.value = '';
     }
 
-    public openFileBrowserDialog(): void {
+    public _openFileBrowserDialog(): void {
         const dialogRef: MatDialogRef<any> = this._dialog.open(this._fileBrowserDialog, {
             autoFocus: false
         });
@@ -113,7 +113,7 @@ export class TerraFileInputComponent extends TerraInputComponent {
         });
     }
 
-    public onSelectedObjectChange(selectedObject: TerraStorageObject): void {
+    public _onSelectedObjectChange(selectedObject: TerraStorageObject): void {
         // workaround since change detection is not finished when selectedObject is set
         setTimeout(() => (this._selectedObject = selectedObject));
     }

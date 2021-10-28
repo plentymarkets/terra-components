@@ -35,7 +35,7 @@
             [disabled]="inputIsDisabled"
             [tcTooltip]="_translationPrefix + '.chooseFile' | translate: _locale.language"
             placement="left"
-            (click)="openFileBrowserDialog()"
+            (click)="_openFileBrowserDialog()"
         >
             <mat-icon>more_horiz</mat-icon>
         </button>
@@ -64,7 +64,7 @@
                 [inputAllowedExtensions]="inputAllowedExtensions"
                 [inputAllowFolders]="inputAllowFolders"
                 [inputStorageServices]="inputStorageServices"
-                (outputSelectedChange)="onSelectedObjectChange($event)"
+                (outputSelectedChange)="_onSelectedObjectChange($event)"
             >
             </terra-file-browser>
         </mat-dialog-content>
