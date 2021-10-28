@@ -78,7 +78,7 @@
                 [disabled]="_selectedObject ? _selectedObject.isDirectory : true"
                 [mat-dialog-close]="_selectedObject"
             >
-                {{ inputPrimaryBrowserButtonCaption }}
+                {{ _translationPrefix + '.choose' | translate: _locale.language }}
             </button>
         </mat-dialog-actions>
     </ng-template>
