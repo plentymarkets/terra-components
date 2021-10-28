@@ -387,7 +387,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
     }
 
     public _openDeleteDialog(objectsToDelete: Array<TerraSimpleTableRowInterface<TerraStorageObject>>): void {
-        const objects = objectsToDelete.map((v) => v.value);
+        const objects = objectsToDelete.map((v: TerraSimpleTableRowInterface<TerraStorageObject>) => v.value);
         const deleteCount: number = this._getDeleteCount(objects);
 
         const deleteConfirmationDialog: MatDialogRef<number, boolean> = this._dialog.open(
