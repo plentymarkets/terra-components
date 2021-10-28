@@ -180,3 +180,7 @@
         }
     }
 }
+
+.mat-table .mat-row.focused {
+    background-color: var(--color-structure-2);
+}

@@ -78,6 +78,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
 
     public _displayedColumns: Array<string>;
 
+    public _focusedRow: TerraStorageObject;
     private _activeStorageService: TerraBaseStorageService;
 
     public get activeStorageService(): TerraBaseStorageService {
@@ -321,6 +322,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
     }
 
     public _onActiveRowChange(storageObject: TerraStorageObject): void {
+        this._focusedRow = storageObject;
         this._showOrHideImagePreview(storageObject);
         if (isNullOrUndefined(this._imagePreviewTimeout)) {
             clearTimeout(this._imagePreviewTimeout);
@@ -386,6 +388,31 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
                 this._deleteObjects(objectsToDelete);
             }
         });
+    }
+
+    public _onKeydown(event: KeyboardEvent): void {
+        const rowIndex = this._fileTableRowList.indexOf(this._focusedRow);
+        switch (event.which) {
+            case Key.DownArrow:
+                if (rowIndex < this._fileTableRowList.length - 1) {
+                    this._onActiveRowChange(this._fileTableRowList[rowIndex + 1]);
+                }
+                break;
+            case Key.UpArrow:
+                if (rowIndex > 0) {
+                    this._onActiveRowChange(this._fileTableRowList[rowIndex - 1]);
+                }
+                break;
+            case Key.Space:
+                event.ctrlKey || event.metaKey ? this._masterToggle() : this._selection.toggle(this._focusedRow);
+                break;
+            case Key.Enter:
+                this._onRowClick(this._focusedRow);
+                this._onActiveRowChange(this._focusedRow);
+                break;
+        }
+
+        event.preventDefault();
     }
 
     private _renderFileList(): void {

@@ -54,6 +54,8 @@
         [dataSource]="_fileTableRowList"
         [hidden]="_isDragActive"
         class="w-100"
+        tabindex="0"
+        (keydown)="_onKeydown($event)"
     >
         <ng-container matColumnDef="checkbox">
             <th mat-header-cell *matHeaderCellDef>
@@ -156,6 +158,7 @@
         <tr mat-header-row *matHeaderRowDef="_displayedColumns"></tr>
         <tr
             mat-row
+            [class.focused]="row === _focusedRow"
             *matRowDef="let row; columns: _displayedColumns"
             (click)="_onRowClick(row); _onActiveRowChange(row)"
         ></tr>
