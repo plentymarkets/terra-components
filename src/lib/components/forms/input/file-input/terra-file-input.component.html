@@ -33,7 +33,7 @@
             matSuffix
             mat-icon-button
             [disabled]="inputIsDisabled"
-            [tcTooltip]="inputTooltipText"
+            [tcTooltip]="_translationPrefix + '.chooseFile' | translate: _locale.language"
             [placement]="inputTooltipPlacement"
             (click)="openFileBrowserDialog()"
         >
