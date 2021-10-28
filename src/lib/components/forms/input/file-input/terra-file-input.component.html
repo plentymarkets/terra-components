@@ -34,7 +34,7 @@
             mat-icon-button
             [disabled]="inputIsDisabled"
             [tcTooltip]="_translationPrefix + '.chooseFile' | translate: _locale.language"
-            [placement]="inputTooltipPlacement"
+            placement="left"
             (click)="openFileBrowserDialog()"
         >
             <mat-icon>more_horiz</mat-icon>
