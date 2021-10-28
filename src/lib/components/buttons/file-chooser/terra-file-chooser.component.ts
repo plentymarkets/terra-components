@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, Output, TemplateRef, ViewChild } from '@angular/core';
 import { L10nTranslationService } from 'angular-l10n';
 import { isNullOrUndefined } from 'util';
 import { TerraFileBrowserComponent } from '../../file-browser/terra-file-browser.component';
@@ -7,6 +7,7 @@ import { TerraBaseStorageService } from '../../file-browser/terra-base-storage.i
 import { TerraStorageObject } from '../../file-browser/model/terra-storage-object';
 import { TerraOverlayComponent } from '../../layouts/overlay/terra-overlay.component';
 import { TerraOverlayButtonInterface } from '../../layouts/overlay/data/terra-overlay-button.interface';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 /**
  * @deprecated since v11. Use material's [button]{@link https://material.angular.io/components/button}
@@ -79,8 +80,11 @@ export class TerraFileChooserComponent extends TerraButtonComponent {
     @ViewChild('overlay', { static: true })
     public overlay: TerraOverlayComponent;
 
-    @ViewChild('fileBrowser', { static: true })
+    @ViewChild('fileBrowser', { static: false })
     public fileBrowser: TerraFileBrowserComponent;
+
+    @ViewChild(TemplateRef, { static: true })
+    public _fileBrowserDialog: TemplateRef<any>;
 
     public primaryOverlayButton: TerraOverlayButtonInterface;
 
@@ -96,7 +100,7 @@ export class TerraFileChooserComponent extends TerraButtonComponent {
 
     private _storageServices: Array<TerraBaseStorageService>;
 
-    constructor(private _translation: L10nTranslationService) {
+    constructor(private _translation: L10nTranslationService, private _dialog: MatDialog) {
         super();
 
         this.primaryOverlayButton = {
@@ -122,7 +126,9 @@ export class TerraFileChooserComponent extends TerraButtonComponent {
 
     public onClick(event: Event): void {
         this.outputClicked.emit(event);
-        this.overlay.showOverlay();
+        const dialogRef: MatDialogRef<any> = this._dialog.open(this._fileBrowserDialog, {});
+        dialogRef.afterOpened().subscribe(() => this.onBrowserShow());
+        dialogRef.afterClosed().subscribe(() => this.onBrowserHide());
     }
 
     public onSelectedObjectChange(selectedObject: TerraStorageObject): void {
