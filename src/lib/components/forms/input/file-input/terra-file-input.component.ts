@@ -27,24 +27,6 @@ export class TerraFileInputComponent extends TerraInputComponent {
     public inputShowPreview: boolean = false;
 
     @Input()
-    public set inputPrimaryBrowserButtonCaption(value: string) {
-        this._primaryBrowserButtonCaption = value;
-    }
-
-    public get inputPrimaryBrowserButtonCaption(): string {
-        return this._primaryBrowserButtonCaption || this._translation.translate(this._translationPrefix + '.choose');
-    }
-
-    @Input()
-    public set inputSecondaryBrowserButtonCaption(value: string) {
-        this._primaryBrowserButtonCaption = value;
-    }
-
-    public get inputSecondaryBrowserButtonCaption(): string {
-        return this._secondaryBrowserButtonCaption || this._translation.translate(this._translationPrefix + '.cancel');
-    }
-
-    @Input()
     public inputAllowedExtensions: Array<string> = [];
 
     @Input()
