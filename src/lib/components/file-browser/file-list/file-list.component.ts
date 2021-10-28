@@ -75,11 +75,11 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
 
     public _fileTableRowList: Array<TerraSimpleTableRowInterface<TerraStorageObject>> = [];
 
-    public selection: SelectionModel<TerraSimpleTableRowInterface<TerraStorageObject>> = new SelectionModel<
+    public _selection: SelectionModel<TerraSimpleTableRowInterface<TerraStorageObject>> = new SelectionModel<
         TerraSimpleTableRowInterface<TerraStorageObject>
     >(true, []);
 
-    public displayedColumns: Array<string>;
+    public _displayedColumns: Array<string>;
 
     private _activeStorageService: TerraBaseStorageService;
 
@@ -216,7 +216,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         public _parentFileBrowser: TerraFileBrowser,
         private _changeDetector: ChangeDetectorRef,
         private _fileBrowserService: TerraFileBrowserService,
-        public _translationService: L10nTranslationService,
+        private _translationService: L10nTranslationService,
         private _localeService: L10nIntlService,
         private _alertService: AlertService,
         private _dialog: MatDialog
@@ -283,11 +283,12 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         this._fileBrowserService.removeDropzone(this._fileDropzoneElement.nativeElement);
     }
 
-    /* public onSelectionChange(rows: Array<TerraSimpleTableRowInterface<TerraStorageObject>>): void {
+    /** @deprecated since v13.0 */
+    public onSelectionChange(rows: Array<TerraSimpleTableRowInterface<TerraStorageObject>>): void {
         this._selectedStorageObjects = rows.map((row: TerraSimpleTableRowInterface<TerraStorageObject>) => {
             return row.value;
         });
-    }*/
+    }
 
     public onFileSelect(event: Event): void {
         let target: any = event.target || event.srcElement;
@@ -345,38 +346,30 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
     }
 
     public _deleteSelected(): void {
-        this._openDeleteDialog(this.selection.selected);
+        this._openDeleteDialog(this._selection.selected);
     }
 
-    public _isPublicHeaderList(): boolean {
-        if (this.activeStorageService instanceof TerraBasePrivateStorageService) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-    public isAllSelected(): boolean {
-        const numSelected = this.selection.selected.length;
+    public _isAllSelected(): boolean {
+        const numSelected = this._selection.selected.length;
         const numRows = this._fileTableRowList.length;
         return numSelected === numRows;
     }
 
-    public masterToggle(): void {
-        if (this.isAllSelected()) {
-            this.selection.clear();
+    public _masterToggle(): void {
+        if (this._isAllSelected()) {
+            this._selection.clear();
             return;
         }
-        this.selection.select(...this._fileTableRowList);
+        this._selection.select(...this._fileTableRowList);
     }
 
-    public _deleteButtonListener(event: Event, row: any): void {
+    public _deleteButtonListener(event: Event, row: TerraSimpleTableRowInterface<TerraStorageObject>): void {
         this._openDeleteDialog([row]);
         event.stopPropagation();
         event.preventDefault();
     }
 
-    public _clipBoardButtonListener(event: MouseEvent, row: any): void {
+    public _clipBoardButtonListener(event: MouseEvent, row: TerraSimpleTableRowInterface<TerraStorageObject>): void {
         ClipboardHelper.copyText(row.value.publicUrl);
         event.stopPropagation();
     }
@@ -386,9 +379,9 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         event.stopPropagation();
     }
 
-    public _openDeleteDialog(objectsToDelete: Array<TerraSimpleTableRowInterface<TerraStorageObject>>): void {
-        const objects = objectsToDelete.map((v: TerraSimpleTableRowInterface<TerraStorageObject>) => v.value);
-        const deleteCount: number = this._getDeleteCount(objects);
+    public _openDeleteDialog(rowsToDelete: Array<TerraSimpleTableRowInterface<TerraStorageObject>>): void {
+        const objectsToDelete = rowsToDelete.map((row: TerraSimpleTableRowInterface<TerraStorageObject>) => row.value);
+        const deleteCount: number = this._getDeleteCount(objectsToDelete);
 
         const deleteConfirmationDialog: MatDialogRef<number, boolean> = this._dialog.open(
             this._deleteConfirmationDialog,
@@ -399,7 +392,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
 
         deleteConfirmationDialog.afterClosed().subscribe((result: boolean) => {
             if (result) {
-                this._deleteObjects(objects);
+                this._deleteObjects(objectsToDelete);
             }
         });
     }
@@ -418,7 +411,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         this._selectedStorageObjects = [];
         this._parentFileBrowser.outputSelectedChange.emit(null);
         this._changeDetector.detectChanges();
-        this.selection.clear();
+        this._selection.clear();
     }
 
     private _fillTableRowList(): void {
@@ -481,7 +474,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
     }
 
     private _createPublicHeaderList(): void {
-        this.displayedColumns = [
+        this._displayedColumns = [
             'checkbox',
             'fileName',
             'fileURL',
@@ -493,7 +486,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
     }
 
     private _createPrivateHeaderList(): void {
-        this.displayedColumns = ['checkbox', 'fileName', 'fileSize', 'lastModified', 'downloadBtn', 'deleteBtn'];
+        this._displayedColumns = ['checkbox', 'fileName', 'fileSize', 'lastModified', 'downloadBtn', 'deleteBtn'];
     }
 
     private _isAllowed(filename: string): boolean {
