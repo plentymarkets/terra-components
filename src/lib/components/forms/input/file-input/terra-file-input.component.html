@@ -38,7 +38,7 @@
             [inputAllowFolders]="inputAllowFolders"
             [inputStorageServices]="inputStorageServices"
             (outputSelected)="onObjectSelected($event)"
-            (outputFileBrowserShow)="$event.selectUrl(value)"
+            (outputFileBrowserShow)="$event._selectUrl(value)"
         >
         </terra-file-chooser>
         <button
