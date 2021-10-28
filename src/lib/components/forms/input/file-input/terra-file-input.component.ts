@@ -68,8 +68,7 @@ export class TerraFileInputComponent extends TerraInputComponent {
 
     constructor(
         @Inject(L10N_LOCALE) public _locale: L10nLocale,
-        private _dialog: MatDialog,
-        private _translation: L10nTranslationService
+        private _dialog: MatDialog
     ) {
         super(TerraRegex.MIXED);
 
