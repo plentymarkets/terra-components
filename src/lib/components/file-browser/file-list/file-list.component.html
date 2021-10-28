@@ -48,7 +48,13 @@
         </div>
     </div>
 
-    <table *ngIf="_fileTableRowList.length > 0" mat-table [dataSource]="_fileTableRowList" [hidden]="_isDragActive">
+    <table
+        *ngIf="_fileTableRowList.length > 0"
+        mat-table
+        [dataSource]="_fileTableRowList"
+        [hidden]="_isDragActive"
+        class="w-100"
+    >
         <ng-container matColumnDef="checkbox">
             <th mat-header-cell *matHeaderCellDef>
                 <mat-checkbox
@@ -69,29 +75,30 @@
         </ng-container>
         <ng-container matColumnDef="fileName">
             <th mat-header-cell *matHeaderCellDef>
-                {{ this._translationPrefix + '.fileName' | translate: _locale.language }}
+                {{ _translationPrefix + '.fileName' | translate: _locale.language }}
             </th>
             <td mat-cell *matCellDef="let row">
-                <ng-container *ngIf="row.value.isDirectory">
-                    <mat-icon>folder</mat-icon>
+                <ng-container [ngSwitch]="row.isDirectory">
+                    <mat-icon *ngSwitchCase="true">folder</mat-icon>
+                    <mat-icon *ngSwitchCase="false" fontSet="plentyicons" [fontIcon]="row.icon"></mat-icon>
                 </ng-container>
-                {{ row.value.name }}
+                {{ row.name }}
             </td>
         </ng-container>
         <ng-container matColumnDef="fileURL">
             <th mat-header-cell *matHeaderCellDef>
-                {{ this._translationPrefix + '.fileURL' | translate: _locale.language }}
+                {{ _translationPrefix + '.fileURL' | translate: _locale.language }}
             </th>
             <td mat-cell *matCellDef="let row">
-                <ng-container *ngIf="row.value.isFile">
-                    {{ row.value.publicUrl }}
+                <ng-container *ngIf="row.isFile">
+                    {{ row.publicUrl }}
                 </ng-container>
             </td>
         </ng-container>
         <ng-container matColumnDef="copyIntoClipboard">
             <th mat-header-cell *matHeaderCellDef></th>
             <td mat-cell *matCellDef="let row">
-                <ng-container *ngIf="row.value.isFile">
+                <ng-container *ngIf="row.isFile">
                     <button
                         mat-icon-button
                         [tcTooltip]="_translationPrefix + '.copyToClipboard' | translate: _locale.language"
@@ -104,21 +111,21 @@
         </ng-container>
         <ng-container matColumnDef="fileSize">
             <th mat-header-cell *matHeaderCellDef>
-                {{ this._translationPrefix + '.fileSize' | translate: _locale.language }}
+                {{ _translationPrefix + '.fileSize' | translate: _locale.language }}
             </th>
             <td mat-cell *matCellDef="let row">
-                <ng-container *ngIf="row.value.isFile">
-                    {{ row.value.sizeString }}
+                <ng-container *ngIf="row.isFile">
+                    {{ row.sizeString }}
                 </ng-container>
             </td>
         </ng-container>
         <ng-container matColumnDef="lastModified">
             <th mat-header-cell *matHeaderCellDef>
-                {{ this._translationPrefix + '.lastChange' | translate: _locale.language }}
+                {{ _translationPrefix + '.lastChange' | translate: _locale.language }}
             </th>
             <td mat-cell *matCellDef="let row">
-                <ng-container *ngIf="row.value.isFile">
-                    {{ row.value.lastModified | date: 'medium' }}
+                <ng-container *ngIf="row.isFile">
+                    {{ row.lastModified | l10nDate: _locale.language:{ dateStyle: 'medium', timeStyle: 'medium' } }}
                 </ng-container>
             </td>
         </ng-container>

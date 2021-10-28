@@ -25,15 +25,14 @@ import { isNullOrUndefined } from 'util';
 import { TerraBasePrivateStorageService } from '../terra-base-private-storage.interface';
 import { TerraStorageObjectList } from '../model/terra-storage-object-list';
 import { PathHelper } from '../../../helpers/path.helper';
-import { TerraSimpleTableComponent } from '../../tables/simple/terra-simple-table.component';
 import { TerraStorageObject } from '../model/terra-storage-object';
 import { FileTypeHelper } from '../../../helpers/fileType.helper';
-import { TerraSimpleTableRowInterface } from '../../tables/simple/row/terra-simple-table-row.interface';
 import { ClipboardHelper } from '../../../helpers/clipboard.helper';
-import { TerraSimpleTableCellInterface } from '../../tables/simple/cell/terra-simple-table-cell.interface';
 import { AlertService } from '../../alert/alert.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { SelectionModel } from '@angular/cdk/collections';
+import { TerraSimpleTableRowInterface } from '../../tables/simple/row/terra-simple-table-row.interface';
+import { Key } from 'ts-keycode-enum';
 
 const MAX_UPLOAD_COUNT: number = 10;
 
@@ -73,11 +72,9 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
 
     public _selectedStorageObjects: Array<TerraStorageObject> = [];
 
-    public _fileTableRowList: Array<TerraSimpleTableRowInterface<TerraStorageObject>> = [];
+    public _fileTableRowList: Array<TerraStorageObject> = [];
 
-    public _selection: SelectionModel<TerraSimpleTableRowInterface<TerraStorageObject>> = new SelectionModel<
-        TerraSimpleTableRowInterface<TerraStorageObject>
-    >(true, []);
+    public _selection: SelectionModel<TerraStorageObject> = new SelectionModel<TerraStorageObject>(true, []);
 
     public _displayedColumns: Array<string>;
 
@@ -144,9 +141,6 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
 
     @ViewChild('fileDropzone', { read: ElementRef, static: true })
     private _fileDropzoneElement: ElementRef;
-
-    @ViewChild(TerraSimpleTableComponent)
-    private _fileTableComponent: TerraSimpleTableComponent<TerraStorageObject>;
 
     private _dragSubscription: Subscription;
 
@@ -246,9 +240,9 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
                         this.imagePreviewObject = object;
                         this.showImagePreview.emit(this.activeStorageService.isImagePreviewEnabled);
                     }
-                    this._fileTableComponent.inputHighlightedRow = this._fileTableRowList.find(
-                        (r: TerraSimpleTableRowInterface<TerraStorageObject>): boolean => r.value === object
-                    );
+                    /*this._fileTableComponent.inputHighlightedRow = this._fileTableRowList.find(
+                        (r: TerraStorageObject): boolean => r === object
+                    );*/
                 }
             }
         });
@@ -283,7 +277,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         this._fileBrowserService.removeDropzone(this._fileDropzoneElement.nativeElement);
     }
 
-    /** @deprecated since v13.0 */
+    /** @deprecated since v12.2 */
     public onSelectionChange(rows: Array<TerraSimpleTableRowInterface<TerraStorageObject>>): void {
         this._selectedStorageObjects = rows.map((row: TerraSimpleTableRowInterface<TerraStorageObject>) => {
             return row.value;
@@ -319,16 +313,14 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         });
     }
 
-    public _onRowClick(row: TerraSimpleTableRowInterface<TerraStorageObject>): void {
-        let storageObject: TerraStorageObject = row.value;
+    public _onRowClick(storageObject: TerraStorageObject): void {
         if (storageObject.isDirectory) {
             this.currentStorageRoot = storageObject;
             this.selectNode.emit(storageObject);
         }
     }
 
-    public _onActiveRowChange(row: TerraSimpleTableRowInterface<TerraStorageObject>): void {
-        let storageObject: TerraStorageObject = row.value;
+    public _onActiveRowChange(storageObject: TerraStorageObject): void {
         this._showOrHideImagePreview(storageObject);
         if (isNullOrUndefined(this._imagePreviewTimeout)) {
             clearTimeout(this._imagePreviewTimeout);
@@ -363,24 +355,23 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         this._selection.select(...this._fileTableRowList);
     }
 
-    public _deleteButtonListener(event: Event, row: TerraSimpleTableRowInterface<TerraStorageObject>): void {
+    public _deleteButtonListener(event: Event, row: TerraStorageObject): void {
         this._openDeleteDialog([row]);
         event.stopPropagation();
         event.preventDefault();
     }
 
-    public _clipBoardButtonListener(event: MouseEvent, row: TerraSimpleTableRowInterface<TerraStorageObject>): void {
-        ClipboardHelper.copyText(row.value.publicUrl);
+    public _clipBoardButtonListener(event: MouseEvent, row: TerraStorageObject): void {
+        ClipboardHelper.copyText(row.publicUrl);
         event.stopPropagation();
     }
 
-    public _downloadButtonListener(event: MouseEvent, row: any): void {
-        (<TerraBasePrivateStorageService>this.activeStorageService).downloadFile(row.value.key);
+    public _downloadButtonListener(event: MouseEvent, row: TerraStorageObject): void {
+        (<TerraBasePrivateStorageService>this.activeStorageService).downloadFile(row.key);
         event.stopPropagation();
     }
 
-    public _openDeleteDialog(rowsToDelete: Array<TerraSimpleTableRowInterface<TerraStorageObject>>): void {
-        const objectsToDelete = rowsToDelete.map((row: TerraSimpleTableRowInterface<TerraStorageObject>) => row.value);
+    public _openDeleteDialog(objectsToDelete: Array<TerraStorageObject>): void {
         const deleteCount: number = this._getDeleteCount(objectsToDelete);
 
         const deleteConfirmationDialog: MatDialogRef<number, boolean> = this._dialog.open(
@@ -422,47 +413,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
             .sort((objectA: TerraStorageObject, objectB: TerraStorageObject) => {
                 return objectA.name.localeCompare(objectB.name);
             })
-            .filter((storageObject: TerraStorageObject) => this._isAllowed(storageObject.key))
-            .map((storageObject: TerraStorageObject) => {
-                return this._createTableRow(storageObject);
-            });
-    }
-
-    private _createTableRow(storageObject: TerraStorageObject): TerraSimpleTableRowInterface<TerraStorageObject> {
-        let cellList: Array<TerraSimpleTableCellInterface> = [];
-
-        cellList.push({
-            caption: storageObject.name,
-            icon: storageObject.icon
-        });
-
-        if (!(this.activeStorageService instanceof TerraBasePrivateStorageService)) {
-            cellList.push({
-                caption: storageObject.isFile ? storageObject.publicUrl : ''
-            });
-
-            /*this._addClipboardButton(storageObject, cellList);*/
-        }
-
-        cellList.push(
-            {
-                caption: storageObject.isFile ? storageObject.sizeString : ''
-            },
-            {
-                caption: storageObject.isFile
-                    ? this._localeService.formatDate(
-                          storageObject.lastModified,
-                          { dateStyle: 'medium', timeStyle: 'medium' },
-                          this._locale.language
-                      )
-                    : ''
-            }
-        );
-        return {
-            cellList: cellList,
-            value: storageObject,
-            disabled: !this._isAllowed(storageObject.key)
-        };
+            .filter((storageObject: TerraStorageObject) => this._isAllowed(storageObject.key));
     }
 
     private _createHeaderListDependingOnAccessLevel(): void {
