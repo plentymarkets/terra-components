@@ -65,9 +65,6 @@ export class TerraFileInputComponent extends TerraInputComponent {
     public _id: string;
     public _translationPrefix: string = 'terraFileInput';
 
-    private _primaryBrowserButtonCaption: string = '';
-
-    private _secondaryBrowserButtonCaption: string = '';
 
     constructor(
         @Inject(L10N_LOCALE) public _locale: L10nLocale,
