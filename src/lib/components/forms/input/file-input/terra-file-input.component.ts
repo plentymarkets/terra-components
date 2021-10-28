@@ -5,7 +5,7 @@ import { FileTypeHelper, PathHelper, StringHelper, TerraRegex } from '../../../.
 import { TerraBaseStorageService } from '../../../file-browser/terra-base-storage.interface';
 import { TerraStorageObject } from '../../../file-browser/model/terra-storage-object';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { L10N_LOCALE, L10nLocale, L10nTranslationService } from 'angular-l10n';
+import { L10N_LOCALE, L10nLocale } from 'angular-l10n';
 import { TerraFileBrowserComponent } from '../../../file-browser/terra-file-browser.component';
 
 let nextId: number = 0;
@@ -35,22 +35,6 @@ export class TerraFileInputComponent extends TerraInputComponent {
     @Input()
     public inputStorageServices: Array<TerraBaseStorageService>;
 
-    @Output()
-    public outputSelected: EventEmitter<TerraStorageObject> = new EventEmitter<TerraStorageObject>();
-
-    @Output()
-    public outputCancelled: EventEmitter<void> = new EventEmitter<void>();
-
-    @Output()
-    public outputFileBrowserShow: EventEmitter<TerraFileBrowserComponent> = new EventEmitter<
-        TerraFileBrowserComponent
-    >();
-
-    @Output()
-    public outputFileBrowserHide: EventEmitter<TerraFileBrowserComponent> = new EventEmitter<
-        TerraFileBrowserComponent
-    >();
-
     @ViewChild('fileBrowser', { static: false })
     public _fileBrowser: TerraFileBrowserComponent;
 
@@ -65,11 +49,7 @@ export class TerraFileInputComponent extends TerraInputComponent {
     public _id: string;
     public _translationPrefix: string = 'terraFileInput';
 
-
-    constructor(
-        @Inject(L10N_LOCALE) public _locale: L10nLocale,
-        private _dialog: MatDialog
-    ) {
+    constructor(@Inject(L10N_LOCALE) public _locale: L10nLocale, private _dialog: MatDialog) {
         super(TerraRegex.MIXED);
 
         // generate the id of the input instance
@@ -121,31 +101,16 @@ export class TerraFileInputComponent extends TerraInputComponent {
         const dialogRef: MatDialogRef<any> = this._dialog.open(this._fileBrowserDialog, {
             autoFocus: false
         });
-        dialogRef.afterOpened().subscribe(() => {
-            this.onFileBrowserShow();
-        });
 
         dialogRef.afterClosed().subscribe((result: TerraStorageObject) => {
             if (result) {
-                this.outputSelected.emit(this._selectedObject);
                 this.onObjectSelected(this._selectedObject);
-            } else {
-                this.outputCancelled.emit();
             }
-            this.onFileBrowserHide();
         });
     }
 
     public onSelectedObjectChange(selectedObject: TerraStorageObject): void {
         // workaround since change detection is not finished when selectedObject is set
         setTimeout(() => (this._selectedObject = selectedObject));
-    }
-
-    public onFileBrowserShow(): void {
-        this.outputFileBrowserShow.emit(this._fileBrowser);
-    }
-
-    public onFileBrowserHide(): void {
-        this.outputFileBrowserHide.emit(this._fileBrowser);
     }
 }
