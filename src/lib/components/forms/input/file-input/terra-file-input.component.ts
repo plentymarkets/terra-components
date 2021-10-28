@@ -102,6 +102,10 @@ export class TerraFileInputComponent extends TerraInputComponent {
             autoFocus: false
         });
 
+        dialogRef.afterOpened().subscribe(() => {
+            this._fileBrowser.selectUrl(this.value);
+        });
+
         dialogRef.afterClosed().subscribe((result: TerraStorageObject) => {
             if (result) {
                 this.onObjectSelected(this._selectedObject);
