@@ -4,7 +4,7 @@
 
 -   **terra-info** has been removed.
 -   **terra-file-chooser** has been removed.
--   **terra-file-input** added button from `terra-file-chooser` and it's functionality to `terra-file-input`.
+-   **terra-file-input** replaced `terra-file-chooser` with the button & dialog component provided by `@angular/material`.
 
 # 12.2.0 (X.X.2021)
 
