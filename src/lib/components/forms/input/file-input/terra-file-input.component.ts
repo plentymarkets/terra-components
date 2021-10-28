@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Inject, Input, Output, TemplateRef, ViewChild } from '@angular/core';
+import { Component, Inject, Input, TemplateRef, ViewChild } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TerraInputComponent } from '../terra-input.component';
 import { FileTypeHelper, PathHelper, StringHelper, TerraRegex } from '../../../../helpers';
