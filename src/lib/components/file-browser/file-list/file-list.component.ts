@@ -57,10 +57,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
     public hideImagePreview: EventEmitter<void> = new EventEmitter<void>();
 
     @Output()
-    public selectNode: EventEmitter<{ storage: TerraStorageObject; isNew: boolean }> = new EventEmitter<{
-        storage: TerraStorageObject;
-        isNew: boolean;
-    }>();
+    public selectNode: EventEmitter<TerraStorageObject> = new EventEmitter<TerraStorageObject>();
 
     public imagePreviewObject: TerraStorageObject;
 
@@ -134,7 +131,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
                         }
 
                         if (progress.filesTotal === progress.filesUploaded) {
-                            this.selectNode.emit({ storage: this.currentStorageRoot, isNew: false });
+                            this.selectNode.emit(this.currentStorageRoot);
                         }
                     }
                     this._changeDetector.detectChanges();
@@ -315,7 +312,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         this._showNewDirectoryPrompt = false;
         this._newDirectoryName = null;
         this.activeStorageService.createDirectory(path).subscribe((response: any) => {
-            this.selectNode.emit({ storage: this.currentStorageRoot, isNew: true });
+            this.selectNode.emit(this.currentStorageRoot);
         });
     }
 
@@ -323,7 +320,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         let storageObject: TerraStorageObject = row.value;
         if (storageObject.isDirectory) {
             this.currentStorageRoot = storageObject;
-            this.selectNode.emit({ storage: storageObject, isNew: false });
+            this.selectNode.emit(storageObject);
         }
     }
 
@@ -598,7 +595,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
                 this.imagePreviewObject = null;
                 this.hideImagePreview.emit();
             }
-            this.selectNode.emit({ storage: this.currentStorageRoot, isNew: false });
+            this.selectNode.emit(this.currentStorageRoot);
         });
     }
 

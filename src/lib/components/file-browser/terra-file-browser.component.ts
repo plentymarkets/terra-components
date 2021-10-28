@@ -87,14 +87,9 @@ export class TerraFileBrowserComponent extends TerraFileBrowser implements OnCha
         }
     }
 
-    public selectNode(object: { storage: TerraStorageObject; isNew: boolean }): void {
-        if (object.isNew) {
-            const copy: Array<TerraFileBrowserNode> = [...this.dataSource.data];
-            this.dataSource.data = [];
-            this.dataSource.data = copy;
-        }
+    public selectNode(storage: TerraStorageObject): void {
+        let foundNode: TerraFileBrowserNode = this.recursiveFindNodeByKey(this.dataSource.data, storage.key);
 
-        let foundNode: TerraFileBrowserNode = this.recursiveFindNodeByKey(this.dataSource.data, object.storage.key);
         if (foundNode) {
             this._currentSelectedNode = foundNode;
             this.treeControl.expand(foundNode);
