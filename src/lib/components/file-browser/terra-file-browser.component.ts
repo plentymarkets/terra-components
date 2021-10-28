@@ -34,10 +34,10 @@ export class TerraFileBrowserComponent extends TerraFileBrowser implements OnCha
 
     public onSelectedUrlChange: EventEmitter<string> = new EventEmitter();
 
-    public treeControl: NestedTreeControl<TerraFileBrowserNode> = new NestedTreeControl<TerraFileBrowserNode>(
+    public _treeControl: NestedTreeControl<TerraFileBrowserNode> = new NestedTreeControl<TerraFileBrowserNode>(
         (node: TerraFileBrowserNode): Array<TerraFileBrowserNode> => node.children
     );
-    public dataSource: MatTreeNestedDataSource<TerraFileBrowserNode> = new MatTreeNestedDataSource<
+    public _dataSource: MatTreeNestedDataSource<TerraFileBrowserNode> = new MatTreeNestedDataSource<
         TerraFileBrowserNode
     >();
 
@@ -88,11 +88,19 @@ export class TerraFileBrowserComponent extends TerraFileBrowser implements OnCha
     }
 
     public selectNode(storage: TerraStorageObject): void {
-        let foundNode: TerraFileBrowserNode = this.recursiveFindNodeByKey(this.dataSource.data, storage.key);
+        // check if storage is new
+        if (!storage.parent) {
+            // and reassign the data to get the tree updated
+            const copy: Array<TerraFileBrowserNode> = this._dataSource.data;
+            this._dataSource.data = [];
+            this._dataSource.data = copy;
+        }
+
+        let foundNode: TerraFileBrowserNode = this.recursiveFindNodeByKey(this._dataSource.data, storage.key);
 
         if (foundNode) {
             this._currentSelectedNode = foundNode;
-            this.treeControl.expand(foundNode);
+            this._treeControl.expand(foundNode);
         }
     }
 
@@ -163,7 +171,7 @@ export class TerraFileBrowserComponent extends TerraFileBrowser implements OnCha
 
             if (!this._currentSelectedNode) {
                 this._currentSelectedNode = node;
-                this.treeControl.expand(node);
+                this._treeControl.expand(node);
             }
 
             nodeList.push(node);
@@ -183,7 +191,7 @@ export class TerraFileBrowserComponent extends TerraFileBrowser implements OnCha
                         this._recursiveCreateNode(child, node, service);
                     });
 
-                    this.dataSource.data = nodeList;
+                    this._dataSource.data = nodeList;
                 }
             });
         });

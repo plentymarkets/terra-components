@@ -1,5 +1,5 @@
 <terra-3-col [leftColumnWidth]="2" [rightColumnWidth]="_rightColumnWidth" [centerColumnWidth]="_centerColumnWidth">
-    <mat-tree terraTree left [dataSource]="dataSource" [treeControl]="treeControl">
+    <mat-tree terraTree left [dataSource]="_dataSource" [treeControl]="_treeControl">
         <mat-tree-node
             *matTreeNodeDef="let node"
             matTreeNodeToggle
@@ -18,13 +18,13 @@
                 <div class="mat-tree-node">
                     <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'Toggle ' + node.name">
                         <mat-icon class="mat-icon-rtl-mirror">
-                            {{ treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right' }}
+                            {{ _treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right' }}
                         </mat-icon>
                     </button>
                     <mat-icon *ngIf="node.icon" class="node-icon icon" [fontIcon]="node.icon"></mat-icon>
                     {{ node.name }}
                 </div>
-                <ul [class.mat-nested-tree-invisible]="!treeControl.isExpanded(node)">
+                <ul [class.mat-nested-tree-invisible]="!_treeControl.isExpanded(node)">
                     <ng-container matTreeNodeOutlet></ng-container>
                 </ul>
             </li>

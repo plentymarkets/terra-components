@@ -311,8 +311,8 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         );
         this._showNewDirectoryPrompt = false;
         this._newDirectoryName = null;
-        this.activeStorageService.createDirectory(path).subscribe((response: any) => {
-            this.selectNode.emit(this.currentStorageRoot);
+        this.activeStorageService.createDirectory(path).subscribe((response: TerraStorageObject) => {
+            this.selectNode.emit(response);
         });
     }
 
