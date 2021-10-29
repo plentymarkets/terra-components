@@ -2,8 +2,8 @@ import { Component, Host, HostBinding, HostListener, Input } from '@angular/core
 import { TerraDataTableRowInterface } from '../interfaces/terra-data-table-row.interface';
 import { TerraDataTable } from '../../terra-data-table';
 
-/* tslint:disable:component-selector */
 @Component({
+    // eslint-disable-next-line @angular-eslint/component-selector
     selector: 'tr[tcTableRow]',
     templateUrl: './table-row.component.html',
     styleUrls: ['./table-row.component.scss']
