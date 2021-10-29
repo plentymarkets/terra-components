@@ -99,6 +99,7 @@ export class TerraFileBrowserComponent extends TerraFileBrowser implements OnCha
         const foundNode: TerraFileBrowserNode = this._recursiveFindNodeByKey(this._dataSource.data, storage.key);
 
         if (foundNode) {
+            this._currentSelectedNode = foundNode;
             this._treeControl.expand(foundNode);
         }
     }
@@ -122,6 +123,8 @@ export class TerraFileBrowserComponent extends TerraFileBrowser implements OnCha
     }
 
     public _onNodeClick(event: MouseEvent, node: TerraFileBrowserNode): void {
+        event.stopPropagation();
+
         if (node.onClick) {
             node.onClick();
         }
