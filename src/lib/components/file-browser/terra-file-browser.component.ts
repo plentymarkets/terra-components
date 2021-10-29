@@ -131,7 +131,10 @@ export class TerraFileBrowserComponent extends TerraFileBrowser implements OnCha
         this._currentSelectedNode = node;
     }
 
-    public _hasChild = (_: number, node: TerraFileBrowserNode): boolean => !!node.children && node.children.length > 0;
+    public _hasChild: (_: number, node: TerraFileBrowserNode) => boolean = (
+        _: number,
+        node: TerraFileBrowserNode
+    ): boolean => !!node.children && node.children.length > 0;
 
     private _recursiveExpandParents(node: TerraFileBrowserNode): void {
         const parentNode: TerraFileBrowserNode = this._recursiveFindNodeByKey(this._dataSource.data, node.parentKey);
