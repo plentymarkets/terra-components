@@ -81,11 +81,10 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
 
         let uploadItems: Array<TerraUploadItem> = [];
 
-        /* tslint:disable:prefer-for-of */
+        // eslint-disable-next-line @typescript-eslint/prefer-for-of
         for (let i: number = 0; i < files.length; i++) {
             uploadItems.push(this._uploadFile(files[i], path));
         }
-        /* tslint:enable:prefer-for-of */
 
         return uploadItems;
     }

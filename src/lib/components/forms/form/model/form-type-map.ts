@@ -53,6 +53,7 @@ export class FormTypeMap {
         },
         component: TextAreaComponent
     };
+    // eslint-disable-next-line id-denylist
     public readonly number: TerraFormTypeInterface = {
         inputMap: {
             required: 'isRequired'

@@ -29,6 +29,7 @@ import Spy = jasmine.Spy;
 @Directive({
     selector: 'tr[tcTableRow]'
 })
+// eslint-disable-next-line @angular-eslint/directive-class-suffix
 class TableRowMockComponent {
     @Input('tcTableRow')
     public row: TerraDataTableRowInterface<any>;

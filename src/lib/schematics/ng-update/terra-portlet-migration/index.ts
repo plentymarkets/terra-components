@@ -78,7 +78,7 @@ function getHeaderHTML(title: string, infoText?: string, placement?: string): st
     `;
 }
 
-// tslint:disable:max-function-line-count
+// eslint-disable-next-line max-lines-per-function
 function runPortletMigration(tree: Tree, tsconfigPath: string, basePath: string, pathToMigrate?: string): void {
     const program: ts.Program = createMigrationProgram(tree, tsconfigPath, basePath).program;
     let sourceFiles: Array<ts.SourceFile> = program

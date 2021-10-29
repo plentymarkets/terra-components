@@ -178,7 +178,7 @@ export class TerraDatePickerComponent implements OnChanges, ControlValueAccessor
         /* */
     };
 
-    private onChangeCallback: (_: any) => void = (_) => {
+    private onChangeCallback: (_: any) => void = (_: any) => {
         /* */
     };
 }
