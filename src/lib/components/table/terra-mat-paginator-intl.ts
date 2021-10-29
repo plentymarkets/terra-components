@@ -25,6 +25,7 @@ export class TerraMatPaginatorIntl extends MatPaginatorIntl {
      * @param length
      * @returns string
      */
+    // eslint-disable-next-line @typescript-eslint/typedef
     public getRangeLabel = (page: number, pageSize: number, length: number): string => {
         let ofLabel: string = this.translation.translate('terraMatPaginatorIntl.ofLabel');
 

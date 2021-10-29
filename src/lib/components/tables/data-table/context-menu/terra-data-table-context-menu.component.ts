@@ -9,7 +9,7 @@ import { isNullOrUndefined } from 'util';
  * @deprecated since v5.
  */
 @Component({
-    // tslint:disable-next-line
+    // eslint-disable-next-line @angular-eslint/component-selector
     selector: 'context-menu', // it still exists a terra-context-menu in terra, need to refactored first
     styleUrls: ['./terra-data-table-context-menu.component.scss'],
     templateUrl: './terra-data-table-context-menu.component.html'

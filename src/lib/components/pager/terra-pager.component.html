@@ -26,7 +26,7 @@
                         #pager
                         class="pager-page terra-number-input"
                         name="pager"
-                        [inputIsDisabled]="inputPagingData.totalsCount == 0"
+                        [inputIsDisabled]="inputPagingData.totalsCount === 0"
                         [inputMinValue]="1"
                         [inputMaxValue]="inputPagingData.lastPageNumber"
                         [(ngModel)]="inputPagingData.page"
@@ -45,7 +45,7 @@
                 inputIcon="icon-next icon_dist_top"
                 class="terra-button"
                 [inputIsDisabled]="
-                    inputPagingData.page == inputPagingData.lastPageNumber || inputPagingData.lastPageNumber == 0
+                    inputPagingData.page === inputPagingData.lastPageNumber || inputPagingData.lastPageNumber === 0
                 "
                 [inputIsLink]="true"
                 [inputIsSmall]="true"
@@ -55,7 +55,7 @@
                 inputIcon="icon-last icon_dist_top"
                 class="terra-button"
                 [inputIsDisabled]="
-                    inputPagingData.page == inputPagingData.lastPageNumber || inputPagingData.lastPageNumber == 0
+                    inputPagingData.page === inputPagingData.lastPageNumber || inputPagingData.lastPageNumber === 0
                 "
                 [inputIsLink]="true"
                 [inputIsSmall]="true"
@@ -65,7 +65,7 @@
             <terra-select-box
                 class="terra-select-box"
                 [inputListBoxValues]="inputPagingSize"
-                [inputIsDisabled]="inputPagingData.totalsCount == 0"
+                [inputIsDisabled]="inputPagingData.totalsCount === 0"
                 [inputIsSmall]="true"
                 [(ngModel)]="inputDefaultPagingSize"
                 (ngModelChange)="onChangeOffsetTo($event)"
@@ -78,7 +78,7 @@
         <terra-button
             inputIcon="icon-reload icon_dist_top"
             class="terra-button"
-            [inputIsDisabled]="inputPagingData.totalsCount == 0"
+            [inputIsDisabled]="inputPagingData.totalsCount === 0"
             [inputIsLink]="true"
             [inputIsSmall]="true"
             (outputClicked)="onReload()"
