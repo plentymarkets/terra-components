@@ -80,24 +80,25 @@ export class TerraFileBrowserComponent extends TerraFileBrowser implements OnCha
 
     public ngOnChanges(changes: SimpleChanges): void {
         if (changes.hasOwnProperty('inputStorageServices')) {
-            // this._nodeTreeConfig.reset(); TODO???
             this._renderTree(changes['inputStorageServices'].currentValue);
         }
     }
 
-    public _selectNode(storage: TerraStorageObject): void {
+    public selectNode(storage: TerraStorageObject): void {
         // check if storage is new
         if (!storage.parent) {
             // and reassign the data to get the tree updated
             const copy: Array<TerraFileBrowserNode> = this._dataSource.data;
             this._dataSource.data = [];
             this._dataSource.data = copy;
+
+            // use current selected node here since the new folder is added but not opened
+            this._recursiveExpandParents(this._currentSelectedNode);
         }
 
         const foundNode: TerraFileBrowserNode = this._recursiveFindNodeByKey(this._dataSource.data, storage.key);
 
         if (foundNode) {
-            this._currentSelectedNode = foundNode;
             this._treeControl.expand(foundNode);
         }
     }
@@ -129,6 +130,16 @@ export class TerraFileBrowserComponent extends TerraFileBrowser implements OnCha
     }
 
     public _hasChild = (_: number, node: TerraFileBrowserNode): boolean => !!node.children && node.children.length > 0;
+
+    private _recursiveExpandParents(node: TerraFileBrowserNode): void {
+        const parentNode: TerraFileBrowserNode = this._recursiveFindNodeByKey(this._dataSource.data, node.parentKey);
+
+        if (parentNode && !this._treeControl.isExpanded(parentNode)) {
+            this._treeControl.expand(parentNode);
+
+            this._recursiveExpandParents(parentNode);
+        }
+    }
 
     private _recursiveFindNodeByKey(nodeList: Array<TerraFileBrowserNode>, key: string): TerraFileBrowserNode {
         let foundNode: TerraFileBrowserNode = null;
@@ -162,7 +173,8 @@ export class TerraFileBrowserComponent extends TerraFileBrowser implements OnCha
         services.forEach((service: TerraBaseStorageService) => {
             let node: TerraFileBrowserNode = {
                 key: service.name,
-                name: service.name
+                name: service.name,
+                parentKey: null // first entry does not have a parent
             };
 
             if (!this._currentSelectedNode) {
@@ -211,6 +223,7 @@ export class TerraFileBrowserComponent extends TerraFileBrowser implements OnCha
                 key: storage.key,
                 name: name,
                 icon: storage.icon,
+                parentKey: parentNode.key,
                 onClick: (): void => this.updatedStorageRootAndService.next([service, storage]),
                 children: []
             };
