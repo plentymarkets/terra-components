@@ -148,7 +148,11 @@
             <td mat-cell *matCellDef="let row">
                 <button
                     mat-icon-button
-                    [tcTooltip]="_translationPrefix + '.deleteSelectedFiles' | translate: _locale.language"
+                    [tcTooltip]="
+                        row.isFile
+                            ? (_translationPrefix + '.deleteFile' | translate: _locale.language)
+                            : (_translationPrefix + '.deleteFolder' | translate: _locale.language)
+                    "
                     (click)="_deleteButtonListener($event, row)"
                 >
                     <mat-icon>delete</mat-icon>

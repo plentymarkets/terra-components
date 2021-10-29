@@ -241,9 +241,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
                         this.imagePreviewObject = object;
                         this.showImagePreview.emit(this.activeStorageService.isImagePreviewEnabled);
                     }
-                    /*this._fileTableComponent.inputHighlightedRow = this._fileTableRowList.find(
-                        (r: TerraStorageObject): boolean => r === object
-                    );*/
+                    this._focusedRow = this._fileTableRowList.find((so: TerraStorageObject) => so === object);
                 }
             }
         });
