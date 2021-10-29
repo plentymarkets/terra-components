@@ -27,7 +27,6 @@ import { TerraCardComponent } from './layouts/card/terra-card.component';
 import { TerraToggleComponent } from './buttons/toggle/terra-toggle.component';
 import { TerraFileBrowserComponent } from './file-browser/terra-file-browser.component';
 import { TerraFileInputComponent } from './forms/input/file-input/terra-file-input.component';
-import { TerraFileChooserComponent } from './buttons/file-chooser/terra-file-chooser.component';
 import { TerraNoResultNoticeComponent } from './no-result/terra-no-result-notice.component';
 import { TerraButtonWithOptionsComponent } from './buttons/button-with-options/terra-button-with-options.component';
 import { TerraNoteEditorComponent } from './editors/note-editor/terra-note-editor.component';
@@ -101,7 +100,6 @@ export const exportedComponents: Array<Type<any>> = [
     TerraToggleComponent,
     TerraFileBrowserComponent,
     TerraFileInputComponent,
-    TerraFileChooserComponent,
     TerraNoResultNoticeComponent,
     TerraButtonWithOptionsComponent,
     TerraNoteEditorComponent,

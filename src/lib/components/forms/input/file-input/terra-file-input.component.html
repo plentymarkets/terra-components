@@ -29,18 +29,16 @@
             [required]="inputIsRequired"
             (click)="valueInput.select()"
         />
-        <terra-file-chooser
+        <button
             matSuffix
-            [inputIcon]="'icon-more'"
-            [inputTooltipText]="_translationPrefix + '.chooseFile' | translate: _locale.language"
-            [inputTooltipPlacement]="'left'"
-            [inputAllowedExtensions]="inputAllowedExtensions"
-            [inputAllowFolders]="inputAllowFolders"
-            [inputStorageServices]="inputStorageServices"
-            (outputSelected)="onObjectSelected($event)"
-            (outputFileBrowserShow)="$event.selectUrl(value)"
+            mat-icon-button
+            [disabled]="inputIsDisabled"
+            [tcTooltip]="_translationPrefix + '.chooseFile' | translate: _locale.language"
+            placement="left"
+            (click)="_openFileBrowserDialog()"
         >
-        </terra-file-chooser>
+            <mat-icon>more_horiz</mat-icon>
+        </button>
         <button
             matSuffix
             mat-icon-button
@@ -57,5 +55,31 @@
         <mat-dialog-content>
             <img [src]="data.filepath" />
         </mat-dialog-content>
+    </ng-template>
+
+    <ng-template #fileBrowserDialog>
+        <mat-dialog-content>
+            <terra-file-browser
+                #fileBrowser
+                [inputAllowedExtensions]="inputAllowedExtensions"
+                [inputAllowFolders]="inputAllowFolders"
+                [inputStorageServices]="inputStorageServices"
+                (outputSelectedChange)="_onSelectedObjectChange($event)"
+            >
+            </terra-file-browser>
+        </mat-dialog-content>
+        <mat-dialog-actions>
+            <button mat-flat-button mat-dialog-close>
+                {{ _translationPrefix + '.cancel' | translate: _locale.language }}
+            </button>
+            <button
+                mat-flat-button
+                color="primary"
+                [disabled]="_selectedObject ? _selectedObject.isDirectory : true"
+                [mat-dialog-close]="_selectedObject"
+            >
+                {{ _translationPrefix + '.choose' | translate: _locale.language }}
+            </button>
+        </mat-dialog-actions>
     </ng-template>
 </div>

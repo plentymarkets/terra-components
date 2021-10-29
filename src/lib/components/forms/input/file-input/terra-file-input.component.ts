@@ -1,15 +1,12 @@
 import { Component, Inject, Input, TemplateRef, ViewChild } from '@angular/core';
-import { isNullOrUndefined } from 'util';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TerraInputComponent } from '../terra-input.component';
-import { PathHelper } from '../../../../helpers/path.helper';
-import { FileTypeHelper } from '../../../../helpers/fileType.helper';
+import { FileTypeHelper, PathHelper, StringHelper, TerraRegex } from '../../../../helpers';
 import { TerraBaseStorageService } from '../../../file-browser/terra-base-storage.interface';
-import { TerraRegex } from '../../../../helpers/regex/terra-regex';
 import { TerraStorageObject } from '../../../file-browser/model/terra-storage-object';
-import { StringHelper } from '../../../../helpers/string.helper';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { L10N_LOCALE, L10nLocale } from 'angular-l10n';
+import { TerraFileBrowserComponent } from '../../../file-browser/terra-file-browser.component';
 
 let nextId: number = 0;
 
@@ -36,27 +33,23 @@ export class TerraFileInputComponent extends TerraInputComponent {
     public inputAllowFolders: boolean = true;
 
     @Input()
-    public set inputStorageServices(services: Array<TerraBaseStorageService>) {
-        this._storageServices = services;
-    }
+    public inputStorageServices: Array<TerraBaseStorageService>;
 
-    public get inputStorageServices(): Array<TerraBaseStorageService> {
-        return this._storageServices;
-    }
+    @ViewChild('fileBrowser', { static: false })
+    public _fileBrowser: TerraFileBrowserComponent;
+
+    @ViewChild('fileBrowserDialog', { static: true })
+    public _fileBrowserDialog: TemplateRef<any>;
 
     @ViewChild('imagePreviewDialog', { static: true })
     public _imagePreviewDialog: TemplateRef<{ filename: string; filepath: string }>;
 
+    public _selectedObject: TerraStorageObject;
+
     public _id: string;
     public _translationPrefix: string = 'terraFileInput';
 
-    private _storageServices: Array<TerraBaseStorageService>;
-
-    constructor(
-        @Inject(L10N_LOCALE) public _locale: L10nLocale,
-        /** Instance of the dialog service */
-        private dialog: MatDialog
-    ) {
+    constructor(@Inject(L10N_LOCALE) public _locale: L10nLocale, private _dialog: MatDialog) {
         super(TerraRegex.MIXED);
 
         // generate the id of the input instance
@@ -69,7 +62,7 @@ export class TerraFileInputComponent extends TerraInputComponent {
 
     public onPreviewClicked(): void {
         if (this.isWebImage(this.value)) {
-            this.dialog.open(this._imagePreviewDialog, {
+            this._dialog.open(this._imagePreviewDialog, {
                 data: {
                     filepath: this.value,
                     filename: this.getFilename(this.value)
@@ -79,7 +72,7 @@ export class TerraFileInputComponent extends TerraInputComponent {
     }
 
     public getIconClass(filename: string): string {
-        if (isNullOrUndefined(filename)) {
+        if (filename === null || filename === undefined) {
             return '';
         }
 
@@ -94,7 +87,7 @@ export class TerraFileInputComponent extends TerraInputComponent {
     }
 
     public getFilename(path: string): string {
-        if (isNullOrUndefined(path)) {
+        if (path === null || path === undefined) {
             return '';
         }
         return PathHelper.basename(path);
@@ -102,5 +95,26 @@ export class TerraFileInputComponent extends TerraInputComponent {
 
     public resetValue(): void {
         this.value = '';
+    }
+
+    public _openFileBrowserDialog(): void {
+        const dialogRef: MatDialogRef<any> = this._dialog.open(this._fileBrowserDialog, {
+            autoFocus: false
+        });
+
+        dialogRef.afterOpened().subscribe(() => {
+            this._fileBrowser.selectUrl(this.value);
+        });
+
+        dialogRef.afterClosed().subscribe((result: TerraStorageObject) => {
+            if (result) {
+                this.onObjectSelected(this._selectedObject);
+            }
+        });
+    }
+
+    public _onSelectedObjectChange(selectedObject: TerraStorageObject): void {
+        // workaround since change detection is not finished when selectedObject is set
+        setTimeout(() => (this._selectedObject = selectedObject));
     }
 }
