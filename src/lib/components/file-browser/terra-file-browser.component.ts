@@ -12,7 +12,7 @@ import { TerraFileBrowserNode } from './data/terra-file-browser-node.interface';
 @Component({
     selector: 'terra-file-browser',
     templateUrl: './terra-file-browser.component.html',
-    providers: [MatTreeNestedDataSource, { provide: TerraFileBrowser, useExisting: TerraFileBrowserComponent }]
+    providers: [{ provide: TerraFileBrowser, useExisting: TerraFileBrowserComponent }]
 })
 export class TerraFileBrowserComponent extends TerraFileBrowser implements OnChanges, OnInit {
     @Input()
@@ -47,6 +47,11 @@ export class TerraFileBrowserComponent extends TerraFileBrowser implements OnCha
     public _rightColumnWidth: number = 0;
     public _centerColumnWidth: number = 10;
     public _currentSelectedNode: TerraFileBrowserNode;
+
+    public _hasChild: (_: number, node: TerraFileBrowserNode) => boolean = (
+        _: number,
+        node: TerraFileBrowserNode
+    ): boolean => !!node.children && node.children.length > 0;
 
     private _storageServices: Array<TerraBaseStorageService>;
 
@@ -130,11 +135,6 @@ export class TerraFileBrowserComponent extends TerraFileBrowser implements OnCha
 
         this._currentSelectedNode = node;
     }
-
-    public _hasChild: (_: number, node: TerraFileBrowserNode) => boolean = (
-        _: number,
-        node: TerraFileBrowserNode
-    ): boolean => !!node.children && node.children.length > 0;
 
     private _recursiveExpandParents(node: TerraFileBrowserNode): void {
         const parentNode: TerraFileBrowserNode = this._recursiveFindNodeByKey(this._dataSource.data, node.parentKey);
