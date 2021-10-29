@@ -59,7 +59,10 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
     public imagePreviewObject: TerraStorageObject;
 
     @ViewChild('deleteConfirmationDialog', { static: true })
-    public _deleteConfirmationDialog: TemplateRef<number>;
+    public _deleteConfirmationDialog: TemplateRef<{ $implicit: number }>;
+
+    @ViewChild('newDirectoryPrompt', { static: true })
+    public _newDirectoryPromptDialog: TemplateRef<void>;
 
     public _translationPrefix: string = 'terraFileBrowser';
 
@@ -67,8 +70,6 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
     public _progress: TerraUploadProgress = null;
 
     public _storageList: TerraStorageObjectList;
-
-    public _showNewDirectoryPrompt: boolean = false;
 
     public _selectedStorageObjects: Array<TerraStorageObject> = [];
 
@@ -305,7 +306,6 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
             this.currentStorageRoot ? this.currentStorageRoot.key : '/',
             this.newDirectoryName
         );
-        this._showNewDirectoryPrompt = false;
         this._newDirectoryName = null;
         this.activeStorageService.createDirectory(path).subscribe((response: any) => {
             this.selectNode.emit(this.currentStorageRoot);
@@ -374,16 +374,22 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
     public _openDeleteDialog(objectsToDelete: Array<TerraStorageObject>): void {
         const deleteCount: number = this._getDeleteCount(objectsToDelete);
 
-        const deleteConfirmationDialog: MatDialogRef<number, boolean> = this._dialog.open(
-            this._deleteConfirmationDialog,
-            {
-                data: deleteCount
-            }
-        );
+        const deleteConfirmationDialog: MatDialogRef<any, boolean> = this._dialog.open(this._deleteConfirmationDialog, {
+            data: deleteCount
+        });
 
         deleteConfirmationDialog.afterClosed().subscribe((result: boolean) => {
             if (result) {
                 this._deleteObjects(objectsToDelete);
+            }
+        });
+    }
+
+    public _openCreateDirectoryDialog(): void {
+        const dialogRef = this._dialog.open(this._newDirectoryPromptDialog);
+        dialogRef.afterClosed().subscribe((result: boolean) => {
+            if (result) {
+                this._createDirectory();
             }
         });
     }

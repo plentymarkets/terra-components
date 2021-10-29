@@ -10,7 +10,7 @@
         mat-icon-button
         *ngIf="_parentFileBrowser.inputAllowFolders"
         [tcTooltip]="_translationPrefix + '.createFolder' | translate: _locale.language"
-        (click)="_showNewDirectoryPrompt = true"
+        (click)="_openCreateDirectoryDialog()"
     >
         <mat-icon>create_new_folder</mat-icon>
     </button>
@@ -29,24 +29,25 @@
     </label>
 </mat-toolbar>
 
-<div class="file-list-container" [class.empty]="_fileTableRowList.length <= 0">
-    <div [hidden]="!_showNewDirectoryPrompt" class="prompt" [class.in]="_showNewDirectoryPrompt">
-        <span class="prompt-title">{{ _translationPrefix + '.createFolder' | translate: _locale.language }}</span>
-
-        <mat-form-field class="w-100">
-            <mat-label>{{ _translationPrefix + '.folderName' | translate: _locale.language }}</mat-label>
-            <input matInput [(ngModel)]="newDirectoryName" />
-        </mat-form-field>
-        <div class="float-lg-right">
-            <button mat-button (click)="_showNewDirectoryPrompt = false">
+<div class="file-list-container">
+    <ng-template #newDirectoryPrompt>
+        <h2 mat-dialog-title>{{ _translationPrefix + '.createFolder' | translate: _locale.language }}</h2>
+        <mat-dialog-content>
+            <mat-form-field class="w-100">
+                <mat-label>{{ _translationPrefix + '.folderName' | translate: _locale.language }}</mat-label>
+                <input matInput [(ngModel)]="newDirectoryName" />
+            </mat-form-field>
+        </mat-dialog-content>
+        <mat-dialog-actions align="end">
+            <button mat-button [mat-dialog-close]="false">
                 {{ _translationPrefix + '.cancel' | translate: _locale.language }}
             </button>
 
-            <button mat-button [disabled]="!newDirectoryName" (click)="_createDirectory()">
+            <button mat-button [mat-dialog-close]="true" [disabled]="!newDirectoryName">
                 {{ _translationPrefix + '.create' | translate: _locale.language }}
             </button>
-        </div>
-    </div>
+        </mat-dialog-actions>
+    </ng-template>
 
     <table
         *ngIf="_fileTableRowList.length > 0"
@@ -181,7 +182,7 @@
                     mat-button
                     color="primary"
                     *ngIf="_parentFileBrowser.inputAllowFolders"
-                    (click)="_showNewDirectoryPrompt = true"
+                    (click)="_openCreateDirectoryDialog()"
                 >
                     {{ _translationPrefix + '.createFolder' | translate: _locale.language }}
                 </button>
