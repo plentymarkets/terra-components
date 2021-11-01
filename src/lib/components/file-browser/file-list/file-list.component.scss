@@ -23,42 +23,6 @@
     }
 }
 
-.terra-breadcrumbs {
-    .caret {
-        &:after {
-            top: 13.5px !important;
-            right: 8px !important;
-        }
-    }
-
-    .context-menu {
-        left: 0;
-        right: auto;
-
-        li {
-            a {
-                position: relative;
-                padding-left: 14px;
-
-                &.active {
-                    &:before {
-                        content: '';
-                        width: 4px;
-                        height: 4px;
-                        border-radius: 50%;
-                        background-color: var(--color-structure-0);
-                        display: inline-block;
-                        position: absolute;
-                        top: 50%;
-                        left: 5px;
-                        margin-top: -3px;
-                    }
-                }
-            }
-        }
-    }
-}
-
 .file-list-container {
     flex: 1;
     overflow-y: auto;
