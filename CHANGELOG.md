@@ -10,6 +10,7 @@
 ### Migrations
 
 -   **migration-portlet** was added to migrate the deprecated terra-portlet to use material expansion panels instead
+-   **ESLint** was added instead of TSLint
 
 # 12.1.1 (12.10.2021)
 
