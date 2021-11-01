@@ -108,7 +108,7 @@ export class TerraFileBrowserComponent extends TerraFileBrowser implements OnCha
         }
     }
 
-    public _selectUrl(publicUrl: string): void {
+    public selectUrl(publicUrl: string): void {
         this.onSelectedUrlChange.emit(publicUrl);
     }
 
