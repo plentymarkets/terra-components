@@ -6,7 +6,12 @@
                 [class.active]="_currentSelectedNode.key === node.key"
                 (click)="_onNodeClick($event, node)"
             >
-                <mat-icon *ngIf="node.icon" class="node-icon icon" [fontIcon]="node.icon"></mat-icon>
+                <mat-icon
+                    *ngIf="node.icon"
+                    class="node-icon icon"
+                    fontSet="plentyicons"
+                    [fontIcon]="node.icon"
+                ></mat-icon>
                 {{ node.name }}
             </li>
         </mat-tree-node>
@@ -18,7 +23,12 @@
                             {{ _treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right' }}
                         </mat-icon>
                     </button>
-                    <mat-icon *ngIf="node.icon" class="node-icon icon" [fontIcon]="node.icon"></mat-icon>
+                    <mat-icon
+                        *ngIf="node.icon"
+                        class="node-icon icon"
+                        fontSet="plentyicons"
+                        [fontIcon]="node.icon"
+                    ></mat-icon>
                     {{ node.name }}
                 </div>
                 <ul [class.mat-nested-tree-invisible]="!_treeControl.isExpanded(node)">

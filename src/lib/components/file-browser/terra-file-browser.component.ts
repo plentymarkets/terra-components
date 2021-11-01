@@ -90,7 +90,7 @@ export class TerraFileBrowserComponent extends TerraFileBrowser implements OnCha
     }
 
     public selectNode(storage: TerraStorageObject): void {
-        // check if storage is new
+        // check if storage is new by checking if parent exists
         if (!storage.parent) {
             // and reassign the data to get the tree updated
             const copy: Array<TerraFileBrowserNode> = this._dataSource.data;
@@ -173,10 +173,10 @@ export class TerraFileBrowserComponent extends TerraFileBrowser implements OnCha
             return;
         }
 
-        let nodeList: Array<TerraFileBrowserNode> = [];
+        const nodeList: Array<TerraFileBrowserNode> = [];
 
         services.forEach((service: TerraBaseStorageService) => {
-            let node: TerraFileBrowserNode = {
+            const node: TerraFileBrowserNode = {
                 key: service.name,
                 name: service.name,
                 parentKey: null // first entry does not have a parent
@@ -224,7 +224,7 @@ export class TerraFileBrowserComponent extends TerraFileBrowser implements OnCha
                 name = storage.name;
             }
 
-            let directory: TerraFileBrowserNode = {
+            const directory: TerraFileBrowserNode = {
                 key: storage.key,
                 name: name,
                 icon: storage.icon,
