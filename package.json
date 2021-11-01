@@ -54,7 +54,7 @@
         "@angular/platform-browser": "~12.2.6",
         "@angular/platform-browser-dynamic": "~12.2.6",
         "@angular/router": "~12.2.6",
-        "@plentymarkets/terra-lint-rules": "~2.1.1",
+        "@plentymarkets/terra-lint-rules": "~2.1.2",
         "@plentymarkets/terra-prettier-config": "~0.1.0",
         "@typescript-eslint/eslint-plugin": "4.28.2",
         "@typescript-eslint/parser": "4.28.2",
