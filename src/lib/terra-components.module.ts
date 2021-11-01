@@ -24,9 +24,6 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { A11yModule } from '@angular/cdk/a11y';
 import { MatInputModule } from '@angular/material/input';
 import { MatPseudoCheckboxModule } from '@angular/material/core';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatExpansionModule } from '@angular/material/expansion';
-import { MatTreeModule } from '@angular/material/tree';
 
 @NgModule({
     imports: [
@@ -52,10 +49,7 @@ import { MatTreeModule } from '@angular/material/tree';
         MatDatepickerModule,
         A11yModule,
         MatSelectModule,
-        MatPseudoCheckboxModule,
-        MatToolbarModule,
-        MatExpansionModule,
-        MatTreeModule
+        MatPseudoCheckboxModule
     ],
     declarations: [...components, ...directives, ...pipes],
     exports: [...exportedComponents, ...exportedDirectives, ...exportedPipes]

@@ -1,12 +1,9 @@
-# 12.2.0 (X.X.2021)
+# 12.2.0 (01.11.2021)
 
 ### Minor changes
 
 -   **terra-breadcrumbs** has been deprecated.
 -   **terra-no-result-notice** has been deprecated.
--   **terra-image-preview** use components from `@angular/material` instead of our own deprecated ones.
--   **terra-file-input** use components from `@angular/material` instead of our own deprecated ones.
--   **terra-file-browser** use components from `@angular/material` instead of our own deprecated ones.
 
 ### Migrations
 
