@@ -13,14 +13,6 @@ import { MockTooltipDirective } from '../../../../testing/mock-tooltip.directive
 import { Component, Input } from '@angular/core';
 import { TerraPlacementEnum } from '../../../../helpers';
 import { TerraBaseStorageService } from '../../../file-browser/terra-base-storage.interface';
-import { HarnessLoader } from '@angular/cdk/testing';
-import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
-import { MatButtonHarness } from '@angular/material/button/testing';
-import { MatButtonModule } from '@angular/material/button';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 @Component({
     selector: 'terra-file-chooser',
@@ -38,7 +30,6 @@ export class FileChooserMockComponent {
 describe('TerraFileInputComponent', () => {
     let component: TerraFileInputComponent;
     let fixture: ComponentFixture<TerraFileInputComponent>;
-    let loader: HarnessLoader;
 
     const jpgFileName: string = 'a-total-NewFile_name.jpg';
     const folderName: string = 'i-amYour_folder/';
@@ -51,20 +42,12 @@ describe('TerraFileInputComponent', () => {
                 TerraFileInputComponent,
                 TerraButtonComponent
             ],
-            imports: [
-                FormsModule,
-                L10nTranslationModule.forRoot(mockL10nConfig),
-                MatDialogModule,
-                MatButtonModule,
-                MatFormFieldModule,
-                MatInputModule,
-                MatIconModule,
-                NoopAnimationsModule
-            ]
+            imports: [FormsModule, L10nTranslationModule.forRoot(mockL10nConfig), MatDialogModule]
         });
+    });
 
+    beforeEach(() => {
         fixture = TestBed.createComponent(TerraFileInputComponent);
-        loader = TestbedHarnessEnvironment.loader(fixture);
         component = fixture.componentInstance;
 
         fixture.detectChanges();
@@ -104,12 +87,13 @@ describe('TerraFileInputComponent', () => {
         expect(component.getIconClass(folderName)).toBe('icon-folder');
     });
 
-    it('should call `resetValue` on button click', async () => {
+    it('should call `resetValue` on button click', () => {
         spyOn(component, 'resetValue');
-        const buttons: Array<MatButtonHarness> = await loader.getAllHarnesses(MatButtonHarness);
-        const resetButton: MatButtonHarness = buttons[buttons.length - 1]; // get the last one of the buttons
+        const button: TerraButtonComponent = fixture.debugElement.query(
+            By.css('terra-button.input-group-btn.margin-left')
+        ).componentInstance as TerraButtonComponent;
 
-        await resetButton.click();
+        button.outputClicked.emit();
 
         expect(component.resetValue).toHaveBeenCalled();
     });
