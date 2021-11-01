@@ -55,7 +55,8 @@ import { MatTreeModule } from '@angular/material/tree';
         MatPseudoCheckboxModule,
         MatToolbarModule,
         MatExpansionModule,
-        MatTreeModule
+        MatTreeModule,
+        MatPseudoCheckboxModule
     ],
     declarations: [...components, ...directives, ...pipes],
     exports: [...exportedComponents, ...exportedDirectives, ...exportedPipes]
