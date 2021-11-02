@@ -1,3 +1,9 @@
+# 12.3.0 (X.X.2021) - UNRELEASED
+
+### Features
+
+-   **terra-file-input** use components from `@angular/material` instead of our own deprecated ones.
+
 # 12.2.0 (01.11.2021)
 
 ### Minor changes
