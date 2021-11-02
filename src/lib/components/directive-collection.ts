@@ -11,7 +11,6 @@ export const exportedDirectives: Array<Type<any>> = [
     TerraDataTableContextMenuDirective,
     TerraTwoColumnsContainerDirective,
     CKEditorDirective,
-    TooltipDirective,
     SelectSortDirective
 ];
 

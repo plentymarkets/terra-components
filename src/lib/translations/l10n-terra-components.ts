@@ -129,6 +129,10 @@ const de: {} = {
         search: 'Suchen',
         reset: 'Zurücksetzen'
     },
+    terraFilter: {
+        search: 'Suchen',
+        filter: 'Filter'
+    },
     errorInterceptor: {
         unauthorized: 'Nicht autorisiert',
         missingPermissions: 'Fehlende Berechtigungen für:',
@@ -284,6 +288,10 @@ const en: {} = {
     tcFilter: {
         search: 'Search',
         reset: 'Reset'
+    },
+    terraFilter: {
+        search: 'Search',
+        filter: 'Filter'
     },
     errorInterceptor: {
         unauthorized: 'Unauthorised',

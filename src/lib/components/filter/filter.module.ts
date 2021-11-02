@@ -18,6 +18,8 @@ import { ChipDisplayWhenPipe } from './pipes/chip-display-when.pipe';
 import { MatInputModule } from '@angular/material/input';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { ReactiveFormsModule } from '@angular/forms';
+import { L10nTranslationModule } from 'angular-l10n';
+import { TooltipModule } from '../tooltip/tooltip.module';
 
 /** Exports all the functionality needed to create a filter for a table. */
 @NgModule({
@@ -30,7 +32,9 @@ import { ReactiveFormsModule } from '@angular/forms';
         MatMenuModule,
         ReactiveFormsModule,
         MatInputModule,
-        MatAutocompleteModule
+        MatAutocompleteModule,
+        L10nTranslationModule,
+        TooltipModule
     ],
     declarations: [
         FilterActionsDirective,

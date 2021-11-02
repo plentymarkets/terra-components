@@ -1,10 +1,11 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Inject, Input, Output, ViewChild } from '@angular/core';
 import { FilterChipDefDirective } from '../../directives/filter-chip-def.directive';
 import { FilterMenuDirective } from '../../directives/filter-menu.directive';
 import { Observable } from 'rxjs';
 import { MatMenu, MatMenuTrigger } from '@angular/material/menu';
 import { MatAutocompleteSelectedEvent, MatAutocompleteTrigger } from '@angular/material/autocomplete';
 import { FormControl } from '@angular/forms';
+import { L10N_LOCALE, L10nLocale } from 'angular-l10n';
 
 /** A toolbar providing necessary elements for applying filters to a table. */
 @Component({
@@ -50,6 +51,8 @@ export class FilterToolbarComponent {
 
     /** Form control for the autocomplete search input */
     public searchInputControl: FormControl = new FormControl('');
+
+    constructor(@Inject(L10N_LOCALE) public _locale: L10nLocale) {}
 
     /** List of chip definitions retrieved by the FilterContainerDirective */
     public get chips$(): Observable<Array<FilterChipDefDirective>> | undefined {
