@@ -5,7 +5,6 @@ import {
     Component,
     ElementRef,
     EventEmitter,
-    Host,
     Inject,
     Input,
     OnChanges,
@@ -312,7 +311,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
         this._showNewDirectoryPrompt = false;
         this._newDirectoryName = null;
         this.activeStorageService.createDirectory(path).subscribe((response: any) => {
-            this.selectNode.emit(this.currentStorageRoot);
+            this.selectNode.emit(response);
         });
     }
 

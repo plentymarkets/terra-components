@@ -2,6 +2,7 @@
 
 ### Features
 
+-   **terra-file-browser** use components from `@angular/material` instead of our own deprecated ones.
 -   **terra-image-preview** use components from `@angular/material` instead of our own deprecated ones.
 
 # 12.2.0 (01.11.2021)
