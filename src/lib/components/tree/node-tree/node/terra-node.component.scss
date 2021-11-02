@@ -21,7 +21,8 @@ li {
                 text-overflow: ellipsis;
             }
 
-            span {
+            span,
+            mat-icon {
                 &.icon_dist_top {
                     padding: 0 8px;
                     display: table-cell;
