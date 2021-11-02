@@ -2,8 +2,9 @@ import { ChangeDetectorRef, Component, Inject, Input } from '@angular/core';
 import { TerraStorageObject } from '../model/terra-storage-object';
 import { TerraBaseStorageService } from '../terra-base-storage.interface';
 import { TerraImageMetadata } from '../model/terra-image-metadata.interface';
+import { isNullOrUndefined } from 'util';
 import { TerraBaseMetadataStorageService } from '../terra-base-metadata-storage.interface';
-import { L10N_LOCALE, L10nLocale, L10nTranslationService } from 'angular-l10n';
+import { L10nLocale, L10nTranslationService, L10N_LOCALE } from 'angular-l10n';
 
 @Component({
     selector: 'terra-image-preview',
@@ -25,7 +26,7 @@ export class TerraImagePreviewComponent {
         this._metadata = {};
         this._isLoading = true;
         if (
-            !(object === null || object === undefined) &&
+            !isNullOrUndefined(object) &&
             this.inputStorageService &&
             this.inputStorageService instanceof TerraBaseMetadataStorageService
         ) {
