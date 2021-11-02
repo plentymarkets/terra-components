@@ -2,6 +2,7 @@
 
 ### Features
 
+-   **terra-file-input** use components from `@angular/material` instead of our own deprecated ones.
 -   **terra-file-browser** use components from `@angular/material` instead of our own deprecated ones.
 -   **terra-image-preview** use components from `@angular/material` instead of our own deprecated ones.
 
