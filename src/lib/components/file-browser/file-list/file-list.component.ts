@@ -458,7 +458,6 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
     private _createPublicHeaderList(): void {
         this._displayedColumns = [
             'checkbox',
-            'fileNameIcon',
             'fileName',
             'fileURL',
             'copyIntoClipboard',
@@ -469,15 +468,7 @@ export class TerraFileListComponent implements OnInit, AfterViewInit, OnChanges,
     }
 
     private _createPrivateHeaderList(): void {
-        this._displayedColumns = [
-            'checkbox',
-            'fileNameIcon',
-            'fileName',
-            'fileSize',
-            'lastModified',
-            'downloadBtn',
-            'deleteBtn'
-        ];
+        this._displayedColumns = ['checkbox', 'fileName', 'fileSize', 'lastModified', 'downloadBtn', 'deleteBtn'];
     }
 
     private _isAllowed(filename: string): boolean {

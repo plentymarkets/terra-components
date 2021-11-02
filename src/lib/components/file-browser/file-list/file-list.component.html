@@ -80,21 +80,18 @@
                         </mat-checkbox>
                     </td>
                 </ng-container>
-                <ng-container matColumnDef="fileNameIcon">
-                    <th mat-header-cell *matHeaderCellDef></th>
-                    <td mat-cell *matCellDef="let row">
-                        <ng-container [ngSwitch]="row.isDirectory">
-                            <mat-icon *ngSwitchCase="true">folder</mat-icon>
-                            <mat-icon *ngSwitchCase="false" fontSet="plentyicons" [fontIcon]="row.icon"></mat-icon>
-                        </ng-container>
-                    </td>
-                </ng-container>
                 <ng-container matColumnDef="fileName">
                     <th mat-header-cell *matHeaderCellDef>
                         {{ _translationPrefix + '.fileName' | translate: _locale.language }}
                     </th>
                     <td mat-cell *matCellDef="let row">
-                        {{ row.name }}
+                        <div class="d-flex align-items-center">
+                            <ng-container [ngSwitch]="row.isDirectory">
+                                <mat-icon *ngSwitchCase="true">folder</mat-icon>
+                                <mat-icon *ngSwitchCase="false" fontSet="plentyicons" [fontIcon]="row.icon"></mat-icon>
+                            </ng-container>
+                            {{ row.name }}
+                        </div>
                     </td>
                 </ng-container>
                 <ng-container matColumnDef="fileURL">
