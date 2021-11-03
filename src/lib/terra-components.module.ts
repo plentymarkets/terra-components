@@ -24,7 +24,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { A11yModule } from '@angular/cdk/a11y';
 import { MatInputModule } from '@angular/material/input';
 import { MatPseudoCheckboxModule } from '@angular/material/core';
-import { TooltipModule } from './components/tooltip/tooltip.module';
+import { TerraTooltipModule } from './components/tooltip/terra-tooltip.module';
 
 @NgModule({
     imports: [
@@ -51,9 +51,9 @@ import { TooltipModule } from './components/tooltip/tooltip.module';
         A11yModule,
         MatSelectModule,
         MatPseudoCheckboxModule,
-        TooltipModule
+        TerraTooltipModule
     ],
     declarations: [...components, ...directives, ...pipes],
-    exports: [...exportedComponents, ...exportedDirectives, ...exportedPipes, TooltipModule]
+    exports: [...exportedComponents, ...exportedDirectives, ...exportedPipes, TerraTooltipModule]
 })
 export class TerraComponentsModule {}

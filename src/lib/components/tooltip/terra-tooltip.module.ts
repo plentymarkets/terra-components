@@ -6,4 +6,4 @@ import { TooltipDirective } from './tooltip.directive';
     declarations: [TooltipDirective],
     exports: [TooltipDirective]
 })
-export class TooltipModule {}
+export class TerraTooltipModule {}
