@@ -52,7 +52,11 @@ export class FilterToolbarComponent {
     /** Form control for the autocomplete search input */
     public searchInputControl: FormControl = new FormControl('');
 
-    constructor(@Inject(L10N_LOCALE) public _locale: L10nLocale) {}
+    public _lang: string;
+
+    constructor(@Inject(L10N_LOCALE) public _locale: L10nLocale) {
+        this._lang = _locale.language;
+    }
 
     /** List of chip definitions retrieved by the FilterContainerDirective */
     public get chips$(): Observable<Array<FilterChipDefDirective>> | undefined {

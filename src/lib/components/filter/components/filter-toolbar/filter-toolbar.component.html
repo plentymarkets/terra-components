@@ -22,7 +22,7 @@
             mat-icon-button
             (click)="closeAutocompletePanel($event, 'search')"
             id="searchButton"
-            [tcTooltip]="'terraFilter.search' | translate: _locale.language"
+            [tcTooltip]="'terraFilter.search' | translate: _lang"
         >
             <mat-icon>search</mat-icon>
         </button>
@@ -34,7 +34,7 @@
             matSuffix
             mat-icon-button
             [matMenuTriggerFor]="menu"
-            [tcTooltip]="'terraFilter.filter' | translate: _locale.language"
+            [tcTooltip]="'terraFilter.filter' | translate: _lang"
         >
             <mat-icon>tune</mat-icon>
         </button>
