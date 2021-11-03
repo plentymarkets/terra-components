@@ -14,7 +14,8 @@
     }
 
     .terra-filter-actions {
-        padding: 0 var(--space-lg);
+        padding: var(--space-md) var(--space-lg) 0 var(--space-lg);
+        border-top: 1px solid var(--color-structure-3);
         width: 100%;
         display: flex;
         justify-content: flex-end;
