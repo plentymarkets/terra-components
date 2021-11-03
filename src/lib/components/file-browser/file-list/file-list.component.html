@@ -1,134 +1,231 @@
-<terra-base-toolbar>
-    <div class="btn-group" role="group">
-        <terra-button
-            inputIcon="icon-upload"
-            [inputTooltipText]="_translationPrefix + '.uploadFile' | translate: _locale.language"
-            inputTooltipPlacement="right"
-            (outputClicked)="fileChooser.click()"
-        >
-        </terra-button>
-        <terra-button
-            inputIcon="icon-folder_add"
-            *ngIf="_parentFileBrowser.inputAllowFolders"
-            [inputTooltipText]="_translationPrefix + '.createFolder' | translate: _locale.language"
-            inputTooltipPlacement="right"
-            (outputClicked)="_showNewDirectoryPrompt = true"
-        >
-        </terra-button>
-    </div>
-
-    <div class="btn-group" role="group">
-        <terra-button
-            inputIcon="icon-delete"
-            [inputIsDisabled]="_selectedStorageObjects.length <= 0"
-            [inputTooltipText]="_translationPrefix + '.deleteSelectedFiles' | translate: _locale.language"
-            inputTooltipPlacement="right"
-            (outputClicked)="_deleteSelected()"
-        >
-        </terra-button>
-    </div>
-
-    <label style="width: 0; height: 0; visibility: hidden" #fileChooser>
-        <input type="file" (change)="onFileSelect($event)" multiple="multiple" />
-    </label>
-
-    <!-- TODO is this needed???? -->
-    <!--<div class="loading-placeholder" *ngIf="!storageList">-->
-    <!--<p>{{ translationPrefix + '.loadingFiles' | translate:lang }}</p>-->
-    <!--<span class="icon-loading"></span>-->
-    <!--</div>-->
-</terra-base-toolbar>
-
-<div class="file-list-container" [class.empty]="_fileTableRowList.length <= 0">
-    <div [hidden]="!_showNewDirectoryPrompt" class="prompt" [class.in]="_showNewDirectoryPrompt">
-        <span class="prompt-title">{{ _translationPrefix + '.createFolder' | translate: _locale.language }}</span>
-        <terra-text-input
-            [inputName]="_translationPrefix + '.folderName' | translate: _locale.language"
-            [(ngModel)]="newDirectoryName"
-        >
-        </terra-text-input>
-        <div class="float-lg-right">
-            <terra-button
-                [inputIcon]="'icon-close'"
-                [inputCaption]="_translationPrefix + '.cancel' | translate: _locale.language"
-                [inputIsSmall]="true"
-                (outputClicked)="_showNewDirectoryPrompt = false"
-            ></terra-button>
-
-            <terra-button
-                [inputIcon]="'icon-folder_add'"
-                [inputCaption]="_translationPrefix + '.create' | translate: _locale.language"
-                [inputIsSmall]="true"
-                [inputIsDisabled]="!newDirectoryName"
-                (outputClicked)="_createDirectory()"
-            ></terra-button>
+<div class="terra-table-container">
+    <mat-toolbar class="terra-table-toolbar">
+        <div class="terra-table-actions">
+            <button
+                mat-icon-button
+                [tcTooltip]="_translationPrefix + '.uploadFile' | translate: _locale.language"
+                (click)="fileChooser.click()"
+            >
+                <mat-icon>upload</mat-icon>
+            </button>
+            <button
+                mat-icon-button
+                *ngIf="_parentFileBrowser.inputAllowFolders"
+                [tcTooltip]="_translationPrefix + '.createFolder' | translate: _locale.language"
+                (click)="_openCreateDirectoryDialog()"
+            >
+                <mat-icon>create_new_folder</mat-icon>
+            </button>
+            <button
+                mat-icon-button
+                *ngIf="_parentFileBrowser.inputAllowFolders"
+                [disabled]="_selection.isEmpty()"
+                [tcTooltip]="_translationPrefix + '.deleteSelectedFiles' | translate: _locale.language"
+                (click)="_deleteSelected()"
+            >
+                <mat-icon>delete</mat-icon>
+            </button>
         </div>
-    </div>
 
-    <terra-simple-table
-        *ngIf="_fileTableRowList.length > 0"
-        [hidden]="_isDragActive"
-        [inputHeaderList]="_fileTableHeaderList"
-        [inputRowList]="_fileTableRowList"
-        [inputIsStriped]="true"
-        [inputUseHighlighting]="true"
-        [inputHasCheckboxes]="true"
-        [inputEnableHotkeys]="true"
-        (outputRowClicked)="_onRowClick($event)"
-        (outputHighlightedRowChange)="_onActiveRowChange($event)"
-        (outputSelectedRowsChange)="onSelectionChange($event)"
-    >
-    </terra-simple-table>
+        <label style="width: 0; height: 0; visibility: hidden" #fileChooser>
+            <input type="file" (change)="onFileSelect($event)" multiple="multiple" />
+        </label>
+    </mat-toolbar>
 
-    <div *ngIf="_fileTableRowList.length <= 0" class="empty-directory">
-        <div>
-            <p>{{ _translationPrefix + '.noFiles' | translate: _locale.language }}</p>
+    <div class="file-list-container">
+        <ng-template #newDirectoryPrompt>
+            <h2 mat-dialog-title>{{ _translationPrefix + '.createFolder' | translate: _locale.language }}</h2>
+            <mat-dialog-content>
+                <mat-form-field class="w-100">
+                    <mat-label>{{ _translationPrefix + '.folderName' | translate: _locale.language }}</mat-label>
+                    <input matInput [(ngModel)]="newDirectoryName" />
+                </mat-form-field>
+            </mat-dialog-content>
+            <mat-dialog-actions align="end">
+                <button mat-button [mat-dialog-close]="false">
+                    {{ _translationPrefix + '.cancel' | translate: _locale.language }}
+                </button>
 
+                <button mat-button [mat-dialog-close]="true" [disabled]="!newDirectoryName">
+                    {{ _translationPrefix + '.create' | translate: _locale.language }}
+                </button>
+            </mat-dialog-actions>
+        </ng-template>
+
+        <div class="terra-table-inner-container">
+            <table
+                *ngIf="_fileTableRowList.length > 0"
+                mat-table
+                [dataSource]="_fileTableRowList"
+                [hidden]="_isDragActive"
+                class="w-100"
+                tabindex="0"
+                (keydown)="_onKeydown($event)"
+            >
+                <ng-container matColumnDef="checkbox">
+                    <th mat-header-cell *matHeaderCellDef>
+                        <mat-checkbox
+                            (change)="$event ? _masterToggle() : null"
+                            [checked]="_selection.hasValue() && _isAllSelected()"
+                            [indeterminate]="_selection.hasValue() && !_isAllSelected()"
+                        >
+                        </mat-checkbox>
+                    </th>
+                    <td mat-cell *matCellDef="let row">
+                        <mat-checkbox
+                            (click)="$event.stopPropagation()"
+                            (change)="$event ? _selection.toggle(row) : null"
+                            [checked]="_selection.isSelected(row)"
+                        >
+                        </mat-checkbox>
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="fileName">
+                    <th mat-header-cell *matHeaderCellDef>
+                        {{ _translationPrefix + '.fileName' | translate: _locale.language }}
+                    </th>
+                    <td mat-cell *matCellDef="let row">
+                        <div class="d-flex align-items-center">
+                            <ng-container [ngSwitch]="row.isDirectory">
+                                <mat-icon *ngSwitchCase="true">folder</mat-icon>
+                                <mat-icon *ngSwitchCase="false" fontSet="plentyicons" [fontIcon]="row.icon"></mat-icon>
+                            </ng-container>
+                            {{ row.name }}
+                        </div>
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="fileURL">
+                    <th mat-header-cell *matHeaderCellDef>
+                        {{ _translationPrefix + '.fileURL' | translate: _locale.language }}
+                    </th>
+                    <td mat-cell *matCellDef="let row">
+                        <ng-container *ngIf="row.isFile">
+                            {{ row.publicUrl }}
+                        </ng-container>
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="copyIntoClipboard">
+                    <th mat-header-cell *matHeaderCellDef></th>
+                    <td mat-cell *matCellDef="let row">
+                        <ng-container *ngIf="row.isFile">
+                            <button
+                                mat-icon-button
+                                [tcTooltip]="_translationPrefix + '.copyToClipboard' | translate: _locale.language"
+                                (click)="_clipBoardButtonListener($event, row)"
+                            >
+                                <mat-icon>content_copy</mat-icon>
+                            </button>
+                        </ng-container>
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="fileSize">
+                    <th mat-header-cell *matHeaderCellDef>
+                        {{ _translationPrefix + '.fileSize' | translate: _locale.language }}
+                    </th>
+                    <td mat-cell *matCellDef="let row">
+                        <ng-container *ngIf="row.isFile">
+                            {{ row.sizeString }}
+                        </ng-container>
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="lastModified">
+                    <th mat-header-cell *matHeaderCellDef>
+                        {{ _translationPrefix + '.lastChange' | translate: _locale.language }}
+                    </th>
+                    <td mat-cell *matCellDef="let row">
+                        <ng-container *ngIf="row.isFile">
+                            {{
+                                row.lastModified
+                                    | l10nDate: _locale.language:{ dateStyle: 'medium', timeStyle: 'medium' }
+                            }}
+                        </ng-container>
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="downloadBtn">
+                    <th mat-header-cell *matHeaderCellDef></th>
+                    <td mat-cell *matCellDef="let row">
+                        <button
+                            mat-icon-button
+                            [tcTooltip]="_translationPrefix + '.downloadFile' | translate: _locale.language"
+                            (click)="_downloadButtonListener($event, row)"
+                        >
+                            <mat-icon>file_download</mat-icon>
+                        </button>
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="deleteBtn">
+                    <th mat-header-cell *matHeaderCellDef></th>
+                    <td mat-cell *matCellDef="let row">
+                        <button
+                            mat-icon-button
+                            [tcTooltip]="
+                                row.isFile
+                                    ? (_translationPrefix + '.deleteFile' | translate: _locale.language)
+                                    : (_translationPrefix + '.deleteFolder' | translate: _locale.language)
+                            "
+                            (click)="_deleteButtonListener($event, row)"
+                        >
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="_displayedColumns"></tr>
+                <tr
+                    mat-row
+                    [class.focused]="row === _focusedRow"
+                    *matRowDef="let row; columns: _displayedColumns"
+                    (click)="_onRowClick(row); _onActiveRowChange(row)"
+                ></tr>
+            </table>
+        </div>
+        <div *ngIf="_fileTableRowList.length <= 0" class="empty-directory">
             <div>
-                <terra-button
-                    inputIcon="icon-upload"
-                    [inputCaption]="_translationPrefix + '.uploadFile' | translate: _locale.language"
-                    (outputClicked)="fileChooser.click()"
-                >
-                </terra-button>
+                <p>{{ _translationPrefix + '.noFiles' | translate: _locale.language }}</p>
 
-                <terra-button
-                    inputIcon="icon-folder_add"
-                    *ngIf="_parentFileBrowser.inputAllowFolders"
-                    [inputCaption]="_translationPrefix + '.createFolder' | translate: _locale.language"
-                    (outputClicked)="_showNewDirectoryPrompt = true"
-                >
-                </terra-button>
+                <div>
+                    <button mat-button (click)="fileChooser.click()">
+                        {{ _translationPrefix + '.uploadFile' | translate: _locale.language }}
+                    </button>
+
+                    <button
+                        mat-button
+                        color="primary"
+                        *ngIf="_parentFileBrowser.inputAllowFolders"
+                        (click)="_openCreateDirectoryDialog()"
+                    >
+                        {{ _translationPrefix + '.createFolder' | translate: _locale.language }}
+                    </button>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="file-drop" #fileDropzone [class.in]="_isDragActive" (drop)="onFileDrop($event)">
-        <div>
-            <span class="icon-upload"></span>
-            {{ _translationPrefix + '.uploadFile' | translate: _locale.language }}
+        <div class="file-drop" #fileDropzone [class.in]="_isDragActive" (drop)="onFileDrop($event)">
+            <div>
+                <span class="icon-upload"></span>
+                {{ _translationPrefix + '.uploadFile' | translate: _locale.language }}
+            </div>
         </div>
-    </div>
 
-    <div class="upload-progress-container" *ngIf="_progress">
-        <div class="upload-progress">
-            <div [style.width.%]="_progress.progress"></div>
+        <div class="upload-progress-container" *ngIf="_progress">
+            <div class="upload-progress">
+                <div [style.width.%]="_progress.progress"></div>
+            </div>
+            <span>{{ _translationPrefix + '.uploadProgress' | translate: _locale.language:_progress }}</span>
         </div>
-        <span>{{ _translationPrefix + '.uploadProgress' | translate: _locale.language:_progress }}</span>
-    </div>
 
-    <ng-template let-deleteCount #deleteConfirmationDialog>
-        <h2 mat-dialog-title>{{ _translationPrefix + '.confirmDelete' | translate: _locale.language }}</h2>
-        <mat-dialog-content>
-            {{ _translationPrefix + '.confirmDeleteMany' | translate: _locale.language:{ count: deleteCount } }}
-        </mat-dialog-content>
-        <mat-dialog-actions>
-            <button mat-flat-button [mat-dialog-close]="false">
-                {{ _translationPrefix + '.cancel' | translate: _locale.language }}
-            </button>
-            <button mat-flat-button color="warn" [mat-dialog-close]="true">
-                {{ _translationPrefix + '.delete' | translate: _locale.language }}
-            </button>
-        </mat-dialog-actions>
-    </ng-template>
+        <ng-template let-deleteCount #deleteConfirmationDialog>
+            <h2 mat-dialog-title>{{ _translationPrefix + '.confirmDelete' | translate: _locale.language }}</h2>
+            <mat-dialog-content>
+                {{ _translationPrefix + '.confirmDeleteMany' | translate: _locale.language:{ count: deleteCount } }}
+            </mat-dialog-content>
+            <mat-dialog-actions>
+                <button mat-flat-button [mat-dialog-close]="false">
+                    {{ _translationPrefix + '.cancel' | translate: _locale.language }}
+                </button>
+                <button mat-flat-button color="warn" [mat-dialog-close]="true">
+                    {{ _translationPrefix + '.delete' | translate: _locale.language }}
+                </button>
+            </mat-dialog-actions>
+        </ng-template>
+    </div>
 </div>

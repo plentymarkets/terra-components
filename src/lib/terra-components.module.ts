@@ -3,7 +3,7 @@ import { components, exportedComponents } from './components/component-collectio
 import { directives, exportedDirectives } from './components/directive-collection';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { L10nTranslationModule } from 'angular-l10n';
+import { L10nIntlModule, L10nTranslationModule } from 'angular-l10n';
 import { MyDatePickerModule } from 'mydatepicker';
 import { RouterModule } from '@angular/router';
 import { QuillModule } from 'ngx-quill';
@@ -26,6 +26,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatPseudoCheckboxModule } from '@angular/material/core';
 import { MatTreeModule } from '@angular/material/tree';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTableModule } from '@angular/material/table';
 import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
@@ -55,7 +56,9 @@ import { MatExpansionModule } from '@angular/material/expansion';
         MatPseudoCheckboxModule,
         MatTreeModule,
         MatToolbarModule,
-        MatExpansionModule
+        MatTableModule,
+        MatExpansionModule,
+        L10nIntlModule
     ],
     declarations: [...components, ...directives, ...pipes],
     exports: [...exportedComponents, ...exportedDirectives, ...exportedPipes]
