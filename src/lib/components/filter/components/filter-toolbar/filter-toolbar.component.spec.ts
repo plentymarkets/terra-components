@@ -14,6 +14,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { FilterMenuDirective } from '../../directives/filter-menu.directive';
 import { DisplayWhenFn } from '../../models/display-when-function.interface';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { L10N_LOCALE, L10nTranslationModule, L10nTranslationService } from 'angular-l10n';
+import { MockTranslationService } from '../../../../testing/mock-translation-service';
 
 // tslint:disable:component-max-inline-declarations
 @Component({
@@ -57,8 +59,18 @@ describe('FilterToolbarComponent:', () => {
 
     beforeEach(() => {
         fixture = TestBed.configureTestingModule({
-            imports: [TerraFilterModule, FormsModule, NoopAnimationsModule],
-            declarations: [HostComponent]
+            imports: [TerraFilterModule, FormsModule, NoopAnimationsModule, L10nTranslationModule],
+            declarations: [HostComponent],
+            providers: [
+                {
+                    provide: L10nTranslationService,
+                    useClass: MockTranslationService
+                },
+                {
+                    provide: L10N_LOCALE,
+                    useValue: { language: 'de' }
+                }
+            ]
         }).createComponent(HostComponent);
         component = fixture.componentInstance;
         loader = TestbedHarnessEnvironment.loader(fixture);
