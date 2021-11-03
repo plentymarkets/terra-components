@@ -5,6 +5,7 @@
 -   **terra-file-input** use components from `@angular/material` instead of our own deprecated ones.
 -   **terra-file-browser** use components from `@angular/material` instead of our own deprecated ones.
 -   **terra-image-preview** use components from `@angular/material` instead of our own deprecated ones.
+-   **terra-node-tree** add support for mat-icons.
 
 # 12.2.0 (01.11.2021)
 

@@ -120,7 +120,10 @@ export class TerraNodeTreeComponentExample implements OnInit {
             {
                 id: 1,
                 name: 'Ebay',
-                icon: 'icon-ebay',
+                icon: {
+                    fontIcon: 'accessible',
+                    fontSet: 'material-icons'
+                },
                 isVisible: true,
                 children: [
                     {
