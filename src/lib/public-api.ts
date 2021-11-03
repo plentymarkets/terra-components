@@ -179,7 +179,6 @@ export { TerraGroupFunctionComponent } from './components/tables/group-function/
 export { TerraDataTableBaseService } from './components/tables/data-table/terra-data-table-base.service';
 export { TableRowComponent } from './components/tables/data-table/table-row/table-row.component';
 export { CKEditorDirective } from './components/editors/ck-editor/ck-editor.directive';
-export { TooltipDirective } from './components/tooltip/tooltip.directive';
 export { SelectSortPipe } from './pipes/select-sort.pipe';
 export { AllowedColors } from './components/forms/select-box/data/allowed.colors.enum';
 export { SelectSortDirective } from './components/forms/select-box/directive/select-sort.directive';
