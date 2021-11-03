@@ -1,3 +1,9 @@
+# 12.3.0 (xx.xx.xx)
+
+### Minor changes
+
+-   **terra-node-tree** add support for mat-icons.
+
 # 12.2.0 (01.11.2021)
 
 ### Minor changes
