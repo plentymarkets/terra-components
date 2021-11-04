@@ -28,6 +28,7 @@ import { MatTreeModule } from '@angular/material/tree';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTableModule } from '@angular/material/table';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { TerraTooltipModule } from './components/tooltip/terra-tooltip.module';
 
 @NgModule({
     imports: [
@@ -58,9 +59,10 @@ import { MatExpansionModule } from '@angular/material/expansion';
         MatToolbarModule,
         MatTableModule,
         MatExpansionModule,
-        L10nIntlModule
+        L10nIntlModule,
+        TerraTooltipModule
     ],
     declarations: [...components, ...directives, ...pipes],
-    exports: [...exportedComponents, ...exportedDirectives, ...exportedPipes]
+    exports: [...exportedComponents, ...exportedDirectives, ...exportedPipes, TerraTooltipModule]
 })
 export class TerraComponentsModule {}
