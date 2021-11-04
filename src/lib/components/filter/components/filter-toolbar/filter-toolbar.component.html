@@ -17,13 +17,25 @@
             </ng-container>
         </mat-autocomplete>
 
-        <button matPrefix mat-icon-button (click)="closeAutocompletePanel($event, 'search')" id="searchButton">
+        <button
+            matPrefix
+            mat-icon-button
+            (click)="closeAutocompletePanel($event, 'search')"
+            id="searchButton"
+            [tcTooltip]="'terraFilter.search' | translate: _lang"
+        >
             <mat-icon>search</mat-icon>
         </button>
         <span matSuffix (click)="closeAutocompletePanel($event, '')">
             <ng-container *ngTemplateOutlet="content"></ng-container>
         </span>
-        <button (click)="closeAutocompletePanel($event, '')" matSuffix mat-icon-button [matMenuTriggerFor]="menu">
+        <button
+            (click)="closeAutocompletePanel($event, '')"
+            matSuffix
+            mat-icon-button
+            [matMenuTriggerFor]="menu"
+            [tcTooltip]="'terraFilter.filter' | translate: _lang"
+        >
             <mat-icon>tune</mat-icon>
         </button>
     </mat-form-field>

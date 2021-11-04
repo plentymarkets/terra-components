@@ -14,8 +14,10 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { FilterMenuDirective } from '../../directives/filter-menu.directive';
 import { DisplayWhenFn } from '../../models/display-when-function.interface';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { L10N_LOCALE, L10nTranslationModule, L10nTranslationService } from 'angular-l10n';
+import { MockTranslationService } from '../../../../testing/mock-translation-service';
+import { RouterTestingModule } from '@angular/router/testing';
 
-// tslint:disable:component-max-inline-declarations
 @Component({
     template: `
         <mat-menu #filterMenu="terraFilterMenu" terraFilterMenu>
@@ -48,7 +50,6 @@ class HostComponent {
     public displayWhenPositive: DisplayWhenFn = (value: any) => value >= 0;
 }
 
-// tslint:disable-next-line:max-function-line-count
 describe('FilterToolbarComponent:', () => {
     let fixture: ComponentFixture<HostComponent>;
     let component: HostComponent;
@@ -57,8 +58,18 @@ describe('FilterToolbarComponent:', () => {
 
     beforeEach(() => {
         fixture = TestBed.configureTestingModule({
-            imports: [TerraFilterModule, FormsModule, NoopAnimationsModule],
-            declarations: [HostComponent]
+            imports: [TerraFilterModule, FormsModule, NoopAnimationsModule, L10nTranslationModule, RouterTestingModule],
+            declarations: [HostComponent],
+            providers: [
+                {
+                    provide: L10nTranslationService,
+                    useClass: MockTranslationService
+                },
+                {
+                    provide: L10N_LOCALE,
+                    useValue: { language: 'de' }
+                }
+            ]
         }).createComponent(HostComponent);
         component = fixture.componentInstance;
         loader = TestbedHarnessEnvironment.loader(fixture);
