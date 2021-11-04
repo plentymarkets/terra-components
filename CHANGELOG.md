@@ -3,7 +3,7 @@
 ### Minor changes
 
 -   **terra-node-tree** add support for mat-icons.
--   **tooltip** added `TerraTooltipModule` to be able to individually include tooltip functionality.
+-   **tcTooltip** added `TerraTooltipModule` to be able to individually include tooltip functionality.
 
 # 12.2.0 (01.11.2021)
 
