@@ -1,4 +1,4 @@
-# 12.3.0 (X.X.2021) - UNRELEASED
+# 12.4.0 (X.X.2021) - UNRELEASED
 
 ### Features
 
@@ -6,6 +6,11 @@
 -   **terra-file-input** use components from `@angular/material` instead of our own deprecated ones.
 -   **terra-file-browser** use components from `@angular/material` instead of our own deprecated ones.
 -   **terra-image-preview** use components from `@angular/material` instead of our own deprecated ones.
+
+# 12.3.0 (04.11.2021)
+
+### Minor changes
+
 -   **terra-node-tree** add support for mat-icons.
 -   **tcTooltip** added `TerraTooltipModule` to be able to individually include tooltip functionality.
 
