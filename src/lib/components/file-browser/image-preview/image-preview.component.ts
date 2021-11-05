@@ -25,7 +25,7 @@ export class TerraImagePreviewComponent {
         this._metadata = {};
         this._isLoading = true;
         if (
-            !(object === null || object === undefined) &&
+            object != null &&
             this.inputStorageService &&
             this.inputStorageService instanceof TerraBaseMetadataStorageService
         ) {
