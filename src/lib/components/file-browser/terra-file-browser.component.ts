@@ -65,7 +65,7 @@ export class TerraFileBrowserComponent extends TerraFileBrowser implements OnCha
     }
 
     public get inputStorageServices(): Array<TerraBaseStorageService> {
-        if (this._storageServices?.length > 0) {
+        if (this._storageServices?.length) {
             return this._storageServices;
         }
 
