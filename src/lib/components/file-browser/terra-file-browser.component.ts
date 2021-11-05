@@ -51,7 +51,7 @@ export class TerraFileBrowserComponent extends TerraFileBrowser implements OnCha
     public _hasChild: (_: number, node: TerraFileBrowserNode) => boolean = (
         _: number,
         node: TerraFileBrowserNode
-    ): boolean => !!node.children && node.children.length > 0;
+    ): boolean => node?.children?.length > 0;
 
     private _storageServices: Array<TerraBaseStorageService>;
 
