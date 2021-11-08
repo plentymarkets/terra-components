@@ -117,7 +117,7 @@ export class TerraFileChooserComponent extends TerraButtonComponent {
     public onSelectedObjectChange(selectedObject: TerraStorageObject): void {
         // workaround since change detection is not finished when selectedObject is set
         setTimeout(() => {
-            if (selectedObject === null || selectedObject === undefined || selectedObject.isDirectory) {
+            if (!selectedObject || selectedObject.isDirectory) {
                 this.primaryOverlayButton.isDisabled = true;
             } else {
                 this.primaryOverlayButton.isDisabled = false;
