@@ -64,7 +64,7 @@ export class TerraFileChooserComponent extends TerraButtonComponent {
     public fileBrowser: TerraFileBrowserComponent;
 
     @ViewChild(TemplateRef, { static: true })
-    public dialogTemplateRef: TemplateRef<any>;
+    public _dialogTemplateRef: TemplateRef<any>;
 
     public _translationPrefix: string = 'terraFileInput';
 
@@ -80,9 +80,7 @@ export class TerraFileChooserComponent extends TerraButtonComponent {
 
     public onClick(event: Event): void {
         this.outputClicked.emit(event);
-        const dialogRef: MatDialogRef<any> = this._dialog.open(this.dialogTemplateRef, {
-            autoFocus: false
-        });
+        const dialogRef: MatDialogRef<any> = this._dialog.open(this._dialogTemplateRef);
         dialogRef.afterOpened().subscribe(() => {
             this.onBrowserShow();
         });
