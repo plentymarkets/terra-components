@@ -67,8 +67,10 @@ export class TerraFileChooserComponent extends TerraButtonComponent {
     @ViewChild(TemplateRef, { static: true })
     public _dialogTemplateRef: TemplateRef<any>;
 
+    /** @deprecated since v12. */
     public primaryOverlayButton: TerraOverlayButtonInterface;
 
+    /** @deprecated since v12. */
     public secondaryOverlayButton: TerraOverlayButtonInterface;
 
     public _translationPrefix: string = 'terraFileInput';
