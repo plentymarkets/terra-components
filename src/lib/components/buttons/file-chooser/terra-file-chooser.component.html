@@ -28,17 +28,24 @@
         </terra-file-browser>
     </mat-dialog-content>
     <mat-dialog-actions>
-        <terra-button
-            [inputIcon]="secondaryOverlayButton.icon"
-            [inputCaption]="secondaryOverlayButton.caption"
-            (outputClicked)="secondaryOverlayButton.clickFunction()"
-            [inputIsDisabled]="secondaryOverlayButton.isDisabled"
-        ></terra-button>
-        <terra-button
-            [inputIcon]="primaryOverlayButton.icon"
-            [inputCaption]="primaryOverlayButton.caption"
-            (outputClicked)="primaryOverlayButton.clickFunction()"
-            [inputIsDisabled]="primaryOverlayButton.isDisabled"
-        ></terra-button>
+        <button
+            mat-flat-button
+            mat-dialog-close
+            [disabled]="secondaryOverlayButton.isDisabled"
+            (click)="secondaryOverlayButton.clickFunction()"
+        >
+            <mat-icon fontSet="plentyicons" [fontIcon]="secondaryOverlayButton.icon"></mat-icon>
+            {{ inputSecondaryBrowserButtonCaption }}
+        </button>
+        <button
+            mat-flat-button
+            mat-dialog-close
+            color="primary"
+            [disabled]="primaryOverlayButton.isDisabled"
+            (click)="primaryOverlayButton.clickFunction()"
+        >
+            <mat-icon fontSet="plentyicons" [fontIcon]="primaryOverlayButton.icon"></mat-icon>
+            {{ inputPrimaryBrowserButtonCaption }}
+        </button>
     </mat-dialog-actions>
 </ng-template>

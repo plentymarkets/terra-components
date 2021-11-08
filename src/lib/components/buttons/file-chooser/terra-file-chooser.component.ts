@@ -115,12 +115,15 @@ export class TerraFileChooserComponent extends TerraButtonComponent {
     }
 
     public onSelectedObjectChange(selectedObject: TerraStorageObject): void {
-        if (selectedObject === null || selectedObject === undefined || selectedObject.isDirectory) {
-            this.primaryOverlayButton.isDisabled = true;
-        } else {
-            this.primaryOverlayButton.isDisabled = false;
-            this._selectedObject = selectedObject;
-        }
+        // workaround since change detection is not finished when selectedObject is set
+        setTimeout(() => {
+            if (selectedObject === null || selectedObject === undefined || selectedObject.isDirectory) {
+                this.primaryOverlayButton.isDisabled = true;
+            } else {
+                this.primaryOverlayButton.isDisabled = false;
+                this._selectedObject = selectedObject;
+            }
+        });
     }
 
     public onBrowserShow(): void {
