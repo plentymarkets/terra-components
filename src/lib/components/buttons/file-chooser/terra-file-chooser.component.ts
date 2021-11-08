@@ -1,10 +1,11 @@
-import { Component, EventEmitter, Inject, Input, Output, TemplateRef, ViewChild } from '@angular/core';
-import { L10N_LOCALE, L10nLocale, L10nTranslationService } from 'angular-l10n';
+import { Component, EventEmitter, Input, Output, TemplateRef, ViewChild } from '@angular/core';
+import { L10nTranslationService } from 'angular-l10n';
 import { TerraFileBrowserComponent } from '../../file-browser/terra-file-browser.component';
 import { TerraButtonComponent } from '../button/terra-button.component';
 import { TerraBaseStorageService } from '../../file-browser/terra-base-storage.interface';
 import { TerraStorageObject } from '../../file-browser/model/terra-storage-object';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { TerraOverlayButtonInterface } from '../../layouts/overlay/data/terra-overlay-button.interface';
 
 /**
  * @deprecated since v11. Use material's [button]{@link https://material.angular.io/components/button}
@@ -66,6 +67,10 @@ export class TerraFileChooserComponent extends TerraButtonComponent {
     @ViewChild(TemplateRef, { static: true })
     public _dialogTemplateRef: TemplateRef<any>;
 
+    public primaryOverlayButton: TerraOverlayButtonInterface;
+
+    public secondaryOverlayButton: TerraOverlayButtonInterface;
+
     public _translationPrefix: string = 'terraFileInput';
 
     public _selectedObject: TerraStorageObject;
@@ -76,6 +81,26 @@ export class TerraFileChooserComponent extends TerraButtonComponent {
 
     constructor(private _translation: L10nTranslationService, private _dialog: MatDialog) {
         super();
+
+        this.primaryOverlayButton = {
+            icon: 'icon-success',
+            caption: this.inputPrimaryBrowserButtonCaption,
+            isDisabled: true,
+            clickFunction: (): void => {
+                this.outputSelected.emit(this._selectedObject);
+                this._dialog.closeAll();
+            }
+        };
+
+        this.secondaryOverlayButton = {
+            icon: 'icon-close',
+            caption: this.inputSecondaryBrowserButtonCaption,
+            isDisabled: false,
+            clickFunction: (): void => {
+                this.outputCancelled.emit();
+                this._dialog.closeAll();
+            }
+        };
     }
 
     public onClick(event: Event): void {
@@ -84,15 +109,18 @@ export class TerraFileChooserComponent extends TerraButtonComponent {
         dialogRef.afterOpened().subscribe(() => {
             this.onBrowserShow();
         });
-        dialogRef.afterClosed().subscribe((result: TerraStorageObject) => {
-            result ? this.outputSelected.emit(this._selectedObject) : this.outputCancelled.emit();
+        dialogRef.afterClosed().subscribe(() => {
             this.onBrowserHide();
         });
     }
 
     public onSelectedObjectChange(selectedObject: TerraStorageObject): void {
-        // workaround since change detection is not finished when selectedObject is set
-        setTimeout(() => (this._selectedObject = selectedObject));
+        if (selectedObject === null || selectedObject === undefined || selectedObject.isDirectory) {
+            this.primaryOverlayButton.isDisabled = true;
+        } else {
+            this.primaryOverlayButton.isDisabled = false;
+            this._selectedObject = selectedObject;
+        }
     }
 
     public onBrowserShow(): void {
