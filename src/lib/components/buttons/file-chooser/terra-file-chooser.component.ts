@@ -90,7 +90,6 @@ export class TerraFileChooserComponent extends TerraButtonComponent {
             isDisabled: true,
             clickFunction: (): void => {
                 this.outputSelected.emit(this._selectedObject);
-                this._dialog.closeAll();
             }
         };
 
@@ -100,7 +99,6 @@ export class TerraFileChooserComponent extends TerraButtonComponent {
             isDisabled: false,
             clickFunction: (): void => {
                 this.outputCancelled.emit();
-                this._dialog.closeAll();
             }
         };
     }
