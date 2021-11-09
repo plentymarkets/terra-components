@@ -16,21 +16,36 @@
 >
 </terra-button>
 
-<terra-overlay
-    #overlay
-    [inputPrimaryButtonInterface]="primaryOverlayButton"
-    [inputSecondaryButtonInterface]="secondaryOverlayButton"
-    [inputIsExtraLarge]="true"
-    (outputOnShow)="onBrowserShow()"
-    (outputOnHide)="onBrowserHide()"
-    class="hasSplitView"
->
-    <terra-file-browser
-        #fileBrowser
-        [inputAllowedExtensions]="inputAllowedExtensions"
-        [inputAllowFolders]="inputAllowFolders"
-        [inputStorageServices]="inputStorageServices"
-        (outputSelectedChange)="onSelectedObjectChange($event)"
-    >
-    </terra-file-browser>
-</terra-overlay>
+<ng-template>
+    <mat-dialog-content>
+        <terra-file-browser
+            #fileBrowser
+            [inputAllowedExtensions]="inputAllowedExtensions"
+            [inputAllowFolders]="inputAllowFolders"
+            [inputStorageServices]="inputStorageServices"
+            (outputSelectedChange)="onSelectedObjectChange($event)"
+        >
+        </terra-file-browser>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button
+            mat-flat-button
+            mat-dialog-close
+            [disabled]="secondaryOverlayButton.isDisabled"
+            (click)="secondaryOverlayButton.clickFunction()"
+        >
+            <mat-icon fontSet="plentyicons" [fontIcon]="secondaryOverlayButton.icon"></mat-icon>
+            {{ inputSecondaryBrowserButtonCaption }}
+        </button>
+        <button
+            mat-flat-button
+            mat-dialog-close
+            color="primary"
+            [disabled]="primaryOverlayButton.isDisabled"
+            (click)="primaryOverlayButton.clickFunction()"
+        >
+            <mat-icon fontSet="plentyicons" [fontIcon]="primaryOverlayButton.icon"></mat-icon>
+            {{ inputPrimaryBrowserButtonCaption }}
+        </button>
+    </mat-dialog-actions>
+</ng-template>

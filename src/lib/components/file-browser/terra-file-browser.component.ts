@@ -2,17 +2,17 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange
 import { TerraFrontendStorageService } from './terra-frontend-storage.service';
 import { TerraStorageObject } from './model/terra-storage-object';
 import { TerraBaseStorageService } from './terra-base-storage.interface';
-import { isNullOrUndefined } from 'util';
-import { TerraNodeTreeConfig } from '../tree/node-tree/data/terra-node-tree.config';
-import { TerraNodeInterface } from '../tree/node-tree/data/terra-node.interface';
 import { TerraStorageObjectList } from './model/terra-storage-object-list';
 import { StringHelper } from '../../helpers/string.helper';
 import { TerraFileBrowser } from './terra-file-browser';
+import { NestedTreeControl } from '@angular/cdk/tree';
+import { MatTreeNestedDataSource } from '@angular/material/tree';
+import { TerraFileBrowserNode } from './data/terra-file-browser-node.interface';
 
 @Component({
     selector: 'terra-file-browser',
     templateUrl: './terra-file-browser.component.html',
-    providers: [TerraNodeTreeConfig, { provide: TerraFileBrowser, useExisting: TerraFileBrowserComponent }]
+    providers: [{ provide: TerraFileBrowser, useExisting: TerraFileBrowserComponent }]
 })
 export class TerraFileBrowserComponent extends TerraFileBrowser implements OnChanges, OnInit {
     @Input()
@@ -32,6 +32,13 @@ export class TerraFileBrowserComponent extends TerraFileBrowser implements OnCha
 
     public onSelectedUrlChange: EventEmitter<string> = new EventEmitter();
 
+    public _treeControl: NestedTreeControl<TerraFileBrowserNode> = new NestedTreeControl<TerraFileBrowserNode>(
+        (node: TerraFileBrowserNode): Array<TerraFileBrowserNode> => node.children
+    );
+    public _dataSource: MatTreeNestedDataSource<TerraFileBrowserNode> = new MatTreeNestedDataSource<
+        TerraFileBrowserNode
+    >();
+
     /** @description Notifies whenever the storage service or the storage root has been updated. */
     public updatedStorageRootAndService: EventEmitter<
         [TerraBaseStorageService, TerraStorageObject]
@@ -39,6 +46,12 @@ export class TerraFileBrowserComponent extends TerraFileBrowser implements OnCha
 
     public _rightColumnWidth: number = 0;
     public _centerColumnWidth: number = 10;
+    public _currentSelectedNode: TerraFileBrowserNode;
+
+    public _hasChild: (_: number, node: TerraFileBrowserNode) => boolean = (
+        _: number,
+        node: TerraFileBrowserNode
+    ): boolean => node?.children?.length > 0;
 
     private _storageServices: Array<TerraBaseStorageService>;
 
@@ -52,37 +65,46 @@ export class TerraFileBrowserComponent extends TerraFileBrowser implements OnCha
     }
 
     public get inputStorageServices(): Array<TerraBaseStorageService> {
-        if (!isNullOrUndefined(this._storageServices) && this._storageServices.length > 0) {
+        if (this._storageServices?.length) {
             return this._storageServices;
         }
 
         return this._defaultStorageServices;
     }
 
-    constructor(frontendStorageService: TerraFrontendStorageService, public _nodeTreeConfig: TerraNodeTreeConfig<{}>) {
+    constructor(frontendStorageService: TerraFrontendStorageService) {
         super();
         this._defaultStorageServices = [frontendStorageService];
     }
 
     public ngOnInit(): void {
-        if (isNullOrUndefined(this._storageServices)) {
+        if (!this._storageServices) {
             this._renderTree(this.inputStorageServices);
         }
     }
 
     public ngOnChanges(changes: SimpleChanges): void {
         if (changes.hasOwnProperty('inputStorageServices')) {
-            this._nodeTreeConfig.reset();
             this._renderTree(changes['inputStorageServices'].currentValue);
         }
     }
 
     public selectNode(storage: TerraStorageObject): void {
-        let foundNode: TerraNodeInterface<{}> = this._nodeTreeConfig.findNodeById(storage.key);
+        // check if storage is new by checking if parent exists
+        if (!storage.parent) {
+            // and reassign the data to get the tree updated
+            const copy: Array<TerraFileBrowserNode> = this._dataSource.data;
+            this._dataSource.data = [];
+            this._dataSource.data = copy;
 
-        if (!isNullOrUndefined(foundNode)) {
-            foundNode.isOpen = true;
-            this._nodeTreeConfig.currentSelectedNode = foundNode;
+            // use current selected node here since the new folder is added but not opened
+            this._recursiveExpandParents(this._currentSelectedNode);
+        }
+
+        const foundNode: TerraFileBrowserNode = this._recursiveFindNodeByKey(this._dataSource.data, storage.key);
+
+        if (foundNode) {
+            this._treeControl.expand(foundNode);
         }
     }
 
@@ -104,55 +126,93 @@ export class TerraFileBrowserComponent extends TerraFileBrowser implements OnCha
         this._rightColumnWidth = 0;
     }
 
+    public _onNodeClick(event: MouseEvent, node: TerraFileBrowserNode): void {
+        event.stopPropagation();
+
+        if (node.onClick) {
+            node.onClick();
+        }
+
+        this._currentSelectedNode = node;
+    }
+
+    private _recursiveExpandParents(node: TerraFileBrowserNode): void {
+        const parentNode: TerraFileBrowserNode = this._recursiveFindNodeByKey(this._dataSource.data, node.parentKey);
+
+        if (parentNode && !this._treeControl.isExpanded(parentNode)) {
+            this._treeControl.expand(parentNode);
+
+            this._recursiveExpandParents(parentNode);
+        }
+    }
+
+    private _recursiveFindNodeByKey(nodeList: Array<TerraFileBrowserNode>, key: string): TerraFileBrowserNode {
+        let foundNode: TerraFileBrowserNode = null;
+
+        if (key?.length > 0) {
+            for (let node of nodeList) {
+                if (node?.key.toString() === key.toString()) {
+                    foundNode = node;
+
+                    return foundNode;
+                } else if (node.children) {
+                    foundNode = this._recursiveFindNodeByKey(node.children, key);
+
+                    if (foundNode) {
+                        break;
+                    }
+                }
+            }
+        }
+
+        return foundNode;
+    }
+
     private _renderTree(services: Array<TerraBaseStorageService>): void {
-        if (isNullOrUndefined(services)) {
+        if (!services) {
             return;
         }
 
+        const nodeList: Array<TerraFileBrowserNode> = [];
+
         services.forEach((service: TerraBaseStorageService) => {
-            let node: TerraNodeInterface<{}> = {
-                id: service.name,
+            const node: TerraFileBrowserNode = {
+                key: service.name,
                 name: service.name,
-                isVisible: true
+                parentKey: null // first entry does not have a parent
             };
 
-            this._nodeTreeConfig.addNode(node);
-
-            if (isNullOrUndefined(this._nodeTreeConfig.currentSelectedNode)) {
-                this._nodeTreeConfig.currentSelectedNode = node;
-                node.isOpen = true;
+            if (!this._currentSelectedNode) {
+                this._currentSelectedNode = node;
+                this._treeControl.expand(node);
             }
+
+            nodeList.push(node);
 
             service.getStorageList().subscribe((storage: TerraStorageObjectList) => {
                 node.children = [];
-                if (!isNullOrUndefined(storage)) {
+                if (storage) {
                     let root: TerraStorageObject = storage.root;
-                    node.id = root.key;
+                    node.key = root.key;
 
-                    if (isNullOrUndefined(node.onClick)) {
+                    if (!node.onClick) {
                         // only one root folder is existing
-                        this._addDefaultClickEventToNode(node, service, root);
+                        node.onClick = (): void => this.updatedStorageRootAndService.next([service, root]);
                     }
 
                     this._getSortedList(root.children).forEach((child: TerraStorageObject) => {
                         this._recursiveCreateNode(child, node, service);
                     });
+
+                    this._dataSource.data = nodeList;
                 }
             });
         });
     }
 
-    private _addDefaultClickEventToNode(
-        node: TerraNodeInterface<{}>,
-        service: TerraBaseStorageService,
-        root: TerraStorageObject
-    ): void {
-        node.onClick = (): void => this.updatedStorageRootAndService.next([service, root]);
-    }
-
     private _recursiveCreateNode(
         storage: TerraStorageObject,
-        parentNode: TerraNodeInterface<{}>,
+        parentNode: TerraFileBrowserNode,
         service: TerraBaseStorageService
     ): void {
         if (storage.isDirectory) {
@@ -164,15 +224,16 @@ export class TerraFileBrowserComponent extends TerraFileBrowser implements OnCha
                 name = storage.name;
             }
 
-            let directory: TerraNodeInterface<{}> = {
-                id: storage.key,
+            const directory: TerraFileBrowserNode = {
+                key: storage.key,
                 name: name,
                 icon: storage.icon,
+                parentKey: parentNode.key,
                 onClick: (): void => this.updatedStorageRootAndService.next([service, storage]),
-                isVisible: true
+                children: []
             };
 
-            this._nodeTreeConfig.addNode(directory, parentNode);
+            parentNode.children.push(directory);
 
             this._getSortedList(storage.children).forEach((childStorage: TerraStorageObject) => {
                 this._recursiveCreateNode(childStorage, directory, service);
