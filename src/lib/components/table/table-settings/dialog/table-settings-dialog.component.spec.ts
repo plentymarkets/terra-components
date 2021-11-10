@@ -65,7 +65,9 @@ describe('TableSettingsDialogComponent', () => {
     it('should render column names in options', () => {
         const options: Array<DebugElement> = fixture.debugElement.queryAll(By.css('mat-list-option'));
         const optionTexts: Array<string> = options.map((option: DebugElement) => option.nativeElement.textContent);
-        component.data.columns.forEach((column: ColumnInterface) => expect(optionTexts).toContain(column.key));
+        component.data.columns.forEach((column: ColumnInterface) =>
+            expect(optionTexts.toString()).toContain(column.key)
+        );
     });
 
     it('should create a new list of selected columns after drop event and move a column to the right index in array', () => {
