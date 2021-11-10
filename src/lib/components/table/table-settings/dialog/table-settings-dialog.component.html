@@ -12,14 +12,16 @@
             #option
             *ngFor="let column of _columns"
             [value]="column.key"
-            checkboxPosition="before"
+            checkboxPosition="after"
             cdkDrag
+            cdkDragPreviewContainer="parent"
             [cdkDragDisabled]="!option.selected"
         >
-            <div class="d-flex align-items-center justify-content-between">
-                <span>{{ column.label }}</span>
-                <span *ngIf="option.selected" class="icon-drag_sort_handle" cdkDragHandle></span>
-            </div>
+            <mat-icon cdkDragHandle matListIcon (click)="$event.stopPropagation()"
+                ><!-- stopPropagation, to avoid check || uncheck the checkbox when user clicks on drag-icon -->
+                {{ option.selected ? 'drag_indicator' : '' }}
+            </mat-icon>
+            {{ column.label }}
         </mat-list-option>
     </mat-selection-list>
 </mat-dialog-content>
