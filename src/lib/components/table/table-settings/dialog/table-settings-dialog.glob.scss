@@ -19,6 +19,7 @@ mat-dialog-container {
 .table-settings-dialog-content {
     /* Checkbox and text inline and vertically centered */
     .mat-list-option {
+        /* For what is this mat-header-cell selector ?! */
         .mat-header-cell {
             border-bottom: none;
             font-size: var(--font-size-4);
