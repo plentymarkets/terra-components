@@ -17,8 +17,8 @@
             cdkDragPreviewContainer="parent"
             [cdkDragDisabled]="!option.selected"
         >
-            <mat-icon cdkDragHandle matListIcon (click)="$event.stopPropagation()"
-                ><!-- stopPropagation, to avoid check || uncheck the checkbox when user clicks on drag-icon -->
+            <!-- stopPropagation, to avoid check || uncheck the checkbox when user clicks on drag-icon -->
+            <mat-icon cdkDragHandle matListIcon (click)="$event.stopPropagation()">
                 {{ option.selected ? 'drag_indicator' : '' }}
             </mat-icon>
             {{ column.label }}
