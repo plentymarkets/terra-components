@@ -1,6 +1,7 @@
 mat-dialog-container {
     &.mat-dialog-container {
         .mat-dialog-content {
+            background-color: var(--color-structure-0);
             &.table-settings-dialog-content {
                 overflow: hidden;
                 padding: 0;
