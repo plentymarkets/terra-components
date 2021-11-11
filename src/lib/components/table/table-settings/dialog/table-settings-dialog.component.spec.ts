@@ -26,7 +26,7 @@ describe('TableSettingsDialogComponent', () => {
     let component: TableSettingsDialogComponent;
     let loader: HarnessLoader;
 
-    beforeEach(async () => {
+    beforeEach(() => {
         TestBed.configureTestingModule({
             declarations: [TableSettingsDialogComponent, MockButtonComponent],
             imports: [
