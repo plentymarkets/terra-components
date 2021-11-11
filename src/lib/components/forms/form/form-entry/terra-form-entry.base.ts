@@ -8,20 +8,22 @@ import {
     OnDestroy,
     SimpleChanges,
     Type,
-    ViewChild
+    ViewChild,
+    Directive
 } from '@angular/core';
 import { TerraFormTypeInterface } from '../model/terra-form-type.interface';
 import { FormEntryContainerDirective } from './form-entry-container.directive';
 import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
 import { TerraTextInputComponent } from '../../input/text-input/terra-text-input.component';
 
-export class TerraFormEntryBase implements OnChanges, OnDestroy
-{
+@Directive()
+// tslint:disable-next-line:directive-class-suffix
+export class TerraFormEntryBase implements OnChanges, OnDestroy {
     /**
      * @description Specification of the formField that should be displayed.
      */
     @Input()
-    public inputFormField:TerraFormFieldInterface;
+    public inputFormField: TerraFormFieldInterface;
 
     /**
      * @description Map of supported control types. If the given formField's type is not supported, a TerraTextInputComponent instance is
@@ -31,35 +33,32 @@ export class TerraFormEntryBase implements OnChanges, OnDestroy
      *     rendered as well.
      */
     @Input()
-    public inputControlTypeMap:{ [key:string]:Type<any> | TerraFormTypeInterface } = {};
+    public inputControlTypeMap: { [key: string]: Type<any> | TerraFormTypeInterface } = {};
 
     /**
      * @description May be used to disable/enable the form field.
      * @default false
      */
     @Input()
-    public inputIsDisabled:boolean = false;
+    public inputIsDisabled: boolean = false;
 
     @ViewChild(FormEntryContainerDirective, { static: true })
-    protected _container:FormEntryContainerDirective;
+    protected _container: FormEntryContainerDirective;
 
-    protected _componentFactory:ComponentFactory<any>;
-    protected _componentRef:ComponentRef<any>;
-    protected get _componentInstance():any
-    {
-        return (!this._componentRef) ? null : this._componentRef.instance;
+    protected _componentFactory: ComponentFactory<any>;
+    protected _componentRef: ComponentRef<any>;
+    protected get _componentInstance(): any {
+        return !this._componentRef ? null : this._componentRef.instance;
     }
 
-    constructor(protected _componentFactoryResolver:ComponentFactoryResolver)
-    {}
+    constructor(protected _componentFactoryResolver: ComponentFactoryResolver) {}
 
     /**
      * Implementation of the OnChanges life cycle hook.
      * @description Updates the input bindings of the dynamically created component instance.
      * @param changes
      */
-    public ngOnChanges(changes:SimpleChanges):void
-    {
+    public ngOnChanges(changes: SimpleChanges): void {
         this._bindInputProperties();
     }
 
@@ -67,98 +66,96 @@ export class TerraFormEntryBase implements OnChanges, OnDestroy
      * Implementation of the OnDestroy life cycle hook.
      * @description Destroys the component that has been created dynamically.
      */
-    public ngOnDestroy():void
-    {
-        if(!isNullOrUndefined(this._componentRef))
-        {
+    public ngOnDestroy(): void {
+        if (!isNullOrUndefined(this._componentRef)) {
             this._componentRef.destroy();
         }
     }
 
-    protected _getControlType(fallback:Type<any> = TerraTextInputComponent):Type<any>
-    {
-        if(this.inputControlTypeMap.hasOwnProperty(this.inputFormField.type))
-        {
-            if(this.inputControlTypeMap[this.inputFormField.type] instanceof Type)
-            {
-                return <Type<any>> this.inputControlTypeMap[this.inputFormField.type];
-            }
-            else
-            {
-                return (<TerraFormTypeInterface> this.inputControlTypeMap[this.inputFormField.type]).component;
+    protected _getControlType(fallback: Type<any> = TerraTextInputComponent): Type<any> {
+        if (this.inputControlTypeMap.hasOwnProperty(this.inputFormField.type)) {
+            if (this.inputControlTypeMap[this.inputFormField.type] instanceof Type) {
+                return <Type<any>>this.inputControlTypeMap[this.inputFormField.type];
+            } else {
+                return (<TerraFormTypeInterface>this.inputControlTypeMap[this.inputFormField.type]).component;
             }
         }
 
         return fallback;
     }
 
-    protected _initComponent(defaultControlType:Type<any> = TerraTextInputComponent, projectableNodes?:Array<Array<any>>):void
-    {
+    protected _initComponent(
+        defaultControlType: Type<any> = TerraTextInputComponent,
+        projectableNodes?: Array<Array<any>>
+    ): void {
         this._componentFactory = this._componentFactoryResolver.resolveComponentFactory(
             this._getControlType(defaultControlType)
         );
-        this._componentRef = this._container.viewContainerRef.createComponent(this._componentFactory, undefined, undefined, projectableNodes);
+        this._componentRef = this._container.viewContainerRef.createComponent(
+            this._componentFactory,
+            undefined,
+            undefined,
+            projectableNodes
+        );
         this._bindInputProperties();
     }
 
-    protected _bindInputProperties():void
-    {
-        if(!isNullOrUndefined(this._componentInstance))
-        {
-            let inputMap:{ [key:string]:string } = {};
-            if(!(this.inputControlTypeMap[this.inputFormField.type] instanceof Type))
-            {
-                inputMap = (<TerraFormTypeInterface> this.inputControlTypeMap[this.inputFormField.type]).inputMap;
+    protected _bindInputProperties(): void {
+        if (!isNullOrUndefined(this._componentInstance)) {
+            let inputMap: { [key: string]: string } = {};
+            if (!(this.inputControlTypeMap[this.inputFormField.type] instanceof Type)) {
+                inputMap = (<TerraFormTypeInterface>this.inputControlTypeMap[this.inputFormField.type]).inputMap;
             }
 
-            if(!isNullOrUndefined(this.inputFormField.options))
-            {
-                Object.keys(this.inputFormField.options).forEach((optionKey:string) =>
-                {
+            if (!isNullOrUndefined(this.inputFormField.options)) {
+                Object.keys(this.inputFormField.options).forEach((optionKey: string) => {
                     this._performInputBindings(inputMap, optionKey);
                 });
             }
 
-            if(inputMap.hasOwnProperty('isDisabled'))
-            {
+            if (inputMap.hasOwnProperty('isDisabled')) {
                 this._componentInstance[inputMap['isDisabled']] = this.inputIsDisabled;
-            }
-            else
-            {
+            } else {
                 this._componentInstance['inputIsDisabled'] = this.inputIsDisabled;
             }
         }
     }
 
-    protected _performInputBindings(inputMap:{ [key:string]:string }, optionKey:string):void
-    {
-        let inputPropertyNames:Array<string> = this._componentFactory
-                                                   .inputs
-                                                   .map((input:{ propName:string; templateName:string; }) => input.propName);
-        if(inputMap.hasOwnProperty(optionKey) && inputPropertyNames.indexOf(inputMap[optionKey]) >= 0)
-        {
+    protected _performInputBindings(inputMap: { [key: string]: string }, optionKey: string): void {
+        let inputPropertyNames: Array<string> = this._componentFactory.inputs.map(
+            (input: { propName: string; templateName: string }) => input.propName
+        );
+        if (inputMap.hasOwnProperty(optionKey) && inputPropertyNames.indexOf(inputMap[optionKey]) >= 0) {
             this._componentInstance[inputMap[optionKey]] = this.inputFormField.options[optionKey];
-        }
-        else if(inputPropertyNames.indexOf(optionKey) >= 0)
-        {
+        } else if (inputPropertyNames.indexOf(optionKey) >= 0) {
             this._componentInstance[optionKey] = this.inputFormField.options[optionKey];
         }
-        else
-        {
-            let prefixedOptionKey:string = this._transformInputPropertyName(optionKey);
-            if(inputPropertyNames.indexOf(prefixedOptionKey) >= 0)
-            {
+        // this is for the support of legacy input names
+        else if (optionKey.startsWith('input') && inputPropertyNames.includes(this._removeInputPrefix(optionKey))) {
+            const unprefixedOptionKey: string = this._removeInputPrefix(optionKey);
+            this._componentInstance[unprefixedOptionKey] = this.inputFormField.options[optionKey];
+        } else {
+            let prefixedOptionKey: string = this._transformInputPropertyName(optionKey);
+            if (inputPropertyNames.indexOf(prefixedOptionKey) >= 0) {
                 this._componentInstance[prefixedOptionKey] = this.inputFormField.options[optionKey];
-            }
-            else
-            {
+            } else {
                 console.warn('Cannot assign property ' + optionKey + ' on ' + this._componentInstance.constructor.name);
             }
         }
     }
 
-    private _transformInputPropertyName(propertyName:string):string
-    {
+    private _transformInputPropertyName(propertyName: string): string {
         return 'input' + propertyName.charAt(0).toUpperCase() + propertyName.substr(1);
+    }
+
+    /**
+     * Removes the prefix 'input' from the given propertyName and lowercases the succeeding character.
+     * @param propertyName
+     */
+    private _removeInputPrefix(propertyName: string): string {
+        if (!propertyName.startsWith('input')) {
+            return propertyName;
+        }
+        return propertyName.charAt(5).toLowerCase() + propertyName.substr(6);
     }
 }

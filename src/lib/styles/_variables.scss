@@ -11,8 +11,7 @@ $grid-breakpoints: (
     xl: 1200px
 ) !default;
 
-@mixin font-rendering
-{
+@mixin font-rendering {
     font-weight: var(--font-weight-2);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

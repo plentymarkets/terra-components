@@ -1,21 +1,38 @@
 <li>
     <div class="btn-handler">
-        <div class="node btn"
-             [ngClass]="{'activated' : inputNode.isActive, 'isLoading' : inputNode.isLoading && inputNode.onLazyLoad}"
-             (click)="_onNodeClick($event)"
-             [tcTooltip]="_tooltip | translate:_lang"
-             [onlyEllipsisTooltip]="true"
-             [placement]="_tooltipPlacement">
+        <div
+            class="node btn"
+            [ngClass]="{ activated: inputNode.isActive, isLoading: inputNode.isLoading && inputNode.onLazyLoad }"
+            (click)="_onNodeClick($event)"
+            [tcTooltip]="_tooltip | translate: _locale.language"
+            [onlyEllipsisTooltip]="_onlyEllipsisTooltip"
+            [placement]="_tooltipPlacement"
+        >
             <span *ngIf="!inputNode.icon" class="icon_dist_top icon-placeholder"></span>
-            <span *ngIf="inputNode.icon" class="icon_dist_top" [ngClass]="inputNode.icon"></span>
-            <div class="buttonText">{{inputNode.name | translate:_lang }}</div>
-            <span *ngIf="(inputNode.children && inputNode.children.length > 0) || inputNode.onLazyLoad"
-                  class="icon-right icon-collapse_up"
-                  [ngClass]="{'icon-collapse_up' : inputNode.isOpen, 'icon-collapse_down': !inputNode.isOpen}"
-                  (click)="_handleIconClick($event)"></span>
+            <ng-container
+                *ngIf="inputNode.icon"
+                [ngSwitch]="(inputNode.icon | isIconObject) && inputNode.icon.fontSet === 'material-icons'"
+            >
+                <mat-icon *ngSwitchCase="true" class="icon_dist_top">{{
+                    (inputNode.icon | isIconObject) ? inputNode.icon.fontIcon : ''
+                }}</mat-icon>
+                <mat-icon
+                    *ngSwitchCase="false"
+                    class="icon_dist_top"
+                    [fontSet]="'plentyicons'"
+                    [fontIcon]="(inputNode.icon | isIconObject) ? inputNode.icon.fontIcon : inputNode.icon"
+                ></mat-icon>
+            </ng-container>
+            <div class="buttonText">{{ inputNode.name | translate: _locale.language }}</div>
+            <span
+                *ngIf="(inputNode.children && inputNode.children.length > 0) || inputNode.onLazyLoad"
+                class="icon-right icon-collapse_up"
+                [ngClass]="{ 'icon-collapse_up': inputNode.isOpen, 'icon-collapse_down': !inputNode.isOpen }"
+                (click)="_handleIconClick($event)"
+            ></span>
         </div>
     </div>
-    
+
     <ul *ngIf="inputNode.children && inputNode.children.length > 0 && inputNode.isOpen">
         <ng-container *ngFor="let node of inputNode.children">
             <terra-node *ngIf="node.isVisible" [inputNode]="node" [inputConfig]="inputConfig"></terra-node>

@@ -1,5 +1,4 @@
-:host
-{
+:host {
     position: absolute;
     top: 0;
     left: 0;
@@ -10,75 +9,26 @@
     overflow-y: hidden;
 }
 
-.loading-placeholder
-{
-    p
-    {
+.loading-placeholder {
+    p {
         padding: 8px 0 9px 16px;
         margin: 0;
         display: inline-block;
         color: var(--color-structure-9);
     }
 
-    .icon-loading
-    {
+    .icon-loading {
         float: right;
         font-size: 36px;
     }
 }
 
-.terra-breadcrumbs
-{
-    .caret
-    {
-        &:after
-        {
-            top: 13.5px !important;
-            right: 8px !important;
-        }
-    }
-
-    .context-menu
-    {
-        left: 0;
-        right: auto;
-
-        li
-        {
-            a
-            {
-                position: relative;
-                padding-left: 14px;
-
-                &.active
-                {
-                    &:before
-                    {
-                        content: "";
-                        width: 4px;
-                        height: 4px;
-                        border-radius: 50%;
-                        background-color: var(--color-structure-0);
-                        display: inline-block;
-                        position: absolute;
-                        top: 50%;
-                        left: 5px;
-                        margin-top: -3px;
-                    }
-                }
-            }
-        }
-    }
-}
-
-.file-list-container
-{
+.file-list-container {
     flex: 1;
     overflow-y: auto;
     position: relative;
-    
-    .file-drop
-    {
+
+    .file-drop {
         position: absolute;
         top: 36px;
         bottom: 0;
@@ -92,13 +42,11 @@
         flex-direction: row;
         align-items: center;
 
-        &.in
-        {
+        &.in {
             display: flex;
         }
 
-        div
-        {
+        div {
             display: flex;
             flex-direction: column;
             width: 100%;
@@ -106,86 +54,34 @@
             color: var(--color-structure-0);
             font-size: 2rem;
 
-            .icon-upload
-            {
+            .icon-upload {
                 font-size: 7.5rem;
             }
-
         }
     }
 }
 
-.prompt
-{
-    position: absolute;
-    top: 36px;
-    left: 50%;
-    width: 90%;
-    margin-left: -45%;
-    background: var(--color-structure-2);
-    border: 1px solid var(--color-structure-4);
-    border-top: none;
-    padding: var(--space-sm) var(--space-md);
-    border-bottom-left-radius: var(--border-radius);
-    border-bottom-right-radius: var(--border-radius);
-    transform: translateY(-100%);
-    transition: transform 150ms ease;
-    z-index: 1;
-
-    &.in
-    {
-        transform: translateY(0);
-        z-index: var(--zIndex-1);
-    }
-
-    .prompt-title
-    {
-        font-size: 1.2em;
-        font-weight: 500;
-        margin-bottom: 8px;
-        display: block;
-    }
-}
-
-.empty-directory
-{
+.empty-directory {
     height: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
 
-    > div
-    {
+    > div {
         flex: 1;
         display: flex;
         flex-direction: column;
         align-items: center;
     }
 
-    p
-    {
+    p {
         text-align: center;
         font-size: 2em;
         color: var(--color-structure-9);
     }
 }
 
-.file-list-container.empty .prompt
-{
-    top: 0;
-}
-
-@media(min-width: 544px)
-{
-    .prompt
-    {
-        width: 400px;
-        margin-left: -200px;
-    }
-}
-
-.upload-progress-container
-{
+.upload-progress-container {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -194,20 +90,21 @@
     text-align: center;
     padding-bottom: 2px;
 
-    > span
-    {
-        font-size: .8em;
+    > span {
+        font-size: 0.8em;
     }
 
-    .upload-progress
-    {
+    .upload-progress {
         width: 100%;
 
-        > div
-        {
+        > div {
             height: 2px;
             background-color: var(--color-active);
-            transition: ease all .5s;
+            transition: ease all 0.5s;
         }
     }
+}
+
+.mat-table .mat-row.focused {
+    background-color: var(--color-structure-2);
 }

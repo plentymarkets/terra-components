@@ -1,58 +1,53 @@
-button, html [type="button"], [type="reset"], [type="submit"]
-{
+button,
+html [type='button'],
+[type='reset'],
+[type='submit'] {
     -webkit-appearance: none !important;
 }
 
-button:focus, .btn:focus, .btn.focus
-{
+button:focus,
+.btn:focus,
+.btn.focus {
     outline: none !important;
     box-shadow: none;
 }
 
-.btn-handler
-{
+.btn-handler {
     display: var(--terra-button-btn-handler-display, inline-block);
     margin: var(--terra-button-btn-handler-margin);
     position: relative;
-    
-    &.disabled
-    {
-        %disabled-state
-        {
+
+    &.disabled {
+        %disabled-state {
             background-color: var(--color-structure-3);
             color: var(--color-structure-7);
             cursor: not-allowed;
             pointer-events: none;
         }
-        
+
         cursor: not-allowed;
-        
-        .btn
-        {
+
+        .btn {
             @extend %disabled-state;
-            
+
             &:hover,
             &:active,
             &:focus,
-            &.active
-            {
+            &.active {
                 @extend %disabled-state;
             }
-            
-            &.btn-link
-            {
+
+            &.btn-link {
                 background-color: transparent;
                 color: var(--color-structure-4);
                 font-weight: var(--font-weight-3);
-                
-                &:hover
-                {
+
+                &:hover {
                     background-color: transparent;
                     color: var(--color-structure-4);
-                    
+
                     &:active,
-                    &.active
-                    {
+                    &.active {
                         background-color: transparent;
                         color: var(--color-structure-4);
                     }
@@ -60,9 +55,8 @@ button:focus, .btn:focus, .btn.focus
             }
         }
     }
-    
-    .flag
-    {
+
+    .flag {
         position: absolute;
         right: 0;
         top: 0;
@@ -71,14 +65,12 @@ button:focus, .btn:focus, .btn.focus
         height: 15px;
         border-top-right-radius: 0.2rem;
         cursor: pointer;
-        
-        &.disabled
-        {
+
+        &.disabled {
             cursor: not-allowed;
         }
-        
-        span
-        {
+
+        span {
             font-weight: 600;
             font-size: 1.1rem;
             color: var(--color-structure-0);
@@ -93,9 +85,8 @@ button:focus, .btn:focus, .btn.focus
             cursor: pointer;
             background: var(--color-accent);
             border-top: 10px solid var(--color-accent);
-            
-            &.disabled
-            {
+
+            &.disabled {
                 background: var(--color-accent-light);
                 border-top: 10px solid var(--color-accent-light);
                 cursor: not-allowed;
@@ -104,12 +95,11 @@ button:focus, .btn:focus, .btn.focus
     }
 }
 
-.btn
-{
+.btn {
     flex-direction: var(--terra-button-btn-handler-btn-flex-direction, inherit);
     align-items: var(--terra-button-btn-handler-btn-align-items, inherit);
     display: var(--terra-button-btn-handler-btn-display, inline-block);
-    
+
     height: var(--btn-height, var(--height-md));
     line-height: var(--btn-line-height, var(--height-md));
     padding: var(--btn-padding, (0 var(--space-md)));
@@ -133,162 +123,139 @@ button:focus, .btn:focus, .btn.focus
     text-decoration: none;
     border-radius: var(--border-radius);
     border-color: transparent;
-    transition: height var(--transition-lg), line-height var(--transition-lg), padding var(--transition-lg), background-color var(--transition-sm);
-    
+    transition: height var(--transition-lg), line-height var(--transition-lg), padding var(--transition-lg),
+        background-color var(--transition-sm);
+
     &:hover,
-    &:focus:not(.node)
-    {
+    &:focus:not(.node) {
         background-color: var(--color-structure-11);
         background-clip: padding-box;
-        
+
         &:active,
-        &.active
-        {
+        &.active {
             background-color: var(--color-structure-9);
             color: var(--color-structure-0);
             background-clip: padding-box;
         }
     }
-    
-    &.highlighted:not(:hover):not(focus):not(:active)
-    {
+
+    &.highlighted:not(:hover):not(focus):not(:active) {
         background-color: var(--color-group-navigation);
         border-bottom: var(--color-group-navigation);
         color: var(--color-structure-0);
-        
-        @keyframes highlighted
-        {
-            100%
-            {
+
+        @keyframes highlighted {
+            100% {
                 background-color: var(--function-group-color-highlighted, var(--color-group-active));
                 border-bottom: var(--function-group-color-highlighted, var(--color-group-active));
             }
         }
         animation: highlighted 1500ms ease-in-out 0ms infinite alternate;
     }
-    
-    span
-    {
+
+    span {
         font-size: 20px;
         position: relative;
-        top: 4.0px;
-        
-        &.icon_dist_top
-        {
+        top: 4px;
+
+        &.icon_dist_top {
             line-height: 0;
         }
     }
-    
-    &.btn-lg
-    {
+
+    &.btn-lg {
         // line-height: ensure even-numbered height of button next to large input
         height: var(--height-lg);
         line-height: var(--height-lg);
         padding: var(--btn-lg-padding, (0 var(--space-md)));
         font-size: var(--font-size-5);
-        
-        span
-        {
+
+        span {
             top: 4px;
             font-size: var(--font-size-6);
         }
     }
-    
-    &.btn-sm
-    {
+
+    &.btn-sm {
         // line-height: ensure proper height of button next to small input
         height: var(--height-sm);
         line-height: var(--height-sm);
         padding: var(--btn-sm-padding, (0 var(--space-md)));
         font-size: var(--font-size-1);
-        
-        span
-        {
+
+        span {
             top: 3px;
             font-size: var(--font-size-5);
         }
     }
-    
-    &.activated
-    {
+
+    &.activated {
         background-color: var(--color-active) !important;
         color: var(--color-structure-0) !important;
     }
-    
-    &.btn-link
-    {
+
+    &.btn-link {
         background-color: transparent;
         color: var(--color-structure-9);
         font-weight: var(--font-weight-3);
-        
+
         &:hover,
-        &:focus
-        {
+        &:focus {
             background-color: transparent;
             color: var(--color-active);
-            
+
             &:active,
-            &.active
-            {
+            &.active {
                 background-color: transparent;
                 color: var(--color-structure-9);
             }
         }
-        
-        &.btn-primary
-        {
+
+        &.btn-primary {
             background-color: transparent;
             color: var(--color-active);
-            
+
             &:hover,
-            &:focus
-            {
+            &:focus {
                 background-color: transparent;
                 color: var(--color-active-dark);
-                
+
                 &:active,
-                &.active
-                {
+                &.active {
                     background-color: transparent;
                     color: var(--color-active);
                 }
             }
         }
-        
-        &.btn-secondary
-        {
+
+        &.btn-secondary {
             background-color: transparent;
             color: var(--color-alert);
-            
+
             &:hover,
-            &:focus
-            {
+            &:focus {
                 background-color: transparent;
                 color: var(--color-alert-dark);
-                
+
                 &:active,
-                &.active
-                {
+                &.active {
                     background-color: transparent;
                     color: var(--color-alert);
                 }
             }
         }
-        
-        &.btn-tertiary
-        {
+
+        &.btn-tertiary {
             background-color: transparent;
             color: var(--color-add);
-            
+
             &:hover,
-            &:focus
-            {
+            &:focus {
                 background-color: transparent;
                 color: var(--color-add-dark);
-                
+
                 &:active,
-                &.active
-                {
+                &.active {
                     background-color: transparent;
                     color: var(--color-add);
                 }
@@ -299,16 +266,13 @@ button:focus, .btn:focus, .btn.focus
 
 // Future-proof disabling of clicks on `<a>` elements
 a.btn.disabled,
-fieldset[disabled] a.btn
-{
+fieldset[disabled] a.btn {
     pointer-events: none;
 }
 
-:host-context(.btn-block)
-{
+:host-context(.btn-block) {
     .btn,
-    .btn-handler
-    {
+    .btn-handler {
         display: block;
         float: none;
         max-width: 100%;
@@ -317,87 +281,54 @@ fieldset[disabled] a.btn
 }
 
 // space between multiple buttons
-:host-context(*)
-{
-    &:not(:last-child) .btn-handler
-    {
+:host-context(*) {
+    &:not(:last-child) .btn-handler {
         margin-right: 4px;
     }
 }
-:host-context(.btn-toolbar)
-{
-    &:not(:last-child) .btn-handler
-    {
+:host-context(.btn-toolbar) {
+    &:not(:last-child) .btn-handler {
         margin-right: 0;
     }
 }
 
 ////////////// Button Group (Horizontal) //////////////
 
-:host-context(.btn-group)
-{
-    &:first-child
-    {
+:host-context(.btn-group) {
+    &:first-child {
         margin-left: 0;
-        
+
         &:not(:last-child) > .btn-handler > .btn,
-        &:not(:last-child) > .btn-handler > .flag
-        {
+        &:not(:last-child) > .btn-handler > .flag {
             border-radius: var(--border-radius) 0 0 var(--border-radius);
         }
     }
-    
+
     &:not(:first-child):not(:last-child) > .btn-handler > .btn,
-    &:not(:first-child):not(:last-child) > .btn-handler > .flag
-    {
+    &:not(:first-child):not(:last-child) > .btn-handler > .flag {
         border-radius: 0;
     }
-    
-    &:last-child
-    {
+
+    &:last-child {
         margin-left: 0;
-        
+
         &:not(:first-child) > .btn-handler > .btn,
-        &:not(:first-child) > .btn-handler > .flag
-        {
+        &:not(:first-child) > .btn-handler > .flag {
             border-radius: 0 var(--border-radius) var(--border-radius) 0;
         }
     }
-    
-    &:not(:last-child) .btn-handler
-    {
+
+    &:not(:last-child) .btn-handler {
         margin-right: 1px;
-    }
-}
-
-:host-context(.btn-group :not(&):not(:first-child) )
-{
-    & > .btn-handler > .btn,
-    & > .btn-handler > .flag
-    {
-        border-left: 1px solid var(--color-structure-2);
-        border-bottom-left-radius: var(--border-radius);
-        border-top-left-radius: var(--border-radius);
-    }
-}
-
-:host-context(.btn-group :not(&):last-child)
-{
-    & > .btn-handler > .btn,
-    & > .btn-handler > .flag
-    {
-        border-top-right-radius: var(--border-radius) !important;
-        border-bottom-right-radius: var(--border-radius) !important;
     }
 }
 
 ////////////// Button Group Vertical & Menu //////////////
 
-:host-context(.btn-group-vertical, .btn-group-menu), .btn-group-menu
-{
+:host-context(.btn-group-vertical, .btn-group-menu),
+.btn-group-menu {
     .btn,
-    .btn-handler
-    {
+    .btn-handler {
         display: block;
         float: none;
         max-width: 100%;
@@ -405,111 +336,98 @@ fieldset[disabled] a.btn
         text-align: left;
         margin-right: 0;
     }
-    
-    &:first-child:not(:last-child) .btn
-    {
+
+    &:first-child:not(:last-child) .btn {
         border-radius: var(--border-radius) var(--border-radius) 0 0;
         margin: 0 0 1px 0;
     }
-    
-    &:not(:first-child):not(:last-child) .btn
-    {
+
+    &:not(:first-child):not(:last-child) .btn {
         border-radius: 0;
         margin: 1px 0;
     }
-    
-    &:last-child:not(:first-child) .btn
-    {
+
+    &:last-child:not(:first-child) .btn {
         border-radius: 0 0 var(--border-radius) var(--border-radius);
         margin: 1px 0 0 0;
     }
-    
-    &:last-child:not(:first-child) .flag
-    {
+
+    &:last-child:not(:first-child) .flag {
         border-radius: 0 0 var(--border-radius) var(--border-radius);
     }
-    
-    &:not(:first-child):not(:last-child) .flag
-    {
+
+    &:not(:first-child):not(:last-child) .flag {
         border-radius: 0;
     }
-    
-    &:first-child:not(:last-child) .flag
-    {
+
+    &:first-child:not(:last-child) .flag {
         border-radius: var(--border-radius) var(--border-radius) 0 0;
     }
 }
 
-:host-context(.btn-group-menu), .btn-group-menu
-{
-    .btn
-    {
+:host-context(.btn-group-menu),
+.btn-group-menu {
+    .btn {
         padding: 0 18px 0 9px !important;
         border-radius: var(--border-radius) !important;
         margin: 1px 0;
-        
-        .icon-right
-        {
+
+        .icon-right {
             margin-top: 8px;
             position: absolute !important;
             right: 0;
             top: initial !important;
         }
     }
-    
+
     .btn-divider,
     .btn-divider:hover,
-    .btn-divider:active
-    {
+    .btn-divider:active {
         background-color: transparent !important;
         margin-bottom: 3px !important;
         margin-top: 3px !important;
         cursor: default;
         height: 1px;
     }
-    
+
     &:first-child:not(:last-child),
-    .btn-handler:first-child:not(:last-child)
-    {
-        .btn
-        {
+    .btn-handler:first-child:not(:last-child) {
+        .btn {
             margin-top: 4px !important;
         }
     }
 }
 
-:host-context(terra-toggle)
-{
-    .btn
-    {
+:host-context(terra-toggle) {
+    .btn {
         --button-background-color-group-add: var(--color-group-navigation);
         --button-text-color-group-add: var(--color-structure-0);
         --button-border-bottom-group-add: 0;
-        
+
         --button-background-color-group-active: var(--color-group-navigation);
         --button-text-color-group-active: var(--color-structure-0);
         --button-border-bottom-group-active: 0;
-        
+
         --button-background-color-group-alert: var(--color-group-navigation);
         --button-text-color-group-alert: var(--color-structure-0);
         --button-border-bottom-group-alert: 0;
-        
+
         --button-background-color-group-action: var(--color-group-navigation);
         --button-text-color-group-action: var(--color-structure-0);
         --button-border-bottom-group-action: 0;
-        
+
         --button-background-color-group-warning: var(--color-group-navigation);
         --button-text-color-group-warning: var(--color-structure-0);
         --button-border-bottom-group-warning: 0;
-        
+
         --button-background-color-group-info: var(--color-group-navigation);
         --button-text-color-group-info: var(--color-structure-0);
         --button-border-bottom-group-info: 0;
-        
+
         --button-background-color-group-transfer: var(--color-group-navigation);
         --button-text-color-group-transfer: var(--color-structure-0);
         --button-border-bottom-group-transfer: 0;
-        
+
         --button-background-color-group-navigation: var(--color-group-navigation);
         --button-text-color-group-navigation: var(--color-structure-0);
         --button-border-bottom-group-navigation: 0;

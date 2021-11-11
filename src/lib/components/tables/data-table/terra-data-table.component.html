@@ -1,107 +1,128 @@
 <ng-content select="terra-group-function"></ng-content>
 
-<terra-pager *ngIf="inputHasPager"
-             [hidden]="!_dataAvailableOrRequestPending"
-             [inputPagingSize]="inputService?.pagingSizes"
-             [inputDefaultPagingSize]="inputService?.defaultPagingSize"
-             [inputPagingData]="inputService?.pagingData"
-             [inputRequestPending]="inputService?.requestPending"
-             (outputDoPaging)="_doPaging()">
+<terra-pager
+    *ngIf="inputHasPager"
+    [hidden]="!_dataAvailableOrRequestPending"
+    [inputPagingSize]="inputService?.pagingSizes"
+    [inputDefaultPagingSize]="inputService?.defaultPagingSize"
+    [inputPagingData]="inputService?.pagingData"
+    [inputRequestPending]="inputService?.requestPending"
+    (outputDoPaging)="_doPaging()"
+>
 </terra-pager>
 
 <div class="table-responsive">
     <context-menu [links]="inputContextMenu"></context-menu>
     <table class="table data-table" [hidden]="!_dataAvailableOrRequestPending">
         <thead>
-        <tr>
-            <th *ngIf="inputHasCheckboxes" width="{{_checkboxColumnWidth}}px">
-                <terra-checkbox (change)="_onHeaderCheckboxChange()"
-                                (click)="$event.stopPropagation()"
-                                [value]="_headerCheckbox.checked"
-                                [isIndeterminate]="_headerCheckbox.isIndeterminate">
-                </terra-checkbox>
-            </th>
-            <ng-template ngFor let-header [ngForOf]="inputHeaderList">
-                <th *ngIf="!header.isHidden"
-                    width="{{header.width}}px"
-                    [ngStyle]="{ 'text-align': getTextAlign(header) }"
-                    [class.sortable]="_isSortable(header)"
-                    (click)="_columnHeaderClicked.emit(header)">
-                    <span [tcTooltip]="header.tooltipText"
-                          [placement]="header.tooltipPlacement">
-                          {{header.caption}}
-                        <span
-                            [ngClass]="{'icon-table_sort': _isUnsorted(header),'icon-sort_asc': _isSortedAsc(header),'icon-sort_desc': _isSortedDesc(header)}">
-                        </span>
-                    </span>
-
+            <tr>
+                <th *ngIf="inputHasCheckboxes" width="{{ _checkboxColumnWidth }}px">
+                    <mat-checkbox
+                        (change)="_onHeaderCheckboxChange()"
+                        (click)="$event.stopPropagation()"
+                        [ngModel]="_headerCheckbox.checked"
+                        [indeterminate]="_headerCheckbox.isIndeterminate"
+                    >
+                    </mat-checkbox>
                 </th>
-            </ng-template>
-        </tr>
+                <ng-template ngFor let-header [ngForOf]="inputHeaderList">
+                    <th
+                        *ngIf="!header.isHidden"
+                        width="{{ header.width }}px"
+                        [ngStyle]="{ 'text-align': getTextAlign(header) }"
+                        [class.sortable]="_isSortable(header)"
+                        (click)="_columnHeaderClicked.emit(header)"
+                    >
+                        <span [tcTooltip]="header.tooltipText" [placement]="header.tooltipPlacement">
+                            {{ header.caption }}
+                            <span
+                                [ngClass]="{
+                                    'icon-table_sort': _isUnsorted(header),
+                                    'icon-sort_asc': _isSortedAsc(header),
+                                    'icon-sort_desc': _isSortedDesc(header)
+                                }"
+                            >
+                            </span>
+                        </span>
+                    </th>
+                </ng-template>
+            </tr>
         </thead>
         <tbody *ngIf="!useContentBody">
-        <tr *ngFor="let row of _rowList" [tcTableRow]="row" hasContextMenu [rowData]="row.data">
-            <ng-template ngFor let-cell [ngForOf]="row.cellList" let-i="index">
-                <td *ngIf="!cell.isHidden"
-                    [ngSwitch]="_getCellDataType(cell.data)"
-                    [ngStyle]="{ 'text-align': getTextAlign(inputHeaderList[i]) }"
-                    [tcTooltip]="cell.tooltipText"
-                    [placement]="cell.tooltipPlacement">
+            <tr *ngFor="let row of _rowList" [tcTableRow]="row" hasContextMenu [rowData]="row.data">
+                <ng-template ngFor let-cell [ngForOf]="row.cellList" let-i="index">
+                    <td
+                        *ngIf="!cell.isHidden"
+                        [ngSwitch]="_getCellDataType(cell.data)"
+                        [ngStyle]="{ 'text-align': getTextAlign(inputHeaderList[i]) }"
+                        [tcTooltip]="cell.tooltipText"
+                        [placement]="cell.tooltipPlacement"
+                    >
+                        <ng-container *ngSwitchCase="'string'">
+                            <span>{{ cell.data }}</span>
+                        </ng-container>
 
-                    <ng-container *ngSwitchCase="'string'">
-                        <span>{{cell.data}}</span>
-                    </ng-container>
+                        <ng-container *ngSwitchCase="'number'">
+                            <span>{{ cell.data }}</span>
+                            <!-- <span>{{cell.data | number}}</span> TODO: The pipe should be used here! Figure out how. -->
+                        </ng-container>
 
-                    <ng-container *ngSwitchCase="'number'">
-                        <span>{{cell.data}}</span>
-                        <!-- <span>{{cell.data | number}}</span> TODO: The pipe should be used here! Figure out how. -->
-                    </ng-container>
-
-                    <ng-container *ngSwitchCase="'TerraDataTableTextInterface'">
-                            <span [ngStyle]="{color: cell.data.color}">
+                        <ng-container *ngSwitchCase="'TerraDataTableTextInterface'">
+                            <span [ngStyle]="{ color: cell.data.color }">
                                 <span *ngIf="cell.data.icon" [ngClass]="cell.data.icon"></span>
-                                <span> {{cell.data.caption}} </span>
+                                <span> {{ cell.data.caption }} </span>
                             </span>
-                    </ng-container>
+                        </ng-container>
 
-                    <ng-container *ngSwitchCase="'TerraRefTypeInterface'">
-                        <a *ngIf="cell.data.type === _refType.email || cell.data.type === _refType.phone"
-                           href="{{cell.data.type}}:{{cell.data.value}}"
-                           (click)="$event.stopPropagation()">
-                            {{ cell.data.caption || cell.data.value}}
-                        </a>
-                        <a *ngIf="cell.data.type === _refType.function" href="javascript:void(0);"
-                           (click)="cell.data.value(); $event.stopPropagation();">
-                            {{cell.data.caption}}
-                        </a>
-                        <a *ngIf="cell.data.type === _refType.url" href="{{cell.data.value}}" target="{{cell.data.target || '_self'}}"
-                           (click)="$event.stopPropagation()">
-                            {{cell.data.caption || cell.data.value}}
-                        </a>
-                    </ng-container>
+                        <ng-container *ngSwitchCase="'TerraRefTypeInterface'">
+                            <a
+                                *ngIf="cell.data.type === _refType.email || cell.data.type === _refType.phone"
+                                href="{{ cell.data.type }}:{{ cell.data.value }}"
+                                (click)="$event.stopPropagation()"
+                            >
+                                {{ cell.data.caption || cell.data.value }}
+                            </a>
+                            <a
+                                *ngIf="cell.data.type === _refType.function"
+                                href="javascript:void(0);"
+                                (click)="cell.data.value(); $event.stopPropagation()"
+                            >
+                                {{ cell.data.caption }}
+                            </a>
+                            <a
+                                *ngIf="cell.data.type === _refType.url"
+                                href="{{ cell.data.value }}"
+                                target="{{ cell.data.target || '_self' }}"
+                                (click)="$event.stopPropagation()"
+                            >
+                                {{ cell.data.caption || cell.data.value }}
+                            </a>
+                        </ng-container>
 
-                    <ng-container *ngSwitchCase="'buttons'" class="btn-group">
-                        <ng-template ngFor let-button [ngForOf]="cell.data">
-                            <terra-button *ngIf="!button.isHidden"
-                                          (outputClicked)="button.clickFunction($event);$event.stopPropagation()"
-                                          [inputIcon]="button.icon"
-                                          [inputIsActive]="button.isActive"
-                                          [inputIsDisabled]="button.isDisabled"
-                                          [inputTooltipPlacement]="button.tooltipPlacement"
-                                          [inputCaption]="button.caption"
-                                          [inputIsSmall]="true"
-                                          [inputTooltipText]="button.tooltipText"
-                                          [inputIsFlagged]="button.isFlagged">
-                            </terra-button>
-                        </ng-template>
-                    </ng-container>
+                        <ng-container *ngSwitchCase="'buttons'" class="btn-group">
+                            <ng-template ngFor let-button [ngForOf]="cell.data">
+                                <terra-button
+                                    *ngIf="!button.isHidden"
+                                    (outputClicked)="button.clickFunction($event); $event.stopPropagation()"
+                                    [inputIcon]="button.icon"
+                                    [inputIsActive]="button.isActive"
+                                    [inputIsDisabled]="button.isDisabled"
+                                    [inputTooltipPlacement]="button.tooltipPlacement"
+                                    [inputCaption]="button.caption"
+                                    [inputIsSmall]="true"
+                                    [inputTooltipText]="button.tooltipText"
+                                    [inputIsFlagged]="button.isFlagged"
+                                >
+                                </terra-button>
+                            </ng-template>
+                        </ng-container>
 
-                    <ng-container *ngSwitchCase="'tags'">
-                        <terra-taglist [inputTagList]="cell.data"></terra-taglist>
-                    </ng-container>
-                </td>
-            </ng-template>
-        </tr>
+                        <ng-container *ngSwitchCase="'tags'">
+                            <terra-taglist [inputTagList]="cell.data"></terra-taglist>
+                        </ng-container>
+                    </td>
+                </ng-template>
+            </tr>
         </tbody>
 
         <ng-content select="tbody" *ngIf="useContentBody"></ng-content>
@@ -110,5 +131,4 @@
     <div [hidden]="_dataAvailableOrRequestPending">
         <ng-content select="terra-no-result-notice"></ng-content>
     </div>
-
 </div>

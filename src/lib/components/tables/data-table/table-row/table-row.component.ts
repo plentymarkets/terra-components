@@ -1,50 +1,38 @@
-import {
-    Component,
-    Host,
-    HostBinding,
-    HostListener,
-    Input
-} from '@angular/core';
+import { Component, Host, HostBinding, HostListener, Input } from '@angular/core';
 import { TerraDataTableRowInterface } from '../interfaces/terra-data-table-row.interface';
-import { TerraDataTableComponent } from '../terra-data-table.component';
+import { TerraDataTable } from '../../terra-data-table';
 
-/* tslint:disable:component-selector */
 @Component({
-    selector:    'tr[tcTableRow]',
+    // eslint-disable-next-line @angular-eslint/component-selector
+    selector: 'tr[tcTableRow]',
     templateUrl: './table-row.component.html',
-    styleUrls:   ['./table-row.component.scss']
+    styleUrls: ['./table-row.component.scss']
 })
-export class TableRowComponent
-{
+/** @deprecated since v5.0. Please use mat-table instead */
+export class TableRowComponent {
     /* tslint:disable-next-line:no-input-rename */
     @Input('tcTableRow')
-    public row:TerraDataTableRowInterface<any>;
+    public row: TerraDataTableRowInterface<any>;
 
-    constructor(@Host() public _dataTable:TerraDataTableComponent<any, any>)
-    {
-    }
+    constructor(public _dataTable: TerraDataTable<any>) {}
 
     @HostBinding('class.selected')
-    public get selected():boolean
-    {
+    public get selected(): boolean {
         return this.row.selected;
     }
 
     @HostBinding('class.isActive')
-    public get isActive():boolean
-    {
+    public get isActive(): boolean {
         return this.row.isActive;
     }
 
     @HostBinding('class.disabled')
-    public get disabled():boolean
-    {
+    public get disabled(): boolean {
         return this.row.disabled;
     }
 
     @HostListener('click')
-    public onClick():void
-    {
+    public onClick(): void {
         this._dataTable.rowClicked(this.row);
     }
 }

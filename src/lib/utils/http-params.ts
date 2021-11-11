@@ -1,9 +1,6 @@
 import { HttpParams } from '@angular/common/http';
 import { Params } from '@angular/router';
-import {
-    isArray,
-    isNullOrUndefined
-} from 'util';
+import { isNullOrUndefined } from 'util';
 import { httpParamEncoder } from './http-param-encoder';
 
 /**
@@ -13,27 +10,19 @@ import { httpParamEncoder } from './http-param-encoder';
  *        You can choose between the default 'list=a,b,c' (false) or 'list[]=a&list[]=b&list[]=c' (true) encoding.
  * @returns An instance of HttpParams with the same key-value-pairs as delivered by #params
  */
-export function createHttpParams(params:Params, arrayAsArray:boolean = false):HttpParams
-{
-    let searchParams:HttpParams = new HttpParams({encoder: httpParamEncoder});
-    if(isNullOrUndefined(params))
-    {
+export function createHttpParams(params: Params, arrayAsArray: boolean = false): HttpParams {
+    let searchParams: HttpParams = new HttpParams({ encoder: httpParamEncoder });
+    if (isNullOrUndefined(params)) {
         return searchParams;
     }
 
-    Object.keys(params).forEach((key:string) =>
-    {
-        if(!isNullOrUndefined(params[key]) && params[key] !== '')
-        {
-            if(arrayAsArray && isArray(params[key]))
-            {
-                (params[key] as Array<any>).forEach((arrayItem:any) =>
-                {
+    Object.keys(params).forEach((key: string) => {
+        if (!isNullOrUndefined(params[key]) && params[key] !== '') {
+            if (arrayAsArray && Array.isArray(params[key])) {
+                (params[key] as Array<any>).forEach((arrayItem: any) => {
                     searchParams = searchParams.append(key + '[]', arrayItem.toString());
                 });
-            }
-            else
-            {
+            } else {
                 searchParams = searchParams.set(key, params[key]);
             }
         }

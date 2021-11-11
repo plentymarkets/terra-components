@@ -1,9 +1,23 @@
 {
-  "$schema": "../../../node_modules/@angular-devkit/schematics/collection-schema.json",
-  "schematics": {
-    "ng-add": {
-      "description": "Add this library to the project.",
-      "factory": "./ng-add/index#ngAdd"
+    "$schema": "../../../node_modules/@angular-devkit/schematics/collection-schema.json",
+    "schematics": {
+        "ng-add": {
+            "description": "Add this library to the project.",
+            "factory": "./ng-add/index#ngAdd"
+        },
+        "ng-update": {
+            "description": "Migrates TerraCheckbox to MatCheckbox.",
+            "factory": "./ng-update/checkbox-migration/index#checkboxMigration"
+        },
+        "migration-v5_6_1": {
+            "description": "Migrates TerraCheckbox to MatCheckbox.",
+            "factory": "./ng-update/checkbox-migration/index#checkboxMigration",
+            "schema": "./ng-update/checkbox-migration/schema.json"
+        },
+        "migration-portlet": {
+            "description": "Migrate TerraPortlet to Material expansion panels",
+            "factory": "./ng-update/terra-portlet-migration/index#portletMigration",
+            "schema": "./ng-update/terra-portlet-migration/schema.json"
+        }
     }
-  }
 }

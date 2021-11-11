@@ -1,13 +1,8 @@
-export class DispatchHelper
-{
-    public static dispatchEvent(eventToDispatch:Event | CustomEvent):void
-    {
-        if(window === window.top)
-        {
+export class DispatchHelper {
+    public static dispatchEvent(eventToDispatch: Event | CustomEvent): void {
+        if (window === window.top) {
             window.dispatchEvent(eventToDispatch);
-        }
-        else
-        {
+        } else {
             window.parent.window.dispatchEvent(eventToDispatch);
         }
     }

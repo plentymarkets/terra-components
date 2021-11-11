@@ -1,0 +1,32 @@
+# The name of the action
+name: Automerge 10.X.X to main
+
+# Defines when the action shall be executed
+on:
+    # Defines that it is to be executed on the push on a branch
+    push:
+        # Defines that the branch is 10.X.X
+        branches:
+            - 10.X.X
+
+# Definition of the job that is to be executed
+jobs:
+    # Name that is displayed in the github ui
+    automerge-10XX-to-main:
+        # Name that is displayed in the github actions ui
+        name: Merge branch 10.X.X to main or 11.X.X later on
+        # Defines the environment of the job
+        runs-on: ubuntu-latest
+        # Defines the individual steps of the job
+        steps:
+            # Checks out the repository
+            - name: checkout
+              uses: actions/checkout@v2
+              # Use action from marketplace to merge target branch into the desired base branch
+            - name: merge
+              uses: mtanzi/action-automerge@v1
+              id: merge
+              with:
+                  github_token: ${{ secrets.MERGE_MONKEY }}
+                  source: 10.X.X
+                  target: main

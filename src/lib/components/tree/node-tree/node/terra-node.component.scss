@@ -1,41 +1,37 @@
-@import "../../../buttons/button/terra-button.component";
+@import '../../../buttons/button/terra-button.component';
 
-li
-{
+li {
     list-style: none;
     width: 100%;
     border-top: 1px solid var(--color-structure-11);
-    
-    .btn-handler
-    {
+
+    .btn-handler {
         width: 100%;
-        
-        .btn
-        {
+        margin-right: 0 !important;
+
+        .btn {
             text-align: left;
             padding: 0;
             border-radius: 0;
-            
-            .buttonText
-            {
+
+            .buttonText {
                 display: table-cell;
                 vertical-align: middle;
                 overflow: hidden;
                 text-overflow: ellipsis;
             }
-            
-            span
-            {
-                &.icon_dist_top
-                {
+
+            span,
+            mat-icon {
+                &.icon_dist_top {
                     padding: 0 8px;
                     display: table-cell;
                     vertical-align: middle;
                     top: initial;
+                    font-size: 20px;
                 }
-                
-                &.icon-right
-                {
+
+                &.icon-right {
                     position: absolute;
                     right: 0;
                     top: 0;
@@ -44,43 +40,36 @@ li
                     text-align: center;
                     background-color: var(--color-structure-10);
                     border-left: 1px solid var(--color-structure-11);
-                    
-                    &:hover
-                    {
+
+                    &:hover {
                         background: var(--color-structure-11);
                     }
                 }
             }
-            
-            &.isLoading
-            {
+
+            &.isLoading {
                 background-color: var(--color-structure-10);
             }
-            
-            &:hover
-            {
+
+            &:hover {
                 background-color: var(--color-active);
             }
         }
     }
-    
-    ul
-    {
+
+    ul {
         padding-left: 16px;
         background-color: var(--color-structure-12);
         animation-name: layer-offset;
-        animation-duration: .4s;
+        animation-duration: 0.4s;
     }
-    
-    @keyframes layer-offset
-    {
-        from
-        {
+
+    @keyframes layer-offset {
+        from {
             padding-left: 0;
         }
-        
-        to
-        {
+
+        to {
             padding-left: 16px;
         }
     }

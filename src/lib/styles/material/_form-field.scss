@@ -1,195 +1,153 @@
-@import "../../../lib/styles/variables";
+@import '../../../lib/styles/variables';
 
 // material select
 
-mat-form-field.mat-form-field
-{
+mat-form-field.mat-form-field {
     font-family: inherit;
-    
-    &.mat-focused
-    {
+
+    &.mat-focused {
         color: var(--color-active);
-        
-        .mat-form-field-label-wrapper .mat-form-field-label, &.mat-primary .mat-select-arrow
-        {
+
+        .mat-form-field-label-wrapper .mat-form-field-label,
+        &.mat-primary .mat-select-arrow {
             color: var(--color-active);
         }
-        
-        .mat-form-field-underline .mat-form-field-ripple
-        {
+
+        .mat-form-field-underline .mat-form-field-ripple {
             background-color: var(--color-active);
         }
     }
-    
-    &.mat-form-field-appearance-legacy
-    {
-        &.ng-valid
-        {
+
+    &.mat-form-field-appearance-legacy {
+        &.ng-valid {
             color: var(--color-structure-7);
         }
-        
-        &.mat-form-field-can-float
-        {
-            &.mat-form-field-should-float
-            {
-                label.mat-form-field-label
-                {
+
+        &.mat-form-field-can-float {
+            &.mat-form-field-should-float {
+                label.mat-form-field-label {
                     font-variant: all-small-caps;
                     text-transform: uppercase;
                     @include font-rendering;
-    
+
                     mat-label,
-                    span
-                    {
+                    span {
                         font-size: 18px;
                     }
                 }
             }
         }
-        
-        .mat-form-field-wrapper
-        {
-            .mat-form-field-flex
-            {
-                .mat-form-field-infix
-                {
-                    mat-select
-                    {
+
+        .mat-form-field-wrapper {
+            .mat-form-field-flex {
+                .mat-form-field-infix {
+                    mat-select {
                         height: 0;
-                        
-                        .mat-select-trigger
-                        {
+
+                        .mat-select-trigger {
                             height: 0;
-                            
-                            .mat-select-value
-                            {
-                                .mat-select-value-text
-                                {
-                                    span
-                                    {
+
+                            .mat-select-value {
+                                .mat-select-value-text {
+                                    span {
                                         color: var(--color-structure-12);
                                         font-weight: var(--font-weight-2);
                                     }
                                 }
                             }
-                            
-                            .mat-select-arrow-wrapper
-                            {
+
+                            .mat-select-arrow-wrapper {
                                 padding-top: var(--space-sm);
                             }
                         }
                     }
-                    
-                    textarea, input
-                    {
+
+                    textarea,
+                    input {
                         color: var(--input-color, var(--color-structure-12));
                         font-weight: var(--font-weight-2);
                         font-size: var(--font-size-3);
                         caret-color: inherit;
                     }
-                    
-                    .mat-form-field-label-wrapper
-                    {
-                        label.mat-form-field-label
-                        {
+
+                    .mat-form-field-label-wrapper {
+                        label.mat-form-field-label {
                             color: var(--input-placeholder-color, var(--color-structure-7));
                             font-weight: var(--font-weight-1);
                         }
                     }
                 }
-                
-                .mat-form-field-suffix
-                {
-                    mat-datepicker-toggle
-                    {
+
+                .mat-form-field-suffix {
+                    mat-datepicker-toggle {
                         color: var(--color-structure-11);
-                        
-                        &.mat-datepicker-toggle-active
-                        {
+
+                        &.mat-datepicker-toggle-active {
                             color: var(--color-active);
                         }
-                        
-                        button
-                        {
-                            &:focus
-                            {
+
+                        button {
+                            &:focus {
                                 outline: none;
                             }
-                            
-                            .mat-datepicker-toggle-default-icon
-                            {
+
+                            .mat-datepicker-toggle-default-icon {
                                 font-size: var(--font-size-6);
                             }
                         }
                     }
                 }
             }
-            
-            .mat-form-field-underline
-            {
+
+            .mat-form-field-underline {
                 border-bottom: var(--input-wrapper-border, 1px solid var(--border-color));
-                
-                .mat-form-field-ripple
-                {
+
+                .mat-form-field-ripple {
                     background-color: var(--color-active);
                 }
             }
         }
-        
-        &.ng-invalid.ng-touched
-        {
+
+        &.ng-invalid.ng-touched {
             color: var(--color-alert);
-            
-            .mat-form-field-wrapper
-            {
-                .mat-form-field-underline
-                {
-                    .mat-form-field-ripple
-                    {
+
+            .mat-form-field-wrapper {
+                .mat-form-field-underline {
+                    .mat-form-field-ripple {
                         background-color: var(--color-alert);
                     }
                 }
             }
         }
-        
-        &.mat-form-field-disabled
-        {
+
+        &.mat-form-field-disabled {
             color: var(--color-structure-6);
-            
-            .mat-form-field-wrapper
-            {
-                .mat-form-field-flex
-                {
-                    .mat-form-field-infix
-                    {
-                        mat-select
-                        {
-                            .mat-select-trigger
-                            {
-                                .mat-select-value
-                                {
+
+            .mat-form-field-wrapper {
+                .mat-form-field-flex {
+                    .mat-form-field-infix {
+                        mat-select {
+                            .mat-select-trigger {
+                                .mat-select-value {
                                     .mat-select-value-text,
-                                    .mat-select-value-text::placeholder
-                                    {
+                                    .mat-select-value-text::placeholder {
                                         color: var(--color-structure-6);
                                     }
                                 }
                             }
                         }
-                        
-                        textarea, input
-                        {
+
+                        textarea,
+                        input {
                             color: var(--color-structure-6);
+                            background: rgba(255, 255, 255, 0); //fix for Safari
                         }
-                        
-                        .mat-form-field-label-wrapper
-                        {
-                            .mat-form-field-label
-                            {
+
+                        .mat-form-field-label-wrapper {
+                            .mat-form-field-label {
                                 color: var(--color-structure-6);
-                                
-                                mat-label
-                                {
+
+                                mat-label {
                                     color: inherit;
                                 }
                             }
@@ -197,83 +155,64 @@ mat-form-field.mat-form-field
                     }
                 }
             }
-            
-            .mat-form-field-underline
-            {
+
+            .mat-form-field-underline {
                 border-bottom-style: inherit;
             }
         }
     }
 }
 
-.cdk-overlay-container
-{
+.cdk-overlay-container {
     z-index: var(--zIndex-10);
-    
-    .cdk-overlay-connected-position-bounding-box
-    {
-        .cdk-overlay-pane
-        {
-            .mat-select-panel-wrap
-            {
-                .mat-select-panel
-                {
+
+    .cdk-overlay-connected-position-bounding-box {
+        .cdk-overlay-pane {
+            .mat-select-panel-wrap {
+                .mat-select-panel {
                     border-radius: var(--border-radius);
                     box-shadow: var(--box-shadow-2);
-                    
-                    &.mat-primary
-                    {
-                        mat-option
-                        {
-                            &.mat-selected
-                            {
-                                &:not(.mat-option-disabled)
-                                {
+
+                    &.mat-primary {
+                        mat-option {
+                            &.mat-selected {
+                                &:not(.mat-option-disabled) {
                                     color: var(--color-structure-0);
                                     background-color: var(--color-active);
+                                }
+                            }
+                            .mat-option-text {
+                                .mat-icon.plentyicons {
+                                    font-size: 24px;
                                 }
                             }
                         }
                     }
                 }
             }
-            
-            .mat-datepicker-content
-            {
-                .mat-calendar
-                {
-                    mat-calendar-header
-                    {
-                        .mat-calendar-header
-                        {
-                            .mat-calendar-controls
-                            {
-                                button
-                                {
-                                    &:focus
-                                    {
+
+            .mat-datepicker-content {
+                .mat-calendar {
+                    mat-calendar-header {
+                        .mat-calendar-header {
+                            .mat-calendar-controls {
+                                button {
+                                    &:focus {
                                         outline: none;
                                     }
                                 }
                             }
                         }
                     }
-                    
-                    .mat-calendar-content
-                    {
-                        table.mat-calendar-table
-                        {
-                            tbody.mat-calendar-body
-                            {
-                                tr
-                                {
-                                    td.mat-calendar-body-cell.mat-calendar-body-active
-                                    {
-                                        .mat-calendar-body-selected
-                                        {
+
+                    .mat-calendar-content {
+                        table.mat-calendar-table {
+                            tbody.mat-calendar-body {
+                                tr {
+                                    td.mat-calendar-body-cell.mat-calendar-body-active {
+                                        .mat-calendar-body-selected {
                                             background-color: var(--color-active);
                                         }
-                                        
                                     }
                                 }
                             }

@@ -1,0 +1,32 @@
+.table-settings-dialog-content {
+    background-color: var(--color-structure-0) !important;
+
+    .mat-list-option {
+        .cdk-drag-handle {
+            cursor: move;
+        }
+
+        &.cdk-drag-disabled {
+            .cdk-drag-handle {
+                cursor: inherit;
+            }
+        }
+
+        &.cdk-drag-placeholder {
+            transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+            opacity: 0;
+        }
+
+        &.cdk-drag-animating {
+            transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+        }
+
+        &:not(.cdk-drag-placeholder) {
+            transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+        }
+
+        &.cdk-drag-preview {
+            background-color: var(--color-structure-1);
+        }
+    }
+}

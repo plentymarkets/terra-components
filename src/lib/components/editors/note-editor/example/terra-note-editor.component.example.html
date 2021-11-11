@@ -1,16 +1,7 @@
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-6">
-            <terra-note inputNoteText="{{_changedText}}"
-                        inputHeaderText="Note">
-            </terra-note>
-        </div>
-    </div>
-    <div class="row">
         <div class="col-md-12">
-            <terra-note-editor [inputPlaceholder]="'Platzhalter'"
-                               [(ngModel)]="_changedText">
-            </terra-note-editor>
+            <terra-note-editor [inputPlaceholder]="'Platzhalter'" [(ngModel)]="_changedText"> </terra-note-editor>
         </div>
     </div>
 </div>

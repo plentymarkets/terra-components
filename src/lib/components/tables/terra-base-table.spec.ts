@@ -1,16 +1,21 @@
 import { TerraBaseTable } from './terra-base-table';
+import { ChangeDetectorRef } from '@angular/core';
+import { TerraDataTableRowInterface } from './data-table/interfaces/terra-data-table-row.interface';
 
-describe('TerraBaseTable', () =>
-{
-    let baseTable:TerraBaseTable<any> = new TerraBaseTable<any>();
+class MockBaseTable extends TerraBaseTable<any> {
+    public inputHasCheckboxes: boolean = false;
+    protected _rowList: Array<TerraDataTableRowInterface<any>>;
+}
 
-    it('should create', () =>
-    {
+describe('TerraBaseTable', () => {
+    let cdr: ChangeDetectorRef;
+    const baseTable: TerraBaseTable<any> = new MockBaseTable(cdr);
+
+    it('should create', () => {
         expect(baseTable).toBeTruthy();
     });
 
-    it('should return an empty array for #selectedRowList by default', () =>
-    {
+    it('should return an empty array for #selectedRowList by default', () => {
         expect(baseTable.selectedRowList).toBeDefined();
         expect(baseTable.selectedRowList.length).toEqual(0);
     });

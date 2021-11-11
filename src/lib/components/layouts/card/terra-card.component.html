@@ -1,19 +1,23 @@
-<div class="card terra-card" [ngClass]="{'selected': inputIsSelected}">
+<div class="card terra-card" [ngClass]="{ selected: inputIsSelected }">
     <div #header class="card-header" [hidden]="!_showHeader">
         <ng-content select="[terra-card-header]"></ng-content>
     </div>
     <div *ngIf="_hasImageOrPlaceholderIcon">
-        <div class="card-img-top terra-card-image"
-             [style.background-image]="'url(' + inputImagePath + ')'"
-             *ngIf="inputImagePath && inputImagePath.length > 0"></div>
-        <div class="card-img-top terra-card-placeholder"
-             *ngIf="!inputImagePath || inputImagePath.length == 0"
-             [ngClass]="inputPlaceholderIcon"></div>
+        <div
+            class="card-img-top terra-card-image"
+            [style.background-image]="'url(' + inputImagePath + ')'"
+            *ngIf="inputImagePath && inputImagePath.length > 0"
+        ></div>
+        <div
+            class="card-img-top terra-card-placeholder"
+            *ngIf="!inputImagePath || inputImagePath.length === 0"
+            [ngClass]="inputPlaceholderIcon"
+        ></div>
     </div>
     <div #body class="card-block" [hidden]="!_showBody">
         <ng-content select="[terra-card-content]"></ng-content>
     </div>
-    <div #footer class="card-footer" [hidden]="!_showFooter" [ngClass]="{'selected': inputIsSelected}">
+    <div #footer class="card-footer" [hidden]="!_showFooter" [ngClass]="{ selected: inputIsSelected }">
         <ng-content select="[terra-card-footer]"></ng-content>
     </div>
 </div>

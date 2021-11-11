@@ -1,54 +1,44 @@
-.modal
-{
+.modal {
     //Fixes firefox bug where doesn't get the class .show
     background-color: rgba(0, 0, 0, 0.5);
-    &.fade:not(.in)
-    {
+    &.fade:not(.in) {
         opacity: 0;
     }
-    &.fade.in
-    {
+    &.fade.in {
         opacity: 1;
-        
-        .modal-dialog
-        {
+
+        .modal-dialog {
             -webkit-transform: none;
             transform: none;
         }
     }
-    
-    .modal-dialog
-    {
+
+    .modal-dialog {
         min-width: 300px;
-        
-        .modal-content
-        {
+
+        .modal-content {
             border-radius: var(--border-radius);
-            
-            .modal-header
-            {
+
+            .modal-header {
                 padding: var(--space-md) var(--space-lg);
                 border-bottom: 1px solid var(--border-color);
                 --btn-padding: 0;
-                
-                .modal-title
-                {
+
+                .modal-title {
                     line-height: var(--height-md);
                     font-weight: var(--font-weight-3);
                 }
             }
-            
-            .modal-body
-            {
+
+            .modal-body {
                 max-height: var(--modal-body-max-height, 525px);
                 height: var(--modal-body-height, initial);
                 overflow-y: auto;
                 padding: var(--space-lg) var(--space-lg);
-                background-color: var(--modal-body-background-color, var(--color-structure-2))
+                background-color: var(--modal-body-background-color, var(--color-structure-2));
             }
-            
-            .modal-footer
-            {
+
+            .modal-footer {
                 padding: var(--space-md) var(--space-lg);
                 border-top: 1px solid var(--border-color);
             }
@@ -56,26 +46,20 @@
     }
 }
 
-@media(min-width: 544px)
-{
-    .modal-dialog
-    {
+@media (min-width: 544px) {
+    .modal-dialog {
         max-width: 600px;
-        
-        &.modal-sm
-        {
+
+        &.modal-sm {
             max-width: 300px;
         }
-        
-        &.modal-lg
-        {
+
+        &.modal-lg {
             max-width: 900px;
         }
-        
-        &.modal-xl
-        {
+
+        &.modal-xl {
             max-width: 1200px;
         }
     }
 }
-

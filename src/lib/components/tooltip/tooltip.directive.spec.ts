@@ -1,65 +1,47 @@
-import {
-    ComponentFixture,
-    TestBed
-} from '@angular/core/testing';
-import {
-    Component,
-    DebugElement,
-    SimpleChange,
-    TemplateRef,
-    ViewChild
-} from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component, DebugElement, SimpleChange, TemplateRef, ViewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { TooltipDirective } from './tooltip.directive';
-import {
-    Router,
-    RouterEvent
-} from '@angular/router';
+import { Router, RouterEvent } from '@angular/router';
 import { Subject } from 'rxjs';
 
-
-const routerEvents$:Subject<RouterEvent> = new Subject();
-const routerStub:Partial<Router> = {
+const routerEvents$: Subject<RouterEvent> = new Subject();
+const routerStub: Partial<Router> = {
     events: routerEvents$.asObservable()
 };
 
 @Component({
-    template: '<ng-template #template><span>{{templateTooltipText}}</span></ng-template>' +
-              '<label [tcTooltip]="tooltip">test</label>'
+    template:
+        '<ng-template #template><span>{{templateTooltipText}}</span></ng-template>' +
+        '<label [tcTooltip]="tooltip">test</label>'
 })
-class TooltipDirectiveHostComponent
-{
-    public tooltip:string | TemplateRef<any> = 'Test';
-    public readonly templateTooltipText:string = 'Template tooltip';
+class TooltipDirectiveHostComponent {
+    public tooltip: string | TemplateRef<any> = 'Test';
+    public readonly templateTooltipText: string = 'Template tooltip';
 
-    @ViewChild('template', {static: true, read: TemplateRef})
-    public templateTooltip:TemplateRef<any>;
+    @ViewChild('template', { static: true, read: TemplateRef })
+    public templateTooltip: TemplateRef<any>;
 }
 
-describe('TooltipDirective', () =>
-{
-    let component:TooltipDirectiveHostComponent;
-    let fixture:ComponentFixture<TooltipDirectiveHostComponent>;
-    let hostDebugEl:DebugElement;
-    let directive:TooltipDirective;
+describe('TooltipDirective', () => {
+    let component: TooltipDirectiveHostComponent;
+    let fixture: ComponentFixture<TooltipDirectiveHostComponent>;
+    let hostDebugEl: DebugElement;
+    let directive: TooltipDirective;
 
-    beforeEach(() =>
-    {
+    beforeEach(() => {
         TestBed.configureTestingModule({
-            declarations: [
-                TooltipDirective,
-                TooltipDirectiveHostComponent
-            ],
-            providers:    [
+            declarations: [TooltipDirective, TooltipDirectiveHostComponent],
+            providers: [
                 {
-                    provide:  Router,
+                    provide: Router,
                     useValue: routerStub
-                }]
+                }
+            ]
         });
     });
 
-    beforeEach(() =>
-    {
+    beforeEach(() => {
         fixture = TestBed.createComponent(TooltipDirectiveHostComponent);
         component = fixture.componentInstance;
         directive = fixture.debugElement.query(By.directive(TooltipDirective)).injector.get(TooltipDirective);
@@ -67,13 +49,11 @@ describe('TooltipDirective', () =>
         hostDebugEl = fixture.debugElement.query(By.css('label'));
     });
 
-    it('should create an instance', () =>
-    {
+    it('should create an instance', () => {
         expect(component).toBeTruthy();
     });
 
-    it('should trigger the tooltip on `mouseover` and hide it on `mouseout`', () =>
-    {
+    it('should trigger the tooltip on `mouseover` and hide it on `mouseout`', () => {
         fixture.detectChanges();
         hostDebugEl.triggerEventHandler('mouseover', new Event('MouseEvent'));
         fixture.detectChanges();
@@ -87,8 +67,7 @@ describe('TooltipDirective', () =>
         expect(isTooltipVisible()).toBe(false);
     });
 
-    it('should not trigger the tooltip when `isDisabled`', () =>
-    {
+    it('should not trigger the tooltip when `isDisabled`', () => {
         directive.isDisabled = true;
         directive.ngOnChanges({
             isDisabled: new SimpleChange(null, true, true)
@@ -99,44 +78,36 @@ describe('TooltipDirective', () =>
         expect(isTooltipVisible()).toBe(false);
     });
 
-    it('should subscribe to router events on initialization', () =>
-    {
+    it('should subscribe to router events on initialization', () => {
         directive.ngOnInit();
         expect(routerEvents$.observers.length).toBe(1);
     });
 
-    it('should unsubscribe to router events when destroyed', () =>
-    {
-       directive.ngOnInit();
-       directive.ngOnDestroy();
-       expect(routerEvents$.observers.length).toBe(0);
+    it('should unsubscribe to router events when destroyed', () => {
+        directive.ngOnInit();
+        directive.ngOnDestroy();
+        expect(routerEvents$.observers.length).toBe(0);
     });
 
-    it('should be able to display a tooltip provided as TemplateRef', () =>
-    {
+    it('should be able to display a tooltip provided as TemplateRef', () => {
         component.tooltip = component.templateTooltip;
         fixture.detectChanges();
         hostDebugEl.triggerEventHandler('mouseover', new MouseEvent('mouseover'));
 
-        const content:Element = document.getElementsByClassName('tippy-content')[0];
+        const content: Element = document.getElementsByClassName('tippy-content')[0];
         expect(content.textContent).toBe(component.templateTooltipText);
     });
 });
 
-function isTooltipVisible():boolean
-{
+function isTooltipVisible(): boolean {
     return !!getTippyElement();
 }
 
-function getTippyElement():Element
-{
+function getTippyElement(): Element {
     // OPTION #1
     // const id:string = inputEl.nativeElement.getAttribute('aria-describedBy');
     // return document.getElementById(id);
 
     // OPTION #2
-    return document.body.lastElementChild.hasAttribute('data-tippy-root')
-        ? document.body.lastElementChild
-        : null;
+    return document.body.lastElementChild.hasAttribute('data-tippy-root') ? document.body.lastElementChild : null;
 }
-
