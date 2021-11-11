@@ -1,3 +1,9 @@
+# 12.5.0 (XX.XX.2021)
+
+### Features
+
+-   **terra-table-settings** replace the drag-icon with one from `material-icons` and clean up styling.
+
 # 12.4.0 (09.11.2021)
 
 ### Features

@@ -1,4 +1,3 @@
-import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatListModule } from '@angular/material/list';
 import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
@@ -6,11 +5,13 @@ import { L10nTranslationModule } from 'angular-l10n';
 import { FormsModule } from '@angular/forms';
 import { TableSettingsDialogComponent } from './table-settings-dialog.component';
 import { TableSettingsDialogData } from '../interface/table-settings-dialog-data.interface';
-import { By } from '@angular/platform-browser';
 import { MockButtonComponent } from '../../../../testing/mock-button';
 import { CdkDragDrop, DragDropModule } from '@angular/cdk/drag-drop';
 import { ColumnInterface } from '../interface/column.interface';
 import { mockL10nConfig } from '../../../../testing/mock-l10n-config';
+import { HarnessLoader } from '@angular/cdk/testing';
+import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
+import { MatListOptionHarness, MatSelectionListHarness } from '@angular/material/list/testing';
 
 const column1: ColumnInterface = { key: 'TestName1', label: 'TestName1' };
 const column2: ColumnInterface = { key: 'TestName2', label: 'TestName2' };
@@ -23,6 +24,7 @@ let mockDialogData: TableSettingsDialogData = {
 describe('TableSettingsDialogComponent', () => {
     let fixture: ComponentFixture<TableSettingsDialogComponent>;
     let component: TableSettingsDialogComponent;
+    let loader: HarnessLoader;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -43,6 +45,7 @@ describe('TableSettingsDialogComponent', () => {
         });
 
         fixture = TestBed.createComponent(TableSettingsDialogComponent);
+        loader = TestbedHarnessEnvironment.loader(fixture);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });
@@ -57,14 +60,18 @@ describe('TableSettingsDialogComponent', () => {
         expect(component._columns).toEqual(component.data.columns);
     });
 
-    it('should render list options', () => {
-        const options: Array<DebugElement> = fixture.debugElement.queryAll(By.css('mat-list-option'));
+    it('should render list options', async () => {
+        const selectionListHarness = await loader.getHarness(MatSelectionListHarness);
+        const options = await selectionListHarness.getItems();
         expect(options.length).toBe(component.data.columns.length);
     });
 
-    it('should render column names in options', () => {
-        const options: Array<DebugElement> = fixture.debugElement.queryAll(By.css('mat-list-option'));
-        const optionTexts: Array<string> = options.map((option: DebugElement) => option.nativeElement.textContent);
+    it('should render column names in options', async () => {
+        const selectionListHarness = await loader.getHarness(MatSelectionListHarness);
+        const options = await selectionListHarness.getItems();
+        const optionTexts: Array<string> = await Promise.all(
+            options.map((option: MatListOptionHarness) => option.getText())
+        );
         component.data.columns.forEach((column: ColumnInterface) => expect(optionTexts).toContain(column.key));
     });
 
