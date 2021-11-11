@@ -1,39 +1,14 @@
-mat-dialog-container {
-    &.mat-dialog-container {
-        .mat-dialog-content {
-            background-color: var(--color-structure-0);
-            &.table-settings-dialog-content {
-                overflow: hidden;
-                padding: 0;
-            }
-        }
-
-        .table-settings-mat-selection-list {
-            max-height: inherit;
-            overflow: auto;
-            padding: calc(var(--space-lg) + var(--space-md)) var(--space-lg);
-        }
-    }
-}
-
 .table-settings-dialog-content {
-    /* Checkbox and text inline and vertically centered */
+    background-color: var(--color-structure-0) !important;
+
     .mat-list-option {
-        /* For what is this mat-header-cell selector ?! */
-        .mat-header-cell {
-            border-bottom: none;
-            font-size: var(--font-size-4);
-
-            pointer-events: none;
-        }
-
         .cdk-drag-handle {
             cursor: move;
         }
 
         &.cdk-drag-disabled {
             .cdk-drag-handle {
-                cursor: not-allowed;
+                cursor: inherit;
             }
         }
 
