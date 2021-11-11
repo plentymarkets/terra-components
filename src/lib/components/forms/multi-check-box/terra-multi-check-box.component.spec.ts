@@ -1,36 +1,21 @@
 import { TerraMultiCheckBoxComponent } from './terra-multi-check-box.component';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { CheckboxGroupComponent } from '../checkbox-group/checkbox-group.component';
 import { TerraCheckboxComponent } from '../checkbox/terra-checkbox.component';
 import { FormsModule } from '@angular/forms';
-import { LocalizationModule } from 'angular-l10n';
-import { l10nConfig } from '../../../../app/translation/l10n.config';
+import { L10nTranslationModule } from 'angular-l10n';
 import { By } from '@angular/platform-browser';
 import { DebugElement, EventEmitter } from '@angular/core';
-import { TooltipDirective } from '../../tooltip/tooltip.directive';
-import { Router } from '@angular/router';
-import { MockRouter } from '../../../testing/mock-router';
+import { mockL10nConfig } from '../../../testing/mock-l10n-config';
+import { MockTooltipDirective } from '../../../testing/mock-tooltip.directive';
 
 describe('TerraMultiCheckBoxComponent:', () => {
     let component: TerraMultiCheckBoxComponent;
     let fixture: ComponentFixture<TerraMultiCheckBoxComponent>;
-    const router: MockRouter = new MockRouter();
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            declarations: [
-                TooltipDirective,
-                CheckboxGroupComponent,
-                TerraCheckboxComponent,
-                TerraMultiCheckBoxComponent
-            ],
-            imports: [FormsModule, LocalizationModule.forRoot(l10nConfig)],
-            providers: [
-                {
-                    provide: Router,
-                    useValue: router
-                }
-            ]
+            declarations: [MockTooltipDirective, TerraCheckboxComponent, TerraMultiCheckBoxComponent],
+            imports: [FormsModule, L10nTranslationModule.forRoot(mockL10nConfig)]
         });
     });
 

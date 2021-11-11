@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
-import { ModalDirective } from 'ngx-bootstrap';
 import { TerraOverlayButtonInterface } from './data/terra-overlay-button.interface';
 import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum';
+import { ModalDirective } from 'ngx-bootstrap/modal';
 
 /**
  * @author mfrank

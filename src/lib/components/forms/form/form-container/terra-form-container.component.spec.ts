@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { FormGroup } from '@angular/forms';
-import { TerraFormContainerComponent } from './terra-form-container.component';
+import { TerraFormContainerComponent } from './terra-form-container--entry-list.component';
 import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
 import { TerraFormScope } from '../model/terra-form-scope.data';
 import { TerraKeyValueInterface } from '../../../../models';
@@ -114,10 +114,7 @@ describe('TerraFormContainerComponent: ', () => {
             const formFields: Array<DebugElement> = row.queryAll(By.css('.form-entry'));
             expect(formFields.length).toBe(formFieldCount);
 
-            const isEveryFieldsParent: boolean = formFields.every(
-                (formField: DebugElement) => formField.parent === row
-            );
-            expect(isEveryFieldsParent).toBe(true);
+            formFields.forEach((formField: DebugElement) => expect(formField.parent).toEqual(row));
         });
     });
 });

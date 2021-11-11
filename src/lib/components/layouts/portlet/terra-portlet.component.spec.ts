@@ -1,45 +1,29 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
-import { LocalizationModule } from 'angular-l10n';
-import { l10nConfig } from '../../../../app/translation/l10n.config';
+import { L10nTranslationModule } from 'angular-l10n';
 import { DebugElement, SimpleChange } from '@angular/core';
-import { TerraLabelTooltipDirective } from '../../../helpers/terra-label-tooltip.directive';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
 import { buttonList } from '../../../testing/mock-buttons';
 import { TerraPortletComponent } from './terra-portlet.component';
 import { TerraButtonComponent } from '../../buttons/button/terra-button.component';
 import { TerraButtonInterface } from '../../buttons/button/data/terra-button.interface';
 import { TerraInfoComponent } from '../../info/terra-info.component';
-import { TooltipDirective } from '../../tooltip/tooltip.directive';
-import { Router } from '@angular/router';
-import { MockRouter } from '../../../testing/mock-router';
+import { mockL10nConfig } from '../../../testing/mock-l10n-config';
+import { MockTooltipDirective } from '../../../testing/mock-tooltip.directive';
 import Spy = jasmine.Spy;
 
 describe('TerraPortletComponent', () => {
     let component: TerraPortletComponent;
     let fixture: ComponentFixture<TerraPortletComponent>;
     let debugElement: DebugElement;
-    const router: MockRouter = new MockRouter();
 
     const portletHeader: string = 'What is my purpose?';
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            declarations: [
-                TooltipDirective,
-                TerraPortletComponent,
-                TerraButtonComponent,
-                TerraLabelTooltipDirective,
-                TerraInfoComponent
-            ],
-            imports: [FormsModule, BrowserAnimationsModule, LocalizationModule.forRoot(l10nConfig)],
-            providers: [
-                {
-                    provide: Router,
-                    useValue: router
-                }
-            ]
+            declarations: [MockTooltipDirective, TerraPortletComponent, TerraButtonComponent, TerraInfoComponent],
+            imports: [FormsModule, NoopAnimationsModule, L10nTranslationModule.forRoot(mockL10nConfig)]
         });
     });
 
@@ -102,7 +86,7 @@ describe('TerraPortletComponent', () => {
         component.inputCollapsed = true;
         fixture.detectChanges();
 
-        expect(portletHead.classes['unfolded']).toBe(false);
+        expect(portletHead.classes['unfolded']).toBeFalsy();
     });
 
     it(`should call #toggleCollapse() if his header is clicked`, () => {
@@ -172,7 +156,7 @@ describe('TerraPortletComponent', () => {
         component.inputIsCollapsable = true;
         fixture.detectChanges();
 
-        expect(debugElement.query(By.css('div.portlet-body')).classes['collapsed']).toBe(false);
+        expect(debugElement.query(By.css('div.portlet-body')).classes['collapsed']).toBeFalsy();
 
         debugElement.query(By.css('div.portlet-head')).triggerEventHandler('click', null);
         fixture.detectChanges();
@@ -182,7 +166,7 @@ describe('TerraPortletComponent', () => {
         debugElement.query(By.css('div.portlet-head')).triggerEventHandler('click', null);
         fixture.detectChanges();
 
-        expect(debugElement.query(By.css('div.portlet-body')).classes['collapsed']).toBe(false);
+        expect(debugElement.query(By.css('div.portlet-body')).classes['collapsed']).toBeFalsy();
     });
 
     it(`should update view correctly if 'inputIsCollapsable' is changed`, () => {

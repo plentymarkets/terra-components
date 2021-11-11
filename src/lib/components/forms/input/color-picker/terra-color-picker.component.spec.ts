@@ -1,15 +1,12 @@
 import { TerraColorPickerComponent } from './terra-color-picker.component';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
-import { LocalizationModule } from 'angular-l10n';
-import { l10nConfig } from '../../../../../app/translation/l10n.config';
-import { TerraLabelTooltipDirective } from '../../../../helpers/terra-label-tooltip.directive';
+import { L10nTranslationModule } from 'angular-l10n';
 import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
 import { TerraRegex } from '../../../../helpers/regex/terra-regex';
-import { TooltipDirective } from '../../../tooltip/tooltip.directive';
-import { Router } from '@angular/router';
-import { MockRouter } from '../../../../testing/mock-router';
+import { mockL10nConfig } from '../../../../testing/mock-l10n-config';
+import { Color, ColorRGB } from '../../../../helpers';
+import { MockTooltipDirective } from '../../../../testing/mock-tooltip.directive';
 
 describe('Component: TerraColorPickerComponent', () => {
     let component: TerraColorPickerComponent;
@@ -17,18 +14,11 @@ describe('Component: TerraColorPickerComponent', () => {
 
     const white: string = '#ffffff';
     const testColor: string = '#123456';
-    const router: MockRouter = new MockRouter();
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            declarations: [TooltipDirective, TerraColorPickerComponent, TerraLabelTooltipDirective],
-            imports: [FormsModule, LocalizationModule.forRoot(l10nConfig)],
-            providers: [
-                {
-                    provide: Router,
-                    useValue: router
-                }
-            ]
+            declarations: [MockTooltipDirective, TerraColorPickerComponent],
+            imports: [FormsModule, L10nTranslationModule.forRoot(mockL10nConfig)]
         });
     });
 
@@ -73,9 +63,18 @@ describe('Component: TerraColorPickerComponent', () => {
     it('should display a given color in the graphical picker', () => {
         component.color = testColor;
         fixture.detectChanges();
-        let colorDisplayDebug: DebugElement = fixture.debugElement.query(By.css('div.color-picker'));
+        let colorDisplayDebug: HTMLElement = fixture.debugElement.query(By.css('div.color-picker')).nativeElement;
         expect(colorDisplayDebug).toBeTruthy();
-        expect(colorDisplayDebug.styles['background-color']).toBeTruthy();
-        expect(colorDisplayDebug.styles['background-color']).toEqual(testColor);
+        expect(colorDisplayDebug.style.backgroundColor).toBeTruthy();
+        expect(colorDisplayDebug.style.backgroundColor).toEqual(toRGBValue(testColor));
     });
 });
+
+/**
+    Converts HEX strings to color format `rgb(r, g, b)`
+    @param color
+ */
+function toRGBValue(color: string): string {
+    const rgbColor: ColorRGB = new Color(color).toRGB();
+    return 'rgb(' + rgbColor.r + ', ' + rgbColor.g + ', ' + rgbColor.b + ')';
+}

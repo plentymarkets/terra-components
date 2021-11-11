@@ -15,7 +15,7 @@ import { TerraDataTableRowInterface } from './interfaces/terra-data-table-row.in
 import { TerraDataTableSortOrderEnum } from './enums/terra-data-table-sort-order.enum';
 import { TerraButtonInterface } from '../../buttons/button/data/terra-button.interface';
 import { TerraHrefTypeInterface } from './interfaces/terra-href-type.interface';
-import { isArray, isNullOrUndefined } from 'util';
+import { isNullOrUndefined } from 'util';
 import { TerraTextAlignEnum } from './enums/terra-text-align.enum';
 import { TerraHrefTypeEnum } from './enums/terra-href-type.enum';
 import { debounceTime, filter, tap } from 'rxjs/operators';
@@ -23,12 +23,13 @@ import { TerraBaseTable } from '../terra-base-table';
 import { TerraDataTableTextInterface } from './interfaces/terra-data-table-text.interface';
 import { TerraTagInterface } from '../../layouts/tag/data/terra-tag.interface';
 import { TerraDataTableContextMenuEntryInterface } from './context-menu/data/terra-data-table-context-menu-entry.interface';
+import { TerraDataTable } from '../terra-data-table';
 
 @Component({
     selector: 'terra-data-table',
     templateUrl: './terra-data-table.component.html',
     styleUrls: ['./terra-data-table.component.scss'],
-    providers: [TerraDataTableContextMenuService],
+    providers: [TerraDataTableContextMenuService, { provide: TerraDataTable, useExisting: TerraDataTableComponent }],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 /** @deprecated since v5.0. Please use mat-table instead. */
@@ -75,8 +76,8 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
     public readonly _refType: any = TerraHrefTypeEnum;
     public readonly _checkboxColumnWidth: number = 25;
 
-    constructor(private _cdr: ChangeDetectorRef) {
-        super();
+    constructor(_cdr: ChangeDetectorRef) {
+        super(_cdr);
     }
 
     public get _rowList(): Array<TerraDataTableRowInterface<T>> {
@@ -151,7 +152,7 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
 
         function isTagArray(arg: any): arg is Array<TerraTagInterface> {
             // check if it is an array
-            if (!isArray(arg)) {
+            if (!Array.isArray(arg)) {
                 return false;
             }
 
@@ -165,7 +166,7 @@ export class TerraDataTableComponent<T, P> extends TerraBaseTable<T> implements 
 
         function isButtonArray(arg: any): arg is Array<TerraButtonInterface> {
             // check if it is an array
-            if (!isArray(arg)) {
+            if (!Array.isArray(arg)) {
                 return false;
             }
 

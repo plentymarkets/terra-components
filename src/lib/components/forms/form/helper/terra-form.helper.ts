@@ -1,5 +1,5 @@
 import { AbstractControl, FormArray, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
-import { isArray, isNullOrUndefined, isObject, isString } from 'util';
+import { isNullOrUndefined } from 'util';
 import { StringHelper } from '../../../../helpers/string.helper';
 import { TerraValidators } from '../../../../validators/validators';
 import { TerraFormFieldHelper } from './terra-form-field.helper';
@@ -33,19 +33,23 @@ export class TerraFormHelper {
         }
 
         if (formField.options.minLength >= 0) {
-            validators.push(Validators.minLength(formField.options.minLength));
+            typeof formField.options.minLength === 'number'
+                ? validators.push(Validators.minLength(formField.options.minLength))
+                : console.warn('TerraForm: minLength has to be a numeric value');
         }
 
         if (formField.options.maxLength >= 0) {
-            validators.push(Validators.maxLength(formField.options.maxLength));
+            typeof formField.options.maxLength === 'number'
+                ? validators.push(Validators.maxLength(formField.options.maxLength))
+                : console.warn('TerraForm: maxLength has to be a numeric value');
         }
 
-        if (!isNullOrUndefined(formField.options.minValue)) {
-            validators.push(Validators.min(formField.options.minValue));
+        if (typeof formField.options.minValue === 'number' || typeof formField.options.min === 'number') {
+            validators.push(Validators.min(formField.options.minValue ?? formField.options.min));
         }
 
-        if (!isNullOrUndefined(formField.options.maxValue)) {
-            validators.push(Validators.max(formField.options.maxValue));
+        if (typeof formField.options.maxValue === 'number' || typeof formField.options.max === 'number') {
+            validators.push(Validators.max(formField.options.maxValue ?? formField.options.max));
         }
 
         if (
@@ -101,18 +105,18 @@ export class TerraFormHelper {
             let defaultValue: any = TerraFormFieldHelper.parseDefaultValue(formField);
             if (formField.isList) {
                 let formControls: Array<AbstractControl> = [];
-                if (!isNullOrUndefined(values) && isArray(values)) {
-                    formControls = (values as Array<any>).map((value: any, index: number) => {
+                if (!isNullOrUndefined(values) && Array.isArray(values[formFieldKey])) {
+                    formControls = (values[formFieldKey] as Array<any>).map((value: any, index: number) => {
                         return this.createNewControl(value || defaultValue[index], formField);
                     });
                 }
-                if (isString(formField.isList)) {
+                if (typeof formField.isList === 'string') {
                     this._fitControlsToRange(formField, formControls);
                 }
                 controls[formFieldKey] = new FormArray(formControls, this.generateFormArrayValidators(formField));
             } else if (!isNullOrUndefined(formField.children)) {
                 let value: Object =
-                    !isNullOrUndefined(values) && isObject(values[formFieldKey])
+                    !isNullOrUndefined(values) && typeof values[formFieldKey] === 'object'
                         ? values[formFieldKey]
                         : defaultValue || null;
                 controls[formFieldKey] = this.parseReactiveForm(formField.children, value);
@@ -137,7 +141,7 @@ export class TerraFormHelper {
         formFields: { [key: string]: TerraFormFieldInterface },
         values: any
     ): any {
-        if (form instanceof FormGroup && !isObject(values)) {
+        if (form instanceof FormGroup && !(values !== null && typeof values === 'object')) {
             return;
         }
 
@@ -163,7 +167,8 @@ export class TerraFormHelper {
             } else if (
                 !isNullOrUndefined(formField.children) &&
                 control instanceof FormGroup &&
-                isObject(controlValues)
+                controlValues !== null &&
+                typeof controlValues === 'object'
             ) {
                 values[formControlKey] = this.updateFormArrays(control, formField.children, controlValues);
             }
@@ -213,7 +218,7 @@ export class TerraFormHelper {
                     }
                 }
 
-                return startsWithCol && endsWithNumber && endsWithNumber;
+                return startsWithCol && endsWithNumber;
             })
             .join(' ');
     }

@@ -4,7 +4,7 @@ import { TerraUploadQueue } from './model/terra-upload-queue';
 import { TerraStorageObjectList } from './model/terra-storage-object-list';
 import { createS3StorageObject } from './model/s3-storage-object.interface';
 import { TerraImageMetadata } from './model/terra-image-metadata.interface';
-import { TranslationService } from 'angular-l10n';
+import { L10nTranslationService } from 'angular-l10n';
 import { isNullOrUndefined } from 'util';
 import { TerraBaseMetadataStorageService } from './terra-base-metadata-storage.interface';
 import { tap } from 'rxjs/operators';
@@ -41,7 +41,7 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
 
     constructor(
         private http: HttpClient,
-        private _translation: TranslationService,
+        private _translation: L10nTranslationService,
         private _alertService: AlertService
     ) {
         super();
@@ -81,11 +81,10 @@ export class TerraFrontendStorageService extends TerraBaseMetadataStorageService
 
         let uploadItems: Array<TerraUploadItem> = [];
 
-        /* tslint:disable:prefer-for-of */
+        // eslint-disable-next-line @typescript-eslint/prefer-for-of
         for (let i: number = 0; i < files.length; i++) {
             uploadItems.push(this._uploadFile(files[i], path));
         }
-        /* tslint:enable:prefer-for-of */
 
         return uploadItems;
     }

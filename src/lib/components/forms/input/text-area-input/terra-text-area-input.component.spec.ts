@@ -1,16 +1,13 @@
 import { DebugElement, ElementRef, SimpleChange } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ComponentFixture, fakeAsync, flush, TestBed } from '@angular/core/testing';
-import { LocalizationModule } from 'angular-l10n';
-import { l10nConfig } from '../../../../../app/translation/l10n.config';
-import { TerraLabelTooltipDirective } from '../../../../helpers/terra-label-tooltip.directive';
+import { L10nTranslationModule } from 'angular-l10n';
 import { TerraTextAreaInputComponent } from './terra-text-area-input.component';
 import { By } from '@angular/platform-browser';
 import { MockElementRef } from '../../../../testing/mock-element-ref';
 import { TerraRegex } from '../../../../helpers/regex/terra-regex';
-import { TooltipDirective } from '../../../tooltip/tooltip.directive';
-import { Router } from '@angular/router';
-import { MockRouter } from '../../../../testing/mock-router';
+import { mockL10nConfig } from '../../../../testing/mock-l10n-config';
+import { MockTooltipDirective } from '../../../../testing/mock-tooltip.directive';
 import Spy = jasmine.Spy;
 
 describe('TerraTextAreaInputComponent', () => {
@@ -19,17 +16,12 @@ describe('TerraTextAreaInputComponent', () => {
     let debugElement: DebugElement;
     let inputElement: HTMLInputElement;
     const testString: string = 'test';
-    const router: MockRouter = new MockRouter();
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            declarations: [TooltipDirective, TerraTextAreaInputComponent, TerraLabelTooltipDirective],
-            imports: [FormsModule, LocalizationModule.forRoot(l10nConfig)],
+            declarations: [MockTooltipDirective, TerraTextAreaInputComponent],
+            imports: [FormsModule, L10nTranslationModule.forRoot(mockL10nConfig)],
             providers: [
-                {
-                    provide: Router,
-                    useValue: router
-                },
                 {
                     provide: ElementRef,
                     useClass: MockElementRef

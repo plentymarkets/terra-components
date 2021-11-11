@@ -6,9 +6,10 @@ import { isNullOrUndefined } from 'util';
 
 /**
  * @author mkunze
+ * @deprecated since v5.
  */
 @Component({
-    // tslint:disable-next-line
+    // eslint-disable-next-line @angular-eslint/component-selector
     selector: 'context-menu', // it still exists a terra-context-menu in terra, need to refactored first
     styleUrls: ['./terra-data-table-context-menu.component.scss'],
     templateUrl: './terra-data-table-context-menu.component.html'
@@ -28,7 +29,7 @@ export class TerraDataTableContextMenuComponent<D extends TerraBaseData> impleme
     // tslint:disable-next-line:variable-name
     private __isShown: boolean = false;
 
-    @ViewChild('list', { static: false })
+    @ViewChild('list')
     private list: ElementRef;
 
     private readonly clickListener: (event: Event) => void;

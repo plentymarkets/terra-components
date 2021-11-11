@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Language } from 'angular-l10n';
+import { L10nLocale, L10N_LOCALE } from 'angular-l10n';
 
 @Component({
     selector: 'terra-group-function',
@@ -28,7 +28,8 @@ import { Language } from 'angular-l10n';
         ])
     ]
 })
-export class TerraGroupFunctionComponent implements OnInit, OnDestroy {
+/** @deprecated since v11. */
+export class TerraGroupFunctionComponent {
     /**
      * @description shows group functions container if set to true
      * @default false
@@ -48,19 +49,7 @@ export class TerraGroupFunctionComponent implements OnInit, OnDestroy {
     @Output()
     public executeGroupFunction: EventEmitter<void> = new EventEmitter();
 
-    /**
-     * @description currently selected language
-     */
-    @Language()
-    public _lang: string;
-
-    public ngOnInit(): void {
-        // implementation is required by angular-l10n. See https://robisim74.github.io/angular-l10n/spec/getting-the-translation/#messages
-    }
-
-    public ngOnDestroy(): void {
-        // implementation is required by angular-l10n. See https://robisim74.github.io/angular-l10n/spec/getting-the-translation/#messages
-    }
+    constructor(@Inject(L10N_LOCALE) public _locale: L10nLocale) {}
 
     public get _collapsedState(): string {
         return this.show ? 'collapsed' : 'hidden';

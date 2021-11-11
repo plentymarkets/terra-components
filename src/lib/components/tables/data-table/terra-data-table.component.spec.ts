@@ -1,10 +1,8 @@
 import { TerraDataTableComponent } from './terra-data-table.component';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { LocalizationModule } from 'angular-l10n';
-import { l10nConfig } from '../../../../app/translation/l10n.config';
+import { L10nTranslationModule } from 'angular-l10n';
 import { TerraPagerComponent } from '../../pager/terra-pager.component';
 import { TerraButtonComponent } from '../../buttons/button/terra-button.component';
-import { TerraCheckboxComponent } from '../../forms/checkbox/terra-checkbox.component';
 import { TerraDataTableContextMenuComponent } from './context-menu/terra-data-table-context-menu.component';
 import { TerraNoResultNoticeComponent } from '../../no-result/terra-no-result-notice.component';
 import { TerraTaglistComponent } from '../../layouts/taglist/terra-taglist.component';
@@ -18,29 +16,36 @@ import { TerraTagComponent } from '../../layouts/tag/terra-tag.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TerraDataTableServiceExample } from './example/terra-data-table.service.example';
 import { TerraLoadingSpinnerService } from '../../loading-spinner/service/terra-loading-spinner.service';
-import { ChangeDetectionStrategy, Component, DebugElement } from '@angular/core';
-import { TerraLabelTooltipDirective } from '../../../helpers/terra-label-tooltip.directive';
+import { ChangeDetectionStrategy, DebugElement, Directive, Input } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { TableRowComponent } from './table-row/table-row.component';
-import { MockRouter } from '../../../testing/mock-router';
-import { TooltipDirective } from '../../tooltip/tooltip.directive';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { MockActivatedRoute } from '../../../testing/mock-activated-route';
+import { mockL10nConfig } from '../../../testing/mock-l10n-config';
+import { MockTooltipDirective } from '../../../testing/mock-tooltip.directive';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { TerraDataTableRowInterface } from './interfaces/terra-data-table-row.interface';
 import Spy = jasmine.Spy;
+
+@Directive({
+    selector: 'tr[tcTableRow]'
+})
+// eslint-disable-next-line @angular-eslint/directive-class-suffix
+class TableRowMockComponent {
+    @Input('tcTableRow')
+    public row: TerraDataTableRowInterface<any>;
+}
 
 describe('TerraDataTableComponent', () => {
     let component: TerraDataTableComponent<any, any>;
     let fixture: ComponentFixture<TerraDataTableComponent<any, any>>;
-    let router: MockRouter = new MockRouter();
 
     beforeEach(() => {
         TestBed.configureTestingModule({
             declarations: [
-                TooltipDirective,
+                MockTooltipDirective,
                 TerraDataTableComponent,
                 TerraButtonComponent,
                 TerraPagerComponent,
-                TerraCheckboxComponent,
                 TerraDataTableContextMenuComponent,
                 TerraDataTableContextMenuDirective,
                 TerraNoResultNoticeComponent,
@@ -49,26 +54,27 @@ describe('TerraDataTableComponent', () => {
                 TerraBaseToolbarComponent,
                 TerraNumberInputComponent,
                 TerraSelectBoxComponent,
-                TableRowComponent,
-                TerraLabelTooltipDirective
+                TableRowMockComponent
             ],
-            imports: [CommonModule, FormsModule, NoopAnimationsModule, LocalizationModule.forRoot(l10nConfig)],
+            imports: [
+                CommonModule,
+                FormsModule,
+                NoopAnimationsModule,
+                L10nTranslationModule.forRoot(mockL10nConfig),
+                MatCheckboxModule
+            ],
             providers: [
                 TerraDataTableServiceExample,
                 TerraLoadingSpinnerService,
-                {
-                    provide: Router,
-                    useValue: router
-                },
                 {
                     provide: ActivatedRoute,
                     useClass: MockActivatedRoute
                 }
             ]
         }).overrideComponent(TerraDataTableComponent, {
-            set: new Component({
+            set: {
                 changeDetection: ChangeDetectionStrategy.Default
-            })
+            }
         });
     });
 
@@ -86,7 +92,7 @@ describe('TerraDataTableComponent', () => {
     describe('With an #inputService', () => {
         let service: TerraDataTableServiceExample;
         beforeEach(() => {
-            service = TestBed.get(TerraDataTableServiceExample);
+            service = TestBed.inject(TerraDataTableServiceExample);
             component.inputService = service;
         });
 

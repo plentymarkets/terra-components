@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Language } from 'angular-l10n';
+import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
+import { L10nLocale, L10N_LOCALE } from 'angular-l10n';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { TableSettingsDialogComponent } from './dialog/table-settings-dialog.component';
 import { ColumnInterface } from './interface/column.interface';
@@ -9,9 +9,8 @@ import { ColumnInterface } from './interface/column.interface';
  * @experimental
  */
 @Component({
-    selector: 'tc-table-settings',
-    templateUrl: './table-settings.component.html',
-    styleUrls: ['./table-settings.component.scss']
+    selector: 'tc-table-settings, terra-table-settings',
+    templateUrl: './table-settings.component.html'
 })
 export class TableSettingsComponent {
     /**
@@ -32,10 +31,7 @@ export class TableSettingsComponent {
     @Output()
     public selectedColumnsChange: EventEmitter<Array<string>> = new EventEmitter<Array<string>>();
 
-    @Language()
-    public _lang: string;
-
-    constructor(private _dialog: MatDialog) {}
+    constructor(@Inject(L10N_LOCALE) public _locale: L10nLocale, private _dialog: MatDialog) {}
 
     /**
      * @description Open the setting dialog/overlay.

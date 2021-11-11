@@ -3,7 +3,8 @@ const config = require('./gulp.config.js')();
 const fs = require('fs');
 const semver = require('semver');
 const argv = require('yargs').argv;
-const sass = require('gulp-sass');
+const sass = require('gulp-sass')(require('sass'));
+const del = require('del');
 const tildeImporter = require('node-sass-tilde-importer');
 
 const badgeUrlPrefix = 'https://img.shields.io/badge/';
@@ -48,36 +49,28 @@ function compileGlobalStyles() {
                 outputStyle: 'compressed'
             }).on('error', sass.logError)
         )
-        .pipe(dest('dist/styles'));
+        .pipe(dest(config.destinations.styles));
 }
 const compileStyles = compileGlobalStyles;
 exports.compileStyles = compileStyles;
-
-//copy fonts to dist
-function copyFonts() {
-    return src(config.fileSelectors.allFonts).pipe(dest(config.destinations.fontsOutputPath));
-}
-
-//copy lang to dist
-function copyLang() {
-    return src(config.fileSelectors.allLang).pipe(dest(config.destinations.langOutputPath));
-}
 
 //copy README to dist
 function copyReadme() {
     return src(config.sources.readme).pipe(dest(config.destinations.tsOutputPath));
 }
 
-function copyIconsScss() {
-    return src('src/lib/styles/icons.scss').pipe(dest(config.destinations.styles));
+function copySchematicsJsonFiles() {
+    return src('src/lib/schematics/ng-update/terra-portlet-migration/schema.json').pipe(
+        dest(config.destinations.portletSchematicJson)
+    );
+}
+
+function copyFunctionGroupsScss() {
+    return src('src/lib/styles/function-groups.scss').pipe(dest(config.destinations.styles));
 }
 
 function copyVariablesScss() {
     return src('src/lib/styles/_variables.scss').pipe(dest(config.destinations.styles));
-}
-
-function copyPlentyIconsScss() {
-    return src('src/lib/styles/fonts/plentyicons.scss').pipe(dest(config.destinations.styles + 'fonts'));
 }
 
 function copyCustomDataTableScss() {
@@ -109,16 +102,20 @@ function copyButtonScss() {
 }
 
 const copySassFiles = parallel(
-    copyIconsScss,
+    copyFunctionGroupsScss,
     copyVariablesScss,
-    copyPlentyIconsScss,
     copyCustomDataTableScss,
     copyNodeTreeScss,
     copyTagScss,
     copyTagListScss,
     copyButtonScss
 );
-const copyFilesToDist = parallel(copyFonts, copyLang, copyReadme, copySassFiles);
+const copyFilesToDist = parallel(copyReadme, copySassFiles, copySchematicsJsonFiles);
+
+//delete terra-components folder in terra
+function cleanUpTerra() {
+    return del(config.destinations.terra + '/**', { force: true });
+}
 
 //copy files from dist to terra
 function copyToTerra() {
@@ -128,7 +125,7 @@ function copyToTerra() {
 /**
  * Copies all the files to the dist folder and then to the terra workspace
  **/
-const copy = series(copyFilesToDist, copyToTerra);
+const copy = series(copyFilesToDist, cleanUpTerra, copyToTerra);
 exports.copy = copy;
 
 /**
@@ -162,14 +159,16 @@ function changeVersion(done) {
     console.log('--- OLD PACKAGE VERSION: ' + jsonDist.version + ' ---');
 
     const version = semver.inc(jsonDist.version, increment, preid);
-
-    console.log('--- NEW PACKAGE VERSION: ' + version + ' ---');
-    console.log('-------------------------------------------------');
-
-    jsonDist.version = version;
-    jsonLib.version = version;
-    fs.writeFileSync(libPath, JSON.stringify(jsonLib, null, '\t'));
-    fs.writeFileSync(distPath, JSON.stringify(jsonDist, null, '\t'));
+    if (version == null) {
+        console.error('! - Invalid parameter used. Changing of version aborted. Please check command - !');
+    } else {
+        console.log('--- NEW PACKAGE VERSION: ' + version + ' ---');
+        console.log('-------------------------------------------------');
+        jsonDist.version = version;
+        jsonLib.version = version;
+        fs.writeFileSync(libPath, JSON.stringify(jsonLib, null, '\t'));
+        fs.writeFileSync(distPath, JSON.stringify(jsonDist, null, '\t'));
+    }
     done();
 }
 exports.changeVersion = changeVersion;

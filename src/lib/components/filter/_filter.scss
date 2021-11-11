@@ -1,0 +1,65 @@
+.terra-filter-menu .mat-menu-content {
+    height: 100%;
+}
+
+.terra-filter-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    .terra-filter-content {
+        padding: 0 var(--space-lg);
+        overflow: auto;
+        flex-grow: 1;
+    }
+
+    .terra-filter-actions {
+        padding: var(--space-md) var(--space-lg) 0 var(--space-lg);
+        border-top: 1px solid var(--color-structure-3);
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        flex-shrink: 0;
+        flex-grow: 0;
+    }
+}
+
+.mat-form-field {
+    &.filter-search-input {
+        background-color: var(--color-structure-2);
+        margin-left: var(--space-xs-fix);
+
+        .mat-form-field-wrapper {
+            padding-bottom: 0;
+
+            .mat-form-field-flex {
+                align-items: center;
+
+                .mat-form-field-prefix {
+                    .mat-button-wrapper {
+                        font-size: var(--font-size-6);
+                    }
+                }
+
+                .mat-form-field-infix {
+                    border-top: none;
+                    padding: 0;
+
+                    .mat-input-element {
+                        height: calc(var(--height-lg) - 6px);
+                    }
+                }
+
+                .mat-form-field-suffix {
+                    .mat-button-wrapper {
+                        font-size: var(--font-size-6);
+                    }
+                }
+            }
+
+            .mat-form-field-underline {
+                display: none;
+            }
+        }
+    }
+}

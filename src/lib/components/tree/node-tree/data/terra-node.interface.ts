@@ -1,4 +1,5 @@
 import { Observable } from 'rxjs';
+import { TerraRouteIcon } from '../../../../types/terra-route-icon.type';
 
 /**
  * @deprecated since v5. Use mat-tree instead.
@@ -22,7 +23,7 @@ export interface TerraNodeInterface<D> {
     /**
      * @description The icon. Optional.
      */
-    icon?: string;
+    icon?: TerraRouteIcon;
 
     /**
      * @description The children of current node. Optional.

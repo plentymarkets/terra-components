@@ -1,5 +1,5 @@
 import { Component, ComponentFactoryResolver, Input, OnChanges, OnDestroy, OnInit } from '@angular/core';
-import { isFunction, isNullOrUndefined } from 'util';
+import { isNullOrUndefined } from 'util';
 import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { noop } from 'rxjs';
 import { TerraFormEntryBase } from './terra-form-entry.base';
@@ -7,7 +7,6 @@ import { TerraFormEntryBase } from './terra-form-entry.base';
 @Component({
     selector: 'terra-form-entry',
     templateUrl: './terra-form-entry.component.html',
-    styleUrls: ['./terra-form-entry.component.scss'],
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,
@@ -43,8 +42,8 @@ export class TerraFormEntryComponent
             this._initComponent();
 
             if (
-                isFunction(this._componentInstance.registerOnChange) &&
-                isFunction(this._componentInstance.registerOnTouched)
+                typeof this._componentInstance.registerOnChange === 'function' &&
+                typeof this._componentInstance.registerOnTouched === 'function'
             ) {
                 this._componentInstance.registerOnChange((value: any): void => this._onChangeCallback(value));
                 this._componentInstance.registerOnTouched((): void => this._onTouchedCallback());
@@ -91,7 +90,7 @@ export class TerraFormEntryComponent
      * @param value
      */
     public writeValue(value: any): void {
-        if (this._componentInstance && isFunction(this._componentInstance.writeValue)) {
+        if (this._componentInstance && typeof this._componentInstance.writeValue === 'function') {
             this._componentInstance.writeValue(value);
         }
     }

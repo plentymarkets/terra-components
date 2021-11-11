@@ -1,5 +1,5 @@
-import { Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { Language, TranslationService } from 'angular-l10n';
+import { Component, ElementRef, Inject, Input, OnInit, ViewChild } from '@angular/core';
+import { L10nLocale, L10nTranslationService, L10N_LOCALE } from 'angular-l10n';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TerraBaseEditorComponent } from '../base-editor/terra-base-editor.component';
 import { TerraOverlayComponent } from '../../layouts/overlay/terra-overlay.component';
@@ -22,7 +22,7 @@ import { TerraButtonInterface } from '../../buttons/button/data/terra-button.int
     ]
 })
 /** @deprecated since v5.0. Please use ck-editor instead */
-export class TerraCodeEditorComponent extends TerraBaseEditorComponent implements OnInit, OnDestroy {
+export class TerraCodeEditorComponent extends TerraBaseEditorComponent implements OnInit {
     public showCodeView: boolean = false;
     public editorContent: string = '';
     public rawContent: string = '';
@@ -36,9 +36,6 @@ export class TerraCodeEditorComponent extends TerraBaseEditorComponent implement
     @ViewChild('viewConfirmationOverlay', { static: true })
     public overlay: TerraOverlayComponent;
 
-    @Language()
-    public _lang: string;
-
     public _viewConfirmation: { primaryButton: TerraButtonInterface; secondaryButton: TerraButtonInterface };
 
     public _isValidMarkup: boolean = true;
@@ -49,7 +46,11 @@ export class TerraCodeEditorComponent extends TerraBaseEditorComponent implement
 
     private _linter: HtmlLinter;
 
-    constructor(translation: TranslationService, myElement: ElementRef) {
+    constructor(
+        @Inject(L10N_LOCALE) public _locale: L10nLocale,
+        translation: L10nTranslationService,
+        myElement: ElementRef
+    ) {
         super(translation, myElement);
         // initialize placeholder
         this._placeholder = this._translation.translate('terraNoteEditor.insertText');
@@ -64,8 +65,12 @@ export class TerraCodeEditorComponent extends TerraBaseEditorComponent implement
                     [
                         {
                             header: [1, 2, 3, 4, 5, 6, false]
+                        },
+                        {
+                            size: ['small', false]
                         }
                     ],
+                    ['link'],
                     ['code-block']
                 ],
                 handlers: {
@@ -135,10 +140,6 @@ export class TerraCodeEditorComponent extends TerraBaseEditorComponent implement
                 }
             }
         };
-    }
-
-    public ngOnDestroy(): void {
-        // implementation is required by angular-l10n. See https://robisim74.github.io/angular-l10n/spec/getting-the-translation/#messages
     }
 
     public _emitChanges(isEditorContent: boolean = true): void {

@@ -1,6 +1,5 @@
 import { TerraNodeInterface } from './terra-node.interface';
 import { isNullOrUndefined } from 'util';
-import { TranslationService } from 'angular-l10n';
 import { Injectable } from '@angular/core';
 import { TerraNodeTreeHelper } from '../helper/terra-node-tree.helper';
 import { ObjectHelper } from '../../../../helpers/object.helper';
@@ -12,8 +11,6 @@ import { ObjectHelper } from '../../../../helpers/object.helper';
 export class TerraNodeTreeConfig<D> {
     protected _currentSelectedNode: TerraNodeInterface<D>;
     private _list: Array<TerraNodeInterface<D>> = [];
-
-    constructor(public translation: TranslationService) {}
 
     /**
      * @description Adds a node.

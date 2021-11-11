@@ -1,11 +1,11 @@
-import { Input } from '@angular/core';
+import { Input, Directive } from '@angular/core';
 import { ControlValueAccessor, FormControl } from '@angular/forms';
-import { TerraAlertComponent } from '../../alert/terra-alert.component';
-import { isNullOrUndefined } from 'util';
 import { TerraPlacementEnum } from '../../../helpers/enums/terra-placement.enum';
 import { noop } from 'rxjs';
 
+// tslint:disable:directive-class-suffix
 /** @deprecated since v5. Use angular material's [input](https://material.angular.io/components/input) instead. */
+@Directive()
 export class TerraInputComponent implements ControlValueAccessor {
     /**
      * @description Set the label.
@@ -79,8 +79,6 @@ export class TerraInputComponent implements ControlValueAccessor {
     // The internal data model
     public _innerValue: any;
 
-    private _alert: TerraAlertComponent = TerraAlertComponent.getInstance();
-
     // Placeholders for the callbacks which are later provided
     // by the Control Value Accessor
     private _onTouchedCallback: () => void = noop;
@@ -141,38 +139,6 @@ export class TerraInputComponent implements ControlValueAccessor {
         } else {
             if (!this.isDisabled) {
                 this.isValid = false;
-
-                if (this.inputIsRequired && (isNullOrUndefined(this.value) || this.value.length === 0)) {
-                    let emptyMessage: string;
-
-                    if (!this.inputEmptyMessage || this.inputEmptyMessage.length === 0) {
-                        // TODO i18n
-                        // emptyMessage = 'Mach eine Eingabe!';
-                    } else {
-                        emptyMessage = this.inputEmptyMessage;
-
-                        this._alert.addAlert({
-                            msg: emptyMessage,
-                            type: 'danger',
-                            dismissOnTimeout: 0
-                        });
-                    }
-                } else if (!isNullOrUndefined(this.value) && this.value.length > 0) {
-                    let invalidMessage: string;
-
-                    if (!this.inputInvalidMessage || this.inputInvalidMessage.length === 0) {
-                        // TODO i18n
-                        // invalidMessage = 'Eingabe ungültig!';
-                    } else {
-                        invalidMessage = this.inputInvalidMessage;
-
-                        this._alert.addAlert({
-                            msg: invalidMessage,
-                            type: 'danger',
-                            dismissOnTimeout: 0
-                        });
-                    }
-                }
             }
         }
     }

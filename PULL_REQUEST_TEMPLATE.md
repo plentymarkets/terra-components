@@ -8,7 +8,7 @@ Testing
 
 -   [ ] Person 1 (mandatory)
 
-    Browser-Support (relevant for changes in scss / appearance of components)
+    Browser support (relevant for changes in scss / appearance of components)
 
     -   [ ] Chrome
     -   [ ] Firefox
@@ -22,7 +22,7 @@ Testing
 
 -   [ ] Person 2 (mandatory)
 
-    Browser-Support
+    Browser support
 
     -   [ ] Chrome
     -   [ ] Firefox
@@ -36,7 +36,7 @@ Testing
 
 Information transfer
 
--   [ ] Inform Ceres about changes in `TerraFormComponent` (optional: relevant for changes in this component)
+-   [ ] Inform Team plentyShop about changes in `TerraFormComponent` (optional: relevant for changes in this component)
 
 Terra Basic Plugin
 

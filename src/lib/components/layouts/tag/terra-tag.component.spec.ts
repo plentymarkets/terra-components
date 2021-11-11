@@ -4,21 +4,28 @@ import { tagOne, tagTwo } from '../../../testing/mock-tags';
 import { DebugElement, SimpleChange } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { TerraTagNameInterface } from './data/terra-tag-name.interface';
-import { MockTranslationModule } from '../../../testing/mock-translation-module';
-import { TranslationService } from 'angular-l10n';
+import { L10nTranslationService, L10N_LOCALE } from 'angular-l10n';
 import { MockTranslationService } from '../../../testing/mock-translation-service';
 
 describe('TerraTagComponent', () => {
     let component: TerraTagComponent;
     let fixture: ComponentFixture<TerraTagComponent>;
     let tagDiv: DebugElement;
-    const customClass: string = 'testClass';
     const name: string = 'Test';
 
     beforeEach(() => {
         TestBed.configureTestingModule({
             declarations: [TerraTagComponent],
-            imports: [MockTranslationModule]
+            providers: [
+                {
+                    provide: L10nTranslationService,
+                    useClass: MockTranslationService
+                },
+                {
+                    provide: L10N_LOCALE,
+                    useValue: { language: 'de' }
+                }
+            ]
         });
     });
 
@@ -37,7 +44,6 @@ describe('TerraTagComponent', () => {
         expect(component.inputIsTaggable).toBe(false);
         expect(component.inputCustomClass).toBeUndefined();
         expect(component.inputColor).toBeUndefined();
-        expect(component.inputBadge).toBeUndefined();
         expect(component.name).toBeUndefined();
         expect(component.names).toEqual([]);
         expect(component.inputIsTagged).toBe(false);
@@ -46,13 +52,13 @@ describe('TerraTagComponent', () => {
     });
 
     it('should have set tagDiv classes equal to `inputCustomClass`', () => {
-        expect(Object.entries(tagDiv.classes).length).toBe(0); // no classes set
+        expect(tagDiv.classes['tag']).toBe(true); // only the tag class is set
 
+        const customClass: string = 'testClass';
         component.inputCustomClass = customClass;
 
         fixture.detectChanges();
 
-        expect(Object.entries(tagDiv.classes).length).toBeGreaterThan(0);
         expect(tagDiv.classes[customClass]).toBe(true);
     });
 
@@ -80,14 +86,14 @@ describe('TerraTagComponent', () => {
 
             expect(iconElement.classes['isTagged']).toBe(true);
             expect(iconElement.classes['icon-ticket_prio1']).toBe(true);
-            expect(iconElement.classes['icon-ticket_prio8']).toBe(false);
+            expect(iconElement.classes['icon-ticket_prio8']).toBeFalsy();
 
             component.inputIsTagged = false;
 
             fixture.detectChanges();
 
-            expect(iconElement.classes['isTagged']).toBe(false);
-            expect(iconElement.classes['icon-ticket_prio1']).toBe(false);
+            expect(iconElement.classes['isTagged']).toBeFalsy();
+            expect(iconElement.classes['icon-ticket_prio1']).toBeFalsy();
             expect(iconElement.classes['icon-ticket_prio8']).toBe(true);
         });
     });
@@ -107,31 +113,32 @@ describe('TerraTagComponent', () => {
             component.inputIsTaggable = true;
             fixture.detectChanges();
 
-            let iconElement: DebugElement = tagDiv.query(By.css('span.tag-icon'));
+            const iconElement: HTMLSpanElement = tagDiv.query(By.css('span.tag-icon')).nativeElement;
 
-            expect(iconElement.styles['color']).toBeFalsy(); // style is not present
-
-            component.inputColor = tagTwo.color;
-
+            // dark background, light font color
+            component.inputColor = '#111111';
             fixture.detectChanges();
+            expect(iconElement.style.color).toEqual('rgb(255, 255, 255)');
 
-            iconElement = tagDiv.query(By.css('span.tag-icon'));
-
-            // getting access to protected/private methods
-            expect(iconElement.styles['color']).toEqual(component['_color']); // style is present and equals #ffffff or #000000
+            // light background, dark font color
+            component.inputColor = '#ffffff';
+            fixture.detectChanges();
+            expect(iconElement.style.color).toEqual('rgb(0, 0, 0)');
         });
 
         it('should set color style to tag text depending on #inputColor', () => {
-            let textElement: DebugElement = tagDiv.query(By.css('span.tag-text'));
+            const textElement: HTMLSpanElement = tagDiv.query(By.css('span.tag-text')).nativeElement;
+            expect(textElement.style.color).toBeFalsy(); // style is not present
 
-            expect(textElement.styles['color']).toBeFalsy(); // style is not present
-
-            component.inputColor = tagTwo.color;
-
+            // dark background, light font color
+            component.inputColor = '#111111';
             fixture.detectChanges();
+            expect(textElement.style.color).toEqual('rgb(255, 255, 255)');
 
-            // getting access to protected/private methods
-            expect(textElement.styles['color']).toEqual(component['_color']); // style is present and equals #ffffff or #000000
+            // light background, dark font color
+            component.inputColor = '#ffffff';
+            fixture.detectChanges();
+            expect(textElement.style.color).toEqual('rgb(0, 0, 0)');
         });
     });
 
@@ -140,29 +147,7 @@ describe('TerraTagComponent', () => {
             fixture.detectChanges(); // this needs to be called to initialize the Language-Decorator!!
         });
 
-        it('should set text depending on inputBadge', () => {
-            component.inputBadge = name;
-            component.ngOnChanges({ inputBadge: new SimpleChange(null, name, true) });
-            fixture.detectChanges();
-
-            let textElement: DebugElement = tagDiv.query(By.css('span.tag-text'));
-            let text: HTMLSpanElement = textElement.nativeElement;
-            expect(text.innerText).toEqual(name);
-
-            component.inputBadge = null;
-            component.name = name;
-
-            component.ngOnChanges({ name: new SimpleChange(null, name, true) });
-            fixture.detectChanges();
-
-            textElement = tagDiv.query(By.css('span.tag-text'));
-            text = textElement.nativeElement;
-
-            expect(text.innerText).toEqual(name);
-        });
-
         it('should set text depending on name', () => {
-            component.inputBadge = null;
             component.name = name;
 
             component.ngOnChanges({ name: new SimpleChange(null, name, true) });
@@ -175,7 +160,6 @@ describe('TerraTagComponent', () => {
         });
 
         it('should set text depending on names', () => {
-            component.inputBadge = null;
             component.name = null;
             component.names = tagOne.names;
 
@@ -185,9 +169,9 @@ describe('TerraTagComponent', () => {
             let textElement: DebugElement = tagDiv.query(By.css('span.tag-text'));
             let text: HTMLSpanElement = textElement.nativeElement;
 
-            let translationService: MockTranslationService = TestBed.get(TranslationService);
+            let translationService: L10nTranslationService = TestBed.inject(L10nTranslationService);
             let tagName: TerraTagNameInterface = tagOne.names.find(
-                (tag: TerraTagNameInterface) => tag.language === translationService.getLanguage()
+                (tag: TerraTagNameInterface) => tag.language === translationService.getLocale().language
             );
             expect(text.innerText).toEqual(tagName.name);
         });
@@ -213,7 +197,7 @@ describe('TerraTagComponent', () => {
 
             fixture.detectChanges();
 
-            component.onCloseTag.subscribe((id: number) => {
+            component.closeTag.subscribe((id: number) => {
                 expect(id).toBe(component.tagId);
                 done();
             });

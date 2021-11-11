@@ -1,23 +1,28 @@
 import { TerraDataTableRowInterface } from './data-table/interfaces/terra-data-table-row.interface';
-import { EventEmitter, Output } from '@angular/core';
+import { EventEmitter, Output, Directive, ChangeDetectorRef } from '@angular/core';
 import { isNullOrUndefined } from 'util';
+import { TerraDataTable } from './terra-data-table';
 
 /** @deprecated since v5.0. Please use mat-table instead. */
-export class TerraBaseTable<T> {
+@Directive()
+// tslint:disable-next-line:directive-class-suffix
+export abstract class TerraBaseTable<T> extends TerraDataTable<T> {
     /**
      * @description EventEmitter that notifies when a row has been selected via the select box. This is enabled, only if
      *     `inputHasCheckboxes` is true.
      */
     @Output()
     public outputRowCheckBoxChanged: EventEmitter<TerraDataTableRowInterface<T>> = new EventEmitter();
+    public abstract inputHasCheckboxes: boolean;
 
     public _headerCheckbox: { checked: boolean; isIndeterminate: boolean };
-    protected readonly _rowList: Array<TerraDataTableRowInterface<T>>;
+    protected abstract readonly _rowList: Array<TerraDataTableRowInterface<T>>;
 
     /**
      * @description Constructor initializing the table component
      */
-    constructor() {
+    constructor(protected _cdr: ChangeDetectorRef) {
+        super();
         this._headerCheckbox = {
             checked: false,
             isIndeterminate: false
@@ -106,6 +111,7 @@ export class TerraBaseTable<T> {
         else {
             this._setHeaderCheckboxIndeterminate();
         }
+        this._cdr.markForCheck();
     }
 
     private _selectAllRows(): void {

@@ -8,13 +8,16 @@ import {
     OnDestroy,
     SimpleChanges,
     Type,
-    ViewChild
+    ViewChild,
+    Directive
 } from '@angular/core';
 import { TerraFormTypeInterface } from '../model/terra-form-type.interface';
 import { FormEntryContainerDirective } from './form-entry-container.directive';
 import { TerraFormFieldInterface } from '../model/terra-form-field.interface';
 import { TerraTextInputComponent } from '../../input/text-input/terra-text-input.component';
 
+@Directive()
+// tslint:disable-next-line:directive-class-suffix
 export class TerraFormEntryBase implements OnChanges, OnDestroy {
     /**
      * @description Specification of the formField that should be displayed.
@@ -126,6 +129,11 @@ export class TerraFormEntryBase implements OnChanges, OnDestroy {
             this._componentInstance[inputMap[optionKey]] = this.inputFormField.options[optionKey];
         } else if (inputPropertyNames.indexOf(optionKey) >= 0) {
             this._componentInstance[optionKey] = this.inputFormField.options[optionKey];
+        }
+        // this is for the support of legacy input names
+        else if (optionKey.startsWith('input') && inputPropertyNames.includes(this._removeInputPrefix(optionKey))) {
+            const unprefixedOptionKey: string = this._removeInputPrefix(optionKey);
+            this._componentInstance[unprefixedOptionKey] = this.inputFormField.options[optionKey];
         } else {
             let prefixedOptionKey: string = this._transformInputPropertyName(optionKey);
             if (inputPropertyNames.indexOf(prefixedOptionKey) >= 0) {
@@ -138,5 +146,16 @@ export class TerraFormEntryBase implements OnChanges, OnDestroy {
 
     private _transformInputPropertyName(propertyName: string): string {
         return 'input' + propertyName.charAt(0).toUpperCase() + propertyName.substr(1);
+    }
+
+    /**
+     * Removes the prefix 'input' from the given propertyName and lowercases the succeeding character.
+     * @param propertyName
+     */
+    private _removeInputPrefix(propertyName: string): string {
+        if (!propertyName.startsWith('input')) {
+            return propertyName;
+        }
+        return propertyName.charAt(5).toLowerCase() + propertyName.substr(6);
     }
 }

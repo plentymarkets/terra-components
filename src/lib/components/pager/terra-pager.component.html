@@ -19,14 +19,14 @@
             ></terra-button>
         </div>
         <div class="btn-group" role="group">
-            <div class="pager-text">{{ 'terraPager.page' | translate: _lang }}</div>
+            <div class="pager-text">{{ 'terraPager.page' | translate: _locale.language }}</div>
             <div class="form-group">
                 <form (submit)="onToPage($event, pager.value)" role="form">
                     <terra-number-input
                         #pager
                         class="pager-page terra-number-input"
                         name="pager"
-                        [inputIsDisabled]="inputPagingData.totalsCount == 0"
+                        [inputIsDisabled]="inputPagingData.totalsCount === 0"
                         [inputMinValue]="1"
                         [inputMaxValue]="inputPagingData.lastPageNumber"
                         [(ngModel)]="inputPagingData.page"
@@ -35,7 +35,9 @@
                     </terra-number-input>
                 </form>
             </div>
-            <div class="pager-text">{{ 'terraPager.of' | translate: _lang }} {{ inputPagingData.lastPageNumber }}</div>
+            <div class="pager-text">
+                {{ 'terraPager.of' | translate: _locale.language }} {{ inputPagingData.lastPageNumber }}
+            </div>
         </div>
 
         <div class="btn-group" role="group">
@@ -43,7 +45,7 @@
                 inputIcon="icon-next icon_dist_top"
                 class="terra-button"
                 [inputIsDisabled]="
-                    inputPagingData.page == inputPagingData.lastPageNumber || inputPagingData.lastPageNumber == 0
+                    inputPagingData.page === inputPagingData.lastPageNumber || inputPagingData.lastPageNumber === 0
                 "
                 [inputIsLink]="true"
                 [inputIsSmall]="true"
@@ -53,7 +55,7 @@
                 inputIcon="icon-last icon_dist_top"
                 class="terra-button"
                 [inputIsDisabled]="
-                    inputPagingData.page == inputPagingData.lastPageNumber || inputPagingData.lastPageNumber == 0
+                    inputPagingData.page === inputPagingData.lastPageNumber || inputPagingData.lastPageNumber === 0
                 "
                 [inputIsLink]="true"
                 [inputIsSmall]="true"
@@ -63,7 +65,7 @@
             <terra-select-box
                 class="terra-select-box"
                 [inputListBoxValues]="inputPagingSize"
-                [inputIsDisabled]="inputPagingData.totalsCount == 0"
+                [inputIsDisabled]="inputPagingData.totalsCount === 0"
                 [inputIsSmall]="true"
                 [(ngModel)]="inputDefaultPagingSize"
                 (ngModelChange)="onChangeOffsetTo($event)"
@@ -76,7 +78,7 @@
         <terra-button
             inputIcon="icon-reload icon_dist_top"
             class="terra-button"
-            [inputIsDisabled]="inputPagingData.totalsCount == 0"
+            [inputIsDisabled]="inputPagingData.totalsCount === 0"
             [inputIsLink]="true"
             [inputIsSmall]="true"
             (outputClicked)="onReload()"

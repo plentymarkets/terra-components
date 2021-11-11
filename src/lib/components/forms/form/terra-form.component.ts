@@ -3,7 +3,6 @@ import { ControlValueAccessor, FormGroup, NG_VALUE_ACCESSOR } from '@angular/for
 import { isNullOrUndefined } from 'util';
 import { TerraFormScope } from './model/terra-form-scope.data';
 import { TerraFormFieldInterface } from './model/terra-form-field.interface';
-import { TerraFormTypeMap } from './model/terra-form-type-map.enum';
 import { TerraFormFieldHelper } from './helper/terra-form-field.helper';
 import { Data } from '@angular/router';
 import { TerraFormFieldBase } from '../dynamic-form/data/terra-form-field-base';
@@ -15,7 +14,6 @@ import { noop, Subscription } from 'rxjs';
 @Component({
     selector: 'terra-form',
     templateUrl: './terra-form.component.html',
-    styleUrls: ['./terra-form.component.scss'],
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,
@@ -67,10 +65,9 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges, OnIn
     /**
      * @description A custom map of supported control types may be provided here.
      *     Please note: All of the control types contained in this map have to implement the ControlValueAccessor interface.
-     * @default undefined - an instance of the TerraFormTypeMap will serve as fallback to support a default set of control types.
      */
     @Input()
-    public inputControlTypeMap: FormTypeMapInterface | TerraFormTypeMap | FormTypeMap;
+    public inputControlTypeMap: FormTypeMapInterface | FormTypeMap;
 
     /**
      * @description If true, disables the whole form - and all its containing controls/form fields.
@@ -79,12 +76,18 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges, OnIn
     public inputIsDisabled: boolean = false;
 
     /**
+     * @description If true, sort the form fields by its position.
+     */
+    @Input()
+    public sortByPosition: boolean = false;
+
+    /**
      * @description Scope of the form. It is used to evaluate the visibility of the form fields.
      * @readonly
      */
     public readonly scope: TerraFormScope = new TerraFormScope();
 
-    public _controlTypeMap: FormTypeMapInterface | TerraFormTypeMap | FormTypeMap = {};
+    public _controlTypeMap: FormTypeMapInterface | FormTypeMap = {};
 
     public _formFields: { [key: string]: TerraFormFieldInterface };
 
@@ -108,7 +111,9 @@ export class TerraFormComponent implements ControlValueAccessor, OnChanges, OnIn
      */
     public ngOnInit(): void {
         if (isNullOrUndefined(this.inputControlTypeMap)) {
-            this._controlTypeMap = new TerraFormTypeMap();
+            console.warn(
+                'There is no value for `inputControlTypeMap` given. Provide an instance of `FormTypeMap` or use a custom map conforming to the `FormTypeMapInterface`.'
+            );
         }
     }
 

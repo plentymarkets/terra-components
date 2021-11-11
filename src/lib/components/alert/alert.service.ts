@@ -4,24 +4,17 @@ import { AlertType } from './alert-type.enum';
 import { IS_ROOT_WINDOW } from '../../utils/window';
 
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root' // TODO: We may change this to 'platform' if we want to globally manage alerts here in the future.
 })
 export class AlertService {
-    /**
-     * Notifies that an alert is supposed to be added
-     */
+    /** Notifies that an alert is supposed to be added. */
     public addAlert: EventEmitter<TerraAlertInterface> = new EventEmitter<TerraAlertInterface>();
-    /**
-     * Notifies that an alert is supposed to be closed.
-     */
+    /** Notifies that an alert is supposed to be closed. */
     public closeAlert: EventEmitter<string> = new EventEmitter<string>();
-    /**
-     * Name of the CustomEvent that is dispatched to the parent window to add an alert
-     */
+
+    /** Name of the CustomEvent that is dispatched to the parent window to add an alert. */
     public readonly addEvent: string = 'addAlert';
-    /**
-     * Name of the CustomEvent that is dispatched to the parent window to close an alert
-     */
+    /** Name of the CustomEvent that is dispatched to the parent window to close an alert. */
     public readonly closeEvent: string = 'closeAlert';
 
     private readonly defaultTimeout: number = 5000;
@@ -65,18 +58,12 @@ export class AlertService {
     }
 
     /**
-     * Close an alert by its identifier
+     * Closes the first alert that matches the given identifier.
      * @param identifier
      */
     public close(identifier: string): void {
-        // check whether the service is used in the root window or in an iframe
-        if (this.isRootWindow) {
-            // it is used in the root window -> use EventEmitter to notify the alert panel directly.
-            this.closeAlert.emit(identifier);
-        } else {
-            // it is used in an app that is hosted in an iframe -> use CustomEvent to notify the parent window.
-            this.closeAlertForPlugin(identifier);
-        }
+        // notify
+        this.notifyOnClose(identifier);
     }
 
     private _add(msg: string, type: AlertType, timeout: number, identifier?: string): void {
@@ -87,6 +74,38 @@ export class AlertService {
             identifier: identifier
         };
 
+        this.notifyOnAdd(alert);
+    }
+
+    /**
+     * Dispatches event to the parent window indicating that an alert should be added.
+     * @param alert
+     */
+    private addAlertForPlugin(alert: TerraAlertInterface): void {
+        const event: CustomEvent<TerraAlertInterface> = new CustomEvent<TerraAlertInterface>(this.addEvent, {
+            detail: alert,
+            bubbles: false
+        });
+        window.parent.window.dispatchEvent(event);
+    }
+
+    /**
+     * Dispatches event to the parent window indicating that an alert should be closed.
+     * @param identifier
+     */
+    private closeAlertForPlugin(identifier: string): void {
+        const event: CustomEvent<string> = new CustomEvent<string>(this.closeEvent, {
+            detail: identifier,
+            bubbles: false
+        });
+        window.parent.window.dispatchEvent(event);
+    }
+
+    /**
+     * Notifies whenever an alert should be added.
+     * @param alert
+     */
+    private notifyOnAdd(alert: TerraAlertInterface): void {
         // check whether the service is used in the root window or in an iframe
         if (this.isRootWindow) {
             // it is used in the root window -> use EventEmitter to notify the alert panel directly.
@@ -97,19 +116,18 @@ export class AlertService {
         }
     }
 
-    private addAlertForPlugin(alert: TerraAlertInterface): void {
-        let event: CustomEvent<TerraAlertInterface> = new CustomEvent<TerraAlertInterface>(this.addEvent, {
-            detail: alert,
-            bubbles: false
-        });
-        window.parent.window.dispatchEvent(event);
-    }
-
-    private closeAlertForPlugin(identifier: string): void {
-        let event: CustomEvent<string> = new CustomEvent<string>(this.closeEvent, {
-            detail: identifier,
-            bubbles: false
-        });
-        window.parent.window.dispatchEvent(event);
+    /**
+     * Notifies whenever an alert should be closed.
+     * @param identifier
+     */
+    private notifyOnClose(identifier: string): void {
+        // check whether the service is used in the root window or in an iframe
+        if (this.isRootWindow) {
+            // it is used in the root window -> use EventEmitter to notify the alert panel directly.
+            this.closeAlert.emit(identifier);
+        } else {
+            // it is used in an app that is hosted in an iframe -> use CustomEvent to notify the parent window.
+            this.closeAlertForPlugin(identifier);
+        }
     }
 }

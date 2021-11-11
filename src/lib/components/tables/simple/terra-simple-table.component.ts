@@ -5,12 +5,12 @@ import { TerraCheckboxComponent } from '../../forms/checkbox/terra-checkbox.comp
 import { Key } from 'ts-keycode-enum';
 import { isNullOrUndefined } from 'util';
 
+/** @deprecated since v5.0. Please use mat-table instead. */
 @Component({
     selector: 'terra-simple-table',
     styleUrls: ['./terra-simple-table.component.scss'],
     templateUrl: './terra-simple-table.component.html'
 })
-/** @deprecated since v5.0. Please use mat-table instead. */
 export class TerraSimpleTableComponent<D> implements OnChanges {
     @Input()
     public inputHeaderList: Array<TerraSimpleTableHeaderCellInterface>;
@@ -48,7 +48,7 @@ export class TerraSimpleTableComponent<D> implements OnChanges {
     @Output()
     public outputSelectedRowsChange: EventEmitter<Array<TerraSimpleTableRowInterface<D>>> = new EventEmitter();
 
-    @ViewChild('viewChildHeaderCheckbox', { static: false })
+    @ViewChild('viewChildHeaderCheckbox')
     public viewChildHeaderCheckbox: TerraCheckboxComponent;
 
     @ViewChild('scrollContainer', { read: ElementRef, static: true })

@@ -140,6 +140,7 @@ mat-form-field.mat-form-field {
                         textarea,
                         input {
                             color: var(--color-structure-6);
+                            background: rgba(255, 255, 255, 0); //fix for Safari
                         }
 
                         .mat-form-field-label-wrapper {
@@ -178,6 +179,11 @@ mat-form-field.mat-form-field {
                                 &:not(.mat-option-disabled) {
                                     color: var(--color-structure-0);
                                     background-color: var(--color-active);
+                                }
+                            }
+                            .mat-option-text {
+                                .mat-icon.plentyicons {
+                                    font-size: 24px;
                                 }
                             }
                         }

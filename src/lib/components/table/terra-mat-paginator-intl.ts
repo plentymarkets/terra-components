@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { MatPaginatorIntl } from '@angular/material';
-import { TranslationService } from 'angular-l10n';
+import { MatPaginatorIntl } from '@angular/material/paginator';
+import { L10nTranslationService } from 'angular-l10n';
 
 @Injectable()
 export class TerraMatPaginatorIntl extends MatPaginatorIntl {
@@ -9,9 +9,9 @@ export class TerraMatPaginatorIntl extends MatPaginatorIntl {
     public firstPageLabel: string = '';
     public lastPageLabel: string = '';
 
-    constructor(private translation: TranslationService) {
+    constructor(private translation: L10nTranslationService) {
         super();
-        this.translation.translationChanged().subscribe(() => {
+        this.translation.onChange().subscribe(() => {
             this.updateLabels();
             this.changes.next();
         });
@@ -25,6 +25,7 @@ export class TerraMatPaginatorIntl extends MatPaginatorIntl {
      * @param length
      * @returns string
      */
+    // eslint-disable-next-line @typescript-eslint/typedef
     public getRangeLabel = (page: number, pageSize: number, length: number): string => {
         let ofLabel: string = this.translation.translate('terraMatPaginatorIntl.ofLabel');
 

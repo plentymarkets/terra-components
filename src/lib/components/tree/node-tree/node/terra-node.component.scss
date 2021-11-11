@@ -7,6 +7,7 @@ li {
 
     .btn-handler {
         width: 100%;
+        margin-right: 0 !important;
 
         .btn {
             text-align: left;
@@ -20,12 +21,14 @@ li {
                 text-overflow: ellipsis;
             }
 
-            span {
+            span,
+            mat-icon {
                 &.icon_dist_top {
                     padding: 0 8px;
                     display: table-cell;
                     vertical-align: middle;
                     top: initial;
+                    font-size: 20px;
                 }
 
                 &.icon-right {

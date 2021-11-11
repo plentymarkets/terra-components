@@ -4,13 +4,13 @@ export * from './helpers';
 export * from './models';
 export * from './components/editors/ck-editor/presets';
 export * from './utils';
+export * from './route';
+
 export * from './components/table';
+export * from './components/alert';
+export * from './components/filter';
 
 export { TerraComponentsModule } from './terra-components.module';
-export { TerraComponentsExamplesModule } from './terra-components-examples.module';
-
-export { TerraAlertPanelComponent } from './components/alert/terra-alert-panel.component';
-export { TerraAlertComponent } from './components/alert/terra-alert.component';
 
 export { TerraButtonInterface } from './components/buttons/button/data/terra-button.interface';
 export { TerraButtonComponent } from './components/buttons/button/terra-button.component';
@@ -20,20 +20,16 @@ export { TerraToggleComponent } from './components/buttons/toggle/terra-toggle.c
 export { TerraFileChooserComponent } from './components/buttons/file-chooser/terra-file-chooser.component';
 
 export { TerraBaseData } from './components/data/terra-base.data';
-export { TerraFilterComponent } from './components/filter/terra-filter.component';
 export { FilterComponent } from './components/filter/filter.component';
 
 // FORM ELEMENTS
 export { TerraCheckboxComponent } from './components/forms/checkbox/terra-checkbox.component';
-export { CheckboxGroupComponent } from './components/forms/checkbox-group/checkbox-group.component';
 export { TerraMultiCheckBoxValueInterface } from './components/forms/multi-check-box/data/terra-multi-check-box-value.interface';
 export { TerraMultiCheckBoxComponent } from './components/forms/multi-check-box/terra-multi-check-box.component';
 
-export { TerraRadioButtonComponent } from './components/forms/radio-button/terra-radio-button.component';
 export { RadioGroupComponent } from './components/forms/input/radio/radio-group.component';
 export { RadioInputComponent } from './components/forms/input/radio/radio-input.component';
 
-export { TerraInputComponent } from './components/forms/input/terra-input.component'; // TODO: this has to be removed from the public api
 export { TerraDoubleInputComponent } from './components/forms/input/double-input/terra-double-input.component';
 export { TerraNumberInputComponent } from './components/forms/input/number-input/terra-number-input.component';
 export { TerraTextInputComponent } from './components/forms/input/text-input/terra-text-input.component';
@@ -45,9 +41,6 @@ export { TerraSuggestionBoxComponent } from './components/forms/suggestion-box/t
 export { TerraTextAreaInputComponent } from './components/forms/input/text-area-input/terra-text-area-input.component';
 export { TerraFileInputComponent } from './components/forms/input/file-input/terra-file-input.component';
 export { TerraDatePickerComponent } from './components/forms/input/date-picker/terra-date-picker.component';
-
-// Indicator
-export { TerraIndicatorComponent } from './components/indicator/terra-indicator.component';
 
 // Loading spinner
 export { TerraLoadingSpinnerService } from './components/loading-spinner/service/terra-loading-spinner.service';
@@ -110,11 +103,6 @@ export { TerraBaseTreeComponent } from './components/tree/base/terra-base-tree.c
 export { TerraCheckboxTreeComponent } from './components/tree/checkbox-tree/terra-checkbox-tree.component';
 export { TerraLeafInterface } from './components/tree/leaf/terra-leaf.interface';
 
-export { TerraSyntaxEditorComponent } from './components/editors/syntax-editor/terra-syntax-editor.component';
-export { TerraSyntaxEditorData } from './components/editors/syntax-editor/data/terra-syntax-editor.data';
-
-export { TerraDynamicComponentLoaderComponent } from './components/dynamic-component-loader/terra-dynamic-component-loader.component';
-
 // TODO file browser index
 export {
     createS3StorageObject,
@@ -134,8 +122,6 @@ export { TerraBasePrivateStorageService } from './components/file-browser/terra-
 export { TerraNoResultNoticeComponent } from './components/no-result/terra-no-result-notice.component';
 export { TerraNoteEditorComponent } from './components/editors/note-editor/terra-note-editor.component';
 export { TerraCodeEditorComponent } from './components/editors/code-editor/terra-code-editor.component';
-export { TerraNoteComponent } from './components/note/terra-note.component';
-export { TerraSliderComponent } from './components/forms/slider/terra-slider.component';
 export { TerraNodeTreeComponent } from './components/tree/node-tree/terra-node-tree.component';
 export { TerraNodeTreeConfig } from './components/tree/node-tree/data/terra-node-tree.config';
 export { TerraNodeInterface } from './components/tree/node-tree/data/terra-node.interface';
@@ -172,13 +158,14 @@ export { NestedValueInterface } from './components/data-picker/nested-data-picke
 export { TerraValidators } from './validators/validators';
 
 export { TerraFormComponent } from './components/forms/form/terra-form.component';
-export { TerraFormContainerComponent } from './components/forms/form/form-container/terra-form-container.component';
+export {
+    TerraFormContainerComponent,
+    TerraFormEntryListComponent
+} from './components/forms/form/form-container/terra-form-container--entry-list.component';
 export { TerraFormEntryComponent } from './components/forms/form/form-entry/terra-form-entry.component';
-export { TerraFormEntryListComponent } from './components/forms/form/form-entry-list/terra-form-entry-list.component';
 export { TerraFormFieldHelper } from './components/forms/form/helper/terra-form-field.helper';
 export { TerraFormFieldInterface } from './components/forms/form/model/terra-form-field.interface';
 export { TerraFormScope } from './components/forms/form/model/terra-form-scope.data';
-export { TerraFormTypeMap } from './components/forms/form/model/terra-form-type-map.enum';
 export { FormTypeMap } from './components/forms/form/model/form-type-map';
 export {
     TERRA_FORM_PROPERTY_METADATA_KEY, // TODO: may be removed from public api
@@ -191,10 +178,13 @@ export { TerraTagSelectComponent } from './components/forms/tag-select/terra-tag
 export { TerraGroupFunctionComponent } from './components/tables/group-function/terra-group-function.component';
 export { TerraDataTableBaseService } from './components/tables/data-table/terra-data-table-base.service';
 export { TableRowComponent } from './components/tables/data-table/table-row/table-row.component';
-export { AlertService } from './components/alert/alert.service';
 export { CKEditorDirective } from './components/editors/ck-editor/ck-editor.directive';
 export { TooltipDirective } from './components/tooltip/tooltip.directive';
 export { SelectSortPipe } from './pipes/select-sort.pipe';
 export { AllowedColors } from './components/forms/select-box/data/allowed.colors.enum';
-export { TerraStopwatchComponent } from './components/stopwatch/terra-stopwatch.component';
 export { SelectSortDirective } from './components/forms/select-box/directive/select-sort.directive';
+export { TerraRouteIcon } from './types/terra-route-icon.type';
+export { TerraTooltipModule } from './components/tooltip/terra-tooltip.module';
+
+// l10n translations
+export { l10nTerraComponents } from './translations/l10n-terra-components';
