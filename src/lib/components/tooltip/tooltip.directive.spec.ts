@@ -103,11 +103,6 @@ function isTooltipVisible(): boolean {
     return !!getTippyElement();
 }
 
-function getTippyElement(): Element {
-    // OPTION #1
-    // const id:string = inputEl.nativeElement.getAttribute('aria-describedBy');
-    // return document.getElementById(id);
-
-    // OPTION #2
-    return document.body.lastElementChild.hasAttribute('data-tippy-root') ? document.body.lastElementChild : null;
+function getTippyElement(): Element | null {
+    return document.querySelector('[data-tippy-root]');
 }

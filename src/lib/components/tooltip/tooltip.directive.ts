@@ -67,7 +67,7 @@ export class TooltipDirective implements OnDestroy, OnChanges, OnInit {
         this.navigationSubscription = this._router.events
             .pipe(filter(() => this._tippyInstance && this._tippyInstance.state && this._tippyInstance.state.isShown))
             .subscribe(() => {
-                this._tippyInstance.hide();
+                this._tippyInstance.unmount();
             });
     }
 
@@ -121,7 +121,7 @@ export class TooltipDirective implements OnDestroy, OnChanges, OnInit {
     public onMouseOut(event: MouseEvent): void {
         event.stopPropagation();
         if (this._tippyInstance) {
-            this._tippyInstance.hide();
+            this._tippyInstance.unmount();
         }
     }
 
