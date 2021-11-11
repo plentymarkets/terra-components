@@ -2,7 +2,7 @@ import { EventEmitter } from '@angular/core';
 import { fakeAsync, tick } from '@angular/core/testing';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { Observable, of } from 'rxjs';
+import { of } from 'rxjs';
 import { TerraTableDataSource } from './terra-table-data-source';
 import { TerraFilter } from './filter';
 import { TerraPagerInterface } from '../pager/data/terra-pager.interface';
@@ -12,7 +12,7 @@ describe('TerraTableDataSource', () => {
     let dataSource: TerraTableDataSource<{}>;
 
     beforeEach(() => {
-        dataSource = new TerraTableDataSource((): Observable<Array<{}>> => of([{}]));
+        dataSource = new TerraTableDataSource(() => of([{}]));
     });
 
     it('should create', () => {
