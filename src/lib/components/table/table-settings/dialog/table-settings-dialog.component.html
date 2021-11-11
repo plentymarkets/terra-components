@@ -12,7 +12,6 @@
             #option
             *ngFor="let column of _columns"
             [value]="column.key"
-            checkboxPosition="after"
             cdkDrag
             cdkDragPreviewContainer="parent"
             [cdkDragDisabled]="!option.selected"
