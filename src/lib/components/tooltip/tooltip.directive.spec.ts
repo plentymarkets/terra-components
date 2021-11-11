@@ -58,7 +58,6 @@ describe('TooltipDirective', () => {
         hostDebugEl.triggerEventHandler('mouseover', new Event('MouseEvent'));
         fixture.detectChanges();
 
-        expect(getTippyElement()).toBeTruthy();
         expect(isTooltipVisible()).toBe(true);
 
         hostDebugEl.triggerEventHandler('mouseout', new Event('MouseEvent'));
