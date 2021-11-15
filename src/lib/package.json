@@ -55,6 +55,15 @@
         "ts-keycode-enum": "^1.0.6"
     },
     "ngPackage": {
+        "assets": [
+            "./styles/_variables.scss",
+            "./styles/function-groups.scss",
+            "./components/tables/data-table/custom-data-table.scss",
+            "./components/tree/node-tree/terra-node-tree.component.scss",
+            "./components/layouts/tag/terra-tag.component.scss",
+            "./components/layouts/taglist/terra-taglist.component.scss",
+            "./components/buttons/button/terra-button.component.scss"
+        ],
         "lib": {
             "entryFile": "public-api.ts",
             "umdModuleIds": {

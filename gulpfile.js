@@ -65,52 +65,7 @@ function copySchematicsJsonFiles() {
     );
 }
 
-function copyFunctionGroupsScss() {
-    return src('src/lib/styles/function-groups.scss').pipe(dest(config.destinations.styles));
-}
-
-function copyVariablesScss() {
-    return src('src/lib/styles/_variables.scss').pipe(dest(config.destinations.styles));
-}
-
-function copyCustomDataTableScss() {
-    return src('src/lib/components/tables/data-table/custom-data-table.scss').pipe(
-        dest('dist/components/tables/data-table')
-    );
-}
-
-function copyNodeTreeScss() {
-    return src('src/lib/components/tree/node-tree/terra-node-tree.component.scss').pipe(
-        dest('dist/components/tree/node-tree')
-    );
-}
-
-function copyTagScss() {
-    return src('src/lib/components/layouts/tag/terra-tag.component.scss').pipe(dest('dist/components/layouts/tag'));
-}
-
-function copyTagListScss() {
-    return src('src/lib/components/layouts/taglist/terra-taglist.component.scss').pipe(
-        dest('dist/components/layouts/taglist')
-    );
-}
-
-function copyButtonScss() {
-    return src('src/lib/components/buttons/button/terra-button.component.scss').pipe(
-        dest('dist/components/buttons/button')
-    );
-}
-
-const copySassFiles = parallel(
-    copyFunctionGroupsScss,
-    copyVariablesScss,
-    copyCustomDataTableScss,
-    copyNodeTreeScss,
-    copyTagScss,
-    copyTagListScss,
-    copyButtonScss
-);
-const copyFilesToDist = parallel(copyReadme, copySassFiles, copySchematicsJsonFiles);
+const copyFilesToDist = parallel(copyReadme, copySchematicsJsonFiles);
 
 //delete terra-components folder in terra
 function cleanUpTerra() {
