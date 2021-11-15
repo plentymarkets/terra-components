@@ -35,7 +35,6 @@ import { RouterTestingModule } from '@angular/router/testing';
             </form>
         </mat-menu>
         <terra-filter-toolbar
-            [enableSearchInput]="true"
             [autocompleteLabels]="['test']"
             [filterMenu]="filterMenu"
             (search)="search()"

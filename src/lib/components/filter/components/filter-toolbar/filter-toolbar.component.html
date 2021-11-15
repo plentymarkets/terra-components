@@ -2,7 +2,7 @@
     <mat-form-field
         class="filter-search-input"
         floatLabel="never"
-        *ngIf="enableSearchInput && autocompleteLabels?.length > 0; else noSearchInput"
+        *ngIf="autocompleteLabels?.length > 0; else noSearchInput"
     >
         <input #input [formControl]="searchInputControl" type="text" matInput [matAutocomplete]="auto" />
         <mat-autocomplete

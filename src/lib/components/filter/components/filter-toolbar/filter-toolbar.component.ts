@@ -1,13 +1,4 @@
-import {
-    ChangeDetectionStrategy,
-    Component,
-    EventEmitter,
-    Inject,
-    Input,
-    OnInit,
-    Output,
-    ViewChild
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Inject, Input, Output, ViewChild } from '@angular/core';
 import { FilterChipDefDirective } from '../../directives/filter-chip-def.directive';
 import { FilterMenuDirective } from '../../directives/filter-menu.directive';
 import { Observable } from 'rxjs';
@@ -22,16 +13,10 @@ import { L10N_LOCALE, L10nLocale } from 'angular-l10n';
     templateUrl: './filter-toolbar.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FilterToolbarComponent implements OnInit {
+export class FilterToolbarComponent {
     /** Reference to the FilterMenuDirective containing all information needed to render the chips */
     @Input()
     public filterMenu: FilterMenuDirective;
-
-    /** If set to true, then it will display the search input autocomplete
-     * @input Required to enable the search input autocomplete
-     */
-    @Input()
-    public enableSearchInput: boolean;
 
     /** The list of possible labels for the autocomplete menu
      * @input Required if enableSearchInput is set to true in order to enable the search input autocomplete
@@ -65,17 +50,6 @@ export class FilterToolbarComponent implements OnInit {
 
     constructor(@Inject(L10N_LOCALE) public _locale: L10nLocale) {
         this._lang = _locale.language;
-    }
-
-    public ngOnInit(): void {
-        if (
-            this.enableSearchInput === true &&
-            (this.autocompleteLabels === null || this.autocompleteLabels === undefined)
-        ) {
-            console.error(
-                'To display the filter search input "enableSearchInput" and "autocompleteLabels" must be set.'
-            );
-        }
     }
 
     /** List of chip definitions retrieved by the FilterContainerDirective */
