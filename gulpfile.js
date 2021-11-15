@@ -59,14 +59,6 @@ function copyReadme() {
     return src(config.sources.readme).pipe(dest(config.destinations.tsOutputPath));
 }
 
-function copySchematicsJsonFiles() {
-    return src('src/lib/schematics/ng-update/terra-portlet-migration/schema.json').pipe(
-        dest(config.destinations.portletSchematicJson)
-    );
-}
-
-const copyFilesToDist = parallel(copyReadme, copySchematicsJsonFiles);
-
 //delete terra-components folder in terra
 function cleanUpTerra() {
     return del(config.destinations.terra + '/**', { force: true });
@@ -80,7 +72,7 @@ function copyToTerra() {
 /**
  * Copies all the files to the dist folder and then to the terra workspace
  **/
-const copy = series(copyFilesToDist, cleanUpTerra, copyToTerra);
+const copy = series(copyReadme, cleanUpTerra, copyToTerra);
 exports.copy = copy;
 
 /**
