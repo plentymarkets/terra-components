@@ -1,4 +1,4 @@
-const { series, parallel, src, dest } = require('gulp');
+const { series, src, dest } = require('gulp');
 const config = require('./gulp.config.js')();
 const fs = require('fs');
 const semver = require('semver');
