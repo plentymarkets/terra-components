@@ -17,11 +17,7 @@
     ],
     "license": "MIT",
     "scripts": {
-        "build": "../../node_modules/.bin/tsc -p tsconfig.schematics.json",
-        "copy:collection": "cp schematics/collection.json ../../dist/schematics/collection.json",
-        "copy:migrations": "cp schematics/migration.json ../../dist/schematics/migration.json",
-        "copy:schema": "cp schematics/ng-update/checkbox-migration/schema.json ../../dist/schematics/ng-update/checkbox-migration/schema.json",
-        "postbuild": "npm run copy:collection && npm run copy:migrations && npm run copy:schema"
+        "build": "../../node_modules/.bin/tsc -p tsconfig.schematics.json"
     },
     "dependencies": {
         "tslib": "^2.3.0"
@@ -55,6 +51,19 @@
         "ts-keycode-enum": "^1.0.6"
     },
     "ngPackage": {
+        "assets": [
+            "./styles/_variables.scss",
+            "./styles/function-groups.scss",
+            "./components/tables/data-table/custom-data-table.scss",
+            "./components/tree/node-tree/terra-node-tree.component.scss",
+            "./components/layouts/tag/terra-tag.component.scss",
+            "./components/layouts/taglist/terra-taglist.component.scss",
+            "./components/buttons/button/terra-button.component.scss",
+            "./schematics/migration.json",
+            "./schematics/collection.json",
+            "./schematics/ng-update/checkbox-migration/schema.json",
+            "./schematics/ng-update/terra-portlet-migration/schema.json"
+        ],
         "lib": {
             "entryFile": "public-api.ts",
             "umdModuleIds": {

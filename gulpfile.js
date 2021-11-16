@@ -1,4 +1,4 @@
-const { series, parallel, src, dest } = require('gulp');
+const { series, src, dest } = require('gulp');
 const config = require('./gulp.config.js')();
 const fs = require('fs');
 const semver = require('semver');
@@ -59,59 +59,6 @@ function copyReadme() {
     return src(config.sources.readme).pipe(dest(config.destinations.tsOutputPath));
 }
 
-function copySchematicsJsonFiles() {
-    return src('src/lib/schematics/ng-update/terra-portlet-migration/schema.json').pipe(
-        dest(config.destinations.portletSchematicJson)
-    );
-}
-
-function copyFunctionGroupsScss() {
-    return src('src/lib/styles/function-groups.scss').pipe(dest(config.destinations.styles));
-}
-
-function copyVariablesScss() {
-    return src('src/lib/styles/_variables.scss').pipe(dest(config.destinations.styles));
-}
-
-function copyCustomDataTableScss() {
-    return src('src/lib/components/tables/data-table/custom-data-table.scss').pipe(
-        dest('dist/components/tables/data-table')
-    );
-}
-
-function copyNodeTreeScss() {
-    return src('src/lib/components/tree/node-tree/terra-node-tree.component.scss').pipe(
-        dest('dist/components/tree/node-tree')
-    );
-}
-
-function copyTagScss() {
-    return src('src/lib/components/layouts/tag/terra-tag.component.scss').pipe(dest('dist/components/layouts/tag'));
-}
-
-function copyTagListScss() {
-    return src('src/lib/components/layouts/taglist/terra-taglist.component.scss').pipe(
-        dest('dist/components/layouts/taglist')
-    );
-}
-
-function copyButtonScss() {
-    return src('src/lib/components/buttons/button/terra-button.component.scss').pipe(
-        dest('dist/components/buttons/button')
-    );
-}
-
-const copySassFiles = parallel(
-    copyFunctionGroupsScss,
-    copyVariablesScss,
-    copyCustomDataTableScss,
-    copyNodeTreeScss,
-    copyTagScss,
-    copyTagListScss,
-    copyButtonScss
-);
-const copyFilesToDist = parallel(copyReadme, copySassFiles, copySchematicsJsonFiles);
-
 //delete terra-components folder in terra
 function cleanUpTerra() {
     return del(config.destinations.terra + '/**', { force: true });
@@ -125,7 +72,7 @@ function copyToTerra() {
 /**
  * Copies all the files to the dist folder and then to the terra workspace
  **/
-const copy = series(copyFilesToDist, cleanUpTerra, copyToTerra);
+const copy = series(copyReadme, cleanUpTerra, copyToTerra);
 exports.copy = copy;
 
 /**
