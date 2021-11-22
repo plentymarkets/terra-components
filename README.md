@@ -3,6 +3,12 @@
 
 ![plentymarkets Logo](http://www.plentymarkets.eu/layout/pm/images/logo/plentymarkets-logo.jpg)
 
+# Deprecated
+
+####This repository is deprecated. It will not be maintained anymore.
+
+---
+
 # Components for plentymarkets plugins
 
 These are the official plugin components developed by plentymarkets. This repository provides components to build plugins for the [plentymarkets](https://www.plentymarkets.eu/tour/) ERP.
