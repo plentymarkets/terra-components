@@ -1,6 +1,5 @@
 import { TerraMultiCheckBoxComponent } from './terra-multi-check-box.component';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { CheckboxGroupComponent } from '../checkbox-group/checkbox-group.component';
 import { TerraCheckboxComponent } from '../checkbox/terra-checkbox.component';
 import { FormsModule } from '@angular/forms';
 import { L10nTranslationModule } from 'angular-l10n';
@@ -15,12 +14,7 @@ describe('TerraMultiCheckBoxComponent:', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            declarations: [
-                MockTooltipDirective,
-                CheckboxGroupComponent,
-                TerraCheckboxComponent,
-                TerraMultiCheckBoxComponent
-            ],
+            declarations: [MockTooltipDirective, TerraCheckboxComponent, TerraMultiCheckBoxComponent],
             imports: [FormsModule, L10nTranslationModule.forRoot(mockL10nConfig)]
         });
     });

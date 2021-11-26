@@ -102,6 +102,11 @@ export abstract class TerraTableDataSource<D, F = unknown> extends DataSource<D>
     }
     private _paginator: MatPaginator | undefined;
 
+    /** A stream that emits whenever data has been requested from the server. */
+    // eslint-disable-next-line @typescript-eslint/member-ordering
+    public dataRequested$: Observable<boolean>;
+    private _dataRequested$: BehaviorSubject<boolean> = new BehaviorSubject(false);
+
     /** A stream that emits whenever a manual search is requested. */
     private _search: Subject<void> = new Subject();
     /** A stream that emits whenever a reload is requested. */
@@ -111,6 +116,7 @@ export abstract class TerraTableDataSource<D, F = unknown> extends DataSource<D>
 
     constructor() {
         super();
+        this.dataRequested$ = this._dataRequested$.asObservable();
         this._updateSubscription(); // initially subscribe to any change to be able to search even if no filter, paging or sorting is applied.
     }
 
@@ -173,7 +179,9 @@ export abstract class TerraTableDataSource<D, F = unknown> extends DataSource<D>
 
         const data$: Observable<Array<D>> = anyChange$.pipe(
             map(() => createRequestParams(this._filter, this._paginator, this._sort)),
-            switchMap((params: RequestParameterInterface) => this.request(params)),
+            switchMap((params: RequestParameterInterface) =>
+                this.request(params).pipe(tap(() => this._dataRequested$.next(true)))
+            ),
             map((response: Array<D> | TerraPagerInterface<D>) => {
                 if (isPaginated(response)) {
                     if (this._paginator) {

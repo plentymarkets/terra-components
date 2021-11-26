@@ -29,7 +29,7 @@ export class TerraJsonToFormFieldService {
         return formFields;
     }
 
-    /* tslint:disable:max-function-line-count */
+    // eslint-disable-next-line max-lines-per-function
     private static createFormField(
         formFieldKey: string,
         formFieldData: { [key: string]: any }

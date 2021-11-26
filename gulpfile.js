@@ -3,7 +3,7 @@ const config = require('./gulp.config.js')();
 const fs = require('fs');
 const semver = require('semver');
 const argv = require('yargs').argv;
-const sass = require('gulp-sass');
+const sass = require('gulp-sass')(require('sass'));
 const del = require('del');
 const tildeImporter = require('node-sass-tilde-importer');
 
@@ -59,6 +59,12 @@ function copyReadme() {
     return src(config.sources.readme).pipe(dest(config.destinations.tsOutputPath));
 }
 
+function copySchematicsJsonFiles() {
+    return src('src/lib/schematics/ng-update/terra-portlet-migration/schema.json').pipe(
+        dest(config.destinations.portletSchematicJson)
+    );
+}
+
 function copyFunctionGroupsScss() {
     return src('src/lib/styles/function-groups.scss').pipe(dest(config.destinations.styles));
 }
@@ -104,7 +110,7 @@ const copySassFiles = parallel(
     copyTagListScss,
     copyButtonScss
 );
-const copyFilesToDist = parallel(copyReadme, copySassFiles);
+const copyFilesToDist = parallel(copyReadme, copySassFiles, copySchematicsJsonFiles);
 
 //delete terra-components folder in terra
 function cleanUpTerra() {

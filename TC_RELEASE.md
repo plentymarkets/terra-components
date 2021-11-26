@@ -1,8 +1,8 @@
-# Release Terra Components
+# Terra Components Release
 
-A guide that takes you step by step to a release of the Terra Components.
+This guide takes you step by step to a release of the Terra Components.
 
-_**Important**_: This guide only applies to plentysystems employees.
+**Important**: This guide only applies to plentysystems employees.
 
 ## 1. Prepare the release
 
@@ -10,7 +10,7 @@ _**Important**_: This guide only applies to plentysystems employees.
     -   The command runs the alias: `npm ci && npm run build && npm run test-headless && npm start`
 -   The command tests and builds code.
 
-If this command fails (for example due to an unit test), errors should be corrected.
+If this command fails (for example due to a unit test), errors should be corrected.
 
 ## 2. Change the Terra Components version
 
@@ -18,15 +18,15 @@ If this command fails (for example due to an unit test), errors should be correc
 
 -   Run `gulp changeVersion --increment <increment> --preid <preid>` in your IDE's console.
 
--   `increment` : depends on the changes that have been made. Either 'major', 'minor' or 'patch' or any pre-release.
+-   `increment` : depends on the changes that have been made - either 'major', 'minor' or 'patch', or any pre-release.
     -   example: `gulp changeVersion --increment minor`
         -   before: v6.**0**.0 ... after: v6.**1**.0
 -   `preid` : is only necessary for a **pre-release** and sets a **subversion**.
     -   example: `gulp changeVersion --increment preminor --preid rc`
         -   before: v6.0.0 ... after: v6.1.0-rc.0
--   All parameters can be found in the [gulpfile](./gulpfile.js) (Line 129).
+-   All parameters can be found in the [gulpfile](./gulpfile.js) (line 129).
 
-## 3. Changelog update
+## 3. Update the Changelog
 
 -   Update the date in the [Changelog](./CHANGELOG.md) on which you want it to be released.
 
@@ -42,10 +42,10 @@ If this command fails (for example due to an unit test), errors should be correc
 -   This command creates a new release on [npm](https://www.npmjs.com/package/@plentymarkets/terra-components).
 -   **Important**: To run this command you **need an account on npm**.
 
-    -   If you haven't:
-        -   create an account.
-        -   get an invite from a member of Terra.
-        -   log in to npm in your IDE’s console: `npm login`.
+    -   If you haven't got an account yet:
+        -   Create an account.
+        -   Get an invite from a member of Terra.
+        -   Log in to npm in your IDE’s console: `npm login`.
 
 -   Please create a new release tag on [Github](https://github.com/plentymarkets/terra-components/releases).
 

@@ -1,0 +1,18 @@
+<mat-form-field class="w-100" [tcTooltip]="tooltipText" [placement]="tooltipPlacement">
+    <mat-label>{{ name }}</mat-label>
+    <input
+        matInput
+        [matDatepicker]="picker"
+        [disabled]="isDisabled"
+        (blur)="_onTouchedCallback()"
+        [(ngModel)]="value"
+        (ngModelChange)="_onChange($event)"
+        [required]="isRequired"
+        #control="ngModel"
+    />
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+    <mat-error *ngIf="control.hasError('required')">
+        {{ 'validators.required' | translate: _locale.language }}
+    </mat-error>
+</mat-form-field>

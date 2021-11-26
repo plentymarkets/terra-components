@@ -1,10 +1,182 @@
-# 11.2.0 (xx.xx.2021)
+# 12.5.0 (11.11.2021)
+
+### Features
+
+-   **terra-table-settings** replace the drag-icon with one from `material-icons` and clean up styling.
+
+# 12.4.0 (09.11.2021)
+
+### Features
+
+-   **terra-file-list** use components from `@angular/material` instead of our own deprecated ones.
+-   **terra-file-input** use components from `@angular/material` instead of our own deprecated ones.
+-   **terra-file-browser** use components from `@angular/material` instead of our own deprecated ones.
+-   **terra-image-preview** use components from `@angular/material` instead of our own deprecated ones.
+-   **terra-file-chooser** use dialog from `@angular/material` instead of our deprecated `terra-overlay`.
+
+# 12.3.0 (04.11.2021)
 
 ### Minor changes
 
--   **terra-portlet** is deprecated now. Use angular material's [expansion panel](https://material.angular.io/components/expansion/overview) instead.
--   **terra-group-function** is deprecated now.
--   **terra-stopwatch** is deprecated now.
+-   **terra-node-tree** add support for mat-icons.
+-   **tcTooltip** added `TerraTooltipModule` to be able to individually include tooltip functionality.
+
+# 12.2.0 (01.11.2021)
+
+### Minor changes
+
+-   **terra-breadcrumbs** has been deprecated.
+-   **terra-no-result-notice** has been deprecated.
+
+### Migrations
+
+-   **migration-portlet** was added to migrate the deprecated terra-portlet to use material expansion panels instead
+-   **ESLint** was added instead of TSLint
+
+# 12.1.1 (12.10.2021)
+
+### Bug fixes
+
+-   **router** added missing export to the public api.
+
+# 12.1.0 (12.10.2021)
+
+### Features
+
+-   **terra-filter-toolbar** added an optional input to search through the table's datasource, based on the filter parameters.
+-   **router** - we're now supporting material icons on routes.
+
+# 12.0.1 (06.10.2021)
+
+### Bug fixes
+
+-   **validators** iban validator doesn't mistakenly report validation errors for `null`, `undefined` and `''` values anymore. If you still need your control to fail validation on these values, use the [required validator](https://angular.io/api/forms/RequiredValidator) in addition.
+
+# 12.0.0 (24.08.2021)
+
+This release contains the same set of changes as 12.0.0-next.6
+
+# 12.0.0-next.6 (20.08.2021)
+
+### Features
+
+-   **terra-form** added the possibility to sort form fields by its position.
+
+# 12.0.0-next.5 (06.08.2021)
+
+### Bug fixes
+
+-   **build** fixed a bug with our providers due to the conversion to ivy.
+
+# 12.0.0-next.4 (26.07.2021)
+
+### Breaking Changes
+
+-   **build** this library is now build with ivy using the "partial" compilation mode.
+
+### Features
+
+-   **terra-form**: Error messages have been added for the following form field validators:
+    -   validator **min**,
+    -   validator **max**,
+
+# 12.0.0-next.3 (15.07.2021)
+
+### Breaking Changes
+
+-   **forms** removed `TerraInputComponent` from the public api since it was not intended to be part of it.
+-   **dependencies** update `ckeditor4-angular` to version pattern `>=1.1.0`.
+
+# 12.0.0-next.2 (14.07.2021)
+
+### Breaking Changes
+
+-   **dependencies**
+    -   updated all angular packages to version 12
+    -   update `angular-l10n` to version 12
+    -   update `ngx-quill` to version 14
+    -   update `ngx-bootstrap` to version 6.2.0
+    -   update `ckeditor4-angular` to version 2
+    -   update `tslib` to version 2.3.0
+
+# 12.0.0-next.1 (14.07.2021)
+
+### Breaking Changes
+
+-   **terra-indicator** has been removed.
+-   **tc-checkbox-group** has been removed.
+-   **terra-slider** has been removed.
+-   **terra-note** has been removed.
+-   **interactables** `TerraInteractModule`, `TerraDraggableDirective` and all related interfaces have been removed. See https://github.com/plentymarkets/terra-components/tree/v11.6.0/src/lib/components/interactables for reference.
+-   **dependencies** removed peer dependency `interactjs` since its no longer used.
+
+# 12.0.0-next.0 (13.07.2021)
+
+### Breaking Changes
+
+-   **terra-stopwatch** has been removed.
+
+# 11.6.0 (12.07.2021)
+
+### Minor changes
+
+-   **terra-button** removed styles for `btn-group` which were no longer used.
+
+# 11.5.1 (30.06.2021)
+
+### Bug fixes
+
+-   **terra-form** support legacy input names on the new form components.
+
+# 11.5.0 (23.06.2021)
+
+### Features
+
+-   **terra-form**: Error messages have been added for the following form field validators:
+    -   validator **required**,
+    -   validator **pattern**,
+    -   validator **minLength**,
+    -   validator **maxLength**,
+    -   validator **email**,
+
+# 11.4.0 (16.06.2021)
+
+### Features
+
+-   **table** introduced `dataRequested$` property to `TerraTableDataSource` which notifies whenever data has been requested from the server.
+
+# 11.3.0 (14.06.2021)
+
+### Features
+
+-   **filter** added new components and directives to create a filter for tables. See this [directory](./src/lib/components/filter) for more details.
+
+### Minor changes
+
+-   **tc-filter** has been deprecated.
+
+# 11.2.0 (10.06.2021)
+
+### Minor changes
+
+-   The **terra-portlet** component has been deprecated. Use Angular Material's [expansion-panel](https://material.angular.io/components/expansion/overview) instead.
+-   The **terra-group-function** component has been deprecated.
+-   The **terra-stopwatch** component has been deprecated.
+-   The **terra-radio-group** & **terra-radio-input** components have been deprecated. Use Angular Material's [radio-button](https://material.angular.io/components/radio/overview) instead.
+-   The **terra-slider** component has been deprecated. Use Angular Material's [slider](https://material.angular.io/components/slider/overview) instead.
+-   The **file-chooser** component has been deprecated. Use Angular Material's [button](https://material.angular.io/components/button) and [dialog](https://material.angular.io/components/dialog) in conjunction with our [file-browser](./src/lib/components/file-browser) instead.
+-   **terra-form**: for some form types, deprecated variants have been replaced as follows:
+    -   form type **suggestion**: replaced deprecated `terra-suggestion-box` by a `mat-autocomplete` variant.
+    -   form type **double**: replaced deprecated `terra-double-input` by a `mat-input` variant.
+    -   form type **slider**: replaced deprecated `terra-slider` by a `mat-slider` variant.
+    -   form type **checkbox group**: replaced deprecated `tc-checkbox-group` by a `mat-select` variant in the multiple mode.
+    -   form type **color**: replaced deprecated `terra-color-picker` by a `mat-input` variant.
+    -   form type **date**: replaced deprecated `terra-date-picker` by a `mat-datepicker` variant.
+    -   form type **text**: replaced deprecated `terra-text-input` by a `mat-input` variant.
+    -   form type **checkbox**: replaced deprecated `terra-checkbox` by a `mat-checkbox` variant.
+    -   form type **select**: replaced deprecated `terra-select-box` by a `mat-select` variant.
+    -   form type **number**: replaced deprecated `terra-number-input` by a `mat-input` variant.
+    -   form type **text-area**: replaced deprecated `terra-text-area-input` by a `mat-input` variant.
 
 # 11.1.0 (23.03.2021)
 

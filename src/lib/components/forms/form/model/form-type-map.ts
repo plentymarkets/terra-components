@@ -1,21 +1,21 @@
 import { Type } from '@angular/core';
-import { CheckboxGroupComponent } from '../../checkbox-group/checkbox-group.component';
 import { TerraFormTypeInterface } from './terra-form-type.interface';
-import { TerraCheckboxComponent } from '../../checkbox/terra-checkbox.component';
-import { TerraDatePickerComponent } from '../../input/date-picker/terra-date-picker.component';
 import { TerraFileInputComponent } from '../../input/file-input/terra-file-input.component';
-import { TerraTextInputComponent } from '../../input/text-input/terra-text-input.component';
-import { TerraTextAreaInputComponent } from '../../input/text-area-input/terra-text-area-input.component';
-import { TerraNumberInputComponent } from '../../input/number-input/terra-number-input.component';
-import { TerraDoubleInputComponent } from '../../input/double-input/terra-double-input.component';
-import { TerraSelectBoxComponent } from '../../select-box/terra-select-box.component';
+import { NumberInputComponent } from '../form-components/number-input/number-input.component';
+import { SelectComponent } from '../form-components/select/select.component';
 import { TerraCategoryPickerComponent } from '../../../data-picker/category-picker/terra-category-picker.component';
-import { TerraColorPickerComponent } from '../../input/color-picker/terra-color-picker.component';
 import { TerraNoteEditorComponent } from '../../../editors/note-editor/terra-note-editor.component';
 import { TerraCodeEditorComponent } from '../../../editors/code-editor/terra-code-editor.component';
-import { TerraSliderComponent } from '../../slider/terra-slider.component';
 import { TerraPortletComponent } from '../../../layouts/portlet/terra-portlet.component';
-import { TerraSuggestionBoxComponent } from '../../suggestion-box/terra-suggestion-box.component';
+import { SuggestionComponent } from '../form-components/suggestion/suggestion.component';
+import { DoubleInputComponent } from '../form-components/double-input/double-input.component';
+import { SliderComponent } from '../form-components/slider/slider.component';
+import { MultiSelectComponent } from '../form-components/multi-select/multi-select.component';
+import { ColorPickerComponent } from '../form-components/color-picker/color-picker.component';
+import { DatePickerComponent } from '../form-components/datepicker/datepicker.component';
+import { TextInputComponent } from '../form-components/text-input/text-input.component';
+import { CheckboxComponent } from '../form-components/checkbox/checkbox.component';
+import { TextAreaComponent } from '../form-components/text-area/text-area.component';
 
 /**
  * @description A map of control types that may be passed to the <terra-form> in order to support those controls.
@@ -24,15 +24,15 @@ import { TerraSuggestionBoxComponent } from '../../suggestion-box/terra-suggesti
 export class FormTypeMap {
     public readonly checkbox: TerraFormTypeInterface = {
         inputMap: {
-            name: 'inputCaption'
+            required: 'isRequired'
         },
-        component: TerraCheckboxComponent
+        component: CheckboxComponent
     };
     public readonly date: TerraFormTypeInterface = {
         inputMap: {
-            required: 'inputIsRequired'
+            required: 'isRequired'
         },
-        component: TerraDatePickerComponent
+        component: DatePickerComponent
     };
     public readonly file: TerraFormTypeInterface = {
         inputMap: {
@@ -42,43 +42,57 @@ export class FormTypeMap {
     };
     public readonly text: TerraFormTypeInterface = {
         inputMap: {
-            required: 'inputIsRequired'
+            required: 'isRequired',
+            iban: 'isIban'
         },
-        component: TerraTextInputComponent
+        component: TextInputComponent
     };
     public readonly textarea: TerraFormTypeInterface = {
         inputMap: {
-            required: 'inputIsRequired'
+            required: 'isRequired'
         },
-        component: TerraTextAreaInputComponent
+        component: TextAreaComponent
     };
+    // eslint-disable-next-line id-denylist
     public readonly number: TerraFormTypeInterface = {
         inputMap: {
-            required: 'inputIsRequired'
+            required: 'isRequired'
         },
-        component: TerraNumberInputComponent
+        component: NumberInputComponent
     };
     public readonly double: TerraFormTypeInterface = {
         inputMap: {
-            required: 'inputIsRequired'
+            required: 'isRequired'
         },
-        component: TerraDoubleInputComponent
+        component: DoubleInputComponent
     };
     public readonly select: TerraFormTypeInterface = {
         inputMap: {
-            required: 'inputIsRequired'
+            required: 'isRequired'
         },
-        component: TerraSelectBoxComponent
+        component: SelectComponent
     };
     public readonly category: Type<TerraCategoryPickerComponent> = TerraCategoryPickerComponent;
     public readonly color: TerraFormTypeInterface = {
         inputMap: {
-            required: 'inputIsRequired'
+            required: 'isRequired'
         },
-        component: TerraColorPickerComponent
+        component: ColorPickerComponent
     };
-    public readonly checkboxGroup: Type<CheckboxGroupComponent> = CheckboxGroupComponent;
-    public readonly slider: Type<TerraSliderComponent> = TerraSliderComponent;
+    public readonly checkboxGroup: TerraFormTypeInterface = {
+        inputMap: {
+            required: 'isRequired'
+        },
+        component: MultiSelectComponent
+    };
+    public readonly slider: TerraFormTypeInterface = {
+        inputMap: {
+            required: 'isRequired',
+            minValue: 'min',
+            maxValue: 'max'
+        },
+        component: SliderComponent
+    };
     public readonly noteEditor: TerraFormTypeInterface = {
         inputMap: {
             name: 'inputHeaderLabel'
@@ -94,9 +108,9 @@ export class FormTypeMap {
 
     public readonly suggestion: TerraFormTypeInterface = {
         inputMap: {
-            required: 'inputIsRequired'
+            required: 'isRequired'
         },
-        component: TerraSuggestionBoxComponent
+        component: SuggestionComponent
     };
 
     // CONTAINER TYPES

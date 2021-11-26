@@ -1,7 +1,13 @@
-![code coverage](https://img.shields.io/badge/coverage-48.84%25-red)
+![code coverage](https://img.shields.io/badge/coverage-45.27%25-red)
 [![npm version](https://badge.fury.io/js/%40plentymarkets%2Fterra-components.svg)](https://badge.fury.io/js/%40plentymarkets%2Fterra-components)
 
 ![plentymarkets Logo](http://www.plentymarkets.eu/layout/pm/images/logo/plentymarkets-logo.jpg)
+
+# Deprecated
+
+#### This repository is deprecated. It will not be maintained anymore.
+
+---
 
 # Components for plentymarkets plugins
 
@@ -10,11 +16,11 @@ These are the official plugin components developed by plentymarkets. This reposi
 ## Plugin documentation
 
 -   Learn how to create your [first plentymarkets angular plugin](https://developers.plentymarkets.com/tutorials/angular-plugin)
--   Terra Components [API documentation](https://developers.plentymarkets.com/terra-doc/components)
+-   Terra Components API documentation (currently in revision)
 -   Overview of plentymarkets [plugin interfaces](https://developers.plentymarkets.com/dev-doc/basics#guide-interface)
--   The plentymarkets [REST API](https://developers.plentymarkets.com/rest-doc/introduction)
+-   The plentymarkets [REST API](https://developers.plentymarkets.com/en-gb/plentymarkets-rest-api/index.html)
 
-## Browser Compatibility
+## Browser compatibility
 
 | ![Chrome](https://raw.github.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png) | ![Firefox](https://raw.github.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png) |
 | ---------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
@@ -26,7 +32,7 @@ Sign up today and become a member of our [forum](https://forum.plentymarkets.com
 
 ## Versioning
 
-Visit our forum and find the latest news and updates in our [Changelog](https://github.com/plentymarkets/terra-components/blob/5.X.X/CHANGELOG.md).
+Visit our forum and find the latest news and updates in our [Changelog](https://github.com/plentymarkets/terra-components/blob/main/CHANGELOG.md).
 
 ## License
 

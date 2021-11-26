@@ -7,7 +7,8 @@ import { ColumnInterface } from '../interface/column.interface';
 
 @Component({
     selector: 'tc-table-settings-dialog',
-    templateUrl: './table-settings-dialog.component.html'
+    templateUrl: './table-settings-dialog.component.html',
+    styleUrls: ['./table-settings-dialog.component.scss']
 })
 export class TableSettingsDialogComponent implements OnInit {
     public _columns: Array<ColumnInterface>;

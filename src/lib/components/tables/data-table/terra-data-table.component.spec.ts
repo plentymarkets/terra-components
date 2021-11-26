@@ -16,15 +16,24 @@ import { TerraTagComponent } from '../../layouts/tag/terra-tag.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TerraDataTableServiceExample } from './example/terra-data-table.service.example';
 import { TerraLoadingSpinnerService } from '../../loading-spinner/service/terra-loading-spinner.service';
-import { ChangeDetectionStrategy, Component, DebugElement } from '@angular/core';
+import { ChangeDetectionStrategy, DebugElement, Directive, Input } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { TableRowComponent } from './table-row/table-row.component';
 import { ActivatedRoute } from '@angular/router';
 import { MockActivatedRoute } from '../../../testing/mock-activated-route';
 import { mockL10nConfig } from '../../../testing/mock-l10n-config';
 import { MockTooltipDirective } from '../../../testing/mock-tooltip.directive';
-import Spy = jasmine.Spy;
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { TerraDataTableRowInterface } from './interfaces/terra-data-table-row.interface';
+import Spy = jasmine.Spy;
+
+@Directive({
+    selector: 'tr[tcTableRow]'
+})
+// eslint-disable-next-line @angular-eslint/directive-class-suffix
+class TableRowMockComponent {
+    @Input('tcTableRow')
+    public row: TerraDataTableRowInterface<any>;
+}
 
 describe('TerraDataTableComponent', () => {
     let component: TerraDataTableComponent<any, any>;
@@ -45,7 +54,7 @@ describe('TerraDataTableComponent', () => {
                 TerraBaseToolbarComponent,
                 TerraNumberInputComponent,
                 TerraSelectBoxComponent,
-                TableRowComponent
+                TableRowMockComponent
             ],
             imports: [
                 CommonModule,
@@ -63,9 +72,9 @@ describe('TerraDataTableComponent', () => {
                 }
             ]
         }).overrideComponent(TerraDataTableComponent, {
-            set: new Component({
+            set: {
                 changeDetection: ChangeDetectionStrategy.Default
-            })
+            }
         });
     });
 
