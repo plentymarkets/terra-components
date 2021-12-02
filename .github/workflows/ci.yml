@@ -2,7 +2,9 @@
 name: Comparison to base
 
 # Controls when the action will run. Triggers the workflow on pull request events
-on: [pull_request]
+on:
+    workflow_call:
+    pull_request:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
