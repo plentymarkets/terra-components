@@ -21,7 +21,7 @@ jobs:
         steps:
             # Checks out the repository
             - name: checkout
-              uses: actions/checkout@v2
+              uses: actions/checkout@v3
               # Use action from marketplace to merge target branch into the desired base branch
             - name: merge
               uses: mtanzi/action-automerge@v1
